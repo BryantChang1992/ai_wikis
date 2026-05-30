@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="38" fill="white" font-size="16" font-weight="700">Dashboard 前端布局</text>
+
+  <!-- Top Stats Bar -->
+  <rect x="20" y="55" width="820" height="50" rx="8" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="40" y="72" fill="#94a3b8" font-size="9">⚡ 20 活跃任务 </text>
+  <text x="210" y="72" fill="#94a3b8" font-size="9">V</text>
+  <text x="230" y="72" fill="#94a3b8" font-size="9">💎 125K Token 今日 </text>
+  <text x="450" y="72" fill="#94a3b8" font-size="9">V</text>
+  <text x="470" y="72" fill="#94a3b8" font-size="9">🤖 9 在线 Agent </text>
+  <text x="670" y="72" fill="#94a3b8" font-size="9">V</text>
+  <text x="690" y="72" fill="#94a3b8" font-size="9">✅ 24 已完成（今日）</text>
+
+  <!-- Left Column: Task Kanban -->
+  <rect x="20" y="120" width="500" height="210" rx="8" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="142" fill="white" font-size="11" font-weight="600">📋 任务看板</text>
+  <text x="420" y="142" fill="#64748b" font-size="8">状态筛选 V · 10s 刷新</text>
+
+  <!-- Kanban columns -->
+  <rect x="35" y="155" width="110" height="158" rx="6" fill="rgba(59,130,246,0.06)" stroke="#334155" stroke-width="0.5"/>
+  <text x="90" y="172" fill="#60a5fa" font-size="9" font-weight="600" text-anchor="middle">in_progress</text>
+  <rect x="42" y="180" width="96" height="28" rx="4" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="90" y="198" fill="#94a3b8" font-size="8" text-anchor="middle">Kafka 调研报告</text>
+  <rect x="42" y="213" width="96" height="28" rx="4" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="90" y="231" fill="#94a3b8" font-size="8" text-anchor="middle">Dashboard 开发</text>
+  <rect x="42" y="246" width="96" height="28" rx="4" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="90" y="264" fill="#94a3b8" font-size="8" text-anchor="middle">API 部署测试</text>
+  <text x="90" y="300" fill="#64748b" font-size="7" text-anchor="middle">9 个任务</text>
+
+  <rect x="156" y="155" width="110" height="158" rx="6" fill="rgba(120,53,15,0.04)" stroke="#334155" stroke-width="0.5"/>
+  <text x="211" y="172" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">blocked</text>
+  <rect x="163" y="180" width="96" height="28" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="0.5"/>
+  <text x="211" y="198" fill="#94a3b8" font-size="8" text-anchor="middle">Fluss 官方确认</text>
+  <rect x="163" y="213" width="96" height="28" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="0.5"/>
+  <text x="211" y="231" fill="#94a3b8" font-size="8" text-anchor="middle">CEO 审批等待</text>
+  <text x="211" y="300" fill="#64748b" font-size="7" text-anchor="middle">2 个任务</text>
+
+  <rect x="277" y="155" width="110" height="158" rx="6" fill="rgba(30,41,59,0.3)" stroke="#334155" stroke-width="0.5"/>
+  <text x="332" y="172" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">pending</text>
+  <rect x="284" y="180" width="96" height="28" rx="4" fill="rgba(30,41,59,0.4)" stroke="#334155" stroke-width="0.5"/>
+  <text x="332" y="198" fill="#64748b" font-size="8" text-anchor="middle">Phase 2 评审</text>
+  <rect x="284" y="213" width="96" height="28" rx="4" fill="rgba(30,41,59,0.4)" stroke="#334155" stroke-width="0.5"/>
+  <text x="332" y="231" fill="#64748b" font-size="8" text-anchor="middle">Iceberg 调研</text>
+  <text x="332" y="300" fill="#64748b" font-size="7" text-anchor="middle">5 个任务</text>
+
+  <!-- Right Column: Token Chart -->
+  <rect x="540" y="120" width="300" height="210" rx="8" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+  <text x="560" y="142" fill="white" font-size="11" font-weight="600">📊 Token 消耗趋势</text>
+  <text x="720" y="142" fill="#64748b" font-size="8">7 天 · 30s 刷新</text>
+
+  <!-- Mini chart bars -->
+  <rect x="560" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="560" y="160" width="26" height="40" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="573" y="255" fill="#64748b" font-size="7" text-anchor="middle">5/25</text>
+
+  <rect x="600" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="600" y="172" width="26" height="28" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="613" y="255" fill="#64748b" font-size="7" text-anchor="middle">5/26</text>
+
+  <rect x="640" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="640" y="153" width="26" height="47" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="653" y="255" fill="#64748b" font-size="7" text-anchor="middle">5/27</text>
+
+  <rect x="680" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="680" y="148" width="26" height="52" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="693" y="255" fill="#64748b" font-size="7" text-anchor="middle">5/28</text>
+
+  <rect x="720" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="720" y="158" width="26" height="42" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="733" y="255" fill="#64748b" font-size="7" text-anchor="middle">29</text>
+
+  <rect x="760" y="160" width="26" height="80" rx="3" fill="rgba(56,189,248,0.2)"/>
+  <rect x="760" y="162" width="26" height="38" rx="3" fill="rgba(56,189,248,0.6)"/>
+  <text x="773" y="255" fill="#64748b" font-size="7" text-anchor="middle">30</text>
+
+  <!-- Bottom: Agent List + Activity -->
+  <rect x="20" y="345" width="380" height="195" rx="8" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="367" fill="white" font-size="11" font-weight="600">🤖 Agent 状态列表</text>
+  <text x="310" y="367" fill="#64748b" font-size="8">10s 刷新</text>
+
+  <!-- Agent rows -->
+  <rect x="35" y="382" width="350" height="28" rx="4" fill="rgba(30,41,59,0.3)"/>
+  <circle cx="48" cy="396" r="4" fill="#34d399"/>
+  <text x="62" y="400" fill="white" font-size="9">CTO</text>
+  <rect x="170" y="388" width="60" height="16" rx="8" fill="rgba(6,78,59,0.3)"/>
+  <text x="200" y="400" fill="#34d399" font-size="7" text-anchor="middle">active</text>
+  <text x="260" y="400" fill="#94a3b8" font-size="8">deepseek-v4-pro</text>
+  <text x="370" y="400" fill="#64748b" font-size="7" text-anchor="end">45K token</text>
+
+  <rect x="35" y="415" width="350" height="28" rx="4" fill="rgba(30,41,59,0.3)"/>
+  <circle cx="48" cy="429" r="4" fill="#34d399"/>
+  <text x="62" y="433" fill="white" font-size="9">Infra 专家</text>
+  <rect x="170" y="421" width="60" height="16" rx="8" fill="rgba(6,78,59,0.3)"/>
+  <text x="200" y="433" fill="#34d399" font-size="7" text-anchor="middle">active</text>
+  <text x="260" y="433" fill="#94a3b8" font-size="8">deepseek-v4-pro</text>
+  <text x="370" y="433" fill="#64748b" font-size="7" text-anchor="end">28K token</text>
+
+  <rect x="35" y="448" width="350" height="28" rx="4" fill="rgba(30,41,59,0.3)"/>
+  <circle cx="48" cy="462" r="4" fill="#fbbf24"/>
+  <text x="62" y="466" fill="white" font-size="9">Kafka RD</text>
+  <rect x="170" y="454" width="60" height="16" rx="8" fill="rgba(120,53,15,0.3)"/>
+  <text x="200" y="466" fill="#fbbf24" font-size="7" text-anchor="middle">busy</text>
+  <text x="260" y="466" fill="#94a3b8" font-size="8">deepseek-v4-flash</text>
+  <text x="370" y="466" fill="#64748b" font-size="7" text-anchor="end">12K token</text>
+
+  <rect x="35" y="481" width="350" height="28" rx="4" fill="rgba(30,41,59,0.3)"/>
+  <circle cx="48" cy="495" r="4" fill="#34d399"/>
+  <text x="62" y="499" fill="white" font-size="9">Perf 专家</text>
+  <rect x="170" y="487" width="60" height="16" rx="8" fill="rgba(6,78,59,0.3)"/>
+  <text x="200" y="499" fill="#34d399" font-size="7" text-anchor="middle">active</text>
+  <text x="260" y="499" fill="#94a3b8" font-size="8">deepseek-v4-pro</text>
+  <text x="370" y="499" fill="#64748b" font-size="7" text-anchor="end">8K token</text>
+
+  <!-- Right Bottom: Activity Stream -->
+  <rect x="420" y="345" width="420" height="195" rx="8" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+  <text x="440" y="367" fill="white" font-size="11" font-weight="600">📜 实时 Activity</text>
+  <text x="740" y="367" fill="#64748b" font-size="8">10s 刷新</text>
+
+  <text x="440" y="392" fill="#64748b" font-size="8">22:48</text>
+  <text x="490" y="392" fill="#22d3ee" font-size="8">CTO</text>
+  <text x="540" y="392" fill="#94a3b8" font-size="8">spawned Kafka RD 执行调研任务</text>
+
+  <text x="440" y="414" fill="#64748b" font-size="8">22:45</text>
+  <text x="490" y="414" fill="#34d399" font-size="8">Kafka RD</text>
+  <text x="560" y="414" fill="#94a3b8" font-size="8">tool_call: web_search "AutoMQ 0.11"</text>
+
+  <text x="440" y="436" fill="#64748b" font-size="8">22:42</text>
+  <text x="490" y="436" fill="#fbbf24" font-size="8">Supervisor</text>
+  <text x="580" y="436" fill="#94a3b8" font-size="8">对账：标记 task #42 为 done</text>
+
+  <text x="440" y="458" fill="#64748b" font-size="8">22:38</text>
+  <text x="490" y="458" fill="#22d3ee" font-size="8">CTO</text>
+  <text x="540" y="458" fill="#94a3b8" font-size="8">创建任务「周报 W03」→ pending</text>
+
+  <text x="440" y="480" fill="#64748b" font-size="8">22:35</text>
+  <text x="490" y="480" fill="#a78bfa" font-size="8">Infra 专家</text>
+  <text x="580" y="480" fill="#94a3b8" font-size="8">tool_call: exec → SQLite schema init</text>
+
+  <text x="440" y="502" fill="#64748b" font-size="8">22:30</text>
+  <text x="490" y="502" fill="#22d3ee" font-size="8">CTO</text>
+  <text x="540" y="502" fill="#94a3b8" font-size="8">session:compact:after → 汇总 Token</text>
+
+  <text x="440" y="524" fill="#64748b" font-size="7" font-style="italic">... 42 条历史记录 ...</text>
+</svg>

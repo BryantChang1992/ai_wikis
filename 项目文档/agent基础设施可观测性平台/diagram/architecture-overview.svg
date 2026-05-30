@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 720">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="38" fill="white" font-size="16" font-weight="700">系统架构总览 · Agent 基础设施可观测性平台</text>
+
+  <!-- === Layer 1: 展示层 (y=60..220) === -->
+  <rect x="20" y="55" width="820" height="170" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="40" y="73" fill="#22d3ee" font-size="10" font-weight="600">展示层</text>
+
+  <!-- Dashboard box -->
+  <rect x="200" y="82" width="420" height="60" rx="8" fill="#0f172a"/>
+  <rect x="200" y="82" width="420" height="60" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="410" y="106" fill="white" font-size="12" font-weight="600" text-anchor="middle">GitHub Pages Dashboard</text>
+  <text x="410" y="124" fill="#94a3b8" font-size="9" text-anchor="middle">纯静态 HTML + Chart.js · 10s 轮询刷新</text>
+
+  <!-- Arrow: Dashboard → API -->
+  <line x1="410" y1="142" x2="410" y2="182" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="422" y="162" fill="#22d3ee" font-size="8">REST API (HTTPS)</text>
+
+  <!-- ngrok tunnel label -->
+  <text x="450" y="155" fill="#fbbf24" font-size="8">← ngrok 隧道 →</text>
+
+  <!-- === Layer 2: API 层 (y=230..320) === -->
+  <rect x="20" y="225" width="820" height="100" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="40" y="243" fill="#34d399" font-size="10" font-weight="600">API 层</text>
+
+  <!-- FastAPI box -->
+  <rect x="200" y="248" width="420" height="55" rx="8" fill="#0f172a"/>
+  <rect x="200" y="248" width="420" height="55" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="410" y="272" fill="white" font-size="12" font-weight="600" text-anchor="middle">FastAPI 数据服务</text>
+  <text x="410" y="290" fill="#94a3b8" font-size="9" text-anchor="middle">RESTful 端点 · 跨域 CORS · 本地 127.0.0.1:8000</text>
+
+  <!-- Arrow: API → SQLite -->
+  <line x1="410" y1="303" x2="410" y2="348" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="422" y="326" fill="#34d399" font-size="8">SQL 查询</text>
+
+  <!-- === Layer 3: 存储层 (y=350..460) === -->
+  <rect x="20" y="345" width="820" height="120" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="40" y="363" fill="#a78bfa" font-size="10" font-weight="600">存储层</text>
+
+  <!-- SQLite DB box -->
+  <rect x="280" y="370" width="260" height="55" rx="8" fill="#0f172a"/>
+  <rect x="280" y="370" width="260" height="55" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="410" y="394" fill="white" font-size="12" font-weight="600" text-anchor="middle">agent_telemetry.db</text>
+  <text x="410" y="412" fill="#94a3b8" font-size="9" text-anchor="middle">SQLite · WAL 模式 · 单写入者</text>
+
+  <!-- Git backup indicator -->
+  <rect x="580" y="378" width="160" height="40" rx="6" fill="#0f172a"/>
+  <rect x="580" y="378" width="160" height="40" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="660" y="400" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Git 冷备份</text>
+  <text x="660" y="413" fill="#64748b" font-size="7" text-anchor="middle">每 5 分钟 auto-push</text>
+
+  <line x1="540" y1="398" x2="580" y2="398" stroke="#a78bfa" stroke-width="1.5"/>
+
+  <!-- === Layer 4: 采集层 (y=470..640) === -->
+  <rect x="20" y="465" width="820" height="180" rx="12" fill="none" stroke="#fb923c" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="40" y="483" fill="#fb923c" font-size="10" font-weight="600">采集层</text>
+
+  <!-- Hook box -->
+  <rect x="60" y="498" width="260" height="70" rx="8" fill="#0f172a"/>
+  <rect x="60" y="498" width="260" height="70" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="190" y="522" fill="white" font-size="11" font-weight="600" text-anchor="middle">OpenClaw Hook</text>
+  <text x="190" y="540" fill="#94a3b8" font-size="9" text-anchor="middle">agent:bootstrap → agent 注册</text>
+  <text x="190" y="556" fill="#64748b" font-size="8" text-anchor="middle">message:received → 任务创建</text>
+
+  <!-- Log Parser box -->
+  <rect x="400" y="498" width="260" height="70" rx="8" fill="#0f172a"/>
+  <rect x="400" y="498" width="260" height="70" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="530" y="522" fill="white" font-size="11" font-weight="600" text-anchor="middle">Log Parser 守护进程</text>
+  <text x="530" y="540" fill="#94a3b8" font-size="9" text-anchor="middle">每 2s 轮询增量日志</text>
+  <text x="530" y="556" fill="#64748b" font-size="8" text-anchor="middle">lifecycle · tool_call 解析</text>
+
+  <!-- Agent bootstrap arrow -->
+  <line x1="190" y1="498" x2="190" y2="440" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="200" y="464" fill="#fb923c" font-size="8">bootstrap 事件</text>
+
+  <!-- Hook -> SQLite arrow -->
+  <line x1="190" y1="498" x2="190" y2="430" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-slate)"/>
+  <text x="60" y="452" fill="#94a3b8" font-size="7">实时写入</text>
+
+  <!-- Log Parser -> SQLite arrow -->
+  <line x1="580" y1="498" x2="580" y2="430" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-slate)"/>
+  <text x="660" y="452" fill="#94a3b8" font-size="7">定期写入</text>
+
+  <!-- Agent 上报区域 -->
+  <rect x="60" y="590" width="600" height="40" rx="6" fill="rgba(59,130,246,0.08)" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="360" y="615" fill="#60a5fa" font-size="9" font-weight="500" text-anchor="middle">Agent 自主上报：taskboard CLI → PATCH /api/tasks/:id（状态变更、完成标记）</text>
+
+  <!-- Legends -->
+  <rect x="20" y="668" width="820" height="42" rx="8" fill="rgba(30,41,59,0.5)"/>
+  <rect x="40" y="682" width="12" height="12" rx="2" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="58" y="693" fill="#22d3ee" font-size="9">展示层</text>
+  <rect x="140" y="682" width="12" height="12" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="158" y="693" fill="#34d399" font-size="9">API 层</text>
+  <rect x="240" y="682" width="12" height="12" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="258" y="693" fill="#a78bfa" font-size="9">存储层</text>
+  <rect x="340" y="682" width="12" height="12" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fb923c" stroke-width="1"/>
+  <text x="358" y="693" fill="#fb923c" font-size="9">采集层</text>
+  <text x="480" y="693" fill="#94a3b8" font-size="9">实线 = 数据流</text>
+  <text x="600" y="693" fill="#94a3b8" font-size="9">虚线 = 事件/上报</text>
+</svg>

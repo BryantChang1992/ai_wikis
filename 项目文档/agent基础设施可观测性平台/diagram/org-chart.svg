@@ -104,28 +104,28 @@
   <text x="150" y="373" fill="#94a3b8" font-size="7" font-weight="600" text-anchor="middle">执行层 · Worker</text>
 
   <!-- Expert → Worker -->
-  <path d="M 600 315 L 600 345 L 560 345 L 560 371" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
-  <path d="M 745 315 L 745 345 L 680 345 L 680 371" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
-  <path d="M 890 315 L 890 345 L 800 345 L 800 371" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M 600 315 L 600 345 L 515 345 L 515 370" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M 745 315 L 745 345 L 695 345 L 695 370" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M 890 315 L 890 345 L 875 345 L 875 370" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- ===== Worker boxes ===== -->
   <!-- RD (under Infra) -->
-  <rect x="460" y="377" width="200" height="55" rx="6" fill="#0f172a"/>
-  <rect x="460" y="377" width="200" height="55" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
-  <text x="560" y="400" fill="white" font-size="10" font-weight="500" text-anchor="middle">🛠️ RD</text>
-  <text x="560" y="417" fill="#64748b" font-size="7" text-anchor="middle">开发执行</text>
+  <rect x="440" y="377" width="150" height="50" rx="6" fill="#0f172a"/>
+  <rect x="440" y="377" width="150" height="50" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="515" y="399" fill="white" font-size="10" font-weight="500" text-anchor="middle">🛠️ RD</text>
+  <text x="515" y="416" fill="#64748b" font-size="7" text-anchor="middle">开发执行</text>
 
   <!-- SRE Worker (under Perf + SRE) -->
-  <rect x="580" y="377" width="200" height="55" rx="6" fill="#0f172a"/>
-  <rect x="580" y="377" width="200" height="55" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
-  <text x="680" y="400" fill="white" font-size="10" font-weight="500" text-anchor="middle">🔧 SRE</text>
-  <text x="680" y="417" fill="#64748b" font-size="7" text-anchor="middle">运维执行</text>
+  <rect x="620" y="377" width="150" height="50" rx="6" fill="#0f172a"/>
+  <rect x="620" y="377" width="150" height="50" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="695" y="399" fill="white" font-size="10" font-weight="500" text-anchor="middle">🔧 SRE</text>
+  <text x="695" y="416" fill="#64748b" font-size="7" text-anchor="middle">运维执行</text>
 
   <!-- QA (under SRE) -->
-  <rect x="700" y="377" width="200" height="55" rx="6" fill="#0f172a"/>
-  <rect x="700" y="377" width="200" height="55" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
-  <text x="800" y="400" fill="white" font-size="10" font-weight="500" text-anchor="middle">✅ QA</text>
-  <text x="800" y="417" fill="#64748b" font-size="7" text-anchor="middle">测试验证</text>
+  <rect x="800" y="377" width="150" height="50" rx="6" fill="#0f172a"/>
+  <rect x="800" y="377" width="150" height="50" rx="6" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="875" y="399" fill="white" font-size="10" font-weight="500" text-anchor="middle">✅ QA</text>
+  <text x="875" y="416" fill="#64748b" font-size="7" text-anchor="middle">测试验证</text>
 
   <!-- ===== Left side: CFO/COO/CPO trees (collapsed / to-be-defined) ===== -->
   <!-- CFO tree stub -->

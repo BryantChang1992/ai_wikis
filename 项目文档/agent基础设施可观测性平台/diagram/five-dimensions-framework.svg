@@ -3,23 +3,16 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
-    <!-- Standard right-pointing arrow: tip at (10,3.5) -->
-    <marker id="arr-right-slate" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    <!-- Single universal arrow: equilateral triangle pointing right; refX at tip.
+         orient="auto" will rotate it to follow line direction. -->
+    <marker id="arr" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#475569"/>
     </marker>
-    <marker id="arr-right-cyan" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    <marker id="arr-cyan" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#22d3ee"/>
     </marker>
-    <marker id="arr-right-amber" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
-    </marker>
-    <!-- Down-pointing arrow for vertical lines -->
-    <marker id="arr-down" markerWidth="7" markerHeight="10" refX="3.5" refY="10" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 0, 7 0, 3.5 10" fill="#475569"/>
-    </marker>
-    <!-- Up-pointing arrow (for feedback loop) -->
-    <marker id="arr-up" markerWidth="7" markerHeight="10" refX="3.5" refY="0" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 10, 7 10, 3.5 0" fill="#475569"/>
+    <marker id="arr-amber" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#fbbf24"/>
     </marker>
   </defs>
 
@@ -28,7 +21,6 @@
     text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
   </style>
 
-  <!-- Background -->
   <rect width="100%" height="100%" fill="#0f172a"/>
   <rect width="100%" height="100%" fill="url(#grid)"/>
 
@@ -37,7 +29,7 @@
   <text x="30" y="56" fill="#64748b" font-size="10">CHANG_AI_TEAM Infrastructure Platform v0.2</text>
   <line x1="30" y1="66" x2="1030" y2="66" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- ===== TOP ROW: Brain (记忆 + 知识) ===== -->
+  <!-- ===== TOP: Brain ===== -->
   <rect x="30" y="80" width="1000" height="170" rx="12" fill="none" stroke="#22d3ee" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="8,4"/>
   <text x="46" y="98" fill="#22d3ee" font-size="9" font-weight="600">Agent 的"大脑"</text>
 
@@ -63,7 +55,7 @@
   <text x="312" y="194" fill="#cbd5e1" font-size="9">↳ 知识推送机制</text>
   <text x="312" y="210" fill="#cbd5e1" font-size="9">↳ 沉淀闭环 &amp; 新鲜度</text>
 
-  <!-- ===== MIDDLE ROW: 协作 ===== -->
+  <!-- ===== MIDDLE: 协作 ===== -->
   <rect x="30" y="265" width="1000" height="130" rx="12" fill="none" stroke="#a78bfa" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="8,4"/>
   <text x="46" y="283" fill="#a78bfa" font-size="9" font-weight="600">Agent 的"协作方式"</text>
 
@@ -75,7 +67,6 @@
   <text x="134" y="327" fill="white" font-size="12" font-weight="600">工作流自动化</text>
   <text x="134" y="343" fill="#94a3b8" font-size="8">Workflow Automation</text>
 
-  <!-- Sub-modules -->
   <rect x="320" y="308" width="170" height="56" rx="6" fill="rgba(76,29,149,0.15)" stroke="#a78bfa" stroke-width="0.8" stroke-opacity="0.6"/>
   <text x="405" y="332" fill="#cbd5e1" font-size="10" font-weight="500" text-anchor="middle">角色权限矩阵</text>
   <text x="405" y="350" fill="#64748b" font-size="8" text-anchor="middle">RBAC for Agents</text>
@@ -88,7 +79,7 @@
   <text x="785" y="332" fill="#cbd5e1" font-size="10" font-weight="500" text-anchor="middle">任务状态机</text>
   <text x="785" y="350" fill="#64748b" font-size="8" text-anchor="middle">State Machine</text>
 
-  <!-- ===== BOTTOM ROW: 保障 ===== -->
+  <!-- ===== BOTTOM: 保障 ===== -->
   <rect x="30" y="410" width="1000" height="200" rx="12" fill="none" stroke="#fbbf24" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="8,4"/>
   <text x="46" y="428" fill="#fbbf24" font-size="9" font-weight="600">Agent 的"保障体系" — 看得见 + 靠得住</text>
 
@@ -136,19 +127,19 @@
 
   <text x="785" y="575" fill="#64748b" font-size="8" text-anchor="middle">SQLite WAL · Git Backup · Supervisor 对账 · 超时检测 · 自动重试</text>
 
-  <!-- ===== CONNECTORS: horizontal ===== -->
-  <!-- 记忆 → 知识 -->
-  <line x1="266" y1="172" x2="295" y2="172" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr-right-cyan)"/>
-  <!-- 可观测性 → 可靠性 -->
-  <line x1="530" y1="517" x2="565" y2="517" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arr-right-amber)"/>
+  <!-- Horizontal: 记忆 → 知识 -->
+  <line x1="266" y1="172" x2="294" y2="172" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr-cyan)"/>
 
-  <!-- ===== CONNECTORS: vertical (Brain → Collab) ===== -->
-  <line x1="168" y1="232" x2="168" y2="260" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
-  <line x1="398" y1="232" x2="398" y2="260" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
+  <!-- Horizontal: 可观测性 → 可靠性 -->
+  <line x1="530" y1="517" x2="564" y2="517" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arr-amber)"/>
 
-  <!-- ===== CONNECTORS: vertical (Collab → Ensure) ===== -->
-  <line x1="300" y1="377" x2="300" y2="405" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
-  <line x1="785" y1="377" x2="785" y2="405" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
+  <!-- Vertical: Brain → Collab -->
+  <line x1="168" y1="232" x2="168" y2="259" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+  <line x1="398" y1="232" x2="398" y2="259" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+
+  <!-- Vertical: Collab → Ensure -->
+  <line x1="300" y1="377" x2="300" y2="404" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+  <line x1="785" y1="377" x2="785" y2="404" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
 
   <!-- Legend -->
   <line x1="30" y1="618" x2="1030" y2="618" stroke="#1e293b" stroke-width="1"/>

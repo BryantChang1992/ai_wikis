@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "0b0c93db283fcd80",
+            "id": "4c08a33fdfc875f1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "知识库/README.md",
+                "file": "团队规范/仓库分工说明.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "仓库分工说明"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "项目文档/agent基础设施可观测性平台/设计文档.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "README 的反向链接列表"
+              "title": "设计文档 的反向链接列表"
             }
           },
           {
@@ -156,17 +156,39 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "知识库/README.md",
+                "file": "项目文档/agent基础设施可观测性平台/设计文档.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "README 的大纲"
+              "title": "设计文档 的大纲"
+            }
+          },
+          {
+            "id": "185b7f587705084b",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          },
+          {
+            "id": "c6004cdf0c5da684",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "团队规范/仓库分工说明.md"
+              },
+              "icon": "lucide-info",
+              "title": "仓库分工说明的笔记属性"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -184,12 +206,28 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0b0c93db283fcd80",
+  "active": "185b7f587705084b",
   "lastOpenFiles": [
-    "README.md",
-    "团队运营/README.md",
+    "项目文档/agent基础设施可观测性平台/设计文档.md",
+    "项目文档/agent基础设施可观测性平台/关于agent基建的一些思考.md",
+    "设计文档 v0.1.md",
     "项目文档/README.md",
+    "项目文档/agent基础设施可观测性平台/diagram/org-chart@2x.png",
+    "项目文档/agent基础设施可观测性平台/diagram/org-chart.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/memory-three-tier@2x.png",
+    "项目文档/agent基础设施可观测性平台/diagram/memory-three-tier.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/five-dimensions-framework@2x.png",
+    "项目文档/agent基础设施可观测性平台/diagram/five-dimensions-framework.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/dashboard-layout@2x.png",
+    "项目文档/agent基础设施可观测性平台/diagram/dashboard-layout.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/architecture-overview@2x.png",
+    "项目文档/agent基础设施可观测性平台/diagram/architecture-overview.svg",
     "知识库/README.md",
+    "团队规范/仓库分工说明.md",
+    "README.md",
+    "团队规范/README.md",
+    "团队规范",
+    "团队运营/README.md",
     "项目文档",
     "知识库",
     "技术文章/README.md",

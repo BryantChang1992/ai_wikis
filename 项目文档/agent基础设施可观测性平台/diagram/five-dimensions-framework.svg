@@ -3,36 +3,24 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
-    <marker id="arrow-down" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
-      <polygon points="0 0, 10 0, 5 7" fill="#475569"/>
+    <!-- Standard right-pointing arrow: tip at (10,3.5) -->
+    <marker id="arr-right-slate" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
     </marker>
-    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arr-right-cyan" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
-    </marker>
-    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
-    </marker>
-    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arr-right-amber" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
     </marker>
-    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    <!-- Down-pointing arrow for vertical lines -->
+    <marker id="arr-down" markerWidth="7" markerHeight="10" refX="3.5" refY="10" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0 0, 7 0, 3.5 10" fill="#475569"/>
     </marker>
-    <linearGradient id="g-brain" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="g-collab" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#60a5fa"/>
-    </linearGradient>
-    <linearGradient id="g-ensure" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#fb7185"/>
-    </linearGradient>
+    <!-- Up-pointing arrow (for feedback loop) -->
+    <marker id="arr-up" markerWidth="7" markerHeight="10" refX="3.5" refY="0" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0 10, 7 10, 3.5 0" fill="#475569"/>
+    </marker>
   </defs>
 
   <style>
@@ -75,9 +63,6 @@
   <text x="312" y="194" fill="#cbd5e1" font-size="9">↳ 知识推送机制</text>
   <text x="312" y="210" fill="#cbd5e1" font-size="9">↳ 沉淀闭环 &amp; 新鲜度</text>
 
-  <!-- 连接线: 记忆 → 知识 -->
-  <line x1="266" y1="172" x2="300" y2="172" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
-
   <!-- ===== MIDDLE ROW: 协作 ===== -->
   <rect x="30" y="265" width="1000" height="130" rx="12" fill="none" stroke="#a78bfa" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="8,4"/>
   <text x="46" y="283" fill="#a78bfa" font-size="9" font-weight="600">Agent 的"协作方式"</text>
@@ -90,7 +75,7 @@
   <text x="134" y="327" fill="white" font-size="12" font-weight="600">工作流自动化</text>
   <text x="134" y="343" fill="#94a3b8" font-size="8">Workflow Automation</text>
 
-  <!-- 子模块 -->
+  <!-- Sub-modules -->
   <rect x="320" y="308" width="170" height="56" rx="6" fill="rgba(76,29,149,0.15)" stroke="#a78bfa" stroke-width="0.8" stroke-opacity="0.6"/>
   <text x="405" y="332" fill="#cbd5e1" font-size="10" font-weight="500" text-anchor="middle">角色权限矩阵</text>
   <text x="405" y="350" fill="#64748b" font-size="8" text-anchor="middle">RBAC for Agents</text>
@@ -129,9 +114,6 @@
 
   <text x="300" y="575" fill="#64748b" font-size="8" text-anchor="middle">Agent 状态 · 任务进度 · Token 消耗 · 工具调用 · 记忆检索 · 知识访问</text>
 
-  <!-- 连接线: 可观测性 → 可靠性 -->
-  <line x1="530" y1="517" x2="570" y2="517" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
-
   <!-- 5. 可靠性 -->
   <rect x="570" y="442" width="430" height="150" rx="8" fill="#0f172a"/>
   <rect x="570" y="442" width="430" height="150" rx="8" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="1.5"/>
@@ -154,26 +136,31 @@
 
   <text x="785" y="575" fill="#64748b" font-size="8" text-anchor="middle">SQLite WAL · Git Backup · Supervisor 对账 · 超时检测 · 自动重试</text>
 
-  <!-- ===== 跨行连接线 ===== -->
-  <!-- Brain → Collab -->
-  <path d="M 168 232 L 168 265" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-down)"/>
-  <path d="M 398 232 L 398 265" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-down)"/>
+  <!-- ===== CONNECTORS: horizontal ===== -->
+  <!-- 记忆 → 知识 -->
+  <line x1="266" y1="172" x2="295" y2="172" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr-right-cyan)"/>
+  <!-- 可观测性 → 可靠性 -->
+  <line x1="530" y1="517" x2="565" y2="517" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arr-right-amber)"/>
 
-  <!-- Collab → Ensure -->
-  <path d="M 300 377 L 300 410" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-down)"/>
-  <path d="M 785 377 L 785 410" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-down)"/>
+  <!-- ===== CONNECTORS: vertical (Brain → Collab) ===== -->
+  <line x1="168" y1="232" x2="168" y2="260" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
+  <line x1="398" y1="232" x2="398" y2="260" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
+
+  <!-- ===== CONNECTORS: vertical (Collab → Ensure) ===== -->
+  <line x1="300" y1="377" x2="300" y2="405" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
+  <line x1="785" y1="377" x2="785" y2="405" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-down)"/>
 
   <!-- Legend -->
-  <rect x="30" y="620" width="1000" height="1" fill="#1e293b"/>
-  <text x="30" y="636" fill="#64748b" font-size="8">P0 优先级</text>
-  <rect x="110" y="626" width="8" height="8" rx="2" fill="#22d3ee"/>
-  <rect x="180" y="626" width="8" height="8" rx="2" fill="#34d399"/>
-  <rect x="260" y="626" width="8" height="8" rx="2" fill="#a78bfa"/>
-  <rect x="350" y="626" width="8" height="8" rx="2" fill="#fbbf24"/>
-  <rect x="440" y="626" width="8" height="8" rx="2" fill="#fb7185"/>
-  <text x="110" y="636" fill="#94a3b8" font-size="7">记忆</text>
-  <text x="180" y="636" fill="#94a3b8" font-size="7">知识</text>
-  <text x="260" y="636" fill="#94a3b8" font-size="7">协作</text>
-  <text x="350" y="636" fill="#94a3b8" font-size="7">观测</text>
-  <text x="440" y="636" fill="#94a3b8" font-size="7">可靠</text>
+  <line x1="30" y1="618" x2="1030" y2="618" stroke="#1e293b" stroke-width="1"/>
+  <text x="30" y="636" fill="#64748b" font-size="8">P0 优先级:</text>
+  <rect x="128" y="627" width="8" height="8" rx="2" fill="#22d3ee"/>
+  <text x="128" y="636" fill="#94a3b8" font-size="7">记忆</text>
+  <rect x="170" y="627" width="8" height="8" rx="2" fill="#34d399"/>
+  <text x="170" y="636" fill="#94a3b8" font-size="7">知识</text>
+  <rect x="214" y="627" width="8" height="8" rx="2" fill="#a78bfa"/>
+  <text x="214" y="636" fill="#94a3b8" font-size="7">协作</text>
+  <rect x="258" y="627" width="8" height="8" rx="2" fill="#fbbf24"/>
+  <text x="258" y="636" fill="#94a3b8" font-size="7">观测</text>
+  <rect x="300" y="627" width="8" height="8" rx="2" fill="#fb7185"/>
+  <text x="300" y="636" fill="#94a3b8" font-size="7">可靠</text>
 </svg>

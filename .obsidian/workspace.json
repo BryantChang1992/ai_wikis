@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "知识库/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -164,19 +164,9 @@
               "icon": "lucide-list",
               "title": "README 的大纲"
             }
-          },
-          {
-            "id": "7d3625d18b8856a5",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
-            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",

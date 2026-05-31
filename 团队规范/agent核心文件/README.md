@@ -26,6 +26,11 @@ updated: 2026-05-31
 ```
 agent核心文件/
 ├── README.md           ← 本文件
+├── ceo/                ← CEO Agent (Mike)
+│   ├── AGENTS.md
+│   ├── SOUL.md
+│   ├── IDENTITY.md
+│   └── USER.md
 ├── cto/                ← CTO Agent
 │   ├── AGENTS.md
 │   ├── SOUL.md
@@ -52,6 +57,7 @@ agent核心文件/
 
 | Agent | 角色 | 层级 | 状态 |
 |-------|------|------|------|
+| CEO (Mike) | 首席执行官 | CEO | Active |
 | CTO | 首席技术官 | VP | Active |
 | CFO | 首席财务官 | VP | Pending |
 | COO | 首席运营官 | VP | Pending |

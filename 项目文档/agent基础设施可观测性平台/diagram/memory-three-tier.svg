@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-down" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
+      <polygon points="0 0, 10 0, 5 7" fill="#475569"/>
+    </marker>
+    <marker id="arrow-up" markerWidth="10" markerHeight="7" refX="5" refY="0" orient="auto">
+      <polygon points="0 7, 10 7, 5 0" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="38" fill="white" font-size="16" font-weight="700">Agent 记忆管理 · 三层记忆模型</text>
+  <text x="30" y="56" fill="#64748b" font-size="10">Three-Tier Memory Architecture</text>
+
+  <!-- ===== Layer 1: 工作记忆 (top, smallest) ===== -->
+  <rect x="30" y="80" width="900" height="100" rx="10" fill="none" stroke="#22d3ee" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="50" y="100" fill="#22d3ee" font-size="10" font-weight="600">🟦 Layer 1 · 工作记忆 Working Memory</text>
+
+  <rect x="50" y="112" width="180" height="48" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="140" y="133" fill="white" font-size="10" font-weight="500" text-anchor="middle">当前 Session 上下文</text>
+  <text x="140" y="150" fill="#64748b" font-size="8" text-anchor="middle">Context Window</text>
+
+  <rect x="260" y="112" width="180" height="48" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="350" y="133" fill="white" font-size="10" font-weight="500" text-anchor="middle">临时执行状态</text>
+  <text x="350" y="150" fill="#64748b" font-size="8" text-anchor="middle">Tool Calls · Steps</text>
+
+  <rect x="470" y="112" width="180" height="48" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="560" y="133" fill="white" font-size="10" font-weight="500" text-anchor="middle">类比：人"在想的事"</text>
+  <text x="560" y="150" fill="#64748b" font-size="8" text-anchor="middle">Volatile · 任务结束即清</text>
+
+  <!-- Side annotation -->
+  <text x="700" y="133" fill="#22d3ee" font-size="8">时效：当前 Session</text>
+  <text x="700" y="148" fill="#64748b" font-size="8">容量：Context Window</text>
+  <text x="700" y="163" fill="#64748b" font-size="8">生命周期：任务级</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="180" x2="480" y2="215" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+  <text x="495" y="202" fill="#64748b" font-size="8">Compaction → 摘要进入短期记忆</text>
+
+  <!-- ===== Layer 2: 短期记忆 (middle) ===== -->
+  <rect x="30" y="220" width="900" height="140" rx="10" fill="none" stroke="#34d399" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="50" y="240" fill="#34d399" font-size="10" font-weight="600">🟩 Layer 2 · 短期记忆 Short-term Memory</text>
+
+  <rect x="50" y="258" width="270" height="82" rx="6" fill="#0f172a"/>
+  <rect x="50" y="258" width="270" height="82" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="185" y="280" fill="white" font-size="10" font-weight="500" text-anchor="middle">MEMORY.md + memory/*.md</text>
+  <text x="185" y="298" fill="#94a3b8" font-size="8" text-anchor="middle">近 N 天的任务记录、对话摘要</text>
+  <text x="185" y="314" fill="#94a3b8" font-size="8" text-anchor="middle">决策快照、状态变更日志</text>
+  <text x="185" y="330" fill="#94a3b8" font-size="8" text-anchor="middle">memory_search 语义检索</text>
+
+  <rect x="355" y="258" width="270" height="82" rx="6" fill="#0f172a"/>
+  <rect x="355" y="258" width="270" height="82" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="490" y="280" fill="white" font-size="10" font-weight="500" text-anchor="middle">类比：日报 / 周报</text>
+  <text x="490" y="298" fill="#94a3b8" font-size="8" text-anchor="middle">最近一次 Review 的结论</text>
+  <text x="490" y="314" fill="#94a3b8" font-size="8" text-anchor="middle">相关项目的近期变化</text>
+  <text x="490" y="330" fill="#94a3b8" font-size="8" text-anchor="middle">时间衰减：越久远权重越低</text>
+
+  <!-- Side annotation -->
+  <text x="700" y="280" fill="#34d399" font-size="8">时效：近 N 天</text>
+  <text x="700" y="295" fill="#64748b" font-size="8">容量：文件系统</text>
+  <text x="700" y="310" fill="#64748b" font-size="8">生命周期：周 / 月级</text>
+  <text x="700" y="325" fill="#64748b" font-size="8">检索：语义 + 时间衰减</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="360" x2="480" y2="395" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+  <text x="495" y="382" fill="#64748b" font-size="8">知识沉淀 → 提取为长期知识</text>
+
+  <!-- ===== Layer 3: 长期记忆 (bottom) ===== -->
+  <rect x="30" y="400" width="900" height="140" rx="10" fill="none" stroke="#a78bfa" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="50" y="420" fill="#a78bfa" font-size="10" font-weight="600">🟪 Layer 3 · 长期记忆 Long-term Memory</text>
+
+  <rect x="50" y="438" width="270" height="82" rx="6" fill="#0f172a"/>
+  <rect x="50" y="438" width="270" height="82" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="185" y="460" fill="white" font-size="10" font-weight="500" text-anchor="middle">Obsidian Vault (ai_wikis)</text>
+  <text x="185" y="478" fill="#94a3b8" font-size="8" text-anchor="middle">技术设计文档 · 团队规范</text>
+  <text x="185" y="494" fill="#94a3b8" font-size="8" text-anchor="middle">知识库 · 调研周报</text>
+  <text x="185" y="510" fill="#94a3b8" font-size="8" text-anchor="middle">AGENTS.md / SOUL.md prompt</text>
+
+  <rect x="355" y="438" width="270" height="82" rx="6" fill="#0f172a"/>
+  <rect x="355" y="438" width="270" height="82" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="490" y="460" fill="white" font-size="10" font-weight="500" text-anchor="middle">类比：公司制度库</text>
+  <text x="490" y="478" fill="#94a3b8" font-size="8" text-anchor="middle">规章制度 · 技术规范</text>
+  <text x="490" y="494" fill="#94a3b8" font-size="8" text-anchor="middle">入职手册（冷启动）</text>
+  <text x="490" y="510" fill="#94a3b8" font-size="8" text-anchor="middle">最佳实践沉淀</text>
+
+  <!-- Side annotation -->
+  <text x="700" y="460" fill="#a78bfa" font-size="8">时效：永久</text>
+  <text x="700" y="475" fill="#64748b" font-size="8">容量：Git 仓库</text>
+  <text x="700" y="490" fill="#64748b" font-size="8">生命周期：永久</text>
+  <text x="700" y="505" fill="#64748b" font-size="8">检索：全文 + 语义</text>
+
+  <!-- Feedback loop -->
+  <path d="M 660 517 L 660 152 L 640 152" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-up)"/>
+  <text x="670" y="340" fill="#64748b" font-size="7" transform="rotate(90, 670, 340)">Cold Start 需长期记忆 → 加载到 Working Memory</text>
+
+  <!-- Legend -->
+  <text x="30" y="568" fill="#64748b" font-size="8">记忆流向：工作记忆 → 短期 → 长期（沉淀） ｜ 冷启动：长期 → 短期 → 工作（加载）</text>
+</svg>

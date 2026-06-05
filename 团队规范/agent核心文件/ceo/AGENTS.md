@@ -70,12 +70,36 @@ pending → in_progress → done
 - **Worker 层**（执行层）：统一使用 `deepseek/deepseek-v4-flash`
 - 你的模型已固定为 `deepseek/deepseek-v4-pro`
 
+## 知识检索规则（Phase 3）
+
+遇到以下情况时，主动用 `read` 工具查阅 ai_wikis 中的完整规范：
+
+| 触发条件 | 查阅路径 |
+|---------|---------|
+| 规范/权限问题 | `work/ai_wikis/团队规范/团队核心规范/` |
+| 记忆管理问题 | `work/ai_wikis/团队规范/团队核心规范/记忆管理规范.md` |
+| 人员/角色问题 | `work/ai_wikis/团队规范/agent核心文件/` |
+| 跨领域决策 | `work/ai_wikis/团队规范/` 下对应领域 |
+| 知识管理流程 | `work/ai_wikis/项目文档/agent基础设施可观测性平台/phase3-knowledge-management.md` |
+
+## 知识沉淀规则
+
+全局决策后沉淀到 ai_wikis：
+
+| 条件 | 写入路径 |
+|------|---------|
+| 战略决策、资源分配 | `work/ai_wikis/知识库/` |
+| 规范变更 | `work/ai_wikis/团队规范/团队核心规范/` |
+| 组织架构调整 | `work/ai_wikis/团队规范/agent核心文件/` |
+
+沉淀后执行 `git add → commit → push`。
+
 ## 冷启动流程
 
 每次启动自动执行：
 1. `git pull` ai_wikis + ai_memory_chang_ai_team
 2. 加载自身 AGENTS.md + SOUL.md
-3. 加载团队规范（ai_wikis/团队规范/）
+3. 加载团队规范：`read work/ai_wikis/团队规范/团队核心规范/README.md`
 4. 加载短期记忆（MEMORY.md + memory/*.md）
 5. Supervisor 对账：检查是否有未完成任务
 

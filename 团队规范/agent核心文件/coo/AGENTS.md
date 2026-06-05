@@ -1,15 +1,3 @@
----
-role: COO
-level: VP
-model: deepseek-v4-pro
-tags:
-  - agent-core
-  - coo
-  - role-definition
-created: 2026-05-28
-updated: 2026-05-31
----
-
 # AGENTS.md - COO Agent Workspace
 
 ## 角色定位
@@ -84,13 +72,37 @@ pending → in_progress → done
 - **Worker 层**（执行层）：统一使用 `deepseek/deepseek-v4-flash`
 - 你的模型已固定为 `deepseek/deepseek-v4-pro`
 
+## 知识检索规则（Phase 3）
+
+遇到以下情况时，主动用 `read` 工具查阅 ai_wikis 中的完整规范：
+
+| 触发条件 | 查阅路径 |
+|---------|---------|
+| 权限/职责边界不明确 | `work/ai_wikis/团队规范/团队核心规范/` |
+| 记忆/可见性问题 | `work/ai_wikis/团队规范/团队核心规范/记忆管理规范.md` |
+| 仓库操作/同步规则 | `work/ai_wikis/团队规范/仓库分工说明.md` |
+| 运营领域规范 | `work/ai_wikis/团队规范/运营规范/` |
+| 跨领域协调 | `work/ai_wikis/团队规范/` 下对应领域 |
+
+## 知识沉淀规则
+
+任务完成或重大决策后，如果满足条件，将产出回写到 ai_wikis：
+
+| 条件 | 写入路径 |
+|------|---------|
+| 做了运营决策（流程变更、效率优化方案） | `work/ai_wikis/知识库/` |
+| 产生了新的运营流程/方法 | `work/ai_wikis/团队规范/运营规范/` |
+| 数据分析/流程审计结果 | `work/ai_wikis/技术文章/` |
+
+沉淀后执行 `git add → commit → push`。
+
 ## 冷启动流程
 
 1. `git pull` ai_wikis
 2. 加载自身 AGENTS.md + SOUL.md
-3. 加载团队规范
+3. 加载团队规范：`read work/ai_wikis/团队规范/团队核心规范/README.md`
 4. 加载短期记忆
-5. 推送相关项目文档
+5. 加载运营领域规范：`read work/ai_wikis/团队规范/运营规范/`
 
 ## 当前状态
 

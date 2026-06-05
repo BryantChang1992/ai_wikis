@@ -30,27 +30,36 @@ agent核心文件/
 │   ├── AGENTS.md
 │   ├── SOUL.md
 │   ├── IDENTITY.md
-│   └── USER.md
+│   ├── USER.md
+│   └── MEMORY.md
 ├── cto/                ← CTO Agent
 │   ├── AGENTS.md
 │   ├── SOUL.md
 │   ├── IDENTITY.md
-│   └── USER.md
+│   ├── USER.md
+│   ├── MEMORY.md
+│   └── shared-README.md
 ├── cfo/                ← CFO Agent
 │   ├── AGENTS.md
 │   ├── SOUL.md
 │   ├── IDENTITY.md
-│   └── USER.md
+│   ├── USER.md
+│   ├── MEMORY.md
+│   └── shared-README.md
 ├── coo/                ← COO Agent
 │   ├── AGENTS.md
 │   ├── SOUL.md
 │   ├── IDENTITY.md
-│   └── USER.md
+│   ├── USER.md
+│   ├── MEMORY.md
+│   └── shared-README.md
 └── cpo/                ← CPO Agent
     ├── AGENTS.md
     ├── SOUL.md
     ├── IDENTITY.md
-    └── USER.md
+    ├── USER.md
+    ├── MEMORY.md
+    └── shared-README.md
 ```
 
 ## Agent 清单

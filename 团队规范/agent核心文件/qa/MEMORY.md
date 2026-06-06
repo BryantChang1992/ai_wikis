@@ -16,6 +16,6 @@
 - Agent 框架：OpenClaw
 
 ## 协作
-- 上级：CTO（sessions_spawn 接收任务）
+- 上级：CTO（sessions_send 接收任务）
 - 同级：RD 专家、性能专家、SRE 专家（sessions_send）
 - 下级：qa-worker（sessions_spawn）

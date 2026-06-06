@@ -1,8 +1,9 @@
 ---
 title: Skill 隔离与共享机制
 status: proposal
-version: v0.1
+version: v0.3
 created: 2026-06-06
+updated: 2026-06-06
 tags:
   - skill
   - agent-infra
@@ -47,60 +48,224 @@ tags:
 
 ## 2. Skill 分类
 
-### 2.1 按功能分类
+### 2.1 完整 Skill 清单与分类
 
-| 类别 | Skill 列表 | 用途 | 风险 |
-|------|-----------|------|------|
-| **通用工具** | `web_search`, `web_fetch`, `read`, `write`, `edit`, `exec`, `process`, `memory_search`, `memory_get`, `canvas`, `session_status` | 所有 Agent 的基本工具 | 低 |
-| **知识管理** | `obsidian`, `skill-creator`, `github`, `gh-issues`, `taskflow`, `taskflow-inbox-triage`, `clawhub`, `release-skills` | 知识沉淀、发布、管理 | 低-中 |
-| **内容发布** | `baoyu-post-to-x`, `baoyu-post-to-wechat`, `baoyu-post-to-weibo` | 对外发布内容 | 高 |
-| **内容创作** | `baoyu-article-illustrator`, `baoyu-comic`, `baoyu-cover-image`, `baoyu-diagram`, `baoyu-image-gen`, `baoyu-infographic`, `baoyu-slide-deck`, `baoyu-xhs-images` | 生成视觉/文档内容 | 中 |
-| **内容处理** | `baoyu-compress-image`, `baoyu-format-markdown`, `baoyu-markdown-to-html`, `baoyu-electron-extract`, `baoyu-translate`, `baoyu-youtube-transcript`, `baoyu-danger-gemini-web`, `baoyu-danger-x-to-markdown`, `baoyu-wechat-summary`, `baoyu-url-to-markdown` | 格式转换、提取、翻译 | 低-中 |
-| **基础设施** | `node-connect`, `healthcheck`, `feishu-*`, `wecom-*`, `qqbot-*`, `weather` | 运维、通讯、基础设施 | 低-中 |
-| **娱乐/个人** | `apple-notes`, `apple-reminders`, `things-mac`, `openhue`, `spotify-player`, `goplaces`, `sonoscli`, `songsee`, `camsnap`, `gifgrep` | 个人助手功能 | 低 |
+> 当前团队已安装 **80 个** Skill（去重后）。以下按功能分为 10 类，每个标注来源、优先级、使用建议。
 
-### 2.2 按风险等级分类
+#### 类 1：通用工具（14 个）— 所有 Agent 基础工具，P2 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `web_search` | 内置 | Web 搜索（DuckDuckGo） | 核心工具 |
+| `web_fetch` | 内置 | URL 内容提取 | 核心工具 |
+| `read` | 内置 | 文件读取 | 核心工具 |
+| `write` | 内置 | 文件写入 | 核心工具 |
+| `edit` | 内置 | 文件精确编辑 | 核心工具 |
+| `exec` | 内置 | Shell 命令执行 | 核心工具 |
+| `process` | 内置 | 后台进程管理 | 核心工具 |
+| `browser` | 内置 | 浏览器自动化 | 核心工具 |
+| `canvas` | 内置 | Canvas 画布控制 | 核心工具 |
+| `session_status` | 内置 | Session 状态查询 | 核心工具 |
+| `memory_search` | 内置 | 记忆语义搜索 | 核心工具 |
+| `memory_get` | 内置 | 记忆精确读取 | 核心工具 |
+| `sessions_spawn` | 内置 | 创建子 Agent | 核心工具 |
+| `sessions_send` | 内置 | 跨 Session 通信 | 核心工具 |
+
+#### 类 2：内容处理（15 个）— 格式转换、提取、翻译，P2 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `baoyu-format-markdown` | 个人 | Markdown 格式化美化 | 所有 Agent 可用 |
+| `baoyu-translate` | 个人 | 多语言翻译 | 所有 Agent 可用 |
+| `baoyu-markdown-to-html` | 个人 | Markdown → HTML 转换 | VP+ 可用 |
+| `baoyu-compress-image` | 个人 | 图片压缩优化 | 所有 Agent 可用 |
+| `baoyu-youtube-transcript` | 个人 | YouTube 字幕提取 | VP+ 可用 |
+| `baoyu-danger-gemini-web` | 个人 | Gemini Web 接口（⚠️ 危险） | CTO only（沙箱） |
+| `baoyu-danger-x-to-markdown` | 个人 | X/Twitter 内容转 Markdown | VP+ 可用 |
+| `baoyu-wechat-summary` | 个人 | 微信公众号文章摘要 | VP+ 可用 |
+| `baoyu-url-to-markdown` | 个人 | 任意 URL 转 Markdown | VP+ 可用 |
+| `baoyu-electron-extract` | 个人 | Electron 应用资源提取 | CTO only（研发） |
+| `video-frames` | 内置 | 视频帧提取 | VP+ 可用 |
+| `nano-pdf` | 内置 | PDF 处理 | VP+ 可用 |
+| `summarize` | 内置 | 通用文本摘要 | 所有 Agent 可用 |
+| `openai-whisper` | 内置 | 本地语音转文字 | VP+ 可用 |
+| `openai-whisper-api` | 内置 | API 语音转文字 | VP+ 可用 |
+
+#### 类 3：内容创作（9 个）— 生成视觉/文档/演示内容，P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `baoyu-diagram` | 个人 | 技术架构图/流程图 | CTO/专家可用 |
+| `baoyu-image-gen` | 个人 | AI 图片生成 | VP+ 可用 |
+| `baoyu-infographic` | 个人 | 信息图/长图生成 | VP+ 可用 |
+| `baoyu-cover-image` | 个人 | 文章封面图生成 | VP+ 可用 |
+| `baoyu-slide-deck` | 个人 | 幻灯片/PPT 生成 | VP+ 可用 |
+| `baoyu-comic` | 个人 | 漫画生成 | CPO/CEO 可用 |
+| `baoyu-article-illustrator` | 个人 | 文章配图生成 | CPO/CEO 可用 |
+| `baoyu-xhs-images` | 个人 | 小红书图片生成 | CPO/CEO 可用 |
+| `gemini` | 内置 | Gemini 生图能力 | VP+ 可用 |
+
+#### 类 4：内容发布（3 个）— 对外发布内容，P0 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `baoyu-post-to-x` | 个人 | 发布推文到 X/Twitter | CEO 直接发；VP 审批模式 |
+| `baoyu-post-to-wechat` | 个人 | 发布微信公众号文章 | CEO 直接发；VP 审批模式 |
+| `baoyu-post-to-weibo` | 个人 | 发布微博 | CEO 直接发；VP 审批模式 |
+
+#### 类 5：知识管理（13 个）— 知识沉淀、仓库操作、任务管理，P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `obsidian` | 内置 | Obsidian Vault 操作 | VP+ 可用 |
+| `skill-creator` | 内置 | 创建/维护 Skill | CTO/CPO 可用 |
+| `github` | 内置 | GitHub 仓库操作 | VP+ 可用 |
+| `gh-issues` | 内置 | GitHub Issues 管理 | VP+ 可用 |
+| `taskflow` | 内置 | 任务流管理 | 所有 Agent（核心） |
+| `taskflow-inbox-triage` | 内置 | 任务收件箱分类 | VP+ 可用 |
+| `clawhub` | 内置 | ClawdHub Skill 市场 | CTO 可用 |
+| `release-skills` | 个人 | Skill 发布流程 | CTO 可用 |
+| `find-skills` | workspace | 发现/安装新 Skill | CTO 可用 |
+| `skill-vetter` | workspace | Skill 安全审查 | CTO 可用 |
+| `coding-agent` | 内置 | 编码助手子 Agent | VP+ 可用 |
+| `self-improving-agent` | workspace | Agent 自我改进循环 | CTO 可用（实验） |
+| `proactive-agent` | workspace | Agent 主动行为框架 | CTO 可用（实验） |
+
+#### 类 6：通讯·飞书（14 个）— 飞书生态操作，P0-P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `feishu-doc` | 内置 | 飞书文档操作 | VP+ 可用 |
+| `feishu-drive` | 内置 | 飞书云盘操作 | VP+ 可用 |
+| `feishu-wiki` | 内置 | 飞书知识库 | VP+ 可用 |
+| `feishu-perm` | 内置 | 飞书权限管理 | CTO only |
+| `feishu-bitable` | 插件 | 飞书多维表格 | VP+ 可用 |
+| `feishu-task` | 插件 | 飞书任务管理 | COO/CTO 可用 |
+| `feishu-calendar` | 插件 | 飞书日历 | COO/CTO 可用 |
+| `feishu-channel-rules` | 插件 | 飞书频道规则 | CTO only |
+| `feishu-create-doc` | 插件 | 飞书创建文档 | VP+ 可用 |
+| `feishu-fetch-doc` | 插件 | 飞书读取文档 | VP+ 可用 |
+| `feishu-update-doc` | 插件 | 飞书更新文档 | VP+ 可用 |
+| `feishu-im-read` | 插件 | 飞书 IM 读消息 | VP+ 可用 |
+| `feishu-troubleshoot` | 插件 | 飞书故障排查 | CTO only |
+| `feishu-multi-bot` | workspace | 多飞书机器人绑定 | CTO only |
+
+#### 类 7：通讯·企微（13 个）— 企业微信生态，P0-P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `wecom-msg` | 插件 | 企微消息发送 | COO/CTO 可用 |
+| `wecom-contact-lookup` | 插件 | 企微通讯录查询 | COO/CTO 可用 |
+| `wecom-preflight` | 插件 | 企微环境检查 | COO 可用 |
+| `wecom-schedule` | 插件 | 企微日程管理 | COO 可用 |
+| `wecom-meeting-create` | 插件 | 企微创建会议 | COO 可用 |
+| `wecom-meeting-manage` | 插件 | 企微会议管理 | COO 可用 |
+| `wecom-meeting-query` | 插件 | 企微会议查询 | COO 可用 |
+| `wecom-edit-todo` | 插件 | 企微待办编辑 | COO 可用 |
+| `wecom-get-todo-list` | 插件 | 企微待办列表 | COO 可用 |
+| `wecom-get-todo-detail` | 插件 | 企微待办详情 | COO 可用 |
+| `wecom-smartsheet-data` | 插件 | 企微智能表格数据 | COO 可用 |
+| `wecom-smartsheet-schema` | 插件 | 企微智能表格结构 | COO 可用 |
+| `wecom-doc-manager` | 插件 | 企微文档管理 | COO 可用 |
+
+#### 类 8：通讯·其他（8 个）— QQ/Discord/Slack 等，P0-P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `qqbot-channel` | 内置 | QQ 频道操作 | VP+ 可用 |
+| `qqbot-media` | 内置 | QQ 媒体消息 | VP+ 可用 |
+| `qqbot-remind` | 内置 | QQ 提醒功能 | VP+ 可用 |
+| `discord` | 内置 | Discord 集成 | —（未启用） |
+| `slack` | 内置 | Slack 集成 | —（未启用） |
+| `bluebubbles` | 内置 | BlueBubbles (iMessage) | —（未启用） |
+| `imsg` | 内置 | iMessage | —（未启用） |
+| `himalaya` | 内置 | 邮件客户端 | —（未启用） |
+
+#### 类 9：基础设施（8 个）— 运维、健康检查、搜索，P1 风险
+
+| Skill | 来源 | 功能 | 说明 |
+|-------|------|------|------|
+| `node-connect` | 内置 | 远程节点连接 | CTO/专家可用 |
+| `healthcheck` | 内置 | 系统健康检查 | CTO/专家可用 |
+| `sherpa-onnx-tts` | 内置 | 本地 TTS 语音合成 | VP+ 可用 |
+| `model-usage` | 内置 | 模型用量统计 | CTO/CFO 可用 |
+| `session-logs` | 内置 | Session 日志分析 | CTO 可用 |
+| `weather` | 内置 | 天气查询 | 所有 Agent 可用 |
+| `searxng` | workspace | 自建隐私搜索引擎 | CTO 可用（实验） |
+| `agent-browser-fradser-dotclaude` | workspace | 浏览器自动化增强 | CTO 可用（实验） |
+| `blogwatcher` | 内置 | 博客更新监控 | —（未启用） |
+
+#### 类 10：娱乐/个人/未启用（26 个）— 不赋予任何 Agent，P2 风险
+
+| Skill | 来源 | 功能 | 不予分配原因 |
+|-------|------|------|------------|
+| `1password` | 内置 | 1Password 密码管理 | 个人工具 |
+| `apple-notes` | 内置 | Apple Notes | Mac only |
+| `apple-reminders` | 内置 | Apple Reminders | Mac only |
+| `things-mac` | 内置 | Things 3 任务管理 | Mac only |
+| `spotify-player` | 内置 | Spotify 播放器 | 个人娱乐 |
+| `sonoscli` | 内置 | Sonos 音箱控制 | 个人娱乐 |
+| `songsee` | 内置 | 歌曲识别 | 个人娱乐 |
+| `camsnap` | 内置 | 摄像头抓拍 | 个人娱乐 |
+| `openhue` | 内置 | Philips Hue 灯光 | 个人娱乐 |
+| `goplaces` | 内置 | 地点管理 | 个人 |
+| `gog` | 内置 | GOG 游戏平台 | 个人娱乐 |
+| `gifgrep` | 内置 | GIF 搜索 | 个人娱乐 |
+| `bear-notes` | 内置 | Bear 笔记 | Mac only |
+| `blucli` | 内置 | Blue 命令行 | Mac only |
+| `eightctl` | 内置 | Eight Sleep 床垫控制 | 个人 |
+| `mcporter` | 内置 | Minecraft 服务器 | 个人娱乐 |
+| `peekaboo` | 内置 | 屏幕监控 | 个人 |
+| `sag` | 内置 | 未知 | 未知用途 |
+| `wacli` | 内置 | WhatsApp CLI | —（未启用） |
+| `xurl` | 内置 | URL 短链接 | —（未启用） |
+| `tmux` | 内置 | Tmux 会话管理 | 开发工具 |
+| `voice-call` | 内置 | 语音通话 | —（未启用） |
+| `notion` | 内置 | Notion 集成 | —（未启用） |
+| `trello` | 内置 | Trello 集成 | —（未启用） |
+| `oracle` | 内置 | Oracle 数据库 | —（未启用） |
+| `ordercli` | 内置 | 点餐 CLI | 个人工具 |
+
+### 2.2 分类统计
+
+| 类别 | 数量 | 风险 | 默认分配 |
+|------|:---:|:---:|---------|
+| 通用工具 | 14 | P2 | 全层级 |
+| 内容处理 | 15 | P2 | 全层级（部分 VP+） |
+| 内容创作 | 9 | P1 | VP+（部分 CTO/CPO） |
+| 内容发布 | 3 | P0 | CEO + VP 审批模式 |
+| 知识管理 | 13 | P1 | VP+（部分 CTO） |
+| 通讯·飞书 | 14 | P0-P1 | VP+（按角色） |
+| 通讯·企微 | 13 | P0-P1 | COO + CTO |
+| 通讯·其他 | 8 | P0-P1 | VP+（部分未启用） |
+| 基础设施 | 9 | P1 | CTO/专家 |
+| 娱乐/未启用 | 26 | P2 | 不赋予 |
+| **唯一 Skill 总数** | **80** | | |
+
+### 2.3 按风险等级分类
 
 ```
-P0 · 高权限 Skill（影响团队外部声誉或基础设施）：
-    ├── 内容发布类：baoyu-post-to-x, baoyu-post-to-wechat, baoyu-post-to-weibo
-    ├── 仓库操作类：github, gh-issues -> push/PR 必须审慎
-    └── 通讯类：feishu-*, wecom-*, qqbot-* -> 误发消息影响团队
+P0 · 高权限 Skill（共 ~33 个，影响对外声誉/基础设施安全）：
+    ├── 内容发布类 (3)：baoyu-post-to-x, wechat, weibo
+    ├── 通讯·飞书 (14)：feishu-doc/drive/wiki/perm/bitable/...
+    ├── 通讯·企微 (13)：wecom-msg/contact/meeting/...
+    └── 通讯·其他 (3)：qqbot-channel/media/remind
 
-P1 · 中权限 Skill（影响团队内部产出）：
-    ├── 内容创作类：baoyu-comic, baoyu-diagram, baoyu-image-gen ...
-    ├── 知识管理类：obsidian, skill-creator, release-skills
-    └── 基础设施类：node-connect, healthcheck
+P1 · 中权限 Skill（共 ~30 个，影响团队内部产出/数据一致性）：
+    ├── 内容创作 (9)：baoyu-diagram, image-gen, infographic...
+    ├── 知识管理 (13)：obsidian, skill-creator, github, taskflow...
+    └── 基础设施 (9)：node-connect, healthcheck, searxng...
 
-P2 · 低权限 Skill（日常工具，无副作用）：
-    ├── 通用工具：web_search, read, write, edit, exec
-    ├── 内容处理：baoyu-translate, baoyu-format-markdown ...
-    └── 个人娱乐：spotify-player, weather ...
+P2 · 低权限 Skill（共 ~55 个，纯工具/个人使用，无外部影响）：
+    ├── 通用工具 (14)：web_search, read, write, exec...
+    ├── 内容处理 (15)：baoyu-translate, format-markdown...
+    └── 娱乐/未启用 (26)：spotify-player, weather, apple-notes...
 ```
 
 ---
 
 ## 3. 按层级的 Skill 分配方案
 
-### 3.1 分配矩阵
-
-| 层级 | 角色示例 | 通用工具 | 内容处理 | 内容创作 | 知识管理 | 基础设施 | 内容发布 | 娱乐 |
-|------|---------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **CEO** | Frank | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **VP** | CTO, CPO, CFO, COO | ✅ | ✅ | 🔶 审批 | ✅ | ✅ | 🔶 审批 | ❌ |
-| **专家** | expert-infra/perf/sre | ✅ | ✅ | ❌ | 🔶 受限 | ✅ | ❌ | ❌ |
-| **执行层** | RD, SRE, QA | ✅ | 🔶 受限 | ❌ | ❌ | ❌ | ❌ | ❌ |
-
-### 3.2 详细规则
-
-#### CEO（全部放开，除娱乐）
-```
-CEO 需要：
-- 对外发布（发推、发公众号）→ 需要内容发布 Skill
-- 审查团队产出 → 需要内容创作 Skill 预览
-- 直接操作仓库 → 全量 git 权限
-- 排除：个人娱乐类（不需要）
-```
 
 #### VP 层（CTO/CPO/CFO/COO）
 ```
@@ -404,62 +569,6 @@ ORDER BY call_count DESC;
 
 ---
 
-## 7. 附录：Skill 列表完整分类
-
-### 通用工具（全部赋予）
-```
-web_search, web_fetch, read, write, edit, exec, process,
-memory_search, memory_get, canvas, session_status, browser
-```
-
-### 内容处理（全部赋予）
-```
-baoyu-format-markdown, baoyu-markdown-to-html, baoyu-translate,
-baoyu-compress-image, baoyu-youtube-transcript, baoyu-danger-gemini-web,
-baoyu-danger-x-to-markdown, baoyu-wechat-summary, baoyu-url-to-markdown,
-baoyu-electron-extract
-```
-
-### 内容创作（VP+ 可用）
-```
-baoyu-article-illustrator, baoyu-comic, baoyu-cover-image,
-baoyu-diagram, baoyu-image-gen, baoyu-infographic,
-baoyu-slide-deck, baoyu-xhs-images
-```
-
-### 知识管理（VP+ 可用）
-```
-obsidian, skill-creator, github, gh-issues,
-taskflow, taskflow-inbox-triage, clawhub, release-skills
-```
-
-### 基础设施（VP+ 可用，专家层受限）
-```
-node-connect, healthcheck, weather,
-coding-agent, browser-automation
-```
-
-### 通讯类（VP+ 可用，按角色分配）
-```
-feishu-doc, feishu-drive, feishu-wiki, feishu-perm,
-feishu-task, feishu-calendar, feishu-bitable,
-feishu-channel-rules, feishu-create-doc,
-feishu-fetch-doc, feishu-update-doc,
-feishu-im-read, feishu-troubleshoot,
-wecom-*, qqbot-*
-```
-
-### 内容发布（CEO 全量，VP 审批模式）
-```
-baoyu-post-to-x, baoyu-post-to-wechat, baoyu-post-to-weibo
-```
-
-### 娱乐/个人（不赋予，CEO 除外可选）
-```
-apple-notes, apple-reminders, things-mac, openhue,
-spotify-player, goplaces, sonoscli, songsee, camsnap, gifgrep
-```
-
 ---
 
 ## 相关链接
@@ -734,5 +843,6 @@ spotify-player, goplaces, sonoscli, songsee, camsnap, gifgrep
 |------|------|------|------|
 | 2026-06-06 | v0.1 | 初稿：Skill 分类 + 分配矩阵 + openclaw.json 配置 | CTO |
 | 2026-06-06 | v0.2 | 新增：§8 生命周期管理 + §9 权限矩阵细化 | CTO |
+| 2026-06-06 | v0.3 | 重构 §2：完整 Skill 清单（80 个去重），10 类详细表 + 分类统计 + 风险等级 | CTO |
 
 ---

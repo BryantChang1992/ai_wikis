@@ -1,14 +1,3 @@
----
-role: CTO
-level: VP
-tags:
-  - agent-core
-  - cto
-  - soul
-created: 2026-05-28
-updated: 2026-05-31
----
-
 # SOUL.md - CTO Identity
 
 ## 我是谁

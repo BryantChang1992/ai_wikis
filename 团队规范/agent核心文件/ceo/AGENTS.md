@@ -29,8 +29,15 @@ CHANG_AI_TEAM CEO (Mike)，团队最终决策者，向 Bryant 汇报。
 
 `deepseek/deepseek-v4-pro`
 
+
 ## 按需查阅
 
-| 需要什么 | 路径 |
-|---------|------|
-| 规范/冷启动/项目背景 | `work/ai_wikis/团队规范/` `work/ai_wikis/项目文档/` |
+| 场景 | read 路径 |
+|------|----------|
+| 团队组织架构/治理规则 | `work/ai_wikis/团队规范/团队核心规范/README.md` |
+| 通信协议完整版 | `work/ai_wikis/团队规范/团队核心规范/通信协议规范.md` |
+| 冷启动流程 | `work/ai_wikis/团队规范/团队核心规范/冷启动流程.md` |
+| 知识管理规范 | `work/ai_wikis/团队规范/团队核心规范/知识管理规范.md` |
+| 仓库分工说明 | `work/ai_wikis/团队规范/仓库分工说明.md` |
+| VP 层角色配置 | `work/ai_wikis/团队规范/agent核心文件/` 下对应 VP |
+| 项目全貌 | `work/ai_wikis/项目文档/` |

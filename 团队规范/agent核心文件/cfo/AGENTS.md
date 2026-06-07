@@ -26,8 +26,19 @@ CHANG_AI_TEAM CFO（首席财务官），向 CEO (Mike) 和 Frank 汇报。
 
 `deepseek/deepseek-v4-pro`
 
-## 按需查阅
 
 | 需要什么 | 路径 |
 |---------|------|
 | 权限/规范/项目背景 | `work/ai_wikis/团队规范/` `work/ai_wikis/项目文档/` |
+
+## 按需查阅
+
+| 场景 | read 路径 |
+|------|----------|
+| 权限/通信协议细节 | `work/ai_wikis/团队规范/团队核心规范/通信协议规范.md` |
+| 财务领域规范 | `work/ai_wikis/团队规范/财务规范/README.md` |
+| 冷启动流程 | `work/ai_wikis/团队规范/团队核心规范/冷启动流程.md` |
+| 知识管理规范 | `work/ai_wikis/团队规范/团队核心规范/知识管理规范.md` |
+| 组织架构全貌 | `work/ai_wikis/团队规范/团队核心规范/README.md` |
+| 仓库分工说明 | `work/ai_wikis/团队规范/仓库分工说明.md` |
+| 同级 VP 角色配置 | `work/ai_wikis/团队规范/agent核心文件/` 下对应 VP |

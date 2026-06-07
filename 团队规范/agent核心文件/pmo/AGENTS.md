@@ -26,9 +26,18 @@ CHANG_AI_TEAM PMO（项目管理办公室），向 CTO 汇报。
 
 `deepseek/deepseek-v4-pro`
 
-## 按需查阅
 
 | 需要什么 | 路径 |
 |---------|------|
 | 项目全貌/团队规范 | `work/ai_wikis/项目文档/` `work/ai_wikis/团队规范/` |
 | Wiki 发布规范 | `work/ai_wikis/团队规范/agent核心文件/README.md` |
+
+## 按需查阅
+
+| 场景 | read 路径 |
+|------|----------|
+| 项目全貌/文档索引 | `work/ai_wikis/项目文档/README.md` |
+| 团队组织架构 | `work/ai_wikis/团队规范/团队核心规范/README.md` |
+| 知识管理规范（PMO 是守门人） | `work/ai_wikis/团队规范/团队核心规范/知识管理规范.md` |
+| Wiki 发布/管理规范 | `work/ai_wikis/团队规范/agent核心文件/README.md` |
+| 仓库分工说明 | `work/ai_wikis/团队规范/仓库分工说明.md` |

@@ -32,20 +32,6 @@ CHANG_AI_TEAM CTO（首席技术官），向 CEO (Mike) 和 Frank 汇报。
 
 VP/专家: `deepseek/deepseek-v4-pro` | Worker: `deepseek/deepseek-v4-flash`
 
-## 按需查阅
-
-规范细节不常驻内存，做具体事前 `read`：
-
-| 需要什么 | 路径 |
-|---------|------|
-| 权限/通信协议完整版 | `work/ai_wikis/团队规范/团队核心规范/` |
-| 技术决策/选型规范 | `work/ai_wikis/团队规范/技术规范/README.md` |
-| 仓库同步规则 | `work/ai_wikis/团队规范/仓库分工说明.md` |
-| 项目设计背景 | `work/ai_wikis/项目文档/agent基础设施可观测性平台/设计文档.md` |
-| 冷启动流程 | `work/ai_wikis/团队规范/团队核心规范/冷启动流程.md` |
-| 知识沉淀路径 | `work/ai_wikis/团队规范/团队核心规范/知识管理规范.md` |
-| Agent 角色配置 | `work/ai_wikis/团队规范/agent核心文件/` |
-
 ## 任务状态机
 
 `pending → in_progress → done / failed / blocked / stuck(30min) / stale`
@@ -53,3 +39,16 @@ VP/专家: `deepseek/deepseek-v4-pro` | Worker: `deepseek/deepseek-v4-flash`
 ## 当前状态
 
 Active
+
+## 按需查阅
+
+| 场景 | read 路径 |
+|------|----------|
+| 权限/通信协议细节 | `work/ai_wikis/团队规范/团队核心规范/通信协议规范.md` |
+| 技术选型/架构规范 | `work/ai_wikis/团队规范/技术规范/README.md` |
+| 仓库操作/同步规则 | `work/ai_wikis/团队规范/仓库分工说明.md` |
+| 项目设计背景 | `work/ai_wikis/项目文档/agent基础设施可观测性平台/设计文档.md` |
+| 冷启动完整流程 | `work/ai_wikis/团队规范/团队核心规范/冷启动流程.md` |
+| 知识沉淀/管理规则 | `work/ai_wikis/团队规范/团队核心规范/知识管理规范.md` |
+| 团队组织架构全貌 | `work/ai_wikis/团队规范/团队核心规范/README.md` |
+| 子 Agent 角色配置 | `work/ai_wikis/团队规范/agent核心文件/` 下对应 Agent |

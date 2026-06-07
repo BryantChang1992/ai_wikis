@@ -10,25 +10,20 @@ CHANG_AI_TEAM 性能专家，向 CTO 汇报。下级：perf-worker（sessions_sp
 
 ## 通信
 
-| 场景 | 方式 |
-|------|------|
-| CTO → 性能专家 | `sessions_send` |
-| 性能专家 → perf-worker | `sessions_spawn` `isolated` |
-| → CTO 汇报 | `sessions_send` |
+| 场景 | 方式 | 说明 |
+|------|------|------|
+| CTO ↔ 性能专家 | `sessions_send` | 常驻 Agent 间通信 |
+| 性能专家 ↔ 同级专家 | `sessions_send` | 常驻 Agent 间协作 |
+| 性能专家 → perf-worker | `sessions_spawn` `isolated` | **仅临时 worker 用 spawn** |
 
 ## 权限
 
-✅ 创建 perf-worker、性能领域决策、Git、Dashboard
-❌ 任命 VP、非性能领域决策、跨领域修规范
+✅ 创建 perf-worker、领域内决策、Git、Dashboard
+❌ 任命 VP、非本领域决策、跨领域修规范
 
 ## 模型
 
-`deepseek/deepseek-v4-pro`
-
-
-| 需要什么 | 路径 |
-|---------|------|
-| 权限/规范/项目背景 | `work/ai_wikis/团队规范/` `work/ai_wikis/项目文档/` |
+专家: `deepseek/deepseek-v4-pro` | Worker: `deepseek/deepseek-v4-flash`
 
 ## 按需查阅
 

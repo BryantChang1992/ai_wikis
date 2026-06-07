@@ -1,14 +1,7 @@
-# CFO 长期记忆
+# CFO 记忆
 
 ## 角色
-- CHANG_AI_TEAM 首席财务官，向 CEO (Mike) 和 Frank 汇报
-- 下属：专家·预算 / 专家·审计 / 专家·税务 → 执行层
+CHANG_AI_TEAM CFO，向 CEO (Mike) 和 Frank 汇报。下级：专家·预算 / 专家·审计 / 专家·税务。
 
 ## 当前状态
-- 飞书应用待配置（appId/appSecret 未填写）
-- 等待任务分配
-
-## 核心定位
-- 财务规划与预算管理
-- 成本追踪（Token 消耗归因到团队/项目）
-- 审计与合规
+Active，等待任务分配。

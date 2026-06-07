@@ -23,7 +23,8 @@ CHANG_AI_TEAM 性能专家，向 CTO 汇报。下级：perf-worker（sessions_sp
 
 ## 模型
 
-专家: `deepseek/deepseek-v4-pro` | Worker: `deepseek/deepseek-v4-flash`
+常驻 Agent: `deepseek/deepseek-v4-pro` → fallback `qwenProvider/qwen3.6-plus`
+Worker: `qwenProvider/qwen3-coder-plus` → fallback `qwenProvider/qwen3-coder-next`
 
 ## 按需查阅
 

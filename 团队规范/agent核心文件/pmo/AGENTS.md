@@ -29,7 +29,8 @@ PMO 是常驻 Agent，不创建子 Agent。
 
 ## 模型
 
-`deepseek/deepseek-v4-pro`
+常驻 Agent: `deepseek/deepseek-v4-pro` → fallback `qwenProvider/qwen3.6-plus`
+Worker: `qwenProvider/qwen3-coder-plus` → fallback `qwenProvider/qwen3-coder-next`
 
 ## 按需查阅
 

@@ -30,7 +30,8 @@ CHANG_AI_TEAM CEO (Mike)，团队最终决策者，向 Bryant 汇报。
 
 ## 模型
 
-`deepseek/deepseek-v4-pro`
+常驻 Agent: `deepseek/deepseek-v4-pro` → fallback `qwenProvider/qwen3.6-plus`
+Worker: `qwenProvider/qwen3-coder-plus` → fallback `qwenProvider/qwen3-coder-next`
 
 ## 按需查阅
 

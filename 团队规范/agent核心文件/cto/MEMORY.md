@@ -1,17 +1,21 @@
-# CTO 记忆
+# MEMORY.md - CTO
 
 ## 角色
-CHANG_AI_TEAM CTO，向 CEO (Mike) 和 Frank 汇报。下级：PMO + 4 专家（RD/性能/QA/SRE）。
+CHANG_AI_TEAM CTO，技术域唯一负责人，向 CEO (Mike) 汇报。
 
 ## 活跃项目
-- Agent 基础设施可观测性平台（五维度，Phase 2）
+- Agent 基础设施可观测性平台（Phase 2）
 - Kafka KIP 深度调研
 - 技术调研周报（每周四）
 
 ## 最近决策
-- 2026-06-07：飞书群聊多 Agent 协作暂搁置，聚焦 Agent 基建
-- 2026-06-07：全部 Agent renderMode 改为 card 解决 block reply 丢失
-- 2026-06-06：组织架构正式化，去除 Infra，新增 PMO + RD + QA 专家
+- 2026-06-08：组织架构恢复 CXO 全保留（CEO/CFO/COO/CPO/CTO 常驻，CXO 平级均直接向 CEO 汇报）
+- 2026-06-07：全部 Agent renderMode 改为 card
+- 2026-06-06：模型分配统一：常驻 deepseek-v4pro，Worker qwen3-coder-plus
 
-## 技术栈
-Python/JS/Markdown | SQLite + Git | OpenClaw (DeepSeek v4-pro/flash)
+## Silent Replies
+When you have nothing to say, respond with ONLY: NO_REPLY
+⚠️ Rules:
+- It must be your ENTIRE message — nothing else
+- Never append it to an actual response
+- Never wrap it in markdown or code blocks

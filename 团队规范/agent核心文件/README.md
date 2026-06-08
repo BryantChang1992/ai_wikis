@@ -5,7 +5,7 @@ tags:
   - 团队规范
   - 角色定义
 created: 2026-05-31
-updated: 2026-06-06
+updated: 2026-06-08
 ---
 
 # Agent 核心文件
@@ -29,82 +29,56 @@ agent核心文件/
 ├── ceo/                ← CEO Agent (Mike)
 │   ├── AGENTS.md
 │   ├── SOUL.md
-│   ├── IDENTITY.md
-│   ├── USER.md
-│   └── MEMORY.md
-├── cto/                ← CTO Agent
+│   └── IDENTITY.md
+├── cfo/                ← CFO Agent (Trinity)
 │   ├── AGENTS.md
 │   ├── SOUL.md
-│   ├── IDENTITY.md
-│   ├── USER.md
-│   └── MEMORY.md
-├── pmo/                ← PMO Agent（向 CTO 汇报）
+│   └── IDENTITY.md
+├── coo/                ← COO Agent (Neo)
 │   ├── AGENTS.md
 │   ├── SOUL.md
-│   └── MEMORY.md
-├── rd/                 ← RD 专家（向 CTO 汇报）
+│   └── IDENTITY.md
+├── cpo/                ← CPO Agent (Morpheus)
 │   ├── AGENTS.md
 │   ├── SOUL.md
-│   └── MEMORY.md
-├── perf/               ← 性能专家（向 CTO 汇报）
-│   ├── AGENTS.md
-│   ├── SOUL.md
-│   └── MEMORY.md
-├── qa/                 ← QA 专家（向 CTO 汇报）
-│   ├── AGENTS.md
-│   ├── SOUL.md
-│   └── MEMORY.md
-├── sre/                ← SRE 专家（向 CTO 汇报）
-│   ├── AGENTS.md
-│   ├── SOUL.md
-│   └── MEMORY.md
-├── cfo/                ← CFO Agent
-│   ├── AGENTS.md
-│   ├── SOUL.md
-│   ├── IDENTITY.md
-│   ├── USER.md
-│   └── MEMORY.md
-├── coo/                ← COO Agent
-│   ├── AGENTS.md
-│   ├── SOUL.md
-│   ├── IDENTITY.md
-│   ├── USER.md
-│   └── MEMORY.md
-└── cpo/                ← CPO Agent
+│   └── IDENTITY.md
+└── cto/                ← CTO Agent (Stark)
     ├── AGENTS.md
     ├── SOUL.md
-    ├── IDENTITY.md
-    ├── USER.md
-    └── MEMORY.md
+    └── IDENTITY.md
 ```
 
 ## Agent 清单
 
-| Agent | 角色 | 层级 | 上级 | 状态 |
+| Agent | 角色 | 职责 | 上级 | 状态 |
 |-------|------|------|------|------|
-| CEO (Mike) | 首席执行官 | CEO | — | Active |
-| CTO | 首席技术官 | VP | CEO | Active |
-| PMO | 项目管理办公室 | 专家层 | CTO | Active |
-| RD 专家 | 架构与核心系统 | 专家层 | CTO | Active |
-| 性能专家 | 性能优化 | 专家层 | CTO | Active |
-| QA 专家 | 质量保障 | 专家层 | CTO | Active |
-| SRE 专家 | 可靠性与部署 | 专家层 | CTO | Active |
-| CFO | 首席财务官 | VP | CEO | Pending |
-| COO | 首席运营官 | VP | CEO | Pending |
-| CPO | 首席产品官 | VP | CEO | Pending |
+| CEO (Mike) | 首席执行官 | 全局决策、对外发布、向 Bryant 汇报 | Bryant | Active |
+| CFO (Trinity) | 首席财务官 | 财务规划、资源分配、成本审计 | CEO | Active |
+| COO (Neo) | 首席运营官 | 运营管理、任务调度、效能分析 | CEO | Active |
+| CPO (Morpheus) | 首席产品官 | 产品方向、技术产品化、CTO 上级 | CEO | Active |
+| CTO (Stark) | 首席技术官 | 技术决策、任务执行、Wiki/Skill 管理 | CPO | Active |
 
-## 技术团队组织架构
+## 组织架构
 
 ```
-CEO (Mike)
- └── CTO ─── PMO (sessions_send)
-      ├── RD 专家 ─── rd-worker (sessions_spawn)
-      ├── 性能专家 ─── perf-worker (sessions_spawn)
-      ├── QA 专家 ─── qa-worker (sessions_spawn)
-      └── SRE 专家 ─── sre-worker (sessions_spawn)
+Bryant
+  └── CEO (Mike) ← 全局决策 + 对外发布
+        ├── CFO (Trinity) ← 财务/资源管理
+        ├── COO (Neo) ← 运营/流程管理
+        └── CPO (Morpheus) ← 产品/技术方向
+              └── CTO (Stark) ← 技术域全权
+                    └── Worker (临时, 按标签: rd/perf/qa/sre)
 ```
+
+## 设计原则
+
+1. **上下文隔离驱动架构**：只有上下文真正不同的才拆 Agent
+2. **C 层 (CXO)** 是常驻层级，VP 层及以下按需 `sessions_spawn`
+3. **Worker** 是临时进程，任务结束即销毁，不保留状态
+4. **PMO/专家层** 通过 VP 自由 spawn，不再常驻
 
 ## 相关链接
 
-- [[仓库分工说明]]
-- [[agent基础设施可观测性平台]]
+- [[skill-isolation-and-sharing]] — Skill 权限分配矩阵
+- [[仓库分工说明]] — 仓库操作规范
+- [[agent基础设施可观测性平台]] — 活跃项目

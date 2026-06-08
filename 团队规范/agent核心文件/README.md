@@ -65,17 +65,17 @@ Bryant
   └── CEO (Mike) ← 全局决策 + 对外发布
         ├── CFO (Trinity) ← 财务/资源管理
         ├── COO (Neo) ← 运营/流程管理
-        └── CPO (Morpheus) ← 产品/技术方向
-              └── CTO (Stark) ← 技术域全权
-                    └── Worker (临时, 按标签: rd/perf/qa/sre)
+        ├── CPO (Morpheus) ← 产品/技术方向
+        └── CTO (Stark) ← 技术域全权
+              └── Worker (临时, 按标签: rd/perf/qa/sre)
 ```
 
 ## 设计原则
 
 1. **上下文隔离驱动架构**：只有上下文真正不同的才拆 Agent
-2. **C 层 (CXO)** 是常驻层级，VP 层及以下按需 `sessions_spawn`
+2. **C 层 (CXO)** 是常驻层级，平级，均直接向 CEO 汇报
 3. **Worker** 是临时进程，任务结束即销毁，不保留状态
-4. **PMO/专家层** 通过 VP 自由 spawn，不再常驻
+4. **PMO/专家层** 通过 CXO 自由 `sessions_spawn`，不再常驻
 
 ## 相关链接
 

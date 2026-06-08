@@ -31,12 +31,12 @@ Bryant
   └── CEO (Mike) ← 全局决策 + 对外发布
         ├── CFO (Trinity) ← 财务/资源管理
         ├── COO (Neo) ← 运营/流程管理
-        └── CPO (Morpheus) ← 产品/技术方向
-              └── CTO (Stark/我) ← 技术域全权
-                    └── Worker (临时, 按标签: rd/perf/qa/sre)
+        ├── CPO (Morpheus) ← 产品/技术方向
+        └── CTO (Stark/我) ← 技术域全权
+              └── Worker (临时, 按标签: rd/perf/qa/sre)
 ```
 
-**常驻 Agent：CEO + CFO + COO + CPO + CTO（共 5 个 C 层）**，其余（PMO/专家层）通过 VP 层自由 `sessions_spawn` 按需创建。
+**常驻 Agent：CEO + CFO + COO + CPO + CTO（共 5 个 C 层，CXO 平级，均直接向 CEO 汇报）**，其余（PMO/专家层）通过 VP 层自由 `sessions_spawn` 按需创建。
 
 **设计原则：上下文驱动。** 只有上下文真正不同的才拆分 Agent。VP 层通过 spawn 灵活扩展，不常驻。
 

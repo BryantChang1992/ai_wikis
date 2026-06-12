@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 950">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 指标设计最佳实践 — Schema Design &amp; Cardinality Management</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">Tag vs Field 选择 · 基数控制 · Bucket 分区 · 下采样 · 反模式</text>
+
+  <!-- ===== Data Model Anatomy ===== -->
+  <rect x="20" y="75" width="1010" height="130" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="32" y="95" fill="#22d3ee" font-size="11" font-weight="600">InfluxDB 数据模型解剖</text>
+
+  <!-- Line Protocol example -->
+  <rect x="40" y="110" width="470" height="42" rx="6" fill="#0f172a"/>
+  <rect x="40" y="110" width="470" height="42" rx="6" fill="rgba(8,51,68,0.2)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="275" y="129" fill="#60a5fa" font-size="9" font-weight="600" text-anchor="middle">cpu,host=server-a,region=us-west usage_user=64.5,usage_sys=12.3 1718200000000000000</text>
+  <text x="275" y="144" fill="#94a3b8" font-size="7" text-anchor="middle">Measurement · Tag Set · Field Set · Timestamp</text>
+
+  <!-- Component breakdown -->
+  <rect x="530" y="110" width="230" height="42" rx="4" fill="rgba(22,211,238,0.08)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="645" y="127" fill="#22d3ee" font-size="9" font-weight="600" text-anchor="middle">Measurement: cpu</text>
+  <text x="645" y="142" fill="#94a3b8" font-size="7" text-anchor="middle">逻辑分组 (Table-like)</text>
+
+  <rect x="775" y="110" width="240" height="42" rx="4" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="0.5"/>
+  <text x="895" y="127" fill="#a78bfa" font-size="9" font-weight="600" text-anchor="middle">Tags: host, region</text>
+  <text x="895" y="142" fill="#94a3b8" font-size="7" text-anchor="middle">Indexed · String · Metadata</text>
+
+  <!-- Series count formula -->
+  <rect x="40" y="165" width="970" height="30" rx="4" fill="rgba(59,130,246,0.08)" stroke="#60a5fa" stroke-width="0.5"/>
+  <text x="525" y="184" fill="#60a5fa" font-size="10" font-weight="500" text-anchor="middle">Series Cardinality = |tag₁| × |tag₂| × ... × |tagₙ| × |fields|</text>
+
+  <!-- ===== Decision Framework ===== -->
+  <rect x="20" y="225" width="1010" height="180" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="32" y="245" fill="#34d399" font-size="11" font-weight="600">Tag vs Field 决策框架 "The Cardinality Test"</text>
+
+  <!-- Decision tree -->
+  <rect x="500" y="255" width="200" height="50" rx="25" fill="#0f172a"/>
+  <rect x="500" y="255" width="200" height="50" rx="25" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="600" y="275" fill="white" font-size="10" font-weight="600" text-anchor="middle">需要 WHERE 过滤?</text>
+  <text x="600" y="293" fill="#94a3b8" font-size="8" text-anchor="middle">(Is it queried by?)</text>
+
+  <!-- YES branch -->
+  <path d="M 700 280 L 760 280 L 830 280" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="730" y="273" fill="#34d399" font-size="9" font-weight="600">YES</text>
+
+  <!-- NO branch -->
+  <path d="M 500 280 L 420 280 L 350 280" fill="none" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+  <text x="460" y="273" fill="#fb7185" font-size="9" font-weight="600">NO</text>
+
+  <!-- YES result -->
+  <rect x="810" y="255" width="200" height="50" rx="6" fill="#0f172a"/>
+  <rect x="810" y="255" width="200" height="50" rx="6" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="910" y="275" fill="#a78bfa" font-size="10" font-weight="600" text-anchor="middle">→ 仍然要检查基数</text>
+  <text x="910" y="293" fill="#94a3b8" font-size="8" text-anchor="middle">Cardinality &lt; 1M?</text>
+
+  <!-- NO result -->
+  <rect x="60" y="260" width="270" height="45" rx="6" fill="#0f172a"/>
+  <rect x="60" y="260" width="270" height="45" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="195" y="278" fill="#34d399" font-size="10" font-weight="600" text-anchor="middle">→ 作为 Field 存储</text>
+  <text x="195" y="296" fill="#94a3b8" font-size="8" text-anchor="middle">不参与索引 · 支持聚合</text>
+
+  <!-- Sub-decisions -->
+  <rect x="60" y="335" width="200" height="55" rx="6" fill="#0f172a"/>
+  <rect x="60" y="335" width="200" height="55" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="160" y="354" fill="#a78bfa" font-size="9" font-weight="600" text-anchor="middle">✓ 作为 Tag</text>
+  <text x="160" y="370" fill="#94a3b8" font-size="8" text-anchor="middle">低基数 (&lt;10K values)</text>
+  <text x="160" y="384" fill="#94a3b8" font-size="8" text-anchor="middle">host · region · env · dc</text>
+
+  <rect x="285" y="335" width="200" height="55" rx="6" fill="#0f172a"/>
+  <rect x="285" y="335" width="200" height="55" rx="6" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="385" y="354" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">⚠ 谨慎 Tag</text>
+  <text x="385" y="370" fill="#94a3b8" font-size="8" text-anchor="middle">中基数 (10K-100K)</text>
+  <text x="385" y="384" fill="#94a3b8" font-size="8" text-anchor="middle">pod_id · container_id</text>
+
+  <rect x="510" y="335" width="200" height="55" rx="6" fill="#0f172a"/>
+  <rect x="510" y="335" width="200" height="55" rx="6" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="610" y="354" fill="#fb7185" font-size="9" font-weight="600" text-anchor="middle">✗ 绝不能 Tag</text>
+  <text x="610" y="370" fill="#94a3b8" font-size="8" text-anchor="middle">高基数 (&gt;100K)</text>
+  <text x="610" y="384" fill="#94a3b8" font-size="8" text-anchor="middle">user_id · request_id · ip</text>
+
+  <!-- Group By note -->
+  <rect x="60" y="270" width="440" height="55" rx="6" fill="rgba(22,211,238,0.05)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="70" y="286" fill="#22d3ee" font-size="9" font-weight="600">需要 GROUP BY?</text>
+  <text x="70" y="302" fill="#94a3b8" font-size="8">如需按此维度聚合 (如按 host 聚合 CPU使用率)，则必须作为 Tag。</text>
+  <text x="70" y="316" fill="#94a3b8" font-size="8">InfluxDB 仅支持按 Tag 做 GROUP BY，不支持按 Field GROUP BY。</text>
+
+  <!-- ===== Best Practices ===== -->
+  <rect x="20" y="425" width="490" height="240" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="32" y="445" fill="#a78bfa" font-size="11" font-weight="600">Schema 设计最佳实践</text>
+
+  <!-- Practice 1 -->
+  <rect x="40" y="460" width="450" height="38" rx="4" fill="rgba(6,78,59,0.1)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="476" fill="#34d399" font-size="9" font-weight="600">P1 · 避免 Measurement 中编码数据</text>
+  <text x="50" y="491" fill="#94a3b8" font-size="8">❌ cpu.server-5.us-west.usage_user → ✅ cpu,tags={host,region},field=usage_user</text>
+
+  <rect x="40" y="507" width="450" height="38" rx="4" fill="rgba(6,78,59,0.1)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="523" fill="#34d399" font-size="9" font-weight="600">P2 · ID/唯一值作为 Field，不做 Tag</text>
+  <text x="50" y="538" fill="#94a3b8" font-size="8">❌ user_id, order_id, request_id, trace_id 作为 Tag → ✅ 作为 Field</text>
+
+  <rect x="40" y="554" width="450" height="38" rx="4" fill="rgba(6,78,59,0.1)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="570" fill="#34d399" font-size="9" font-weight="600">P3 · Bucket 按保留策略分离</text>
+  <text x="50" y="585" fill="#94a3b8" font-size="8">raw_metrics (7d) → downsampled_hourly (90d) → downsampled_daily (365d)</text>
+
+  <rect x="40" y="601" width="450" height="38" rx="4" fill="rgba(6,78,59,0.1)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="617" fill="#34d399" font-size="9" font-weight="600">P4 · 不同采样率的指标分 Measurement 存</text>
+  <text x="50" y="632" fill="#94a3b8" font-size="8">cpu (10s) ≠ cpu_daily (1d) — 不同 Measurement 优化 Task 和查询</text>
+
+  <rect x="40" y="648" width="450" height="38" rx="4" fill="rgba(6,78,59,0.1)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="664" fill="#34d399" font-size="9" font-weight="600">P5 · Bucket/Measurement 命名简短</text>
+  <text x="50" y="679" fill="#94a3b8" font-size="8">my_app_production_metrics_v2 → app_metrics · 减少存储 &amp; 序列化开销</text>
+
+  <!-- ===== Anti-Patterns ===== -->
+  <rect x="530" y="425" width="500" height="240" rx="10" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="542" y="445" fill="#fb7185" font-size="11" font-weight="600">常见反模式 &amp; 后果</text>
+
+  <rect x="550" y="460" width="460" height="52" rx="4" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="560" y="476" fill="#fb7185" font-size="9" font-weight="600">💀 反模式①: 高基数 Tag (Runaway Cardinality)</text>
+  <text x="560" y="492" fill="#94a3b8" font-size="8">user_id, session_id, ip_address, trace_id 作为 Tag</text>
+  <text x="560" y="505" fill="#fb7185" font-size="8">后果: 内存爆炸 · TSI 索引膨胀 · 写入/查询全链路退化 · OOM Kill</text>
+
+  <rect x="550" y="521" width="460" height="52" rx="4" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="560" y="537" fill="#fb7185" font-size="9" font-weight="600">💀 反模式②: 所有维度塞一个 Measurement</text>
+  <text x="560" y="553" fill="#94a3b8" font-size="8">cpu, mem, disk, net 全放 sensor_data Measurement</text>
+  <text x="560" y="566" fill="#fb7185" font-size="8">后果: 查询必须 Filter by _field · 扫描无关数据 · 无法独立 RP</text>
+
+  <rect x="550" y="582" width="460" height="52" rx="4" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="560" y="598" fill="#fb7185" font-size="9" font-weight="600">💀 反模式③: 时间戳精度不当</text>
+  <text x="560" y="614" fill="#94a3b8" font-size="8">相同 Tag Set + 相同时间戳的多个 Point</text>
+  <text x="560" y="627" fill="#fb7185" font-size="8">后果: 后写入覆盖先写入 · 数据丢失 · 无 Merge 语义</text>
+
+  <rect x="550" y="643" width="460" height="52" rx="4" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="560" y="659" fill="#fb7185" font-size="9" font-weight="600">💀 反模式④: 无下采样 · 永久全精度</text>
+  <text x="560" y="675" fill="#94a3b8" font-size="8">30 天全精度 raw data · 无 Continuous Query / Task</text>
+  <text x="560" y="688" fill="#fb7185" font-size="8">后果: 存储膨胀 · 查询扫描数百万点 · 成本线性增长</text>
+
+  <!-- ===== Cardinality Formula ===== -->
+  <rect x="20" y="685" width="1010" height="120" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="32" y="705" fill="#fbbf24" font-size="11" font-weight="600">基数计算示例 &amp; 控制策略</text>
+
+  <!-- Example 1: Safe -->
+  <rect x="40" y="718" width="320" height="72" rx="6" fill="rgba(6,78,59,0.08)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="50" y="735" fill="#34d399" font-size="9" font-weight="600">✅ 安全基数</text>
+  <text x="50" y="753" fill="#94a3b8" font-size="8">host(100) × region(3) × env(2) × 4 fields</text>
+  <text x="50" y="770" fill="#34d399" font-size="9">= 100×3×2×4 = 2,400 Series</text>
+  <text x="50" y="785" fill="#64748b" font-size="7">✓ 查询快速 · 内存友好 · 索引高效</text>
+
+  <!-- Example 2: Dangerous -->
+  <rect x="380" y="718" width="320" height="72" rx="6" fill="rgba(120,53,15,0.08)" stroke="#fbbf24" stroke-width="0.5"/>
+  <text x="390" y="735" fill="#fbbf24" font-size="9" font-weight="600">⚠ 危险基数</text>
+  <text x="390" y="753" fill="#94a3b8" font-size="8">host(500) × pod(2000) × 10 fields</text>
+  <text x="390" y="770" fill="#fbbf24" font-size="9">= 500×2000×10 = 10,000,000 Series</text>
+  <text x="390" y="785" fill="#64748b" font-size="7">⚠ OOM 风险 · TSI 索引巨大 · 查询慢</text>
+
+  <!-- Example 3: Explosive -->
+  <rect x="720" y="718" width="295" height="72" rx="6" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="730" y="735" fill="#fb7185" font-size="9" font-weight="600">💀 爆炸基数 (InfluxDB 3)</text>
+  <text x="730" y="753" fill="#94a3b8" font-size="8">No Limit — InfluxDB 3</text>
+  <text x="730" y="770" fill="#22d3ee" font-size="9">但因历史原因应避免</text>
+  <text x="730" y="785" fill="#64748b" font-size="7">仍建议合理控制</text>
+
+  <!-- ===== Downsampling Strategy ===== -->
+  <rect x="20" y="820" width="1010" height="110" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="32" y="840" fill="#22d3ee" font-size="11" font-weight="600">下采样 (Downsampling) 策略</text>
+
+  <!-- Pipeline -->
+  <rect x="40" y="855" width="210" height="55" rx="6" fill="#0f172a"/>
+  <rect x="40" y="855" width="210" height="55" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="145" y="875" fill="white" font-size="10" font-weight="600" text-anchor="middle">Raw Data (10s)</text>
+  <text x="145" y="892" fill="#94a3b8" font-size="8" text-anchor="middle">Bucket: raw · RP: 7d</text>
+
+  <line x1="250" y1="882" x2="275" y2="882" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="280" y="855" width="210" height="55" rx="6" fill="#0f172a"/>
+  <rect x="280" y="855" width="210" height="55" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="385" y="875" fill="white" font-size="10" font-weight="600" text-anchor="middle">Hourly Agg (1h)</text>
+  <text x="385" y="892" fill="#94a3b8" font-size="8" text-anchor="middle">Bucket: ds_1h · RP: 90d</text>
+
+  <line x1="490" y1="882" x2="515" y2="882" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <rect x="520" y="855" width="210" height="55" rx="6" fill="#0f172a"/>
+  <rect x="520" y="855" width="210" height="55" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="625" y="875" fill="white" font-size="10" font-weight="600" text-anchor="middle">Daily Agg (1d)</text>
+  <text x="625" y="892" fill="#94a3b8" font-size="8" text-anchor="middle">Bucket: ds_1d · RP: 365d</text>
+
+  <line x1="730" y1="882" x2="755" y2="882" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="760" y="855" width="250" height="55" rx="6" fill="#0f172a"/>
+  <rect x="760" y="855" width="250" height="55" rx="6" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="885" y="875" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">Archive (Compact)</text>
+  <text x="885" y="892" fill="#94a3b8" font-size="8" text-anchor="middle">Parquet (InfluxDB 3)</text>
+</svg>

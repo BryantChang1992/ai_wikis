@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 920">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 查询路径 — DataFusion 向量化查询引擎详解</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">Query Router → Querier (Cache + Catalog + Ingester) → Plan Build → Execute → Result</text>
+
+  <!-- ===== LEFT: v1/v2 Query Path ===== -->
+  <rect x="20" y="75" width="480" height="380" rx="10" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="32" y="95" fill="#fb7185" font-size="11" font-weight="600">InfluxDB v1/v2 查询路径 (Go)</text>
+
+  <!-- InfluxQL / Flux -->
+  <rect x="45" y="110" width="430" height="45" rx="6" fill="#0f172a"/>
+  <rect x="45" y="110" width="430" height="45" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="260" y="129" fill="white" font-size="10" font-weight="600" text-anchor="middle">InfluxQL / Flux Query</text>
+  <text x="260" y="146" fill="#94a3b8" font-size="8" text-anchor="middle">SELECT mean("value") FROM "cpu" WHERE time > now()-1h GROUP BY host</text>
+
+  <line x1="260" y1="155" x2="260" y2="175" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Parse -->
+  <rect x="45" y="180" width="200" height="48" rx="6" fill="#0f172a"/>
+  <rect x="45" y="180" width="200" height="48" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="145" y="200" fill="white" font-size="10" font-weight="600" text-anchor="middle">Parse &amp; Validate</text>
+  <text x="145" y="215" fill="#94a3b8" font-size="8" text-anchor="middle">AST Build</text>
+
+  <!-- TSI Lookup -->
+  <rect x="275" y="180" width="200" height="48" rx="6" fill="#0f172a"/>
+  <rect x="275" y="180" width="200" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="375" y="200" fill="white" font-size="10" font-weight="600" text-anchor="middle">TSI Index Lookup</text>
+  <text x="375" y="215" fill="#94a3b8" font-size="8" text-anchor="middle">Series ID → Shard</text>
+
+  <line x1="245" y1="204" x2="273" y2="204" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <line x1="260" y1="228" x2="260" y2="252" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Read TSM -->
+  <rect x="45" y="257" width="430" height="48" rx="6" fill="#0f172a"/>
+  <rect x="45" y="257" width="430" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="260" y="277" fill="white" font-size="10" font-weight="600" text-anchor="middle">TSM File Scan + Cache Lookup</text>
+  <text x="260" y="292" fill="#94a3b8" font-size="8" text-anchor="middle">Read TSM Blocks → Decode → Field Iterator</text>
+
+  <line x1="260" y1="305" x2="260" y2="325" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Execute -->
+  <rect x="45" y="330" width="210" height="48" rx="6" fill="#0f172a"/>
+  <rect x="45" y="330" width="210" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="150" y="350" fill="white" font-size="10" font-weight="600" text-anchor="middle">Execute &amp; Aggregate</text>
+  <text x="150" y="365" fill="#94a3b8" font-size="8" text-anchor="middle">Merge · Filter · Group</text>
+
+  <!-- Result -->
+  <rect x="275" y="330" width="200" height="48" rx="6" fill="#0f172a"/>
+  <rect x="275" y="330" width="200" height="48" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="375" y="350" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="middle">JSON / CSV Result</text>
+  <text x="375" y="365" fill="#64748b" font-size="8" text-anchor="middle">HTTP Response</text>
+
+  <line x1="255" y1="354" x2="273" y2="354" stroke="#34d399" stroke-width="1.2" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Limitation -->
+  <rect x="45" y="400" width="430" height="40" rx="6" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="260" y="418" fill="#fb7185" font-size="9" font-weight="500" text-anchor="middle">⚠ 限制：TSI 索引查找耗时、TSM 块解码无向量化、高基数下 Iterator Merge 开销大</text>
+  <text x="260" y="432" fill="#94a3b8" font-size="8" text-anchor="middle">Flux 引擎额外引入 VM 开销 ｜ 查询延迟随 Series 数线性增长</text>
+
+  <!-- ===== RIGHT: v3 Query Path ===== -->
+  <rect x="530" y="75" width="500" height="610" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="542" y="95" fill="#22d3ee" font-size="11" font-weight="600">InfluxDB 3.0 查询路径 (Rust + DataFusion)</text>
+
+  <!-- Query Router -->
+  <rect x="555" y="110" width="455" height="42" rx="6" fill="#0f172a"/>
+  <rect x="555" y="110" width="455" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="782" y="129" fill="white" font-size="10" font-weight="600" text-anchor="middle">Query Router → Querier</text>
+  <text x="782" y="144" fill="#94a3b8" font-size="8" text-anchor="middle">SQL (FlightSQL) / InfluxQL (Flight) → 负载均衡</text>
+
+  <line x1="782" y1="152" x2="782" y2="172" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Phase 1: Cache + Catalog -->
+  <rect x="555" y="177" width="215" height="65" rx="6" fill="#0f172a"/>
+  <rect x="555" y="177" width="215" height="65" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="662" y="197" fill="white" font-size="10" font-weight="600" text-anchor="middle">① Catalog Cache Sync</text>
+  <text x="662" y="212" fill="#94a3b8" font-size="8" text-anchor="middle">Table · Column · Partition</text>
+  <text x="662" y="226" fill="#94a3b8" font-size="8" text-anchor="middle">Metadata (PostgreSQL)</text>
+
+  <rect x="795" y="177" width="215" height="65" rx="6" fill="#0f172a"/>
+  <rect x="795" y="177" width="215" height="65" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="902" y="197" fill="white" font-size="10" font-weight="600" text-anchor="middle">② Data Cache Warm-up</text>
+  <text x="902" y="212" fill="#94a3b8" font-size="8" text-anchor="middle">Parquet Read → Arrow</text>
+  <text x="902" y="226" fill="#94a3b8" font-size="8" text-anchor="middle">Only Needed Columns</text>
+
+  <line x1="770" y1="209" x2="793" y2="209" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+  <line x1="782" y1="242" x2="782" y2="262" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Phase 2: Get Unpersisted from Ingester -->
+  <rect x="555" y="267" width="455" height="55" rx="6" fill="#0f172a"/>
+  <rect x="555" y="267" width="455" height="55" rx="6" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="782" y="287" fill="white" font-size="10" font-weight="600" text-anchor="middle">③ Fetch Unpersisted Data from Ingester</text>
+  <text x="782" y="302" fill="#94a3b8" font-size="8" text-anchor="middle">Querier → Ingester RPC: 获取尚未持久化到 Object Store 的最新数据</text>
+  <text x="782" y="315" fill="#94a3b8" font-size="8" text-anchor="middle">同时学习 Schema 变更，Invalidate Stale Cache</text>
+
+  <line x1="782" y1="322" x2="782" y2="345" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+
+  <!-- Phase 3: Build Query Plan -->
+  <rect x="555" y="350" width="455" height="90" rx="6" fill="rgba(6,78,59,0.08)" stroke="#34d399" stroke-width="1"/>
+  <text x="565" y="368" fill="#34d399" font-size="10" font-weight="600">④ Query Optimizer — DataFusion Physical Plan</text>
+
+  <rect x="570" y="378" width="135" height="50" rx="6" fill="#0f172a"/>
+  <rect x="570" y="378" width="135" height="50" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="637" y="396" fill="white" font-size="9" font-weight="600" text-anchor="middle">Partition Pruning</text>
+  <text x="637" y="413" fill="#94a3b8" font-size="7" text-anchor="middle">Skip unneeded partitions</text>
+
+  <rect x="715" y="378" width="135" height="50" rx="6" fill="#0f172a"/>
+  <rect x="715" y="378" width="135" height="50" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="782" y="396" fill="white" font-size="9" font-weight="600" text-anchor="middle">Predicate Pushdown</text>
+  <text x="782" y="413" fill="#94a3b8" font-size="7" text-anchor="middle">Filter at storage level</text>
+
+  <rect x="860" y="378" width="135" height="50" rx="6" fill="#0f172a"/>
+  <rect x="860" y="378" width="135" height="50" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="927" y="396" fill="white" font-size="9" font-weight="600" text-anchor="middle">Column Pruning</text>
+  <text x="927" y="413" fill="#94a3b8" font-size="7" text-anchor="middle">Read only needed cols</text>
+
+  <line x1="705" y1="403" x2="713" y2="403" stroke="#34d399" stroke-width="1"/>
+  <line x1="850" y1="403" x2="858" y2="403" stroke="#34d399" stroke-width="1"/>
+
+  <line x1="782" y1="440" x2="782" y2="462" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Phase 4: Parallel Execution -->
+  <rect x="555" y="467" width="455" height="60" rx="6" fill="#0f172a"/>
+  <rect x="555" y="467" width="455" height="60" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="782" y="487" fill="white" font-size="10" font-weight="600" text-anchor="middle">⑤ Parallel Execution (DataFusion)</text>
+  <text x="782" y="502" fill="#94a3b8" font-size="8" text-anchor="middle">ParquetExec → FilterExec → SortMerge (Dedup) → AggregateExec → Result</text>
+  <text x="782" y="517" fill="#94a3b8" font-size="8" text-anchor="middle">Per-Partition Parallelism · SIMD Vectorized Processing</text>
+
+  <line x1="782" y1="527" x2="782" y2="547" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Phase 5: Result -->
+  <rect x="555" y="552" width="455" height="42" rx="6" fill="#0f172a"/>
+  <rect x="555" y="552" width="455" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="782" y="571" fill="white" font-size="10" font-weight="600" text-anchor="middle">⑥ Arrow Flight / JSON Result → Client</text>
+  <text x="782" y="587" fill="#94a3b8" font-size="8" text-anchor="middle">Streaming Arrow RecordBatches · 零拷贝传输</text>
+
+  <!-- Key features -->
+  <rect x="555" y="610" width="455" height="65" rx="6" fill="rgba(34,211,238,0.06)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="565" y="628" fill="#22d3ee" font-size="9" font-weight="600">优化要点：</text>
+  <text x="565" y="645" fill="#94a3b8" font-size="8">✦ 无索引查找 — Parquet Statistics 直接跳过不相关文件 (Min/Max Pruning)</text>
+  <text x="565" y="660" fill="#94a3b8" font-size="8">✦ Late Materialization — 先过滤再读列，减少 I/O</text>
+  <text x="565" y="672" fill="#94a3b8" font-size="8">✦ 仅对重叠文件执行 Dedup — 非重叠文件直接 stream，避免排序开销</text>
+
+  <!-- ===== Bottom: Plan Execution Pipeline ===== -->
+  <rect x="20" y="475" width="500" height="210" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <text x="270" y="498" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">v1/v2 查询执行模型 (Iterator)</text>
+
+  <rect x="45" y="515" width="450" height="38" rx="4" fill="rgba(8,51,68,0.2)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="270" y="532" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">每 Series → 单独 Iterator → 逐点 Merge</text>
+  <text x="270" y="546" fill="#64748b" font-size="8" text-anchor="middle">N 个 Series = N 个 Iterator · 查询代价 O(N)</text>
+
+  <text x="270" y="580" fill="#94a3b8" font-size="8">→ 单线程 Iterator 模型</text>
+  <text x="270" y="596" fill="#94a3b8" font-size="8">→ 无向量化：逐点处理</text>
+  <text x="270" y="612" fill="#94a3b8" font-size="8">→ TSM Block 解码开销</text>
+  <text x="270" y="628" fill="#94a3b8" font-size="8">→ 高基数时 Iterator Merge 成为瓶颈</text>
+
+  <text x="270" y="662" fill="#fb7185" font-size="9" font-weight="600" text-anchor="middle">性能退化曲线：查询延迟 ∝ Series 数量</text>
+
+  <!-- Bottom Right: DataFusion Pipeline -->
+  <rect x="20" y="700" width="1010" height="200" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <text x="525" y="722" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">InfluxDB 3 查询执行模型 (DataFusion Physical Plan)</text>
+
+  <!-- Pipeline visualization -->
+  <!-- ParquetExec -->
+  <rect x="40" y="740" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="40" y="740" width="160" height="48" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="120" y="760" fill="white" font-size="9" font-weight="600" text-anchor="middle">ParquetExec</text>
+  <text x="120" y="776" fill="#94a3b8" font-size="7" text-anchor="middle">Read + Prune + Decode</text>
+
+  <line x1="200" y1="764" x2="220" y2="764" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- FilterExec -->
+  <rect x="225" y="740" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="225" y="740" width="160" height="48" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="305" y="760" fill="white" font-size="9" font-weight="600" text-anchor="middle">FilterExec</text>
+  <text x="305" y="776" fill="#94a3b8" font-size="7" text-anchor="middle">WHERE clause eval</text>
+
+  <line x1="385" y1="764" x2="405" y2="764" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- SortMergeExec -->
+  <rect x="410" y="740" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="410" y="740" width="160" height="48" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="490" y="760" fill="white" font-size="9" font-weight="600" text-anchor="middle">SortMergeExec</text>
+  <text x="490" y="776" fill="#94a3b8" font-size="7" text-anchor="middle">Overlap Dedup Only</text>
+
+  <line x1="570" y1="764" x2="590" y2="764" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- AggregateExec -->
+  <rect x="595" y="740" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="595" y="740" width="160" height="48" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="675" y="760" fill="white" font-size="9" font-weight="600" text-anchor="middle">AggregateExec</text>
+  <text x="675" y="776" fill="#94a3b8" font-size="7" text-anchor="middle">GROUP BY · SUM/AVG</text>
+
+  <line x1="755" y1="764" x2="775" y2="764" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Result -->
+  <rect x="780" y="740" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="780" y="740" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="860" y="760" fill="white" font-size="9" font-weight="600" text-anchor="middle">Arrow RecordBatch</text>
+  <text x="860" y="776" fill="#94a3b8" font-size="7" text-anchor="middle">Streaming gRPC</text>
+
+  <!-- Bottom annotations -->
+  <text x="120" y="818" fill="#64748b" font-size="7" text-anchor="middle">Column Pruning</text>
+  <text x="120" y="830" fill="#64748b" font-size="7" text-anchor="middle">Predicate Pushdown</text>
+  <text x="305" y="818" fill="#64748b" font-size="7" text-anchor="middle">SIMD Scan</text>
+  <text x="490" y="818" fill="#64748b" font-size="7" text-anchor="middle">Non-overlap Skip</text>
+  <text x="675" y="818" fill="#64748b" font-size="7" text-anchor="middle">Hash Aggregation</text>
+  <text x="860" y="818" fill="#64748b" font-size="7" text-anchor="middle">Zero-Copy</text>
+
+  <!-- Pipeline characteristics -->
+  <rect x="40" y="850" width="960" height="35" rx="4" fill="rgba(34,211,238,0.06)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="520" y="866" fill="#22d3ee" font-size="9" font-weight="500" text-anchor="middle">✦ 全链路向量化 · 每次 Operate 处理 4096 行 Batch · Per-Partition 并行 · 查询延迟不随 Series 基数线性增长</text>
+  <text x="520" y="880" fill="#94a3b8" font-size="8" text-anchor="middle">数据流: Arrow RecordBatch 在各算子间零拷贝传递，仅在 Sort 和 Hash Aggregate 等算子产生物化边界</text>
+</svg>

@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 存储引擎演进：TSM/TSI → InfluxDB 3 列存引擎</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">v1/v2: Time-Structured Merge Tree + Time Series Index ｜ v3: Rust + Apache Arrow + DataFusion + Parquet</text>
+
+  <!-- ===== LEFT: InfluxDB v1/v2 TSM Engine ===== -->
+  <rect x="25" y="75" width="510" height="350" rx="10" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="37" y="95" fill="#fb7185" font-size="11" font-weight="600">InfluxDB v1.x / v2.x — TSM 存储引擎 (Go)</text>
+
+  <!-- Memory Layer -->
+  <rect x="50" y="115" width="460" height="28" rx="4" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <text x="280" y="134" fill="#22d3ee" font-size="9" font-weight="600" text-anchor="middle">内存层</text>
+
+  <!-- Cache -->
+  <rect x="65" y="155" width="200" height="52" rx="6" fill="#0f172a"/>
+  <rect x="65" y="155" width="200" height="52" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="165" y="176" fill="white" font-size="10" font-weight="600" text-anchor="middle">In-Memory Cache</text>
+  <text x="165" y="193" fill="#94a3b8" font-size="8" text-anchor="middle">Series → Time-Sorted Fields</text>
+
+  <!-- WAL -->
+  <rect x="295" y="155" width="200" height="52" rx="6" fill="#0f172a"/>
+  <rect x="295" y="155" width="200" height="52" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="395" y="176" fill="white" font-size="10" font-weight="600" text-anchor="middle">WAL</text>
+  <text x="395" y="193" fill="#94a3b8" font-size="8" text-anchor="middle">Snappy Compressed · Append-Only</text>
+
+  <!-- TSI -->
+  <rect x="65" y="225" width="200" height="52" rx="6" fill="#0f172a"/>
+  <rect x="65" y="225" width="200" height="52" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="165" y="246" fill="white" font-size="10" font-weight="600" text-anchor="middle">TSI (Time Series Index)</text>
+  <text x="165" y="263" fill="#94a3b8" font-size="8" text-anchor="middle">Measurement+Tag 倒排索引</text>
+
+  <!-- Disk Layer -->
+  <rect x="50" y="300" width="460" height="28" rx="4" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <text x="280" y="319" fill="#a78bfa" font-size="9" font-weight="600" text-anchor="middle">磁盘层</text>
+
+  <!-- TSM Files -->
+  <rect x="65" y="345" width="135" height="45" rx="6" fill="#0f172a"/>
+  <rect x="65" y="345" width="135" height="45" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="132" y="364" fill="white" font-size="9" font-weight="600" text-anchor="middle">TSM L0</text>
+  <text x="132" y="379" fill="#94a3b8" font-size="7" text-anchor="middle">Cache Flush</text>
+
+  <rect x="215" y="345" width="135" height="45" rx="6" fill="#0f172a"/>
+  <rect x="215" y="345" width="135" height="45" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="282" y="364" fill="white" font-size="9" font-weight="600" text-anchor="middle">TSM L1</text>
+  <text x="282" y="379" fill="#94a3b8" font-size="7" text-anchor="middle">Compacted</text>
+
+  <rect x="365" y="345" width="135" height="45" rx="6" fill="#0f172a"/>
+  <rect x="365" y="345" width="135" height="45" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="432" y="364" fill="white" font-size="9" font-weight="600" text-anchor="middle">TSM L2</text>
+  <text x="432" y="379" fill="#94a3b8" font-size="7" text-anchor="middle">Cold Data</text>
+
+  <!-- Arrows for v1/v2 -->
+  <path d="M 165 207 L 165 223" fill="none" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+  <path d="M 265 181 L 293 181" fill="none" stroke="#60a5fa" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+  <text x="279" y="176" fill="#60a5fa" font-size="7">fsync</text>
+  <path d="M 165 277 L 165 343" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="175" y="315" fill="#94a3b8" font-size="7">flush</text>
+  <path d="M 200 367 L 213 367" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <path d="M 350 367 L 363 367" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="267" y="362" fill="#94a3b8" font-size="7">compaction</text>
+
+  <!-- Limitations box -->
+  <rect x="65" y="405" width="440" height="40" rx="6" fill="rgba(136,19,55,0.15)" stroke="#fb7185" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="75" y="420" fill="#fb7185" font-size="8" font-weight="500">⚠ 限制：高基数性能退化 ｜ TSM 不可变需 Compaction ｜ 倒排索引内存开销大 ｜ 单机扩展受限</text>
+  <text x="75" y="435" fill="#94a3b8" font-size="8">Series Cardinality > 百万 时 TSI 索引显著退化，查询延迟升高</text>
+
+  <!-- ===== RIGHT: InfluxDB 3 Columnar Engine ===== -->
+  <rect x="555" y="75" width="520" height="350" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="567" y="95" fill="#22d3ee" font-size="11" font-weight="600">InfluxDB 3.0 — Columnar 存储引擎 (Rust)</text>
+
+  <!-- Apache Arrow / DataFusion -->
+  <rect x="580" y="115" width="235" height="52" rx="6" fill="#0f172a"/>
+  <rect x="580" y="115" width="235" height="52" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="697" y="136" fill="white" font-size="10" font-weight="600" text-anchor="middle">Apache Arrow &amp; DataFusion</text>
+  <text x="697" y="153" fill="#94a3b8" font-size="8" text-anchor="middle">列式内存格式 + 查询引擎</text>
+
+  <!-- Ingester Engine -->
+  <rect x="845" y="115" width="215" height="52" rx="6" fill="#0f172a"/>
+  <rect x="845" y="115" width="215" height="52" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="952" y="136" fill="white" font-size="10" font-weight="600" text-anchor="middle">Partition &amp; Sort</text>
+  <text x="952" y="153" fill="#94a3b8" font-size="8" text-anchor="middle">Multi-Column Sort Merge</text>
+
+  <!-- Data Flow Arrows in v3 -->
+  <path d="M 815 141 L 843 141" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Parquet Files -->
+  <rect x="580" y="190" width="155" height="52" rx="6" fill="#0f172a"/>
+  <rect x="580" y="190" width="155" height="52" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="657" y="211" fill="white" font-size="10" font-weight="600" text-anchor="middle">Parquet Files</text>
+  <text x="657" y="228" fill="#94a3b8" font-size="8" text-anchor="middle">Snappy/ZSTD · 列式</text>
+
+  <rect x="765" y="190" width="155" height="52" rx="6" fill="#0f172a"/>
+  <rect x="765" y="190" width="155" height="52" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="842" y="211" fill="white" font-size="10" font-weight="600" text-anchor="middle">L0 → L1 → L2</text>
+  <text x="842" y="228" fill="#94a3b8" font-size="8" text-anchor="middle">Compaction Levels</text>
+
+  <rect x="940" y="190" width="120" height="52" rx="6" fill="#0f172a"/>
+  <rect x="940" y="190" width="120" height="52" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="1000" y="211" fill="white" font-size="10" font-weight="600" text-anchor="middle">Non-Overlap</text>
+  <text x="1000" y="228" fill="#94a3b8" font-size="8" text-anchor="middle">Best Layout</text>
+
+  <path d="M 735 216 L 763 216" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <path d="M 920 216 L 938 216" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Object Store -->
+  <rect x="580" y="270" width="480" height="50" rx="6" fill="#0f172a"/>
+  <rect x="580" y="270" width="480" height="50" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="820" y="293" fill="white" font-size="10" font-weight="600" text-anchor="middle">Object Storage (S3 / GCS / Azure Blob / MinIO)</text>
+  <text x="820" y="309" fill="#94a3b8" font-size="8" text-anchor="middle">Partition by Day (default) · 10-100x Compression Ratio</text>
+
+  <!-- Parquet internals detail -->
+  <rect x="580" y="345" width="150" height="42" rx="6" fill="#0f172a"/>
+  <rect x="580" y="345" width="150" height="42" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="655" y="362" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Row Group</text>
+  <text x="655" y="377" fill="#64748b" font-size="7" text-anchor="middle">Column Chunks</text>
+
+  <rect x="745" y="345" width="150" height="42" rx="6" fill="#0f172a"/>
+  <rect x="745" y="345" width="150" height="42" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="820" y="362" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Data Page</text>
+  <text x="820" y="377" fill="#64748b" font-size="7" text-anchor="middle">Rep/Def Levels</text>
+
+  <rect x="910" y="345" width="150" height="42" rx="6" fill="#0f172a"/>
+  <rect x="910" y="345" width="150" height="42" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="985" y="362" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Statistics</text>
+  <text x="985" y="377" fill="#64748b" font-size="7" text-anchor="middle">Min/Max Bloom</text>
+
+  <!-- Pruning note -->
+  <rect x="580" y="395" width="480" height="35" rx="6" fill="rgba(6,78,59,0.12)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="820" y="410" fill="#34d399" font-size="9" font-weight="500" text-anchor="middle">✓ Predicate Pushdown · Column Pruning · Partition Pruning · Late Materialization</text>
+  <text x="820" y="423" fill="#94a3b8" font-size="8" text-anchor="middle">基于 Parquet Statistics 的精细剪枝，跳过不相关 Row Group</text>
+
+  <!-- Comparison Table -->
+  <rect x="25" y="450" width="1050" height="175" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <!-- Table Header -->
+  <rect x="25" y="450" width="1050" height="30" rx="8" fill="rgba(30,41,59,0.8)"/>
+  <text x="80" y="470" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">维度</text>
+  <text x="280" y="470" fill="#fb7185" font-size="9" font-weight="600" text-anchor="middle">InfluxDB v1.x / v2.x (TSM)</text>
+  <text x="550" y="470" fill="#22d3ee" font-size="9" font-weight="600" text-anchor="middle">InfluxDB 3.0 (Columnar)</text>
+  <text x="820" y="470" fill="#34d399" font-size="9" font-weight="600" text-anchor="middle">优势变化</text>
+
+  <!-- Row 1 -->
+  <line x1="25" y1="480" x2="1075" y2="480" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="498" fill="#94a3b8" font-size="8" text-anchor="middle">存储格式</text>
+  <text x="280" y="498" fill="#94a3b8" font-size="8" text-anchor="middle">TSM (自定义列式)</text>
+  <text x="550" y="498" fill="#94a3b8" font-size="8" text-anchor="middle">Apache Parquet (标准)</text>
+  <text x="820" y="498" fill="#34d399" font-size="8" text-anchor="middle">开放标准 · 生态兼容</text>
+
+  <!-- Row 2 -->
+  <line x1="25" y1="510" x2="1075" y2="510" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="528" fill="#94a3b8" font-size="8" text-anchor="middle">索引结构</text>
+  <text x="280" y="528" fill="#94a3b8" font-size="8" text-anchor="middle">TSI 倒排索引 (内存+磁盘)</text>
+  <text x="550" y="528" fill="#94a3b8" font-size="8" text-anchor="middle">Parquet Statistics + Min/Max</text>
+  <text x="820" y="528" fill="#34d399" font-size="8" text-anchor="middle">无索引开销 · 无限基数</text>
+
+  <!-- Row 3 -->
+  <line x1="25" y1="540" x2="1075" y2="540" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="558" fill="#94a3b8" font-size="8" text-anchor="middle">实现语言</text>
+  <text x="280" y="558" fill="#94a3b8" font-size="8" text-anchor="middle">Go</text>
+  <text x="550" y="558" fill="#94a3b8" font-size="8" text-anchor="middle">Rust (Apache Arrow/DataFusion)</text>
+  <text x="820" y="558" fill="#34d399" font-size="8" text-anchor="middle">零成本抽象 · 无 GC</text>
+
+  <!-- Row 4 -->
+  <line x1="25" y1="570" x2="1075" y2="570" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="588" fill="#94a3b8" font-size="8" text-anchor="middle">基数上限</text>
+  <text x="280" y="588" fill="#94a3b8" font-size="8" text-anchor="middle">≤ 百万级 (受 TSI 限制)</text>
+  <text x="550" y="588" fill="#94a3b8" font-size="8" text-anchor="middle">无上限 (Partition Pruning)</text>
+  <text x="820" y="588" fill="#34d399" font-size="8" text-anchor="middle">根本性突破</text>
+
+  <!-- Row 5 -->
+  <line x1="25" y1="600" x2="1075" y2="600" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="618" fill="#94a3b8" font-size="8" text-anchor="middle">压缩比</text>
+  <text x="280" y="618" fill="#94a3b8" font-size="8" text-anchor="middle">~5-10x</text>
+  <text x="550" y="618" fill="#94a3b8" font-size="8" text-anchor="middle">10-100x</text>
+  <text x="820" y="618" fill="#34d399" font-size="8" text-anchor="middle">显著降低存储成本</text>
+
+  <!-- Row 6 -->
+  <line x1="25" y1="630" x2="1075" y2="630" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="648" fill="#94a3b8" font-size="8" text-anchor="middle">查询引擎</text>
+  <text x="280" y="648" fill="#94a3b8" font-size="8" text-anchor="middle">自研 ITerator 模型</text>
+  <text x="550" y="648" fill="#94a3b8" font-size="8" text-anchor="middle">Apache DataFusion (向量化)</text>
+  <text x="820" y="648" fill="#34d399" font-size="8" text-anchor="middle">SIMD · 并行执行</text>
+
+  <!-- Row 7 -->
+  <line x1="25" y1="660" x2="1075" y2="660" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="80" y="678" fill="#94a3b8" font-size="8" text-anchor="middle">扩展方式</text>
+  <text x="280" y="678" fill="#94a3b8" font-size="8" text-anchor="middle">手动分片 (Enterprise)</text>
+  <text x="550" y="678" fill="#94a3b8" font-size="8" text-anchor="middle">原生水平扩展 (Cloud-Native)</text>
+  <text x="820" y="678" fill="#34d399" font-size="8" text-anchor="middle">存算分离 · 按需伸缩</text>
+
+  <!-- Core Concept note -->
+  <rect x="25" y="750" width="1050" height="50" rx="6" fill="rgba(59,130,246,0.08)" stroke="#60a5fa" stroke-width="0.5"/>
+  <text x="45" y="770" fill="#60a5fa" font-size="10" font-weight="600">核心差异：</text>
+  <text x="132" y="770" fill="#94a3b8" font-size="9">InfluxDB 3 以 Parquet 为"一等公民"存储格式，将数据组织为时间分区的 Parquet 文件直接写入对象存储，</text>
+  <text x="132" y="787" fill="#94a3b8" font-size="9">利用 Parquet 内置的 Column Chunk Statistics 实现无索引的快速剪枝，从根本上消除了系列基数的限制。</text>
+</svg>

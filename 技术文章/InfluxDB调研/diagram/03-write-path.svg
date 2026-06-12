@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 980">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 写入路径 — 从 Line Protocol 到 Parquet Object Store</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">v1/v2 WAL+Cache+TSM 路径 vs v3 Ingest Router → Ingester → Object Store 路径</text>
+
+  <!-- ===== LEFT COLUMN: v1/v2 Write Path ===== -->
+  <rect x="20" y="75" width="490" height="560" rx="10" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="32" y="95" fill="#fb7185" font-size="11" font-weight="600">InfluxDB v1/v2 写入路径 (Go)</text>
+
+  <!-- Step 1: HTTP POST -->
+  <rect x="45" y="115" width="440" height="50" rx="6" fill="#0f172a"/>
+  <rect x="45" y="115" width="440" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="265" y="135" fill="white" font-size="10" font-weight="600" text-anchor="middle">① HTTP POST /write</text>
+  <text x="265" y="152" fill="#94a3b8" font-size="8" text-anchor="middle">Line Protocol Batch (hundreds — thousands of points)</text>
+
+  <!-- Arrow -->
+  <line x1="265" y1="165" x2="265" y2="185" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 2: WAL -->
+  <rect x="45" y="190" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="45" y="190" width="205" height="65" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="147" y="211" fill="white" font-size="10" font-weight="600" text-anchor="middle">② WAL (Write-Ahead Log)</text>
+  <text x="147" y="226" fill="#94a3b8" font-size="8" text-anchor="middle">Snappy Compressed</text>
+  <text x="147" y="240" fill="#94a3b8" font-size="8" text-anchor="middle">Append-Only · fsync</text>
+
+  <!-- Step 2b: Cache -->
+  <rect x="280" y="190" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="280" y="190" width="205" height="65" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="382" y="211" fill="white" font-size="10" font-weight="600" text-anchor="middle">②' In-Memory Cache</text>
+  <text x="382" y="226" fill="#94a3b8" font-size="8" text-anchor="middle">Series → Fields Map</text>
+  <text x="382" y="240" fill="#94a3b8" font-size="8" text-anchor="middle">Immediately Queryable</text>
+
+  <line x1="250" y1="222" x2="278" y2="222" stroke="#60a5fa" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+  <text x="264" y="217" fill="#60a5fa" font-size="7">同时写入</text>
+
+  <!-- Step 3: TSI Index -->
+  <rect x="45" y="280" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="45" y="280" width="205" height="65" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="147" y="301" fill="white" font-size="10" font-weight="600" text-anchor="middle">③ TSI 索引更新</text>
+  <text x="147" y="316" fill="#94a3b8" font-size="8" text-anchor="middle">Inverted Index</text>
+  <text x="147" y="330" fill="#94a3b8" font-size="8" text-anchor="middle">Measurement+Tag → Series ID</text>
+
+  <line x1="147" y1="255" x2="147" y2="278" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Step 3b: Series File -->
+  <rect x="280" y="280" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="280" y="280" width="205" height="65" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="382" y="301" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="middle">Series File</text>
+  <text x="382" y="316" fill="#64748b" font-size="8" text-anchor="middle">Series Key → Series ID</text>
+  <text x="382" y="330" fill="#64748b" font-size="8" text-anchor="middle">Persistent Mapping</text>
+
+  <line x1="250" y1="312" x2="278" y2="312" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Step 4: Cache Flush -->
+  <line x1="382" y1="255" x2="382" y2="370" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="395" y="320" fill="#94a3b8" font-size="8">Periodic Flush</text>
+
+  <!-- Step 4: TSM Files -->
+  <rect x="280" y="375" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="280" y="375" width="205" height="65" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="382" y="396" fill="white" font-size="10" font-weight="600" text-anchor="middle">④ TSM File (L0)</text>
+  <text x="382" y="411" fill="#94a3b8" font-size="8" text-anchor="middle">Columnar · Immutable</text>
+  <text x="382" y="425" fill="#94a3b8" font-size="8" text-anchor="middle">WAL Truncated</text>
+
+  <!-- Step 5: Compaction -->
+  <line x1="382" y1="440" x2="382" y2="465" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+  <text x="398" y="458" fill="#fbbf24" font-size="8">Compaction</text>
+
+  <rect x="280" y="470" width="205" height="65" rx="6" fill="#0f172a"/>
+  <rect x="280" y="470" width="205" height="65" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="382" y="491" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="middle">TSM L1 → L2 → LN</text>
+  <text x="382" y="506" fill="#64748b" font-size="8" text-anchor="middle">Multi-Level Merge</text>
+  <text x="382" y="520" fill="#64748b" font-size="8" text-anchor="middle">Longer Runs · Better Compression</text>
+
+  <!-- WAL replay note -->
+  <rect x="45" y="580" width="440" height="40" rx="6" fill="rgba(136,19,55,0.1)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="265" y="598" fill="#fb7185" font-size="9" font-weight="500" text-anchor="middle">⚠ Crash Recovery: 启动时重放 WAL 重建 Cache</text>
+  <text x="265" y="612" fill="#94a3b8" font-size="8" text-anchor="middle">WAL 过大导致启动时间延长</text>
+
+  <!-- ===== RIGHT COLUMN: v3 Write Path ===== -->
+  <rect x="530" y="75" width="500" height="560" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="542" y="95" fill="#22d3ee" font-size="11" font-weight="600">InfluxDB 3.0 写入路径 (Rust)</text>
+
+  <!-- Step 1: Ingest Router -->
+  <rect x="555" y="115" width="455" height="50" rx="6" fill="#0f172a"/>
+  <rect x="555" y="115" width="455" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="782" y="135" fill="white" font-size="10" font-weight="600" text-anchor="middle">① Ingest Router</text>
+  <text x="782" y="152" fill="#94a3b8" font-size="8" text-anchor="middle">Line Protocol Parser → Consistent Hash → Shard to Ingester</text>
+
+  <line x1="782" y1="165" x2="782" y2="195" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 2: Ingester Processing -->
+  <rect x="555" y="200" width="455" height="145" rx="6" fill="#0f172a"/>
+  <rect x="555" y="200" width="455" height="145" rx="6" fill="rgba(8,51,68,0.2)" stroke="#22d3ee" stroke-width="1"/>
+
+  <text x="565" y="218" fill="#94a3b8" font-size="9" font-weight="600">② Ingester Processing Pipeline</text>
+
+  <!-- Sub-steps inline -->
+  <rect x="570" y="230" width="130" height="45" rx="6" fill="#0f172a"/>
+  <rect x="570" y="230" width="130" height="45" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="635" y="249" fill="white" font-size="9" font-weight="600" text-anchor="middle">Schema 校验</text>
+  <text x="635" y="264" fill="#94a3b8" font-size="7" text-anchor="middle">Catalog Lookup</text>
+
+  <rect x="715" y="230" width="130" height="45" rx="6" fill="#0f172a"/>
+  <rect x="715" y="230" width="130" height="45" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="780" y="249" fill="white" font-size="9" font-weight="600" text-anchor="middle">Partition</text>
+  <text x="780" y="264" fill="#94a3b8" font-size="7" text-anchor="middle">Time Column Hash</text>
+
+  <rect x="860" y="230" width="135" height="45" rx="6" fill="#0f172a"/>
+  <rect x="860" y="230" width="135" height="45" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="927" y="249" fill="white" font-size="9" font-weight="600" text-anchor="middle">Sort-Merge</text>
+  <text x="927" y="264" fill="#94a3b8" font-size="7" text-anchor="middle">Multi-Column</text>
+
+  <line x1="700" y1="252" x2="713" y2="252" stroke="#22d3ee" stroke-width="1"/>
+  <line x1="845" y1="252" x2="858" y2="252" stroke="#22d3ee" stroke-width="1"/>
+
+  <!-- Dedup note -->
+  <rect x="570" y="285" width="425" height="35" rx="4" fill="rgba(59,130,246,0.1)" stroke="#60a5fa" stroke-width="0.5"/>
+  <text x="782" y="300" fill="#60a5fa" font-size="9" font-weight="500" text-anchor="middle">③ Deduplication: 多列 Sort-Merge 去重 (DataFusion Sort + Merge Operators)</text>
+  <text x="782" y="314" fill="#94a3b8" font-size="7" text-anchor="middle">按 Cardinality 最低的列排序 → 最大化压缩效率 (10-100x)</text>
+
+  <line x1="782" y1="345" x2="782" y2="375" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 4: Parquet Persist -->
+  <rect x="555" y="380" width="215" height="65" rx="6" fill="#0f172a"/>
+  <rect x="555" y="380" width="215" height="65" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="662" y="401" fill="white" font-size="10" font-weight="600" text-anchor="middle">④ Persist Parquet</text>
+  <text x="662" y="416" fill="#94a3b8" font-size="8" text-anchor="middle">Snappy / ZSTD Compressed</text>
+  <text x="662" y="430" fill="#94a3b8" font-size="8" text-anchor="middle">Object Store (S3/MinIO)</text>
+
+  <!-- Step 4b: WAL -->
+  <rect x="795" y="380" width="215" height="65" rx="6" fill="#0f172a"/>
+  <rect x="795" y="380" width="215" height="65" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="902" y="401" fill="white" font-size="10" font-weight="600" text-anchor="middle">④' WAL (EBS)</text>
+  <text x="902" y="416" fill="#94a3b8" font-size="8" text-anchor="middle">Short-Term Durability</text>
+  <text x="902" y="430" fill="#94a3b8" font-size="8" text-anchor="middle">Crash Recovery Only</text>
+
+  <line x1="770" y1="412" x2="793" y2="412" stroke="#60a5fa" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Step 5: Catalog Update -->
+  <line x1="662" y1="445" x2="662" y2="475" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <rect x="555" y="480" width="455" height="50" rx="6" fill="#0f172a"/>
+  <rect x="555" y="480" width="455" height="50" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="782" y="500" fill="white" font-size="10" font-weight="600" text-anchor="middle">⑤ Update Catalog (PostgreSQL)</text>
+  <text x="782" y="517" fill="#94a3b8" font-size="8" text-anchor="middle">Parquet File Metadata · Partition Info · Soft Delete Flag</text>
+
+  <!-- Step 6: Compaction (async) -->
+  <line x1="782" y1="530" x2="782" y2="555" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+  <text x="798" y="548" fill="#fbbf24" font-size="8">Async</text>
+
+  <rect x="555" y="560" width="455" height="45" rx="6" fill="#0f172a"/>
+  <rect x="555" y="560" width="455" height="45" rx="6" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="782" y="579" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">⑥ Background Compaction (Low Priority)</text>
+  <text x="782" y="595" fill="#94a3b8" font-size="8" text-anchor="middle">Small Parquet → Large Non-Overlapping Files</text>
+
+  <!-- Key diff note -->
+  <rect x="555" y="615" width="455" height="30" rx="4" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="782" y="634" fill="#22d3ee" font-size="9" font-weight="500" text-anchor="middle">✦ 写入延迟：毫秒级 — 不需要等待 Compaction 完成即可查询</text>
+
+  <!-- ===== Comparison Summary ===== -->
+  <rect x="20" y="660" width="1010" height="300" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <text x="525" y="682" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="middle">写入路径对比总结</text>
+
+  <!-- v1/v2 summary -->
+  <rect x="40" y="700" width="470" height="240" rx="6" fill="rgba(136,19,55,0.06)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="275" y="720" fill="#fb7185" font-size="10" font-weight="600" text-anchor="middle">InfluxDB v1/v2 (TSM Engine)</text>
+
+  <text x="60" y="742" fill="#94a3b8" font-size="9">├─ HTTP → WAL (Snappy) + Cache (并发写)</text>
+  <text x="60" y="758" fill="#94a3b8" font-size="9">├─ TSI: Measurement+Tag 倒排索引</text>
+  <text x="60" y="774" fill="#94a3b8" font-size="9">├─ Cache → TSM L0 Flush (WAL Truncate)</text>
+  <text x="60" y="790" fill="#94a3b8" font-size="9">├─ TSM L0 → L1 → L2 Multi-Level Compaction</text>
+  <text x="60" y="806" fill="#94a3b8" font-size="9">├─ 写放大：Flush + Compaction 多次 I/O</text>
+  <text x="60" y="822" fill="#fb7185" font-size="9">├─ 基数限制：TSI 受内存约束 ~百万 Series</text>
+  <text x="60" y="838" fill="#fb7185" font-size="9">└─ Crash Recovery: WAL 重放 (WAL 越大越慢)</text>
+
+  <!-- v3 summary -->
+  <rect x="530" y="700" width="480" height="240" rx="6" fill="rgba(8,51,68,0.08)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="770" y="720" fill="#22d3ee" font-size="10" font-weight="600" text-anchor="middle">InfluxDB 3.0 (Columnar Engine)</text>
+
+  <text x="550" y="742" fill="#94a3b8" font-size="9">├─ Ingest Router → Consistent Hash → Ingester</text>
+  <text x="550" y="758" fill="#94a3b8" font-size="9">├─ Schema 校验 → Partition (Time) → Sort-Merge</text>
+  <text x="550" y="774" fill="#94a3b8" font-size="9">├─ Dedup → Parquet Encode → Object Store (单次写入)</text>
+  <text x="550" y="790" fill="#94a3b8" font-size="9">├─ Catalog Update (PostgreSQL) → Querier 可见</text>
+  <text x="550" y="806" fill="#94a3b8" font-size="9">├─ Compaction: 后台异步 · 不影响写入延迟</text>
+  <text x="550" y="822" fill="#22d3ee" font-size="9">├─ 无基数限制：无全局索引，依赖 Pruning</text>
+  <text x="550" y="838" fill="#22d3ee" font-size="9">└─ Crash Recovery: WAL (EBS) · Ingester 本地</text>
+
+  <!-- Bottom note -->
+  <text x="30" y="975" fill="#64748b" font-size="8">注：InfluxDB 3 WAL 仅用于 Ingester crash recovery，与 v1/v2 的 WAL 语义不同 — v3 的 WAL 不参与查询路径，数据持久化即从 Object Store 读取。</text>
+</svg>

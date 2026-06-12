@@ -99,13 +99,13 @@
 
 | 图 | 文件 | 内容 |
 |----|------|------|
-| 01 | `diagram/influxdb-research/01-architecture-overview.svg` | InfluxDB 3.0 整体架构 |
-| 02 | `diagram/influxdb-research/02-storage-engine.svg` | 存储引擎演进对比 |
-| 03 | `diagram/influxdb-research/03-write-path.svg` | 写入路径全流程对比 |
-| 04 | `diagram/influxdb-research/04-query-path.svg` | DataFusion 向量化查询 |
-| 05 | `diagram/influxdb-research/05-schema-best-practices.svg` | Tag/Field 决策 + 基数管理 |
-| 06 | `diagram/influxdb-research/06-replication-ha.svg` | 多副本复制与高可用 |
-| 07 | `diagram/influxdb-research/07-catalog-metadata.svg` | Catalog 元数据存储 |
+| 01 | `InfluxDB调研/diagram/01-architecture-overview.svg` | InfluxDB 3.0 整体架构 |
+| 02 | `InfluxDB调研/diagram/02-storage-engine.svg` | 存储引擎演进对比 |
+| 03 | `InfluxDB调研/diagram/03-write-path.svg` | 写入路径全流程对比 |
+| 04 | `InfluxDB调研/diagram/04-query-path.svg` | DataFusion 向量化查询 |
+| 05 | `InfluxDB调研/diagram/05-schema-best-practices.svg` | Tag/Field 决策 + 基数管理 |
+| 06 | `InfluxDB调研/diagram/06-replication-ha.svg` | 多副本复制与高可用 |
+| 07 | `InfluxDB调研/diagram/07-catalog-metadata.svg` | Catalog 元数据存储 |
 
 ---
 

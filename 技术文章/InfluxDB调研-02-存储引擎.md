@@ -1,0 +1,106 @@
+# InfluxDB 调研 — 02 存储引擎
+
+> **作者**: Stark (CTO, CHANG_AI_TEAM)
+> **日期**: 2026-06-12
+
+---
+
+## 1. 存储引擎演进总览
+
+![[diagram/influxdb-research/02-storage-engine.svg]]
+
+---
+
+## 2. InfluxDB v1/v2: TSM + TSI 引擎
+
+### TSM (Time-Structured Merge Tree)
+
+TSM 是 InfluxDB 自研的列式存储格式，设计理念源自 LSM-Tree：
+
+**存储结构**：
+```
+db/rp/ShardID/
+├── TSM0001.tsm     # 数据文件（不可变）
+├── TSM0002.tsm
+└── ...
+```
+
+**TSM 文件内部布局**：
+- **Header**: 文件魔数 + 版本
+- **Blocks**: 每个 Block 存储一个 Series 在一个时间段内的 Field 值
+- **Index**: Block 的偏移量和时间范围索引
+- **Footer**: 文件尾，指向 Index 起始位置
+
+**关键特性**：
+- **列式存储**：同一 Series 同一 Field 的值连续存储，压缩效果极佳
+- **不可变文件**：TSM 文件一经写入不可修改，通过 Compaction 合并
+- **多级 Compaction**：L0（Cache Flush）→ L1 → L2 → L3... 逐级合并，提高查询效率
+- **Snappy 压缩**：WAL 和 TSM 均使用 Snappy 压缩
+
+### TSI (Time Series Index)
+
+TSI 是基于倒排索引的元数据索引系统：
+
+- **索引内容**：Measurement → Tag Key → Tag Value → Series ID 的映射关系
+- **存储形式**：内存中的 LogFile + 磁盘上的 IndexFile 组成
+- **分层设计**：热数据在内存，冷数据在磁盘
+
+### v1/v2 的限制
+
+1. **高基数性能退化**：Series Cardinality > 百万时，TSI 索引膨胀导致内存爆炸和查询退化
+2. **Compaction 写放大**：多级 Compaction 导致大量 I/O，写入吞吐受 Compaction 速率限制
+3. **单机瓶颈**：TSM 引擎设计为单机优先，集群版（Enterprise）分片手动管理
+4. **WAL 重放**：崩溃恢复需重放全部 WAL，WAL 越大启动越慢
+
+---
+
+## 3. InfluxDB 3.0: Columnar 存储引擎 (Rust)
+
+InfluxDB 3.0 从零开始用 Rust 重写了存储引擎，核心设计理念：
+
+```
+Line Protocol → Ingester → Parquet (Object Store)
+                         → Catalog (PostgreSQL)
+```
+
+### 技术栈
+
+| 技术 | 角色 |
+|------|------|
+| **Apache Arrow** | 列式内存格式，零拷贝数据交换 |
+| **Apache DataFusion** | 向量化 SQL 查询引擎 |
+| **Apache Parquet** | 列式持久化格式，原生统计信息 |
+| **Rust** | 零成本抽象，无 GC，内存安全 |
+
+### Parquet 作为一等公民的优势
+
+1. **内置统计信息**：每个 Row Group / Data Page 存储 Min/Max/Null Count，实现无索引剪枝
+2. **极佳压缩比**：列式存储 + 低基数优先排序策略，实现 **10-100x** 压缩比
+3. **开放标准**：Parquet 生态工具（Spark/Pandas/DuckDB）直接读取数据
+4. **存算分离**：数据存储在 S3/MinIO，计算（Ingester/Querier）按需伸缩
+
+### 去重策略差异
+
+- **v1/v2**：写入时无去重，查询时通过 Iterator 合并
+- **v3**：Ingester 写入时 Sort-Merge 去重 + Querier 仅对重叠文件去重
+
+---
+
+## 4. 引擎对比总结
+
+| 维度 | InfluxDB v1/v2 (TSM) | InfluxDB 3.0 (Columnar) | 优势变化 |
+|------|---------------------|------------------------|----------|
+| 存储格式 | TSM (自定义列式) | Apache Parquet (标准) | 开放标准 · 生态兼容 |
+| 索引结构 | TSI 倒排索引 (内存+磁盘) | Parquet Statistics + Min/Max | 无索引开销 · 无限基数 |
+| 实现语言 | Go | Rust (Apache Arrow/DataFusion) | 零成本抽象 · 无 GC |
+| 基数上限 | ≤ 百万级 (受 TSI 限制) | 无上限 (Partition Pruning) | 根本性突破 |
+| 压缩比 | ~5-10x | 10-100x | 显著降低存储成本 |
+| 查询引擎 | 自研 Iterator 模型 | Apache DataFusion (向量化) | SIMD · 并行执行 |
+| 扩展方式 | 手动分片 (Enterprise) | 原生水平扩展 (Cloud-Native) | 存算分离 · 按需伸缩 |
+
+**核心差异**：InfluxDB 3 以 Parquet 为"一等公民"存储格式，将数据组织为时间分区的 Parquet 文件直接写入对象存储，利用 Parquet 内置的 Column Chunk Statistics 实现无索引的快速剪枝，从根本上消除了系列基数的限制。
+
+---
+
+> **上一篇**: [01-概述与核心概念](InfluxDB调研-01-概述与核心概念.md)
+> **下一篇**: [03-写入与查询路径](InfluxDB调研-03-写入与查询路径.md)

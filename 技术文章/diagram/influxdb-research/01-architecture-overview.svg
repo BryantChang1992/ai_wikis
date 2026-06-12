@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 3.0 — 系统架构总览</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">Ingester / Querier / Compactor / Garbage Collector 四组件协同</text>
+
+  <!-- Region: Ingest Layer -->
+  <rect x="30" y="75" width="320" height="380" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="42" y="93" fill="#22d3ee" font-size="10" font-weight="600">数据摄入层</text>
+
+  <!-- Ingest Router -->
+  <rect x="55" y="110" width="270" height="56" rx="6" fill="#0f172a"/>
+  <rect x="55" y="110" width="270" height="56" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="190" y="133" fill="white" font-size="11" font-weight="600" text-anchor="middle">Ingest Router</text>
+  <text x="190" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">Line Protocol 解析 · 数据分片路由</text>
+
+  <!-- Ingester -->
+  <rect x="75" y="195" width="230" height="70" rx="6" fill="#0f172a"/>
+  <rect x="75" y="195" width="230" height="70" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="190" y="218" fill="white" font-size="11" font-weight="600" text-anchor="middle">Ingester</text>
+  <text x="190" y="234" fill="#94a3b8" font-size="9" text-anchor="middle">Schema 校验 · Partition · 排序</text>
+  <text x="190" y="248" fill="#94a3b8" font-size="9" text-anchor="middle">去重 · 持久化 Parquet</text>
+
+  <!-- WAL -->
+  <rect x="110" y="295" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="110" y="295" width="160" height="48" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="190" y="316" fill="white" font-size="10" font-weight="600" text-anchor="middle">WAL</text>
+  <text x="190" y="331" fill="#94a3b8" font-size="8" text-anchor="middle">Write-Ahead Log (EBS)</text>
+
+  <!-- Region: Query Layer -->
+  <rect x="390" y="75" width="320" height="380" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="402" y="93" fill="#34d399" font-size="10" font-weight="600">数据查询层</text>
+
+  <!-- Query Router -->
+  <rect x="415" y="110" width="270" height="56" rx="6" fill="#0f172a"/>
+  <rect x="415" y="110" width="270" height="56" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="550" y="133" fill="white" font-size="11" font-weight="600" text-anchor="middle">Query Router</text>
+  <text x="550" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">SQL / InfluxQL 请求路由</text>
+
+  <!-- Querier -->
+  <rect x="435" y="195" width="230" height="70" rx="6" fill="#0f172a"/>
+  <rect x="435" y="195" width="230" height="70" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="550" y="218" fill="white" font-size="11" font-weight="600" text-anchor="middle">Querier</text>
+  <text x="550" y="234" fill="#94a3b8" font-size="9" text-anchor="middle">Catalog 缓存 · Parquet 读取</text>
+  <text x="550" y="248" fill="#94a3b8" font-size="9" text-anchor="middle">DataFusion 查询计划执行</text>
+
+  <!-- Data Cache -->
+  <rect x="470" y="295" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="470" y="295" width="160" height="48" rx="6" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="550" y="316" fill="white" font-size="10" font-weight="600" text-anchor="middle">Data Cache</text>
+  <text x="550" y="331" fill="#94a3b8" font-size="8" text-anchor="middle">内存 Parquet 缓存</text>
+
+  <!-- Region: Background Processes -->
+  <rect x="750" y="75" width="320" height="380" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="762" y="93" fill="#fbbf24" font-size="10" font-weight="600">后台进程层</text>
+
+  <!-- Compactor -->
+  <rect x="775" y="130" width="270" height="65" rx="6" fill="#0f172a"/>
+  <rect x="775" y="130" width="270" height="65" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="910" y="153" fill="white" font-size="11" font-weight="600" text-anchor="middle">Compactor</text>
+  <text x="910" y="169" fill="#94a3b8" font-size="9" text-anchor="middle">小文件合并 · 去重 · 排序优化</text>
+  <text x="910" y="183" fill="#94a3b8" font-size="9" text-anchor="middle">多级 Compaction (L0→L1→L2)</text>
+
+  <!-- Garbage Collector -->
+  <rect x="775" y="225" width="270" height="65" rx="6" fill="#0f172a"/>
+  <rect x="775" y="225" width="270" height="65" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="910" y="248" fill="white" font-size="11" font-weight="600" text-anchor="middle">Garbage Collector</text>
+  <text x="910" y="264" fill="#94a3b8" font-size="9" text-anchor="middle">保留策略执行 · 软删除标记</text>
+  <text x="910" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">过期数据硬删除 · 空间回收</text>
+
+  <!-- Storage Layer -->
+  <rect x="190" y="495" width="690" height="160" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="202" y="513" fill="#a78bfa" font-size="10" font-weight="600">存储层</text>
+
+  <!-- Catalog -->
+  <rect x="230" y="530" width="290" height="45" rx="6" fill="#0f172a"/>
+  <rect x="230" y="530" width="290" height="45" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="375" y="549" fill="white" font-size="10" font-weight="600" text-anchor="middle">Catalog (PostgreSQL Compatible)</text>
+  <text x="375" y="564" fill="#94a3b8" font-size="8" text-anchor="middle">Table Schema · Partition Metadata · 文件索引</text>
+
+  <!-- Object Store -->
+  <rect x="560" y="530" width="290" height="45" rx="6" fill="#0f172a"/>
+  <rect x="560" y="530" width="290" height="45" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="705" y="549" fill="white" font-size="10" font-weight="600" text-anchor="middle">Object Store (S3 / MinIO)</text>
+  <text x="705" y="564" fill="#94a3b8" font-size="8" text-anchor="middle">Parquet Files · Partitioned by Time</text>
+
+  <!-- Arrows: Client → Router -->
+  <line x1="55" y1="100" x2="190" y2="108" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="80" y="97" fill="#94a3b8" font-size="8" text-anchor="middle">LP Write</text>
+
+  <line x1="415" y1="100" x2="550" y2="108" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="480" y="97" fill="#94a3b8" font-size="8" text-anchor="middle">SQL/InfluxQL</text>
+
+  <!-- Router → Ingester -->
+  <line x1="190" y1="166" x2="190" y2="193" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Ingester → WAL -->
+  <line x1="190" y1="265" x2="190" y2="293" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arrow-slate)"/>
+
+  <!-- Router → Querier -->
+  <line x1="550" y1="166" x2="550" y2="193" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Ingester → Object Store (persist) -->
+  <path d="M 190 380 L 190 440 L 490 440 L 490 530" fill="none" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)" stroke-dasharray="6,3"/>
+  <text x="340" y="435" fill="#94a3b8" font-size="8">持久化 Parquet</text>
+
+  <!-- Ingester → Catalog -->
+  <path d="M 260 380 L 260 420 L 375 420 L 375 528" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="310" y="415" fill="#94a3b8" font-size="8">更新 Metadata</text>
+
+  <!-- Ingester → Querier (unpersisted data) -->
+  <path d="M 305 245 L 370 245 L 370 310 L 433 310" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-orange)"/>
+  <text x="400" y="240" fill="#fb923c" font-size="8" text-anchor="middle">未持久化数据</text>
+
+  <!-- Querier → Object Store -->
+  <path d="M 550 395 L 550 450 L 610 450 L 610 530" fill="none" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)" stroke-dasharray="6,3"/>
+  <text x="578" y="445" fill="#94a3b8" font-size="8">读取 Parquet</text>
+
+  <!-- Querier → Catalog -->
+  <path d="M 510 395 L 510 440 L 375 440 L 375 528" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="440" y="435" fill="#94a3b8" font-size="8">查询 Metadata</text>
+
+  <!-- Compactor → Object Store -->
+  <path d="M 910 195 L 910 455 L 790 455 L 790 530" fill="none" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-slate)"/>
+  <text x="848" y="450" fill="#94a3b8" font-size="8">读写 Compact</text>
+
+  <!-- Compactor → Catalog -->
+  <path d="M 830 290 L 375 290 L 375 528" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="600" y="278" fill="#94a3b8" font-size="8">软删除标记</text>
+
+  <!-- Garbage Collector → Object Store & Catalog -->
+  <path d="M 850 310 L 705 310 L 705 528" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-rose)"/>
+  <text x="775" y="305" fill="#fb7185" font-size="8">硬删除</text>
+
+  <!-- Garbage Collector → Catalog -->
+  <path d="M 775 290 L 350 290 L 350 528" fill="none" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- Legend -->
+  <rect x="190" y="695" width="690" height="65" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="210" y="716" fill="#94a3b8" font-size="9" font-weight="600">图例：</text>
+  <line x1="270" y1="712" x2="310" y2="712" stroke="#22d3ee" stroke-width="2"/>
+  <text x="316" y="716" fill="#94a3b8" font-size="9">数据写入流</text>
+  <line x1="390" y1="712" x2="430" y2="712" stroke="#34d399" stroke-width="2"/>
+  <text x="436" y="716" fill="#94a3b8" font-size="9">数据查询流</text>
+  <line x1="510" y1="712" x2="550" y2="712" stroke="#fbbf24" stroke-width="2"/>
+  <text x="556" y="716" fill="#94a3b8" font-size="9">后台 Compaction</text>
+  <line x1="670" y1="712" x2="710" y2="712" stroke="#fb7185" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="716" y="716" fill="#94a3b8" font-size="9">GC / 删除</text>
+  <line x1="270" y1="734" x2="310" y2="734" stroke="#a78bfa" stroke-width="2"/>
+  <text x="316" y="738" fill="#94a3b8" font-size="9">Catalog 操作</text>
+  <line x1="505" y1="734" x2="545" y2="734" stroke="#fb923c" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="551" y="738" fill="#94a3b8" font-size="9">未持久化数据查询</text>
+</svg>

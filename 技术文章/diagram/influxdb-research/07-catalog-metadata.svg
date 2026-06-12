@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 850">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" fill="#f8fafc" font-size="16" font-weight="700">InfluxDB 3 元数据存储 — Catalog（PostgreSQL 兼容）详解</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10" font-weight="400">Metadata Layer: Schema · Partition · File Location · Compaction State · Soft Delete · Daily Backup + Tx Log</text>
+
+  <!-- ===== LEFT: Catalog Content Model ===== -->
+  <rect x="20" y="75" width="510" height="550" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="32" y="95" fill="#a78bfa" font-size="11" font-weight="600">Catalog 存储模型 (PostgreSQL-Compatible)</text>
+
+  <!-- Namespace -->
+  <rect x="45" y="115" width="460" height="42" rx="6" fill="#0f172a"/>
+  <rect x="45" y="115" width="460" height="42" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="275" y="133" fill="white" font-size="10" font-weight="600" text-anchor="middle">Namespace (Database)</text>
+  <text x="275" y="150" fill="#94a3b8" font-size="8" text-anchor="middle">name · id · retention_period · created_at</text>
+
+  <line x1="275" y1="157" x2="275" y2="175" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Table -->
+  <rect x="45" y="180" width="460" height="42" rx="6" fill="#0f172a"/>
+  <rect x="45" y="180" width="460" height="42" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="275" y="198" fill="white" font-size="10" font-weight="600" text-anchor="middle">Table (Measurement)</text>
+  <text x="275" y="215" fill="#94a3b8" font-size="8" text-anchor="middle">name · namespace_id · partition_template · sort_key</text>
+
+  <line x1="275" y1="222" x2="275" y2="240" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Column -->
+  <rect x="45" y="245" width="460" height="42" rx="6" fill="#0f172a"/>
+  <rect x="45" y="245" width="460" height="42" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="275" y="263" fill="white" font-size="10" font-weight="600" text-anchor="middle">Column (Tag / Field / Timestamp)</text>
+  <text x="275" y="280" fill="#94a3b8" font-size="8" text-anchor="middle">name · table_id · type (i64/u64/f64/string/bool/tag/time) · nullable</text>
+
+  <line x1="275" y1="287" x2="275" y2="305" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Partition -->
+  <rect x="45" y="310" width="460" height="50" rx="6" fill="#0f172a"/>
+  <rect x="45" y="310" width="460" height="50" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="275" y="329" fill="white" font-size="10" font-weight="600" text-anchor="middle">Partition</text>
+  <text x="275" y="344" fill="#94a3b8" font-size="8" text-anchor="middle">table_id · partition_key (time range) · sort_key · colum_set</text>
+  <text x="275" y="356" fill="#94a3b8" font-size="8" text-anchor="middle">Example: cpu\|2025-06-01 (daily partition)</text>
+
+  <line x1="275" y1="360" x2="275" y2="378" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Parquet File -->
+  <rect x="45" y="383" width="460" height="50" rx="6" fill="#0f172a"/>
+  <rect x="45" y="383" width="460" height="50" rx="6" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="275" y="402" fill="white" font-size="10" font-weight="600" text-anchor="middle">Parquet File</text>
+  <text x="275" y="417" fill="#94a3b8" font-size="8" text-anchor="middle">partition_id · object_store_path · file_size_bytes · row_count</text>
+  <text x="275" y="429" fill="#94a3b8" font-size="8" text-anchor="middle">min_time · max_time · created_at · to_delete (soft delete flag)</text>
+
+  <line x1="275" y1="433" x2="275" y2="451" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+
+  <!-- Compaction -->
+  <rect x="45" y="456" width="460" height="42" rx="6" fill="#0f172a"/>
+  <rect x="45" y="456" width="460" height="42" rx="6" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="275" y="474" fill="white" font-size="10" font-weight="600" text-anchor="middle">Compaction State</text>
+  <text x="275" y="491" fill="#94a3b8" font-size="8" text-anchor="middle">compaction_level · last_compacted_at · non_overlapped flag</text>
+
+  <!-- Summary note -->
+  <rect x="45" y="520" width="460" height="90" rx="6" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="0.5"/>
+  <text x="55" y="538" fill="#a78bfa" font-size="9" font-weight="600">Catalog 角色总览：</text>
+  <text x="55" y="558" fill="#94a3b8" font-size="8">① 作为 Ingester 和 Querier 之间的 Schema 协议层</text>
+  <text x="55" y="574" fill="#94a3b8" font-size="8">② 作为 Object Store 数据的索引：文件 → 分区 → 表 → 命名空间</text>
+  <text x="55" y="590" fill="#94a3b8" font-size="8">③ 各组件无需直接通信，通过读 Catalog 获取全局数据视图</text>
+  <text x="55" y="606" fill="#94a3b8" font-size="8">④ 支持软删除 (to_delete flag)，实际删除由 GC 异步执行</text>
+
+  <!-- ===== RIGHT: Component Interactions ===== -->
+  <rect x="550" y="75" width="480" height="300" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="562" y="95" fill="#22d3ee" font-size="11" font-weight="600">组件与 Catalog 的交互</text>
+
+  <!-- Ingester → Catalog -->
+  <rect x="575" y="115" width="430" height="55" rx="6" fill="#0f172a"/>
+  <rect x="575" y="115" width="430" height="55" rx="6" fill="rgba(6,78,59,0.08)" stroke="#34d399" stroke-width="1"/>
+  <text x="790" y="135" fill="#34d399" font-size="10" font-weight="600" text-anchor="middle">Ingester → Catalog</text>
+  <text x="585" y="152" fill="#94a3b8" font-size="8">· 查询 Schema：写入数据前验证 Column 类型兼容性</text>
+  <text x="585" y="164" fill="#94a3b8" font-size="8">· 写入 Partition + Parquet File：更新文件元数据</text>
+
+  <!-- Querier → Catalog -->
+  <rect x="575" y="185" width="430" height="55" rx="6" fill="#0f172a"/>
+  <rect x="575" y="185" width="430" height="55" rx="6" fill="rgba(22,211,238,0.08)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="790" y="205" fill="#22d3ee" font-size="10" font-weight="600" text-anchor="middle">Querier → Catalog</text>
+  <text x="585" y="222" fill="#94a3b8" font-size="8">· 缓存同步：Querier 持续拉取最新 Metadata 到本地</text>
+  <text x="585" y="234" fill="#94a3b8" font-size="8">· 查詢分区：根据 Table + time range 找到对应的 Parquet 文件</text>
+
+  <!-- Compactor → Catalog -->
+  <rect x="575" y="255" width="430" height="55" rx="6" fill="#0f172a"/>
+  <rect x="575" y="255" width="430" height="55" rx="6" fill="rgba(120,53,15,0.08)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="790" y="275" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">Compactor → Catalog</text>
+  <text x="585" y="292" fill="#94a3b8" font-size="8">· 读取：查找需要合并的小文件列表</text>
+  <text x="585" y="304" fill="#94a3b8" font-size="8">· 更新：合并完成后写入新文件 + 标记旧文件 to_delete</text>
+
+  <!-- GC → Catalog -->
+  <rect x="575" y="325" width="430" height="42" rx="6" fill="#0f172a"/>
+  <rect x="575" y="325" width="430" height="42" rx="6" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="1"/>
+  <text x="790" y="342" fill="#fb7185" font-size="10" font-weight="600" text-anchor="middle">Garbage Collector → Catalog</text>
+  <text x="790" y="358" fill="#94a3b8" font-size="8" text-anchor="middle">执行保留策略 + 清理过期文件 (Catalog 记录 + Object Store 实际删除)</text>
+
+  <!-- ===== RIGHT BOTTOM: Durability ===== -->
+  <rect x="550" y="390" width="480" height="235" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="562" y="410" fill="#34d399" font-size="11" font-weight="600">Catalog 持久化 &amp; 高可用</text>
+
+  <!-- Transaction Log -->
+  <rect x="575" y="425" width="430" height="38" rx="6" fill="#0f172a"/>
+  <rect x="575" y="425" width="430" height="38" rx="6" fill="rgba(59,130,246,0.12)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="790" y="446" fill="white" font-size="10" font-weight="600" text-anchor="middle">Transaction Log (PostgreSQL WAL)</text>
+  <text x="790" y="458" fill="#94a3b8" font-size="8" text-anchor="middle">所有 Catalog 更新的有序日志 · Crash Recovery · Point-in-Time Restore</text>
+
+  <!-- Daily Backup -->
+  <rect x="575" y="478" width="430" height="38" rx="6" fill="#0f172a"/>
+  <rect x="575" y="478" width="430" height="38" rx="6" fill="rgba(6,78,59,0.12)" stroke="#34d399" stroke-width="1"/>
+  <text x="790" y="499" fill="white" font-size="10" font-weight="600" text-anchor="middle">Daily Full Backup → Object Store (3 AZ)</text>
+  <text x="790" y="511" fill="#94a3b8" font-size="8" text-anchor="middle">Backup 保留 ≥ 100 天 · 灾难恢复时可从最近备份 + Tx Log 还原</text>
+
+  <!-- HA -->
+  <rect x="575" y="531" width="430" height="38" rx="6" fill="#0f172a"/>
+  <rect x="575" y="531" width="430" height="38" rx="6" fill="rgba(76,29,149,0.12)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="790" y="552" fill="white" font-size="10" font-weight="600" text-anchor="middle">PostgreSQL 高可用 (Streaming Replication)</text>
+  <text x="790" y="564" fill="#94a3b8" font-size="8" text-anchor="middle">Primary + Standby(ies) · Auto Failover · Connection Pooling</text>
+
+  <!-- Recovery -->
+  <rect x="575" y="584" width="430" height="30" rx="4" fill="rgba(22,211,238,0.08)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="790" y="604" fill="#22d3ee" font-size="9" font-weight="500" text-anchor="middle">✦ Catalog 恢复：最近 Daily Backup → 重放 Tx Log → 恢复至 crash 时刻</text>
+
+  <!-- ===== Bottom: v1/v2 vs v3 Metadata Comparison ===== -->
+  <rect x="20" y="640" width="1010" height="195" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <text x="525" y="663" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="middle">元数据存储演进：v1/v2 → InfluxDB 3</text>
+
+  <!-- v1/v2 column -->
+  <rect x="40" y="680" width="470" height="140" rx="6" fill="rgba(136,19,55,0.06)" stroke="#fb7185" stroke-width="0.5"/>
+  <text x="275" y="700" fill="#fb7185" font-size="10" font-weight="600" text-anchor="middle">InfluxDB v1/v2 元数据</text>
+
+  <text x="60" y="724" fill="#94a3b8" font-size="9">├─ Metastore: BoltDB / etcd 嵌入式 KV 存储</text>
+  <text x="60" y="744" fill="#94a3b8" font-size="9">├─ Database / RP / Shard 映射关系</text>
+  <text x="60" y="764" fill="#94a3b8" font-size="9">├─ Series File: Series Key → Series ID 映射</text>
+  <text x="60" y="784" fill="#94a3b8" font-size="9">├─ TSI: 倒排索引 (Measurement+Tag → Series ID)</text>
+  <text x="60" y="804" fill="#fb7185" font-size="9">└─ 元数据 + 索引耦合 · 单文件 BoltDB · 无 HA</text>
+
+  <!-- v3 column -->
+  <rect x="540" y="680" width="470" height="140" rx="6" fill="rgba(76,29,149,0.06)" stroke="#a78bfa" stroke-width="0.5"/>
+  <text x="775" y="700" fill="#a78bfa" font-size="10" font-weight="600" text-anchor="middle">InfluxDB 3 Catalog</text>
+
+  <text x="560" y="724" fill="#94a3b8" font-size="9">├─ PostgreSQL-Compatible RDBMS (独立服务)</text>
+  <text x="560" y="744" fill="#94a3b8" font-size="9">├─ Namespace → Table → Column → Partition → File</text>
+  <text x="560" y="764" fill="#94a3b8" font-size="9">├─ 元数据与索引分离 (Parquet Statistics 替代 TSI)</text>
+  <text x="560" y="784" fill="#94a3b8" font-size="9">├─ Transaction Log + Daily Backup + 3 AZ 存储</text>
+  <text x="560" y="804" fill="#22d3ee" font-size="9">└─ 标准 RDBMS 高可用 · 存算分离 · 松耦合架构</text>
+
+</svg>

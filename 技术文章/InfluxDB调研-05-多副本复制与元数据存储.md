@@ -1,0 +1,137 @@
+# InfluxDB 调研 — 05 多副本复制与元数据存储
+
+> **作者**: Stark (CTO, CHANG_AI_TEAM)
+> **日期**: 2026-06-12
+
+---
+
+## 1. 多副本复制与高可用
+
+### 1.1 数据持久化全景
+
+![[diagram/influxdb-research/06-replication-ha.svg]]
+
+InfluxDB 3 的数据持久化通过**三层防护**确保数据不丢失：
+
+| 层级 | 机制 | 作用 |
+|------|------|------|
+| Layer 1 — Router | 双副本写入 (2+ Ingesters) | 写入即确认，单 Ingester 故障不影响数据持久化 |
+| Layer 2 — Ingester | WAL (EBS/Local SSD) | Crash Recovery，Graceful Shutdown 前 flush |
+| Layer 3 — Object Store | 3 AZ 冗余存储 | 跨可用区冗余，Parquet 不可变，延迟删除 (100天) |
+
+### 1.2 Router 双副本写入
+
+```
+Write Client → Ingest Router → Consistent Hash (Shard Key)
+                              │
+                              ├──→ Ingester A (WAL + Process)
+                              ├──→ Ingester B (WAL + Process)
+                              │
+Ack ←──────────────────────────┘  (双副本确认后才返回客户端)
+```
+
+**关键设计**：
+- Router 在**确认写入成功前**将数据复制到至少 2 个 Ingester
+- 如果某一 Ingester 宕机，另一副本的 WAL 保证数据不丢失
+- Consistent Hash 确保同一分区数据路由到同一组 Ingester
+
+### 1.3 Ingester WAL 崩溃恢复
+
+**WAL 生命周期**：
+```
+接收 Line Protocol → 写入 WAL (fsync) → 写入确认 (Ack back to Router)
+→ 内存处理 (Sort/Dedup/Partition) → Persist Parquet (Object Store)
+→ 更新 Catalog → Truncate WAL (该段已安全持久化)
+```
+
+**崩溃恢复流程**：
+- **Graceful Shutdown**：先 flush WAL → Parquet → 再停止进程
+- **Unexpected Crash**：新 Ingester 启动 → 读取 WAL 文件 → 重放未持久化数据
+- **关键**：v3 的 WAL 仅用于 crash recovery，**不参与查询路径**（由 Object Store 上的 Parquet 文件服务查询）
+
+### 1.4 Object Store 3 AZ 冗余
+
+- Parquet 文件写入 Object Store 后，云存储提供商（S3/GCS/Azure Blob）自动在 ≥3 个可用区（Availability Zone）冗余存储
+- Parquet 文件本身**不可变**（Immutable），写入后从不修改
+- 删除通过 Catalog 的 Soft Delete 标记实现，实际文件保留约 100 天后由 GC 物理删除
+
+### 1.5 故障恢复能力总结
+
+| 故障场景 | 恢复方式 | RPO |
+|----------|----------|-----|
+| Ingester 进程崩溃 | 新 Ingester 重放 WAL | 毫秒级 (WAL 最后 fsync) |
+| Ingester 节点宕机 | Router 路由到另一副本 Ingester | 0 (双副本已确认) |
+| Object Store 单 AZ 故障 | 自动切换到另一 AZ 副本 | 0 (多 AZ 冗余) |
+| Catalog 故障 | 最近 Daily Backup + Tx Log 重放 | <24h (取决于 backup 间隔) |
+| 全 Region 级灾难 | Catalog Backup + Object Store 跨 Region | 分钟～小时级 |
+
+---
+
+## 2. 元数据存储 — Catalog
+
+### 2.1 Catalog 架构总览
+
+![[diagram/influxdb-research/07-catalog-metadata.svg]]
+
+InfluxDB 3 的 Catalog 是整个系统的**元数据中心**，是唯一存储全局状态的组件。它与 v1/v2 的嵌入式元数据存储有本质区别。
+
+### 2.2 Catalog 数据模型
+
+Catalog 使用**PostgreSQL 兼容的关系数据库**存储以下层级元数据：
+
+```
+Namespace (Database)
+ └── Table (Measurement)
+      ├── Column (Tag / Field / Timestamp)
+      │   └── name, type (i64/u64/f64/string/bool/tag/time), nullable
+      └── Partition (time range)
+           └── Parquet File
+                └── object_store_path, file_size_bytes, row_count
+                     min_time, max_time, created_at, to_delete (soft delete flag)
+```
+
+**核心设计原则**：
+- 元数据与数据索引分离：Catalog 只存储文件级别的位置信息，不存储 Tag 值索引（由 Parquet Statistics 替代 TSI）
+- Catalog **不存储实际数据**，只存储**指向 Object Store 中 Parquet 文件的指针**
+- 各组件通过读取 Catalog 了解全局状态，无需组件间直接通信
+
+### 2.3 各组件与 Catalog 的交互
+
+| 组件 | 读操作 | 写操作 |
+|------|--------|--------|
+| **Ingester** | 查询 Schema（验证 Column 类型兼容性） | 写入新 Partition + Parquet File 元数据 |
+| **Querier** | 缓存同步（持续从 Catalog 拉取）· 查询分区 | 无 |
+| **Compactor** | 读取待合并小文件列表 | 写入合并后新文件 + 标记旧文件 to_delete |
+| **Garbage Collector** | 查询过期/已删除文件 | 标记 to_delete → 物理删除 Catalog 记录 + Object Store 文件 |
+
+### 2.4 Catalog 持久化与高可用
+
+Catalog 的高可用策略依赖 PostgreSQL 生态的成熟能力：
+
+```
+Transaction Log (PostgreSQL WAL)
+  └── 所有 Catalog 更新都在 Tx Log 中有序记录
+       ↓
+Daily Full Backup → Object Store (保留 ≥ 100 天, 3 AZ 存储)
+  └── 灾难恢复：最近 Daily Backup + 重放 Tx Log → 恢复至 crash 时刻
+       ↓
+PostgreSQL Streaming Replication (Primary + Standby)
+  └── Auto Failover · Connection Pooling · Read Replicas
+```
+
+### 2.5 v1/v2 vs v3 元数据存储对比
+
+| 维度 | InfluxDB v1/v2 | InfluxDB 3 |
+|------|---------------|------------|
+| 存储引擎 | BoltDB / etcd (嵌入式 KV) | PostgreSQL-Compatible RDBMS (独立服务) |
+| 元数据类型 | Database/RP/Shard 映射 + Series File | Namespace/Table/Column/Partition/File |
+| 索引 | TSI 倒排索引 (嵌入 Metastore) | Parquet Statistics (与元数据分离) |
+| 高可用 | etcd 集群 (Enterprise) 或单文件 (OSS) | PostgreSQL 原生 Streaming Replication |
+| 备份 | 手动 / Enterprise 工具 | Daily Auto Backup + Tx Log (Cloud) |
+| 耦合度 | 元数据 + 索引耦合在单文件中 | 存算分离，松耦合架构 |
+| 弹性 | 单机 BoltDB，线性扩展受限 | 独立 RDBMS 可按需伸缩 |
+
+---
+
+> **上一篇**: [04-指标设计最佳实践](InfluxDB调研-04-指标设计最佳实践.md)
+> **返回**: [00-总览](InfluxDB调研-00-总览.md)

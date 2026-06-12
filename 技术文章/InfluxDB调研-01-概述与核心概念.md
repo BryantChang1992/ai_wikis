@@ -1,0 +1,92 @@
+# InfluxDB 调研 — 01 概述与核心概念
+
+> **作者**: Stark (CTO, CHANG_AI_TEAM)
+> **日期**: 2026-06-12
+
+---
+
+## 1. 概述与版本演进
+
+### 1.1 什么是 InfluxDB
+
+InfluxDB 是由 InfluxData 开发的开源时序数据库（Time-Series Database, TSDB），专为处理高吞吐量、时间戳数据而设计。它广泛应用于 DevOps 监控、IoT 传感器数据、实时分析和金融数据等场景。
+
+### 1.2 版本演进路线
+
+| 版本 | 状态 | 存储引擎 | 查询语言 | 关键特点 |
+|------|------|----------|----------|----------|
+| v1.x | 维护模式 | TSM + TSI | InfluxQL | 经典架构，生态成熟 |
+| v2.x | 维护模式 | TSM + TSI | InfluxQL + Flux | Flux 引入，新增 Tasks |
+| v3.0 Edge | 开源 (MIT/Apache2) | Columnar (Parquet) | SQL + InfluxQL | Rust 重写，存算分离 |
+| v3.0 Community | 计划中 | Columnar + Compactor | SQL + InfluxQL | 完整单机版，支持删除 |
+| v3.0 Clustered | 商业版 (已发布) | Columnar (全功能) | SQL + InfluxQL | 分布式集群，水平扩展 |
+| v3.0 Cloud | 商业版 (已发布) | Columnar (全功能) | SQL + InfluxQL | Serverless / Dedicated |
+
+**核心转折点**：InfluxDB 3.0 用 Rust 重写了整个存储引擎，以 Apache Parquet 作为原生存储格式，基于 Apache Arrow 和 DataFusion 构建列式查询引擎，从架构层面解决了 v1/v2 的高基数性能瓶颈。
+
+### 1.3 整体架构 (InfluxDB 3.0)
+
+![[diagram/influxdb-research/01-architecture-overview.svg]]
+
+InfluxDB 3.0 采用**存算分离**的云原生架构，包含四个独立组件：
+
+- **Ingest Router + Ingester**：数据摄入层，负责 Line Protocol 解析、Schema 校验、分区排序和 Parquet 持久化
+- **Query Router + Querier**：数据查询层，利用 DataFusion 构建和执行查询计划
+- **Compactor**：后台合并小文件，优化存储布局
+- **Garbage Collector**：执行保留策略，回收过期数据空间
+
+所有组件通过 **Catalog (PostgreSQL 兼容数据库)** 和 **Object Store (S3/MinIO)** 进行松耦合通信。
+
+---
+
+## 2. 核心概念
+
+### 2.1 数据模型
+
+InfluxDB 的数据模型围绕 **Point（数据点）** 构建，每个 Point 包含四个组件：
+
+```
+cpu,host=server-a,region=us-west usage_user=64.5,usage_sys=12.3 1718200000000000000
+│     └────── Tag Set ──────┘ └──────── Field Set ────────┘ └─ Timestamp ─┘
+│ Measurement
+```
+
+| 组件 | 说明 | 类型 | 是否索引 |
+|------|------|------|----------|
+| **Measurement** | 逻辑分组（类似表名） | String | 是 |
+| **Tag Set** | 元数据键值对 | `key=value` (String only) | 是 |
+| **Field Set** | 实际度量值 | String / Float / Integer / Boolean | 否 |
+| **Timestamp** | 纳秒级 Unix 时间戳 | int64 | 是 |
+
+### 2.2 Series（系列）
+
+**Series** 是 InfluxDB 最核心的概念之一：
+
+```
+Series = Measurement + Tag Set + Field Key
+```
+
+一个 Series 是一组共享相同 Measurement、Tag Set 和 Field Key 的数据点的集合。**Series Cardinality（系列基数）** 是影响 InfluxDB 性能最关键的因素，具体计算公式和风险管理见 [04-指标设计最佳实践](InfluxDB调研-04-指标设计最佳实践.md)。
+
+### 2.3 Bucket / Database / Retention Policy
+
+| 概念 | v1/v2 | v3 |
+|------|-------|-----|
+| 顶层容器 | Database + Retention Policy | Database (namespace) |
+| 数据组织 | Bucket (v2) | Table (自动发现) |
+| 保留策略 | RP (v1) / Bucket RP (v2) | GC Job 定期执行 |
+| 分片粒度 | Shard Group Duration | Partition (默认按天) |
+
+### 2.4 Line Protocol
+
+InfluxDB 所有版本的写入 API 均使用 Line Protocol 格式：
+
+```
+<measurement>[,<tag_key>=<tag_value>...] <field_key>=<field_value>[,<field_key>=<field_value>] [<timestamp>]
+```
+
+这是 InfluxDB 写入路径的统一入口，所有版本通用。
+
+---
+
+> **下一篇**: [02-存储引擎](InfluxDB调研-02-存储引擎.md) — TSM/TSI vs Columnar 存储引擎对比

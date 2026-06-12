@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="35" fill="white" font-size="16" font-weight="700">Apache Doris — Merge-on-Write (MoW) 写入路径</text>
+
+  <!-- ===== Step 1: Data Ingestion ===== -->
+  <rect x="30" y="55" width="840" height="60" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="72" fill="#22d3ee" font-size="10" font-weight="600">Step 1: 数据摄入</text>
+
+  <rect x="60" y="80" width="145" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="132" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">Kafka (Routine Load)</text>
+
+  <rect x="230" y="80" width="120" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="290" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">Flink / Stream</text>
+
+  <rect x="375" y="80" width="120" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="435" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">Broker Load</text>
+
+  <rect x="520" y="80" width="120" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="580" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">INSERT INTO</text>
+
+  <rect x="665" y="80" width="120" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="725" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">CDC (Binlog)</text>
+
+  <!-- Arrows down -->
+  <line x1="132" y1="108" x2="450" y2="150" stroke="#22d3ee" stroke-width="0.8"/>
+  <line x1="290" y1="108" x2="450" y2="150" stroke="#22d3ee" stroke-width="0.8"/>
+  <line x1="435" y1="108" x2="450" y2="150" stroke="#22d3ee" stroke-width="0.8"/>
+  <line x1="580" y1="108" x2="450" y2="150" stroke="#22d3ee" stroke-width="0.8"/>
+  <line x1="725" y1="108" x2="450" y2="150" stroke="#22d3ee" stroke-width="0.8"/>
+
+  <!-- ===== Step 2: Write Pipeline ===== -->
+  <rect x="30" y="140" width="840" height="130" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="157" fill="#34d399" font-size="10" font-weight="600">Step 2: FE Write Pipeline (事务协调)</text>
+
+  <rect x="60" y="165" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="60" y="165" width="160" height="48" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="140" y="186" fill="white" font-size="9" font-weight="600" text-anchor="middle">FE: Load Planner</text>
+  <text x="140" y="201" fill="#94a3b8" font-size="7" text-anchor="middle">创建 Load Job · 事务ID</text>
+
+  <line x1="220" y1="189" x2="245" y2="189" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="255" y="165" width="180" height="48" rx="6" fill="#0f172a"/>
+  <rect x="255" y="165" width="180" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="345" y="186" fill="white" font-size="9" font-weight="600" text-anchor="middle">Data Distribution</text>
+  <text x="345" y="201" fill="#94a3b8" font-size="7" text-anchor="middle">Hash分桶 → 目标 Tablet</text>
+
+  <line x1="435" y1="189" x2="460" y2="189" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="470" y="165" width="170" height="48" rx="6" fill="#0f172a"/>
+  <rect x="470" y="165" width="170" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="555" y="186" fill="white" font-size="9" font-weight="600" text-anchor="middle">BE Tablet Writer</text>
+  <text x="555" y="201" fill="#94a3b8" font-size="7" text-anchor="middle">接收 Batch 数据</text>
+
+  <line x1="640" y1="189" x2="665" y2="189" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="675" y="165" width="170" height="48" rx="6" fill="#0f172a"/>
+  <rect x="675" y="165" width="170" height="48" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="760" y="186" fill="white" font-size="9" font-weight="600" text-anchor="middle">Publish Transaction</text>
+  <text x="760" y="201" fill="#94a3b8" font-size="7" text-anchor="middle">FE 确认 · 数据可见</text>
+
+  <text x="450" y="255" fill="#fbbf24" font-size="8" text-anchor="middle">↓ Data Batch 已排序 + 按 Bucket 路由到对应 BE Tablet</text>
+
+  <!-- ===== Step 3: MoW Core Logic ===== -->
+  <rect x="30" y="270" width="840" height="200" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="287" fill="#fbbf24" font-size="10" font-weight="600">Step 3: MoW 写入核心 — BE Tablet 内 Merge-on-Write</text>
+
+  <!-- Input -->
+  <rect x="60" y="300" width="150" height="55" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="135" y="322" fill="white" font-size="9" font-weight="600" text-anchor="middle">Data Batch (有序)</text>
+  <text x="135" y="338" fill="#94a3b8" font-size="7" text-anchor="middle">按 Sort Key 排序</text>
+  <text x="135" y="348" fill="#94a3b8" font-size="7" text-anchor="middle">Key: user_id + ts</text>
+
+  <line x1="210" y1="327" x2="240" y2="327" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- Key Lookup -->
+  <rect x="250" y="295" width="170" height="65" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="335" y="318" fill="white" font-size="9" font-weight="600" text-anchor="middle">Key Index Lookup</text>
+  <text x="335" y="334" fill="#94a3b8" font-size="7" text-anchor="middle">Tablet 级 Key→RowID 映射</text>
+  <text x="335" y="348" fill="#94a3b8" font-size="7" text-anchor="middle">内存 Hash Map</text>
+
+  <!-- Decision node -->
+  <g transform="translate(510, 327)">
+    <polygon points="0,-30 55,0 0,30 -55,0" fill="#0f172a"/>
+    <polygon points="0,-30 55,0 0,30 -55,0" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text y="4" fill="white" font-size="8" font-weight="600" text-anchor="middle">重复Key?</text>
+  </g>
+
+  <line x1="420" y1="327" x2="455" y2="327" stroke="#fbbf24" stroke-width="1"/>
+
+  <!-- NO: New Key -->
+  <line x1="565" y1="315" x2="610" y2="300" stroke="#34d399" stroke-width="1"/>
+  <text x="580" y="295" fill="#34d399" font-size="7">NO (新Key)</text>
+
+  <rect x="620" y="280" width="130" height="40" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="685" y="296" fill="white" font-size="9" font-weight="600" text-anchor="middle">INSERT</text>
+  <text x="685" y="312" fill="#94a3b8" font-size="7" text-anchor="middle">写入 Segment 新行</text>
+
+  <!-- YES: Dup Key -->
+  <line x1="565" y1="340" x2="610" y2="360" stroke="#fb7185" stroke-width="1"/>
+  <text x="580" y="355" fill="#fb7185" font-size="7">YES (重复Key)</text>
+
+  <rect x="620" y="342" width="255" height="55" rx="6" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="747" y="362" fill="white" font-size="9" font-weight="600" text-anchor="middle">UPSERT (先删后写)</text>
+  <text x="747" y="378" fill="#94a3b8" font-size="7" text-anchor="middle">① DELETE_BITMAP 标记旧行</text>
+  <text x="747" y="392" fill="#94a3b8" font-size="7" text-anchor="middle">② 写入 Segment 新数据行</text>
+
+  <!-- Down arrows to Segment Write -->
+  <line x1="685" y1="320" x2="685" y2="430" stroke="#34d399" stroke-width="1" marker-end="url(#arrow-green)"/>
+  <line x1="747" y1="397" x2="747" y2="430" stroke="#fb7185" stroke-width="1" marker-end="url(#arrow-red)"/>
+
+  <!-- ===== Step 4: Segment Persist ===== -->
+  <rect x="30" y="475" width="840" height="65" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="492" fill="#a78bfa" font-size="10" font-weight="600">Step 4: Segment 持久化</text>
+
+  <rect x="60" y="500" width="200" height="30" rx="5" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="160" y="519" fill="white" font-size="9" font-weight="600" text-anchor="middle">Segment Flush (256MB满)</text>
+
+  <line x1="260" y1="515" x2="290" y2="515" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrow-green)"/>
+
+  <rect x="300" y="500" width="180" height="30" rx="5" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="390" y="519" fill="white" font-size="9" font-weight="600" text-anchor="middle">LZ4/ZSTD 压缩</text>
+
+  <line x1="480" y1="515" x2="510" y2="515" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrow-green)"/>
+
+  <rect x="520" y="500" width="180" height="30" rx="5" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="610" y="519" fill="white" font-size="9" font-weight="600" text-anchor="middle">本地 SSD 持久化</text>
+
+  <line x1="700" y1="515" x2="730" y2="515" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrow-green)"/>
+
+  <rect x="740" y="500" width="110" height="30" rx="5" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="795" y="519" fill="white" font-size="9" font-weight="600" text-anchor="middle">Rowset 提交</text>
+
+  <!-- ===== Step 5: Compaction ===== -->
+  <rect x="30" y="555" width="840" height="65" rx="10" fill="none" stroke="#fb923c" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="572" fill="#fb923c" font-size="10" font-weight="600">Step 5: 后台 Compaction (异步)</text>
+
+  <rect x="60" y="580" width="140" height="30" rx="5" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="130" y="599" fill="white" font-size="9" font-weight="600" text-anchor="middle">Cumulative</text>
+
+  <rect x="220" y="580" width="140" height="30" rx="5" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="290" y="599" fill="white" font-size="9" font-weight="600" text-anchor="middle">Base</text>
+
+  <rect x="380" y="580" width="140" height="30" rx="5" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="599" fill="white" font-size="9" font-weight="600" text-anchor="middle">Quick</text>
+
+  <text x="560" y="599" fill="#94a3b8" font-size="8">合并小 Rowset · 物理删除 DELETE_BITMAP 标记行 · 减小碎片</text>
+
+  <!-- Key advantages -->
+  <rect x="30" y="630" width="840" height="38" rx="6" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="50" y="650" fill="#34d399" font-size="8" text-anchor="middle">核心优势</text>
+  <text x="120" y="650" fill="#94a3b8" font-size="8" text-anchor="middle">▸ 写入即去重，查询零合并开销</text>
+  <text x="360" y="650" fill="#94a3b8" font-size="8" text-anchor="middle">▸ DELETE_BITMAP 行级删除</text>
+  <text x="575" y="650" fill="#94a3b8" font-size="8" text-anchor="middle">▸ Quick Compaction 及时回收空间</text>
+</svg>

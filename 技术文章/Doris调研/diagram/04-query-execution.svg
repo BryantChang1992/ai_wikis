@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="35" fill="white" font-size="16" font-weight="700">Apache Doris — MPP 向量化查询执行流程</text>
+
+  <!-- ===== Client → FE ===== -->
+  <rect x="30" y="55" width="940" height="60" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="72" fill="#22d3ee" font-size="10" font-weight="600">Step 1: 查询入口</text>
+
+  <rect x="60" y="80" width="145" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="132" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">MySQL Client</text>
+
+  <rect x="230" y="80" width="145" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="302" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">Arrow Flight SQL</text>
+
+  <rect x="400" y="80" width="145" height="28" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="472" y="98" fill="white" font-size="9" font-weight="600" text-anchor="middle">JDBC / HTTP</text>
+
+  <line x1="500" y1="108" x2="500" y2="140" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- ===== FE: Optimizer ===== -->
+  <rect x="30" y="130" width="940" height="95" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="147" fill="#fbbf24" font-size="10" font-weight="600">Step 2: FE: Nereids CBO 优化器</text>
+
+  <rect x="60" y="155" width="155" height="55" rx="6" fill="#0f172a"/>
+  <rect x="60" y="155" width="155" height="55" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="137" y="178" fill="white" font-size="9" font-weight="600" text-anchor="middle">SQL Parse</text>
+  <text x="137" y="194" fill="#94a3b8" font-size="7" text-anchor="middle">AST · 语义分析</text>
+
+  <line x1="215" y1="182" x2="240" y2="182" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <rect x="250" y="155" width="155" height="55" rx="6" fill="#0f172a"/>
+  <rect x="250" y="155" width="155" height="55" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="327" y="178" fill="white" font-size="9" font-weight="600" text-anchor="middle">Cost Model</text>
+  <text x="327" y="194" fill="#94a3b8" font-size="7" text-anchor="middle">统计信息 · 代价估算</text>
+
+  <line x1="405" y1="182" x2="430" y2="182" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <rect x="440" y="155" width="155" height="55" rx="6" fill="#0f172a"/>
+  <rect x="440" y="155" width="155" height="55" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="517" y="178" fill="white" font-size="9" font-weight="600" text-anchor="middle">Plan Rewrite</text>
+  <text x="517" y="194" fill="#94a3b8" font-size="7" text-anchor="middle">列裁剪 · 谓词下推</text>
+
+  <line x1="595" y1="182" x2="620" y2="182" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <rect x="630" y="155" width="155" height="55" rx="6" fill="#0f172a"/>
+  <rect x="630" y="155" width="155" height="55" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="707" y="178" fill="white" font-size="9" font-weight="600" text-anchor="middle">Join Reorder</text>
+  <text x="707" y="194" fill="#94a3b8" font-size="7" text-anchor="middle">动态表序 · CTE 重用</text>
+
+  <line x1="785" y1="182" x2="810" y2="182" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <rect x="820" y="155" width="130" height="55" rx="6" fill="#0f172a"/>
+  <rect x="820" y="155" width="130" height="55" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="885" y="178" fill="white" font-size="9" font-weight="600" text-anchor="middle">Fragment Plan</text>
+  <text x="885" y="194" fill="#94a3b8" font-size="7" text-anchor="middle">MPP 分布式计划</text>
+
+  <!-- FE → BE dispatch -->
+  <line x1="885" y1="210" x2="885" y2="270" stroke="#34d399" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <line x1="500" y1="225" x2="500" y2="270" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- ===== BE MPP Execution ===== -->
+  <rect x="30" y="260" width="940" height="230" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="277" fill="#34d399" font-size="10" font-weight="600">Step 3: BE MPP 分布式执行 + Runtime Filter</text>
+
+  <!-- Fragment 2: Scan -->
+  <rect x="55" y="290" width="220" height="110" rx="8" fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="4,4"/>
+  <text x="68" y="307" fill="#a78bfa" font-size="8" font-weight="500">Fragment 2: Scan BE</text>
+
+  <rect x="70" y="318" width="190" height="30" rx="4" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="165" y="337" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment Reader</text>
+
+  <rect x="70" y="355" width="190" height="38" rx="4" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="165" y="371" fill="#94a3b8" font-size="7" text-anchor="middle">ZoneMap 剪枝</text>
+  <text x="165" y="383" fill="#94a3b8" font-size="7" text-anchor="middle">Bloom Filter · Predicate Pushdown</text>
+
+  <!-- Fragment 1: Agg -->
+  <rect x="340" y="290" width="320" height="110" rx="8" fill="none" stroke="#fbbf24" stroke-width="0.8" stroke-dasharray="4,4"/>
+  <text x="353" y="307" fill="#fbbf24" font-size="8" font-weight="500">Fragment 1: Agg BE</text>
+
+  <rect x="355" y="318" width="140" height="30" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="425" y="337" fill="white" font-size="8" font-weight="500" text-anchor="middle">Pre Agg (Map)</text>
+
+  <rect x="505" y="318" width="140" height="30" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="575" y="337" fill="white" font-size="8" font-weight="500" text-anchor="middle">Final Agg (Reduce)</text>
+
+  <rect x="355" y="358" width="290" height="35" rx="4" fill="rgba(120,53,15,0.15)" stroke="#fbbf24" stroke-width="0.6"/>
+  <text x="500" y="373" fill="#94a3b8" font-size="7" text-anchor="middle">向量化执行: 4096行/Batch · SIMD 加速</text>
+  <text x="500" y="385" fill="#a78bfa" font-size="7" text-anchor="middle">↑ Runtime Filter (Bloom Filter) 回推到 Scan</text>
+
+  <!-- Fragment 0: Coordinator -->
+  <rect x="725" y="290" width="220" height="110" rx="8" fill="none" stroke="#22d3ee" stroke-width="0.8" stroke-dasharray="4,4"/>
+  <text x="738" y="307" fill="#22d3ee" font-size="8" font-weight="500">Fragment 0: Coordinator</text>
+
+  <rect x="740" y="318" width="190" height="30" rx="4" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="835" y="337" fill="white" font-size="8" font-weight="500" text-anchor="middle">Result Merger</text>
+
+  <rect x="740" y="355" width="190" height="38" rx="4" fill="rgba(8,51,68,0.2)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="835" y="371" fill="#94a3b8" font-size="7" text-anchor="middle">Sort · Limit · Merge</text>
+  <text x="835" y="383" fill="#94a3b8" font-size="7" text-anchor="middle">返回 Client</text>
+
+  <!-- Arrows between Fragments -->
+  <line x1="260" y1="345" x2="340" y2="345" stroke="#fb923c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+  <text x="290" y="340" fill="#fb923c" font-size="7" text-anchor="middle">Hash</text>
+  <text x="290" y="354" fill="#fb923c" font-size="7" text-anchor="middle">Shuffle</text>
+
+  <line x1="660" y1="345" x2="725" y2="345" stroke="#fb923c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+  <text x="685" y="340" fill="#fb923c" font-size="7" text-anchor="middle">BRPC</text>
+  <text x="685" y="354" fill="#fb923c" font-size="7" text-anchor="middle">Transfer</text>
+
+  <!-- Runtime Filter loop -->
+  <path d="M 525 395 L 525 415 L 200 415 L 200 358" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow-blue)"/>
+  <text x="360" y="412" fill="#60a5fa" font-size="7" text-anchor="middle">Runtime Filter (Bloom Filter) 反馈</text>
+
+  <!-- ===== Shuffle Strategies ===== -->
+  <rect x="30" y="505" width="940" height="65" rx="10" fill="none" stroke="#fb923c" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="522" fill="#fb923c" font-size="10" font-weight="600">Shuffle 策略</text>
+
+  <rect x="60" y="530" width="200" height="30" rx="4" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="160" y="549" fill="white" font-size="8" font-weight="500" text-anchor="middle">Broadcast (小表广播)</text>
+
+  <rect x="280" y="530" width="200" height="30" rx="4" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+  <text x="380" y="549" fill="white" font-size="8" font-weight="500" text-anchor="middle">Hash Shuffle (Key重分布)</text>
+
+  <rect x="500" y="530" width="200" height="30" rx="4" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="600" y="549" fill="white" font-size="8" font-weight="500" text-anchor="middle">Bucket Shuffle (零网络)</text>
+
+  <rect x="720" y="530" width="200" height="30" rx="4" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="820" y="549" fill="white" font-size="8" font-weight="500" text-anchor="middle">Colocate Join (本地)</text>
+
+  <!-- ===== Execution Engine ===== -->
+  <rect x="30" y="585" width="940" height="60" rx="10" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="602" fill="#60a5fa" font-size="10" font-weight="600">向量化执行引擎</text>
+
+  <rect x="60" y="610" width="180" height="28" rx="4" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="150" y="628" fill="white" font-size="8" font-weight="500" text-anchor="middle">Columnar Batch (4096行)</text>
+
+  <rect x="260" y="610" width="180" height="28" rx="4" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="350" y="628" fill="white" font-size="8" font-weight="500" text-anchor="middle">SIMD (SSE/AVX2)</text>
+
+  <rect x="460" y="610" width="180" height="28" rx="4" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="550" y="628" fill="white" font-size="8" font-weight="500" text-anchor="middle">Pipeline Execution</text>
+
+  <rect x="660" y="610" width="180" height="28" rx="4" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="750" y="628" fill="white" font-size="8" font-weight="500" text-anchor="middle">内存池管理</text>
+
+  <!-- Key optimization note -->
+  <rect x="30" y="660" width="940" height="45" rx="6" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="50" y="680" fill="#34d399" font-size="8">优化亮点</text>
+  <text x="140" y="680" fill="#94a3b8" font-size="8">▸ Runtime Filter 可过滤50%~99%无效数据，大幅减少Shuffle和Join数据量</text>
+  <text x="140" y="695" fill="#94a3b8" font-size="8">▸ Bucket Shuffle / Colocate Join 零网络开销，本地Join性能最优</text>
+</svg>

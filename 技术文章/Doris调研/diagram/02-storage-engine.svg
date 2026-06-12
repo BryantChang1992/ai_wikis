@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-v" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', monospace; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="35" fill="white" font-size="16" font-weight="700">Apache Doris — 存储引擎体系 (Segment v2)</text>
+
+  <!-- ===== Top: Overall Structure ===== -->
+  <rect x="30" y="55" width="940" height="80" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="72" fill="#22d3ee" font-size="10" font-weight="600">Table → Partition → Bucket → Tablet 层级</text>
+
+  <!-- Table -->
+  <rect x="55" y="82" width="140" height="38" rx="6" fill="#0f172a"/>
+  <rect x="55" y="82" width="140" height="38" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="125" y="106" fill="white" font-size="10" font-weight="600" text-anchor="middle">Table</text>
+
+  <line x1="195" y1="101" x2="225" y2="101" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="235" y="82" width="140" height="38" rx="6" fill="#0f172a"/>
+  <rect x="235" y="82" width="140" height="38" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="305" y="106" fill="white" font-size="10" font-weight="600" text-anchor="middle">Partition</text>
+
+  <line x1="375" y1="101" x2="405" y2="101" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="415" y="82" width="140" height="38" rx="6" fill="#0f172a"/>
+  <rect x="415" y="82" width="140" height="38" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="485" y="106" fill="white" font-size="10" font-weight="600" text-anchor="middle">Bucket</text>
+
+  <line x1="555" y1="101" x2="585" y2="101" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="595" y="82" width="140" height="38" rx="6" fill="#0f172a"/>
+  <rect x="595" y="82" width="140" height="38" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="665" y="106" fill="white" font-size="10" font-weight="600" text-anchor="middle">Tablet (副本)</text>
+
+  <text x="760" y="106" fill="#94a3b8" font-size="8">← 3副本: Replica 0,1,2</text>
+
+  <!-- ===== Tablet Internal ===== -->
+  <rect x="30" y="150" width="940" height="260" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="167" fill="#a78bfa" font-size="10" font-weight="600">Tablet 内部结构 — Rowset → Segment → Page</text>
+
+  <!-- Tablet Box -->
+  <rect x="60" y="180" width="880" height="215" rx="8" fill="none" stroke="#a78bfa" stroke-width="0.7" stroke-dasharray="3,3"/>
+  <text x="75" y="197" fill="#a78bfa" font-size="8" font-weight="500">Tablet</text>
+
+  <!-- Rowset 0 (current) -->
+  <rect x="80" y="210" width="840" height="55" rx="6" fill="#0f172a"/>
+  <rect x="80" y="210" width="840" height="55" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="95" y="230" fill="#34d399" font-size="9" font-weight="600">Rowset 0 (写入中)</text>
+  <rect x="220" y="218" width="130" height="32" rx="4" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="0.8"/>
+  <text x="285" y="239" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment A</text>
+  <rect x="365" y="218" width="130" height="32" rx="4" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="0.8"/>
+  <text x="430" y="239" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment B (写入)</text>
+  <text x="580" y="239" fill="#94a3b8" font-size="7">MoW: 逐Key去重写入 · DELETE_BITMAP 更新</text>
+
+  <!-- Rowset 1 (sealed) -->
+  <rect x="80" y="275" width="840" height="55" rx="6" fill="#0f172a"/>
+  <rect x="80" y="275" width="840" height="55" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="95" y="295" fill="#a78bfa" font-size="9" font-weight="600">Rowset 1 (已封存)</text>
+  <rect x="220" y="283" width="130" height="32" rx="4" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="285" y="304" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment C</text>
+  <rect x="365" y="283" width="130" height="32" rx="4" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="430" y="304" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment D</text>
+  <rect x="510" y="283" width="130" height="32" rx="4" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="575" y="304" fill="white" font-size="8" font-weight="500" text-anchor="middle">Segment E</text>
+  <text x="660" y="304" fill="#94a3b8" font-size="7">已封存不可修改 · 可被 Compaction 合并</text>
+
+  <!-- Rowset N (base) -->
+  <rect x="80" y="340" width="840" height="40" rx="6" fill="#0f172a"/>
+  <rect x="80" y="340" width="840" height="40" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="95" y="364" fill="#94a3b8" font-size="9" font-weight="600">Rowset N (Base · Compaction 合并结果)</text>
+  <text x="500" y="364" fill="#94a3b8" font-size="7">N 个 Rowset 合并为 1 个 · 物理删除 DELETE_BITMAP 标记行</text>
+
+  <!-- ===== Segment v2 Internal ===== -->
+  <rect x="30" y="425" width="940" height="130" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="442" fill="#34d399" font-size="10" font-weight="600">Segment v2 内部结构</text>
+
+  <!-- Column 0 -->
+  <rect x="55" y="455" width="140" height="85" rx="4" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="125" y="472" fill="white" font-size="9" font-weight="600" text-anchor="middle">Col 0 (Sort Key)</text>
+  <rect x="65" y="480" width="120" height="22" rx="3" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="125" y="495" fill="#22d3ee" font-size="7" text-anchor="middle">Data Pages [0..N]</text>
+  <text x="125" y="528" fill="#94a3b8" font-size="7" text-anchor="middle">RLE + BitPacking</text>
+
+  <!-- Column 1 -->
+  <rect x="210" y="455" width="140" height="85" rx="4" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="280" y="472" fill="white" font-size="9" font-weight="600" text-anchor="middle">Col 1</text>
+  <rect x="220" y="480" width="120" height="22" rx="3" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="0.5"/>
+  <text x="280" y="495" fill="#34d399" font-size="7" text-anchor="middle">Data Pages [0..N]</text>
+  <text x="280" y="528" fill="#94a3b8" font-size="7" text-anchor="middle">LZ4 / ZSTD 压缩</text>
+
+  <!-- Column 2 -->
+  <rect x="365" y="455" width="140" height="85" rx="4" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="435" y="472" fill="white" font-size="9" font-weight="600" text-anchor="middle">Col 2</text>
+  <rect x="375" y="480" width="120" height="22" rx="3" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="0.5"/>
+  <text x="435" y="495" fill="#a78bfa" font-size="7" text-anchor="middle">Data Pages [0..N]</text>
+  <text x="435" y="528" fill="#94a3b8" font-size="7" text-anchor="middle">字典编码</text>
+
+  <!-- Index Section -->
+  <rect x="530" y="455" width="200" height="85" rx="4" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="630" y="472" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">索引区</text>
+  <text x="630" y="495" fill="white" font-size="8" text-anchor="middle">Short Key Index</text>
+  <text x="630" y="510" fill="white" font-size="8" text-anchor="middle">ZoneMap (Min/Max)</text>
+  <text x="630" y="525" fill="white" font-size="8" text-anchor="middle">Bloom Filter</text>
+
+  <!-- Footer -->
+  <rect x="750" y="455" width="200" height="85" rx="4" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="850" y="472" fill="#fb7185" font-size="9" font-weight="600" text-anchor="middle">Footer</text>
+  <text x="850" y="495" fill="white" font-size="8" text-anchor="middle">版本号</text>
+  <text x="850" y="510" fill="white" font-size="8" text-anchor="middle">Column 偏移表</text>
+  <text x="850" y="525" fill="white" font-size="8" text-anchor="middle">索引偏移量</text>
+
+  <!-- ===== Index Overview ===== -->
+  <rect x="30" y="570" width="940" height="80" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="45" y="587" fill="#fbbf24" font-size="10" font-weight="600">多层索引体系 (逐级过滤)</text>
+
+  <rect x="55" y="598" width="165" height="38" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="137" y="614" fill="white" font-size="9" font-weight="600" text-anchor="middle">① Short Key Index</text>
+  <text x="137" y="628" fill="#fbbf24" font-size="7" text-anchor="middle">稀疏 · 定位 Rowset</text>
+
+  <line x1="220" y1="617" x2="245" y2="617" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="255" y="598" width="160" height="38" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="335" y="614" fill="white" font-size="9" font-weight="600" text-anchor="middle">② ZoneMap Index</text>
+  <text x="335" y="628" fill="#fbbf24" font-size="7" text-anchor="middle">Segment级 Min/Max</text>
+
+  <line x1="415" y1="617" x2="440" y2="617" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="450" y="598" width="160" height="38" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="530" y="614" fill="white" font-size="9" font-weight="600" text-anchor="middle">③ Bloom Filter</text>
+  <text x="530" y="628" fill="#fbbf24" font-size="7" text-anchor="middle">判不存在 HASH</text>
+
+  <line x1="610" y1="617" x2="635" y2="617" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="645" y="598" width="160" height="38" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="725" y="614" fill="white" font-size="9" font-weight="600" text-anchor="middle">④ Bitmap/Inverted</text>
+  <text x="725" y="628" fill="#fbbf24" font-size="7" text-anchor="middle">低基数 / 全文搜索</text>
+
+  <line x1="805" y1="617" x2="830" y2="617" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrow-slate)"/>
+
+  <rect x="840" y="598" width="115" height="38" rx="4" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="897" y="614" fill="white" font-size="9" font-weight="600" text-anchor="middle">⑤ Data Page</text>
+  <text x="897" y="628" fill="#34d399" font-size="7" text-anchor="middle">精确数据</text>
+
+  <!-- Legend -->
+  <rect x="30" y="665" width="940" height="40" rx="6" fill="none" stroke="#1e293b" stroke-width="1"/>
+  <text x="50" y="685" fill="#94a3b8" font-size="8">图例</text>
+  <rect x="110" y="676" width="12" height="12" rx="2" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1"/>
+  <text x="128" y="687" fill="#94a3b8" font-size="8">写入中</text>
+  <rect x="190" y="676" width="12" height="12" rx="2" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="208" y="687" fill="#94a3b8" font-size="8">已封存</text>
+  <rect x="270" y="676" width="12" height="12" rx="2" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="288" y="687" fill="#94a3b8" font-size="8">Base</text>
+  <rect x="340" y="676" width="12" height="12" rx="2" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="358" y="687" fill="#94a3b8" font-size="8">索引</text>
+  <text x="420" y="687" fill="#94a3b8" font-size="8">索引过滤: 左→右 逐级过滤，每级减少扫描数据量</text>
+</svg>

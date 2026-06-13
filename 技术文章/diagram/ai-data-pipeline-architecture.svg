@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 900">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+    </style>
+
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrowheads -->
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="900" fill="#0f172a"/>
+  <rect width="1100" height="900" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="35" fill="white" font-size="16" font-weight="700">AI 训练数据管道全景架构</text>
+  <text x="30" y="55" fill="#64748b" font-size="10">从原始数据采集到 GPU 训练集群的数据流</text>
+
+  <!-- ======================================================================== -->
+  <!-- REGION: 数据源层 (Layer 1) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="75" width="1040" height="115" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="50" y="95" fill="#22d3ee" font-size="10" font-weight="600">① 数据源层 — 多源异构数据采集</text>
+
+  <!-- Source boxes -->
+  <g transform="translate(60, 110)">
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="100" y="25" fill="white" font-size="11" font-weight="600" text-anchor="middle">📱 客户端 SDK 埋点</text>
+    <text x="100" y="43" fill="#94a3b8" font-size="9" text-anchor="middle">千万 QPS · Protobuf · 采样策略</text>
+  </g>
+
+  <g transform="translate(290, 110)">
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="100" y="25" fill="white" font-size="11" font-weight="600" text-anchor="middle">🌐 服务端日志</text>
+    <text x="100" y="43" fill="#94a3b8" font-size="9" text-anchor="middle">Nginx · Gateway · RPC Trace</text>
+  </g>
+
+  <g transform="translate(520, 110)">
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="100" y="25" fill="white" font-size="11" font-weight="600" text-anchor="middle">🔌 第三方 API</text>
+    <text x="100" y="43" fill="#94a3b8" font-size="9" text-anchor="middle">Reddit · News Corp · 数据采购</text>
+  </g>
+
+  <g transform="translate(750, 110)">
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="60" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="100" y="25" fill="white" font-size="11" font-weight="600" text-anchor="middle">🕷️ 爬虫 + 公开语料</text>
+    <text x="100" y="43" fill="#94a3b8" font-size="9" text-anchor="middle">Common Crawl · Wikipedia</text>
+  </g>
+
+  <!-- Arrows from sources to bus -->
+  <line x1="160" y1="170" x2="160" y2="210" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <line x1="390" y1="170" x2="390" y2="210" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <line x1="620" y1="170" x2="620" y2="210" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <line x1="850" y1="170" x2="850" y2="210" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Source annotation -->
+  <text x="30" y="165" fill="#64748b" font-size="8">数据格式: JSON / Protobuf / FlatBuffers / 多媒体文件</text>
+
+  <!-- ======================================================================== -->
+  <!-- REGION: 消息队列层 (Layer 2) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="200" width="1040" height="90" rx="10" fill="none" stroke="#fb923c" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="50" y="220" fill="#fb923c" font-size="10" font-weight="600">② 消息队列层 — 高吞吐实时传输</text>
+
+  <g transform="translate(100, 235)">
+    <rect x="0" y="0" width="240" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="240" height="42" rx="6" fill="rgba(251,146,60,0.25)" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="120" y="18" fill="white" font-size="11" font-weight="600" text-anchor="middle">Apache Kafka</text>
+    <text x="120" y="34" fill="#94a3b8" font-size="9" text-anchor="middle">百万条/秒 · 持久化日志 · 可回溯</text>
+  </g>
+
+  <g transform="translate(390, 235)">
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="rgba(251,146,60,0.20)" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="110" y="18" fill="white" font-size="11" font-weight="600" text-anchor="middle">AutoMQ</text>
+    <text x="110" y="34" fill="#94a3b8" font-size="9" text-anchor="middle">云原生 · S3 弹性存储</text>
+  </g>
+
+  <g transform="translate(660, 235)">
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="rgba(251,146,60,0.20)" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="110" y="18" fill="white" font-size="11" font-weight="600" text-anchor="middle">Apache Fluss</text>
+    <text x="110" y="34" fill="#94a3b8" font-size="9" text-anchor="middle">湖仓原生 · 流批一体</text>
+  </g>
+
+  <!-- Arrow from queue to Flink -->
+  <line x1="550" y1="290" x2="550" y2="320" stroke="#fb923c" stroke-width="2" marker-end="url(#arrow-orange)"/>
+
+  <!-- ======================================================================== -->
+  <!-- REGION: 流批一体清洗层 (Layer 3) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="310" width="1040" height="90" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="50" y="330" fill="#34d399" font-size="10" font-weight="600">③ 流批一体清洗层 — 数据质量保障</text>
+
+  <g transform="translate(60, 345)">
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="75" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">Schema 校验</text>
+    <text x="75" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">JSON Schema</text>
+  </g>
+
+  <g transform="translate(250, 345)">
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="75" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">去重 + 消歧</text>
+    <text x="75" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">Exactly-Once</text>
+  </g>
+
+  <g transform="translate(440, 345)">
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="75" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">数据脱敏</text>
+    <text x="75" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">PII Masking</text>
+  </g>
+
+  <g transform="translate(630, 345)">
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="150" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="75" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">格式归一化</text>
+    <text x="75" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">时间戳 · 枚举值</text>
+  </g>
+
+  <!-- Apache Flink label -->
+  <g transform="translate(840, 345)">
+    <rect x="0" y="0" width="170" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="170" height="42" rx="6" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="2"/>
+    <text x="85" y="18" fill="white" font-size="11" font-weight="700" text-anchor="middle">Apache Flink</text>
+    <text x="85" y="33" fill="#34d399" font-size="9" text-anchor="middle">流批一体引擎</text>
+  </g>
+
+  <!-- Arrows between Flink steps -->
+  <line x1="210" y1="366" x2="245" y2="366" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <line x1="400" y1="366" x2="435" y2="366" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <line x1="590" y1="366" x2="625" y2="366" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <line x1="780" y1="366" x2="835" y2="366" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Arrow from Flink to storage -->
+  <line x1="550" y1="400" x2="550" y2="430" stroke="#34d399" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+
+  <!-- ======================================================================== -->
+  <!-- REGION: 存储 + 特征工程层 (Layer 4) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="420" width="1040" height="130" rx="10" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="50" y="440" fill="#a78bfa" font-size="10" font-weight="600">④ 存储 &amp; 特征工程层 — 从原始数据到训练样本</text>
+
+  <!-- Iceberg / Hudi -->
+  <g transform="translate(60, 455)">
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="100" y="22" fill="white" font-size="11" font-weight="600" text-anchor="middle">Apache Iceberg / Hudi</text>
+    <text x="100" y="38" fill="#94a3b8" font-size="9" text-anchor="middle">数据湖 · 版本管理 · ACID</text>
+  </g>
+
+  <!-- Point-in-Time Join -->
+  <g transform="translate(310, 455)">
+    <rect x="0" y="0" width="240" height="55" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="240" height="55" rx="6" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="120" y="22" fill="white" font-size="11" font-weight="600" text-anchor="middle">Point-in-Time Join</text>
+    <text x="120" y="38" fill="#94a3b8" font-size="9" text-anchor="middle">特征拼接 · 时间窗口对齐</text>
+  </g>
+
+  <!-- Feature Store -->
+  <g transform="translate(600, 455)">
+    <rect x="0" y="0" width="210" height="55" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="210" height="55" rx="6" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="105" y="22" fill="white" font-size="11" font-weight="600" text-anchor="middle">Feature Store</text>
+    <text x="105" y="38" fill="#94a3b8" font-size="9" text-anchor="middle">离线特征 + 在线特征服务</text>
+  </g>
+
+  <!-- Risk warnings -->
+  <g transform="translate(60, 520)">
+    <rect x="0" y="0" width="1040" height="20" rx="4" fill="rgba(136,19,55,0.15)"/>
+    <text x="520" y="14" fill="#fb7185" font-size="9" font-weight="500" text-anchor="middle">⚠ 关键风险：特征穿越 / 数据漂移 / 数据延迟 — 任一问题都会导致模型效果崩塌，且排查成本极高</text>
+  </g>
+
+  <!-- Arrow to DataLoader -->
+  <line x1="550" y1="550" x2="550" y2="580" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrow-violet)"/>
+
+  <!-- ======================================================================== -->
+  <!-- REGION: 训练供给层 (Layer 5) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="575" width="1040" height="90" rx="10" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="50" y="595" fill="#fbbf24" font-size="10" font-weight="600">⑤ 训练数据供给层 — 高效喂入 GPU 集群</text>
+
+  <g transform="translate(60, 610)">
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="100" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">数据分片 (Sharding)</text>
+    <text x="100" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">每个 GPU 独立数据切片</text>
+  </g>
+
+  <g transform="translate(300, 610)">
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="100" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">本地 SSD 预取缓存</text>
+    <text x="100" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">下一个 Epoch 提前加载</text>
+  </g>
+
+  <g transform="translate(540, 610)">
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="200" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="100" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">列式存储 (Parquet/Lance)</text>
+    <text x="100" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">随机访问效率 ×10+</text>
+  </g>
+
+  <g transform="translate(780, 610)">
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="220" height="42" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="110" y="18" fill="white" font-size="10" font-weight="600" text-anchor="middle">NVIDIA DALI</text>
+    <text x="110" y="33" fill="#94a3b8" font-size="8" text-anchor="middle">GPU 端数据预处理</text>
+  </g>
+
+  <!-- Arrow to GPU -->
+  <line x1="550" y1="665" x2="550" y2="695" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- ======================================================================== -->
+  <!-- GPU 训练集群 (Layer 6 - final) -->
+  <!-- ======================================================================== -->
+  <rect x="30" y="690" width="1040" height="90" rx="10" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="50" y="710" fill="#60a5fa" font-size="10" font-weight="600">⑥ GPU 训练集群 — 模型训练</text>
+
+  <g transform="translate(60, 720)">
+    <rect x="0" y="0" width="320" height="48" rx="6" fill="#0f172a"/>
+    <rect x="0" y="0" width="320" height="48" rx="6" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="2"/>
+    <text x="160" y="20" fill="white" font-size="12" font-weight="700" text-anchor="middle">GPU 训练集群</text>
+    <text x="160" y="38" fill="#94a3b8" font-size="9" text-anchor="middle">H100 × N · 万亿参数 · 557 万美元算力</text>
+  </g>
+
+  <!-- GPU starvation alert -->
+  <g transform="translate(430, 720)">
+    <rect x="0" y="0" width="300" height="48" rx="6" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="1.5"/>
+    <text x="150" y="20" fill="#fb7185" font-size="10" font-weight="600" text-anchor="middle">⚠ GPU Starvation</text>
+    <text x="150" y="38" fill="#fb7185" font-size="9" text-anchor="middle">DataLoader 慢 → GPU 空转 → 烧钱</text>
+  </g>
+
+  <!-- Data flow labels -->
+  <g transform="translate(780, 725)">
+    <text x="0" y="20" fill="#60a5fa" font-size="9" font-weight="500">吞吐: TB/小时</text>
+    <text x="0" y="38" fill="#60a5fa" font-size="9" font-weight="500">端到端延迟: 秒级 → 分钟级</text>
+  </g>
+
+  <!-- ======================================================================== -->
+  <!-- Legend -->
+  <!-- ======================================================================== -->
+  <g transform="translate(30, 800)">
+    <rect x="0" y="0" width="500" height="75" rx="8" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+    <text x="15" y="18" fill="#94a3b8" font-size="9" font-weight="600">图例</text>
+
+    <rect x="15" y="28" width="18" height="12" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+    <text x="38" y="38" fill="#94a3b8" font-size="8">数据源</text>
+
+    <rect x="95" y="28" width="18" height="12" rx="3" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1"/>
+    <text x="118" y="38" fill="#94a3b8" font-size="8">消息队列</text>
+
+    <rect x="190" y="28" width="18" height="12" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+    <text x="213" y="38" fill="#94a3b8" font-size="8">流批清洗</text>
+
+    <rect x="285" y="28" width="18" height="12" rx="3" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+    <text x="308" y="38" fill="#94a3b8" font-size="8">存储·特征</text>
+
+    <rect x="380" y="28" width="18" height="12" rx="3" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+    <text x="403" y="38" fill="#94a3b8" font-size="8">训练供给</text>
+
+    <rect x="15" y="48" width="18" height="12" rx="3" fill="rgba(59,130,246,0.25)" stroke="#60a5fa" stroke-width="1"/>
+    <text x="38" y="58" fill="#94a3b8" font-size="8">GPU 训练</text>
+
+    <rect x="130" y="48" width="18" height="12" rx="3" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="1"/>
+    <text x="153" y="58" fill="#94a3b8" font-size="8">风险点</text>
+  </g>
+
+  <!-- Attribution -->
+  <text x="1080" y="888" fill="#475569" font-size="7" text-anchor="end">CHANG_AI_TEAM · 技术文章系列</text>
+</svg>

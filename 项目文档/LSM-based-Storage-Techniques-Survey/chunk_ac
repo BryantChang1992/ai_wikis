@@ -1,0 +1,415 @@
+stores cold entries separately so that they can be garbage-           ploit this feature, LOCS dispatches disk writes due to flushes
+collected less frequently.                                            and merges to all channels using a least-weighted-queue-
+    Kreon [54] exploits memory-mapped I/O to reduce CPU               length policy to balance the total amount of work allocated
+overhead by avoiding unnecessary data copying. It imple-              to each channel. To further improve the I/O parallelism for
+ments a customized memory-mapped I/O manager in the                   partitioned LSM-trees, LOCS places SSTables from differ-
+Linux kernel to control cache replacement and to enable               ent levels with similar key ranges into different channels so
+blind writes. To improve range query performance, Kreon               that these SSTables can be read in parallel.
+reorganizes data during query processing by storing the ac-               NoFTL-KV [73] proposes to extract the flash transla-
+cessed key-value pairs together in a new place.                       tion layer (FTL) from the storage device into the key-value
+    NoveLSM [39] is an implementation of LSM-trees on                 store to gain direct control over the storage device. Tradi-
+NVMs. NoveLSM adds an NVM-based memory component                      tionally, the FTL translates the logical block address to the
+to serve writes when the DRAM memory component is full                physical block address to implement wear leveling, which
+so that writes can still proceed without being stalled. It fur-       improves the lifespan of SSDs by distributing writes evenly
+ther optimizes the write performance of the NVM memory                to all blocks. NoFTL-KV argues for a number of advantages
+component by skipping logging since NVM itself provides               of extracting FTL, such as pushing tasks down to the storage
+persistence. Finally, it exploits I/O parallelism to search mul-      device, performing more efficient data placement to exploit
+tiple levels concurrently to reduce lookup latency.                   I/O parallelism, and integrating the garbage-collection pro-
+                                                                      cess of the storage device with the merge process of LSM-
+3.4.4 Native Storage                                                  trees to reduce write amplification.
+
+Finally, the last line of work in this category attempts to per-
+                                                                      3.4.5 Summary
+form native management of storage devices, such as HDDs
+and SSDs, to optimize the performance of LSM-tree imple-
+                                                                      In this subsection, we have reviewed the LSM-tree improve-
+mentations.
+                                                                      ments exploiting hardware platforms, including large mem-
+    The LSM-tree-based Direct Storage system (LDS) [49]
+                                                                      ory [15, 19], multi-core [34], SSD/NVM [13, 20, 39, 44, 46,
+bypasses the file system to better exploit the sequential and
+                                                                      54, 71], and native storage [49, 74, 73]. To manage large mem-
+aggregated I/O patterns exhibited by LSM-trees. The on-
+                                                                      ory components, both FloDB [15] and Accordion [19] take a
+disk layout of LDS contains three parts: chunks, a version
+                                                                      multi-layer approach to limit random writes to a small mem-
+log, and a backup log. Chunks store the disk components of
+                                                                      ory area. The difference is that FloDB [15] only uses two
+the LSM-tree. The version log stores the metadata changes
+                                                                      layers, while Accordion [19] uses multiple layers to provide
+of the LSM-tree after each flush and merge. For example, a
+                                                                      better concurrency and memory utilization. For multi-core
+version log record can record the obsolete chunks and the
+                                                                      machines, cLSM [34] presents a set of new concurrency
+new chunks resulting from a merge. The version log is reg-
+                                                                      control algorithms to improve concurrency.
+ularly checkpointed to aggregate all changes so that the log
+                                                                          A general theme of the improvements for SSD/NVM is
+can be truncated. Finally, the backup log provides durability
+                                                                      to exploit the high random read throughput while reducing
+for in-memory writes by write-ahead logging.
+                                                                      the write amplification of LSM-trees to improve the lifespan
+    LOCS [74] is an implementation of the LSM-tree on
+                                                                      of these storage devices. The FD-tree [44] and its successor
+open-channel SSDs. Open-channel SSDs expose internal I/O
+                                                                      FD+tree [71] propose to use fractional cascading [22] to im-
+parallelism via an interface called channels, where each chan-
+                                                                      prove point lookup performance so that only one random I/O
+nel functions independently as a logical disk device. This
+                                                                      is needed for searching each component. However, today’s
+                                                                      implementations generally prefer Bloom filters since unnec-
+                                        insert                        essary I/Os can be mostly avoided by point lookups. Sep-
+ (1) validate entries
+                           LSM-Tree     key, location write           arating keys from values [20, 46, 54] can significantly im-
+                                                         append       prove the write performance of LSM-trees since only keys
+           garbage collection                            key, value
+                              (2) append valid entries                are merged. However, this leads to lower query performance
+      (3) remove log tail
+                                                                      and space utilization. Meanwhile, values must be garbage-
+         tail           Append-only Log
+                                                                      collected separately to reclaim disk space, which is simi-
+                                                                      lar to the traditional log-structured file system design [60].
+Fig. 13: WiscKey stores values into an append-only log to             Finally, some recent work has proposed to perform native
+reduce the write amplification of the LSM-tree                        management of storage devices, including HDDs [49] and
+LSM-based Storage Techniques: A Survey                                                                                           15
+
+
+SSDs [73, 74], which can often bring large performance gains                                                        SSTable
+                                                                   level 0                                          SSTable Group
+by exploiting the sequential and non-overwriting I/O pat-
+terns exhibited by LSM-trees.
+                                                                               000   001   010    011    100 101 110       111
+                                                                   level 1
+3.5 Handling Special Workloads
+                                                                  Fig. 14: The LSM-trie uses the prefix of hash values to man-
+We now review some existing LSM-tree improvements that            age SSTables. In this example, each level uses three bits to
+target special workloads to achieve better performance. The       perform partitioning.
+considered special workloads include temporal data, small
+data, semi-sorted data, and append-mostly data.
+     The log-structured history access method (LHAM) [51]         the latest version of the key is stored so that only one fil-
+improves the original LSM-tree to more efficiently support        ter check is needed by a point lookup. To reduce the meta-
+temporal workloads. The key improvement made by LHAM              data overhead of SSTables, SlimDB uses a multi-level index
+is to attach a range of timestamps to each component to fa-       structure as follows: It first maps each prefix key into a list of
+cilitate the processing of temporal queries by pruning irrel-     pages that contain this prefix key so that the key-value pairs
+evant components. It further guarantees that the timestamp        can be retrieved efficiently given a prefix key. It then stores
+ranges of components are disjoint from one another. This is       the range of suffix keys for each page to efficiently support
+accomplished by modifying the rolling merge process to al-        point lookup queries based on both prefix and suffix keys.
+ways merge the records with the oldest timestamps from a               Mathieu et al. [48] proposed two new merge policies op-
+component Ci into Ci+1 .                                          timized for append-mostly workloads with a bounded num-
+     The LSM-trie [76] is an LSM-based hash index for man-        ber of components. One problem of both leveling and tiering
+aging a large number of key-value pairs where each key-           is that the number of levels depends on the total number of
+value pair is small. It proposes a number of optimizations to     entries. Thus, with an append-mostly workload, where the
+reduce the metadata overhead. The LSM-trie adopts a parti-        amount of data keeps increasing, the total number of lev-
+tioned tiering design to reduce write amplification. Instead      els will be unbounded in order to achieve the write cost de-
+of storing the key ranges of each SSTable directly, the LSM-      scribed in Section 2.3. To address this, this work studied the
+trie organizes its SSTables using the prefix of their hash val-   theoretical lower bound of the write cost of an online merge
+ues to reduce the metadata overhead, as shown in Figure 14.       policy for an append-mostly workload given at most K com-
+The LSM-trie further eliminates the index page, instead as-       ponents. It further proposed two merge policies, MinLatency
+signing key-value pairs into fixed-size buckets based on their    and Binomial, to achieve this lower bound.
+hash values. Overflow key-value pairs are assigned to under-           The four improvements presented here each target a spe-
+flow buckets and this information is recorded in a migration      cialized workload. It should be noted that their optimiza-
+metadata table. The LSM-trie also builds a Bloom filter for       tions may be useless or even inapplicable for general pur-
+each bucket. Since there are multiple SSTables in each group      pose workloads. For example, the LSM-trie [76] only sup-
+at a level, the LSM-trie clusters all Bloom filters of the same   ports point lookups, while SlimDB [59] only supports a lim-
+logical bucket of these SSTables together so that they can be     ited form of range queries by fetching all values for a prefix
+fetched using a single I/O by a point lookup query. In gen-       key. The adoption of these optimizations should be chosen
+eral, the LSM-trie is mainly effective when the number of         carefully based on the given workload.
+key-value pairs is so large that even the metadata, e.g., index
+pages and Bloom filters, cannot be totally cached. However,       3.6 Auto-Tuning
+the LSM-trie only supports point lookups since its optimiza-
+tions heavily depend on hashing.                                  We now review some research efforts to develop auto-tuning
+     SlimDB [59] targets semi-sorted data in which each key       techniques for the LSM-tree to reduce the tuning burden for
+contains a prefix x and a suffix y. It supports normal point      the end-user. Some techniques perform co-tuning of all pa-
+lookups, given both the prefix and the suffix, as well as re-     rameters to find an optimal design, while others focus on
+trieving all the key-values pairs sharing the same prefix key     some specific aspect such as merge policies, Bloom filters,
+x. To reduce write amplification, SlimDB adopts a hybrid          or data placement.
+structure with tiering on the lower levels and leveling on
+the higher levels. SlimDB further uses multi-level cuckoo         3.6.1 Parameter Tuning
+filters [32] to improve point lookup performance for levels
+that use the tiering merge policy. At each level, a multi-level   Lim et al. [45] presented an analytical model that incorpo-
+cuckoo filter maps each key to the ID of the SSTable where        rates the key distribution to improve the cost estimation of
+16                                                                                                      Chen Luo, Michael J. Carey
+
+
+LSM-tree operations and further used this model to tune the       range query cost than leveling since the number of compo-
+parameters of LSM-trees. The key insight is that the con-         nents is increased. Dostoevsky also proposes a hybrid policy
+ventional worse-case analysis (Section 2.3) fails to take the     that has at most Z components in the largest level and at most
+key distribution into consideration. If a key is found to be      K components at each of the smaller levels, where Z and K
+deleted or updated during an early merge, it will not par-        are tunable. It then finds an optimal LSM-tree design for a
+ticipate in future merges and thus its overall write cost will    given workload using a similar method as Monkey [25]. It
+be reduced. The proposed model assumes a priori knowl-            is worth noting that the performance evaluation of Dosto-
+edge of the key distribution using a probability mass func-       evsky [24] is very thorough; it was performed against well-
+tion fX (k) that measures the probability that a specific key     tuned LSM-trees to show that Dostoevsky strictly dominates
+k is written by a write request. Given p total write requests,    the existing LSM-tree designs under certain workloads.
+the number of unique keys is estimated using its expectation          Thonangi and Yang [70] formally studied the impact of
+as Unique(p) = N − ∑k∈K (1 − fX (k)) p , where N is the total     partitioning on the write cost of LSM-trees. This work first
+number of unique keys and K is the total key space. Based         proposed a ChooseBest policy that always selects an SSTable
+on this formula, the total write cost for p writes can be com-    with the fewest overlapping SSTables at the next level to
+puted by summing up the cost of all flushes and merges,           merge to bound the worst case merge cost. Although the
+except that duplicates keys, if any, are excluded from future     ChooseBest policy outperforms the unpartitioned merge pol-
+merges. Finally, the cost model is used to find the optimal       icy in terms of the overall write cost, there are certain peri-
+system parameters by minimizing the total write cost.             ods when the unpartitioned merge policy has a lower write
+     Monkey [25, 26] co-tunes the merge policy, size ratio,       cost since the current level becomes empty after a full merge,
+and memory allocation between memory components and               which reduces the future merge cost. To exploit this ad-
+Bloom filters to find an optimal LSM-tree design for a given      vantage of full merges, this work further proposed a mixed
+workload. The first contribution of Monkey is to show that        merge policy that selectively performs full merges or parti-
+the usual Bloom filter memory allocation scheme, which            tioned merges based on the relative size between adjacent
+allocates the same number of bits per key for all Bloom           levels and that dynamically learns these size thresholds to
+filters, results in sub-optimal performance. The intuition is     minimize the overall write cost for a given workload.
+that the T components at the last level, which contain most
+of the data, consume most of the Bloom filter memory but
+their Bloom filters can only save at most T disk I/Os for
+a point lookup. To minimize the overall false positive rates      3.6.3 Dynamic Bloom Filter Memory Allocation
+across all of the Bloom filters, Monkey analytically shows
+that more bits should be allocated to the components at the
+                                                                  All of the existing LSM-tree implementations, even Mon-
+lower levels so that the Bloom filter false positive rates will
+                                                                  key [25], adopt a static scheme to manage Bloom filter mem-
+be exponentially increasing. Under this scheme, the I/O cost
+                                                                  ory allocation. That is, once the Bloom filter is created for
+of zero-result point lookup queries will be dominated by the
+                                                  M               a component, its false positive rate remains unchanged. In-
+last level, and the new I/O cost becomes O(e− N ) for level-      stead, ElasticBF [83] dynamically adjusts the Bloom filter
+                    M
+ing and O(T · e− N ) for tiering. Monkey then finds an opti-      false positive rates based on the data hotness and access
+mal LSM-tree design by maximizing the overall throughput          frequency to optimize read performance. Given a budget
+using a cost model similar to the one in Section 2.3 consid-      of k Bloom filter bits per key, ElasticBF constructs multi-
+ering the workload’s mix of the various operations.               ple smaller Bloom filters with k1 , · · · , kn bits so that k1 +
+                                                                  · · · + kn = k. When all of these Bloom filters are used to-
+3.6.2 Tuning Merge Policies                                       gether, they provide the same false positive rate as the origi-
+                                                                  nal monolithic Bloom filter. ElasticBF then dynamically ac-
+Dostoevsky [24] shows that the existing merge policies, that      tivates and deactivates these Bloom filters based on the ac-
+is, tiering and leveling, are sub-optimal for certain work-       cess frequency to minimize the total amount of extra I/O.
+loads. The intuition is that for leveling, the cost of zero-      Their experiments reveal that ElasticBF is mainly effective
+result point lookups, long range queries, and space ampli-        when the overall Bloom filter memory is very limited, such
+fication are dominated by the largest level, but the write cost   as only 4 bits per key on average. In this case, the disk
+derives equally from all of the levels. To address this, Dosto-   I/Os caused by the Bloom filter false positives will be dom-
+evsky introduces a lazy-leveling merge policy that performs       inant. When memory is relatively large and can accommo-
+tiering at the lower levels but leveling at the largest level.    date more bits per key, such as 10, the benefit of ElasticBF
+Lazy-leveling has much better write cost than leveling, but       becomes limited since the number of disk I/Os caused by
+has similar point lookup cost, long range query cost, and         false positives is much smaller than the number of actual
+space amplification to leveling. It only has a worse short        disk I/Os to locate the keys.
+LSM-based Storage Techniques: A Survey                                                                                         17
+
+
+3.6.4 Optimizing Data Placement                                                                        User(Id, Name, Age)
+                                                                                                         (101, Alice, 25)
+Mutant [80] optimizes the data placement of the LSM-tree               Primary Index (103, Charlie, 30) (102, Bob, 25)
+on cloud storage. Cloud vendors often provide a variety of                                                 (Alice, 101)
+                                                                        Name Index     (Charlie, 103)
+storage options with different performance characteristics                                                  (Bob, 102)
+and monetary costs. Given a monetary budget, it can be im-               Age Index                           (25, 101)
+                                                                                         (30, 103)
+portant to place SSTables on different storage devices prop-                                                 (25, 102)
+                                                                                         Memory                Disk
+erly to maximize system performance. Mutant solves this
+problem by monitoring the access frequency of each SSTable              Fig. 15: Example LSM-based secondary indexes
+and finding a subset of SSTables to be placed in fast storage
+so that the total number of accesses to fast storage is max-
+imized while the number of selected SSTables is bounded.           indexing techniques. In general, an LSM-based storage sys-
+This optimization problem is equivalent to a 0/1 knapsack          tem will contain a primary index with multiple secondary
+problem, which is N/P hard, and can be approximated using          indexes. The primary index stores the record values indexed
+a greedy algorithm.                                                by their primary keys. Each secondary index stores the cor-
+                                                                   responding primary keys for each secondary key using either
+                                                                   a composite key approach or a key list approach. In the com-
+3.6.5 Summary
+                                                                   posite key approach, the index key of a secondary index is
+                                                                   the composition of the secondary key and the primary key.
+The techniques presented in this category aim at automat-
+                                                                   In the key list approach, a secondary index associates a list
+ically tuning LSM-trees for given workloads. Both Lim et
+                                                                   of primary keys with each secondary key. Either way, to pro-
+al. [45] and Monkey [25, 26] attempt to find optimal designs
+                                                                   cess a query using a secondary index, the secondary index is
+for LSM-trees to maximize system performance. However,
+                                                                   first searched to return a list of matching primary keys, and
+these two techniques are complimentary to each other. Lim
+                                                                   those are then used to fetch the records from the primary
+et al. [45] uses a novel analytical model to improve the cost
+                                                                   index if needed. An example of LSM-based secondary in-
+estimation but only focuses on tuning the maximum level
+                                                                   dexing is shown in Figure 15. The example User dataset has
+sizes of the leveling merge policy. In contrast, Monkey [25,
+                                                                   three fields, namely Id, Name, and Age, where Id is the pri-
+26], as well as its follow-up work Dostoevsky [24], co-tune
+                                                                   mary key. The primary index stores full records indexed by
+all parameters of LSM-trees to find an optimal design but
+                                                                   Id, while the two secondary indexes store secondary keys,
+only optimize for the worst-case I/O cost. It would be use-
+                                                                   i.e., Name and Age, and their corresponding Ids.
+ful to combine these two techniques together to enable more
+accurate performance tuning and prediction.
+     Dostoevsky [24] extends the design space of LSM-trees         3.7.1 Index Structures
+with a new merge policy by combining leveling and tiering.
+This is very useful for certain workloads that require effi-       The Log-Structured Inverted Index (LSII) [75] is an index
+cient writes, point lookups, and long range queries with less      structure designed for exact real-time keyword search on
+emphasis on short range queries. Thonangi and Yang [70]            microblogs. A query q searches for the top K microblogs
+proposed to combine full merges with partitioned merges to         with the highest scores, which are computed as the weighted
+achieve better write performance. Other tuning techniques          sum of significance, freshness, and relevance. To support
+focus on some aspects of the LSM-tree implementation, such         efficient query processing, each keyword in a disk compo-
+as tuning Bloom filters by ElasticBF [83] and optimizing           nent stores three inverted lists of primary keys in descend-
+data placement by Mutant [80].                                     ing order of significance, freshness, and frequency, respec-
+                                                                   tively. Storing three inverted lists enables queries to be pro-
+                                                                   cessed efficiently via the threshold algorithm [31], which
+3.7 Secondary Indexing                                             stops query evaluation once the upper bound of the scores of
+                                                                   the unseen microbiologs is lower than the current top K an-
+So far, we have discussed LSM-tree improvements in a key-          swers. However, only one inverted list is stored in the mem-
+value store setting that only contains a single LSM-tree. Now      ory component since documents in the memory component
+we discuss LSM-based secondary indexing techniques to              often have high freshness and most of them will be accessed
+support efficient query processing, including index struc-         by queries. Moreover, storing multiple inverted lists would
+tures, index maintenance, statistics collection, and distributed   significantly increase the memory component’s write cost.
+indexing.                                                              Kim et al. [42] conducted an experimental study of LSM-
+     Before we present these research efforts in detail, we        based spatial index structures for geo-tagged data, includ-
+first discuss some basic concepts for LSM-based secondary          ing LSM-tree versions of the R-tree [35], Dynamic Hilbert
+18                                                                                                           Chen Luo, Michael J. Carey
+
+
+B+ -tree (DHB-tree) [43], Dynamic Hilbert Value B+ -tree                                        [T1, T4]            [T1, T2] Filter
+(DHVB-tree) [43], Static Hilbert B+ -tree (SHB-tree) [33],             upsert (k1, v4, T4)
+                                                                                              (k1, v4, T4)        (k1, v1, T1)
+and Spatial Inverted File (SIF) [40]. An R-tree is a balanced                                 (k3, v3, T3)        (k2, v2, T2)
+search tree that stores multi-dimensional spatial data using                                    Memory               Disk
+their minimum bounding rectangles. DHB-trees and DHVB-
+trees store spatial points directly into B+ -trees using space-       Fig. 16: Filter update example: the dataset contains three
+filling curves. SHB-trees and SIFs exploit a grid-based ap-           fields, a primary key (k), a value (v), and a creation time
+proach by statically decomposing a two-dimensional space              (T) that is also the filter key
+into a multi-level grid hierarchy. For each spatial object, the
+IDs of its overlapping cells are stored. The difference be-
+                                                                      scheme can be further classified as being either eager or lazy.
+tween these two structures is that an SHB-tree stores the
+                                                                      The eager key list scheme always reads the previous list to
+pairs of cell IDs and primary keys in a B+ -tree, while a SIF
+                                                                      create a full new list with the new entry added and inserts
+stores a list of primary keys for each cell ID in an inverted in-
+                                                                      the new list into the memory component. The lazy key list
+dex. The key conclusion of this study is that there is no clear
+                                                                      scheme simply maintains multiple partial lists at each com-
+winner among these index structures, but the LSM-based R-
+                                                                      ponent. The experimental results suggest that the eager in-
+tree performs reasonably well for both ingestion and query
+                                                                      verted list scheme incurs a large overhead on data ingestion
+workloads without requiring too much tuning. It also han-
+                                                                      because of the point lookups and high write amplification.
+dles both point and non-point data well. Moreover, for non-
+                                                                      When the query selectivity becomes larger, that is, when
+index-only queries, the final primary key lookup step is gen-
+                                                                      the result set contains more entries, the performance differ-
+erally dominant since it often requires a separate disk I/O for
+                                                                      ence between the lazy key list scheme and the composite key
+each primary key. This further diminished the differences
+                                                                      scheme diminishes, as the final point lookup step becomes
+between these spatial indexing methods.
+                                                                      dominant. Finally, filters were found to be very effective
+    Filters [11] augment each component of the primary and            with small storage overhead for time-correlated workloads.
+secondary indexes with a filter to enable data pruning based          However, the study did not consider cleaning up secondary
+on a filter key during query processing. A filter stores the          indexes in the case of updates, which means that secondary
+minimum and maximum values of the chosen filter key for               indexes could return obsolete primary keys.
+the entries in a component. Thus, a component can be pruned
+by a query if the search condition is disjoint with the mini-         3.7.2 Index Maintenance
+mum and maximum values of its filter. Though a filter can
+be built on arbitrary fields, it is really only effective for time-   A key challenge of maintaining LSM-based secondary in-
+correlated fields since components are naturally partitioned          dexes is handling updates. For a primary LSM-tree, an up-
+based on time and are likely to have disjoint filter ranges.          date can blindly add the new entry (with the identical key)
+Note that some special care is needed to maintain filters             into the memory component so that the old entry is automat-
+when a key is updated or deleted. In this case, the filter of the     ically deleted. However, this mechanism does not work for
+memory component must be maintained based on both the                 a secondary index since a secondary key value can change
+old record and the new record so that future queries will not         during an update. Extra work must be performed to clean up
+miss new updates. Consider the example in Figure 16, which            obsolete entries from secondary indexes during updates.
+depicts a filtered primary LSM-tree. After upserting the new               Diff-Index [66] presents four index maintenance schemes
+record (k1, v4, T4), the filter of the memory component be-           for LSM-based secondary indexes, namely sync-full, sync-
+comes [T1, T4] so that future queries will properly see that          insert, async-simple, and async-session. During an update,
+the old record (k1, v1, T1) in the disk component has been            two steps must be performed to update a secondary index,
+deleted. Otherwise, if the filter of the memory component             namely inserting the new entry and cleaning up the old en-
+were only maintained based on the new value T4, which                 try. Inserting the new entry is very efficient for LSM-trees,
+would be [T3, T4], a query with search condition T ≤ T2               but cleaning up the old entry is generally expensive since
+would erroneously prune the memory component and thus                 it requires a point lookup to fetch the old record. Sync-full
+actually see the deleted record (k1, v1, T1).                         performs these two steps synchronously during the ingestion
+    Qadar et al. [57] conducted an experimental study of              time. It optimizes for query performance since secondary in-
+LSM-based secondary indexing techniques including filters             dexes are always up-to-date, but incurs a high overhead dur-
+and secondary indexes. For filters, they evaluated component-         ing data ingestion because of the point lookups. Sync-insert
+level range filters and Bloom filters on secondary keys. For          only inserts new data into secondary indexes, while cleaning
+secondary indexes, they evaluated two secondary indexing              up obsolete entries lazily by queries. Async-simple performs
+schemes based on composite keys and key lists. Depend-                index maintenance asynchronously but guarantees its even-
+ing on how the secondary index is maintained, the key list            tual execution by appending updates into an asynchronous
+LSM-based Storage Techniques: A Survey                                                                                         19
+
+
+update queue. Finally, async-session enhances async-simple        3.7.3 Statistics Collection
+with session consistency for applications by storing new up-
+dates temporarily into a local cache on the client-side.          Absalyamov et al. [7] proposed a lightweight statistics col-
+                                                                  lection framework for LSM-based systems. The basic idea
+    Deferred Lightweight Indexing (DELI) [67] enhances            is to integrate the task of statistics collection into the flush
+the sync-insert update scheme of Diff-Index [66] with a new       and merge operations to minimize the statistics maintenance
+method to cleanup secondary indexes by scanning the pri-          overhead. During flush and merge operations, statistical syn-
+mary index components. Specifically, when multiple records        opses, such as histograms and wavelets, are created on-the-
+with identical keys are encountered when scanning primary         fly and are sent back to the system catalog. Due to the multi-
+index components, the obsolete records are used to produce        component nature of LSM-trees, the system catalog stores
+anti-matter entries to clean up the secondary indexes. Note       multiple statistics for a dataset. To reduce the overhead dur-
+that this procedure can be naturally integrated with the merge    ing query optimization, mergeable statistics, such as equi-
+process of the primary index to reduce the extra overhead.        width histograms, are merged beforehand. For statistics that
+Meanwhile, since secondary indexes are not always up-to-          are not mergeable, multiple synopses are kept to improve the
+date, queries must always validate search results by fetching     accuracy of cardinality estimation.
+records from the primary index. Because of this, DELI can-
+not support index-only queries efficiently since point lookups    3.7.4 Distributed Indexing
+must be performed for validation.
+                                                                  Joseph et al. [29] described two basic implementations of
+     Luo and Carey [47] presented several techniques for the      distributed secondary indexes on top of HBase [3], namely
+efficient exploitation and maintenance of LSM-based auxil-        global secondary indexes and local secondary indexes, based
+iary structures, including secondary indexes and filters. They    on the two common approaches to indexing data in a parallel
+first conducted an experimental study to evaluate the effec-      database. A global secondary index is implemented as a sep-
+tiveness of various point lookup optimizations, including a       arate table that stores secondary keys plus their correspond-
+newly proposed batched lookup algorithm that accesses com-        ing primary keys, and it is maintained using co-processors
+ponents sequentially for a batch of keys, stateful B+ -tree       provided by HBase (similar to database triggers). This ap-
+search cursors, and blocked bloom filters [56]. They found        proach is easy to implement, but incurs a higher commu-
+that the batched lookup algorithm is the most effective op-       nication cost during data ingestion since a secondary index
+timization for reducing random I/Os, while the other two          partition may be stored at a separate node from the primary
+are mainly effective for non-selective queries at further re-     index partition. A local secondary index avoids the com-
+ducing the in-memory search cost. To maintain auxiliary           munication cost during data ingestion by co-locating each
+structures efficiently, two strategies were further proposed.     secondary index partition together with the corresponding
+The key insight is to maintain and exploit a primary key in-      primary index partition. However, the downside for HBase
+dex, which only stores primary keys plus timestamps, to re-       is that this approach has to be implemented from scratch.
+duce disk I/Os. A validation strategy was proposed to main-       Moreover, all partitions of a local secondary index must be
+tain secondary indexes lazily in the background, eliminating      searched, eve n for highly selective queries, since a local
+the synchronous point lookup overhead. Queries must vali-         secondary index is partitioned by primary (not secondary)
+date the primary keys returned by secondary indexes either        keys.
+by fetching records directly from the primary index or by             Zhu et al. [85] introduced an efficient approach for load-
+searching the primary key index to ensure that the returned       ing global secondary indexes using three steps: First, the pri-
+primary keys still have the latest timestamps. Secondary in-      mary index at each partition is scanned and sorted to create
+dexes are cleaned up efficiently in the background using the      a local secondary index. Meanwhile, the statistics of the sec-
+primary key index to avoid accessing full records; the basic      ondary key are collected to facilitate the next step. Second,
+idea for cleanup is to search the primary key index to vali-      based on the collected statistics from the first stage, the in-
+date whether each secondary index entry still has the latest      dex entries of the secondary index will be range-partitioned
+timestamp, as in query validation. Compared to DELI [67],         and these partitions will be assigned to physical nodes. Fi-
+the validation strategy [47] significantly reduces the I/O cost   nally, based on the assigned secondary key range, each node
+for cleaning up secondary indexes since only the primary          fetches secondary keys and their primary keys from all other
+key index is accessed. A mutable-bitmap strategy was also         nodes, which can be done efficiently by scanning the local
+introduced to efficiently maintain a primary index with fil-      secondary index built in the first stage.
+ters. It attaches a mutable bitmap to each disk component so          Duan et al. [30] proposed a lazy maintenance approach
+that old records can be directly marked as deleted, thereby       for materialized views on distributed LSM-trees. The basic
+avoiding the need to maintain filters based on old records.       idea is to append new updates into a delta list of the material-
+20                                                                                                      Chen Luo, Michael J. Carey
+
+Table 3: Summary of trade-offs made by LSM-tree improvements (↑ denotes increasing, ↓ denotes decreasing, − denotes
+unaffected, and × denotes unsupported)
+
+ Publication          Write     Point Lookup    Short Range   Long Range      Space      Remark
+ WB-tree [12]          ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ LWC-tree [78,79]      ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ PebblesDB [58]        ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ dCompaction [53]      ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ Zhang et al. [82]     ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ SifrDB [50]           ↑↑            ↓              ↓↓            ↓↓            ↓↓       Tiering
+ Skip-tree [81]        ↑             ↓              ↓             ↓             −        Mutable skip buffers
+                                                                                         Separate cold entries from hot entries; de-
+ TRIAD [16]             ↑            ↓               ↓             ↓            −        lay merges at level 0; use logs as flushed
+                                                                                         components
+ VT-tree [64]           ↑            −               ↓             ↓            ↓        Stitching merge
+ MaSM [13]             ↑↑            ↓              ↓↓             ↓            ↓        Lazy leveling
+ WiscKey [46]          ↑↑↑           ↓              ↓↓↓           ↓↓↓          ↓↓↓       KV separation
+ HashKV [20]           ↑↑↑           ↓              ↓↓↓           ↓↓↓          ↓↓↓       KV separation
+ Kreon [54]            ↑↑↑           ↓              ↓↓↓           ↓↓↓          ↓↓↓       KV separation
+ LSM-trie [76]         ↑↑            ↑               ×             ×           ↓↓        Tiering + hashing
+                                                                                         Only support range queries for each key
+ SlimDB [59]           ↑↑            ↑             ↓↓/×           ↓/×           ↓
+                                                                                         prefix group
+ Lim et al. [45]       ↑             −              −             −             −        Exploit data redundancy

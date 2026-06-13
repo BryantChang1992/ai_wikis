@@ -1,0 +1,415 @@
+                                          Noname manuscript No.
+                                          (will be inserted by the editor)
+
+
+
+
+                                         LSM-based Storage Techniques: A Survey
+                                         Chen Luo · Michael J. Carey
+arXiv:1812.07527v3 [cs.DB] 19 Jul 2019
+
+
+
+
+                                         Received: date / Accepted: date
+
+
+                                         Abstract Recently, the Log-Structured Merge-tree (LSM-            tunability, and simplification of concurrency control and re-
+                                         tree) has been widely adopted for use in the storage layer of     covery. These advantages have enabled LSM-trees to serve
+                                         modern NoSQL systems. Because of this, there have been            a large variety of workloads. As reported by Facebook [28],
+                                         a large number of research efforts, from both the database        RocksDB, an LSM-based key-value store engine, has been
+                                         community and the operating systems community, that try           used for real-time data processing [23], graph processing [2],
+                                         to improve various aspects of LSM-trees. In this paper, we        stream processing [23], and OLTP workloads [5].
+                                         provide a survey of recent research efforts on LSM-trees so           Due to the popularity of LSM-trees among modern data
+                                         that readers can learn the state-of-the-art in LSM-based stor-    stores, a large number of improvements on LSM-trees have
+                                         age techniques. We provide a general taxonomy to classify         been proposed by the research community; these have come
+                                         the literature of LSM-trees, survey the efforts in detail, and    from both the database and operating systems communi-
+                                         discuss their strengths and trade-offs. We further survey sev-    ties. In this paper, we survey these recent research efforts
+                                         eral representative LSM-based open-source NoSQL systems           on improving LSM-trees, ranging from key-value store set-
+                                         and discuss some potential future research directions result-     tings with a single LSM-tree to more general database set-
+                                         ing from the survey.                                              tings with secondary indexes. This paper aims to serve as
+                                                                                                           a guide to the state-of-the-art in LSM-based storage tech-
+                                         Keywords LSM-tree · NoSQL · Storage Management ·
+                                                                                                           niques for researchers, practitioners, and users. We first pro-
+                                         Indexing
+                                                                                                           vide a general taxonomy to classify the existing LSM-tree
+                                                                                                           improvements based on the specific aspects that they attempt
+                                                                                                           to optimize. We then present the various improvements in
+                                         1 Introduction                                                    detail and discuss their strengths and trade-offs. To reflect
+                                                                                                           how LSM-trees are being used in real systems, we further
+                                         The Log-Structured Merge-tree (LSM-tree) has been widely          survey five representative LSM-based open-source NoSQL
+                                         adopted in the storage layers of modern NoSQL systems,            systems, including LevelDB [4], RocksDB [6], HBase [3],
+                                         including BigTable [21], Dynamo [27], HBase [3], Cassan-          Cassandra [1], and AsterixDB [9]. Finally, we also identify
+                                         dra [1], LevelDB [4], RocksDB [6], and AsterixDB [10].            several interesting future research directions as the result of
+                                         Different from traditional index structures that apply in-place   categorizing the existing LSM-tree improvements.
+                                         updates, the LSM-tree first buffers all writes in memory and          The reminder of this paper is organized as follows. Sec-
+                                         subsequently flushes them to disk and merges them using           tion 2 briefly reviews the history of LSM-trees and presents
+                                         sequential I/Os. This design brings a number of advantages,       the basics of today’s LSM-tree implementations. Section 3
+                                         including superior write performance, high space utilization,     presents a taxonomy of the proposed LSM-tree improve-
+                                         Chen Luo
+                                                                                                           ments and surveys the existing work using that taxonomy.
+                                         University of California, Irvine                                  Section 4 surveys some representative LSM-based NoSQL
+                                         E-mail: cluo8@uci.edu                                             systems, focusing on their storage layers. Section 5 reflects
+                                         Michael J. Carey                                                  on the result of this survey, identifying several outages and
+                                         University of California, Irvine                                  opportunities for future work on LSM-based storage sys-
+                                         E-mail: mjcarey@ics.uci.edu                                       tems. Finally, Section 6 concludes the paper.
+2                                                                                                            Chen Luo, Michael J. Carey
+
+
+                                                                      database storage. Postgres appended all writes into a sequen-
+                                              (k1,v4)
+                                                                      tial log, enabling fast recovery and “time-travel” queries.
+             (k1,v4)                                                  It used a background process called the vacuum cleaner to
+      (k1,v1)(k2,v2) (k3,v3)
+                                                                      continuously garbage-collect obsolete records from the log.
+                                       (k1,v1)(k2,v2) (k3,v3)
+                                                                      Similar ideas have been adopted by the file system commu-
+    (a) In-place update structure (b) Out-of-place update structure
+                                                                      nity to fully utilize disk write bandwidth, such as in the Log-
+Fig. 1: Examples of in-place and out-of-place update struc-           Structured File System (LFS) [60].
+tures: each entry contains a key (denoted as “k”) and a value                Prior to the LSM-tree, the approaches to log-structured
+(denoted as “v”)                                                      storage suffered from several key problems. First and fore-
+                                                                      most, storing data into append-only logs leads to low query
+                                                                      performance, as related records are scattered across the log.
+2 LSM-tree Basics                                                     Another problem is low space utilization due to obsolete
+                                                                      records that have not yet been removed. Even though var-
+In this section, we present the background of LSM-trees.              ious data reorganization processes were designed, there was
+We first briefly review of the history of work on LSM-trees.          no principled cost model to analyze the trade-offs among
+We then discuss in more detail the basic structure of LSM-            the write cost, read cost, and space utilization, which made
+trees as used in today’s storage systems. We conclude this            early log-structured storage hard to tune; data reorganization
+section by presenting a cost analysis of writes, reads, and           could easily become a performance bottleneck [62].
+space utilization of LSM-trees.                                              The LSM-tree [52], proposed in 1996, addressed these
+                                                                      problems by designing a merge process which is integrated
+2.1 History of LSM-trees                                              into the structure itself, providing high write performance
+                                                                      with bounded query performance and space utilization. The
+In general, an index structure can choose one of two strate-          original LSM-tree design contains a sequence of compo-
+gies to handle updates, that is, in-place updates and out-of-         nents C0 , C1 , · · · , Ck , as shown in Figure 2. Each compo-
+place updates. An in-place update structure, such as a B+ -           nent is structured as a B+ -tree. C0 resides in memory and
+tree, directly overwrites old records to store new updates.           serves incoming writes, while all remaining components C1 ,
+For example in Figure 1a, to update the value associated              · · · , Ck reside on disk. When Ci is full, a rolling merge pro-
+with key k1 from v1 to v4, the index entry (k1, v1) is di-            cess is triggered to merge a range of leaf pages from Ci into
+rectly modified to apply this update. These structures are            Ci+1 . This design is often referred to as the leveling merge
+often read-optimized since only the most recent version of            policy [24, 25] today. However, as we shall see later, the
+each record is stored. However, this design sacrifices write          originally proposed rolling merge process is not used by to-
+performance, as updates incur random I/Os. Moreover, in-              day’s LSM-based storage systems due to its implementation
+dex pages can be fragmented by updates and deletes, thus              complexity. The original paper on LSM-trees [52] further
+reducing the space utilization.                                       showed that under a stable workload, where the number of
+     In contrast, an out-of-place update structure, such as an        levels remains static, write performance is optimized when
+LSM-tree, always stores updates into new locations instead            the size ratios Ti = |Ci+1 |/|Ci | between all adjacent compo-
+of overwriting old entries. For example in Figure 1b, the up-         nents are the same. This principle has impacted all subse-
+date (k1, v4) is stored into a new place instead of updating          quent implementations and improvements of LSM-trees.
+the old entry (k1, v1) directly. This design improves write                  In parallel to the LSM-tree, Jagadish et al. [37] proposed
+performance since it can exploit sequential I/Os to handle            a similar structure with the stepped-merge policy to achieve
+writes. It can also simplify the recovery process by not over-        better write performance. It organizes the components into
+writing old data. However, the major problem of this design           levels, and when level L is full with T components, these
+is that read performance is sacrificed since a record may be          T components are merged together into a new component at
+stored in any of multiple locations. Furthermore, these struc-        level L + 1. This policy become the tiering merge policy [24,
+tures generally require a separate data reorganization pro-           25] used in today’s LSM-tree implementations.
+cess to improve storage and query efficiency continuously.
+     The idea of sequential, out-of-place updates is not new;
+it has been successfully applied to database systems since                writes
+the 1970s. Differential files [63], presented in 1976, were an                        merge            merge            merge
+                                                                                                  C1           ......           CK
+early example of an out-of-place update structure. In this de-                   C0
+                                                                                memory                         disk
+sign, all updates are first applied to a differential file, which
+is merged with the main file periodically. Later, in the 1980s,
+the Postgres project [65] pioneered the idea of log-structured                      Fig. 2: Original LSM-tree design
+LSM-based Storage Techniques: A Survey                                                                                                 3
+
+
+2.2 Today’s LSM-trees                                                                         merge
+                                                                        level 0 0-100
+                                                                                                                   new component
+2.2.1 Basic Structure                                                   level 1     0-100                         0-100
+
+                                                                        level 2             0-100                     0-100
+Today’s LSM-tree implementations still apply updates out-                            Before Merge                After Merge
+of-place to reduce random I/Os. All incoming writes are ap-                (a) Leveling Merge Policy: one component per level
+pended into a memory component. An insert or update oper-
+                                                                                            merge
+ation simply adds a new entry, while a delete operation adds                      0-100
+                                                                        level 0   0-100
+an anti-matter entry indicating that a key has been deleted.                                                     new component
+However, today’s LSM-tree implementations commonly ex-                                                        0-100
+                                                                        level 1     0-100
+ploit the immutability of disk components1 to simplify con-                                                   0-100
+
+currency control and recovery. Multiple disk components                                      0-100                    0-100
+                                                                        level 2
+                                                                                             0-100                    0-100
+are merged2 together into a new one without modifying ex-                                 Before Merge            After Merge
+isting components. This is different from the rolling merge
+                                                                         (b) Tiering Merge Policy: up to T components per level
+process proposed by the original LSM-tree [52].
+     Internally, an LSM-tree component can be implemented                          Fig. 3: LSM-tree merge policies
+using any index structure. Today’s LSM-tree implementa-
+tions typically organize their memory components using a
+concurrent data structure such as a skip-list or a B+ -tree,      together into a new component at level L + 1. In the figure,
+while they organize their disk components using B+ -trees         the two components at level 0 are merged together to form
+or sorted-string tables (SSTables). An SSTable contains a         a new component at level 1. It should be noted that if level
+list of data blocks and an index block; a data block stores       L is already the configured maximum level, then the result-
+key-value pairs ordered by keys, and the index block stores       ing component remains at level L. In practice, for a stable
+the key ranges of all data blocks.                                workload where the volume of inserts equal the volume of
+     A query over an LSM-tree has to search multiple com-         deletes, the total number of levels remains static3 . In general,
+ponents to perform reconciliation, that is, to find the latest    the leveling merge policy optimizes for query performance
+version of each key. A point lookup query, which fetches          since there are fewer components to search in the LSM-tree.
+the value for a specific key, can simply search all compo-        The tiering merge policy is more write optimized since it re-
+nents one by one, from newest to oldest, and stop immedi-         duces the merge frequency. We will discuss the performance
+ately after the first match is found. A range query can search    of these two merge policies further in Section 2.3.
+all components at the same time, feeding the search results
+into a priority queue to perform reconciliation.
+                                                                  2.2.2 Some Well-Known Optimizations
+     As disk components accumulate over time, the query
+performance of an LSM-tree tends to degrade since more            There are two well-known optimizations that are used by
+components must be examined. To address this, disk com-           most LSM-tree implementations today.
+ponents are gradually merged to reduce the total number of
+                                                                      Bloom Filter. A Bloom filter [18] is a space-efficient
+components. Two types of merge policies are typically used
+                                                                  probabilistic data structure designed to aid in answering set
+in practice [24, 25]. As shown in Figure 3, both policies or-
+                                                                  membership queries. It supports two operations, i.e., insert-
+ganize disk components into logical levels (or tiers) and are
+                                                                  ing a key and testing the membership of a given key. To
+controlled by a size ratio T . Each component is labeled with
+                                                                  insert a key, it applies multiple hash functions to map the
+its potential key range in the figure. In the leveling merge
+                                                                  key into multiple locations in a bit vector and sets the bits at
+policy (Figure 3a), each level only maintains one compo-
+                                                                  these locations to 1. To check the existence of a given key,
+nent, but the component at level L is T times larger than the
+                                                                  the key is again hashed to multiple locations. If all of the
+component at level L − 1. As a result, the component at level
+                                                                  bits are 1, then the Bloom filter reports that the key probably
+L will be merged multiple times with incoming components
+                                                                  exists. By design, the Bloom filter can report false positives
+at level L − 1 until it fills up, and it will then be merged
+                                                                  but not false negatives.
+into level L + 1. For example in the figure, the component at
+                                                                      Bloom filters can be built on top of disk components
+level 0 is merged with the component at level 1, which will
+                                                                  to greatly improve point lookup performance. To search a
+result in a bigger component at level 1. In contrast, the tier-
+                                                                  disk component, a point lookup query can first check its
+ing merge policy (Figure 3b) maintains up to T components
+per level. When level L is full, its T components are merged        3  Even for an append-mostly workload, the total number of levels
+                                                                  will grow extremely slowly since the maximum number of entries that
+ 1   Also referred to as runs in the literature.                  an LSM-tree can store increases exponentially with a factor of T as the
+ 2   Also referred to as compaction in the literature.            number of levels increases.
+4                                                                                                          Chen Luo, Michael J. Carey
+
+
+Bloom filter and then proceed to search its B+ -tree only                         0-100                         SSTable
+                                                                        level 0
+if its associated Bloom filter reports a positive answer. Al-                     0-100                         Merging SSTable
+ternatively, a Bloom filter can be built for each leaf page             level 1 0-30      34-70    71-99        New SSTable
+of a disk component. In this design, a point lookup query               level 2 0-15      16-32 35-50 51-70        72-95
+can first search the non-leaf pages of a B+ -tree to locate the                             Before Merge
+leaf page, where the non-leaf pages are assumed to be small                       0-100
+                                                                        level 0
+enough to be cached, and then check the associated Bloom                          0-100
+filter before fetching the leaf page to reduce disk I/Os. Note          level 1 34-70 71-99
+that the false positives reported by a Bloom filter do not im-          level 2 0-10      11-19 20-32 35-50       51-70    72-95
+pact the correctness of a query, but a query may waste some                                  After Merge
+I/O searching for non-existent keys. The false positive rate
+                                                                             Fig. 4: Partitioned leveling merge policy
+of a Bloom filter can be computed as (1 − e−kn/m )k , where k
+is the number of hash functions, n is the number of keys, and
+m is the total number of bits [18]. Furthermore, the optimal      be adapted to support partitioning. To the best of our knowl-
+number of hash functions that minimizes the false positive        edge, only the partitioned leveling policy has been fully im-
+rate is k = mn ln2. In practice, most systems typically use 10    plemented by industrial LSM-based storage systems, such
+bits/key as a default configuration, which gives a 1% false       as LevelDB [4] and RocksDB [6]. Some recent papers [12,
+positive rate. Since Bloom filters are very small and can of-     50, 58, 76, 79] have proposed various forms of a partitioned
+ten be cached in memory, the number of disk I/Os for point        tiering merge policy to achieve better write performance4 .
+lookups is greatly reduced by their use.                               In the partitioned leveling merge policy, pioneered by
+     Partitioning. Another commonly adopted optimization          LevelDB [4], the disk component at each level is range-
+is to range-partition the disk components of LSM-trees into       partitioned into multiple fixed-size SSTables, as shown in
+multiple (usually fixed-size) small partitions. To minimize       Figure 4. Each SSTable is labeled with its key range in the
+the potential confusion caused by different terminologies,        figure. Note that the disk components at level 0 are not par-
+we use the term SSTable to denote such a partition, following     titioned since they are directly flushed from memory. This
+the terminology from LevelDB [4]. This optimization has           design can also help the system to absorb write bursts since
+several advantages. First, partitioning breaks a large com-       it can tolerate multiple unpartitioned components at level 0.
+ponent merge operation into multiple smaller ones, bound-         To merge an SSTable from level L into level L + 1, all of its
+ing the processing time of each merge operation as well as        overlapping SSTables at level L + 1 are selected, and these
+the temporary disk space needed to create new components.         SSTables are merged with it to produce new SSTables still at
+Moreover, partitioning can optimize for workloads with se-        level L + 1. For example, in the figure, the SSTable labeled
+quentially created keys or skewed updates by only merging         0-30 at level 1 is merged with the SSTables labeled 0-15 and
+components with overlapping key ranges. For sequentially          16-32 at level 2. This merge operation produces new SSTa-
+created keys, essentially no merge is performed since there       bles labeled 0-10, 11-19, and 20-32 at level 2, and the old
+are no components with overlapping key ranges. For skewed         SSTables will then be garbage-collected. Different policies
+updates, the merge frequency of the components with cold          can be used to select which SSTable to merge next at each
+update ranges can be greatly reduced. It should be noted that     level. For example, LevelDB uses a round-robin policy (to
+the original LSM-tree [52] automatically takes advantage of       minimize the total write cost).
+partitioning because of its rolling merges. However, due to            The partitioning optimization can also be applied to the
+the implementation complexity of its rolling merges, today’s      tiering merge policy. However, one major issue in doing so
+LSM-tree implementations typically opt for actual physical        is that each level can contain multiple SSTables with over-
+partitioning rather than rolling merges.                          lapping key ranges. These SSTables must be ordered prop-
+     An early proposal that applied partitioning to LSM-trees     erly based on their recency to ensure correctness. Two pos-
+is the partitioned exponential file (PE-file) [38]. A PE-file     sible schemes can be used to organize the SSTables at each
+contains multiple partitions, where each partition can be log-    level, namely vertical grouping and horizontal grouping. In
+ically viewed as a separate LSM-tree. A partition can be          both schemes, the SSTables at each level are organized into
+further split into two partitions when it becomes too large.      groups. The vertical grouping scheme groups SSTables with
+However, this design enforces strict key range boundaries         overlapping key ranges together so that the groups have dis-
+among partitions, which reduces the flexibility of merges.        joint key ranges. Thus, it can be viewed as an extension
+     We now discuss the partitioning optimization used in           4  RocksDB supports a limited form of a partitioned tiering merge
+today’s LSM-tree implementations. It should be noted that
+                                                                  policy to bound the maximum size of each SSTable due to its internal
+partitioning is orthogonal to merge policies; both leveling       restrictions. However, the disk space may still be doubled temporarily
+and tiering (as well as other emerging merge policies) can        during large merges.
+LSM-based Storage Techniques: A Survey                                                                                          5
+
+
+                                                 SSTable           Before the merge operation, the SSTables labeled 0-30 and
+                0-100
+      level 0 0-100                              Merging SSTable   0-31 have overlapping key ranges and both must be exam-
+                                                 New SSTable       ined together by a point lookup query. However, after the
+                0-31      34-72    74-100        SSTable Group
+      level 1   0-30               75-100                          merge operation, the SSTables labeled 0-12 and 17-31 have
+                                   35-50     51-70   72-95
+                                                                   disjoint key ranges and only one of them needs to be exam-
+                0-13      16-32
+      level 2                      35-45             75-95         ined by a point lookup query. It should also be noted that
+                               Before Merge                        under this scheme SSTables are no longer fixed-size since
+                0-100                                              they are produced based on the key ranges of the overlap-
+      level 0   0-100                                              ping groups at the next level.
+                          34-72    74-100                              Figure 6 shows an example of the horizontal grouping
+      level 1                      75-100                          scheme. In this scheme, each component, which is range-
+                0-12      17-31    35-50     51-70   72-95         partitioned into a set of fixed-size SSTables, serves as a log-
+      level 2   0-13      16-32    35-45             75-95         ical group directly. Each level L further maintains an active
+                               After Merge                         group, which is also the first group, to receive new SSTa-
+      Fig. 5: Partitioned tiering with vertical grouping           bles merged from the previous level. This active group can
+                                                                   be viewed as a partial component being formed by merging
+                                                                   the components at level L − 1 in the unpartitioned case. A
+           0-100                                SSTable            merge operation selects the SSTables with overlapping key
+ level 0
+           0-100                                Merging SSTable    ranges from all of the groups at a level, and the resulting
+                                                New SSTable        SSTables are added to the active group at the next level. For
+                       35-70    72-100
+ level 1                                        SSTable Group
+                                                                   example in the figure, the SSTables labeled 35-70 and 35-65
+                       35-65     67-99
+                                                                   at level 1 are merged together, and the resulting SSTables
+           0-20     22-30
+ level 2                                                           labeled 35-52 and 53-70 are added to the first group at level
+           0-15     19-30 32-50 52-75 80-100
+                       Before Merge                                2. However, although SSTables are fixed-size under the hor-
+           0-100                                                   izontal grouping scheme, it is still possible that one SSTable
+ level 0   0-100
+                                                                   from a group may overlap a large number of SSTables in the
+                                                                   remaining groups.
+                                72-100
+ level 1                         67-99
+                                                                   2.2.3 Concurrency Control and Recovery
+           0-20     22-30 35-52 53-70
+ level 2
+           0-15     19-30 32-50 52-75 80-100
+                        After Merge
+                                                                   We now briefly discuss the concurrency control and recov-
+                                                                   ery techniques used by today’s LSM-tree implementations.
+    Fig. 6: Partitioned tiering with horizontal grouping           For concurrency control, an LSM-tree needs to handle con-
+                                                                   current reads and writes and to take care of concurrent flush
+                                                                   and merge operations. Ensuring correctness for concurrent
+of partitioned leveling to support tiering. Alternatively, un-     reads and writes is a general requirement for access methods
+der the horizontal grouping scheme, each logical disk com-         in a database system. Depending on the transactional isola-
+ponent, which is range-partitioned into a set of SSTables,         tion requirement, today’s LSM-tree implementations either
+serves as a group directly. This allows a disk component to        use a locking scheme [9] or a multi-version scheme [1, 3, 6].
+be formed incrementally based on the unit of SSTables. We          A multi-version scheme works well with an LSM-tree since
+will discuss these two schemes in detail below.                    obsolete versions of a key can be naturally garbage-collected
+    An example of the vertical grouping scheme is shown            during merges. Concurrent flush and merge operations, how-
+in Figure 5. In this scheme, SSTables with overlapping key         ever, are unique to LSM-trees. These operations modify the
+ranges are grouped together so that the groups have disjoint       metadata of an LSM-tree, e.g., the list of active components.
+key ranges. During a merge operation, all of the SSTables in       Thus, accesses to the component metadata must be properly
+a group are merged together to produce the resulting SSTa-         synchronized. To prevent a component in use from being
+bles based on the key ranges of the overlapping groups at          deleted, each component can maintain a reference counter.
+the next level, which are then added to these overlapping          Before accessing the components of an LSM-tree, a query
+groups. For example in the figure, the SSTables labeled 0-         can first obtain a snapshot of active components and incre-
+30 and 0-31 at level 1 are merged together to produce the          ment their in-use counters.
+SSTables labeled 0-12 and 17-31, which are then added to                Since all writes are first appended into memory, write-
+the overlapping groups at level 2. Note the difference be-         ahead logging (WAL) can be performed to ensure their dura-
+tween the SSTables before and after this merge operation.          bility. To simplify the recovery process, existing systems
+6                                                                                                             Chen Luo, Michael J. Carey
+
+
+typically employ a no-steal buffer management policy [36].          up and is pushed to the next level. For tiering, multiple com-
+That is, a memory component can only be flushed when all            ponents at each level are merged only once and are pushed
+active write transactions have terminated. During recovery          to the next level directly. Since each disk page contains B
+for an LSM-tree, the transaction log is replayed to redo all        entries, the write cost for each entry will be O(T · BL ) for
+successful transactions, but no undo is needed due to the           leveling and O( BL ) for tiering.
+no-steal policy. Meanwhile, the list of active disk compo-               The I/O cost of a query depends on the number of com-
+nents must also be recovered in the event of a crash. For un-       ponents in an LSM-tree. Without Bloom filters, the I/O cost
+partitioned LSM-trees, this can be accomplished by adding           of a point lookup will be O(L) for leveling and O(T · L)
+a pair of timestamps to each disk component that indicate           for tiering. However, Bloom filters can greatly improve the
+the range of timestamps of the stored entries. This times-          point lookup cost. For a zero-result point lookup, i.e., for
+tamp can be simply generated using local wall-clock time            a search for a non-existent key, all disk I/Os are caused by
+or a monotonic sequence number. To reconstruct the com-             Bloom filter false positives. Suppose all Bloom filters have
+ponent list, the recovery process can simply find all com-          M bits in total and have the same false positive rate across
+ponents with disjoint timestamps. In the event that multi-          all levels. With N total keys, each Bloom filter has a false
+                                                                                             M
+ple components have overlapping timestamps, the compo-              positive rate of O(e− N ) [18]. Thus, the I/O cost of a zero-
+                                                                                                           M
+nent with the largest timestamp range is chosen and the rest        result point lookup will be O(L · e− N ) for leveling and O(T ·
+can simply be deleted since they will have been merged to                  M
+                                                                    L · e− N ) for tiering. To search for an existing unique key, at
+form the selected component. For partitioned LSM-trees,             least one I/O must be performed to fetch the entry. Given
+this timestamp-based approach does not work anymore since           that in practice the Bloom filter false positive rate is much
+each component is further range-partitioned. To address this,       smaller than 1, the successful point lookup I/O cost for both
+a typical approach, used in LevelDB [4] and RocksDB [6],            leveling and tiering will be O(1).
+is to maintain a separate metadata log to store all changes              The I/O cost of a range query depends on the query se-
+to the structural metadata, such as adding or deleting SSTa-        lectivity. Let s be the number of unique keys accessed by a
+bles. The state of the LSM-tree structure can then be recon-        range query. A range query can be considered to be long if
+structed by replaying the metadata log during recovery.              s
+                                                                    B > 2 ·L, otherwise it is short [24, 25]. The distinction is that
+                                                                    the I/O cost of a long range query will be dominated by the
+2.3 Cost Analysis                                                   largest level since the largest level contains most of the data.
+                                                                    In contrast, the I/O cost of a short range query will derive
+To help understand the performance trade-offs of LSM-trees,         (almost) equally from all levels since the query must issue
+we can turn to the cost analysis of writes, point lookups,          one I/O to each disk component. Thus, the I/O cost of a long
+range queries, and space amplification presented in [24, 25].       range query will be O( Bs ) for leveling and O(T · Bs ) for tier-
+The cost of writes and queries is measured by counting the          ing. For a short range query, the I/O cost will be O(L) for
+number of disk I/Os per operation. This analysis considers          leveling and O(T · L) for tiering.
+an unpartitioned LSM-tree and represents a worst-case cost.              Finally, let us examine the space amplification of an LSM-
+     Let the size ratio of a given LSM-tree be T , and sup-         tree, which is defined as the overall number of entries di-
+pose the LSM-tree contains L levels. In practice, for a stable      vided by the number of unique entries5 . For leveling, the
+LSM-tree where the volume of inserts equals the volume of           worst case occurs when all of the data at the first L − 1 lev-
+deletes, L remains static. Let B denote the page size, that         els, which contain approximately T1 of the total data, are up-
+is, the number of entries that each data page can store, and        dates to the entries at the largest level. Thus, the worst case
+let P denote the number of pages of a memory component.             space amplification for leveling is O( T T+1 ). For tiering, the
+As a result, a memory component will contain at most B · P          worst case happens when all of the components at the largest
+entries, and level i (i ≥ 0 )will contain at most T i+1 · B · P     level contain exactly the same set of keys. As a result, the
+entries. Given N total entries, the largest level contains ap-      worst case space amplification for tiering will be O(T ). In
+proximately N · T T+1 entries since it is T times larger than the   practice, the space amplification is an important factor to
+previous level. Thus, the number of levels for N entries can        consider when deploying storage systems [28], as it directly
+                                   N
+be approximated as L = dlogT ( B·P     · T T+1 )e.                  impacts the storage cost for a given workload.
+     The write cost, which is also referred to as write am-              The cost complexity of LSM-trees is summarized in Ta-
+plification in the literature, measures the amortized I/O cost      ble 1. Note how the size ratio T impacts the performance of
+of inserting an entry into an LSM-tree. It should be noted          leveling and tiering differently. In general, leveling is opti-
+that this cost measures the overall I/O cost for this entry to        5  The original analysis presented in [24,25] defines the space am-
+be merged into the largest level since inserting an entry into
+                                                                    plification to be the overall number of obsolete entries divided by the
+memory does not incur any disk I/O. For leveling, a com-            number of unique entries. We slightly modified the definition to ensure
+ponent at each level will be merged T − 1 times until it fills      that the space amplification is no less than 1.
+LSM-based Storage Techniques: A Survey                                                                                           7
+
+                                      Table 1: Summary of Cost Complexity of LSM-trees
+
+     Merge Policy     Write               Point Lookup             Short Range Query   Long Range Query    Space Amplification
+                                  (Zero-Result/ Non-Zero-Result)
+                                                 M
+        Leveling     O(T · BL )         O(L · e− N ) / O(1)             O(L)                O( Bs )             O( T T+1 )
+                                                    M
+        Tiering       O( BL )          O(T · L · e− N ) / O(1)         O(T · L)            O(T · Bs )            O(T )
+
+
+
+mized for query performance and space utilization by main-           writes. A large body of research has been conducted to re-
+taining one component per level. However, components must            duce the write amplification of LSM-trees.
+be merged more frequently, which will incur a higher write               Merge Operations. Merge operations are critical to the
+cost by a factor of T . In contrast, tiering is optimized for        performance of LSM-trees and must therefore be carefully
+write performance by maintaining up to T components at               implemented. Moreover, merge operations can have nega-
+each level. This, however, will decrease query performance           tive impacts on the system, including buffer cache misses
+and worsen space utilization by a factor of T . As one can           after merges and write stalls during large merges. Several
+see, the LSM-tree is highly tunable. For example, by chang-          improvements have been proposed to optimize merge oper-
+ing the merge policy from leveling to tiering, one can greatly       ations to address these problems.
+improve write performance with only a small negative im-                 Hardware. In order to maximize performance, LSM-
+pact on point lookup queries due to the Bloom filters. How-          trees must be carefully implemented to fully utilize the un-

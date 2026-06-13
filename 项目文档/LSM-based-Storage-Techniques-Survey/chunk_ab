@@ -1,0 +1,415 @@
+ever, range queries and space utilization will be significantly      derling hardware platforms. The original LSM-tree has been
+impacted. As we proceed to examine the recent literature on          designed for hard disks, with the goal being reducing ran-
+improving LSM-trees, we will see that each makes certain             dom I/Os. In recent years, new hardware platforms have pre-
+performance trade-offs. Actually, based on the RUM conjec-           sented new opportunities for database systems to achieve
+ture [14], each access method has to make certain trade-offs         better performance. A significant body of recent research
+among the read cost (R), update cost (U), and memory or              has been devoted to improving LSM-trees to fully exploit
+storage cost (M). It will be important for the reader to keep        the underling hardware platforms, including large memory,
+in mind the cost complexity described here to better under-          multi-core, SSD/NVM, and native storage.
+stand the trade-offs made by the proposed improvements.                  Special Workloads. In addition to hardware opportu-
+                                                                     nities, certain special workloads can also be considered to
+                                                                     achieve better performance in those use cases. In this case,
+3 LSM-tree Improvements                                              the basic LSM-tree implementation must be adapted and
+                                                                     customized to exploit the unique characteristics exhibited by
+In this section we present a taxonomy for use in classifying         these special workloads.
+the existing research efforts on improving LSM-trees. We                 Auto-Tuning. Based on the RUM conjecture [14], no ac-
+then provide an in-depth survey of the LSM-tree literature           cess method can be read-optimal, write-optimal, and space-
+that follows the structure of the proposed taxonomy.                 optimal at the same time. The tunability of LSM-trees is a
+                                                                     promising solution to achieve optimal trade-offs for a given
+                                                                     workload. However, LSM-trees can be hard to tune because
+3.1 A Taxonomy of LSM-tree Improvements                              of too many tuning knobs, such as memory allocation, merge
+                                                                     policy, size ratio, etc. To address this issue, several auto-
+Despite the popularity of LSM-trees in modern NoSQL sys-             tuning techniques have been proposed in the literature.
+tems, the basic LSM-tree design suffers from various draw-               Secondary Indexing. A given LSM-tree only provides a
+backs and insufficiencies. We now identify the major issues          simple key-value interface. To support the efficient process-
+of the basic LSM-tree design, and further present a taxon-           ing of queries on non-key attributes, secondary indexes must
+omy of LSM-tree improvements based on these drawbacks.               be maintained. One issue in this area is how to maintain a set
+    Write Amplification. Even though LSM-trees can pro-              of related secondary indexes efficiently with a small over-
+vide much better write throughput than in-place update struc-        head on write performance. Various LSM-based secondary
+tures such as B+ -trees by reducing random I/Os, the level-          indexing structures and techniques have been designed and
+ing merge policy, which has been adopted by modern key-              evaluated as well.
+value stores such as LevelDB [4] and RocksDB [6], still in-              Based on these major issues of the basic LSM-tree de-
+curs relatively high write amplification. High write amplifi-        sign, we present a taxonomy of LSM-tree improvements,
+cation not only limits the write performance of an LSM-tree          shown in Figure 7, to highlight the specific aspects that the
+but also reduces the lifespan of SSDs due to frequent disk           existing research efforts try to optimize. Given this taxon-
+8                                                                                                                                 Chen Luo, Michael J. Carey
+
+                                                                    LSM-tree Improvements
+
+
+      Write Amplification       Merge Operations              Hardware          Special Workloads               Auto Tuning        Secondary Indexing
+
+                                                   Large Memory                                  Parameter Tuning
+    Tiering    Data Skew                                                                                            Bloom Filter
+                                       Write Stall                   SSD/NVM                                                              Statistics Collection
+                            Caching                                                     Small
+                                                        Multi-Core           Temporal                                   Index Structure
+    Merge Skipping                                                                         Append-Mostly                                 Distributed Indexing
+                            Merge Performance                 Native Storage   Semi-Sorted               Data Placement
+                                                                                                                             Index Maintenance
+
+                                                      Fig. 7: Taxonomy of LSM-tree improvements
+
+
+omy, Table 2 further classifies the LSM-tree improvements                            ing of SSTable groups. Recall that under the vertical group-
+in terms of each improvement’s primary and secondary con-                            ing scheme, SSTables are no longer strictly fixed-size since
+cerns. With this taxonomy and classification in hand, we                             they are produced based on the key ranges of the overlap-
+now proceed to examine each improvement in more depth.                               ping groups at the next level instead of based on their sizes.
+                                                                                     In the LWC-tree, if a group contains too many entries, it
+                                                                                     will shrink the key range of this group after the group has
+3.2 Reducing Write Amplification                                                     been merged (now temporarily empty) and will widen the
+                                                                                     key ranges of its sibling groups accordingly.
+In this section, we review the improvements in the litera-
+                                                                                         PebblesDB [58] also adopts a partitioned tiering design
+ture that aim to reduce the write amplification of LSM-trees.
+                                                                                     with vertical grouping. The major difference is that it deter-
+Most of these improvements are based on tiering since it
+                                                                                     mines the key ranges of SSTable groups using the idea of
+has much better write performance than leveling. Other pro-
+                                                                                     guards as inspired by the skip-list [55]. Guards, which are
+posed improvements have developed new techniques to per-
+                                                                                     the key ranges of SSTable groups, are selected probabilis-
+form merge skipping or to exploit data skews.
+                                                                                     tically based on inserted keys to achieve workload balance.
+                                                                                     Once a guard is selected, it is applied lazily during the next
+3.2.1 Tiering                                                                        merge. PebblesDB further performs parallel seeks of SSTa-
+                                                                                     bles to improve range query performance.
+One way to optimize write amplification is to apply tiering
+since it has much lower write amplification than leveling.                                dCompaction [53] introduces the concept of virtual SSTa-
+However, recall from Section 2.3 that this will lead to worse                        bles and virtual merges to reduce the merge frequency. A
+query performance and space utilization. The improvements                            virtual merge operation produces a virtual SSTable that sim-
+in this category can all be viewed as some variants of the                           ply points to the input SSTables without performing actual
+partitioned tiering design with vertical or horizontal group-                        merges. However, since a virtual SSTable points to multiple
+ing discussed in Section 2.2.2. Here we will mainly discuss                          SSTables with overlapping ranges, query performance will
+the modifications made by these improvements.                                        degrade. To address this, dCompaction introduces a thresh-
+    The WriteBuffer (WB) Tree [12] can be viewed as a vari-                          old based on the number of real SSTables to trigger actual
+ant of the partitioned tiering design with vertical grouping.                        merges. It also lets queries trigger actual merges if a vir-
+It has made the following modifications. First, it relies on                         tual SSTable pointing to too many SSTables is encountered
+hash-partitioning to achieve workload balance so that each                           during query processing. In general, dCompaction delays a
+SSTable group roughly stores the same amount of data. Fur-                           merge operation until multiple SSTables can be merged to-
+thermore, it organizes SSTable groups into a B+ -tree-like                           gether, and thus it can also be viewed as a variant of the
+structure to enable self-balancing to minimize the total num-                        tiering merge policy.
+ber of levels. Specifically, each SSTable group is treated like                          As one can see, the four structures described above all
+a node in a B+ -tree. When a non-leaf node becomes full                              share a similar high-level design based on partitioned tiering
+with T SSTables, these T SSTables are merged together to                             with vertical grouping. They mainly differ in how workload
+form new SSTables that are added into its child nodes. When                          balancing of SSTable groups is performed. For example,
+a leaf node becomes full with T SSTables, it is split into                           the WB-tree [12] relies on hashing, but doing so gives up
+two leaf nodes by merging all of its SSTables into two leaf                          the ability of supporting range queries. The LWC-tree [78,
+nodes with smaller key ranges so that each new node re-                              79] dynamically shrinks the key ranges of dense SSTable
+ceives about T /2 SSTables.                                                          groups, while PebblesDB [58] relies on probabilistically se-
+    The light-weight compaction tree (LWC-tree) [78, 79]                             lected guards. In contrast, dCompaction [53] offers no built-
+adopts a similar partitioned tiering design with vertical group-                     in support for workload balancing. It is not clear how skewed
+ing. It further presents a method to achieve workload balanc-                        SSTable groups would impact the performance of these struc-
+LSM-based Storage Techniques: A Survey                                                                                    9
+
+ Table 2: Classification of existing LSM-tree improvements (♣ denotes primary category, M denotes secondary categories)
+
+      Publication                 Write            Merge        Hardware      Special          Auto       Secondary
+                                Amplification     Operations                 Workloads        Tuning       Indexing
+      WB-tree [12]                   ♣
+      LWC-tree [78,79]               ♣
+      PebblesDB [58]                 ♣
+      dCompaction [53]               ♣                                                          M
+      Zhang et al. [82]              ♣
+      SifrDB [50]                    ♣                M            M
+      Skip-tree [81]                 ♣
+      TRIAD [16]                     ♣
+      VT-tree [64]                                    ♣
+      Zhang et al. [84]                               ♣
+      Ahmad et al. [8]                                ♣
+      LSbM-tree [68,69]                               ♣
+      bLSM [61]                                       ♣
+      FloDB [15]                     M                             ♣
+      Accordion [19]                 M                             ♣
+      cLSM [34]                                                    ♣
+      FD-tree [44]                                                 ♣
+      FD+tree [71]                                    M            ♣
+      MaSM [13]                      M                             ♣             M
+      WiscKey [46]                   M                             ♣
+      HashKV [20]                    M                             ♣
+      Kreon [54]                     M                             ♣
+      NoveLSM [39]                                                 ♣
+      LDS [49]                                                     ♣
+      LOCS [74]                                                    ♣
+      NoFTL-KV [73]                                                ♣
+      LHAM [51]                                                                  ♣
+      LSM-trie [76]                  M                                           ♣
+      SlimDB [59]                    M                                           ♣
+      Mathieu et al. [48]            M                                           ♣
+      Lim et al. [45]                                                                           ♣
+      Monkey [25,26]                                                                            ♣
+      Dostoevsky [24]                M                                                          ♣
+      Thonangi and Yang [70]         M                                                          ♣
+      ElasticBF [83]                                                                            ♣
+      Mutant [80]                                                                               ♣
+      LSII [75]                                                                                               ♣
+      Kim et al. [42]                                                                                         ♣
+      Filter [11]                                                                                             ♣
+      Qader et al. [57]                                                                                       ♣
+      Diff-Index [66]                                                                                         ♣
+      DELI [67],                                                                                              ♣
+      Luo and Carey [47]                                                                                      ♣
+      Ildar et al. [7]                                                                                        ♣
+      Joseph et al. [29]                                                                                      ♣
+      Zhu et al. [85]                                                                                         ♣
+      Duan et al. [30]                                                                                        ♣
+
+
+
+tures, and future research is needed to understand this prob-   ploits I/O parallelism to speedup query performance by ex-
+lem and evaluate these workload balancing strategies.           amining multiple SSTables in parallel.
+    The partitioned tiering design with horizontal grouping
+has been adopted by Zhang et al. [82] and SifrDB [50].          3.2.2 Merge Skipping
+SifrDB also proposes an early-cleaning technique to reduce
+disk space utilization during merges. During a merge opera-     The skip-tree [81] proposes a merge skipping idea to im-
+tion, SifrDB incrementally activates newly produced SSTa-       prove write performance. The observation is that each entry
+bles and deactivates the old SSTables. SifrDB further ex-       must be merged from level 0 down to the largest level. If
+10                                                                                                      Chen Luo, Michael J. Carey
+
+
+                           ……            SSTable                  3.2.4 Summary
+          level L          merge         Merging SSTable
+        level L+1                             ……                  Tiering has been widely used to improve the write perfor-
+                                skip levels                       mance of LSM-trees, but this will decrease query perfor-
+                           buffer                                 mance and space utilization, as discussed in Section 2.3.
+       level L+K                                                  The existing tiering-based improvements mainly differ in
+                                              ……
+                                                                  how SSTables are managed, either by vertical grouping [12,
+Fig. 8: Merge in skip-tree: entries from a lower level can be     53, 58, 78, 79] or horizontal grouping [50, 82]. It is not clear
+directly pushed to the mutable buffer of a higher level           how these different grouping schemes impact system per-
+                                                                  formance and it would be useful as future work to study and
+                                                                  evaluate their impact. The skip-tree [81] and TRIAD [16]
+some entries can be directly pushed to a higher level by skip-    propose several new ideas to improve write performance,
+ping some level-by-level merges, then the total write cost        ideas that are orthogonal to tiering. However, these opti-
+will be reduced. As shown in Figure 8, during a merge at          mizations bring non-trivial implementation complexity to
+level L, the skip-tree directly pushes some keys to a mutable     real systems, such as the mutable buffers introduced by the
+buffer at level L + K so that some level-by-level merges can      skip-tree and the use of transaction logs as flushed compo-
+be skipped. Meanwhile, the skipped entries in the mutable         nents by TRIAD.
+buffer will be merged with the SSTables at level L + K dur-           All of the improvements in this category, as well as some
+ing subsequent merges. To ensure correctness, a key from          improvements in the later sections, have claimed that they
+level L can be pushed to level L + K only if this key does        can greatly improve the write performance of LSM-trees,
+not appear in any of the intermediate levels L + 1, · · · , L +   but their performance evaluations have often failed to con-
+K − 1. This condition can be tested efficiently by checking       sider the tunability of LSM-trees. That is, these improve-
+the Bloom filters of the intermediate levels. The skip-tree       ments have mainly been evaluated against a default (un-
+further performs write-ahead logging to ensure durability of      tuned) configuration of LevelDB or RocksDB, which use the
+the entries stored in the mutable buffer. To reduce the log-      leveling merge policy with a size ratio of 10. It is not clear
+ging overhead, the skip-tree only logs the key plus the ID        how these improvements would compare against well-tuned
+of the original SSTable and prevents an SSTable from being        LSM-trees. To address this, one possible solution would be
+deleted if it is referenced by any key in the buffer. Although    to tune RocksDB to achieve a similar write throughput to
+merge skipping is an interesting idea to reduce write ampli-      the proposed improvements by changing the size ratio or
+fication, it introduces non-trivial implementation complex-       by adopting the tiering merge policy and then evaluating
+ity to manage the mutable buffers. Moreover, since merge          how these improvements can improve query performance
+skipping essentially reduces some merges at the intermedi-        and space amplification. Moreover, these improvements have
+ate levels, it is not clear how the skip-tree would compare       primarily focused on query performance; space amplifica-
+against a well-tuned LSM-tree by reducing the size ratio.         tion has often been neglected. It would be a useful exper-
+                                                                  imental study to fully evaluate these improvements against
+                                                                  well-tuned baseline LSM-trees to evaluate their actual use-
+3.2.3 Exploiting Data Skew                                        fulness. We also hope that this situation can be avoided in
+                                                                  future research by considering the tunability of LSM-trees
+TRIAD [16] reduces write amplification for skewed update
+                                                                  when evaluating the proposed improvements.
+workloads where some hot keys are updated frequently. The
+basic idea is to separate hot keys from cold keys in the mem-
+ory component so that only cold keys are flushed to disk. As      3.3 Optimizing Merge Operations
+a result, when hot keys are updated, old versions can be dis-
+carded directly without writing them to disk. Even though         Next we review some existing work that improves the imple-
+hot keys are not flushed to disk, they are periodically copied    mentation of merge operations, including improving merge
+to a new transaction log so that the old transaction log can be   performance, minimizing buffer cache misses, and eliminat-
+reclaimed. TRIAD also reduces write amplification by de-          ing write stalls.
+laying merges at level 0 until level 0 contains multiple SSTa-
+bles. Finally, it presents an optimization that avoids creating   3.3.1 Improving Merge Performance
+new disk components after flushes. Instead, the transaction
+log itself is used as a disk component and an index struc-        The VT-tree [64] presents a stitching operation to improve
+ture is built on top of it to improve lookup performance.         merge performance. The basic idea is that when merging
+However, range query performance will still be negatively         multiple SSTables, if the key range of a page from an input
+impacted since entries are not sorted in the log.                 SSTable does not overlap the key ranges of any pages from
+LSM-based Storage Techniques: A Survey                                                                                            11
+
+
+other SSTables, then this page can be simply pointed to by                                                     SSTable
+the resulting SSTable without reading and copying it again.                                                    Merging SSTable
+                                                                       level 0             merge               Buffered SSTable
+Even though stitching improves merge performance for cer-                                          append
+                                                                       level 1                                     buffer
+tain workloads, it has a number of drawbacks. First, it can
+cause fragmentation since pages are no longer continuously             level 2
+stored on disk. To alleviate this problem, the VT-tree intro-
+duces a stitching threshold K so that a stitching operation is     Fig. 10: LSbM-tree: the merged component is added to a
+triggered only when there are at least K continuous pages          buffer of the next level instead of being deleted immediately
+from an input SSTable. Moreover, since the keys in stitched
+pages are not scanned during a merge operation, a Bloom
+                                                                   response times. To address this, this work proposed to of-
+filter cannot be produced. To address this issue, the VT-tree
+                                                                   fload large merges to remote servers to minimize their im-
+uses quotient filters [17] since multiple quotient filters can
+                                                                   pact. After a merge operation is completed, a smart cache
+be combined directly without accessing the original keys.
+                                                                   warmup algorithm is used to fetch the new component in-
+     Zhang et al. [84] proposed a pipelined merge implemen-        crementally to minimize buffer cache misses. The idea is
+tation to better utilize CPU and I/O parallelism to improve        to switch to the new component incrementally, chunk by
+merge performance. The key observation is that a merge op-         chunk, to smoothly redirect incoming queries from the old
+eration contains multiple phases, including the read phase,        components to the new component. As a result, the burst of
+merge-sort phase, and write phase. The read phase reads            buffer cache misses is decomposed into a large number of
+pages from input SSTables, which will then be merge-sorted         smaller ones, minimizing the negative impact of component
+to produce new pages during the merge-sort phase. Finally,         switching on query performance.
+the new pages will be written to disk during the write phase.           One limitation of the approach proposed by Ahmad et
+Thus, the read phase and write phase are I/O heavy while           al. [8] is that merge operations must be offloaded to separate
+the merge-sort phase is CPU heavy. To better utilize CPU           servers. The incremental warmup algorithm alone was sub-
+and I/O parallelism, the proposed approach pipelines the ex-       sequently found to be insufficient due to contention between
+ecution of these three phases, as illustrated by Figure 9. In      the newly produced pages and the existing hot pages [68,
+this example, after the first input page has been read, this ap-   69]. To address this limitation, the Log-Structured buffered
+proach continues reading the second input page (using disk)        Merge tree (LSbM-tree) [68, 69] proposes an alternative ap-
+and the first page can be merge-sorted (using CPU).                proach. As illustrated by Figure 10, after an SSTable at level
+                                                                   L is merged into level L + 1, the old SSTables at level L is
+3.3.2 Reducing Buffer Cache Misses                                 appended to a buffer associated with level L + 1 instead of
+                                                                   being deleted immediately. Note that there is no need to add
+Merge operations can interfere with the caching behavior of        old SSTables at level L + 1 into the buffer, as the SSTables
+a system. After a new component is enabled, queries may            at L + 1 all come from level L and the entries of these old
+experience a large number of buffer cache misses since the         SSTables will have already been added to the buffer before.
+new component has not been cached yet. A simple write-             The buffered SSTables are searched by queries as well to
+through cache maintenance policy cannot solve this prob-           minimize buffer cache misses, and they are deleted gradu-
+lem. If all of the pages of the new component were cached          ally based on their access frequency. This approach does not
+during a merge operation, a lot of other working pages would       incur any extra disk I/O during a merge operation since it
+be evicted, which will again cause buffer cache misses.            only delays the deletion of the old SSTables. However, this
+    Ahmad et al. [8] conducted an experimental study of the        approach is mainly effective for skewed workloads where
+impact of merge operations on system performance. They             only a small range of keys are frequently accessed. It can in-
+found that merge operations consume a large number of CPU          troduce extra overhead for queries accessing cold data that
+and I/O resources and impose a high overhead on query              are not cached, especially for range queries since they can-
+                                                                   not benefit from Bloom filters.
+
+                                                                   3.3.3 Minimizing Write Stalls
+ write
+ sort
+ read                                                              Although the LSM-tree offers a much higher write through-
+           page 1          page 2        page 1 page 2             put compared to traditional B+ -trees, it often exhibits write
+               No Pipelining                   With Pipelining     stalls and unpredictable write latencies since heavy oper-
+                                                                   ations such as flushes and merges run in the background.
+Fig. 9: Pipelined merge example: multiple input pages can          bLSM [61] proposes a spring-and-gear merge scheduler to
+be processed in a pipelined fashion                                minimize write stalls for the unpartitioned leveling merge
+12                                                                                                         Chen Luo, Michael J. Carey
+
+
+policy. Its basic idea is to tolerate an extra component at each                                 write
+level so that merges at different levels can proceed in paral-                          query
+lel. Furthermore, the merge scheduler controls the progress                                                mutable
+of merge operations to ensure that level L produces a new                      Memory
+                                                                                                              immutable
+component at level L + 1 only after the previous merge oper-
+                                                                                                 level 0
+ation at level L + 1 has completed. This eventually cascades                     Disk
+                                                                                                 level 1
+to limit the maximum write speed at the memory component
+                                                                                                  ......
+and eliminates large write stalls. However, bLSM itself has
+several limitations. bLSM was only designed for the unpar-                  Fig. 11: Accordion’s multi-layer structure
+titioned leveling merge policy. Moreover, it only bounds the
+maximum latency of writing to memory components while
+the queuing latency, which is often a major source of perfor-      3.4.1 Large Memory
+mance variability, is ignored.
+                                                                   It is beneficial for LSM-trees to have large memory com-
+3.3.4 Summary                                                      ponents to reduce the total number of levels, as this will im-
+                                                                   prove both write performance and query performance. How-
+The improvements in this category optimize the implemen-           ever, managing large memory components brings several
+tation of merge operations in terms of performance, buffer         new challenges. If a memory component is implemented di-
+cache misses, and write stalls. To speedup merge operations,       rectly using on-heap data structures, large memory can re-
+the VT-tree [64] introduces the stitching operation that avoids    sult in a large number of small objects that lead to significant
+copying input pages if applicable. However, this may cause         GC overheads. In contrast, if a memory component is imple-
+fragmentation, which is undesirable for hard disks. More-          mented using off-heap structures such as a concurrent B+ -
+over, this optimization is incompatible with Bloom filters,        tree, large memory can still cause a higher search cost (due
+which are widely used in modern LSM-tree implementa-               to tree height) and cause more CPU cache misses for writes,
+tions. The pipelined merge implementation [84] improves            as a write must first search for its position in the structure.
+merge performance by exploiting CPU and I/O parallelism.                FloDB [15] presents a two-layer design to manage large
+It should be noted that many LSM-based storage systems             memory components. The top level is a small concurrent
+have already implemented some form of pipelining by ex-            hash table to support fast writes, and the bottom level is
+ploiting disk read-ahead and write-behind.                         a large skip-list to support range queries efficiently. When
+    Ahmed et al. [8] and the LSbM-tree [68, 69] present two        the hash table is full, its entries are efficiently migrated into
+alternative methods to alleviating buffer cache misses caused      the skip-list using a batched algorithm. By limiting random
+by merges. However, both approaches appear to have certain         writes to a small memory area, this design significantly im-
+limitations. The approach proposed by Ahmed et al. [8] re-         proves the in-memory write throughput. To support range
+quires dedicated servers to perform merges, while the LSbM-        queries, FloDB requires that a range query must wait for
+tree [68, 69] delays the deletion of old components that could     the hash table to be drained so that the skip-list alone can
+negatively impact queries accessing cold data. Write stalls        be searched to answer the query. However, FloDB suffers
+are a unique problem of LSM-trees due to its out-of-place          from two major problems. First, it is not efficient for work-
+update nature. bLSM [61] is the only effort that attempts to       loads containing both writes and range queries due to their
+address this problem. However, bLSM [61] only bounds the           contention. Second, the skip-list may have a large memory
+maximum latency of writing to memory components. The               footprint and lead to lower memory utilization.
+end-to-end write latency can still exhibit large variances due          To address the drawbacks of FloDB, Accordion [19] uses
+to queuing. More efforts need to be done to improve the per-       a multi-layer approach to manage its large memory com-
+formance stability of LSM-trees.                                   ponents. In this design (Figure 11), there is a small muta-
+                                                                   ble memory component in the top level to process writes.
+                                                                   When the mutable memory component is full, instead of be-
+3.4 Hardware Opportunities                                         ing flushed to disk, it is simply flushed into a (more compact)
+                                                                   immutable memory component via an in-memory flush op-
+We now review the LSM-tree improvements proposed for               eration. Similarly, such immutable memory components can
+different hardware platforms, including large memory, multi-       be merged via in-memory merge operations to improve query
+core, SSD/NVM, and native storage. A general paradigm of           performance and reclaim space occupied by obsolete en-
+these improvements is to modify the basic design of LSM-           tries. Note that in-memory flush and merge operations do
+trees to fully exploit the unique features provided by the tar-    not involve any disk I/O, which reduces the overall disk I/O
+get hardware platform to achieve better performance.               cost by leveraging large memory.
+LSM-based Storage Techniques: A Survey                                                                                                               13
+
+                                                                                                                                           Page
+3.4.2 Multi-Core
+                                                                                                                                      i    Index Entry
+                                                                         Level 1                   1    14   27   51   81   92             Fence Pointer
+cLSM [34] optimizes for multi-core machines and presents                                                                              i
+
+new concurrency control algorithms for various LSM-tree
+operations. It organizes LSM components into a concurrent                Level 2    1    15   21   27   33   42   51   55   76   81   85   98
+linked list to minimize blocking caused by synchronization.
+Flush and merge operations are carefully designed so that                               Fig. 12: Example FD-tree structure
+they only result in atomic modifications to the linked list
+that will never block queries. When a memory component
+becomes full, a new memory component is allocated while                  this, during a merge operation, the FD+tree incrementally
+the old one will be flushed. To avoid writers inserting into             activates the new components and reclaims pages from the
+the old memory component, a writer acquires a shared lock                old components that are not used by any active queries.
+before modifications and the flush thread acquires an exclu-                 MaSM (materialized sort-merge) [13] is designed for sup-
+sive lock before flushes. cLSM also supports snapshot scans              porting efficient updates for data warehousing workloads
+via multi-versioning and atomic read-modify-write opera-                 by exploiting SSDs. MaSM first buffers all updates into an
+tions using an optimistic concurrency control approach that              SSD. It uses the tiering merge policy to merge intermedi-
+exploits the fact that all writes, and thus all conflicts, involve       ate components with low write amplification. The updates
+the memory component.                                                    are then merged back to the base data, which resides in the
+                                                                         hard disk. MaSM can be viewed as a simplified form of the
+3.4.3 SSD/NVM                                                            lazy leveling merge policy proposed by Dostoevsky [24],
+                                                                         as we will see later in this survey. Moreover, since MaSM
+Different from traditional hard disks, which only support ef-            mainly targets long range queries to support data warehous-
+ficient sequential I/Os, new storage devices such as solid-              ing workloads, the overhead introduced by intermediate com-
+state drives (SSDs) and non-volatile memories (NVMs) sup-                ponents stored in SSDs is negligible compared to the cost of
+port efficient random I/Os as well. NVMs further provide                 accessing the base data. This enables MaSM to only incur a
+efficient byte-addressable random accesses with persistence              small overhead on queries with concurrent updates.
+guarantees.                                                                  Since SSDs support efficient random reads, separating
+     The FD-tree [44] uses a similar design to LSM-trees to              values from keys becomes a viable solution to improve the
+reduce random writes on SSDs. One major difference is that               write performance of LSM-trees. This approach was first
+the FD-tree exploits fractional cascading [22] to improve                implemented by WiscKey [46] and subsequently adopted by
+query performance instead of Bloom filters. For the com-                 HashKV [20] and SifrDB [50]. As shown in Figure 13, Wis-
+ponent at each level, the FD-tree additionally stores fence              cKey [46] stores key-value pairs into an append-only log and
+pointers that point to each page at the next level. For exam-            the LSM-tree simply serves as a primary index that maps
+ple in Figure 12, the pages at level 2 are pointed at by fence           each key to its location in the log. While this can greatly
+pointers with keys 1, 27, 51, 81 at level 1. After performing            reduce the write cost by only merging keys, range query
+a binary search at level 0, a query can follow these fence               performance will be significantly impacted because values
+pointers to traverse all of the levels. However, this design             are not sorted anymore. Moreover, the value log must be
+introduces additional complexity to merges. When the com-                garbage-collected efficiently to reclaim the storage space.
+ponent at level L is merged into level L + 1, all of the previ-          In WiscKey, garbage-collection is performed in three steps.
+ous levels 0 to L − 1 must be merged as well to rebuild the              First, WiscKey scans the log tail and validates each entry by
+fence pointers. Moreover, a point lookup still needs to per-             performing point lookups against the LSM-tree to find out
+form disk I/Os when searching for non-existent keys, which               whether the location of each key has changed or not. Second,
+can be mostly avoided by using Bloom filters. For these rea-             valid entries, whose locations have not changed, are then
+sons, modern LSM-tree implementations prefer Bloom fil-                  appended to the log and their locations are updated in the
+ters rather than fractional cascading6 .                                 LSM-tree as well. Finally, the log tail is truncated to reclaim
+     The FD+tree [71] improves the merge process of the FD-              the storage space. However, this garbage-collection process
+tree [44]. In the FD-tree, when a merge happens from level 0             has been shown to be a new performance bottleneck [20]
+to level L, new components at levels 0 to L must be created,             due to its expensive random point lookups.
+which will temporarily double the disk space. To address                     HashKV [20] introduces a more efficient approach to
+  6
+                                                                         garbage-collect obsolete values. The basic idea is to hash-
+     RocksDB [6] supports a limited form of fractional cascading by
+                                                                         partition the value log into multiple partitions based on keys
+maintaining the set of overlapping SSTables at the adjacent next level
+for each SSTable. These pointers are used to narrow down the search      and to garbage-collect each partition independently. In order
+range when locating specific SSTables during point lookups.              to garbage-collect a partition, HashKV performs a group-by
+14                                                                                                         Chen Luo, Michael J. Carey
+
+
+operation on the keys to find the latest value for each key.          allows applications to flexibly schedule disk writes to lever-
+Valid key-value pairs are added to a new log and their lo-            age the available I/O parallelism, but disk reads must be
+cations are then updated in the LSM-tree. HashKV further              served by the same channel where the data is stored. To ex-

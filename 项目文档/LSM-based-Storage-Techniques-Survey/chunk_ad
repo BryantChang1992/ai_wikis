@@ -1,0 +1,413 @@
+ Monkey [25,26]        −             ↑              −             −             −        Better Bloom filter memory allocation
+ Dostoevsky [24]       ↑↑            ↓              ↓↓            ↓             ↓        Lazy leveling
+
+
+
+ized view to reduce the overhead during data ingestion. The       3.8 Discussion of Overall Trade-offs
+changes in the delta list are then applied to the materialized
+view lazily, during query processing.                             Based on the RUM conjecture [14], no access method can be
+                                                                  read-optimal, write-optimal, and space-optimal at the same
+                                                                  time. As we have seen in this survey, many LSM-tree im-
+                                                                  provements that optimize for certain workload or system as-
+3.7.5 Summary
+                                                                  pects will generally make trade-offs. To conclude this sec-
+                                                                  tion, we provide a qualitative analysis and summary of the
+The techniques in this category all focus on improving LSM-
+                                                                  trade-offs made by those research efforts that seek to op-
+trees in database settings with secondary indexes and other
+                                                                  timize various aspects of LSM-trees. We will consider the
+auxiliary structures. Several LSM-based secondary index-
+                                                                  leveling merge policy as the baseline for this discussion.
+ing structures have been proposed, including LSM-based
+inverted indexes [75], spatial indexes [42], and filters [11].        The performance trade-offs of the various LSM-tree im-
+These structures would be helpful to optimize certain query       provements are summarized in Table 3. As one can see, most
+workloads. In terms of efficiently maintaining secondary in-      of these improvements try to improve the write performance
+dexes, a common approach is to defer the maintenance of           of the leveling merge policy since it has relatively high write
+secondary indexes so that expensive point lookups can be          amplification. A common approach taken by existing im-
+avoided during the ingestion time. The proposed techniques        provements is to apply the tiering merge policy [12, 50, 53,
+mainly differ in how secondary indexes are cleaned up in the      58, 76, 78, 79, 82], but this will negatively impact query per-
+background, either by queries [66], scanning the primary in-      formance and space utilization. Moreover, tiering has a larger
+dex [67], or exploiting a primary key index [47]. Since the       negative impact on range queries than point lookups since
+optimality of these methods may be workload dependent, it         range queries cannot benefit from Bloom filters.
+would be useful as future work to design adaptive mainte-              Other proposed improvements, such as the skip-tree [81],
+nance mechanisms to maximize performance. Absalyamov              TRIAD [16], and the VT-tree [64], propose several new ideas
+et al. [7] proposed a statistics collection framework, which is   to improve the write performance of LSM-trees. However, in
+a step towards cost-based query optimization on LSM-based         addition to extra overhead on query performance and space
+systems. Finally, several distributed indexing techniques [29,    utilization, these optimizations may bring non-trivial imple-
+30,85] have also been presented. It should be noted that          mentation complexity to real systems. For example, the skip-
+these techniques are not specific to LSM-trees, but we have       tree introduces mutable buffers to store skipped keys, which
+included them here for completeness.                              contradicts the immutability of disk components. TRIAD
+LSM-based Storage Techniques: A Survey                                                                                          21
+
+
+proposes to use transaction logs as disk components to elim-       4.1 LevelDB
+inate flushes, which is again highly non-trivial since transac-
+tion logs usually have very different storage formats and op-      LevelDB [4] is an LSM-based key-value store that was open-
+eration interfaces from disk components. Moreover, a com-          sourced by Google in 2011. It supports a simple key-value
+mon practice is to store transaction logs on a dedicated disk      interface including puts, gets, and scans. LevelDB is not a
+to minimize the negative impacts caused by log forces. The         full-fledged data management system, but rather an embed-
+stitching operation proposed by the VT-tree [64] can cause         ded storage engine intended to power higher-level applica-
+fragmentation and is incompatible with Bloom filters.              tions. The major contribution of LevelDB was that it pio-
+     The LSM-trie [76] and SlimDB [59] give up some query          neered the design and implementation of the partitioned lev-
+capabilities to improve performance. The LSM-trie exploits         eling merge policy, which was described in Section 2.2.1.
+hashing to improve both read and write performance, but            This design has impacted many subsequent LSM-tree im-
+range queries cannot be supported. SlimDB only supports            provements and implementations, as we have seen in this
+a limited form of range queries based on a common pre-             survey. Since we have already described partitioned leveling
+fix key. These improvements would be desirable for certain         in Section 2.2.1, we omit further discussions here.
+workloads where complete range queries are not needed.
+     Separating keys from values [20, 46, 54] can drastically
+improve the write performance of LSM-trees since only keys
+                                                                   4.2 RocksDB
+are merged. However, a major problem is that range queries
+will be significantly impacted because values are not sorted       RocksDB [6] was initially a fork of LevelDB created by
+anymore. Even though this problem can be mitigated by ex-          Facebook in 2012. Since then, RocksDB has added a large
+ploiting the I/O parallelism of SSDs [20, 46], this still leads    number of new features. Due to its high performance and
+to lower disk efficiency especially when values are relatively     flexibility, RocksDB has successfully been used in various
+small. Moreover, storing values separately leads to lower          systems [28] both inside and outside of Facebook. Accord-
+space utilization since values are not garbage-collected dur-      ing to Facebook, a major motivation of for their adoption of
+ing merges. A separate garbage-collection process must be          LSM-based storage was its good space utilization [28]. With
+designed to reclaim disk space occupied by obsolete values.        the default size ratio of 10, RocksDB’s leveling implemen-
+     Given that trade-offs are inevitable, it is valuable to ex-   tation has about 90% percent of the total data at the largest
+plore the design space of LSM-trees so that one can make           level, ensuring that at most 10% of the total storage space
+better or optimal trade-offs. For example, Lim et al. [45] ex-     can be wasted for storing obsolete entries. As mentioned
+ploits data redundancy to tune the maximum sizes for each          earlier, this outperforms traditional B-tree-based storage en-
+level to optimize write performance. This has little or no         gines, where pages are typically 2/3 full on average due to
+impact on other performance metrics since the number of            fragmentation [77]. Here we discuss various improvements
+levels remains the same. Another example is Monkey [25,            made by RocksDB, including its improvements to merge
+26], which unifies the design space of LSM-trees in terms of       policies, merge operations, and new functionality.
+merge policies, size ratios, and memory allocation between
+                                                                        RocksDB’s LSM-tree implementation remains based on
+memory components and Bloom filters. It further identifies
+                                                                   the partitioned leveling design, but with some improvements.
+a better memory allocation scheme for Bloom filters that im-
+                                                                   Since SSTables at level 0 are not partitioned, merging an
+proves point lookup performance without any negative im-
+                                                                   SSTable from level 0 to level 1 generally causes rewrites
+pact on other metrics. Finally, Dostoevsky [24] extends the
+                                                                   of all SSTables at level 1, which often makes level 0 the
+design space of LSM-trees with a new lazy leveling merge
+                                                                   performance bottleneck. To partially address this problem,
+policy. By performing tiering at lower levels while level-
+                                                                   RocksDB optionally merges SSTables at level 0 using the
+ing at the largest level, lazy leveling achieves similar write
+                                                                   tiering merge policy. This elastic design allows RocksDB
+throughput to tiering but only has slightly worse point lookup
+                                                                   to better absorb write bursts without degrading query per-
+performance, long range query performance, and space uti-
+                                                                   formance too much. RocksDB further supports a dynamic
+lization than leveling.
+                                                                   level size scheme to bound the space amplification. The is-
+                                                                   sue is that the ideal leveling space amplification O( T T+1 ) is
+4 Representative LSM-based Systems                                 achieved only when the last level reaches the maximum size,
+                                                                   which may not always happen in practice. To address this,
+Having discussed LSM-trees and their improvements in de-           RocksDB dynamically adjusts the maximum capacities of
+tail, we now survey five representative LSM-based open-            all of the lower levels depending on the current size of the
+source NoSQL systems, namely LevelDB [4], RocksDB [6],             last level, thereby ensuring that the space amplification is
+Cassandra [1], HBase [3], and AsterixDB [9]. We will focus         always O( T T+1 ). In addition to a round-robin policy to se-
+on their storage layers.                                           lect the SSTables to be merged, which is used in LevelDB,
+22                                                                                                      Chen Luo, Michael J. Carey
+
+
+RocksDB supports two additional policies - namely cold-                Finally, RocksDB supports a new operation called read-
+first and delete-first. The cold-first policy selects cold SSTa-   modify-write. In practice, many applications typically up-
+bles to merge to optimize for skewed workloads. It ensures         date existing values by reading them first. To support this
+that hot SSTables that are updated frequently will remain in       operation efficiently, RocksDB allows users to write delta
+the lower levels to reduce their total write cost. The delete-     records directly into memory, thereby avoiding reading the
+first policy selects SSTables with a large number of anti-         original record. Delta records are then combined with base
+matter entries to quickly reclaim the disk space occupied by       records during query processing and merges based on the
+the deleted entries. Finally, RocksDB supports an API called       user-provided combination logic. If applicable, RocksDB fur-
+the merge filter7 that allows users to provide custom logic        ther combines multiple delta records together during merges
+to garbage-collect obsolete entries during merges efficiently.     to improve subsequent query performance.
+During a merge, RocksDB invokes the user-provided merge
+filter with each key-value pair and only adds those key-value
+pairs that are not filtered to the resulting SSTables.             4.3 HBase
+     Besides the partitioned leveling merge policy, RocksDB
+                                                                   Apache HBase [3] is a distributed data storage system in the
+supports other merge policies such as tiering and FIFO. In
+                                                                   Hadoop ecosystem; it was modeled after Google’s Bigtable
+RocksDB, as well as other systems, the actual tiering merge
+                                                                   design [21]. HBase is based on a master-slave architecture.
+policy slightly differs from the one described in this paper
+                                                                   It partitions (either hash or range) a dataset into a set of re-
+(and elsewhere in the literature). RocksDB’s tiering merge
+                                                                   gions, where each region is managed by an LSM-tree. HBase
+policy is controlled by two parameters, namely, the number
+                                                                   supports dynamic region splitting and merging to elastically
+of components to merge (K) and the size ratio (T). It works
+                                                                   manage system resources based on the given workload. Here
+by examining components from oldest to newest, and for
+                                                                   we focus on the storage engine of HBase.
+each component Ci , it checks whether the total size of the
+                                                                        HBase’s LSM-tree implementation is generally based on
+K-1 younger components Ci−1 , Ci−2 , ..., Ci−K is larger than
+                                                                   the basic tiering merge policy. It supports some variations
+T times the size of Ci . If so, the policy merges all of these
+                                                                   of the tiering merge policy as well, such as the exploring
+components together; otherwise, it proceeds to check the
+                                                                   merge policy and the date-tiered merge policy. The explor-
+next younger component. RocksDB performs limited par-
+                                                                   ing merge policy checks all mergeable component sequences
+titioning for its tiering merge policy, similar to the horizon-
+                                                                   and selects the one with the smallest write cost. This merge
+tal grouping design (Section 2.2.2), to bound the maximum
+                                                                   policy is more robust than the basic tiering merge policy, es-
+size of SSTables. The motivation is that the maximum page
+                                                                   pecially when components have irregular sizes due to load-
+size is limited to 4GB, but the index page of a huge com-
+                                                                   ing and deletions. Thus, it is used as the default merge policy
+ponent (stored as a single SSTable) could exceed this size
+                                                                   in HBase. The date-tiered merge policy is designed for man-
+limit. However, during large merges the disk space may still
+                                                                   aging time-series data. It merges components based on their
+be temporarily doubled since RocksDB treats each SSTable
+                                                                   time ranges, instead of their sizes, so that components will
+group as a whole and only deletes old SSTables when the
+                                                                   be time-range-partitioned. This enables efficient processing
+merge operation is fully completed. In the FIFO merge pol-
+                                                                   of temporal queries.
+icy, components are not merged at all, but old components
+                                                                        Recently, HBase has introduced a new feature, called
+will be deleted based on a specified lifetime.
+                                                                   stripping, to partition a large region to improve merge ef-
+    In LSM-based storage, merge operations typically con-          ficiency. The idea is to partition the key space so that each
+sume a lot of CPU and disk resources that can negatively           partition, which contains a list of components, is merged in-
+impact query performance. Moreover, the timing of merges           dependently. This is similar to the design proposed by PE-
+is generally unpredictable, as it directly depends on the write    files [38], but is different from the partitioned tiering merge
+rate. To alleviate this issue, RocksDB supports rate limiting      policy described in Section 2.2.1.
+to control the disk write speed of merge operations based on            HBase does not support secondary indexes natively. How-
+the leaky bucket mechanism [72]. The basic idea is to main-        ever, a secondary index can be implemented as a separate ta-
+tain a “bucket” that stores a number of tokens controlled by       ble that stores secondary keys plus their primary keys using
+a token refill speed. All flush and merge operations must          co-processors, as described in [29].
+request a certain number of tokens before performing each
+write. Thus, the disk write speed of flush and merge opera-
+tions will be bounded by the specified token refill speed.         4.4 Cassandra
+
+ 7                                                                 Apache Cassandra [1] is an open-source distributed data stor-
+    It is called the compaction filter in RocksDB since RocksDB
+prefers the term compaction to merge. We use the term merge here   age system modeled after both Amazon’s Dynamo [27] and
+to minimize the potential for terminology confusion.               Google’s BigTable [21]. Cassandra relies on a decentralized
+LSM-based Storage Techniques: A Survey                                                                                        23
+
+
+architecture to eliminate the possibility of a single point of     mary index components are merged, all corresponding com-
+failure. Each data partition in Cassandra is powered by an         ponents from other indexes will be merged as well.
+LSM-based storage engine.
+    Cassandra supports a similar set of merge policies to
+                                                                   5 Future Research Directions
+RocksDB and HBase, including the (unpartitioned) tiering
+merge policy, the partitioned leveling merge policy, and the
+                                                                   Categorizing and summarizing the existing LSM-tree im-
+date-tiered merge policy. Moreover, Cassandra supports lo-
+                                                                   provements in the literature reveals several interesting out-
+cal secondary indexes to facilitate query processing. To avoid
+                                                                   ages and opportunities for future work on LSM-based stor-
+the high point lookup overhead, secondary indexes are main-
+                                                                   age. We now briefly discuss some future research directions
+tained lazily, similar to DELI [67]. During an update, if the
+                                                                   suggested by the results of this survey.
+old record is found in the memory component, then it is
+                                                                       Thorough Performance Evaluation. As mentioned be-
+used to clean up secondary indexes directly. Otherwise, sec-
+                                                                   fore, the tunability of LSM-trees has not been adequately
+ondary indexes are cleaned up lazily when merging the pri-
+                                                                   considered in many of the research efforts to date. Work on
+mary index components.
+                                                                   improvements has typically been evaluated against a default
+                                                                   (untuned) configuration of LevelDB or RocksDB. It is not
+                                                                   clear how the improvements would compare against a well-
+4.5 AsterixDB                                                      tuned baseline LSM-tree for a given workload. Moreover,
+                                                                   many of the improvement proposals have primarily evalu-
+Apache AsterixDB [9] is an open-source Big Data Manage-            ated their impact on query performance, with space utiliza-
+ment System (BDMS) that aims to manage massive amounts             tion often being neglected. This situation can be addressed
+of semi-structured (e.g., JSON) data efficiently. Here we fo-      in future research by more carefully considering the tunabil-
+cus on the storage management aspect of AsterixDB [10].            ity of LSM-trees.
+     AsterixDB uses a shared-nothing parallel database style           Partitioned Tiering Structure. Tiering has been used
+architecture. The records of each dataset are hash-partitioned     by many LSM-tree improvements to reduce the write ampli-
+based on their primary keys across multiple nodes. Each par-       fication of LSM-trees. In Section 2.2.1, we have identified
+tition of a dataset is managed by an LSM-based storage en-         two possible partitioned tiering schemes, namely horizon-
+gine, with a primary index, a primary key index, and multi-        tal grouping and vertical grouping, that cover virtually all
+ple local secondary indexes. AsterixDB uses a record-level         of the tiering-related LSM-tree improvements proposed re-
+transaction model to ensure that all of the indexes are kept       cently. However, the performance characteristics and trade-
+consistent within each partition. The primary index stores         offs of these two schemes are not yet clear. In general, ver-
+records indexed by primary keys, and the primary key in-           tical grouping permits more freedom when selecting SSTa-
+dex stores primary keys only. The primary key index is built       bles to merge, while horizontal grouping ensures that SSTa-
+to support COUNT(*) style queries efficiently as well as           bles are fixed-size. It would be useful as future work to sys-
+various index maintenance operations [47] since it is much         tematically evaluate these two schemes and possibly design
+smaller than the primary index.                                    new schemes that combine the advantages of both.
+     Secondary indexes use the composition of the secondary            Hybrid Merge Policy. Until recently, most LSM-tree
+key and the primary key as their index keys. AsterixDB sup-        improvements have assumed a homogeneous merge policy
+ports LSM-based B+ -trees, R-trees, and inverted indexes us-       of either leveling or tiering at all of the levels of an LSM-
+ing a generic LSM-ification framework that can convert an          tree. However, this has been shown to be sub-optimal for
+in-place index into an LSM-based index. For LSM-based              certain workloads [24]. A hybrid merge policy of leveling
+R-trees, a linear order, such as a Hilbert curve for point         and tiering can provide much better write performance than
+data and a Z-order curve for non-point data, is used to sort       leveling with minimal impact on point lookups, long range
+the entries in disk components, while in the memory com-           queries, and space amplification. As a future direction, it
+ponent, deleted keys are recorded in a separate B+ -tree to        would be interesting to design and implement LSM-trees
+avoid multi-path traversals during deletes. AsterixDB also         with hybrid merge policies and revisit some of the key ques-
+supports LSM-based inverted indexes to efficiently process         tions raised by this design choice.
+full-text queries and similarity queries [41]. By default, each        Minimizing Performance Variance. In practice, per-
+LSM index’s components are merged independently using a            formance variance is as important a performance metric as
+tiering-like merge policy. AsterixDB also supports a corre-        absolute throughput. Unfortunately, LSM-trees often exhibit
+lated merge policy that synchronizes the merges of all of          large performance variances because they decouple the in-
+a dataset’s indexes together to improve query performance          memory writes from expensive background I/Os. As we have
+with filters. The basic idea of this policy is to delegate merge   seen in this survey, bLSM [61] is the only attempt to min-
+scheduling to the primary index. When a sequence of pri-           imize write stalls exhibited by LSM-trees. However, bLSM
+24                                                                                                               Chen Luo, Michael J. Carey
+
+
+itself still has several limitations. It was designed just for         6. RocksDB. http://rocksdb.org/
+the unpartitioned leveling merge policy, and it only mini-             7. Absalyamov, I., et al.: Lightweight cardinality estimation in LSM-
+                                                                          based systems. In: ACM SIGMOD, pp. 841–855 (2018)
+mizes long write latencies caused by write stalls instead of           8. Ahmad, M.Y., Kemme, B.: Compaction management in dis-
+the variance of the overall ingestion throughput. As future               tributed key-value datastores. PVLDB 8(8), 850–861 (2015)
+work, it would be very useful to design mechanisms to min-             9. Alsubaiee, S., et al.: AsterixDB: A scalable, open source BDMS.
+imize the performance variance of LSM-trees.                              PVLDB 7(14), 1905–1916 (2014)
+                                                                      10. Alsubaiee, S., et al.: Storage management in AsterixDB. PVLDB
+    Towards Database Storage Engines. Finally, most of                    7(10), 841–852 (2014)
+the existing LSM-tree improvements have focused rather nar-           11. Alsubaiee, S., et al.: LSM-based storage and indexing: An old idea
+rowly on a key-value store setting involving a single LSM-                with timely benefits. In: International ACM SIGMOD Workshop
+                                                                          on Managing and Mining Enriched Geo-Spatial Data (GeoRich),
+tree. As LSM-trees are gradually becoming widely used in-                 pp. 1–6 (2015)
+side DBMS storage engines, new query processing and data              12. Amur, H., et al.: Design of a write-optimized data store. Tech.
+ingestion techniques should be developed for this more gen-               rep., Georgia Institute of Technology (2013)
+eral (multi-index) setting. Possible examples include adap-           13. Athanassoulis, M., et al.: MaSM: efficient online updates in data
+                                                                          warehouses. In: ACM SIGMOD, pp. 865–876. ACM (2011)
+tive maintenance of auxiliary structures to facilitate query          14. Athanassoulis, M., et al.: Designing access methods: The RUM
+processing, LSM-aware query optimization, and co-planning                 conjecture. In: EDBT, vol. 2016, pp. 461–466 (2016)
+of LSM-tree maintenance tasks with query execution.                   15. Balmau, O., et al.: FloDB: Unlocking memory in persistent key-
+                                                                          value stores. In: European Conference on Computer Systems (Eu-
+                                                                          roSys), pp. 80–94 (2017)
+                                                                      16. Balmau, O., et al.: TRIAD: Creating synergies between memory,
+6 Conclusion                                                              disk and log in log structured key-value stores. In: USENIX An-
+                                                                          nual Technical Conference (ATC), pp. 363–375 (2017)
+Recently, LSM-trees have become increasingly popular in               17. Bender, M.A., et al.: Don’t thrash: how to cache your hash on
+                                                                          flash. PVLDB 5(11), 1627–1637 (2012)
+modern NoSQL systems due to advantages such as supe-                  18. Bloom, B.H.: Space/time trade-offs in hash coding with allowable
+rior write performance, high space utilization, immutability              errors. CACM 13(7), 422–426 (1970)
+of on-disk data, and tunability. These factors have enabled           19. Bortnikov, E., et al.: Accordion: Better memory organization for
+                                                                          LSM key-value stores. PVLDB 11(12), 1863–1875 (2018)
+LSM-trees to be widely adopted and deployed to serve a va-
+                                                                      20. Chan, H.H.W., et al.: HashKV: Enabling efficient updates in KV
+riety of workloads.                                                       storage via hashing. In: USENIX Annual Technical Conference
+    In this paper, we have surveyed the recent research ef-               (ATC), pp. 1007–1019 (2018)
+forts, including efforts from both the database community             21. Chang, F., et al.: Bigtable: A distributed storage system for struc-
+                                                                          tured data. ACM TOCS 26(2), 4:1–4:26 (2008)
+and the systems community, to improve LSM-trees. We pre-              22. Chazelle, B., Guibas, L.J.: Fractional cascading: I. a data structur-
+sented a general taxonomy to classify existing LSM-tree im-               ing technique. Algorithmica 1(1), 133–162 (1986)
+provements based on the specific aspects that they aim to op-         23. Chen, G.J., et al.: Realtime data processing at Facebook. In: ACM
+timize, and we discussed the improvements in detail based                 SIGMOD, pp. 1087–1098 (2016)
+                                                                      24. Dayan, N., Idreos, S.: Dostoevsky: Better space-time trade-offs for
+on the proposed taxonomy. We also reviewed several rep-                   LSM-tree based key-value stores via adaptive removal of superflu-
+resentative LSM-based open-source NoSQL systems, and                      ous merging. In: ACM SIGMOD, pp. 505–520 (2018)
+we identified some interesting future research directions. We         25. Dayan, N., et al.: Monkey: Optimal navigable key-value store. In:
+                                                                          ACM SIGMOD, pp. 79–94 (2017)
+hope that this survey will serve as a useful guide to the state-      26. Dayan, N., et al.: Optimal Bloom filters and adaptive merging for
+of-the-art in LSM-based storage techniques for researchers,               LSM-trees. ACM TODS 43(4), 16:1–16:48 (2018)
+practitioners, and users.                                             27. DeCandia, G., et al.: Dynamo: Amazon’s highly available key-
+                                                                          value store. In: ACM SOSP, pp. 205–220 (2007)
+                                                                      28. Dong, S., et al.: Optimizing space amplification in RocksDB. In:
+Acknowledgements We would like to thank Mark Callaghan, Manos             CIDR, vol. 3, p. 3 (2017)
+Athanassoulis, and the anonymous reviewers for their valuable com-    29. D’silva, J.V., et al.: Secondary indexing techniques for key-value
+ments and feedback. This work was supported by NSF awards CNS-            stores: Two rings to rule them all. In: International Workshop
+1305430, IIS-1447720, and IIS-1838248 along with industrial support       On Design, Optimization, Languages and Analytical Processing
+from Amazon, Google, and Microsoft and support from The Donald            of Big Data (DOLAP) (2017)
+Bren Foundation (via a Bren Chair) of UC Irvine.                      30. Duan, H., et al.: Incremental materialized view maintenance on
+                                                                          distributed log-structured merge-tree. In: DASFAA, pp. 682–700
+                                                                          (2018)
+                                                                      31. Fagin, R., et al.: Optimal aggregation algorithms for middleware.
+References                                                                In: ACM PODS, pp. 102–113 (2001)
+                                                                      32. Fan, B., et al.: Cuckoo filter: Practically better than Bloom. In:
+ 1. Cassandra. http://cassandra.apache.org/                               International Conference on emerging Networking EXperiments
+ 2. Dragon:     A     distributed graph   query             engine.       and Technologies (CoNEXT), pp. 75–88 (2014)
+    https://code.fb.com/data-infrastructure/                          33. Fang, Y., et al.: Spatial indexing in Microsoft SQL Server 2008.
+    dragon-a-distributed-graph-query-engine/                              In: ACM SIGMOD, pp. 1207–1216 (2008)
+ 3. HBase. https://hbase.apache.org/                                  34. Golan-Gueta, G., et al.: Scaling concurrent log-structured data
+ 4. LevelDB. http://leveldb.org/                                          stores. In: European Conference on Computer Systems (EuroSys),
+ 5. MyRocks. https://http://myrocks.io/                                   pp. 32:1–32:14 (2015)
+LSM-based Storage Techniques: A Survey                                                                                                               25
+
+
+35. Guttman, A.: R-trees: A dynamic index structure for spatial               63. Severance, D.G., Lohman, G.M.: Differential files: Their appli-
+    searching. In: ACM SIGMOD, pp. 47–57 (1984)                                   cation to the maintenance of large databases. ACM TODS 1(3),
+36. Haerder, T., Reuter, A.: Principles of transaction-oriented database          256–267 (1976)
+    recovery. ACM CSUR 15(4), 287–317 (1983)                                  64. Shetty, P.J., et al.: Building workload-independent storage with
+37. Jagadish, H.V., et al.: Incremental organization for data recording           VT-trees. In: USENIX Conference on File and Storage Technolo-
+    and warehousing. In: VLDB, pp. 16–25 (1997)                                   gies (FAST), pp. 17–30 (2013)
+38. Jermaine, C., et al.: The partitioned exponential file for database       65. Stonebraker, M.: The design of the Postgres storage system. In:
+    storage management. VLDBJ 16(4), 417–437 (2007)                               VLDB, pp. 289–300 (1987)
+39. Kannan, S., et al.: Redesigning LSMs for nonvolatile memory with          66. Tan, W., et al.: Diff-index: Differentiated index in distributed log-
+    NoveLSM. In: USENIX Annual Technical Conference (ATC), pp.                    structured data stores. In: EDBT, pp. 700–711 (2014)
+    993–1005 (2018)                                                           67. Tang, Y., et al.: Deferred lightweight indexing for log-structured
+40. Khodaei, A., et al.: Hybrid indexing and seamless ranking of spa-             key-value stores. In: International Symposium in Cluster, Cloud,
+    tial and textual features of web documents. In: Database and Ex-              and Grid Computing (CCGrid), pp. 11–20 (2015)
+    pert Systems Applications (DEXA), pp. 450–466 (2010)                      68. Teng, D., et al.: LSbM-tree: Re-enabling buffer caching in data
+41. Kim, T., et al.: Supporting similarity queries in Apache Aster-               management for mixed reads and writes. In: IEEE International
+    ixDB. In: EDBT, pp. 528–539 (2018)                                            Conference on Distributed Computing Systems (ICDCS), pp. 68–
+42. Kim, Y., et al.: A comparative study of log-structured merge-tree-            79 (2017)
+    based spatial indexes for big data. In: ICDE, pp. 147–150 (2017)          69. Teng, D., et al.: A low-cost disk solution enabling LSM-tree to
+43. Lawder, J.: The application of space-filling curves to the storage            achieve high performance for mixed read/write workloads. ACM
+    and retrieval of multi-dimensional data. Ph.D. thesis, PhD Thesis,            TOS 14(2), 15:1–15:26 (2018)
+    University of London, UK (2000)                                           70. Thonangi, R., Yang, J.: On log-structured merge for solid-state
+44. Li, Y., et al.: Tree indexing on solid state drives. PVLDB 3(1-2),            drives. In: ICDE, pp. 683–694 (2017)
+    1195–1206 (2010)                                                          71. Thonangi, R., et al.: A practical concurrent index for solid-state
+45. Lim, H., et al.: Towards accurate and fast evaluation of multi-stage          drives. In: ACM CIKM, pp. 1332–1341 (2012)
+    log-structured designs. In: USENIX Conference on File and Stor-           72. Turner, J.: New directions in communications (or which way to
+    age Technologies (FAST), pp. 149–166 (2016)                                   the information age?). IEEE Communications Magazine 24(10),
+46. Lu, L., et al.: WiscKey: Separating keys from values in SSD-                  8–15 (1986)
+    conscious storage. In: USENIX Conference on File and Storage              73. Vinçon, T., et al.: NoFTL-KV: Tackling write-amplification on
+    Technologies (FAST), pp. 133–148 (2016)                                       KV-stores with native storage management. In: EDBT, pp. 457–
+47. Luo, C., Carey, M.J.: Efficient data ingestion and query processing           460 (2018)
+    for LSM-based storage systems. PVLDB 12(5), 531–543 (2019)                74. Wang, P., et al.: An efficient design and implementation of LSM-
+48. Mathieu, C., et al.: Bigtable merge compaction.                 CoRR          tree based key-value store on open-channel SSD. In: Euro-
+    abs/1407.3008 (2014)                                                          pean Conference on Computer Systems (EuroSys), pp. 16:1–16:14
+49. Mei, F., et al.: LSM-tree managed storage for large-scale key-                (2014)
+    value store. In: ACM SoCC, pp. 142–156 (2017)                             75. Wu, L., et al.: LSII: An indexing structure for exact real-time
+50. Mei, F., et al.: SifrDB: A unified solution for write-optimized key-          search on microblogs. In: ICDE, pp. 482–493 (2013)
+    value stores in large datacenter. In: ACM SoCC, pp. 477–489               76. Wu, X., et al.: LSM-trie: an LSM-tree-based ultra-large key-value
+    (2018)                                                                        store for small data. In: USENIX Annual Technical Conference
+51. Muth, P., et al.: The LHAM log-structured history data access                 (ATC), pp. 71–82 (2015)
+    method. VLDBJ 8(3), 199–221 (2000)                                        77. Yao, A.C.C.: On random 2–3 trees. Acta Informatica 9(2), 159–
+52. O’Neil, P., et al.: The log-structured merge-tree (LSM-tree). Acta            170 (1978)
+    Inf. 33(4), 351–385 (1996)                                                78. Yao, T., et al.: Building efficient key-value stores via a lightweight
+53. Pan, F.F., et al.: dCompaction: Speeding up compaction of the                 compaction tree. ACM TOS 13(4), 29:1–29:28 (2017)
+    LSM-tree via delayed compaction. Journal of Computer Science              79. Yao, T., et al.: A light-weight compaction tree to reduce I/O ampli-
+    and Technology (JCST) 32(1), 41–54 (2017)                                     fication toward efficient key-value stores. In: International Confer-
+54. Papagiannis, A., et al.: An efficient memory-mapped key-value                 ence on Massive Storage Systems and Technology (MSST) (2017)
+    store for flash storage. In: ACM SoCC, pp. 490–502 (2018)                 80. Yoon, H., et al.: Mutant: Balancing storage cost and latency in
+                                                                                  LSM-tree data stores. In: ACM SoCC, pp. 162–173 (2018)
+55. Pugh, W.: Skip lists: a probabilistic alternative to balanced trees.
+                                                                              81. Yue, Y., et al.: Building an efficient put-intensive key-value store
+    CACM 33(6), 668–676 (1990)
+                                                                                  with skip-tree. IEEE Transactions on Parallel and Distributed Sys-
+56. Putze, F., et al.: Cache-, hash-, and space-efficient bloom filters. J.
+                                                                                  tems (TPDS) 28(4), 961–973 (2017)
+    Exp. Algorithmics 14, 4:4.4–4:4.18 (2010)
+                                                                              82. Zhang, W., et al.: Improving write performance of LSMT-based
+57. Qader, M.A., et al.: A comparative study of secondary indexing
+                                                                                  key-value store. In: International Conference on Parallel and Dis-
+    techniques in LSM-based NoSQL databases. In: ACM SIGMOD,
+                                                                                  tributed Systems (ICPADS), pp. 553–560 (2016)
+    pp. 551–566 (2018)
+                                                                              83. Zhang, Y., et al.: ElasticBF: Fine-grained and elastic bloom filter
+58. Raju, P., et al.: PebblesDB: Building key-value stores using frag-
+                                                                                  towards efficient read for LSM-tree-based KV stores. In: USENIX
+    mented log-structured merge trees. In: ACM SOSP, pp. 497–514
+                                                                                  Workshop on Hot Topics in Storage and File Systems (HotStor-
+    (2017)
+                                                                                  age) (2018)
+59. Ren, K., et al.: SlimDB: A space-efficient key-value storage en-
+                                                                              84. Zhang, Z., et al.: Pipelined compaction for the LSM-tree. In:
+    gine for semi-sorted data. PVLDB 10(13), 2037–2048 (2017)
+                                                                                  IEEE International Parallel & Distributed Processing Symposium
+60. Rosenblum, M., Ousterhout, J.K.: The design and implementation
+                                                                                  (IPDPS), pp. 777–786 (2014)
+    of a log-structured file system. ACM TOCS 10(1), 26–52 (1992)
+                                                                              85. Zhu, Y., et al.: An efficient bulk loading approach of secondary
+61. Sears, R., Ramakrishnan, R.: bLSM: A general purpose log struc-
+                                                                                  index in distributed log-structured data stores. In: DASFAA, pp.
+    tured merge tree. In: ACM SIGMOD, pp. 217–228 (2012)
+                                                                                  87–102 (2017)
+62. Seltzer, M.I.: File system performance and transaction support.
+    Tech. rep., PhD Thesis, Department of Electrical Engineering and
+    Computer Sciences, University of California Berkeley (1992)
+

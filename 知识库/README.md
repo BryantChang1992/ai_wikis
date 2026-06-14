@@ -3,7 +3,7 @@ type: meta
 title: "CHANG_AI_TEAM 知识库"
 tags: ["meta", "知识库"]
 created: 2026-06-14
-updated: 2026-06-14T22:55
+updated: 2026-06-14
 ---
 
 # CHANG_AI_TEAM 知识库
@@ -37,8 +37,8 @@ sources/  →  wiki/  →  Schema
 
 ### 调研报告
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
+- [[wiki/InfluxDB深度调研]] — InfluxDB 时序数据库全面调研：从 TSM 到 InfluxDB 3.0 列存引擎的演进（5 模块）
 - [[wiki/Doris-深度调研]] — Apache Doris 实时分析数据库全面调研：5 大模块（核心概念/存储引擎/查询流程/架构演进/元数据与一致性）
-- [[wiki/InfluxDB深度调研]] — InfluxDB 深度调研：从 TSM 到列存引擎（数据模型/存储引擎/写入查询/指标设计/高可用/Catalog）
 
 ### 概念卡片
 - [[wiki/LSM-Tree]] — LSM-Tree 总览：定义、历史、架构、Leveling/Tiering、经典优化、代表系统
@@ -52,7 +52,6 @@ sources/  →  wiki/  →  Schema
 - [[wiki/存储计算分离数据库的-Tail-Latency]] — 问题根因(日志链长度差异+CPU争抢)、传统解法为何无效
 - [[wiki/Log-as-the-Database-模式]] — Log-as-Database 设计原理、结构性代价、Kafka 类比
 - [[wiki/Event-Horizon-非对称依赖]] — Event Horizon (CIDR 2026): 半线性化与非对称依赖，降低跨地域协调延迟
-- [[wiki/InfluxDB深度调研]] — InfluxDB 时序数据库全面调研：从 TSM 到 InfluxDB 3.0 列存引擎的演进
 - [[wiki/InfluxDB-数据模型]] — 时序数据模型核心概念：Bucket、Measurement、Tag、Field、Timestamp
 - [[wiki/InfluxDB-TSM存储引擎]] — TSM 引擎（TSI++）结构、时序压缩算法族、碎片化问题
 - [[wiki/InfluxDB-3-列存引擎]] — InfluxDB 3.0 列存引擎：与 TSM 架构对比、读写路径变更、Parquet + Arrow 生态
@@ -67,13 +66,6 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Doris-Nereids-CBO-优化器]] — Nereids CBO 优化器：Join Reorder、CTE 物化、Runtime Filter、统计信息
 - [[wiki/Doris-架构演进]] — Palo → Doris 3.0 存算分离的十年演进、关键架构决策、竞品定位
 - [[wiki/Doris-元数据与一致性复制]] — BDB-JE → Meta Service 元数据演进、TabletScheduler 多副本复制、2PC 事务与故障恢复
-- [[wiki/InfluxDB-数据模型]] — Measurement/Tag/Field/Timestamp/Series/Cardinality 数据模型与 Line Protocol
-- [[wiki/InfluxDB-TSM存储引擎]] — TSM (Time-Structured Merge Tree) + TSI 倒排索引，多级 Compaction 与 [[LSM-Tree]] 对比
-- [[wiki/InfluxDB-3-列存引擎]] — Parquet/Arrow/DataFusion 列存引擎，存算分离，无索引剪枝消除基数上限
-- [[wiki/InfluxDB-写入与查询路径]] — v1/v2 Iterator vs v3 DataFusion 向量化，WAL 语义演进
-- [[wiki/InfluxDB-指标设计与基数管理]] — Tag vs Field 决策框架、五大最佳实践、反模式、下采样策略
-- [[wiki/InfluxDB-多副本与高可用]] — Router 双副本、WAL 崩溃恢复、Object Store 3 AZ 三层防护
-- [[wiki/InfluxDB-Catalog元数据]] — PostgreSQL 兼容 RDBMS、BoltDB 演进、存算分离元数据中心
 
 ---
 
@@ -89,4 +81,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-14 22:45*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-14*

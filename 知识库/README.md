@@ -38,6 +38,9 @@ sources/  →  wiki/  →  Schema
 ### 调研报告
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
 
+### 概念卡片
+- [[wiki/Event-Horizon-非对称依赖]] — Event Horizon (CIDR 2026): 半线性化与非对称依赖，降低跨地域协调延迟
+
 ---
 
 ## 第3层: Schema

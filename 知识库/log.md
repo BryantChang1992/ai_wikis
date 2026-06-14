@@ -47,3 +47,8 @@ updated: 2026-06-14
   - 产出 1 张调研报告 + 7 张概念卡片
   - 调研报告: Doris 实时分析数据库深度调研
   - 概念卡片: 数据模型、Segment v2 存储格式、Compaction 策略、MPP 向量化查询引擎、Nereids CBO 优化器、架构演进、元数据与一致性复制
+- `[22:55] rd-task Worker`: **INGEST** — InfluxDB 调研知识卡片
+  - 源文件: 技术文章/InfluxDB调研.md + 技术文章/InfluxDB调研/ 下 5 个子文档
+  - 产出 1 张调研报告 + 7 张概念卡片
+  - 调研报告: InfluxDB 深度调研（从 TSM 到列存引擎）
+  - 概念卡片: 数据模型、TSM 存储引擎、3 列存引擎、写入与查询路径、指标设计与基数管理、多副本与高可用、Catalog 元数据

@@ -2,7 +2,8 @@
 type: concept
 title: "Event Horizon: 非对称依赖与跨地域操作"
 sources:
-  - "sources/papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md"
+  - "sources/papers/Event-Horizon-CIDR2026.pdf"
+  - "sources/papers/Event-Horizon/精读分析.md"
 tags:
   - 分布式系统
   - 一致性

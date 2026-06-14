@@ -14,23 +14,39 @@ updated: 2026-06-14
 
 | 目录 | 内容 | 来源 |
 |------|------|------|
+| `papers/` | 论文原文（PDF）+ 附属子文档 | 论文精读、调研中引用的论文 |
 | `web/` | 网页存档 | 技术调研周报中的参考链接 |
-| `papers/` | 论文原文 | 论文精读、调研中引用的论文 |
 | `notes/` | 原始笔记 | 会议记录、随手笔记、外部资料 |
+
+## 论文目录结构
+
+```
+sources/papers/
+├── 论文原文.pdf              ← 论文英文原文，只读
+├── 论文简称/                 ← 附属子文档目录
+│   ├── 精读分析.md           ← AI 或人类写的精读分析
+│   └── 全文翻译.md           ← 中文全文翻译（可选）
+```
 
 ## 入库规则
 
-1. 源文件放入 `sources/` 后，Agent 读取、分析、生成 wiki 页面到 `wiki/`
-2. 每个 wiki 页面必须在 frontmatter 的 `sources:` 字段中引用对应的源文件
-3. 源文件 SHA256 去重——相同内容不重复处理
-4. 源文件命名保留原始名称，避免重命名便于溯源
+1. 论文原文（PDF）直接放在 `sources/papers/` 下
+2. 精读分析、翻译等附属文档放在以论文简称命名的子目录中
+3. Agent 读取时优先用精读分析作为 ingest 源材料，PDF 作为溯源
+4. 源文件 SHA256 去重——相同内容不重复处理
 
 ## 当前源文件列表
 
 ### papers/
-- [Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md](papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md) — CIDR 2026，TU Delft，非对称依赖降低跨地域延迟（精读分析）
-- [LSM-based-Storage-Techniques-A-Survey.md](papers/LSM-based-Storage-Techniques-A-Survey.md) — VLDB Journal 2019，UC Irvine，LSM-tree 综述（精读分析）
-- [RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md](papers/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md) — SIGMOD 2026，Purdue，存储计算分离 Tail Latency 消除（精读分析）
+- [Event-Horizon-CIDR2026.pdf](papers/Event-Horizon-CIDR2026.pdf) — CIDR 2026，TU Delft，非对称依赖降低跨地域延迟（原文 PDF，1.6MB）
+  - [Event-Horizon/精读分析.md](papers/Event-Horizon/精读分析.md) — 精读分析稿
+  - [Event-Horizon/全文翻译.md](papers/Event-Horizon/全文翻译.md) — 中文全文翻译
+- [LSM-Survey-VLDBJ2019.pdf](papers/LSM-Survey-VLDBJ2019.pdf) — VLDB Journal 2019，UC Irvine，LSM-tree 综述（原文 PDF，879KB）
+  - [LSM-Survey/精读分析.md](papers/LSM-Survey/精读分析.md) — 精读分析稿
+  - [LSM-Survey/全文翻译.md](papers/LSM-Survey/全文翻译.md) — 中文全文翻译
+- [RaaS-SIGMOD2026.pdf](papers/RaaS-SIGMOD2026.pdf) — SIGMOD 2026，Purdue，存储计算分离 Tail Latency 消除（原文 PDF，3.2MB）
+  - [RaaS/精读分析.md](papers/RaaS/精读分析.md) — 精读分析稿
+  - [RaaS/全文翻译.md](papers/RaaS/全文翻译.md) — 中文全文翻译
 
 ### web/
 *(待入库)*

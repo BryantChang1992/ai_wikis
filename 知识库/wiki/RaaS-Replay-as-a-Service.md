@@ -2,7 +2,8 @@
 type: concept
 title: "RaaS (Replay-as-a-Service)：存储计算分离数据库的 Tail Latency 消除方案"
 sources:
-  - "sources/papers/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md"
+  - "sources/papers/RaaS-SIGMOD2026.pdf",
+  - "sources/papers/RaaS/精读分析.md"
 tags:
   - RaaS
   - 存储计算分离

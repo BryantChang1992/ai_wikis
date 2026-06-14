@@ -27,7 +27,15 @@ updated: 2026-06-14
 
 ## 当前源文件列表
 
-*(首次 Ingest 执行后将填充)*
+### papers/
+- [Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md](papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md) — CIDR 2026，TU Delft，非对称依赖降低跨地域延迟（精读分析）
+- [Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译.md](papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译.md) — 同上，中文全文翻译
+
+### web/
+*(待入库)*
+
+### notes/
+*(待入库)*
 
 ---
 

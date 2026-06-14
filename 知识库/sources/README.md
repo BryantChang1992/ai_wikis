@@ -29,7 +29,8 @@ updated: 2026-06-14
 
 ### papers/
 - [Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md](papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md) — CIDR 2026，TU Delft，非对称依赖降低跨地域延迟（精读分析）
-- [Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译.md](papers/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译.md) — 同上，中文全文翻译
+- [LSM-based-Storage-Techniques-A-Survey.md](papers/LSM-based-Storage-Techniques-A-Survey.md) — VLDB Journal 2019，UC Irvine，LSM-tree 综述（精读分析）
+- [RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md](papers/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md) — SIGMOD 2026，Purdue，存储计算分离 Tail Latency 消除（精读分析）
 
 ### web/
 *(待入库)*

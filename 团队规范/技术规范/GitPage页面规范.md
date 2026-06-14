@@ -114,3 +114,25 @@
 5. ✅ 所有页面浅色背景（`--bg: #ffffff`）
 6. ✅ 所有页面内容居中（max-width 860px）
 7. ✅ 代码段必须有深色背景渲染
+
+---
+
+## 8. 外链 CSS 规范（v1.2 新增）
+
+**所有页面统一引用 `assets/style.css`**，禁止在 HTML 中内联 `<style>` 标签。
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面标题</title>
+  <link rel="stylesheet" href="路径/assets/style.css">
+</head>
+```
+
+**相对路径规则**：
+- 根目录页面：`href="assets/style.css"`
+- 一级子目录：`href="../assets/style.css"`
+- 二级子目录：`href="../../assets/style.css"`
+
+**修改样式时**：只改 `assets/style.css`，38 个页面即时生效，无需逐个替换。

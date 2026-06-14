@@ -8,7 +8,51 @@ updated: 2026-06-14
 
 # 知识库的结构规则
 
-## 页面分类
+## 三层架构
+
+基于 Karpathy LLM Wiki 方法论，知识库分为三层：
+
+```
+知识库/
+├── sources/              ← 第1层: Raw Sources（原始资料，只读，永不修改）
+│   ├── README.md         ← 源文件索引
+│   ├── 论文.pdf          ← 原始论文
+│   ├── 网页存档.md       ← 外部资料
+│   └── ...
+│
+├── wiki/                 ← 第2层: Wiki（LLM 生成的知识，持续更新）
+│   ├── 事务模型深度调研.md
+│   ├── 概念卡片/
+│   ├── 调研报告/
+│   └── ...
+│
+├── purpose.md            ← 第3层: Schema（规则与配置）
+├── schema.md             ← 本文件
+├── log.md                ← 操作日志
+└── README.md             ← 知识库总索引
+```
+
+### 各层角色
+
+| 层 | 目录 | 谁读写 | 说明 |
+|----|------|--------|------|
+| Raw Sources | `sources/` | 人类放入，Agent 只读 | 原始资料，是知识的源头，不可修改 |
+| Wiki | `wiki/` | Agent 全权维护 | LLM 生成的结构化知识，是知识库的核心产出 |
+| Schema | 根目录 `.md` 文件 | 人类定义，Agent 遵守 | 规则、目的、日志，定义知识库如何运作 |
+
+### 数据流
+
+```
+sources/（原始资料）
+    ↓ Agent 读取、分析
+wiki/（LLM 生成知识）
+    ↓ 遵循
+Schema（purpose.md + schema.md）
+    ↓ 记录
+log.md（操作日志）
+```
+
+## Wiki 页面分类
 
 | 类型 | 说明 | 示例 |
 |------|------|------|
@@ -26,7 +70,7 @@ updated: 2026-06-14
 type: survey | decision | analysis | lesson | concept | meta
 title: "标题"
 sources:
-  - "源文件名或URL"  # 知识来源，便于溯源
+  - "sources/文件名"     # 指向 Raw Sources 层的源文件
 tags:
   - "标签1"
   - "标签2"
@@ -42,7 +86,7 @@ related:
 ### 字段说明
 - **type**：必填，决定知识库如何分类和组织
 - **title**：必填，人类可读的标题
-- **sources**：强烈建议，记录知识来源（论文、文档、源码链接）
+- **sources**：强烈建议，指向 `sources/` 目录中的原始文件
 - **tags**：必填，至少 1 个标签
 - **status**：`draft`（初稿）→ `reviewed`（已审核）→ `final`（定稿）→ `deprecated`（已过时）
 - **related**：建议，[[wikilink]] 链接到相关知识页面
@@ -62,12 +106,12 @@ related:
 
 ## Agent 写入规则
 
-1. **写前必读** `purpose.md` + 本文档
-2. 新建页面必须包含完整的 frontmatter
-3. 必须在 `[[README]]` 中更新知识条目列表
-4. 必须在 `[[log]]` 中追加操作记录
-5. 检查是否有可关联的已有页面，加 `[[wikilink]]`
-6. 写完后 `git add -A && git commit && git push`
+1. **写前必读** `[[purpose]]` + 本文档
+2. **新建页面必须**：完整 frontmatter + type 字段 + sources 指向
+3. **必须更新** `[[README]]` 中的知识条目列表
+4. **必须追加** `[[log]]` 操作记录
+5. **必须检查** 是否有可关联的已有页面，加 `[[wikilink]]`
+6. **写后执行** `git add -A && git commit && git push`
 
 ---
 

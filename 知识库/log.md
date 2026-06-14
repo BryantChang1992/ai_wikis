@@ -18,3 +18,10 @@ updated: 2026-06-14
   - 新建 `log.md`（本文件）
   - 升级 `README.md` 为知识库索引
   - 改造 `事务模型深度调研.md`（补全 frontmatter + [[wikilink]]）
+- `[22:30] Stark (CTO)`: **REFACTOR** — 落地 Karpathy 三层架构
+  - 创建 `sources/` 目录（Raw Sources 层，只读源文件）
+  - 创建 `wiki/` 目录（Wiki 层，LLM 生成知识）
+  - 移动 `事务模型深度调研.md` → `wiki/`
+  - 创建 `sources/README.md`（源文件索引）
+  - 更新 `schema.md`：加入三层架构说明和数据流
+  - 更新 `README.md`：按三层架构重组索引

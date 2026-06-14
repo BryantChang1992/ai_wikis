@@ -8,24 +8,47 @@ updated: 2026-06-14
 
 # CHANG_AI_TEAM 知识库
 
-这是 CHANG_AI_TEAM 的核心知识底座。所有调研报告、技术决策、架构分析、踩坑记录最终汇聚于此。
+这是 CHANG_AI_TEAM 的核心知识底座。基于 Karpathy LLM Wiki 三层架构：
 
-## 目的
+```
+sources/  →  wiki/  →  Schema
+ (只读)      (AI维护)   (规则)
+```
 
-参见 [[purpose]] — 这个知识库解决什么问题。
+## 目录
 
-## 结构规则
+- [[purpose]] — 为什么存在、研究什么
+- [[schema]] — 怎么组织、怎么写
+- [[log]] — 谁做了什么
 
-参见 [[schema]] — 分类体系、模板、命名约定。
+---
 
-## 操作日志
+## 第1层: Raw Sources (`sources/`)
 
-参见 [[log]] — 所有增删改操作的时序记录。
+> 原始资料，只读。Agent 从这里读取，但绝不修改。
 
-## 知识条目
+参见 [[sources/README]]
+
+---
+
+## 第2层: Wiki (`wiki/`)
+
+> LLM 生成的结构化知识，是知识库的核心产出。
 
 ### 调研报告
-- [[事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
+- [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
+
+---
+
+## 第3层: Schema
+
+> 规则与配置，定义知识库如何运作。
+
+| 文件 | 说明 |
+|------|------|
+| [[purpose]] | 知识库的目标、研究方向 |
+| [[schema]] | 分类体系、模板、[[wikilink]] 规范 |
+| [[log]] | 操作日志 |
 
 ---
 

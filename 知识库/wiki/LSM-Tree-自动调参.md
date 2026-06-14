@@ -2,8 +2,9 @@
 type: concept
 title: "LSM-Tree 自动调参 (Auto-Tuning)"
 sources:
-  - "sources/papers/LSM-Survey-VLDBJ2019.pdf",
+  - "sources/papers/LSM-Survey-VLDBJ2019.pdf"
   - "sources/papers/LSM-Survey/精读分析.md"
+  - "sources/papers/LSM-Survey/全文翻译.md"
 tags:
   - 存储引擎
   - LSM-Tree

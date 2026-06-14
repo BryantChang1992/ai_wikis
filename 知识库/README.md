@@ -3,7 +3,7 @@ type: meta
 title: "CHANG_AI_TEAM 知识库"
 tags: ["meta", "知识库"]
 created: 2026-06-14
-updated: 2026-06-14 23:40
+updated: 2026-06-15
 ---
 
 # CHANG_AI_TEAM 知识库
@@ -45,6 +45,22 @@ sources/  →  wiki/  →  Schema
 ### 健康检查
 - [[wiki/synthesis/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
 
+### Apache Fluss 调研（新增）
+
+#### 架构分析
+- [[wiki/Fluss-整体架构]] — Fluss 整体架构与 Kafka 2.7.2 对照：8 大核心差异、30% 代码复用分析、8 个独有能力
+- [[wiki/Fluss-存储引擎]] — 三层存储模型（LocalLog/KvTablet/RemoteLog）、Log 子系统 10 项差异、Tablet vs Partition 对比
+- [[wiki/Fluss-分布式协调]] — CoordinatorServer 事件驱动、双状态机、16 种事件类型、重平衡 Goal 优化器
+- [[wiki/Fluss-RPC与网络]] — Netty + Protobuf 全自研、61 API Key 清单、双协议引擎、GatewayClientProxy 动态代理
+- [[wiki/Fluss-客户端与计算集成]] — Writer/Scanner/Lookuper 三合一 API、Flink Connector 全链路、Lake Storage 插件架构
+- [[wiki/Fluss-Lake层与湖仓融合]] — Iceberg/Paimon/Hudi/Lance 四种后端、Tiering 架构、与 Kafka KIP-405 的本质区别
+
+#### 概念卡片
+- [[wiki/Fluss-KV存储-RocksDB]] — KV 子系统全貌：WAL 复用 changelog LogTablet（Write-Once Read-Multiple）、Snapshot 全链路、RowMerger 四种实现
+- [[wiki/Fluss-Tiering分层架构]] — 独立 Flink 作业的 Tiering 工作流、LakeTableTieringManager 协调
+- [[wiki/Fluss-Kafka兼容层]] — Kafka 协议兼容链路（仅 API_VERSIONS 完整，其余骨架）、双协议 RequestType FLUSS/KAFKA
+- [[wiki/Fluss-Arrow列式记录格式]] — 三种 LogFormat、Arrow vs Kafka Record 对比、列裁剪/谓词下推/零拷贝路径
+
 ### 调研报告
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
 - [[wiki/InfluxDB深度调研]] — InfluxDB 时序数据库全面调研：从 TSM 到 InfluxDB 3.0 列存引擎的演进（5 模块）
@@ -77,6 +93,18 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Doris-架构演进]] — Palo → Doris 3.0 存算分离的十年演进、关键架构决策、竞品定位
 - [[wiki/Doris-元数据与一致性复制]] — BDB-JE → Meta Service 元数据演进、TabletScheduler 多副本复制、2PC 事务与故障恢复
 
+### Apache Fluss 调研
+- [[wiki/Fluss-整体架构]] — Fluss vs Kafka 2.7.2 对比：8 个核心差异维度、代码复用分析（~30% Kafka, 70% 自研）、8 个 Fluss 独有能力
+- [[wiki/Fluss-存储引擎]] — 三层存储模型（L1 LocalLog/L2 KvTablet/L3 RemoteLog）、Log 子系统 10 项差异对照、KV 子系统、Snapshot 全链路 30 类、RowMerger 四种实现
+- [[wiki/Fluss-分布式协调]] — CoordinatorServer 架构、16 种事件类型、双状态机模型（Replica 6 状态 + TableBucket 5 状态）、Goal 优化器重平衡
+- [[wiki/Fluss-RPC与网络]] — Protobuf + Netty 双协议栈、61 API Key（1000-1061）分类、双协议引擎（Fluss/Kafka）、GatewayClientProxy JDK 动态代理
+- [[wiki/Fluss-客户端与计算集成]] — Writer/Scanner/Lookuper 三大 API、5 种 BucketAssigner、Flink Connector 全能力矩阵、Lake Storage 插件架构
+- [[wiki/Fluss-Lake层与湖仓融合]] — 四种 Lake 后端（Iceberg ★5/Paimon ★5/Hudi ★2/Lance ★3）、Iceberg 全链路、与 Kafka KIP-405 本质区别
+- [[wiki/Fluss-KV存储-RocksDB]] — RocksDBKv 封装、WAL 复用 changelog LogTablet（Write-Once Read-Multiple）、增量快照、PartialUpdater
+- [[wiki/Fluss-Tiering分层架构]] — 独立 Flink 作业驱动的湖仓物化、Tiering 工作流、设计哲学（控制面+数据面分离）
+- [[wiki/Fluss-Kafka兼容层]] — 协议热插拔链路、KafkaRequestHandler 骨架状态、双协议端口复用
+- [[wiki/Fluss-Arrow列式记录格式]] — Arrow 列式 vs Kafka 行式字节流、列裁剪/谓词下推/向量化计算/零拷贝 Flink 集成、Schema Evolution
+
 ---
 
 ## 第3层: Schema
@@ -91,4 +119,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-14*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-15*

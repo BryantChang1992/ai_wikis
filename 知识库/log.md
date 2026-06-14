@@ -10,6 +10,15 @@ updated: 2026-06-14
 
 > 时序记录所有增删改操作。格式：`[日期 时间] 操作者: 操作类型 — 描述`
 
+## 2026-06-15
+
+- `[00:10] rd-task Worker`: **INGEST** — Fluss 源码分析 10 张 wiki 卡片
+  - 源文件: 7 个 HTML 源文件（sources/web/fluss/01-07）
+  - 产出: 10 张 wiki 卡片（6 analysis + 4 concept）
+  - analysis: Fluss-整体架构 / 存储引擎 / 分布式协调 / RPC与网络 / 客户端与计算集成 / Lake层与湖仓融合
+  - concept: Fluss-KV存储-RocksDB / Tiering分层架构 / Kafka兼容层 / Arrow列式记录格式
+  - 首次引入 "Apache Fluss 调研" 小节到 README.md
+
 ## 2026-06-14
 
 - `[23:30] Stark (CTO)`: **PUBLISH** — GitPage 周报发布
@@ -59,6 +68,16 @@ updated: 2026-06-14
   - 概念卡片: 数据模型、TSM 存储引擎、3 列存引擎、写入与查询路径、指标设计与基数管理、多副本与高可用、Catalog 元数据
 
 ### 2026-06-14 23:40
+
+### 2026-06-15
+
+- `[00:10] Stark (CTO)`: **INGEST** — Apache Fluss 源码分析 7 模块 → 10 张 wiki 卡片
+  - 源文件: tech_research/fluss/ 下 7 个模块分析 HTML（01-07）
+  - 产出 6 张 analysis 卡片: 整体架构、存储引擎、分布式协调、RPC与网络、客户端与计算集成、Lake层与湖仓融合
+  - 产出 4 张 concept 卡片: KV存储-RocksDB、Tiering分层架构、Kafka兼容层、Arrow列式记录格式
+  - 核心发现: Fluss ~30% 代码复用 Kafka，70% 自研；最大差异化是 KV Store + Arrow 列式 + Lake 集成
+
+### 2026-06-14 23:40 (continued)
 
 - **目录重组**：wiki/ 下新增 `synthesis/` 子目录，独立存放领域综述 + Lint 报告
   - 迁移 6 个文件到 `wiki/synthesis/`：LSM-Tree-存储引擎体系综述、OLAP与TSDB全景综述、分布式数据系统一致性体系、Apache-Doris-OLAP-数据库体系综述、InfluxDB-时序数据库体系综述、Lint-2026-06-14

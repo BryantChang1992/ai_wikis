@@ -59,11 +59,14 @@ sources/papers/
   - 精读分析.md / 全文翻译.md
 
 ### web/
-*(待入库)*
+- [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（7 篇，2026-06-10）
+  - 01-整体架构对比.md / 02-存储引擎模块.md / 03-分布式协调.md / 04-网络与RPC.md
+  - 05-客户端与计算集成.md / 06-Lake层与湖仓融合.md / 07-模块对应关系总表.md
+  - 原文件: tech_research/fluss/*.html
 
 ### notes/
 *(待入库)*
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-14*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-15*

@@ -12,6 +12,11 @@ updated: 2026-06-14
 
 ## 2026-06-14
 
+- `[23:30] Stark (CTO)`: **PUBLISH** — GitPage 周报发布
+  - 新增 `tech_research/wiki_synthesis/` 子方向
+  - 发布 `_posts/2026-06-14-tech-research-week-05.md`
+  - 更新 `tech_research/index.html`（6 方向、18 篇报告）
+  - README wikilink 修正 + 删除重复 LSM 综述文件
 - `[22:00] Stark (CTO)`: **INIT** — 知识库结构化配置
   - 新建 `purpose.md`（目的定义）
   - 新建 `schema.md`（结构规则）

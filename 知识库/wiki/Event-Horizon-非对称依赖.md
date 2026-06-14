@@ -18,7 +18,7 @@ created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[wiki/事务模型深度调研]]"
+  - "[[事务模型深度调研]]"
 ---
 
 # Event Horizon：非对称依赖与半线性化
@@ -180,7 +180,7 @@ Client A: close_auction("item1")
 
 ## 6. 与已有知识的关联
 
-### 6.1 与 [[wiki/事务模型深度调研|事务模型]] 的关系
+### 6.1 与 [[事务模型深度调研|事务模型]] 的关系
 
 - **[[2PC]] / [[Percolator]]**：SL 不是替代 2PC，而是让部分操作**绕过协调**。2PC 只在强操作上触发，弱操作走因果广播。相当于把 2PC 的适用范围收窄到真正需要全序的操作子集。
 - **[[Spanner]] / TrueTime**：Spanner 为所有事务强加全序（通过 TrueTime + Paxos），SL 则承认并非所有操作都需要全序。在跨地域场景中，SL 可以在 Spanner 的延迟墙上撕开一道口子。

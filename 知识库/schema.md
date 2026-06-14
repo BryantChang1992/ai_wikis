@@ -16,14 +16,18 @@ updated: 2026-06-14
 知识库/
 ├── sources/              ← 第1层: Raw Sources（原始资料，只读，永不修改）
 │   ├── README.md         ← 源文件索引
-│   ├── 论文.pdf          ← 原始论文
-│   ├── 网页存档.md       ← 外部资料
-│   └── ...
+│   ├── papers/           ← 论文（每篇一个父目录）
+│   │   ├── Event-Horizon/
+│   │   │   ├── Event-Horizon-CIDR2026.pdf   ← 英文原文
+│   │   │   ├── 精读分析.md                  ← 精读分析
+│   │   │   └── 全文翻译.md                  ← 中文翻译
+│   │   └── ...
+│   ├── web/              ← 网页存档
+│   └── notes/            ← 原始笔记
 │
 ├── wiki/                 ← 第2层: Wiki（LLM 生成的知识，持续更新）
 │   ├── 事务模型深度调研.md
-│   ├── 概念卡片/
-│   ├── 调研报告/
+│   ├── LSM-Tree.md
 │   └── ...
 │
 ├── purpose.md            ← 第3层: Schema（规则与配置）
@@ -43,8 +47,8 @@ updated: 2026-06-14
 ### 数据流
 
 ```
-sources/（原始资料）
-    ↓ Agent 读取、分析
+sources/papers/论文名/（原文PDF+精读分析+翻译）
+    ↓ Agent 读取精读分析.md 作为输入
 wiki/（LLM 生成知识）
     ↓ 遵循
 Schema（purpose.md + schema.md）
@@ -70,7 +74,9 @@ log.md（操作日志）
 type: survey | decision | analysis | lesson | concept | meta
 title: "标题"
 sources:
-  - "sources/文件名"     # 指向 Raw Sources 层的源文件
+  - "sources/papers/论文名/论文名-会议年份.pdf"   # 英文原文 PDF
+  - "sources/papers/论文名/精读分析.md"            # 精读分析
+  - "sources/papers/论文名/全文翻译.md"            # 中文全文翻译（可选）
 tags:
   - "标签1"
   - "标签2"
@@ -86,7 +92,7 @@ related:
 ### 字段说明
 - **type**：必填，决定知识库如何分类和组织
 - **title**：必填，人类可读的标题
-- **sources**：强烈建议，指向 `sources/` 目录中的原始文件
+- **sources**：强烈建议，指回 `sources/papers/论文名/` 下的原文 PDF + 精读分析 + 翻译
 - **tags**：必填，至少 1 个标签
 - **status**：`draft`（初稿）→ `reviewed`（已审核）→ `final`（定稿）→ `deprecated`（已过时）
 - **related**：建议，[[wikilink]] 链接到相关知识页面
@@ -131,9 +137,9 @@ related:
 
 ```
 Step 1: 源文件入库
-  周报中引用的网页/论文 → web_fetch 下载 → 写入 sources/ 对应子目录
+  周报中引用的网页/论文 → 下载 → 写入 sources/ 对应子目录
   ├── 网页 → sources/web/（以 URL slug 命名）
-  └── 论文 → sources/papers/（以论文标题命名）
+  └── 论文 → sources/papers/论文名/（每篇一父目录，内含 PDF+精读分析+翻译）
 
 Step 2: 源文件索引更新
   更新 sources/README.md，追加新入库文件条目
@@ -155,16 +161,27 @@ Step 4: 索引与日志更新
 
 ### 源文件目录结构
 
+每篇论文一个父目录（论文简称），内含三件套：英文原文 PDF + 精读分析 + 全文翻译。
+
 ```
 sources/
 ├── README.md          ← 源文件索引（必维护）
 ├── web/               ← 网页存档
 │   └── example-com-article.md
-├── papers/            ← 论文原文
-│   └── percollator-osdi2010.md
+├── papers/            ← 论文
+│   ├── Event-Horizon/
+│   │   ├── Event-Horizon-CIDR2026.pdf   ← 英文原文
+│   │   ├── 精读分析.md                  ← 精读分析
+│   │   └── 全文翻译.md                  ← 中文翻译
+│   └── ...
 └── notes/             ← 原始笔记、会议记录
     └── ...
 ```
+
+入库规则：
+1. 论文原文 PDF 放入 `sources/papers/论文名/` 下
+2. 精读分析和全文翻译作为同目录的 .md 文件
+3. Agent ingest 时优先读取精读分析.md，以 PDF 为溯源引用
 
 ### 增量去重
 

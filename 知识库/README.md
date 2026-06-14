@@ -39,6 +39,16 @@ sources/  →  wiki/  →  Schema
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
 
 ### 概念卡片
+- [[wiki/LSM-Tree]] — LSM-Tree 总览：定义、历史、架构、Leveling/Tiering、经典优化、代表系统
+- [[wiki/LSM-Tree-写放大]] — 写放大根因、Leveling vs Tiering 对比、Tiering 变体、Merge Skipping、TRIAD
+- [[wiki/LSM-Tree-合并优化]] — VT-tree stitching、LSbM-tree、bLSM 写停顿调度
+- [[wiki/LSM-Tree-硬件适配]] — 大内存/多核/NVMe SSD/NVM 下的 LSM-tree 优化
+- [[wiki/LSM-Tree-自动调参]] — Monkey/Dostoevsky/ElasticBF 的自动调参策略
+- [[wiki/LSM-Tree-二级索引]] — Diff-Index 体系、主键索引方案
+- [[wiki/LSM-Tree-RUM猜想]] — 读-写-空间三选二理论框架及 RUM 定位
+- [[wiki/RaaS-Replay-as-a-Service]] — RaaS (SIGMOD 2026): Replay-as-a-Service 消除存储计算分离 Tail Latency
+- [[wiki/存储计算分离数据库的-Tail-Latency]] — 问题根因(日志链长度差异+CPU争抢)、传统解法为何无效
+- [[wiki/Log-as-the-Database-模式]] — Log-as-Database 设计原理、结构性代价、Kafka 类比
 - [[wiki/Event-Horizon-非对称依赖]] — Event Horizon (CIDR 2026): 半线性化与非对称依赖，降低跨地域协调延迟
 
 ---

@@ -32,4 +32,13 @@ updated: 2026-06-14
 - `[22:45] Stark (CTO)`: **RULE** — 定义 Ingest 规则
   - schema.md 追加 Ingest 规则章节：触发条件、执行流程、去重机制、Worker 配置
   - 创建 `sources/web/`、`sources/papers/`、`sources/notes/` 子目录
-  - 首次执行 Ingest 流程验证（见下方）
+  - 首次执行 Ingest 流程验证（Event Horizon）
+- `[23:20] Stark (CTO)`: **CLEANUP** — 清理 sources 目录
+  - 删除 `sources/papers/Event-Horizon-...-全文翻译.md`（翻译不应在 raw 层）
+  - 入库 `LSM-based-Storage-Techniques-A-Survey.md`（精读分析）、`RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md`（精读分析）到 sources/papers/
+- `[23:25] rd-task Worker`: **INGEST** — LSM-tree 综述 (VLDB Journal 2019)
+  - 源文件: sources/papers/LSM-based-Storage-Techniques-A-Survey.md
+  - 产出 7 张概念卡片: LSM-Tree 总览、写放大、合并优化、硬件适配、自动调参、二级索引、RUM 猜想
+- `[23:25] rd-task Worker`: **INGEST** — RaaS (SIGMOD 2026)
+  - 源文件: sources/papers/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md
+  - 产出 3 张概念卡片: RaaS 方案、Tail Latency 根因、Log-as-the-Database 模式

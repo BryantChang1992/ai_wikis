@@ -116,3 +116,64 @@ related:
 ---
 
 *本文件定义了知识库的"怎么做"。Agent 写入知识库时必须遵循。*
+
+## Ingest 规则（源文件 → Wiki 卡片）
+
+### 触发条件
+
+| 触发方式 | 何时执行 | 执行者 |
+|----------|---------|--------|
+| **周报联动** | 每周技术调研周报产出后，自动执行 | CTO Agent |
+| **手动触发** | CEO/CTO 指定具体文件时 | CTO Agent |
+| **定时扫描** | CTO 定时检查 `sources/` 目录增量（未来） | CTO Agent |
+
+### 执行流程
+
+```
+Step 1: 源文件入库
+  周报中引用的网页/论文 → web_fetch 下载 → 写入 sources/ 对应子目录
+  ├── 网页 → sources/web/（以 URL slug 命名）
+  └── 论文 → sources/papers/（以论文标题命名）
+
+Step 2: 源文件索引更新
+  更新 sources/README.md，追加新入库文件条目
+
+Step 3: Ingest 分析（spawn Worker）
+  CTO 读取 sources/ 新文件 → spawn Worker（rd-task）
+  Worker 任务：
+    1. 读取源文件全文
+    2. 读取 purpose.md（了解知识库方向）+ schema.md（了解格式要求）
+    3. 分析源文件：关键概念、核心观点、与已有 wiki 的关联
+    4. 生成 wiki 概念卡片到 wiki/ 目录
+    5. 确保每张卡片含：完整 frontmatter（type/sources/tags/status/related）+ [[wikilink]]
+
+Step 4: 索引与日志更新
+  1. 更新 README.md 知识条目列表
+  2. 追加 log.md 操作记录
+  3. git add -A && git commit && git push
+```
+
+### 源文件目录结构
+
+```
+sources/
+├── README.md          ← 源文件索引（必维护）
+├── web/               ← 网页存档
+│   └── example-com-article.md
+├── papers/            ← 论文原文
+│   └── percollator-osdi2010.md
+└── notes/             ← 原始笔记、会议记录
+    └── ...
+```
+
+### 增量去重
+
+- CTO 在 ingest 前检查 `sources/README.md` 索引，已入库的源文件不重复处理
+- 未来可升级为 SHA256 checksum 自动去重
+
+### Worker 配置
+
+- 模型: `qwenProvider/qwen3-coder-plus`
+- 一次 ingest 处理 1 个源文件
+- 生成 1～N 张 wiki 概念卡片（取决于源文件信息密度）
+- 每张卡片独立 commit，便于回滚

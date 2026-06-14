@@ -25,3 +25,7 @@ updated: 2026-06-14
   - 创建 `sources/README.md`（源文件索引）
   - 更新 `schema.md`：加入三层架构说明和数据流
   - 更新 `README.md`：按三层架构重组索引
+- `[22:45] Stark (CTO)`: **RULE** — 定义 Ingest 规则
+  - schema.md 追加 Ingest 规则章节：触发条件、执行流程、去重机制、Worker 配置
+  - 创建 `sources/web/`、`sources/papers/`、`sources/notes/` 子目录
+  - 首次执行 Ingest 流程验证（见下方）

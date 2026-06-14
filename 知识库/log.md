@@ -42,3 +42,8 @@ updated: 2026-06-14
 - `[23:25] rd-task Worker`: **INGEST** — RaaS (SIGMOD 2026)
   - 源文件: sources/papers/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md
   - 产出 3 张概念卡片: RaaS 方案、Tail Latency 根因、Log-as-the-Database 模式
+- `[22:45] rd-task Worker`: **INGEST** — Doris 调研知识卡片
+  - 源文件: 技术文章/Doris调研.md + 技术文章/Doris调研/ 下 5 个子文档
+  - 产出 1 张调研报告 + 7 张概念卡片
+  - 调研报告: Doris 实时分析数据库深度调研
+  - 概念卡片: 数据模型、Segment v2 存储格式、Compaction 策略、MPP 向量化查询引擎、Nereids CBO 优化器、架构演进、元数据与一致性复制

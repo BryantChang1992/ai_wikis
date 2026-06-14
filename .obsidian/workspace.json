@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f4f5668a2b08ce5c",
+        "id": "f23e4636311c59c3",
         "type": "tabs",
         "children": [
           {
-            "id": "4c08a33fdfc875f1",
+            "id": "d0c92dd7c18b9ad9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "团队规范/仓库分工说明.md",
-                "mode": "preview",
+                "file": "知识库/README.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "仓库分工说明"
+              "title": "README"
             }
           }
         ]
@@ -181,10 +181,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "团队规范/仓库分工说明.md"
+                "file": "团队规范/agent核心文件/ceo/AGENTS.md"
               },
               "icon": "lucide-info",
-              "title": "仓库分工说明的笔记属性"
+              "title": "AGENTS的笔记属性"
             }
           }
         ],
@@ -206,34 +206,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "185b7f587705084b",
+  "active": "d0c92dd7c18b9ad9",
   "lastOpenFiles": [
-    "项目文档/agent基础设施可观测性平台/设计文档.md",
-    "项目文档/agent基础设施可观测性平台/关于agent基建的一些思考.md",
-    "设计文档 v0.1.md",
-    "项目文档/README.md",
-    "项目文档/agent基础设施可观测性平台/diagram/org-chart@2x.png",
-    "项目文档/agent基础设施可观测性平台/diagram/org-chart.svg",
-    "项目文档/agent基础设施可观测性平台/diagram/memory-three-tier@2x.png",
-    "项目文档/agent基础设施可观测性平台/diagram/memory-three-tier.svg",
-    "项目文档/agent基础设施可观测性平台/diagram/five-dimensions-framework@2x.png",
-    "项目文档/agent基础设施可观测性平台/diagram/five-dimensions-framework.svg",
-    "项目文档/agent基础设施可观测性平台/diagram/dashboard-layout@2x.png",
-    "项目文档/agent基础设施可观测性平台/diagram/dashboard-layout.svg",
-    "项目文档/agent基础设施可观测性平台/diagram/architecture-overview@2x.png",
-    "项目文档/agent基础设施可观测性平台/diagram/architecture-overview.svg",
-    "知识库/README.md",
-    "团队规范/仓库分工说明.md",
-    "README.md",
-    "团队规范/README.md",
-    "团队规范",
-    "团队运营/README.md",
-    "项目文档",
-    "知识库",
-    "技术文章/README.md",
-    "技术文章",
-    "团队运营",
-    "未命名.canvas",
-    "未命名.base"
+    "知识库/事务模型深度调研.md",
+    "团队规范/技术规范/GitPage页面规范.md",
+    "项目文档/LSM-based-Storage-Techniques-Survey/paper.pdf",
+    "技术文章/InfluxDB调研/01-概述与核心概念.md",
+    "技术文章/InfluxDB调研.md",
+    "技术文章/01-AI吃的不是数据是营养液.md",
+    "技术文章/diagram/xhs-cards/prompts/06-ending-pipeline-moat.md",
+    "技术文章/diagram/xhs-cards/prompts/05-content-data-drift.md",
+    "技术文章/diagram/xhs-cards/prompts/04-content-gpu-starvation.md",
+    "技术文章/diagram/xhs-cards/prompts/03-content-feature-leakage.md",
+    "技术文章/diagram/xhs-cards/prompts/02-content-pipeline-architecture.md",
+    "技术文章/diagram/xhs-cards/prompts/01-cover-ai-data-pipeline.md",
+    "技术文章/diagram/xhs-cards/images/06-ending-pipeline-moat.png",
+    "技术文章/diagram/xhs-cards/images/05-content-data-drift.png",
+    "技术文章/diagram/xhs-cards/images/04-content-gpu-starvation.png",
+    "技术文章/diagram/xhs-cards/images/02-content-pipeline-architecture.png",
+    "技术文章/diagram/xhs-cards/images/03-content-feature-leakage.png",
+    "技术文章/diagram/xhs-cards/images/01-cover-ai-data-pipeline.png",
+    "技术文章/diagram/xhs-cards/prompts",
+    "技术文章/diagram/xhs-cards/outline.md",
+    "技术文章/diagram/xhs-cards/images",
+    "技术文章/diagram/xhs-cards",
+    "技术文章/Doris调研.md",
+    "技术文章/Doris调研/01-概述与核心概念.md",
+    "技术文章/diagram/ai-data-pipeline-architecture@2x.png",
+    "技术文章/diagram/ai-data-pipeline-architecture.svg",
+    "技术文章/diagram",
+    "项目文档/LSM-based-Storage-Techniques-Survey/paper.txt",
+    "项目文档/LSM-based-Storage-Techniques-Survey/chunk_ad",
+    "项目文档/LSM-based-Storage-Techniques-Survey/chunk_ac",
+    "项目文档/LSM-based-Storage-Techniques-Survey/chunk_ab",
+    "项目文档/LSM-based-Storage-Techniques-Survey/chunk_aa",
+    "项目文档/Fluss源码分析/07-模块对应关系总表.md",
+    "项目文档/Fluss源码分析/README.md",
+    "项目文档/Fluss源码分析/06-Lake层与湖仓融合.md",
+    "项目文档/Fluss源码分析/05-客户端与计算集成.md",
+    "项目文档/Fluss源码分析/04-数据面-网络与RPC.md",
+    "项目文档/Fluss源码分析/03-分布式协调.md",
+    "项目文档/Fluss源码分析/02-存储引擎模块.md",
+    "项目文档/Fluss源码分析/01-整体架构对比.md",
+    "论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md",
+    "论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB-全文翻译.md",
+    "论文精读/LSM-based-Storage-Techniques-A-Survey.md",
+    "技术文章/InfluxDB调研/diagram/07-catalog-metadata@2x.png",
+    "技术文章/InfluxDB调研/diagram/07-catalog-metadata.svg",
+    "未命名.canvas"
   ]
 }

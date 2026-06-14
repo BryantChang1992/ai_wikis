@@ -2,7 +2,7 @@
 type: concept
 title: "Event Horizon: 非对称依赖与跨地域操作"
 sources:
-  - "sources/papers/Event-Horizon-CIDR2026.pdf"
+  - "sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf"
   - "sources/papers/Event-Horizon/精读分析.md"
   - "sources/papers/Event-Horizon/全文翻译.md"
 tags:

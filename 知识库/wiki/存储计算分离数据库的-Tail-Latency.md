@@ -2,7 +2,7 @@
 type: concept
 title: "存储计算分离数据库的 Tail Latency 问题"
 sources:
-  - "sources/papers/RaaS-SIGMOD2026.pdf"
+  - "sources/papers/RaaS/RaaS-SIGMOD2026.pdf"
   - "sources/papers/RaaS/精读分析.md"
   - "sources/papers/RaaS/全文翻译.md"
 tags:

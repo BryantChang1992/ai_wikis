@@ -2,7 +2,7 @@
 type: concept
 title: "LSM-Tree RUM 猜想 (RUM Conjecture)"
 sources:
-  - "sources/papers/LSM-Survey-VLDBJ2019.pdf"
+  - "sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf"
   - "sources/papers/LSM-Survey/精读分析.md"
   - "sources/papers/LSM-Survey/全文翻译.md"
 tags:

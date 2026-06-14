@@ -2,7 +2,7 @@
 type: concept
 title: "Log-as-the-Database 模式"
 sources:
-  - "sources/papers/RaaS-SIGMOD2026.pdf"
+  - "sources/papers/RaaS/RaaS-SIGMOD2026.pdf"
   - "sources/papers/RaaS/精读分析.md"
   - "sources/papers/RaaS/全文翻译.md"
 tags:

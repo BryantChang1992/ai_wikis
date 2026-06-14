@@ -3,7 +3,7 @@ type: meta
 title: "CHANG_AI_TEAM 知识库"
 tags: ["meta", "知识库"]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-14 23:40
 ---
 
 # CHANG_AI_TEAM 知识库
@@ -35,13 +35,15 @@ sources/  →  wiki/  →  Schema
 
 > LLM 生成的结构化知识，是知识库的核心产出。
 
-### 领域综述
-- [[wiki/LSM-Tree-存储引擎体系综述]] — 从 7 张 LSM 卡片提炼：三条主线（写放大/合并优化/硬件适配）+ RUM 猜想框架
-- [[wiki/OLAP与TSDB全景综述]] — Doris 与 InfluxDB 横向对比：存储引擎/查询模式/架构趋同趋势
-- [[wiki/分布式数据系统一致性体系]] — 元层次提炼：事务层/副本层/会话层 + 协调代价统一框架
+### 领域综述（`wiki/synthesis/`）
+- [[wiki/synthesis/LSM-Tree-存储引擎体系综述]] — 从 7 张 LSM 卡片提炼：三条主线（写放大/合并优化/硬件适配）+ RUM 猜想框架
+- [[wiki/synthesis/OLAP与TSDB全景综述]] — Doris 与 InfluxDB 横向对比：存储引擎/查询模式/架构趋同趋势
+- [[wiki/synthesis/分布式数据系统一致性体系]] — 元层次提炼：事务层/副本层/会话层 + 协调代价统一框架
+- [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
+- [[wiki/synthesis/InfluxDB-时序数据库体系综述]] — InfluxDB 体系综述
 
 ### 健康检查
-- [[wiki/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
+- [[wiki/synthesis/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
 
 ### 调研报告
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）

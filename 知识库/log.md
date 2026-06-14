@@ -57,3 +57,10 @@ updated: 2026-06-14
   - 产出 1 张调研报告 + 7 张概念卡片
   - 调研报告: InfluxDB 深度调研（从 TSM 到列存引擎）
   - 概念卡片: 数据模型、TSM 存储引擎、3 列存引擎、写入与查询路径、指标设计与基数管理、多副本与高可用、Catalog 元数据
+
+### 2026-06-14 23:40
+
+- **目录重组**：wiki/ 下新增 `synthesis/` 子目录，独立存放领域综述 + Lint 报告
+  - 迁移 6 个文件到 `wiki/synthesis/`：LSM-Tree-存储引擎体系综述、OLAP与TSDB全景综述、分布式数据系统一致性体系、Apache-Doris-OLAP-数据库体系综述、InfluxDB-时序数据库体系综述、Lint-2026-06-14
+  - 原因：综述/synthesis 与研究型页面（survey/concept）混放不利于查找
+  - 影响文件：schema.md（目录结构+三层层角色表+Synthesize写入路径）、README.md（索引引用路径）、HEARTBEAT.md（转义规则+关键文件清单）

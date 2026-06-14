@@ -3,7 +3,7 @@ type: meta
 title: "知识库的结构规则"
 tags: ["meta", "schema"]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-14 23:40
 ---
 
 # 知识库的结构规则
@@ -28,6 +28,11 @@ updated: 2026-06-14
 ├── wiki/                 ← 第2层: Wiki（LLM 生成的知识，持续更新）
 │   ├── 事务模型深度调研.md
 │   ├── LSM-Tree.md
+│   ├── synthesis/             ← 子目录：领域综述 + Lint 报告（Synthesize 产出）
+│   │   ├── LSM-Tree-存储引擎体系综述.md
+│   │   ├── OLAP与TSDB全景综述.md
+│   │   ├── Lint-2026-06-14.md
+│   │   └── ...
 │   └── ...
 │
 ├── purpose.md            ← 第3层: Schema（规则与配置）
@@ -41,7 +46,8 @@ updated: 2026-06-14
 | 层 | 目录 | 谁读写 | 说明 |
 |----|------|--------|------|
 | Raw Sources | `sources/` | 人类放入，Agent 只读 | 原始资料，是知识的源头，不可修改 |
-| Wiki | `wiki/` | Agent 全权维护 | LLM 生成的结构化知识，是知识库的核心产出 |
+| Wiki | `wiki/` | Agent 全权维护 | LLM 生成的结构化知识，survey/concept/analysis/decision/lesson 等页面 |
+| Wiki → Synthesis | `wiki/synthesis/` | Agent 全权维护 | 领域综述（synthesis）+ Lint 报告，从 wiki 网状结构提炼的元层次知识 |
 | Schema | 根目录 `.md` 文件 | 人类定义，Agent 遵守 | 规则、目的、日志，定义知识库如何运作 |
 
 ### 数据流
@@ -228,7 +234,7 @@ Step 2: 领域提炼分析
   4. 判断该集群是否已达到"需要一张综述页"的临界质量
 
 Step 3: 生成合成页
-  对达到临界质量的集群，生成一张 type: synthesis 页面：
+  对达到临界质量的集群，生成一张 type: synthesis 页面到 `wiki/synthesis/` 目录：
   - 标题格式: "{领域名}综述" 或 "{主题}体系"
   - 内容: 领域定义 → 核心概念关系图（文本）→ 子主题展开 → 待探索方向
   - sources: 引用集群内所有相关 wiki 页面
@@ -241,7 +247,7 @@ Step 4: 健康检查 (Lint)
   2. 矛盾检测：不同页面对同一事物的描述是否矛盾
   3. 过时检测：状态为 draft > 30 天未更新的页面
   4. 缺口检测：集群中常见概念缺少对应页面的
-  5. 输出 lint 报告到 wiki/（可选）
+  5. 输出 lint 报告到 `wiki/synthesis/`
 
 Step 5: 索引更新
   1. README.md 新增 "领域综述" 分类，列出 synthesis 页面

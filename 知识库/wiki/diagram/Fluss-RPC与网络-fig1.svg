@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 120" width="700" height="120">
-  <defs>
-    <marker id="arrow-frpc1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="15" y="10" width="190" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="110" y="23" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">RpcGateway</text>
-  <text x="195" y="14" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">（基础: hostname + port）</text>
-  <line x1="110" y1="36" x2="110" y2="48" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="40" y1="48" x2="660" y2="48" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="40" y1="48" x2="40" y2="65" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="160" y1="48" x2="160" y2="65" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="530" y1="48" x2="530" y2="65" stroke="currentColor" stroke-width="1.2"/>
-  <text x="12" y="85" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ TabletServerGateway</text>
-  <text x="12" y="102" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（produceLog / fetchLog / putKv / </text>
-  <text x="12" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　lookup / limitScan / prefixLookup ...）</text>
-  <text x="132" y="85" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ CoordinatorGateway</text>
-  <text x="132" y="102" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（createDatabase / alterTable / </text>
-  <text x="132" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　metadata / adjustIsr / rebalance ...）</text>
-  <text x="502" y="85" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ AdminGateway</text>
-  <text x="502" y="102" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（createDatabase / listTables / </text>
-  <text x="502" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　getTableSchema ...）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 130" width="700" height="130">
+<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f0f1a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient></defs>
+<style>text{font-family:'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace}</style>
+<rect width="700" height="130" fill="url(#bg-grad)"/>
+<rect x="15" y="10" width="170" height="28" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+<text x="100" y="29" font-size="12" fill="#60a5fa" text-anchor="middle" font-weight="bold">RpcGateway</text>
+<text x="185" y="16" font-size="9" fill="#94a3b8" font-style="italic">hostname+port</text>
+<line x1="100" y1="38" x2="100" y2="48" stroke="#94a3b8" stroke-width="1"/>
+<line x1="40" y1="48" x2="680" y2="48" stroke="#334155" stroke-width="1"/>
+<line x1="40" y1="48" x2="40" y2="60" stroke="#334155" stroke-width="1"/>
+<line x1="180" y1="48" x2="180" y2="60" stroke="#334155" stroke-width="1"/>
+<line x1="550" y1="48" x2="550" y2="60" stroke="#334155" stroke-width="1"/>
+<text x="12" y="76" font-size="11" fill="#e2e8f0">├ TabletServerGateway</text>
+<text x="12" y="94" font-size="9" fill="#94a3b8" font-style="italic">　produceLog/fetchLog/putKv/lookup/limitScan</text>
+<text x="152" y="76" font-size="11" fill="#e2e8f0">├ CoordinatorGateway</text>
+<text x="152" y="94" font-size="9" fill="#94a3b8" font-style="italic">　createDB/alterTable/metadata/rebalance</text>
+<text x="522" y="76" font-size="11" fill="#e2e8f0">└ AdminGateway</text>
+<text x="522" y="94" font-size="9" fill="#94a3b8" font-style="italic">　createDB/listTables/getTableSchema</text>
 </svg>

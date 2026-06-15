@@ -1,21 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="680" height="320">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 14px; font-weight: bold; }
+    .t2 { fill: #94a3b8; font-size: 11px; }
+  </style>
   <defs>
-    <marker id="a6" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
   </defs>
+  <rect width="680" height="320" fill="url(#bg)"/>
   <!-- Phase 1 -->
-  <rect x="20" y="10" width="620" height="75" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="32" font-family="sans-serif" font-size="14" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Phase 1: Sequencing（排序层）</text>
-  <text x="330" y="52" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">所有事务请求汇聚到 Sequencer，分配全局唯一顺序（批处理），广播到所有 Scheduler</text>
-  <line x1="330" y1="85" x2="330" y2="105" stroke="currentColor" stroke-width="2" marker-end="url(#a6)"/>
+  <rect x="20" y="10" width="640" height="75" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="340" y="32" class="t1" text-anchor="middle" dominant-baseline="middle">Phase 1: Sequencing（排序层）</text>
+  <text x="340" y="52" class="t2" text-anchor="middle" dominant-baseline="middle">所有事务请求汇聚到 Sequencer，分配全局唯一顺序（批处理），广播到所有 Scheduler</text>
+  <line x1="340" y1="85" x2="340" y2="105" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
   <!-- Phase 2 -->
-  <rect x="20" y="110" width="620" height="75" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="132" font-family="sans-serif" font-size="14" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Phase 2: Scheduling（调度层）</text>
-  <text x="330" y="152" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">每个分区独立按全局顺序执行事务。顺序确定 + 代码确定性 → 所有副本产生相同结果</text>
-  <text x="330" y="170" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">无需 2PC！多分区事务直接以相同顺序在各分区执行</text>
-  <line x1="330" y1="185" x2="330" y2="205" stroke="currentColor" stroke-width="2" marker-end="url(#a6)"/>
+  <rect x="20" y="110" width="640" height="80" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="340" y="132" class="t1" text-anchor="middle" dominant-baseline="middle">Phase 2: Scheduling（调度层）</text>
+  <text x="340" y="150" class="t2" text-anchor="middle" dominant-baseline="middle">每个分区独立按全局顺序执行事务。顺序确定 + 代码确定性 → 所有副本产生相同结果</text>
+  <text x="340" y="168" class="t2" text-anchor="middle" dominant-baseline="middle">无需 2PC！多分区事务直接以相同顺序在各分区执行</text>
+  <line x1="340" y1="190" x2="340" y2="210" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
   <!-- Phase 3 -->
-  <rect x="20" y="210" width="620" height="60" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="232" font-family="sans-serif" font-size="14" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Phase 3: Storage（存储层）</text>
-  <text x="330" y="252" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">每个分区的存储节点持久化结果，确定性执行保证多副本一致</text>
+  <rect x="20" y="215" width="640" height="60" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="340" y="237" class="t1" text-anchor="middle" dominant-baseline="middle">Phase 3: Storage（存储层）</text>
+  <text x="340" y="255" class="t2" text-anchor="middle" dominant-baseline="middle">每个分区的存储节点持久化结果，确定性执行保证多副本一致</text>
 </svg>

@@ -1,19 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">Phase 1: Prewrite（预写）</text>
-<rect x="10" y="28" width="700" height="100" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-<text x="25" y="46" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">1. 从 TSO 获取 start_ts</text>
-<text x="25" y="64" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">2. 选一个 key 作为 primary，其余为 secondary</text>
-<text x="25" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">3. 对所有 key 检查写写冲突:</text>
-<text x="35" y="100" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">if 存在 write_record.ts &gt; start_ts → 冲突，abort</text>
-<text x="25" y="118" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">4. 对 primary 写 lock 列</text>
-<text x="25" y="136" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">5. 对所有 key 写 data 列（带 start_ts）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 310" width="720" height="310">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; font-weight: bold; }
+    .t2 { fill: #e2e8f0; font-size: 11px; }
+    .t3 { fill: #94a3b8; font-size: 11px; }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="310" fill="url(#bg)"/>
+  <text x="10" y="20" class="t1">Phase 1: Prewrite（预写）</text>
+  <rect x="10" y="30" width="700" height="100" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="25" y="48" class="t3">1. 从 TSO 获取 start_ts</text>
+  <text x="25" y="64" class="t3">2. 选一个 key 作为 primary，其余为 secondary</text>
+  <text x="25" y="80" class="t3">3. 对所有 key 检查写写冲突:</text>
+  <text x="35" y="96" class="t3">if 存在 write_record.ts &gt; start_ts → 冲突，abort</text>
+  <text x="25" y="112" class="t3">4. 对 primary 写 lock 列</text>
+  <text x="25" y="126" class="t3">5. 对所有 key 写 data 列（带 start_ts）</text>
 
-<text x="10" y="172" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">Phase 2: Commit</text>
-<rect x="10" y="182" width="700" height="100" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-<text x="25" y="200" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">1. 从 TSO 获取 commit_ts</text>
-<text x="25" y="218" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">2. 对 primary 写 write 列（commit_ts + start_ts）</text>
-<text x="35" y="236" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">← 此操作成功标志事务提交</text>
-<text x="25" y="254" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">3. 异步删除 primary lock</text>
-<text x="25" y="272" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">4. 异步清理 secondary 的 lock 和 write</text>
+  <text x="10" y="172" class="t1">Phase 2: Commit</text>
+  <rect x="10" y="182" width="700" height="100" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="25" y="200" class="t3">1. 从 TSO 获取 commit_ts</text>
+  <text x="25" y="216" class="t3">2. 对 primary 写 write 列（commit_ts + start_ts）</text>
+  <text x="35" y="232" class="t3">← 此操作成功标志事务提交</text>
+  <text x="25" y="248" class="t3">3. 异步删除 primary lock</text>
+  <text x="25" y="264" class="t3">4. 异步清理 secondary 的 lock 和 write</text>
 </svg>

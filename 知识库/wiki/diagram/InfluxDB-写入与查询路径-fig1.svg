@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v1/v2 写入路径:</text>
-<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HTTP /write (Line Protocol)</text>
-<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5"/>
-<text x="245" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ① WAL (Snappy Compressed, fsync to disk)</text>
-<line x1="245" y1="52" x2="245" y2="68" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ② In-Memory Cache (Series → Time-Sorted Fields Map)</text>
-<line x1="245" y1="96" x2="245" y2="110" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── ③ TSM 文件 (Compaction × 合并为更大 TSM 文件)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 130">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#10b981"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: "SF Mono","Fira Code","Cascadia Code","Courier New","Microsoft YaHei","SimHei",monospace; }
+  </style>
+  <rect width="780" height="130" fill="url(#bg-grad)"/>
+  <!-- Title -->
+  <text x="20" y="26" font-size="14" fill="#e2e8f0" font-weight="700">InfluxDB v1/v2 写入路径</text>
+  <!-- Entry node -->
+  <rect x="20" y="40" width="210" height="32" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="125" y="56" font-size="12" fill="#f97316" text-anchor="middle" dominant-baseline="central">HTTP /write (Line Protocol)</text>
+  <!-- Arrow -->
+  <line x1="230" y1="56" x2="260" y2="56" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <!-- Steps -->
+  <text x="268" y="56" font-size="12" fill="#e2e8f0" dominant-baseline="central">├──</text>
+  <rect x="288" y="43" width="290" height="22" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="433" y="54" font-size="11" fill="#10b981" text-anchor="middle" dominant-baseline="central">① WAL (Snappy Compressed, fsync to disk)</text>
+  <line x1="272" y1="68" x2="272" y2="82" stroke="#334155" stroke-width="1"/>
+  <text x="268" y="82" font-size="12" fill="#e2e8f0" dominant-baseline="central">├──</text>
+  <rect x="288" y="69" width="430" height="22" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="503" y="80" font-size="11" fill="#10b981" text-anchor="middle" dominant-baseline="central">② In-Memory Cache (Series → Time-Sorted Fields Map)</text>
+  <line x1="272" y1="94" x2="272" y2="108" stroke="#334155" stroke-width="1"/>
+  <text x="268" y="108" font-size="12" fill="#e2e8f0" dominant-baseline="central">└──</text>
+  <rect x="288" y="95" width="480" height="22" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="528" y="106" font-size="11" fill="#10b981" text-anchor="middle" dominant-baseline="central">③ TSM 文件 (Compaction 合并为更大 TSM 文件)</text>
 </svg>

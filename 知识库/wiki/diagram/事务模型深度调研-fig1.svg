@@ -1,29 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 740 200" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 200" width="740" height="200">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; }
+    .t2 { fill: #94a3b8; font-size: 11px; }
+    .t3 { fill: #94a3b8; font-size: 10px; }
+  </style>
   <defs>
-    <marker id="af1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
-    <marker id="ad1" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#a855f7"/>
+    </marker>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto">
+      <polygon points="0 0, 3 8, 6 0" fill="#a855f7"/>
+    </marker>
   </defs>
-  <!-- Top row -->
-  <rect x="10" y="10" width="130" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="75" y="30" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">User SQL</text>
-  <text x="75" y="46" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">请求</text>
-  <line x1="140" y1="35" x2="165" y2="35" stroke="currentColor" stroke-width="2" marker-end="url(#af1)"/>
-  <rect x="170" y="10" width="130" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="235" y="30" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">WAL 日志</text>
-  <text x="235" y="46" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">顺序写</text>
-  <line x1="300" y1="35" x2="325" y2="35" stroke="currentColor" stroke-width="2" marker-end="url(#af1)"/>
-  <rect x="330" y="10" width="130" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="395" y="30" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">内存 Buffer</text>
-  <text x="395" y="46" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Pool</text>
-  <line x1="460" y1="35" x2="485" y2="35" stroke="currentColor" stroke-width="2" marker-end="url(#af1)"/>
-  <rect x="490" y="10" width="130" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="555" y="30" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">数据页</text>
-  <text x="555" y="46" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">异步刷盘</text>
-  <!-- Down arrow from WAL -->
-  <line x1="235" y1="60" x2="235" y2="90" stroke="currentColor" stroke-width="2" marker-end="url(#ad1)"/>
-  <!-- Bottom row -->
-  <rect x="150" y="100" width="160" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="230" y="120" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">磁盘日志</text>
-  <text x="230" y="138" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">← 持久化完成，事务可提交</text>
+  <rect width="740" height="200" fill="url(#bg)"/>
+  <!-- Top row nodes -->
+  <rect x="10" y="10" width="130" height="54" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="75" y="30" class="t1" text-anchor="middle" dominant-baseline="middle">User SQL</text>
+  <text x="75" y="48" class="t2" text-anchor="middle" dominant-baseline="middle">请求</text>
+  <line x1="140" y1="37" x2="165" y2="37" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="170" y="10" width="130" height="54" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="235" y="30" class="t1" text-anchor="middle" dominant-baseline="middle">WAL 日志</text>
+  <text x="235" y="48" class="t2" text-anchor="middle" dominant-baseline="middle">顺序写</text>
+  <line x1="300" y1="37" x2="325" y2="37" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="330" y="10" width="130" height="54" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="395" y="30" class="t1" text-anchor="middle" dominant-baseline="middle">内存 Buffer</text>
+  <text x="395" y="48" class="t2" text-anchor="middle" dominant-baseline="middle">Pool</text>
+  <line x1="460" y1="37" x2="485" y2="37" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="490" y="10" width="130" height="54" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="555" y="30" class="t1" text-anchor="middle" dominant-baseline="middle">数据页</text>
+  <text x="555" y="48" class="t2" text-anchor="middle" dominant-baseline="middle">异步刷盘</text>
+  <!-- Down arrow from WAL to disk log -->
+  <line x1="235" y1="64" x2="235" y2="90" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
+  <!-- Bottom: disk log -->
+  <rect x="150" y="100" width="170" height="50" rx="6" fill="#0f172a" stroke="#059669" stroke-width="1.5"/>
+  <text x="235" y="120" class="t1" text-anchor="middle" dominant-baseline="middle">磁盘日志</text>
+  <text x="235" y="138" class="t3" text-anchor="middle" dominant-baseline="middle">← 持久化完成，事务可提交</text>
 </svg>

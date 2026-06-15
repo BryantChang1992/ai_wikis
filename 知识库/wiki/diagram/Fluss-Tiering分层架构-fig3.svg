@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 60" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <defs>
-    <marker id="arrow-tw2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="30" y="8" width="350" height="24" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="205" y="22" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">TabletServer.notifyLakeTableOffset（更新本地 lake offset）</text>
-  <line x1="380" y1="20" x2="395" y2="20" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-tw2)"/>
-  
-  <rect x="30" y="38" width="350" height="24" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="205" y="52" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">本地 LogManager 删除已被 tiered 的 segment</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 60" width="680" height="60">
+<defs>
+  <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f0f1a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient>
+  <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
+</defs>
+<style>text{font-family:'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace}</style>
+<rect width="680" height="60" fill="url(#bg-grad)"/>
+<rect x="30" y="6" width="340" height="22" rx="6" fill="#052e16" stroke="#10b981" stroke-width="0.8"/>
+<text x="200" y="22" font-size="10" fill="#34d399" text-anchor="middle">TabletServer.notifyLakeTableOffset</text>
+<line x1="370" y1="17" x2="388" y2="17" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="30" y="34" width="340" height="22" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+<text x="200" y="50" font-size="10" fill="#e2e8f0" text-anchor="middle">本地 LogManager 删除已 tiered 的 segment</text>
 </svg>

@@ -1,74 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace; fill: #e2e8f0; }
+  </style>
   <defs>
-    <marker id="arr-agent" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
     </marker>
-    <marker id="arr-agent-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
-    </marker>
-    <filter id="shadow-ag" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
-    </filter>
   </defs>
-
-  <rect width="960" height="460" fill="#ffffff"/>
-
-  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">Agent-First Data Systems · CIDR 2026</text>
-  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">从被动查询 → Probe-Brief 主动引导 · Agentic Speculation 四特性 · 分支事务 + 语义缓存</text>
-
-  <!-- ====== Old vs New ====== -->
-  <rect x="30" y="75" width="280" height="130" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5" filter="url(#shadow-ag)"/>
-  <text x="170" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#dc2626" text-anchor="middle">传统模型 ❌</text>
-  <text x="50" y="124" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Human → Keyboard (低并发)</text>
-  <text x="50" y="142" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Exact Answer (精确结果)</text>
-  <text x="50" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Isolated Query (独立查询)</text>
-  <text x="50" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">└ Passive: 等用户输入</text>
-
-  <line x1="310" y1="140" x2="345" y2="140" stroke="#3b82f6" stroke-width="2" marker-end="url(#arr-agent)"/>
-
-  <rect x="350" y="75" width="280" height="130" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow-ag)"/>
-  <text x="490" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#16a34a" text-anchor="middle">Agent-First ✅ → 必须重构</text>
-  <text x="370" y="124" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Agent → DB (每秒上千 QPS)</text>
-  <text x="370" y="142" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Satisficing (足够好即可)</text>
-  <text x="370" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Highly Redundant (多探针重叠)</text>
-  <text x="370" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">└ Active: Probe → Brief 循环</text>
-
-  <!-- ====== Agentic Speculation 4 pillars ====== -->
-  <rect x="30" y="220" width="450" height="115" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow-ag)"/>
-  <text x="255" y="245" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#1e40af" text-anchor="middle">Agentic Speculation 四特性</text>
-
-  <rect x="50" y="260" width="190" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="145" y="280" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">Scale: 高并发 → Satisficing</text>
-
-  <rect x="250" y="260" width="210" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="355" y="280" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">Heterogeneity: 粗→精混合</text>
-
-  <rect x="50" y="298" width="190" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="145" y="318" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">Redundancy: MQO + 缓存共享</text>
-
-  <rect x="250" y="298" width="210" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="355" y="318" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">Steerability: Sleeper Agent</text>
-
-  <!-- ====== Key techniques ====== -->
-  <rect x="500" y="220" width="430" height="220" rx="10" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow-ag)"/>
-  <text x="715" y="245" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">关键技术</text>
-
-  <rect x="520" y="260" width="390" height="50" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
-  <text x="715" y="280" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#6b21a8" text-anchor="middle">分支事务 (Branch Transactions)</text>
-  <text x="715" y="298" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea" text-anchor="middle">MVCC Snapshot Fork + 多分支并行探索 → 合并最优路径 Commit</text>
-
-  <rect x="520" y="320" width="390" height="50" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
-  <text x="715" y="340" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#9a3412" text-anchor="middle">语义缓存 (Semantic Cache)</text>
-  <text x="715" y="358" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#ea580c" text-anchor="middle">基于语义相似度匹配 · 非精确 key match</text>
-
-  <rect x="520" y="380" width="390" height="50" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-  <text x="715" y="400" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">Probe-Brief 交互模型</text>
-  <text x="715" y="418" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a" text-anchor="middle">Agent 主动探查（Probe）→ DB 简要响应（Brief）→ 引导下一轮</text>
-
-  <!-- ====== Empirical ====== -->
-  <rect x="30" y="350" width="450" height="90" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="255" y="374" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">实证: BIRD Benchmark + Multi-Backend</text>
-  <text x="50" y="396" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">├ 100 DDL Statements → 25% 子查询重叠 (低基数)</text>
-  <text x="50" y="414" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">├ Sem-Join: Hash 以外的 similarity-based join</text>
-  <text x="50" y="432" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">└ 启发: DMBS 需从"被动服务"升级为"主动引导"</text>
+  <rect width="960" height="460" fill="url(#bg-grad)"/>
+  <text x="480" y="30" font-size="17" font-weight="700" fill="#e2e8f0" text-anchor="middle">Agent-First Data Systems · CIDR 2026</text>
+  <text x="480" y="52" font-size="11" fill="#94a3b8" text-anchor="middle">从被动查询 → Probe-Brief 主动引导 · Agentic Speculation 四特性 · 分支事务 + 语义缓存</text>
+  <rect x="30" y="68" width="280" height="125" rx="8" fill="#1c1917" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="170" y="92" font-size="13" font-weight="700" fill="#ef4444" text-anchor="middle">传统模型 ❌</text>
+  <text x="50" y="116" font-size="10" fill="#94a3b8">├ Human → Keyboard (低并发)</text>
+  <text x="50" y="134" font-size="10" fill="#94a3b8">├ Exact Answer (精确结果)</text>
+  <text x="50" y="152" font-size="10" fill="#94a3b8">├ Isolated Query (独立查询)</text>
+  <text x="50" y="170" font-size="10" fill="#94a3b8">└ Passive: 等用户输入</text>
+  <line x1="310" y1="130" x2="345" y2="130" stroke="#3b82f6" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="350" y="68" width="280" height="125" rx="8" fill="#052e16" stroke="#059669" stroke-width="1.5"/>
+  <text x="490" y="92" font-size="13" font-weight="700" fill="#10b981" text-anchor="middle">Agent-First ✅ → 必须重构</text>
+  <text x="370" y="116" font-size="10" fill="#94a3b8">├ Agent → DB (每秒上千 QPS)</text>
+  <text x="370" y="134" font-size="10" fill="#94a3b8">├ Satisficing (足够好即可)</text>
+  <text x="370" y="152" font-size="10" fill="#94a3b8">├ Highly Redundant (多探针重叠)</text>
+  <text x="370" y="170" font-size="10" fill="#94a3b8">└ Active: Probe → Brief 循环</text>
+  <rect x="30" y="208" width="450" height="110" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="255" y="232" font-size="13" font-weight="700" fill="#3b82f6" text-anchor="middle">Agentic Speculation 四特性</text>
+  <rect x="50" y="246" width="195" height="28" rx="5" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="148" y="265" font-size="10" fill="#60a5fa" text-anchor="middle">Scale: 高并发 → Satisficing</text>
+  <rect x="260" y="246" width="200" height="28" rx="5" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="360" y="265" font-size="10" fill="#60a5fa" text-anchor="middle">Heterogeneity: 粗→精混合</text>
+  <rect x="50" y="282" width="195" height="28" rx="5" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="148" y="301" font-size="10" fill="#60a5fa" text-anchor="middle">Redundancy: MQO + 缓存共享</text>
+  <rect x="260" y="282" width="200" height="28" rx="5" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="360" y="301" font-size="10" fill="#60a5fa" text-anchor="middle">Steerability: Sleeper Agent</text>
+  <rect x="500" y="208" width="430" height="215" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="715" y="232" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">关键技术</text>
+  <rect x="520" y="245" width="390" height="48" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="715" y="264" font-size="11" font-weight="700" fill="#a78bfa" text-anchor="middle">分支事务 (Branch Transactions)</text>
+  <text x="715" y="282" font-size="10" fill="#7c3aed" text-anchor="middle">MVCC Snapshot Fork + 多分支并行探索 → 合并最优路径 Commit</text>
+  <rect x="520" y="301" width="390" height="48" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1"/>
+  <text x="715" y="320" font-size="11" font-weight="700" fill="#fb923c" text-anchor="middle">语义缓存 (Semantic Cache)</text>
+  <text x="715" y="338" font-size="10" fill="#f97316" text-anchor="middle">基于语义相似度匹配 · 非精确 key match</text>
+  <rect x="520" y="357" width="390" height="48" rx="6" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="715" y="376" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">Probe-Brief 交互模型</text>
+  <text x="715" y="394" font-size="10" fill="#10b981" text-anchor="middle">Agent 主动探查（Probe）→ DB 简要响应（Brief）→ 引导下一轮</text>
+  <rect x="30" y="330" width="450" height="110" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="255" y="354" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">实证: BIRD Benchmark + Multi-Backend</text>
+  <text x="50" y="376" font-size="10" fill="#94a3b8">├ 100 DDL Statements → 25% 子查询重叠 (低基数)</text>
+  <text x="50" y="394" font-size="10" fill="#94a3b8">├ Sem-Join: Hash 以外的 similarity-based join</text>
+  <text x="50" y="416" font-size="10" fill="#94a3b8">└ 启发: DMBS 需从"被动服务"升级为"主动引导"</text>
 </svg>

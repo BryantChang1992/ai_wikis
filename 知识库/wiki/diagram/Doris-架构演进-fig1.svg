@@ -1,23 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
-<text x="180" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">传统 Shared-Nothing</text>
-<text x="540" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">存算分离 3.0</text>
-<rect x="60" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="180" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE (BDB-JE)</text>
-<text x="180" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
-<text x="180" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
-<rect x="420" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="540" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE</text>
-<text x="540" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
-<text x="540" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
-<rect x="60" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="180" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (本地存储 + CPU)</text>
-<text x="180" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Paxos-Replicated Local Storage</text>
-<text x="180" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute + Storage coupled</text>
-<rect x="420" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="540" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (纯计算)</text>
-<text x="540" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Shared-Storage (S3/HDFS)</text>
-<text x="540" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute-Storage Decoupled</text>
-<rect x="60" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="180" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">数据 3 副本 → 存储膨胀</text>
-<rect x="420" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="540" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">EC + 冷热分层 → 成本降低</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+  <style>
+    text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Microsoft YaHei', 'SimHei', monospace; }
+  </style>
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="240" fill="url(#bg-grad)"/>
+  <text x="360" y="18" font-size="14" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Doris 架构演进: Shared-Nothing → 存算分离 3.0</text>
+  <text x="180" y="38" font-size="11" font-weight="bold" fill="#f97316" text-anchor="middle">传统 Shared-Nothing</text>
+  <text x="540" y="38" font-size="11" font-weight="bold" fill="#10b981" text-anchor="middle">存算分离 3.0</text>
+  <rect x="40" y="50" width="280" height="60" rx="4" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="180" y="68" font-size="10" font-weight="bold" fill="#a855f7" text-anchor="middle">FE (BDB-JE)</text>
+  <text x="180" y="83" font-size="9" fill="#94a3b8" text-anchor="middle">Metadata + Query Planning</text>
+  <text x="180" y="98" font-size="9" fill="#94a3b8" text-anchor="middle">Multi-Master + Raft</text>
+  <rect x="400" y="50" width="280" height="60" rx="4" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="540" y="68" font-size="10" font-weight="bold" fill="#a855f7" text-anchor="middle">FE</text>
+  <text x="540" y="83" font-size="9" fill="#94a3b8" text-anchor="middle">Metadata + Query Planning</text>
+  <text x="540" y="98" font-size="9" fill="#94a3b8" text-anchor="middle">Multi-Master + Raft</text>
+  <rect x="40" y="122" width="280" height="60" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="180" y="140" font-size="10" font-weight="bold" fill="#10b981" text-anchor="middle">BE</text>
+  <text x="180" y="155" font-size="9" fill="#94a3b8" text-anchor="middle">Paxos-Replicated Local Storage</text>
+  <text x="180" y="170" font-size="9" fill="#ef4444" text-anchor="middle">Compute + Storage coupled</text>
+  <rect x="400" y="122" width="280" height="60" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="540" y="140" font-size="10" font-weight="bold" fill="#10b981" text-anchor="middle">BE (纯计算)</text>
+  <text x="540" y="155" font-size="9" fill="#94a3b8" text-anchor="middle">Shared-Storage (S3/HDFS)</text>
+  <text x="540" y="170" font-size="9" fill="#10b981" text-anchor="middle">Compute-Storage Decoupled</text>
+  <rect x="40" y="194" width="280" height="28" rx="4" fill="#1c1917" stroke="#ea580c" stroke-width="1"/>
+  <text x="180" y="212" font-size="10" fill="#f97316" text-anchor="middle">数据 3 副本 → 存储膨胀</text>
+  <rect x="400" y="194" width="280" height="28" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="540" y="212" font-size="10" fill="#10b981" text-anchor="middle">EC + 冷热分层 → 成本降低</text>
 </svg>

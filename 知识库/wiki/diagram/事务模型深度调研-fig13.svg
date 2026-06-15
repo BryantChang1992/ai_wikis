@@ -1,26 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="680" height="400">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 14px; font-weight: bold; }
+    .t2 { fill: #e2e8f0; font-size: 13px; font-weight: bold; }
+    .t3 { fill: #94a3b8; font-size: 11px; }
+  </style>
   <defs>
-    <marker id="a11" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
   </defs>
-  <text x="10" y="18" font-family="sans-serif" font-size="14" font-weight="bold" fill="currentColor">事务执行流程:</text>
+  <rect width="680" height="400" fill="url(#bg)"/>
+  <text x="10" y="20" class="t1">事务执行流程:</text>
   <!-- Step 1 -->
-  <rect x="10" y="30" width="640" height="70" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="50" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">1. 写阶段</text>
-  <text x="330" y="68" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">写入 Write Intent（带 provisional value），获取 Transaction Record，事务状态: PENDING</text>
-  <line x1="330" y1="100" x2="330" y2="115" stroke="currentColor" stroke-width="2" marker-end="url(#a11)"/>
+  <rect x="10" y="30" width="660" height="70" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="340" y="50" class="t2" text-anchor="middle" dominant-baseline="middle">1. 写阶段</text>
+  <text x="340" y="70" class="t3" text-anchor="middle" dominant-baseline="middle">写入 Write Intent（带 provisional value），获取 Transaction Record，事务状态: PENDING</text>
+  <line x1="340" y1="100" x2="340" y2="118" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
   <!-- Step 2 -->
-  <rect x="10" y="120" width="640" height="70" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="140" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2. 提交阶段 (Parallel Commit)</text>
-  <text x="330" y="158" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Transaction Record → COMMITTED，参与者并行确认，异步清理 Write Intents</text>
-  <line x1="330" y1="190" x2="330" y2="205" stroke="currentColor" stroke-width="2" marker-end="url(#a11)"/>
+  <rect x="10" y="123" width="660" height="70" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="340" y="143" class="t2" text-anchor="middle" dominant-baseline="middle">2. 提交阶段 (Parallel Commit)</text>
+  <text x="340" y="163" class="t3" text-anchor="middle" dominant-baseline="middle">Transaction Record → COMMITTED，参与者并行确认，异步清理 Write Intents</text>
+  <line x1="340" y1="193" x2="340" y2="211" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
   <!-- Step 3 -->
-  <rect x="10" y="210" width="640" height="70" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="230" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">3. 读路径</text>
-  <text x="330" y="248" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Write Intent → Transaction Record: COMMITTED=读取 / PENDING=等待 / ABORTED=忽略</text>
-  <line x1="330" y1="280" x2="330" y2="295" stroke="currentColor" stroke-width="2" marker-end="url(#a11)"/>
+  <rect x="10" y="216" width="660" height="70" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="340" y="236" class="t2" text-anchor="middle" dominant-baseline="middle">3. 读路径</text>
+  <text x="340" y="256" class="t3" text-anchor="middle" dominant-baseline="middle">Write Intent → Transaction Record: COMMITTED=读取 / PENDING=等待 / ABORTED=忽略</text>
+  <line x1="340" y1="286" x2="340" y2="304" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
   <!-- Step 4 -->
-  <rect x="10" y="300" width="640" height="55" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="318" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">4. 时钟不确定性处理 (HLC)</text>
-  <text x="330" y="336" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Global Uncertainty Limit = max_offset，commit_ts 落在不确定性窗口内时等待</text>
+  <rect x="10" y="309" width="660" height="55" rx="6" fill="#0f172a" stroke="#eab308" stroke-width="1.5"/>
+  <text x="340" y="329" class="t2" text-anchor="middle" dominant-baseline="middle">4. 时钟不确定性处理 (HLC)</text>
+  <text x="340" y="349" class="t3" text-anchor="middle" dominant-baseline="middle">Global Uncertainty Limit = max_offset，commit_ts 落在不确定性窗口内时等待</text>
 </svg>

@@ -1,110 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520">
-  <defs>
-    <marker id="arrow-kv" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
-    </marker>
-    <marker id="arrow-kv-lg" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <path d="M0,0 L10,3.5 L0,7 Z" fill="#16a34a"/>
-    </marker>
-    <marker id="arrow-kv-rd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/>
-    </marker>
-    <filter id="shadow-kv" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+<style>
+  text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Microsoft YaHei', 'SimHei', monospace; }
+</style>
+<defs>
+  <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f0f1a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient>
+  <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker>
+  <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
+  <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+  <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ef4444"/></marker>
+  <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
+</defs>
+<rect width="960" height="540" fill="url(#bg-grad)"/>
 
-  <rect width="960" height="520" fill="#ffffff"/>
+<text x="480" y="28" font-size="16" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Fluss KV 子系统 · Write-Once Read-Multiple 架构</text>
+<text x="480" y="48" font-size="11" fill="#94a3b8" text-anchor="middle">WAL 复用 Changelog LogTablet · Snapshot 全链路 · RowMerger 四种策略</text>
 
-  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">Fluss KV 子系统 · Write-Once Read-Multiple 架构</text>
-  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">WAL 复用 Changelog LogTablet · Snapshot 全链路 · RowMerger 四种策略</text>
+<!-- Top: Management chain -->
+<rect x="130" y="68" width="180" height="38" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="220" y="92" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">KvManager</text>
+<line x1="310" y1="87" x2="370" y2="87" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-blue)"/>
 
-  <!-- ====== Top: KvManager → KvTablet → RocksDBKv ====== -->
-  <rect x="180" y="75" width="180" height="40" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow-kv)"/>
-  <text x="270" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#1e40af" text-anchor="middle">KvManager</text>
+<rect x="375" y="68" width="180" height="38" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+<text x="465" y="92" font-size="13" font-weight="bold" fill="#34d399" text-anchor="middle">KvTablet</text>
+<line x1="555" y1="87" x2="615" y2="87" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-blue)"/>
 
-  <line x1="360" y1="95" x2="415" y2="95" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-kv)"/>
+<rect x="620" y="68" width="180" height="38" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+<text x="710" y="92" font-size="13" font-weight="bold" fill="#c084fc" text-anchor="middle">RocksDBKv</text>
 
-  <rect x="420" y="75" width="180" height="40" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" filter="url(#shadow-kv)"/>
-  <text x="510" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">KvTablet</text>
+<!-- WAL Design Panel -->
+<rect x="20" y="122" width="920" height="130" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+<text x="480" y="146" font-size="13" font-weight="bold" fill="#e2e8f0" text-anchor="middle">WAL 设计: Write-Once Read-Multiple</text>
 
-  <line x1="600" y1="95" x2="655" y2="95" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-kv)"/>
+<!-- Write path -->
+<text x="220" y="176" font-size="11" font-weight="bold" fill="#94a3b8" text-anchor="middle">写入路径</text>
+<rect x="50" y="188" width="140" height="34" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+<text x="120" y="210" font-size="11" fill="#e2e8f0" text-anchor="middle">putKv(row)</text>
+<line x1="190" y1="205" x2="250" y2="205" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-green)"/>
+<rect x="255" y="188" width="120" height="34" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+<text x="315" y="210" font-size="11" fill="#10b981" text-anchor="middle">RocksDB SST</text>
+<text x="315" y="180" font-size="9" fill="#10b981" text-anchor="middle">+ 同时写入</text>
+<text x="120" y="240" font-size="9" fill="#f97316" text-anchor="middle">changelog LogTablet (WAL)</text>
 
-  <rect x="660" y="75" width="180" height="40" rx="8" fill="#f3e8ff" stroke="#c084fc" stroke-width="1.5" filter="url(#shadow-kv)"/>
-  <text x="750" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#6b21a8" text-anchor="middle">RocksDBKv</text>
+<!-- Recovery path -->
+<text x="700" y="176" font-size="11" font-weight="bold" fill="#94a3b8" text-anchor="middle">恢复路径</text>
+<rect x="580" y="188" width="120" height="34" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1"/>
+<text x="640" y="210" font-size="11" fill="#f97316" text-anchor="middle">故障恢复</text>
+<line x1="700" y1="205" x2="750" y2="205" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arr-red)"/>
+<rect x="755" y="188" width="140" height="34" rx="6" fill="#3b0a0a" stroke="#ef4444" stroke-width="1"/>
+<text x="825" y="210" font-size="11" fill="#ef4444" text-anchor="middle">重放 LogTablet</text>
+<text x="825" y="240" font-size="10" fill="#64748b" text-anchor="middle">非 WAL 文件! 复用 Changelog</text>
 
-  <!-- ====== Middle: WAL Design (Write-Once Read-Multiple) ====== -->
-  <rect x="30" y="135" width="900" height="130" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow-kv)"/>
+<!-- Core Components Panel -->
+<rect x="20" y="268" width="450" height="250" rx="6" fill="#052e16" stroke="#059669" stroke-width="1"/>
+<text x="245" y="292" font-size="13" font-weight="bold" fill="#10b981" text-anchor="middle">核心组件</text>
+<text x="40" y="320" font-size="11" fill="#e2e8f0">├ WalBuilder (3 种格式)</text>
+<text x="55" y="338" font-size="10" fill="#94a3b8">Arrow / Compacted / IndexWalBuilder</text>
+<text x="40" y="358" font-size="11" fill="#e2e8f0">├ PeriodicSnapshotManager</text>
+<text x="55" y="376" font-size="10" fill="#94a3b8">定时触发 → RocksIncrementalSnapshot</text>
+<text x="55" y="394" font-size="10" fill="#94a3b8">→ Uploader → Committer</text>
+<text x="40" y="414" font-size="11" fill="#e2e8f0">├ RowMerger (4 种策略)</text>
+<text x="55" y="432" font-size="10" fill="#94a3b8">Default / FirstRow / Versioned / Aggregate</text>
+<text x="40" y="452" font-size="11" fill="#e2e8f0">├ PartialUpdater（部分列更新）</text>
+<text x="40" y="472" font-size="11" fill="#e2e8f0">├ AutoIncrementManager（自增 ID）</text>
+<text x="40" y="492" font-size="11" fill="#e2e8f0">└ KvPreWriteBuffer（预写缓冲）</text>
 
-  <text x="480" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">WAL 设计: Write-Once Read-Multiple</text>
+<!-- Snapshot Pipeline Panel -->
+<rect x="490" y="268" width="450" height="250" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+<text x="715" y="292" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">Snapshot 全链路 (~30 个类)</text>
+<rect x="510" y="308" width="410" height="28" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+<text x="715" y="327" font-size="11" fill="#e2e8f0" text-anchor="middle">① PeriodicSnapshot → 定时触发</text>
+<line x1="715" y1="336" x2="715" y2="350" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-blue)"/>
+<rect x="510" y="354" width="410" height="28" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+<text x="715" y="373" font-size="11" fill="#e2e8f0" text-anchor="middle">② RocksIncrementalSnapshot → SST 增量导出</text>
+<line x1="715" y1="382" x2="715" y2="396" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-blue)"/>
+<rect x="510" y="400" width="410" height="28" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+<text x="715" y="419" font-size="11" fill="#e2e8f0" text-anchor="middle">③ KvSnapshotUploader → S3 / HDFS 上传</text>
+<line x1="715" y1="428" x2="715" y2="442" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-blue)"/>
+<rect x="510" y="446" width="410" height="28" rx="6" fill="#1a1a2e" stroke="#334155" stroke-width="1"/>
+<text x="715" y="465" font-size="11" fill="#e2e8f0" text-anchor="middle">④ KvSnapshotCommitter → 全局提交</text>
 
-  <!-- Write path -->
-  <text x="240" y="190" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#6b7280" text-anchor="middle">写入路径</text>
-
-  <rect x="60" y="200" width="130" height="34" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
-  <text x="125" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">putKv(row)</text>
-
-  <line x1="190" y1="217" x2="235" y2="217" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-kv-lg)"/>
-
-  <rect x="240" y="200" width="120" height="34" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="300" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#15803d" text-anchor="middle">RocksDB SST</text>
-
-  <line x1="240" y1="217" x2="290" y2="217" stroke="#16a34a" stroke-width="1.2"/>
-
-  <rect x="240" y="195" width="120" height="14" rx="3" fill="#dcfce7"/>
-  <text x="300" y="200" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="8" fill="#15803d" text-anchor="middle">+ 同时写入</text>
-
-  <rect x="60" y="242" width="130" height="14" rx="3" fill="#fff7ed"/>
-  <text x="125" y="247" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="8" fill="#9a3412" text-anchor="middle">changelog LogTablet</text>
-
-  <line x1="125" y1="234" x2="125" y2="240" stroke="#ea580c" stroke-width="1" stroke-dasharray="2,2"/>
-
-  <!-- Recovery path -->
-  <text x="660" y="190" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#6b7280" text-anchor="middle">恢复路径</text>
-
-  <rect x="580" y="200" width="130" height="34" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
-  <text x="645" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#92400e" text-anchor="middle">故障恢复</text>
-
-  <line x1="710" y1="217" x2="755" y2="217" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-kv-rd)"/>
-
-  <rect x="760" y="200" width="145" height="34" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
-  <text x="833" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#dc2626" text-anchor="middle">重放 LogTablet</text>
-
-  <text x="833" y="252" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">(非 WAL 文件!)</text>
-
-  <!-- ====== Bottom: Sub-components ====== -->
-  <rect x="30" y="285" width="440" height="210" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" filter="url(#shadow-kv)"/>
-  <text x="250" y="308" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">核心组件</text>
-
-  <text x="50" y="338" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">├ WalBuilder (3 种格式)</text>
-  <text x="65" y="356" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Arrow / Compacted / IndexWalBuilder</text>
-  <text x="50" y="378" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">├ PeriodicSnapshotManager</text>
-  <text x="65" y="396" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">定时触发 → RocksIncrementalSnapshot → Uploader → Committer</text>
-  <text x="50" y="418" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">├ RowMerger (4 种策略)</text>
-  <text x="65" y="436" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Default / FirstRow / Versioned / Aggregate</text>
-  <text x="50" y="458" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">├ PartialUpdater (部分列更新)</text>
-  <text x="50" y="478" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">├ AutoIncrementManager (自增 ID)</text>
-  <text x="50" y="498" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151">└ KvPreWriteBuffer (预写缓冲)</text>
-
-  <!-- Right: three modes -->
-  <rect x="490" y="285" width="440" height="210" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow-kv)"/>
-  <text x="710" y="308" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#1e40af" text-anchor="middle">Snapshot 全链路 (~30 个类)</text>
-
-  <rect x="510" y="325" width="400" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="710" y="345" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">① PeriodicSnapshot → 定时触发 (changelog offset 检查)</text>
-
-  <line x1="710" y1="355" x2="710" y2="370" stroke="#3b82f6" stroke-width="1"/>
-
-  <rect x="510" y="373" width="400" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="710" y="393" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">② RocksIncrementalSnapshot → SST 增量导出</text>
-
-  <line x1="710" y1="403" x2="710" y2="418" stroke="#3b82f6" stroke-width="1"/>
-
-  <rect x="510" y="421" width="400" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="710" y="441" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">③ KvSnapshotUploader → S3 / HDFS 上传</text>
-
-  <line x1="710" y1="451" x2="710" y2="466" stroke="#3b82f6" stroke-width="1"/>
-
-  <rect x="510" y="469" width="400" height="30" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="710" y="489" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">④ KvSnapshotCommitter → 全局提交</text>
-</svg>
+<text x="715" y="500" font-size="10" fill="#64748b" text-anchor="middle">变更 SST 仅上传一次 · ZK 记录 Snapshot 元数据</text></svg>

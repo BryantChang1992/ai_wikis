@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 720 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <!-- The actual Line Protocol line as code-like text -->
-  <text x="10" y="18" font-family="monospace, sans-serif" font-size="11" fill="currentColor">cpu,host=server-a,region=us-west usage_user=64.5,usage_sys=12.3 1718200000000000000</text>
-  
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 90">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <style>
+    text { font-family: "SF Mono","Fira Code","Cascadia Code","Courier New","Microsoft YaHei","SimHei",monospace; }
+  </style>
+  <rect width="740" height="90" fill="url(#bg-grad)"/>
+  <!-- Line Protocol (code-like) -->
+  <rect x="14" y="10" width="710" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="24" y="23" font-size="12" fill="#e2e8f0" font-weight="700">cpu</text>
+  <text x="52" y="23" font-size="12" fill="#94a3b8">,</text>
+  <text x="58" y="23" font-size="12" fill="#f97316">host</text>
+  <text x="94" y="23" font-size="12" fill="#94a3b8">=</text>
+  <text x="100" y="23" font-size="12" fill="#60a5fa">server-a</text>
+  <text x="178" y="23" font-size="12" fill="#94a3b8">,</text>
+  <text x="184" y="23" font-size="12" fill="#f97316">region</text>
+  <text x="240" y="23" font-size="12" fill="#94a3b8">=</text>
+  <text x="248" y="23" font-size="12" fill="#60a5fa">us-west</text>
+  <text x="315" y="23" font-size="12" fill="#94a3b8"> </text>
+  <text x="322" y="23" font-size="12" fill="#10b981">usage_user</text>
+  <text x="418" y="23" font-size="12" fill="#94a3b8">=</text>
+  <text x="424" y="23" font-size="12" fill="#c4b5fd">64.5</text>
+  <text x="470" y="23" font-size="12" fill="#94a3b8">,</text>
+  <text x="476" y="23" font-size="12" fill="#10b981">usage_sys</text>
+  <text x="562" y="23" font-size="12" fill="#94a3b8">=</text>
+  <text x="568" y="23" font-size="12" fill="#c4b5fd">12.3</text>
+  <text x="598" y="23" font-size="12" fill="#94a3b8"> </text>
+  <text x="606" y="23" font-size="12" fill="#eab308">1718200000000000000</text>
   <!-- Measurement bracket -->
-  <line x1="10" y1="28" x2="10" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="10" y1="40" x2="40" y2="40" stroke="currentColor" stroke-width="2"/>
-  <text x="12" y="55" font-family="sans-serif" font-size="12" fill="currentColor">Measurement</text>
-  
+  <line x1="14" y1="42" x2="14" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="14" y1="56" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="46" y1="42" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="30" y="72" font-size="11" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">Measurement</text>
   <!-- Tag set bracket -->
-  <line x1="47" y1="28" x2="47" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="47" y1="40" x2="205" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="205" y1="28" x2="205" y2="40" stroke="currentColor" stroke-width="2"/>
-  <text x="126" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Tag Set</text>
-  
+  <line x1="54" y1="42" x2="54" y2="56" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="54" y1="56" x2="310" y2="56" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="310" y1="42" x2="310" y2="56" stroke="#f97316" stroke-width="1.5"/>
+  <text x="182" y="72" font-size="11" fill="#f97316" text-anchor="middle" dominant-baseline="central">Tag Set</text>
   <!-- Field set bracket -->
-  <line x1="213" y1="28" x2="213" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="213" y1="40" x2="342" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="342" y1="28" x2="342" y2="40" stroke="currentColor" stroke-width="2"/>
-  <text x="278" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Field Set</text>
-  
+  <line x1="318" y1="42" x2="318" y2="56" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="318" y1="56" x2="594" y2="56" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="594" y1="42" x2="594" y2="56" stroke="#10b981" stroke-width="1.5"/>
+  <text x="456" y="72" font-size="11" fill="#10b981" text-anchor="middle" dominant-baseline="central">Field Set</text>
   <!-- Timestamp bracket -->
-  <line x1="350" y1="28" x2="350" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="350" y1="40" x2="490" y2="40" stroke="currentColor" stroke-width="2"/>
-  <line x1="490" y1="28" x2="490" y2="40" stroke="currentColor" stroke-width="2"/>
-  <text x="420" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Timestamp</text>
+  <line x1="602" y1="42" x2="602" y2="56" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="602" y1="56" x2="724" y2="56" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="724" y1="42" x2="724" y2="56" stroke="#eab308" stroke-width="1.5"/>
+  <text x="663" y="72" font-size="11" fill="#eab308" text-anchor="middle" dominant-baseline="central">Timestamp</text>
 </svg>

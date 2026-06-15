@@ -1,39 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; font-weight: bold; }
+    .t2 { fill: #e2e8f0; font-size: 12px; }
+    .t3 { fill: #e2e8f0; font-size: 12px; font-weight: bold; }
+    .t4 { fill: #94a3b8; font-size: 10px; }
+    .t5 { fill: #94a3b8; font-size: 10px; text-anchor: middle; }
+  </style>
   <defs>
-    <marker id="a12" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/></marker>
-    <marker id="a12r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
   </defs>
-  <rect x="210" y="5" width="240" height="36" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="330" y="25" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">需要分布式事务？</text>
-  <!-- No branch -->
-  <line x1="250" y1="41" x2="250" y2="60" stroke="currentColor" stroke-width="2"/>
-  <line x1="120" y1="60" x2="380" y2="60" stroke="currentColor" stroke-width="2"/>
-  <line x1="120" y1="60" x2="120" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#a12)"/>
-  <line x1="380" y1="60" x2="380" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#a12)"/>
-  <text x="250" y="55" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">No</text>
-  <text x="500" y="55" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Yes →</text>
-  <!-- No: single machine -->
-  <rect x="20" y="80" width="200" height="80" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="120" y="100" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">单机数据库？</text>
-  <text x="120" y="118" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">OLTP → MySQL/PostgreSQL</text>
-  <text x="120" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">OLAP → ClickHouse/Doris</text>
-  <text x="120" y="150" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">嵌入式 → SQLite</text>
-  <!-- Yes: consistency needs -->
-  <rect x="400" y="85" width="250" height="55" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="525" y="105" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">一致性需求？</text>
-  <line x1="475" y1="140" x2="475" y2="155" stroke="currentColor" stroke-width="1.5" marker-end="url(#a12)"/>
-  <line x1="575" y1="140" x2="575" y2="155" stroke="currentColor" stroke-width="1.5" marker-end="url(#a12)"/>
-  <!-- Strong -->
-  <rect x="380" y="160" width="190" height="80" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="475" y="180" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">强一致 (Serializable)</text>
-  <text x="475" y="198" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">全球部署 → Spanner</text>
-  <text x="475" y="214" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">确定性执行 → Calvin 系</text>
-  <text x="475" y="230" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">通用 → CockroachDB</text>
+  <rect width="700" height="420" fill="url(#bg)"/>
+  <!-- Decision -->
+  <rect x="230" y="5" width="240" height="38" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="350" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">需要分布式事务？</text>
+  <!-- Branches -->
+  <line x1="270" y1="43" x2="270" y2="60" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="130" y1="60" x2="410" y2="60" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="130" y1="60" x2="130" y2="75" stroke="#10b981" stroke-width="1.5" marker-end="url(#ad)"/>
+  <line x1="410" y1="60" x2="410" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#ad)"/>
+  <text x="260" y="56" class="t4">No</text>
+  <text x="520" y="56" class="t4">Yes →</text>
+  <!-- No: Single machine DB -->
+  <rect x="20" y="80" width="220" height="85" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="130" y="100" class="t3" text-anchor="middle" dominant-baseline="middle">单机数据库？</text>
+  <text x="130" y="118" class="t5">OLTP → MySQL/PostgreSQL</text>
+  <text x="130" y="134" class="t5">OLAP → ClickHouse/Doris</text>
+  <text x="130" y="150" class="t5">嵌入式 → SQLite</text>
+  <!-- Yes: Consistency decision -->
+  <rect x="420" y="85" width="260" height="55" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="550" y="105" class="t3" text-anchor="middle" dominant-baseline="middle">一致性需求？</text>
+  <line x1="490" y1="140" x2="490" y2="155" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
+  <line x1="610" y1="140" x2="610" y2="155" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
+  <!-- Strong consistency -->
+  <rect x="380" y="160" width="220" height="85" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="490" y="180" class="t3" text-anchor="middle" dominant-baseline="middle">强一致 (Serializable)</text>
+  <text x="490" y="198" class="t5">全球部署 → Spanner</text>
+  <text x="490" y="214" class="t5">确定性执行 → Calvin 系</text>
+  <text x="490" y="230" class="t5">通用 → CockroachDB</text>
   <!-- SI -->
-  <rect x="480" y="255" width="190" height="80" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="575" y="275" font-family="sans-serif" font-size="12" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">快照隔离 (SI / RR)</text>
-  <text x="575" y="293" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MySQL 生态 → TiDB</text>
-  <text x="575" y="309" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">分布式 → CockroachDB SI</text>
-  <text x="575" y="325" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">NoSQL → Fluss</text>
+  <rect x="490" y="255" width="200" height="85" rx="6" fill="#0f172a" stroke="#eab308" stroke-width="1.5"/>
+  <text x="590" y="275" class="t3" text-anchor="middle" dominant-baseline="middle">快照隔离 (SI/RR)</text>
+  <text x="590" y="293" class="t5">MySQL 生态 → TiDB</text>
+  <text x="590" y="309" class="t5">分布式 → CockroachDB SI</text>
+  <text x="590" y="325" class="t5">NoSQL → Fluss</text>
 </svg>

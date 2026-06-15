@@ -1,34 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 145" width="680" height="145">
+  <style>
+    text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Microsoft YaHei', 'SimHei', monospace; }
+  </style>
   <defs>
-    <marker id="arrow-rf" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#a855f7"/>
     </marker>
   </defs>
-  <!-- Step 1 -->
-  <rect x="10" y="8" width="200" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="110" y="27" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">小表 Build Hash Table</text>
-  <line x1="210" y1="25" x2="240" y2="25" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
-  <rect x="244" y="8" width="160" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="324" y="27" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">同时生成 Bloom Filter</text>
-  <!-- Label Step 1 -->
-  <text x="10" y="50" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 1</text>
-
-  <!-- Step 2 arrow -->
-  <line x1="324" y1="42" x2="324" y2="62" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
-
-  <!-- Step 2 -->
-  <rect x="140" y="65" width="180" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="230" y="84" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Bloom Filter 广播到左表 Scan Node</text>
-  <!-- Label Step 2 -->
-  <text x="10" y="84" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 2</text>
-
-  <!-- Step 3 arrow -->
-  <line x1="230" y1="99" x2="230" y2="112" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
-
-  <!-- Step 3 -->
-  <rect x="20" y="115" width="420" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="230" y="134" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Scan Node 利用 Bloom Filter 提前过滤 → 大幅减少 Shuffle 数据量</text>
-  <!-- Label Step 3 -->
-  <text x="10" y="134" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 3</text>
+  <rect width="680" height="145" fill="url(#bg-grad)"/>
+  <text x="340" y="16" font-size="13" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Runtime Filter / Bloom Filter 优化 (Nereids CBO)</text>
+  <text x="10" y="36" font-size="11" font-weight="bold" fill="#a855f7">Step 1</text>
+  <rect x="60" y="24" width="200" height="24" rx="4" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="160" y="39" font-size="11" fill="#e2e8f0" text-anchor="middle">小表 Build Hash Table</text>
+  <line x1="260" y1="36" x2="300" y2="36" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <rect x="306" y="24" width="180" height="24" rx="4" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="396" y="39" font-size="11" fill="#e2e8f0" text-anchor="middle">同时生成 Bloom Filter</text>
+  <line x1="396" y1="48" x2="396" y2="64" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <text x="10" y="78" font-size="11" font-weight="bold" fill="#a855f7">Step 2</text>
+  <rect x="160" y="66" width="200" height="24" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="260" y="81" font-size="11" fill="#e2e8f0" text-anchor="middle">Bloom Filter 广播到左表 Scan Node</text>
+  <line x1="260" y1="90" x2="260" y2="106" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <text x="10" y="120" font-size="11" font-weight="bold" fill="#a855f7">Step 3</text>
+  <rect x="60" y="108" width="460" height="24" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="290" y="123" font-size="11" fill="#e2e8f0" text-anchor="middle">Scan Node 利用 Bloom Filter 提前过滤 → 大幅减少 Shuffle 数据量</text>
 </svg>

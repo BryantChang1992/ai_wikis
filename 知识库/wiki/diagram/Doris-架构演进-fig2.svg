@@ -1,24 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">实时分析 OLAP 生态:</text>
-<rect x="30" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="100" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">维度</text>
-<rect x="190" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="260" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Doris</text>
-<rect x="350" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="420" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ClickHouse</text>
-<rect x="510" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">StarRocks</text>
-<text x="50" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">架构</text>
-<text x="50" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">SQL</text>
-<text x="50" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">事务</text>
-<text x="50" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">存储</text>
-<text x="210" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP + 存算分离</text>
-<text x="420" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP</text>
-<text x="580" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP + 存算分离</text>
-<text x="210" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MySQL兼容</text>
-<text x="420" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">SQL扩展</text>
-<text x="580" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MySQL兼容</text>
-<text x="210" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2PC + MVCC</text>
-<text x="420" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">无</text>
-<text x="580" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2PC + MVCC</text>
-<text x="210" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存 + 索引</text>
-<text x="420" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存</text>
-<text x="580" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存 + 索引</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200">
+  <style>
+    text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Microsoft YaHei', 'SimHei', monospace; }
+  </style>
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="200" fill="url(#bg-grad)"/>
+  <text x="360" y="18" font-size="14" font-weight="bold" fill="#e2e8f0" text-anchor="middle">实时分析 OLAP 生态对比</text>
+  <rect x="20" y="32" width="140" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="90" y="50" font-size="11" font-weight="bold" fill="#94a3b8" text-anchor="middle">维度</text>
+  <rect x="175" y="32" width="140" height="30" rx="4" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="245" y="50" font-size="11" font-weight="bold" fill="#a855f7" text-anchor="middle">Doris</text>
+  <rect x="330" y="32" width="140" height="30" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="400" y="50" font-size="11" font-weight="bold" fill="#3b82f6" text-anchor="middle">ClickHouse</text>
+  <rect x="485" y="32" width="140" height="30" rx="4" fill="#052e16" stroke="#059669" stroke-width="1"/>
+  <text x="555" y="50" font-size="11" font-weight="bold" fill="#10b981" text-anchor="middle">StarRocks</text>
+  <rect x="20" y="72" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="90" y="90" font-size="10" fill="#e2e8f0" text-anchor="middle">架构</text>
+  <rect x="175" y="72" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="245" y="90" font-size="10" fill="#a855f7" text-anchor="middle">MPP + 存算分离</text>
+  <rect x="330" y="72" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="400" y="90" font-size="10" fill="#3b82f6" text-anchor="middle">MPP</text>
+  <rect x="485" y="72" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="555" y="90" font-size="10" fill="#10b981" text-anchor="middle">MPP + 存算分离</text>
+  <rect x="20" y="102" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="90" y="120" font-size="10" fill="#e2e8f0" text-anchor="middle">SQL</text>
+  <rect x="175" y="102" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="245" y="120" font-size="10" fill="#a855f7" text-anchor="middle">MySQL 兼容</text>
+  <rect x="330" y="102" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="400" y="120" font-size="10" fill="#3b82f6" text-anchor="middle">SQL 扩展</text>
+  <rect x="485" y="102" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="555" y="120" font-size="10" fill="#10b981" text-anchor="middle">MySQL 兼容</text>
+  <rect x="20" y="132" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="90" y="150" font-size="10" fill="#e2e8f0" text-anchor="middle">事务</text>
+  <rect x="175" y="132" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="245" y="150" font-size="10" fill="#a855f7" text-anchor="middle">2PC + MVCC</text>
+  <rect x="330" y="132" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="400" y="150" font-size="10" fill="#3b82f6" text-anchor="middle">无</text>
+  <rect x="485" y="132" width="140" height="30" rx="0" fill="#1a1a2e" stroke="#334155" stroke-width="0.5"/>
+  <text x="555" y="150" font-size="10" fill="#10b981" text-anchor="middle">2PC + MVCC</text>
+  <rect x="20" y="162" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="90" y="180" font-size="10" fill="#e2e8f0" text-anchor="middle">存储</text>
+  <rect x="175" y="162" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="245" y="180" font-size="10" fill="#a855f7" text-anchor="middle">列存 + 索引</text>
+  <rect x="330" y="162" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="400" y="180" font-size="10" fill="#3b82f6" text-anchor="middle">列存</text>
+  <rect x="485" y="162" width="140" height="30" rx="0" fill="#0f0f1a" stroke="#334155" stroke-width="0.5"/>
+  <text x="555" y="180" font-size="10" fill="#10b981" text-anchor="middle">列存 + 索引</text>
 </svg>

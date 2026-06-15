@@ -1,21 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg">
-  <text x="10" y="18" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor">XID 空间逻辑视图（环形）:</text>
-  <!-- Header: 2^31-1 label -->
-  <text x="340" y="50" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2^31-1 ↓</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 150" width="680" height="150">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; font-weight: bold; }
+    .t2 { fill: #e2e8f0; font-size: 12px; }
+    .t3 { fill: #94a3b8; font-size: 11px; }
+    .t4 { fill: #eab308; font-size: 11px; }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+  </defs>
+  <rect width="680" height="150" fill="url(#bg)"/>
+  <text x="10" y="20" class="t1">XID 空间逻辑视图（环形）:</text>
+  <text x="340" y="52" class="t3" text-anchor="middle">2^31-1 ↓</text>
   <!-- Regions -->
-  <rect x="10" y="60" width="160" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="90" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">... 过去</text>
-  <rect x="175" y="60" width="100" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="225" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Frozen</text>
-  <rect x="280" y="60" width="60" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="310" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Cur</text>
-  <rect x="350" y="60" width="130" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="415" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">未来...</text>
-  <!-- Arrow -->
-  <line x1="495" y1="78" x2="530" y2="78" stroke="currentColor" stroke-width="2" marker-end="url(#a4)"/>
-  <rect x="535" y="60" width="90" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="580" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Wraparound</text>
-  <!-- Labels -->
-  <text x="310" y="105" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">↑ 0 (回卷点)</text>
+  <rect x="10" y="60" width="130" height="36" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="75" y="80" class="t2" text-anchor="middle" dominant-baseline="middle">... 过去</text>
+  <rect x="145" y="60" width="80" height="36" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+  <text x="185" y="80" class="t3" text-anchor="middle" dominant-baseline="middle">Frozen</text>
+  <rect x="230" y="60" width="60" height="36" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="260" y="80" class="t2" text-anchor="middle" dominant-baseline="middle">Cur</text>
+  <rect x="300" y="60" width="140" height="36" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="370" y="80" class="t2" text-anchor="middle" dominant-baseline="middle">未来...</text>
+  <line x1="445" y1="78" x2="475" y2="78" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="480" y="60" width="110" height="36" rx="4" fill="#1c1917" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="535" y="80" class="t2" text-anchor="middle" dominant-baseline="middle">Wraparound</text>
+  <text x="260" y="105" class="t4" text-anchor="middle">↑ 0 (回卷点)</text>
 </svg>

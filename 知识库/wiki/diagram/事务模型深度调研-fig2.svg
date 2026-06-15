@@ -1,34 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 210" width="680" height="210">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; }
+    .t2 { fill: #94a3b8; font-size: 10px; }
+    .t3 { fill: #eab308; font-size: 10px; }
+    .t4 { fill: #a855f7; font-size: 10px; }
+    .t5 { fill: #10b981; font-size: 10px; }
+    .t6 { fill: #f97316; font-size: 10px; }
+  </style>
   <defs>
-    <marker id="a2l" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
-    <marker id="a2r" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+    <marker id="al" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#a855f7"/></marker>
+    <marker id="br" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker>
+    <marker id="bl" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#3b82f6"/></marker>
+    <marker id="gr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
+    <marker id="gl" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#10b981"/></marker>
+    <marker id="or" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
+    <marker id="ol" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#f97316"/></marker>
   </defs>
+  <rect width="680" height="210" fill="url(#bg)"/>
   <!-- Participants -->
-  <rect x="20" y="5" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="75" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Coordinator</text>
-  <rect x="240" y="5" width="100" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="290" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Participant A</text>
-  <rect x="440" y="5" width="100" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="490" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Participant B</text>
+  <rect x="20" y="5" width="120" height="40" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="80" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">Coordinator</text>
+  <rect x="250" y="5" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="305" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">Participant A</text>
+  <rect x="460" y="5" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="515" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">Participant B</text>
   <!-- Phase 1: Prepare -->
-  <line x1="130" y1="42" x2="235" y2="42" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
-  <text x="180" y="38" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Prepare</text>
-  <line x1="130" y1="58" x2="435" y2="58" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
-  <text x="280" y="54" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Prepare</text>
-  <!-- Phase 2: Yes (Vote) -->
-  <line x1="240" y1="74" x2="125" y2="74" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
-  <text x="180" y="70" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Yes</text>
-  <line x1="440" y1="90" x2="125" y2="90" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
-  <text x="280" y="86" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <line x1="140" y1="25" x2="245" y2="25" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#br)"/>
+  <text x="190" y="20" class="t4" text-anchor="middle">Prepare</text>
+  <line x1="140" y1="40" x2="455" y2="40" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#br)"/>
+  <text x="295" y="35" class="t4" text-anchor="middle">Prepare</text>
+  <!-- Phase 2: Yes -->
+  <line x1="250" y1="63" x2="135" y2="63" stroke="#10b981" stroke-width="1.5" marker-end="url(#gl)"/>
+  <text x="190" y="58" class="t5" text-anchor="middle">Yes</text>
+  <line x1="460" y1="78" x2="135" y2="78" stroke="#10b981" stroke-width="1.5" marker-end="url(#gl)"/>
+  <text x="295" y="73" class="t5" text-anchor="middle">Yes</text>
   <!-- Phase 3: Commit -->
-  <line x1="130" y1="106" x2="235" y2="106" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
-  <text x="180" y="102" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Commit</text>
-  <line x1="130" y1="122" x2="435" y2="122" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
-  <text x="280" y="118" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Commit</text>
+  <line x1="140" y1="101" x2="245" y2="101" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="190" y="96" class="t3" text-anchor="middle">Commit</text>
+  <line x1="140" y1="116" x2="455" y2="116" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="295" y="111" class="t3" text-anchor="middle">Commit</text>
   <!-- Phase 4: ACK -->
-  <line x1="240" y1="138" x2="125" y2="138" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
-  <text x="180" y="134" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ACK</text>
-  <line x1="440" y1="154" x2="125" y2="154" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
-  <text x="280" y="150" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ACK</text>
+  <line x1="250" y1="139" x2="135" y2="139" stroke="#f97316" stroke-width="1.5" marker-end="url(#ol)"/>
+  <text x="190" y="134" class="t6" text-anchor="middle">ACK</text>
+  <line x1="460" y1="154" x2="135" y2="154" stroke="#f97316" stroke-width="1.5" marker-end="url(#ol)"/>
+  <text x="295" y="149" class="t6" text-anchor="middle">ACK</text>
+  <!-- Legend -->
+  <rect x="500" y="160" width="170" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <line x1="508" y1="172" x2="530" y2="172" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="535" y="175" class="t2">Phase 1: Prepare</text>
+  <line x1="508" y1="184" x2="530" y2="184" stroke="#10b981" stroke-width="1.5"/>
+  <text x="535" y="187" class="t2">Phase 2: Vote</text>
+  <line x1="508" y1="196" x2="530" y2="196" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="535" y="199" class="t2">Phase 3: Commit</text>
 </svg>

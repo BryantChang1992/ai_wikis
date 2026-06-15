@@ -1,35 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" width="700" height="180">
-  <defs>
-    <marker id="arrow-fkv1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="10" y="5" width="150" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="85" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">KvManager（全局入口）</text>
-  <line x1="85" y1="31" x2="85" y2="45" stroke="currentColor" stroke-width="1.2"/>
-  <text x="105" y="45" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ KvTablet（单 bucket 的 KV 管理单元）</text>
-  <line x1="105" y1="55" x2="105" y2="70" stroke="currentColor" stroke-width="1.2"/>
-  <!-- Sub items -->
-  <line x1="50" y1="70" x2="680" y2="70" stroke="currentColor" stroke-width="1"/>
-  <line x1="50" y1="70" x2="50" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="140" y1="70" x2="140" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="300" y1="70" x2="300" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="430" y1="70" x2="430" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="550" y1="70" x2="550" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="640" y1="70" x2="640" y2="82" stroke="currentColor" stroke-width="1"/>
-  <text x="12" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ RocksDBKv</text>
-  <text x="12" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　→ RocksDB 实例</text>
-  <text x="102" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ WalBuilder</text>
-  <text x="102" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（三种格式）</text>
-  <text x="210" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ PeriodicSnapshotManager</text>
-  <text x="210" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（定时快照触发）</text>
-  <text x="380" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ RowMerger</text>
-  <text x="380" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（四种实现）</text>
-  <text x="480" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ PartialUpdater</text>
-  <text x="480" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（部分列更新）</text>
-  <text x="560" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ AutoIncrementManager</text>
-  <text x="560" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（自增 ID）</text>
-  <text x="620" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ KvPreWriteBuffer</text>
-  <text x="620" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（预写缓冲）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 170" width="700" height="170">
+<defs>
+  <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f0f1a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient>
+</defs>
+<style>text{font-family:'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace}</style>
+<rect width="700" height="170" fill="url(#bg-grad)"/>
+<rect x="10" y="5" width="160" height="28" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+<text x="90" y="24" font-size="12" fill="#60a5fa" text-anchor="middle" font-weight="bold">KvManager（全局入口）</text>
+<line x1="90" y1="33" x2="90" y2="44" stroke="#94a3b8" stroke-width="1"/>
+<text x="110" y="46" font-size="11" fill="#e2e8f0">→ KvTablet（单 bucket 的 KV 管理单元）</text>
+<line x1="50" y1="60" x2="690" y2="60" stroke="#334155" stroke-width="1"/>
+<line x1="50" y1="60" x2="50" y2="72" stroke="#334155" stroke-width="1"/>
+<line x1="160" y1="60" x2="160" y2="72" stroke="#334155" stroke-width="1"/>
+<line x1="280" y1="60" x2="280" y2="72" stroke="#334155" stroke-width="1"/>
+<line x1="410" y1="60" x2="410" y2="72" stroke="#334155" stroke-width="1"/>
+<line x1="530" y1="60" x2="530" y2="72" stroke="#334155" stroke-width="1"/>
+<line x1="640" y1="60" x2="640" y2="72" stroke="#334155" stroke-width="1"/>
+<text x="12" y="88" font-size="11" fill="#e2e8f0">├ RocksDBKv</text>
+<text x="12" y="106" font-size="9" fill="#94a3b8" font-style="italic">　→ RocksDB 实例</text>
+<text x="122" y="88" font-size="11" fill="#e2e8f0">├ WalBuilder</text>
+<text x="122" y="106" font-size="9" fill="#94a3b8" font-style="italic">　（三种格式）</text>
+<text x="240" y="88" font-size="11" fill="#e2e8f0">├ PeriodicSnapshotMgr</text>
+<text x="240" y="106" font-size="9" fill="#94a3b8" font-style="italic">　（定时快照触发）</text>
+<text x="370" y="88" font-size="11" fill="#e2e8f0">├ RowMerger</text>
+<text x="370" y="106" font-size="9" fill="#94a3b8" font-style="italic">　（四种实现）</text>
+<text x="490" y="88" font-size="11" fill="#e2e8f0">├ PartialUpdater</text>
+<text x="490" y="106" font-size="9" fill="#94a3b8" font-style="italic">　（部分列更新）</text>
+<text x="600" y="88" font-size="11" fill="#e2e8f0">├ AutoIncrMgr</text>
+<text x="600" y="106" font-size="9" fill="#94a3b8" font-style="italic">　（自增 ID）</text>
+<text x="665" y="88" font-size="10" fill="#64748b">└ Buf</text>
+<text x="665" y="106" font-size="9" fill="#64748b" font-style="italic">　预写</text>
 </svg>

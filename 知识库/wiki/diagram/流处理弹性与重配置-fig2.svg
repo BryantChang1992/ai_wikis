@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 130" width="700" height="130">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace; fill: #e2e8f0; }
+  </style>
   <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
     <marker id="arrow-data" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-block" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
-      <path d="M8,0 L0,3 L8,6 Z" fill="currentColor"/>
+    <marker id="arrow-back" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <path d="M8,0 L0,3 L8,6 Z" fill="#f97316"/>
     </marker>
     <marker id="arrow-credit" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
-      <path d="M8,0 L0,3 L8,6 Z" fill="currentColor"/>
+      <path d="M8,0 L0,3 L8,6 Z" fill="#10b981"/>
     </marker>
   </defs>
-  <!-- Buffer-based section -->
-  <text x="170" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" font-weight="bold">Buffer-based:</text>
-  <!-- Operator A box -->
-  <rect x="50" y="30" width="100" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="100" y="47" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Operator A</text>
-  <!-- data arrow A->B -->
-  <line x1="150" y1="37" x2="195" y2="37" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-data)"/>
-  <text x="170" y="30" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">data</text>
-  <!-- Operator B box -->
-  <rect x="195" y="30" width="100" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="245" y="47" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Operator B</text>
-  <!-- block arrow B->A -->
-  <line x1="195" y1="65" x2="150" y2="65" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-block)"/>
-  <text x="170" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">block</text>
-  <!-- note -->
-  <text x="170" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">(Buffer full: 暂停上游)</text>
-
-  <!-- Credit-based section -->
-  <text x="530" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" font-weight="bold">Credit-based:</text>
-  <!-- Operator A box -->
-  <rect x="410" y="30" width="100" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="460" y="47" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Operator A</text>
-  <!-- data arrow A->B -->
-  <line x1="510" y1="37" x2="555" y2="37" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-data)"/>
-  <text x="530" y="30" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">data</text>
-  <!-- Operator B box -->
-  <rect x="555" y="30" width="100" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="605" y="47" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Operator B</text>
-  <!-- credit arrow B->A -->
-  <line x1="555" y1="65" x2="510" y2="65" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-credit)"/>
-  <text x="530" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">credit</text>
-  <!-- note -->
-  <text x="530" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">(发credit: 控制上游发送速率)</text>
+  <rect width="700" height="130" fill="url(#bg-grad)"/>
+  <text x="170" y="22" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Buffer-based:</text>
+  <rect x="30" y="35" width="110" height="32" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="85" y="55" font-size="11" fill="#e2e8f0" text-anchor="middle">Operator A</text>
+  <line x1="140" y1="42" x2="185" y2="42" stroke="#3b82f6" stroke-width="1.8" marker-end="url(#arrow-data)"/>
+  <text x="163" y="36" font-size="10" fill="#3b82f6" text-anchor="middle">data</text>
+  <rect x="190" y="35" width="110" height="32" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="245" y="55" font-size="11" fill="#94a3b8" text-anchor="middle">Operator B</text>
+  <line x1="190" y1="70" x2="145" y2="70" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-back)"/>
+  <text x="168" y="84" font-size="10" fill="#f97316" text-anchor="middle">block</text>
+  <text x="170" y="102" font-size="10" fill="#94a3b8" text-anchor="middle">(Buffer full: 暂停上游)</text>
+  <line x1="330" y1="15" x2="330" y2="118" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="530" y="22" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Credit-based:</text>
+  <rect x="390" y="35" width="110" height="32" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="445" y="55" font-size="11" fill="#e2e8f0" text-anchor="middle">Operator A</text>
+  <line x1="500" y1="42" x2="545" y2="42" stroke="#3b82f6" stroke-width="1.8" marker-end="url(#arrow-data)"/>
+  <text x="523" y="36" font-size="10" fill="#3b82f6" text-anchor="middle">data</text>
+  <rect x="550" y="35" width="110" height="32" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="605" y="55" font-size="11" fill="#94a3b8" text-anchor="middle">Operator B</text>
+  <line x1="550" y1="70" x2="505" y2="70" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-credit)"/>
+  <text x="528" y="84" font-size="10" fill="#10b981" text-anchor="middle">credit</text>
+  <text x="530" y="102" font-size="10" fill="#94a3b8" text-anchor="middle">(发credit: 控制上游发送速率)</text>
 </svg>

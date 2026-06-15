@@ -1,33 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascada Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+    .t1 { fill: #e2e8f0; font-size: 13px; }
+    .t2 { fill: #94a3b8; font-size: 11px; }
+    .t3 { fill: #94a3b8; font-size: 10px; }
+  </style>
   <defs>
-    <marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
-    <marker id="a3d" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/></marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
+    <marker id="od" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#f97316"/></marker>
   </defs>
-  <rect x="10" y="10" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="65" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Service A</text>
-  <line x1="120" y1="30" x2="155" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#a3)"/>
-  <rect x="160" y="10" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="215" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Service B</text>
-  <line x1="65" y1="50" x2="65" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#a3d)"/>
-  <line x1="175" y1="50" x2="65" y2="75" stroke="currentColor" stroke-width="2"/>
-  <rect x="10" y="80" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="65" y="102" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Service C</text>
-  <line x1="120" y1="100" x2="155" y2="100" stroke="currentColor" stroke-width="2" marker-end="url(#a3)"/>
-  <rect x="160" y="80" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="215" y="102" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Service D</text>
-  <!-- Orchestrator side -->
-  <rect x="400" y="10" width="130" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="465" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Orchestrator</text>
-  <line x1="465" y1="40" x2="465" y2="55" stroke="currentColor" stroke-width="2"/>
-  <line x1="465" y1="55" x2="380" y2="55" stroke="currentColor" stroke-width="2"/>
-  <line x1="380" y1="55" x2="380" y2="75" stroke="currentColor" stroke-width="2"/>
-  <line x1="380" y1="75" x2="405" y2="75" stroke="currentColor" stroke-width="2"/>
-  <rect x="340" y="75" width="50" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="365" y="92" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">A</text>
-  <rect x="420" y="75" width="50" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="445" y="92" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">B</text>
-  <rect x="500" y="75" width="50" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="525" y="92" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">C</text>
-  <text x="370" y="125" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">compensate / retry</text>
+  <rect width="600" height="160" fill="url(#bg)"/>
+  <!-- Top row: Service A → Service B -->
+  <rect x="10" y="10" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="65" y="32" class="t1" text-anchor="middle" dominant-baseline="middle">Service A</text>
+  <line x1="120" y1="30" x2="155" y2="30" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="160" y="10" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="215" y="32" class="t1" text-anchor="middle" dominant-baseline="middle">Service B</text>
+  <!-- Down from Service A and Service B -->
+  <line x1="65" y1="50" x2="65" y2="75" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
+  <line x1="175" y1="50" x2="65" y2="75" stroke="#a855f7" stroke-width="1.5"/>
+  <!-- Bottom row: Service C → Service D -->
+  <rect x="10" y="80" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="65" y="102" class="t1" text-anchor="middle" dominant-baseline="middle">Service C</text>
+  <line x1="120" y1="100" x2="155" y2="100" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="160" y="80" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="215" y="102" class="t1" text-anchor="middle" dominant-baseline="middle">Service D</text>
+  <!-- Orchestrator -->
+  <rect x="400" y="10" width="140" height="30" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="470" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">Orchestrator</text>
+  <line x1="470" y1="40" x2="470" y2="55" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="470" y1="55" x2="380" y2="55" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="380" y1="55" x2="380" y2="75" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="380" y1="75" x2="405" y2="75" stroke="#f97316" stroke-width="1.5"/>
+  <!-- Compensation nodes -->
+  <rect x="345" y="75" width="50" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="370" y="93" class="t2" text-anchor="middle" dominant-baseline="middle">A</text>
+  <rect x="425" y="75" width="50" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="93" class="t2" text-anchor="middle" dominant-baseline="middle">B</text>
+  <rect x="505" y="75" width="50" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="530" y="93" class="t2" text-anchor="middle" dominant-baseline="middle">C</text>
+  <text x="395" y="125" class="t3" text-anchor="middle">compensate / retry</text>
 </svg>

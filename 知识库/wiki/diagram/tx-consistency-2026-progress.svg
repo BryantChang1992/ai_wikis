@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 550">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 550" width="910" height="550">
+  <style>
+    text { font-family: 'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace; }
+  </style>
   <defs>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
-    </pattern>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    
     <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
@@ -16,52 +21,51 @@
       <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
     </marker>
   </defs>
+  <rect width="910" height="550" fill="url(#bg-grad)"/>
 
-  <!-- Background -->
-  <rect width="100%" height="100%" fill="#0f172a"/>
-  <rect width="100%" height="100%" fill="url(#grid)"/>
+  
 
   <!-- Title -->
-  <text x="30" y="35" fill="#f1f5f9" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="16" font-weight="700">Distributed Tx &amp; Consistency — 2026 New Progress</text>
-  <text x="30" y="55" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">SIGMOD/CIDR/FAST 2026 papers: CockroachDB · Aurora · Rosé · Agent-First</text>
+  <text x="30" y="35" fill="#f1f5f9" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="16" font-weight="700">Distributed Tx &amp; Consistency — 2026 New Progress</text>
+  <text x="30" y="55" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">SIGMOD/CIDR/FAST 2026 papers: CockroachDB · Aurora · Rosé · Agent-First</text>
 
   <!-- Section 1: CockroachDB (Primary / Cyan) -->
-  <text x="30" y="90" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">CockroachDB — Leader Lease &amp; Global Txn</text>
+  <text x="30" y="90" fill="#22d3ee" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="700">CockroachDB — Leader Lease &amp; Global Txn</text>
   <rect x="30" y="100" width="855" height="66" rx="8" fill="#0f172a"/>
   <rect x="30" y="100" width="855" height="66" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
-  <text x="50" y="124" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Parallel Commit · Uncertainty Interval · Range Lease · Query Liveness</text>
-  <text x="50" y="144" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Clock-bound waits + read-your-writes consistency without global clock</text>
+  <text x="50" y="124" fill="#e2e8f0" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="600">Parallel Commit · Uncertainty Interval · Range Lease · Query Liveness</text>
+  <text x="50" y="144" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Clock-bound waits + read-your-writes consistency without global clock</text>
 
   <!-- Section 2: Aurora (Secondary / Emerald) -->
-  <text x="30" y="198" fill="#34d399" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Amazon Aurora — Shuffle Sharding &amp; DPTM</text>
+  <text x="30" y="198" fill="#34d399" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="700">Amazon Aurora — Shuffle Sharding &amp; DPTM</text>
   <rect x="30" y="208" width="855" height="66" rx="8" fill="#0f172a"/>
   <rect x="30" y="208" width="855" height="66" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
-  <text x="50" y="232" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Distributed Transaction Manager · Shuffle Sharding for fault isolation · Storage quorum</text>
-  <text x="50" y="252" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Shared-disk architecture with logical replication, avoiding two-phase commit overhead</text>
+  <text x="50" y="232" fill="#e2e8f0" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="600">Distributed Transaction Manager · Shuffle Sharding for fault isolation · Storage quorum</text>
+  <text x="50" y="252" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Shared-disk architecture with logical replication, avoiding two-phase commit overhead</text>
 
   <!-- Section 3: Rosé (Tertiary / Violet) -->
-  <text x="30" y="306" fill="#a78bfa" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Rosé — Optimistic Reads with Watermarks</text>
+  <text x="30" y="306" fill="#a78bfa" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="700">Rosé — Optimistic Reads with Watermarks</text>
   <rect x="30" y="316" width="855" height="66" rx="8" fill="#0f172a"/>
   <rect x="30" y="316" width="855" height="66" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="50" y="340" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Single-writer + multi-reader optimistic · Watermark-based read visibility · Version chain</text>
-  <text x="50" y="360" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Separates read and write paths; readers never block, writers use watermarks for safe reads</text>
+  <text x="50" y="340" fill="#e2e8f0" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="600">Single-writer + multi-reader optimistic · Watermark-based read visibility · Version chain</text>
+  <text x="50" y="360" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Separates read and write paths; readers never block, writers use watermarks for safe reads</text>
 
   <!-- Section 4: Agent-First (Alert / Rose) -->
-  <text x="30" y="414" fill="#fb7185" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Agent-First Design — Consistency for AI Workloads</text>
+  <text x="30" y="414" fill="#fb7185" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="700">Agent-First Design — Consistency for AI Workloads</text>
   <rect x="30" y="424" width="855" height="66" rx="8" fill="#0f172a"/>
   <rect x="30" y="424" width="855" height="66" rx="8" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
-  <text x="50" y="448" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Agent-first consistency — eventual with bounded staleness · Causal delivery for agent chains</text>
-  <text x="50" y="468" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Prioritizes availability + low latency over strict serializability; session guarantees for agents</text>
+  <text x="50" y="448" fill="#e2e8f0" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="12" font-weight="600">Agent-first consistency — eventual with bounded staleness · Causal delivery for agent chains</text>
+  <text x="50" y="468" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Prioritizes availability + low latency over strict serializability; session guarantees for agents</text>
 
   <!-- Legend -->
   <g transform="translate(30, 520)">
     <rect x="0" y="0" width="14" height="14" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
-    <text x="20" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">CockroachDB</text>
+    <text x="20" y="12" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">CockroachDB</text>
     <rect x="170" y="0" width="14" height="14" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
-    <text x="190" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Aurora</text>
+    <text x="190" y="12" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Aurora</text>
     <rect x="340" y="0" width="14" height="14" rx="3" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
-    <text x="360" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Rosé</text>
+    <text x="360" y="12" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Rosé</text>
     <rect x="510" y="0" width="14" height="14" rx="3" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1"/>
-    <text x="530" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Agent-First</text>
+    <text x="530" y="12" fill="#94a3b8" font-family="'SF Mono','Fira Code','Cascadia Code','Courier New','Microsoft YaHei','SimHei',monospace" font-size="10">Agent-First</text>
   </g>
 </svg>

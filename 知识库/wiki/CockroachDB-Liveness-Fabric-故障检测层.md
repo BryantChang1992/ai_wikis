@@ -10,7 +10,7 @@ tags:
 related:
   - "[[CockroachDB-Leader-Lease-整体设计]]"
   - "[[CockroachDB-Leader-Fortification]]"
-  - "[[Raft-共识协议]]"
+  - "[[事务模型深度调研]]"
 sources:
   - "sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf"
 created: 2026-06-15

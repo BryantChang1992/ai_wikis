@@ -7,10 +7,10 @@ tags:
   - sharding
   - postgresql
 related:
-  - "[[Aurora-存储计算分离]]"
+  - "[[存储计算分离数据库的-Tail-Latency]]"
   - "[[Aurora-Limitless-时间戳事务]]"
   - "[[Aurora-Limitless-自适应扩缩容]]"
-  - "[[概念-两阶段提交]]"
+  - "[[事务模型深度调研]]"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---
@@ -66,6 +66,6 @@ Router 利用 PostgreSQL partition pruning 识别所有数据在同一 shard 的
 Router 连接管理器以**事务粒度**在 shard 连接上复用客户端会话。事务完成后，其 shard 连接可被其他事务使用。Session 状态（认证、角色、变量）通过 session-context 传递跨事务保持。
 
 ## 与知识库关联
-- [[Aurora-存储计算分离]]：完全复用 Aurora 的 storage-compute separation
+- [[存储计算分离数据库的-Tail-Latency]]：完全复用 Aurora 的 storage-compute separation
 - [[Aurora-Limitless-时间戳事务]]：分布式事务协议
 - [[Aurora-Limitless-自适应扩缩容]]：垂直+水平二维扩缩容机制

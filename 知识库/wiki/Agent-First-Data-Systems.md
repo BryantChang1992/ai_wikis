@@ -8,10 +8,10 @@ tags:
   - 查询优化
   - CIDR-2026
 related:
-  - "[[Agent-数据库协同设计]]"
+  - "[[Agent-First-Data-Systems]]"
   - "[[Agent-First-Branch-Transactions-分支事务]]"
   - "[[Agentic-Memory-语义缓存]]"
-  - "[[LLM-数据库接口]]"
+  - "[[Agent-First-Data-Systems]]"
 sources:
   - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
 created: 2026-06-15
@@ -85,6 +85,6 @@ UC Berkeley 的愿景论文：传统数据系统是为人机交互的**被动查
 
 ## 与知识库的关联
 
-- [[Agent-数据库协同设计]]：本架构是该方向的最完整 vision
+- [[Agent-First-Data-Systems]]：本架构是该方向的最完整 vision
 - [[事务模型深度调研]]：分支事务是 MVCC 在 agent 方向的自然延伸
-- [[向量数据库与语义搜索]]：Agentic Memory 需要向量索引 + 结构化查询双重能力
+- [[Agentic-Memory-语义缓存]]：Agentic Memory 需要向量索引 + 结构化查询双重能力

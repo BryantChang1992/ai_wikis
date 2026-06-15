@@ -9,9 +9,9 @@ tags:
   - 故障检测
   - 大规模共识
 related:
-  - "[[Raft-共识协议]]"
   - "[[事务模型深度调研]]"
-  - "[[分布式数据系统一致性体系综述]]"
+  - "[[事务模型深度调研]]"
+  - "[[synthesis/分布式数据系统一致性体系]]"
   - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
   - "[[CockroachDB-Leader-Fortification]]"
 sources:

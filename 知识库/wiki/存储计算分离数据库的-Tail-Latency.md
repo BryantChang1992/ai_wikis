@@ -17,14 +17,14 @@ updated: 2026-06-14
 status: draft
 related:
   - "[[RaaS-Replay-as-a-Service]]"
-  - "[[Log-as-the-Database 模式]]"
+  - "[[Log-as-the-Database-模式]]"
   - "[[事务模型深度调研]]"
 ---
 
 # 存储计算分离数据库的 Tail Latency 问题
 
 > **来源**：*Reducing Tail Latency in Storage-Disaggregated Database Systems* — SIGMOD 2026，Purdue University  
-> **核心发现**：存储计算分离架构虽然解决了弹性扩缩问题，但引入了一个隐藏的系统性问题——**不可预测的高 tail latency**，根因在 [[Log-as-the-Database 模式|log-as-the-database]] 设计。
+> **核心发现**：存储计算分离架构虽然解决了弹性扩缩问题，但引入了一个隐藏的系统性问题——**不可预测的高 tail latency**，根因在 [[Log-as-the-Database-模式|log-as-the-database]] 设计。
 
 ---
 

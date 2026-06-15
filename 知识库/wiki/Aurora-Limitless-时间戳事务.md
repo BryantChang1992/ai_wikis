@@ -8,10 +8,10 @@ tags:
   - timestamp
   - concurrency-control
 related:
-  - "[[概念-Snapshot-Isolation]]"
-  - "[[概念-MVCC]]"
-  - "[[概念-两阶段提交]]"
-  - "[[CockroachDB-Leader-Leases]]"
+  - "[[事务模型深度调研]]"
+  - "[[事务模型深度调研]]"
+  - "[[事务模型深度调研]]"
+  - "[[CockroachDB-Leader-Lease-整体设计]]"
   - "[[事务模型深度调研]]"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
@@ -104,8 +104,8 @@ Aurora Limitless 使用 **混合逻辑时钟（HLC）** 消除等待：
 Aurora Limitless 在保障外部一致性的同时，避免了 Spanner 的硬件时钟依赖和 CockroachDB/YugabyteDB 的保守时钟偏移等待。
 
 ## 与知识库关联
-- [[概念-Snapshot-Isolation]]：本文的 SI 实现（Clock-SI + HLC + external consistency）
-- [[概念-MVCC]]：时间戳替代 xid 的多版本方案
-- [[概念-两阶段提交]]：lead shard 2PC 变体
-- [[CockroachDB-Leader-Leases]]：CockroachDB 的 HLC-based 一致性 vs 本文的物理时钟方案
+- [[事务模型深度调研]]：本文的 SI 实现（Clock-SI + HLC + external consistency）
+- [[事务模型深度调研]]：时间戳替代 xid 的多版本方案
+- [[事务模型深度调研]]：lead shard 2PC 变体
+- [[CockroachDB-Leader-Lease-整体设计]]：CockroachDB 的 HLC-based 一致性 vs 本文的物理时钟方案
 - [[事务模型深度调研]]：Clock-SI / 2PC / 3PC / Percolator 体系位置

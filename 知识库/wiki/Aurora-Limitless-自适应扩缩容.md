@@ -9,7 +9,7 @@ tags:
 related:
   - "[[Aurora-Limitless-分布式架构]]"
   - "[[Aurora-Limitless-时间戳事务]]"
-  - "[[Aurora-存储计算分离]]"
+  - "[[存储计算分离数据库的-Tail-Latency]]"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---
@@ -120,5 +120,5 @@ ACU 分配图显示：更多 shard 带来更均衡的负载分布（shard 间峰
 
 ## 与知识库关联
 - [[Aurora-Limitless-分布式架构]]：Router/Shard 解耦为二维扩缩容提供基础
-- [[Aurora-存储计算分离]]：copy-on-write 克隆依赖 Aurora Storage 层
+- [[存储计算分离数据库的-Tail-Latency]]：copy-on-write 克隆依赖 Aurora Storage 层
 - [[Silo-Compaction-迁移协议]]：shard split 的数据迁移 vs Silo 的 compaction 迁移

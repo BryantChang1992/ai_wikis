@@ -9,7 +9,7 @@ tags:
   - CIDR-2026
 related:
   - "[[Agent-First-Data-Systems]]"
-  - "[[向量数据库与语义搜索]]"
+  - "[[Agentic-Memory-语义缓存]]"
 sources:
   - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
 created: 2026-06-15

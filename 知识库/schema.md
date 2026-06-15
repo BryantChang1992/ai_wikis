@@ -3,7 +3,7 @@ type: meta
 title: "知识库的结构规则"
 tags: ["meta", "schema"]
 created: 2026-06-14
-updated: 2026-06-15 10:45
+updated: 2026-06-15 11:15
 ---
 
 # 知识库的结构规则
@@ -310,4 +310,89 @@ Step 5: 索引更新
 
 - CTO HEARTBEAT.md 中配置定时任务
 - 频率: 每周四 10:00 CST
-- 动作: 扫描 wiki 网状结构 → 执行 Synthesize 流程
+- 动作: 扫描 wiki 网状结构 → 执行 Synthesize 流程（含增量更新检查，见下文）
+
+---
+
+## 综述增量更新机制（Synthesis Refresh）
+
+### 问题
+
+Synthesis 不是静态文档。wiki 卡片持续增长（当前 51 张且每周增加），已有综述页面临两个风险：
+1. **内容过时**：新卡片带来了旧综述没有覆盖的子主题或新观点
+2. **连接断裂**：新卡片与旧综述之间缺乏 [[wikilink]] 双向引用
+
+### 触发条件
+
+| 触发方式 | 频率 | 条件 |
+|----------|------|------|
+| **定时扫描** | 每周四 Synthesize 时一并执行 | 对每一张已存在的 synthesis 页做增量评估 |
+| **事件驱动** | 同一领域新增 ≥ 3 张概念卡片时 | 立即标记对应 synthesis 为 `status: draft`，触发下一轮更新 |
+| **手动触发** | CTO 判断某领域变化显著 | 直接启动单领域 refresh |
+
+### 增量检测信号
+
+在周四定时扫描中，对每张已有 synthesis 页做以下检查：
+
+| 信号 | 检测方式 | 阈值 | 动作 |
+|------|----------|------|------|
+| **新页面注入** | synthesis 的 `sources`/`related` 列表 vs wiki/ 全部页面 — 同一 tag 族下是否有未被引用的新页面 | ≥ 2 张新页面 | 标记需更新 |
+| **连接变化** | 旧 synthesis 引用的页面中，是否有新增了 [[wikilink]] 到其他 synthesis 未覆盖页面的 | 任意 | 记录为潜在新关系 |
+| **状态升级** | synthesis 引用的页面中是否有 `draft → reviewed → final` 的状态变化 | 任意 | 更新引用页面的描述准确度 |
+| **Lint 触发** | 旧 synthesis 中是否出现了 dangling 引用（引用的页面被删除/重命名） | ≥ 1 | 🔴 必须立即修复 |
+| **时间衰减** | synthesis 的 `updated` 字段距今 | > 30 天 | 🟡 标记过时，即使无其他信号也要人工确认 |
+
+### 更新决策矩阵
+
+| 信号组合 | 决策 | 执行方式 |
+|----------|------|----------|
+| 新页面 ≥ 3 且含新的 type（如新出现 analysis 类型） | **重写** — 领域结构已变化，需要重新组织全文 | CTO 自己执行 |
+| 新页面 1-2 张，无新 type | **增量追加** — 在原 synthesis 中追加子章节或补充段落 | CTO 自己执行 |
+| 仅有状态升级 / 连接变化 | **局部修订** — 更新相关段落和 frontmatter | CTO 自己执行 |
+| 仅有 dangling 引用 | **快速修复** — 删除失效引用，无需改正文 | CTO 自己执行 |
+| 时间衰减 > 30 天且无其他信号 | **确认无变更** — 仅更新 `updated` 时间戳，标记 status 不变 | CTO 自己执行 |
+
+### 更新执行流程
+
+```
+Step 1: 信号检测
+  对 synthesis/ 下每张页面：
+  1. 提取 sources/related 中的引用列表
+  2. 与当前 wiki/ 全部页面做 diff
+  3. 生成每张 synthesis 的「变更信号清单」
+
+Step 2: 决策
+  按决策矩阵判定每张 synthesis 的更新策略
+  输出：本次周四需更新的 synthesis 列表 + 每张的变更摘要
+
+Step 3: 执行更新
+  按优先级执行（重写 > 增量追加 > 局部修订 > 快速修复）
+  每张 synthesis 更新后：
+    1. 更新 frontmatter updated 字段
+    2. 如为增量/重写，追加或更新「变更记录」章节（见下）
+    3. 确保新增页面的 [[wikilink]] 已加入 sources/related
+
+Step 4: 关联修复
+  新加入 synthesis 的 wiki 页面，在其自身 frontmatter 中追加该 synthesis 的 [[wikilink]]
+
+Step 5: 提交
+  git commit 格式: "synthesis-refresh: {页面名} — {变更摘要}"
+```
+
+### 变更记录（Changelog）
+
+每张 synthesis 页面末尾必须维护变更历史段落，格式如下：
+
+```markdown
+## 变更记录
+
+| 日期 | 动作 | 变更说明 |
+|------|------|----------|
+| 2026-06-14 | 创建 | 初始版本，覆盖 X 个页面 |
+| YYYY-MM-DD | 增量更新 | 新增 [[新页面A]]、[[新页面B]]，补充 C 领域分析 |
+| YYYY-MM-DD | 重写 | 因 D 领域新类型页面出现，重构全文结构 |
+```
+
+### 提醒：Synthesis 始终由 CTO 执行
+
+Synthesis refresh 与首次 synthesis 一样，是 **IO 密集 + 跨页推理** 任务，Worker 超时不够。所有 synthesis 的创建和更新均由 CTO Agent 自己执行。

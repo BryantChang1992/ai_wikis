@@ -1,132 +1,153 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 570">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
   <defs>
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#9333ea"/>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
     </marker>
-    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
-    </filter>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="960" height="520" fill="#ffffff"/>
+  <!-- Layer 1: Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
 
   <!-- Title -->
-  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">流处理状态存储三种架构</text>
-  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">In-Memory → Out-of-Core → External: 状态与计算的松耦合演化</text>
+  <text x="480" y="34" fill="white" font-size="18" font-weight="700" text-anchor="middle">流处理状态存储三种架构</text>
+  <text x="480" y="54" fill="#94a3b8" font-size="10" text-anchor="middle">In-Memory → Out-of-Core → External: 状态与计算的松耦合演化</text>
 
-  <!-- ====== Column 1: In-Memory ====== -->
-  <rect x="20" y="75" width="290" height="410" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="20" y="75" width="290" height="42" rx="12" fill="#dbeafe"/>
-  <rect x="20" y="105" width="290" height="12" fill="#dbeafe"/>
-  <text x="165" y="101" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#1e40af" text-anchor="middle">I. In-Memory State</text>
+  <!-- ====== Layer 2: Region Boundaries ====== -->
+  <!-- Col 1: In-Memory -->
+  <rect x="20" y="75" width="290" height="435" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4" opacity="0.6"/>
+  <text x="32" y="92" fill="#22d3ee" font-size="9" font-weight="600">I. In-Memory State</text>
 
-  <!-- Operator -->
-  <rect x="55" y="140" width="220" height="48" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
-  <text x="165" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#111827" text-anchor="middle">Stateful Operator</text>
-  <text x="165" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">系统定义 Synopsis 或用户算子</text>
+  <!-- Col 2: Out-of-Core -->
+  <rect x="335" y="75" width="290" height="435" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4" opacity="0.6"/>
+  <text x="347" y="92" fill="#34d399" font-size="9" font-weight="600">II. Out-of-Core State</text>
 
-  <!-- In-memory state block -->
-  <rect x="75" y="205" width="180" height="70" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.2" stroke-dasharray="5,3"/>
-  <text x="165" y="230" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">MemTable (全内存)</text>
-  <text x="165" y="248" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">ConcurrentHashMap</text>
-  <text x="165" y="264" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">BTree / Hash Index</text>
+  <!-- Col 3: External -->
+  <rect x="650" y="75" width="290" height="435" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4" opacity="0.6"/>
+  <text x="662" y="92" fill="#a78bfa" font-size="9" font-weight="600">III. External State</text>
 
-  <!-- Arrow: operator → state -->
-  <line x1="165" y1="188" x2="165" y2="203" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <!-- ====== Layer 3: Connection Arrows ====== -->
+  <!-- Col 1: Operator → MemTable -->
+  <line x1="165" y1="188" x2="165" y2="203" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
 
-  <!-- Pros/Cons -->
-  <rect x="45" y="295" width="240" height="55" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
-  <text x="55" y="315" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 零 I/O 延迟</text>
-  <text x="55" y="332" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 实现简单</text>
-  <text x="55" y="348" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✗ 内存硬上限</text>
+  <!-- Col 2: MemTable → LSM-Tree (flush) -->
+  <line x1="480" y1="250" x2="480" y2="268" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="495" y="263" fill="#34d399" font-size="9">Flush</text>
 
-  <!-- 1st Gen badge -->
-  <rect x="75" y="368" width="180" height="26" rx="13" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
-  <text x="165" y="386" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#92400e" text-anchor="middle">1st Gen: Aurora / Borealis / STREAM</text>
+  <!-- Col 3: Operator → External DB (RPC) -->
+  <line x1="795" y1="188" x2="795" y2="210" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+  <text x="808" y="203" fill="#a78bfa" font-size="9">RPC</text>
 
-  <text x="165" y="425" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">故障后状态全丢 · 依赖 Active 复制恢复</text>
+  <!-- ====== Layer 4: Opaque Masking Rects ====== -->
+  <!-- Col 1 -->
+  <rect x="55" y="135" width="220" height="53" rx="6" fill="#0f172a"/>
+  <rect x="75" y="205" width="180" height="75" rx="8" fill="#0f172a"/>
+  <rect x="45" y="305" width="240" height="50" rx="6" fill="#0f172a"/>
+  <rect x="75" y="375" width="180" height="28" rx="14" fill="#0f172a"/>
 
-  <!-- ====== Column 2: Out-of-Core ====== -->
-  <rect x="335" y="75" width="290" height="410" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="335" y="75" width="290" height="42" rx="12" fill="#dcfce7"/>
-  <rect x="335" y="105" width="290" height="12" fill="#dcfce7"/>
-  <text x="480" y="101" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#166534" text-anchor="middle">II. Out-of-Core State</text>
+  <!-- Col 2 -->
+  <rect x="370" y="135" width="220" height="53" rx="6" fill="#0f172a"/>
+  <rect x="385" y="205" width="190" height="45" rx="6" fill="#0f172a"/>
+  <rect x="370" y="270" width="220" height="52" rx="8" fill="#0f172a"/>
+  <rect x="355" y="305" width="250" height="50" rx="6" fill="#0f172a"/>
+  <rect x="370" y="375" width="220" height="28" rx="14" fill="#0f172a"/>
 
-  <!-- Operator -->
-  <rect x="370" y="140" width="220" height="48" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
-  <text x="480" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#111827" text-anchor="middle">Stateful Operator</text>
-  <text x="480" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">用户定义 + 系统管理状态</text>
+  <!-- Col 3 -->
+  <rect x="685" y="135" width="220" height="53" rx="6" fill="#0f172a"/>
+  <rect x="700" y="212" width="190" height="65" rx="8" fill="#0f172a"/>
+  <rect x="675" y="305" width="240" height="50" rx="6" fill="#0f172a"/>
+  <rect x="685" y="375" width="220" height="28" rx="14" fill="#0f172a"/>
 
-  <!-- Hot data -->
-  <rect x="385" y="205" width="190" height="40" rx="6" fill="#ffffff" stroke="#86efac" stroke-width="1.2"/>
-  <text x="480" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#111827" text-anchor="middle">MemTable (热数据)</text>
-  <text x="480" y="237" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">活跃窗口 / 近期聚合</text>
+  <!-- Bottom bar -->
+  <rect x="240" y="505" width="480" height="36" rx="18" fill="#0f172a"/>
 
-  <!-- Flush arrow -->
-  <line x1="480" y1="245" x2="480" y2="270" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arr-green)"/>
-  <text x="500" y="262" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a">Flush</text>
+  <!-- ====== Layer 5: Component Boxes ====== -->
+  <!-- Col 1: In-Memory (Primary Cyan) -->
+  <rect x="55" y="135" width="220" height="53" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="165" y="156" fill="white" font-size="11" font-weight="600" text-anchor="middle">Stateful Operator</text>
+  <text x="165" y="173" fill="#94a3b8" font-size="9" text-anchor="middle">系统定义 Synopsis 或用户算子</text>
 
-  <!-- LSM-Tree on SSD -->
-  <rect x="370" y="275" width="220" height="50" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.2" stroke-dasharray="5,3"/>
-  <text x="480" y="295" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">LSM-Tree (SSD / NVMe)</text>
-  <text x="480" y="312" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">RocksDB · LevelDB · FASTER</text>
+  <rect x="75" y="205" width="180" height="75" rx="8" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="165" y="228" fill="white" font-size="12" font-weight="600" text-anchor="middle">MemTable (全内存)</text>
+  <text x="165" y="246" fill="#94a3b8" font-size="9" text-anchor="middle">ConcurrentHashMap</text>
+  <text x="165" y="264" fill="#94a3b8" font-size="9" text-anchor="middle">BTree / Hash Index</text>
 
-  <text x="480" y="340" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">顺序写入 → 合并下沉到冷存储</text>
+  <rect x="45" y="305" width="240" height="50" rx="6" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1"/>
+  <text x="60" y="323" fill="#34d399" font-size="10">✓ 零 I/O 延迟</text>
+  <text x="60" y="338" fill="#34d399" font-size="10">✓ 实现简单</text>
+  <text x="195" y="323" fill="#fb7185" font-size="10">✗ 内存硬上限</text>
+  <text x="195" y="338" fill="#fb7185" font-size="10">✗ 故障后状态全丢</text>
 
-  <!-- Pros/Cons -->
-  <rect x="355" y="295" width="250" height="55" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
-  <text x="365" y="315" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 支撑 TB 级状态</text>
-  <text x="365" y="332" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 利用 NVMe 高带宽</text>
-  <text x="365" y="348" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✗ 写/读放大（合并开销）</text>
+  <rect x="75" y="375" width="180" height="28" rx="14" fill="rgba(251,191,36,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="165" y="393" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">1st Gen: Aurora / Borealis</text>
 
-  <!-- 2nd Gen badge -->
-  <rect x="370" y="368" width="220" height="26" rx="13" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-  <text x="480" y="386" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">2nd Gen: Flink · Samza · Kafka Streams</text>
+  <text x="165" y="430" fill="#64748b" font-size="9" text-anchor="middle">依赖 Active 复制恢复 · 系统定义状态</text>
 
-  <text x="480" y="425" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">Epoch 级 Chandy-Lamport 异步快照恢复</text>
+  <!-- Col 2: Out-of-Core (Secondary Emerald) -->
+  <rect x="370" y="135" width="220" height="53" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="480" y="156" fill="white" font-size="11" font-weight="600" text-anchor="middle">Stateful Operator</text>
+  <text x="480" y="173" fill="#94a3b8" font-size="9" text-anchor="middle">用户定义 + 系统管理状态</text>
 
-  <!-- ====== Column 3: External ====== -->
-  <rect x="650" y="75" width="290" height="410" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="650" y="75" width="290" height="42" rx="12" fill="#f3e8ff"/>
-  <rect x="650" y="105" width="290" height="12" fill="#f3e8ff"/>
-  <text x="795" y="101" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#6b21a8" text-anchor="middle">III. External State</text>
+  <rect x="385" y="205" width="190" height="45" rx="6" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="480" y="225" fill="white" font-size="10" font-weight="600" text-anchor="middle">MemTable (热数据)</text>
+  <text x="480" y="241" fill="#94a3b8" font-size="9" text-anchor="middle">活跃窗口 / 近期聚合</text>
 
-  <!-- Operator (stateless) -->
-  <rect x="685" y="140" width="220" height="48" rx="8" fill="#ffffff" stroke="#c084fc" stroke-width="1.5"/>
-  <text x="795" y="160" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#111827" text-anchor="middle">Operator (无状态)</text>
-  <text x="795" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">每条输出 + 状态更新原子提交</text>
+  <rect x="370" y="270" width="220" height="52" rx="8" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="480" y="292" fill="white" font-size="12" font-weight="600" text-anchor="middle">LSM-Tree (SSD / NVMe)</text>
+  <text x="480" y="309" fill="#94a3b8" font-size="9" text-anchor="middle">RocksDB · LevelDB · FASTER</text>
 
-  <!-- RPC call -->
-  <line x1="795" y1="188" x2="795" y2="215" stroke="#9333ea" stroke-width="1.8" marker-end="url(#arr-purple)"/>
-  <text x="815" y="205" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea">RPC</text>
+  <text x="480" y="342" fill="#64748b" font-size="9" text-anchor="middle">顺序写入 → 合并下沉到冷存储</text>
 
-  <!-- External DB -->
-  <rect x="700" y="220" width="190" height="60" rx="8" fill="#f3e8ff" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="5,3"/>
-  <text x="795" y="245" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#6b21a8" text-anchor="middle">BigTable / Spanner</text>
-  <text x="795" y="262" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">状态与计算完全解耦</text>
+  <rect x="355" y="305" width="250" height="50" rx="6" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1"/>
+  <text x="370" y="323" fill="#34d399" font-size="10">✓ 支撑 TB 级状态</text>
+  <text x="370" y="338" fill="#34d399" font-size="10">✓ 利用 NVMe 高带宽</text>
+  <text x="505" y="323" fill="#fb7185" font-size="10">✗ 写/读放大（合并开销）</text>
+  <text x="505" y="338" fill="#fb7185" font-size="10">✗ Epoch 快照一致性成本</text>
 
-  <text x="795" y="300" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">复用 DB 的 ACID / 弹性 / 持久化</text>
+  <rect x="370" y="375" width="220" height="28" rx="14" fill="rgba(251,191,36,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="480" y="393" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">2nd Gen: Flink · Samza · Kafka Streams</text>
 
-  <!-- Pros/Cons -->
-  <rect x="675" y="295" width="240" height="55" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
-  <text x="685" y="315" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 状态天然持久化</text>
-  <text x="685" y="332" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✓ 可弹性扩缩</text>
-  <text x="685" y="348" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#16a34a">✗ 外部调用延迟高</text>
+  <text x="480" y="430" fill="#64748b" font-size="9" text-anchor="middle">Epoch 级 Chandy-Lamport 异步快照恢复</text>
 
-  <!-- Millwheel badge -->
-  <rect x="685" y="368" width="220" height="26" rx="13" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1"/>
-  <text x="795" y="386" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#3730a3" text-anchor="middle">Millwheel · Google Cloud Dataflow</text>
+  <!-- Col 3: External (Tertiary Violet) -->
+  <rect x="685" y="135" width="220" height="53" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="795" y="156" fill="white" font-size="11" font-weight="600" text-anchor="middle">Operator (无状态)</text>
+  <text x="795" y="173" fill="#94a3b8" font-size="9" text-anchor="middle">每条输出 + 状态更新原子提交</text>
 
-  <text x="795" y="425" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">Record 级事务 · 无需额外快照机制</text>
+  <rect x="700" y="212" width="190" height="65" rx="8" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="795" y="238" fill="white" font-size="12" font-weight="600" text-anchor="middle">BigTable / Spanner</text>
+  <text x="795" y="255" fill="#94a3b8" font-size="9" text-anchor="middle">状态与计算完全解耦</text>
+  <text x="795" y="270" fill="#64748b" font-size="8" text-anchor="middle">复用 DB 的 ACID / 弹性 / 持久化</text>
 
-  <!-- Bottom evolution arrow -->
-  <rect x="240" y="455" width="480" height="36" rx="18" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="480" y="478" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#374151" text-anchor="middle">1st Gen (系统定义) → 过渡期 (用户管理) → 2nd Gen (用户定义 + 系统管理)</text>
+  <rect x="675" y="305" width="240" height="50" rx="6" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1"/>
+  <text x="690" y="323" fill="#34d399" font-size="10">✓ 状态天然持久化</text>
+  <text x="690" y="338" fill="#34d399" font-size="10">✓ 可弹性扩缩</text>
+  <text x="815" y="323" fill="#fb7185" font-size="10">✗ 外部调用延迟高</text>
+  <text x="815" y="338" fill="#fb7185" font-size="10">✗ 绑定 DB 基础设施</text>
+
+  <rect x="685" y="375" width="220" height="28" rx="14" fill="rgba(251,191,36,0.2)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="795" y="393" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">Millwheel · Google Cloud Dataflow</text>
+
+  <text x="795" y="430" fill="#64748b" font-size="9" text-anchor="middle">Record 级事务 · 无需额外快照机制</text>
+
+  <!-- ====== Bottom Evolution Bar ====== -->
+  <rect x="240" y="505" width="480" height="36" rx="18" fill="rgba(30,41,59,0.6)" stroke="#475569" stroke-width="1"/>
+  <text x="480" y="528" fill="#94a3b8" font-size="11" font-weight="500" text-anchor="middle">Evolution: 1st Gen（系统定义）→ 过渡期（用户管理）→ 2nd Gen（用户定义 + 系统管理）</text>
 </svg>

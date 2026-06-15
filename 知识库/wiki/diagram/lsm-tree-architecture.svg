@@ -1,110 +1,171 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" width="900" height="580">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 590">
   <style>
-    text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', 'Microsoft YaHei', 'SimHei', monospace; fill: #e2e8f0; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
   </style>
   <defs>
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f0f1a"/>
-      <stop offset="100%" stop-color="#1a1a2e"/>
-    </linearGradient>
-    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
     </marker>
-    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#10b981"/>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
-    </marker>
-    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#a855f7"/>
-    </marker>
-    <marker id="arrow-gold" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#eab308"/>
-    </marker>
-    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
     </marker>
   </defs>
-  <rect width="900" height="580" fill="url(#bg-grad)"/>
-  <text x="20" y="28" fill="#e2e8f0" font-size="15" font-weight="700">LSM-Tree Storage Engine Architecture</text>
+
+  <!-- Layer 1: Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="20" y="28" fill="white" font-size="15" font-weight="700">LSM-Tree Storage Engine Architecture</text>
   <text x="20" y="44" fill="#94a3b8" font-size="10">Write path → top-down via MemTable; Read path → across levels via Bloom filters + iterators</text>
-  <text x="20" y="72" fill="#ea580c" font-size="11" font-weight="700">01 // WRITE PATH</text>
-  <rect x="20" y="88" width="130" height="48" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="85" y="108" fill="#e2e8f0" font-size="11" font-weight="700" text-anchor="middle">Write Request</text>
+
+  <!-- ====== Layer 3: Connection Arrows (Write Path) ====== -->
+  <!-- Write Request → WAL -->
+  <line x1="150" y1="112" x2="208" y2="112" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <!-- WAL → MemTable -->
+  <line x1="345" y1="112" x2="403" y2="112" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <!-- MemTable → flush -->
+  <line x1="485" y1="136" x2="485" y2="178" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <text x="498" y="170" fill="#fb923c" font-size="8">flush</text>
+
+  <!-- Compaction arrows -->
+  <line x1="890" y1="246" x2="890" y2="308" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+  <text x="895" y="275" fill="#fb7185" font-size="7">compact</text>
+  <line x1="890" y1="308" x2="890" y2="370" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+  <text x="895" y="337" fill="#fb7185" font-size="7">compact</text>
+
+  <!-- ====== Layer 4: Opaque Masking Rects ====== -->
+  <!-- Write path boxes -->
+  <rect x="20" y="88" width="130" height="48" rx="6" fill="#0f172a"/>
+  <rect x="215" y="88" width="130" height="48" rx="6" fill="#0f172a"/>
+  <rect x="410" y="88" width="150" height="48" rx="6" fill="#0f172a"/>
+
+  <!-- LSM Level SST boxes -->
+  <rect x="140" y="228" width="140" height="36" rx="4" fill="#0f172a"/>
+  <rect x="295" y="228" width="140" height="36" rx="4" fill="#0f172a"/>
+  <rect x="450" y="228" width="140" height="36" rx="4" fill="#0f172a"/>
+  <rect x="605" y="228" width="140" height="36" rx="4" fill="#0f172a"/>
+
+  <rect x="140" y="290" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="290" y="290" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="440" y="290" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="590" y="290" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="740" y="290" width="135" height="36" rx="4" fill="#0f172a"/>
+
+  <rect x="140" y="352" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="290" y="352" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="440" y="352" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="590" y="352" width="135" height="36" rx="4" fill="#0f172a"/>
+  <rect x="740" y="352" width="135" height="36" rx="4" fill="#0f172a"/>
+
+  <!-- Optimization boxes -->
+  <rect x="20" y="490" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="192" y="490" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="364" y="490" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="536" y="490" width="160" height="48" rx="6" fill="#0f172a"/>
+  <rect x="708" y="490" width="160" height="48" rx="6" fill="#0f172a"/>
+
+  <!-- ====== Layer 5: Component Boxes ====== -->
+
+  <!-- 01 WRITE PATH -->
+  <text x="20" y="72" fill="#fb923c" font-size="11" font-weight="700">01 // WRITE PATH</text>
+
+  <rect x="20" y="88" width="130" height="48" rx="6" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="85" y="108" fill="white" font-size="11" font-weight="700" text-anchor="middle">Write Request</text>
   <text x="85" y="124" fill="#94a3b8" font-size="9" text-anchor="middle">key, value</text>
-  <line x1="150" y1="112" x2="208" y2="112" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
-  <rect x="215" y="88" width="130" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
-  <text x="280" y="108" fill="#e2e8f0" font-size="11" font-weight="700" text-anchor="middle">WAL Log</text>
+
+  <rect x="215" y="88" width="130" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="280" y="108" fill="white" font-size="11" font-weight="700" text-anchor="middle">WAL Log</text>
   <text x="280" y="124" fill="#94a3b8" font-size="9" text-anchor="middle">sequential append</text>
-  <line x1="345" y1="112" x2="403" y2="112" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
-  <rect x="410" y="88" width="150" height="48" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="485" y="108" fill="#e2e8f0" font-size="11" font-weight="700" text-anchor="middle">MemTable</text>
+
+  <rect x="410" y="88" width="150" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="485" y="108" fill="white" font-size="11" font-weight="700" text-anchor="middle">MemTable</text>
   <text x="485" y="124" fill="#94a3b8" font-size="9" text-anchor="middle">skiplist / hash</text>
-  <line x1="485" y1="136" x2="485" y2="180" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
-  <text x="495" y="170" fill="#f97316" font-size="8">flush</text>
-  <text x="20" y="202" fill="#a855f7" font-size="11" font-weight="700">02 // LSM LEVELED STORAGE</text>
-  <rect x="20" y="220" width="860" height="52" rx="6" fill="#1e1b4b" fill-opacity="0.3" stroke="#a855f7" stroke-width="1" stroke-dasharray="4,4"/>
-  <text x="30" y="238" fill="#a855f7" font-size="10" font-weight="700">L0 (unsorted)</text>
-  <rect x="140" y="228" width="140" height="36" rx="4" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+
+  <!-- 02 LSM LEVELED STORAGE -->
+  <text x="20" y="202" fill="#a78bfa" font-size="11" font-weight="700">02 // LSM LEVELED STORAGE</text>
+
+  <!-- L0 -->
+  <rect x="20" y="220" width="860" height="52" rx="6" fill="rgba(76,29,149,0.12)" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="30" y="238" fill="#a78bfa" font-size="10" font-weight="700">L0 (unsorted)</text>
+  <rect x="140" y="228" width="140" height="36" rx="4" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
   <text x="210" y="250" fill="#94a3b8" font-size="9" text-anchor="middle">SST 1 (overlap)</text>
-  <rect x="295" y="228" width="140" height="36" rx="4" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+  <rect x="295" y="228" width="140" height="36" rx="4" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
   <text x="365" y="250" fill="#94a3b8" font-size="9" text-anchor="middle">SST 2 (overlap)</text>
-  <rect x="450" y="228" width="140" height="36" rx="4" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+  <rect x="450" y="228" width="140" height="36" rx="4" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
   <text x="520" y="250" fill="#94a3b8" font-size="9" text-anchor="middle">SST 3 (overlap)</text>
-  <rect x="605" y="228" width="140" height="36" rx="4" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+  <rect x="605" y="228" width="140" height="36" rx="4" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1"/>
   <text x="675" y="250" fill="#94a3b8" font-size="9" text-anchor="middle">SST 4 (overlap)</text>
-  <rect x="20" y="282" width="860" height="52" rx="6" fill="#0f172a" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
-  <text x="30" y="300" fill="#3b82f6" font-size="10" font-weight="700">L1 (sorted, ~10 MB)</text>
-  <rect x="140" y="290" width="135" height="36" rx="4" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+
+  <!-- L1 -->
+  <rect x="20" y="282" width="860" height="52" rx="6" fill="rgba(59,130,246,0.08)" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="30" y="300" fill="#60a5fa" font-size="10" font-weight="700">L1 (sorted, ~10 MB)</text>
+  <rect x="140" y="290" width="135" height="36" rx="4" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="1"/>
   <text x="207" y="312" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="290" y="290" width="135" height="36" rx="4" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="290" y="290" width="135" height="36" rx="4" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="1"/>
   <text x="357" y="312" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="440" y="290" width="135" height="36" rx="4" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="440" y="290" width="135" height="36" rx="4" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="1"/>
   <text x="507" y="312" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="590" y="290" width="135" height="36" rx="4" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="590" y="290" width="135" height="36" rx="4" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="1"/>
   <text x="657" y="312" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="740" y="290" width="135" height="36" rx="4" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="740" y="290" width="135" height="36" rx="4" fill="rgba(59,130,246,0.15)" stroke="#60a5fa" stroke-width="1"/>
   <text x="807" y="312" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="20" y="344" width="860" height="52" rx="6" fill="#0f172a" fill-opacity="0.3" stroke="#eab308" stroke-width="1" stroke-dasharray="4,4"/>
-  <text x="30" y="362" fill="#eab308" font-size="10" font-weight="700">L2 (sorted, ~100 MB, 10× L1)</text>
-  <rect x="140" y="352" width="135" height="36" rx="4" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+
+  <!-- L2 -->
+  <rect x="20" y="344" width="860" height="52" rx="6" fill="rgba(120,53,15,0.1)" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="30" y="362" fill="#fbbf24" font-size="10" font-weight="700">L2 (sorted, ~100 MB, 10× L1)</text>
+  <rect x="140" y="352" width="135" height="36" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
   <text x="207" y="374" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="290" y="352" width="135" height="36" rx="4" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <rect x="290" y="352" width="135" height="36" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
   <text x="357" y="374" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="440" y="352" width="135" height="36" rx="4" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <rect x="440" y="352" width="135" height="36" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
   <text x="507" y="374" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="590" y="352" width="135" height="36" rx="4" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <rect x="590" y="352" width="135" height="36" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
   <text x="657" y="374" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="740" y="352" width="135" height="36" rx="4" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <rect x="740" y="352" width="135" height="36" rx="4" fill="rgba(120,53,15,0.2)" stroke="#fbbf24" stroke-width="1"/>
   <text x="807" y="374" fill="#94a3b8" font-size="9" text-anchor="middle">SST (key-range)</text>
-  <rect x="20" y="406" width="860" height="46" rx="6" fill="#0f172a" fill-opacity="0.3" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
-  <text x="30" y="424" fill="#64748b" font-size="10" font-weight="700">LK (sorted, capacity limit, 10× LK-1)</text>
-  <line x1="890" y1="246" x2="890" y2="308" stroke="#ef4444" stroke-width="1" marker-end="url(#arrow-red)"/>
-  <text x="900" y="275" fill="#ef4444" font-size="7">compact</text>
-  <line x1="890" y1="308" x2="890" y2="370" stroke="#ef4444" stroke-width="1" marker-end="url(#arrow-red)"/>
-  <text x="900" y="337" fill="#ef4444" font-size="7">compact</text>
-  <text x="20" y="474" fill="#10b981" font-size="11" font-weight="700">03 // KEY OPTIMIZATIONS</text>
-  <rect x="20" y="490" width="160" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="100" y="510" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Bloom Filters</text>
+
+  <!-- LK -->
+  <rect x="20" y="406" width="860" height="46" rx="6" fill="rgba(30,41,59,0.3)" stroke="#475569" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="30" y="424" fill="#94a3b8" font-size="10" font-weight="700">LK (sorted, capacity limit, 10× LK−1)</text>
+
+  <!-- 03 KEY OPTIMIZATIONS -->
+  <text x="20" y="474" fill="#34d399" font-size="11" font-weight="700">03 // KEY OPTIMIZATIONS</text>
+
+  <rect x="20" y="490" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="100" y="510" fill="white" font-size="10" font-weight="700" text-anchor="middle">Bloom Filters</text>
   <text x="100" y="526" fill="#94a3b8" font-size="8" text-anchor="middle">false-positive avoidance</text>
-  <rect x="192" y="490" width="160" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="272" y="510" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Snappy/Zstd</text>
+
+  <rect x="192" y="490" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="272" y="510" fill="white" font-size="10" font-weight="700" text-anchor="middle">Snappy / Zstd</text>
   <text x="272" y="526" fill="#94a3b8" font-size="8" text-anchor="middle">block compression</text>
-  <rect x="364" y="490" width="160" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="444" y="510" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Tiering Merge</text>
+
+  <rect x="364" y="490" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="444" y="510" fill="white" font-size="10" font-weight="700" text-anchor="middle">Tiering Merge</text>
   <text x="444" y="526" fill="#94a3b8" font-size="8" text-anchor="middle">reduce write amp</text>
-  <rect x="536" y="490" width="160" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="616" y="510" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Universal Comp</text>
+
+  <rect x="536" y="490" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="616" y="510" fill="white" font-size="10" font-weight="700" text-anchor="middle">Universal Comp</text>
   <text x="616" y="526" fill="#94a3b8" font-size="8" text-anchor="middle">write-heavy</text>
-  <rect x="708" y="490" width="160" height="48" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="788" y="510" fill="#e2e8f0" font-size="10" font-weight="700" text-anchor="middle">Auto-tune</text>
+
+  <rect x="708" y="490" width="160" height="48" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="788" y="510" fill="white" font-size="10" font-weight="700" text-anchor="middle">Auto-tune</text>
   <text x="788" y="526" fill="#94a3b8" font-size="8" text-anchor="middle">self-adaptive</text>
-  <rect x="20" y="552" width="14" height="14" rx="2" fill="#1c1917" stroke="#f97316" stroke-width="1"/>
-  <text x="40" y="563" fill="#94a3b8" font-size="8">Write path</text>
-  <rect x="130" y="552" width="14" height="14" rx="2" fill="#052e16" stroke="#10b981" stroke-width="1"/>
-  <text x="150" y="563" fill="#94a3b8" font-size="8">Optimizations</text>
-  <rect x="260" y="552" width="14" height="14" rx="2" fill="none" stroke="#ef4444" stroke-width="1"/>
-  <text x="280" y="563" fill="#94a3b8" font-size="8">Compaction</text>
-  <text x="760" y="563" fill="#475569" font-size="7" text-anchor="end">fireworks-tech-graph · style-2</text>
+
+  <!-- Legend -->
+  <rect x="20" y="556" width="14" height="14" rx="2" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1"/>
+  <text x="40" y="568" fill="#94a3b8" font-size="8">Write path</text>
+  <rect x="130" y="556" width="14" height="14" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="150" y="568" fill="#94a3b8" font-size="8">Optimizations</text>
+  <rect x="260" y="556" width="14" height="14" rx="2" fill="none" stroke="#fb7185" stroke-width="1"/>
+  <text x="280" y="568" fill="#94a3b8" font-size="8">Compaction</text>
+  <text x="880" y="568" fill="#475569" font-size="7" text-anchor="end">baoyu-diagram</text>
 </svg>

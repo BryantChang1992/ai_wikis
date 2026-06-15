@@ -1,48 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 780 70" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+<svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
   <style>
-    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
   </style>
   <defs>
-    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
     </marker>
   </defs>
 
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="410" y="22" fill="#e2e8f0" font-size="14" font-weight="700" text-anchor="middle">状态持久化粒度轴</text>
+
   <!-- Axis arrow -->
-  <line x1="20" y1="35" x2="770" y2="35" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="25" y1="50" x2="795" y2="50" stroke="#fb923c" stroke-width="2" marker-end="url(#arrow-orange)"/>
 
-  <!-- Left label -->
-  <text x="20" y="55" font-size="12" text-anchor="start">细粒度</text>
-  <text x="770" y="55" font-size="12" text-anchor="end">粗粒度</text>
+  <!-- End labels -->
+  <text x="25" y="72" fill="#94a3b8" font-size="12" text-anchor="start">细粒度</text>
+  <text x="795" y="72" fill="#94a3b8" font-size="12" text-anchor="end">粗粒度</text>
 
-  <!-- Tick marks and labels -->
-  <line x1="100" y1="30" x2="100" y2="40" stroke="currentColor" stroke-width="1"/>
-  <text x="100" y="16" font-size="12">Record-Level</text>
+  <!-- Tick: Record-Level -->
+  <line x1="110" y1="44" x2="110" y2="56" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="110" y="36" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">Record-Level</text>
+  <text x="110" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Millwheel</text>
+  <text x="110" y="108" fill="#64748b" font-size="9" text-anchor="middle">每条输出 + 状态写入事务</text>
+  <text x="110" y="126" fill="#475569" font-size="9" text-anchor="middle">最高正确性 · 最高延迟</text>
 
-  <line x1="280" y1="30" x2="280" y2="40" stroke="currentColor" stroke-width="1"/>
-  <text x="280" y="16" font-size="12">Epoch-Level</text>
+  <!-- Tick: Epoch-Level (highlighted as standard) -->
+  <line x1="290" y1="44" x2="290" y2="56" stroke="#60a5fa" stroke-width="2"/>
+  <text x="290" y="36" fill="#60a5fa" font-size="11" font-weight="600" text-anchor="middle">Epoch-Level</text>
+  <text x="290" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Flink / Samza</text>
+  <text x="290" y="108" fill="#64748b" font-size="9" text-anchor="middle">Chandy-Lamport 异步快照</text>
+  <text x="290" y="126" fill="#475569" font-size="9" text-anchor="middle">平衡性能+正确性 · 标准方案</text>
 
-  <line x1="510" y1="30" x2="510" y2="40" stroke="currentColor" stroke-width="1"/>
-  <text x="510" y="16" font-size="12">Batch-Level</text>
+  <!-- Tick: Batch-Level -->
+  <line x1="520" y1="44" x2="520" y2="56" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="520" y="36" fill="#fbbf24" font-size="11" font-weight="600" text-anchor="middle">Batch-Level</text>
+  <text x="520" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Spark / Trident</text>
+  <text x="520" y="108" fill="#64748b" font-size="9" text-anchor="middle">微批次结束时持久化</text>
+  <text x="520" y="126" fill="#475569" font-size="9" text-anchor="middle">高吞吐 · 混合批流</text>
 
-  <line x1="700" y1="30" x2="700" y2="40" stroke="currentColor" stroke-width="1"/>
-  <text x="700" y="16" font-size="12">No Persistence</text>
-
-  <!-- Sub-labels below -->
-  <text x="100" y="68" font-size="11">Millwheel</text>
-  <text x="280" y="68" font-size="11">Flink/Samza</text>
-  <text x="510" y="68" font-size="11">Spark/Trident</text>
-  <text x="700" y="68" font-size="11">Storm/DSMS</text>
-
-  <!-- Detail labels in brackets -->
-  <text x="100" y="80" font-size="10" opacity="0.7">每条输出+状态写入事务</text>
-  <text x="280" y="80" font-size="10" opacity="0.7">Chandy-Lamport异步快照</text>
-  <text x="510" y="80" font-size="10" opacity="0.7">微批次结束时持久化</text>
-  <text x="700" y="80" font-size="10" opacity="0.7">无状态保证</text>
-
-  <!-- Ranges -->
-  <text x="100" y="92" font-size="10" opacity="0.7">最高正确性 最高延迟</text>
-  <text x="280" y="92" font-size="10" opacity="0.7">平衡性能+正确性 标准方案</text>
-  <text x="510" y="92" font-size="10" opacity="0.7">高吞吐 混合批流</text>
+  <!-- Tick: No Persistence -->
+  <line x1="700" y1="44" x2="700" y2="56" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="700" y="36" fill="#fb7185" font-size="11" font-weight="600" text-anchor="middle">No Persistence</text>
+  <text x="700" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Storm / DSMS</text>
+  <text x="700" y="108" fill="#64748b" font-size="9" text-anchor="middle">无状态保证</text>
 </svg>

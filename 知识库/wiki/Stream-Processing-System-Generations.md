@@ -18,7 +18,7 @@ related:
   - "[[流处理容错模型]]"
   - "[[流处理乱序数据管理]]"
   - "[[流处理弹性与重配置]]"
-diagram: "diagram/stream-processing-generations.svg"
+diagram: "../diagram/stream-processing-generations.svg"
 
 ---
 

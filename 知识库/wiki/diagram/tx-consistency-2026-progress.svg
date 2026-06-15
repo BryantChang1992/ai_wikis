@@ -1,48 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520">
-  <style>
-    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 550">
   <defs>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
     </marker>
-    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
     </marker>
   </defs>
-  <rect width="880" height="520" fill="#ffffff"/>
-  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Distributed Tx &amp; Consistency — 2026 New Progress</text>
-  <text x="30" y="50" fill="#6b7280" font-size="11">SIGMOD/CIDR/FAST 2026 papers: CockroachDB · Aurora · Rosé · Agent-First</text>
-  <text x="30" y="82" fill="#2563eb" font-size="12" font-weight="700">CockroachDB — Leader Lease &amp; Global Txn</text>
-  <rect x="30" y="96" width="820" height="64" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="50" y="118" fill="#111827" font-size="12" font-weight="600">Parallel Commit · Uncertainty Interval · Range Lease · Query Liveness</text>
-  <text x="50" y="136" fill="#6b7280" font-size="10">Clock-bound waits + read-your-writes consistency without global clock</text>
-  <text x="30" y="188" fill="#16a34a" font-size="12" font-weight="700">Amazon Aurora — Shuffle Sharding &amp; DPTM</text>
-  <rect x="30" y="202" width="820" height="64" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="50" y="224" fill="#111827" font-size="12" font-weight="600">Distributed Transaction Manager · Shuffle Sharding for fault isolation · Storage quorum</text>
-  <text x="50" y="242" fill="#6b7280" font-size="10">Shared-disk architecture with logical replication, avoiding two-phase commit overhead</text>
-  <text x="30" y="294" fill="#9333ea" font-size="12" font-weight="700">Rosé — Optimistic Reads with Watermarks</text>
-  <rect x="30" y="308" width="820" height="64" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="50" y="330" fill="#111827" font-size="12" font-weight="600">Single-writer + multi-reader optimistic · Watermark-based read visibility · Version chain</text>
-  <text x="50" y="348" fill="#6b7280" font-size="10">Separates read and write paths; readers never block, writers use watermarks for safe reads</text>
-  <text x="30" y="400" fill="#dc2626" font-size="12" font-weight="700">Agent-First Design — Consistency for AI Workloads</text>
-  <rect x="30" y="414" width="820" height="64" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
-  <text x="50" y="436" fill="#111827" font-size="12" font-weight="600">Agent-first consistency — eventual with bounded staleness · Causal delivery for agent chains</text>
-  <text x="50" y="454" fill="#6b7280" font-size="10">Prioritizes availability + low latency over strict serializability; session guarantees for agents</text>
-  <g transform="translate(30, 498)">
-    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-    <text x="20" y="12" fill="#6b7280" font-size="10">CockroachDB</text>
-    <rect x="170" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-    <text x="190" y="12" fill="#6b7280" font-size="10">Aurora</text>
-    <rect x="340" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
-    <text x="360" y="12" fill="#6b7280" font-size="10">Rosé</text>
-    <rect x="510" y="0" width="14" height="14" rx="3" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
-    <text x="530" y="12" fill="#6b7280" font-size="10">Agent-First</text>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="35" fill="#f1f5f9" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="16" font-weight="700">Distributed Tx &amp; Consistency — 2026 New Progress</text>
+  <text x="30" y="55" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">SIGMOD/CIDR/FAST 2026 papers: CockroachDB · Aurora · Rosé · Agent-First</text>
+
+  <!-- Section 1: CockroachDB (Primary / Cyan) -->
+  <text x="30" y="90" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">CockroachDB — Leader Lease &amp; Global Txn</text>
+  <rect x="30" y="100" width="855" height="66" rx="8" fill="#0f172a"/>
+  <rect x="30" y="100" width="855" height="66" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="50" y="124" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Parallel Commit · Uncertainty Interval · Range Lease · Query Liveness</text>
+  <text x="50" y="144" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Clock-bound waits + read-your-writes consistency without global clock</text>
+
+  <!-- Section 2: Aurora (Secondary / Emerald) -->
+  <text x="30" y="198" fill="#34d399" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Amazon Aurora — Shuffle Sharding &amp; DPTM</text>
+  <rect x="30" y="208" width="855" height="66" rx="8" fill="#0f172a"/>
+  <rect x="30" y="208" width="855" height="66" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="50" y="232" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Distributed Transaction Manager · Shuffle Sharding for fault isolation · Storage quorum</text>
+  <text x="50" y="252" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Shared-disk architecture with logical replication, avoiding two-phase commit overhead</text>
+
+  <!-- Section 3: Rosé (Tertiary / Violet) -->
+  <text x="30" y="306" fill="#a78bfa" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Rosé — Optimistic Reads with Watermarks</text>
+  <rect x="30" y="316" width="855" height="66" rx="8" fill="#0f172a"/>
+  <rect x="30" y="316" width="855" height="66" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="50" y="340" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Single-writer + multi-reader optimistic · Watermark-based read visibility · Version chain</text>
+  <text x="50" y="360" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Separates read and write paths; readers never block, writers use watermarks for safe reads</text>
+
+  <!-- Section 4: Agent-First (Alert / Rose) -->
+  <text x="30" y="414" fill="#fb7185" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">Agent-First Design — Consistency for AI Workloads</text>
+  <rect x="30" y="424" width="855" height="66" rx="8" fill="#0f172a"/>
+  <rect x="30" y="424" width="855" height="66" rx="8" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="50" y="448" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="600">Agent-first consistency — eventual with bounded staleness · Causal delivery for agent chains</text>
+  <text x="50" y="468" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Prioritizes availability + low latency over strict serializability; session guarantees for agents</text>
+
+  <!-- Legend -->
+  <g transform="translate(30, 520)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+    <text x="20" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">CockroachDB</text>
+    <rect x="170" y="0" width="14" height="14" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+    <text x="190" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Aurora</text>
+    <rect x="340" y="0" width="14" height="14" rx="3" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+    <text x="360" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Rosé</text>
+    <rect x="510" y="0" width="14" height="14" rx="3" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1"/>
+    <text x="530" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Agent-First</text>
   </g>
 </svg>

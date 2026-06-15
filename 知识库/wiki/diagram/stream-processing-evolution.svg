@@ -1,89 +1,142 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="880" height="480">
-  <style>
-    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
   <defs>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
     </marker>
-    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
     </marker>
   </defs>
-  <rect width="880" height="480" fill="#ffffff"/>
-  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Stream Processing Evolution — 1992→2022 (3 Generations)</text>
-  <text x="30" y="50" fill="#6b7280" font-size="11">DSMS → Dataflow → Event-Driven Microservices — based on Fragkoulis et al. Survey</text>
-  <text x="30" y="82" fill="#2563eb" font-size="12" font-weight="700">GEN 1: DSMS (2000–2010) — "Database Inverted"</text>
-  <rect x="30" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="128" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">STREAM</text>
-  <text x="128" y="128" fill="#6b7280" font-size="9" text-anchor="middle">Stanford CQL</text>
-  <rect x="245" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="343" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Aurora/Borealis</text>
-  <text x="343" y="128" fill="#6b7280" font-size="9" text-anchor="middle">MIT/Brown</text>
-  <rect x="460" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="558" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">TelegraphCQ</text>
-  <text x="558" y="128" fill="#6b7280" font-size="9" text-anchor="middle">Berkeley</text>
-  <rect x="675" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="773" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">System S</text>
-  <text x="773" y="128" fill="#6b7280" font-size="9" text-anchor="middle">IBM streams</text>
-  <line x1="450" y1="136" x2="450" y2="158" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-  <text x="30" y="178" fill="#16a34a" font-size="12" font-weight="700">GEN 2: Dataflow (2011–2022) — Distributed Processing</text>
-  <rect x="30" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="128" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Storm</text>
-  <text x="128" y="224" fill="#6b7280" font-size="9" text-anchor="middle">record-at-a-time</text>
-  <rect x="245" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="343" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Flink</text>
-  <text x="343" y="224" fill="#6b7280" font-size="9" text-anchor="middle">checkpoint/barrier</text>
-  <rect x="460" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="558" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Spark Str.</text>
-  <text x="558" y="224" fill="#6b7280" font-size="9" text-anchor="middle">micro-batch</text>
-  <rect x="675" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="773" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Kafka Str.</text>
-  <text x="773" y="224" fill="#6b7280" font-size="9" text-anchor="middle">topic-table</text>
-  <line x1="450" y1="232" x2="450" y2="258" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
-  <text x="30" y="278" fill="#9333ea" font-size="12" font-weight="700">GEN 3: Emerging (2022–) — Event-Driven + Microservices</text>
-  <rect x="30" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="128" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Serverless</text>
-  <text x="128" y="324" fill="#6b7280" font-size="9" text-anchor="middle">auto-scale</text>
-  <rect x="245" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="343" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Streaming DB</text>
-  <text x="343" y="324" fill="#6b7280" font-size="9" text-anchor="middle">RisingWave/Materialize</text>
-  <rect x="460" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="558" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Data Mesh</text>
-  <text x="558" y="324" fill="#6b7280" font-size="9" text-anchor="middle">domain ownership</text>
-  <rect x="675" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="773" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Agent Stream</text>
-  <text x="773" y="324" fill="#6b7280" font-size="9" text-anchor="middle">AI-driven</text>
-  <text x="30" y="360" fill="#f97316" font-size="12" font-weight="700">CROSS-CUTTING CONCERNS</text>
-  <rect x="30" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="108" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Out-of-Order</text>
-  <text x="108" y="402" fill="#6b7280" font-size="8" text-anchor="middle">watermarks</text>
-  <rect x="200" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="278" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">State Mgmt</text>
-  <text x="278" y="402" fill="#6b7280" font-size="8" text-anchor="middle">RocksDB back</text>
-  <rect x="370" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="448" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Fault Tolerance</text>
-  <text x="448" y="402" fill="#6b7280" font-size="8" text-anchor="middle">checkpoint</text>
-  <rect x="540" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="618" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Elasticity</text>
-  <text x="618" y="402" fill="#6b7280" font-size="8" text-anchor="middle">reconfig</text>
-  <rect x="710" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="788" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Dataflow Model</text>
-  <text x="788" y="402" fill="#6b7280" font-size="8" text-anchor="middle">Beam</text>
-  <g transform="translate(30, 440)">
-    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-    <text x="20" y="12" fill="#6b7280" font-size="10">Gen1 DSMS</text>
-    <rect x="160" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-    <text x="180" y="12" fill="#6b7280" font-size="10">Gen2 Dataflow</text>
-    <rect x="320" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
-    <text x="340" y="12" fill="#6b7280" font-size="10">Gen3 Emerging</text>
-    <rect x="480" y="0" width="14" height="14" rx="3" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
-    <text x="500" y="12" fill="#6b7280" font-size="10">Concerns</text>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="35" fill="#f1f5f9" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="16" font-weight="700">Stream Processing Evolution — 1992→2022 (3 Generations)</text>
+  <text x="30" y="55" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">DSMS → Dataflow → Event-Driven Microservices — based on Fragkoulis et al. Survey</text>
+
+  <!-- GEN 1: DSMS (Primary / Cyan) -->
+  <text x="30" y="88" fill="#22d3ee" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">GEN 1: DSMS (2000–2010) — "Database Inverted"</text>
+
+  <rect x="30" y="100" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="30" y="100" width="200" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="130" y="120" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">STREAM</text>
+  <text x="130" y="135" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">Stanford CQL</text>
+
+  <rect x="248" y="100" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="248" y="100" width="200" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="348" y="120" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Aurora/Borealis</text>
+  <text x="348" y="135" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">MIT/Brown</text>
+
+  <rect x="466" y="100" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="466" y="100" width="200" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="566" y="120" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">TelegraphCQ</text>
+  <text x="566" y="135" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">Berkeley</text>
+
+  <rect x="684" y="100" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="684" y="100" width="200" height="42" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="784" y="120" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">System S</text>
+  <text x="784" y="135" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">IBM streams</text>
+
+  <!-- Arrow Gen1 → Gen2 -->
+  <line x1="460" y1="142" x2="460" y2="168" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- GEN 2: Dataflow (Secondary / Emerald) -->
+  <text x="30" y="188" fill="#34d399" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">GEN 2: Dataflow (2011–2022) — Distributed Processing</text>
+
+  <rect x="30" y="200" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="30" y="200" width="200" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="130" y="220" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Storm</text>
+  <text x="130" y="235" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">record-at-a-time</text>
+
+  <rect x="248" y="200" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="248" y="200" width="200" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="348" y="220" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Flink</text>
+  <text x="348" y="235" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">checkpoint/barrier</text>
+
+  <rect x="466" y="200" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="466" y="200" width="200" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="566" y="220" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Spark Str.</text>
+  <text x="566" y="235" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">micro-batch</text>
+
+  <rect x="684" y="200" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="684" y="200" width="200" height="42" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="784" y="220" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Kafka Str.</text>
+  <text x="784" y="235" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">topic-table</text>
+
+  <!-- Arrow Gen2 → Gen3 -->
+  <line x1="460" y1="242" x2="460" y2="270" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- GEN 3: Emerging (Tertiary / Violet) -->
+  <text x="30" y="290" fill="#a78bfa" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">GEN 3: Emerging (2022–) — Event-Driven + Microservices</text>
+
+  <rect x="30" y="302" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="30" y="302" width="200" height="42" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="130" y="322" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Serverless</text>
+  <text x="130" y="337" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">auto-scale</text>
+
+  <rect x="248" y="302" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="248" y="302" width="200" height="42" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="348" y="322" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Streaming DB</text>
+  <text x="348" y="337" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">RisingWave/Materialize</text>
+
+  <rect x="466" y="302" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="466" y="302" width="200" height="42" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="566" y="322" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Data Mesh</text>
+  <text x="566" y="337" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">domain ownership</text>
+
+  <rect x="684" y="302" width="200" height="42" rx="6" fill="#0f172a"/>
+  <rect x="684" y="302" width="200" height="42" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="784" y="322" fill="#e2e8f0" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="11" font-weight="600" text-anchor="middle">Agent Stream</text>
+  <text x="784" y="337" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="9" text-anchor="middle">AI-driven</text>
+
+  <!-- Cross-Cutting Concerns (Accent / Amber) -->
+  <text x="30" y="375" fill="#fbbf24" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="12" font-weight="700">CROSS-CUTTING CONCERNS</text>
+
+  <rect x="30" y="387" width="160" height="38" rx="6" fill="#0f172a"/>
+  <rect x="30" y="387" width="160" height="38" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="110" y="404" fill="#cbd5e1" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10" font-weight="600" text-anchor="middle">Out-of-Order</text>
+  <text x="110" y="418" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="8" text-anchor="middle">watermarks</text>
+
+  <rect x="206" y="387" width="160" height="38" rx="6" fill="#0f172a"/>
+  <rect x="206" y="387" width="160" height="38" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="286" y="404" fill="#cbd5e1" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10" font-weight="600" text-anchor="middle">State Mgmt</text>
+  <text x="286" y="418" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="8" text-anchor="middle">RocksDB back</text>
+
+  <rect x="382" y="387" width="160" height="38" rx="6" fill="#0f172a"/>
+  <rect x="382" y="387" width="160" height="38" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="462" y="404" fill="#cbd5e1" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10" font-weight="600" text-anchor="middle">Fault Tolerance</text>
+  <text x="462" y="418" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="8" text-anchor="middle">checkpoint</text>
+
+  <rect x="558" y="387" width="160" height="38" rx="6" fill="#0f172a"/>
+  <rect x="558" y="387" width="160" height="38" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="638" y="404" fill="#cbd5e1" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10" font-weight="600" text-anchor="middle">Elasticity</text>
+  <text x="638" y="418" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="8" text-anchor="middle">reconfig</text>
+
+  <rect x="734" y="387" width="160" height="38" rx="6" fill="#0f172a"/>
+  <rect x="734" y="387" width="160" height="38" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="814" y="404" fill="#cbd5e1" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10" font-weight="600" text-anchor="middle">Dataflow Model</text>
+  <text x="814" y="418" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="8" text-anchor="middle">Beam</text>
+
+  <!-- Legend -->
+  <g transform="translate(30, 455)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+    <text x="20" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Gen1 DSMS</text>
+    <rect x="165" y="0" width="14" height="14" rx="3" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+    <text x="185" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Gen2 Dataflow</text>
+    <rect x="330" y="0" width="14" height="14" rx="3" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+    <text x="350" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Gen3 Emerging</text>
+    <rect x="495" y="0" width="14" height="14" rx="3" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+    <text x="515" y="12" fill="#94a3b8" font-family="'JetBrains Mono','Noto Sans SC','PingFang SC',sans-serif" font-size="10">Concerns</text>
   </g>
 </svg>

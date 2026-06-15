@@ -1,64 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 450" width="820" height="450">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 450">
   <style>
-    text { font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei",sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
   </style>
   <defs>
-    <marker id="a-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
-    </marker>
-    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
     </marker>
   </defs>
-  <rect width="820" height="450" fill="#ffffff"/>
-  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Dataflow Model — Windowing, Watermarks &amp; Triggers</text>
-  <text x="30" y="50" fill="#6b7280" font-size="11">Unified model underpinning Apache Beam, Flink, and modern stream processing</text>
-  <text x="30" y="80" fill="#2563eb" font-size="12" font-weight="700">Windowing</text>
-  <rect x="30" y="94" width="182" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="121" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Fixed</text>
-  <text x="121" y="132" fill="#6b7280" font-size="9" text-anchor="middle">aligned, N-min intervals</text>
-  <rect x="230" y="94" width="182" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="321" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Sliding</text>
-  <text x="321" y="132" fill="#6b7280" font-size="9" text-anchor="middle">N min, M min slide</text>
-  <rect x="430" y="94" width="182" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="521" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Session</text>
-  <text x="521" y="132" fill="#6b7280" font-size="9" text-anchor="middle">activity-gap based</text>
-  <rect x="630" y="94" width="182" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="721" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Global</text>
-  <text x="721" y="132" fill="#6b7280" font-size="9" text-anchor="middle">single per key</text>
-  <text x="30" y="170" fill="#f97316" font-size="12" font-weight="700">Watermarks</text>
-  <rect x="30" y="184" width="240" height="48" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
-  <text x="150" y="204" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Event Time</text>
-  <text x="150" y="222" fill="#6b7280" font-size="9" text-anchor="middle">source timestamp</text>
-  <line x1="270" y1="208" x2="290" y2="208" stroke="#f97316" stroke-width="1.5" marker-end="url(#a-orange)"/>
-  <rect x="290" y="184" width="240" height="48" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
-  <text x="410" y="204" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">W(t)</text>
-  <text x="410" y="222" fill="#6b7280" font-size="9" text-anchor="middle">max seen - lateness</text>
-  <line x1="530" y1="208" x2="550" y2="208" stroke="#f97316" stroke-width="1.5" marker-end="url(#a-orange)"/>
-  <rect x="550" y="184" width="240" height="48" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
-  <text x="670" y="204" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Late Data</text>
-  <text x="670" y="222" fill="#6b7280" font-size="9" text-anchor="middle">&lt; W(t) -&gt; side output</text>
-  <text x="30" y="262" fill="#16a34a" font-size="12" font-weight="700">Triggers</text>
-  <rect x="30" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="121" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Processing Time</text>
-  <text x="121" y="314" fill="#6b7280" font-size="9" text-anchor="middle">every N sec</text>
-  <rect x="230" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="321" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Element Count</text>
-  <text x="321" y="314" fill="#6b7280" font-size="9" text-anchor="middle">every N elements</text>
-  <rect x="430" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="521" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Watermark</text>
-  <text x="521" y="314" fill="#6b7280" font-size="9" text-anchor="middle">when W advances</text>
-  <rect x="630" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <text x="721" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Composite</text>
-  <text x="721" y="314" fill="#6b7280" font-size="9" text-anchor="middle">OR/AND of triggers</text>
-  <text x="30" y="360" fill="#9333ea" font-size="12" font-weight="700">Accumulation Modes</text>
-  <rect x="30" y="374" width="240" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="150" y="394" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Discarding</text>
-  <text x="150" y="412" fill="#6b7280" font-size="9" text-anchor="middle">reset per pane</text>
-  <rect x="290" y="374" width="240" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="410" y="394" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Accumulating</text>
-  <text x="410" y="412" fill="#6b7280" font-size="9" text-anchor="middle">retract + re-emit</text>
-  <rect x="550" y="374" width="240" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
-  <text x="670" y="394" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Acc &amp; Retract</text>
-  <text x="670" y="412" fill="#6b7280" font-size="9" text-anchor="middle">correct past</text>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="30" y="32" fill="#f1f5f9" font-size="16" font-weight="700">Dataflow Model — Windowing, Watermarks &amp; Triggers</text>
+  <text x="30" y="50" fill="#94a3b8" font-size="11">Unified model underpinning Apache Beam, Flink, and modern stream processing</text>
+
+  <!-- Windowing Section (Primary / Cyan) -->
+  <text x="30" y="80" fill="#22d3ee" font-size="12" font-weight="700">Windowing</text>
+  <rect x="30" y="94" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="30" y="94" width="182" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="121" y="114" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Fixed</text>
+  <text x="121" y="132" fill="#94a3b8" font-size="9" text-anchor="middle">aligned, N-min intervals</text>
+  <rect x="230" y="94" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="230" y="94" width="182" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="321" y="114" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Sliding</text>
+  <text x="321" y="132" fill="#94a3b8" font-size="9" text-anchor="middle">N min, M min slide</text>
+  <rect x="430" y="94" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="430" y="94" width="182" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="521" y="114" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Session</text>
+  <text x="521" y="132" fill="#94a3b8" font-size="9" text-anchor="middle">activity-gap based</text>
+  <rect x="630" y="94" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="630" y="94" width="182" height="48" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="721" y="114" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Global</text>
+  <text x="721" y="132" fill="#94a3b8" font-size="9" text-anchor="middle">single per key</text>
+
+  <!-- Watermarks Section (Accent / Amber) -->
+  <text x="30" y="170" fill="#fbbf24" font-size="12" font-weight="700">Watermarks</text>
+  <rect x="30" y="184" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="30" y="184" width="240" height="48" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="150" y="204" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Event Time</text>
+  <text x="150" y="222" fill="#94a3b8" font-size="9" text-anchor="middle">source timestamp</text>
+  <line x1="270" y1="208" x2="290" y2="208" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+  <rect x="290" y="184" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="290" y="184" width="240" height="48" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="410" y="204" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">W(t)</text>
+  <text x="410" y="222" fill="#94a3b8" font-size="9" text-anchor="middle">max seen - lateness</text>
+  <line x1="530" y1="208" x2="550" y2="208" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+  <rect x="550" y="184" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="550" y="184" width="240" height="48" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="670" y="204" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Late Data</text>
+  <text x="670" y="222" fill="#94a3b8" font-size="9" text-anchor="middle">&lt; W(t) -&gt; side output</text>
+
+  <!-- Triggers Section (Secondary / Emerald) -->
+  <text x="30" y="262" fill="#34d399" font-size="12" font-weight="700">Triggers</text>
+  <rect x="30" y="276" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="30" y="276" width="182" height="48" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="121" y="296" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Processing Time</text>
+  <text x="121" y="314" fill="#94a3b8" font-size="9" text-anchor="middle">every N sec</text>
+  <rect x="230" y="276" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="230" y="276" width="182" height="48" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="321" y="296" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Element Count</text>
+  <text x="321" y="314" fill="#94a3b8" font-size="9" text-anchor="middle">every N elements</text>
+  <rect x="430" y="276" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="430" y="276" width="182" height="48" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="521" y="296" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Watermark</text>
+  <text x="521" y="314" fill="#94a3b8" font-size="9" text-anchor="middle">when W advances</text>
+  <rect x="630" y="276" width="182" height="48" rx="8" fill="#0f172a"/>
+  <rect x="630" y="276" width="182" height="48" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="721" y="296" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Composite</text>
+  <text x="721" y="314" fill="#94a3b8" font-size="9" text-anchor="middle">OR/AND of triggers</text>
+
+  <!-- Accumulation Modes Section (Tertiary / Violet) -->
+  <text x="30" y="360" fill="#a78bfa" font-size="12" font-weight="700">Accumulation Modes</text>
+  <rect x="30" y="374" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="30" y="374" width="240" height="48" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="150" y="394" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Discarding</text>
+  <text x="150" y="412" fill="#94a3b8" font-size="9" text-anchor="middle">reset per pane</text>
+  <rect x="290" y="374" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="290" y="374" width="240" height="48" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="410" y="394" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Accumulating</text>
+  <text x="410" y="412" fill="#94a3b8" font-size="9" text-anchor="middle">retract + re-emit</text>
+  <rect x="550" y="374" width="240" height="48" rx="8" fill="#0f172a"/>
+  <rect x="550" y="374" width="240" height="48" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="670" y="394" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Acc &amp; Retract</text>
+  <text x="670" y="412" fill="#94a3b8" font-size="9" text-anchor="middle">correct past</text>
 </svg>

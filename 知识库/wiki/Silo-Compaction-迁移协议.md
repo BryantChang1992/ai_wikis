@@ -16,7 +16,7 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-diagram: "diagram/silo-compaction-scheduling.svg"
+diagram: "../diagram/silo-compaction-scheduling.svg"
 
 ---
 

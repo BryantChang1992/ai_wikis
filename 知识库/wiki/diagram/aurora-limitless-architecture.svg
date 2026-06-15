@@ -1,90 +1,119 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
   <defs>
-    <marker id="arr-aurora" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arr-aurora-query" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <filter id="shadow-aur" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
-    </filter>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
   </defs>
 
-  <rect width="960" height="560" fill="#ffffff"/>
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
 
-  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">Aurora Limitless · Router/Shard 解耦架构</text>
-  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">SIGMOD 2026 · 透明分布式水平扩展 · 三种表类型 · 查询 Pushdown 优化</text>
+  <!-- Title -->
+  <text x="480" y="32" fill="white" font-size="16" font-weight="700" text-anchor="middle">Aurora Limitless · Router/Shard 解耦架构</text>
+  <text x="480" y="54" fill="#94a3b8" font-size="11" text-anchor="middle">SIGMOD 2026 · 透明分布式水平扩展 · 三种表类型 · 查询 Pushdown 优化</text>
 
-  <!-- ====== Architecture layers ====== -->
-  <!-- Client -->
-  <rect x="360" y="75" width="240" height="34" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5"/>
-  <text x="480" y="97" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#374151" text-anchor="middle">Client (PostgreSQL 协议)</text>
+  <!-- Client (Primary - cyan) -->
+  <rect x="360" y="75" width="240" height="34" rx="8" fill="#0f172a"/>
+  <rect x="360" y="75" width="240" height="34" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="480" y="97" fill="white" font-size="12" font-weight="600" text-anchor="middle">Client (PostgreSQL 协议)</text>
 
-  <line x1="480" y1="109" x2="480" y2="130" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-aurora)"/>
+  <line x1="480" y1="109" x2="480" y2="128" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
 
-  <!-- DNS LB -->
-  <rect x="330" y="135" width="300" height="30" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
-  <text x="480" y="155" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">DNS Load Balancer</text>
+  <!-- DNS LB (Primary - cyan) -->
+  <rect x="330" y="135" width="300" height="30" rx="6" fill="#0f172a"/>
+  <rect x="330" y="135" width="300" height="30" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="480" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">DNS Load Balancer</text>
 
-  <line x1="480" y1="165" x2="480" y2="185" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-aurora)"/>
+  <line x1="480" y1="165" x2="480" y2="183" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
 
-  <!-- Router layer -->
-  <rect x="30" y="190" width="900" height="55" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" filter="url(#shadow-aur)"/>
+  <!-- Router Layer Region (Primary - cyan) -->
+  <rect x="30" y="190" width="900" height="55" rx="10" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="42" y="206" fill="#22d3ee" font-size="9" font-weight="600">Router Layer (无状态)</text>
 
-  <text x="70" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">Router-1</text>
-  <text x="70" y="238" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#3b82f6" text-anchor="middle">无状态</text>
+  <!-- Router boxes -->
+  <rect x="50" y="215" width="160" height="24" rx="5" fill="#0f172a"/>
+  <rect x="50" y="215" width="160" height="24" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="130" y="232" fill="white" font-size="11" font-weight="600" text-anchor="middle">Router-1</text>
 
-  <text x="310" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">Router-2</text>
-  <text x="310" y="238" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#3b82f6" text-anchor="middle">无状态</text>
+  <rect x="270" y="215" width="160" height="24" rx="5" fill="#0f172a"/>
+  <rect x="270" y="215" width="160" height="24" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="350" y="232" fill="white" font-size="11" font-weight="600" text-anchor="middle">Router-2</text>
 
-  <text x="650" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">Router-3</text>
-  <text x="650" y="238" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#3b82f6" text-anchor="middle">无状态</text>
+  <rect x="570" y="215" width="160" height="24" rx="5" fill="#0f172a"/>
+  <rect x="570" y="215" width="160" height="24" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="650" y="232" fill="white" font-size="11" font-weight="600" text-anchor="middle">Router-3</text>
 
-  <text x="850" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">(Schema + Topology + Shard Map)</text>
+  <text x="850" y="232" fill="#94a3b8" font-size="10" text-anchor="middle">Schema + Topology + Shard Map</text>
 
-  <!-- Down arrows to shards -->
-  <line x1="480" y1="245" x2="480" y2="270" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-aurora)"/>
+  <!-- Arrows Router → Shards -->
+  <line x1="480" y1="245" x2="480" y2="268" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
 
-  <!-- Shard layer -->
-  <rect x="30" y="275" width="900" height="70" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow-aur)"/>
+  <!-- Shard Layer Region (Secondary - emerald) -->
+  <rect x="30" y="275" width="900" height="70" rx="10" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="42" y="291" fill="#34d399" font-size="9" font-weight="600">Shard Layer (有状态 Aurora PG)</text>
 
-  <rect x="60" y="290" width="180" height="40" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="150" y="310" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">Shard A</text>
-  <text x="150" y="326" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#16a34a" text-anchor="middle">Aurora PG (有状态)</text>
+  <!-- Shard boxes -->
+  <rect x="60" y="298" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="60" y="298" width="180" height="40" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="150" y="316" fill="white" font-size="11" font-weight="600" text-anchor="middle">Shard A</text>
+  <text x="150" y="330" fill="#6ee7b7" font-size="9" text-anchor="middle">Aurora PG · 有状态</text>
 
-  <rect x="270" y="290" width="180" height="40" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="360" y="310" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">Shard B</text>
-  <text x="360" y="326" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#16a34a" text-anchor="middle">Aurora PG (有状态)</text>
+  <rect x="270" y="298" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="270" y="298" width="180" height="40" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="360" y="316" fill="white" font-size="11" font-weight="600" text-anchor="middle">Shard B</text>
+  <text x="360" y="330" fill="#6ee7b7" font-size="9" text-anchor="middle">Aurora PG · 有状态</text>
 
-  <rect x="490" y="290" width="180" height="40" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="580" y="310" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">Shard C</text>
-  <text x="580" y="326" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#16a34a" text-anchor="middle">Aurora PG (有状态)</text>
+  <rect x="490" y="298" width="180" height="40" rx="6" fill="#0f172a"/>
+  <rect x="490" y="298" width="180" height="40" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="580" y="316" fill="white" font-size="11" font-weight="600" text-anchor="middle">Shard C</text>
+  <text x="580" y="330" fill="#6ee7b7" font-size="9" text-anchor="middle">Aurora PG · 有状态</text>
 
-  <text x="780" y="315" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">0-2 Standby per Shard</text>
+  <text x="780" y="315" fill="#94a3b8" font-size="9" text-anchor="middle">0-2 Standby per Shard</text>
 
-  <line x1="480" y1="345" x2="480" y2="370" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-aurora)"/>
+  <!-- Arrow Shard → Storage -->
+  <line x1="480" y1="345" x2="480" y2="368" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
 
-  <!-- Storage -->
-  <rect x="200" y="375" width="560" height="36" rx="8" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1.5"/>
-  <text x="480" y="398" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#3730a3" text-anchor="middle">Aurora Storage (3 AZ · 6 Replicas · Quorum Writes)</text>
+  <!-- Storage Layer (Tertiary - violet) -->
+  <rect x="200" y="375" width="560" height="36" rx="8" fill="#0f172a"/>
+  <rect x="200" y="375" width="560" height="36" rx="8" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="480" y="398" fill="white" font-size="12" font-weight="600" text-anchor="middle">Aurora Storage (3 AZ · 6 Replicas · Quorum Writes)</text>
 
-  <!-- ====== Table Types ====== -->
-  <rect x="30" y="428" width="290" height="110" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
-  <text x="175" y="450" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">Sharded Table</text>
-  <text x="50" y="472" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Hash(shard_key) 水平分区</text>
-  <text x="50" y="490" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">支持 Co-location · 单 Shard Join</text>
-  <text x="50" y="508" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">例: customers, orders</text>
+  <!-- Table Types -->
+  <!-- Sharded Table (Primary - cyan) -->
+  <rect x="30" y="428" width="290" height="110" rx="10" fill="#0f172a"/>
+  <rect x="30" y="428" width="290" height="110" rx="10" fill="rgba(8,51,68,0.25)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="175" y="450" fill="#22d3ee" font-size="12" font-weight="600" text-anchor="middle">Sharded Table</text>
+  <text x="50" y="472" fill="#94a3b8" font-size="9">Hash(shard_key) 水平分区</text>
+  <text x="50" y="490" fill="#94a3b8" font-size="9">支持 Co-location · 单 Shard Join</text>
+  <text x="50" y="508" fill="#64748b" font-size="8">例: customers, orders</text>
 
-  <rect x="335" y="428" width="290" height="110" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-  <text x="480" y="450" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">Reference Table</text>
-  <text x="355" y="472" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">全量复制到每个 Shard</text>
-  <text x="355" y="490" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">支持内连接 / 外连接 Pushdown</text>
-  <text x="355" y="508" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">例: tax_rates, lookup 表</text>
+  <!-- Reference Table (Secondary - emerald) -->
+  <rect x="335" y="428" width="290" height="110" rx="10" fill="#0f172a"/>
+  <rect x="335" y="428" width="290" height="110" rx="10" fill="rgba(6,78,59,0.25)" stroke="#34d399" stroke-width="1"/>
+  <text x="480" y="450" fill="#34d399" font-size="12" font-weight="600" text-anchor="middle">Reference Table</text>
+  <text x="355" y="472" fill="#94a3b8" font-size="9">全量复制到每个 Shard</text>
+  <text x="355" y="490" fill="#94a3b8" font-size="9">支持内连接 / 外连接 Pushdown</text>
+  <text x="355" y="508" fill="#64748b" font-size="8">例: tax_rates, lookup 表</text>
 
-  <rect x="640" y="428" width="290" height="110" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
-  <text x="785" y="450" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#92400e" text-anchor="middle">Standard Table</text>
-  <text x="660" y="472" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">单 Shard 存放</text>
-  <text x="660" y="490" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">不便分片 · 导入过渡期</text>
-  <text x="660" y="508" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">例: 遗留表</text>
+  <!-- Standard Table (Accent - amber) -->
+  <rect x="640" y="428" width="290" height="110" rx="10" fill="#0f172a"/>
+  <rect x="640" y="428" width="290" height="110" rx="10" fill="rgba(120,53,15,0.25)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="785" y="450" fill="#fbbf24" font-size="12" font-weight="600" text-anchor="middle">Standard Table</text>
+  <text x="660" y="472" fill="#94a3b8" font-size="9">单 Shard 存放</text>
+  <text x="660" y="490" fill="#94a3b8" font-size="9">不便分片 · 导入过渡期</text>
+  <text x="660" y="508" fill="#64748b" font-size="8">例: 遗留表</text>
 </svg>

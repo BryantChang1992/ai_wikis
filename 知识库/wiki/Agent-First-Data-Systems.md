@@ -8,10 +8,8 @@ tags:
   - 查询优化
   - CIDR-2026
 related:
-  - "[[Agent-First-Data-Systems]]"
   - "[[Agent-First-Branch-Transactions-分支事务]]"
   - "[[Agentic-Memory-语义缓存]]"
-  - "[[Agent-First-Data-Systems]]"
 sources:
   - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
 created: 2026-06-15

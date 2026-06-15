@@ -20,7 +20,6 @@ related:
   - "[[LSM-Tree-写放大]]"
   - "[[LSM-Tree-合并优化]]"
   - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-Tree-RUM猜想]]"
 ---
 
 # LSM-Tree 自动调参 (Auto-Tuning)

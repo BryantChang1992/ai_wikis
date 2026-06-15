@@ -9,10 +9,7 @@ tags:
   - concurrency-control
 related:
   - "[[事务模型深度调研]]"
-  - "[[事务模型深度调研]]"
-  - "[[事务模型深度调研]]"
   - "[[CockroachDB-Leader-Lease-整体设计]]"
-  - "[[事务模型深度调研]]"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

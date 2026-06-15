@@ -12,6 +12,11 @@ updated: 2026-06-14
 
 ## 2026-06-15
 
+- `[09:45] CTO Agent`: **INGEST** — Aurora PostgreSQL Limitless Database (SIGMOD 2026 Industry)
+  - 精读分析 + 全文翻译 + 3 张 wiki 卡片
+  - 卡片: Aurora-Limitless-分布式架构, Aurora-Limitless-时间戳事务, Aurora-Limitless-自适应扩缩容
+  - 替代第 5 篇 LSM-Raft (Poster, PDF 无法获取)
+
 - `[09:25-09:30] CTO Agent`: **INGEST** — 4 篇论文批量入库（精读分析 + 全文翻译 + concept cards）
   - CockroachDB Leader Leases (SIGMOD 2026): 精读分析 + 全文翻译 + 3 张 wiki 卡片
   - Rosé (CIDR 2026): 精读分析 + 全文翻译 + 2 张 wiki 卡片

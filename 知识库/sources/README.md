@@ -76,6 +76,10 @@ sources/papers/
 - [LSM-Raft/](papers/LSM-Raft/) — SIGMOD 2026 Poster，Tsinghua，LSM-tree 与 Raft 协同优化（⚠️ 无法获取）
   - SIGMOD Poster 仅有摘要公开，ACM Cloudflare 封锁，ResearchGate IP 被封
   - 目录已预留，后续若能获取 PDF 再补充 Ingest
+- [Aurora-Limitless/](papers/Aurora-Limitless/) — SIGMOD 2026 Industry，AWS，Aurora PostgreSQL 水平扩展
+  - Aurora-Limitless-SIGMOD2026.pdf（原文，1.7MB）
+  - 精读分析.md / 全文翻译.md ✅
+  - → wiki: Aurora-Limitless-分布式架构.md, Aurora-Limitless-时间戳事务.md, Aurora-Limitless-自适应扩缩容.md
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（7 篇，2026-06-10）

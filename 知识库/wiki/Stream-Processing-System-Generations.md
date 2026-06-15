@@ -18,7 +18,6 @@ related:
   - "[[流处理容错模型]]"
   - "[[流处理乱序数据管理]]"
   - "[[流处理弹性与重配置]]"
-diagram: "../diagram/stream-processing-generations.svg"
 
 ---
 
@@ -30,9 +29,9 @@ diagram: "../diagram/stream-processing-generations.svg"
 
 ## 演化时间线（Figure 1）
 
-![Stream-Processing-System-Generations - 图1](../diagram/Stream-Processing-System-Generations-fig.svg)
+![[diagram/Stream-Processing-System-Generations-fig.svg]]
 
-![Architecture Diagram](../diagram/stream-processing-generations.svg)
+![[diagram/stream-processing-generations.svg]]
 
 ## 三代对比（Table 1）
 

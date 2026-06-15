@@ -16,11 +16,12 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-diagram: "../diagram/cockroachdb-leader-lease-3-layer.svg"
 
 ---
 
 # Liveness Fabric — 去中心化集群故障检测层
+
+![[diagram/cockroachdb-leader-lease-3-layer.svg]]
 
 ## 一句话总结
 

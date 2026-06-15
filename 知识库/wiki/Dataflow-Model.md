@@ -22,7 +22,7 @@ related:
 
 # Dataflow 模型
 
-![Architecture Diagram](../diagram/dataflow-model.svg)
+![[diagram/dataflow-model.svg]]
 ## 定义
 
 **Google Dataflow Model**（Akidau et al., VLDB 2015）是首个**批流统一处理模型**，将批处理定义为流处理的特殊情形（有界数据流）。它用四条核心抽象统一了过去分散在多个系统中的乱序处理、进度追踪、触发和修正机制。

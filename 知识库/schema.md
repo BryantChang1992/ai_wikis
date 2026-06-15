@@ -3,7 +3,7 @@ type: meta
 title: "知识库的结构规则"
 tags: ["meta", "schema"]
 created: 2026-06-14
-updated: 2026-06-14 23:40
+updated: 2026-06-15 10:45
 ---
 
 # 知识库的结构规则
@@ -111,10 +111,48 @@ related:
 
 ## [[wikilink]] 规范
 
-- **页面链接**：`[[页面名]]` — 链接到同一 vault 内的页面
+### 语法
+
+- **页面链接**：`[[页面名]]` — 链接到同一 wiki/ vault 内的页面
 - **标题链接**：`[[页面名#标题]]` — 链接到页面内具体章节
 - **别名链接**：`[[页面名|显示文本]]` — 链接但显示不同文字
 - 每个概念首次出现时优先用 `[[wikilink]]` 而非裸文本
+
+### 引用完整性（强制）
+
+每个 `[[wikilink]]` 引用必须指向 `wiki/` 或 `wiki/synthesis/` 目录下实际存在的 .md 文件。
+
+**Lint 检查维度**：
+
+| 问题类型 | 检测方式 | 严重度 | 处理 |
+|----------|----------|--------|------|
+| **Dangling 引用** | frontmatter `related` 中的 `[[页面名]]` 在 wiki/ 下无对应 .md 文件 | 🔴 阻断 | 删除该引用，或补建对应页面 |
+| **重复引用** | 同一字段内同一 `[[页面名]]` 出现 ≥2 次 | 🟡 警告 | 去重，保留首次出现 |
+| **循环自引** | `related` 中引用了自身页面名 | 🔴 阻断 | 删除 |
+| **来源引用缺失** | `sources` 字段指向的文件在 sources/ 下不存在 | 🟡 警告 | 删除或补源 |
+| **Synthesis 隔离** | wiki/ 根目录页面引用了 `[[synthesis/xxx]]`（synthesis 只能在 related 中交叉引用） | 🟡 警告 | 确认意图，通常移入 related |
+
+**Lint 触发时机**：
+1. 每次 Synthesize 任务（周四定时）自动全量扫描
+2. 每次 Ingest 新卡片后，增量检查新卡片的 related/sources
+3. 所有 dangling 引用必须在同一次会话中修完才能 commit
+
+**去重规则**：
+- `related` 列表中有重复 `[[页面名]]` → 只保留第一个，其余删除
+- 去重时忽略 `#章节` 和 `|别名` 差异（以页面名为去重 key）
+- 例如 `[[事务模型深度调研]]`、`[[事务模型深度调研#MVCC章节]]`、`[[事务模型深度调研\|事务调研]]` 视为同一页面引用，只保留第一个（最完整的，通常带 `#` 锚点的优先）
+
+### GitPage 转义规则
+
+Obsidian wikilink 在 GitPage 上没有 Obsidian wiki 文件，所有引用必须转为原始 GitHub raw URL：
+
+| Obsidian 引用 | GitPage 应转成 |
+|--------------|---------------|
+| `[[wiki/页面名]]` | `https://github.com/BryantChang1992/ai_wikis/blob/master/知识库/wiki/页面名.md` |
+| `[[wiki/synthesis/页面名]]` | `https://github.com/BryantChang1992/ai_wikis/blob/master/知识库/wiki/synthesis/页面名.md` |
+| `[[页面名\|别名]]` | 同上，显示别名 |
+| `[[页面名#章节]]` | 同上 + `#章节锚点` |
+| `sources/papers/...` | `https://github.com/BryantChang1992/ai_wikis/blob/master/知识库/sources/papers/...` |
 
 ## Agent 写入规则
 

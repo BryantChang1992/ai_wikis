@@ -76,6 +76,10 @@ sources/papers/
 - [LSM-Raft/](papers/LSM-Raft/) — SIGMOD 2026 Poster，Tsinghua，LSM-tree 与 Raft 协同优化（⚠️ 无法获取）
   - SIGMOD Poster 仅有摘要公开，ACM Cloudflare 封锁，ResearchGate IP 被封
   - 目录已预留，后续若能获取 PDF 再补充 Ingest
+- [ByteHouse/](papers/ByteHouse/) — SIGMOD 2026 Companion，ByteDance，云原生多模态数仓
+  - ByteHouse-SIGMOD2026.pdf（原文，2.8MB）
+  - 精读分析.md ✅
+  - → wiki: ByteHouse-架构与设计.md, ByteHouse-统一表引擎.md, ByteHouse-多模态查询优化.md
 - [Aurora-Limitless/](papers/Aurora-Limitless/) — SIGMOD 2026 Industry，AWS，Aurora PostgreSQL 水平扩展
   - Aurora-Limitless-SIGMOD2026.pdf（原文，1.7MB）
   - 精读分析.md / 全文翻译.md ✅

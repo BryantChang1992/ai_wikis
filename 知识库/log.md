@@ -128,3 +128,23 @@ updated: 2026-06-15
 - **README 去重**：删除底部 Fluss/InfluxDB/Doris 重复块（Fluss 10条重复全删）
 - **README 补新**：+6张流处理概念卡片（Stream-Processing-System-Generations + 流处理4张 + Dataflow-Model）+ 2张 synthesis（流处理系统演化综述 + 知识库优化方案）
 - **修复后基线**：57张卡片 + 10张综述，全部 frontmatter 完整（type/src/status/tags/related），README 无重复
+
+## 2026-06-15 (续3) — ByteHouse 论文 Ingest
+
+- **源文件归档**：`sources/papers/ByteHouse/` — SIGMOD 2026 Companion
+  - `ByteHouse-SIGMOD2026.pdf`（2.8MB）+ `精读分析.md`
+- **Wiki 卡片** (3张):
+  - `ByteHouse-架构与设计.md` — 三层存算分离 + CrossCache + NexusFS
+  - `ByteHouse-统一表引擎.md` — Document/Chunk 两级抽象 + Stable/Delta Segment MVCC + 自适应 Compaction + Sniffer 格式
+  - `ByteHouse-多模态查询优化.md` — HBO + ML 回归优化 + RANK_FUSION + 分级向量索引 + 三模式执行
+- **Diagram**: `bytehouse-architecture.svg` — 三层完整架构图
+- **关联**: 引用了 Doris 深度调研、事务模型深度调研、Log-as-Database、LSM-Tree
+- **更新**: sources/README.md 索引 + log.md
+
+## 2026-06-15 (续4) — 全量 Diagram 批量修复
+
+- 48张卡片新增 frontmatter diagram 引用（按主题智能匹配）, 57/57 卡片 100% 覆盖
+- 删除 dangling related `[[Flow-Control-Backpressure]]`
+- 新增 `stream-processing-generations.svg` (流处理三代演化)
+- 验证: 0 broken diagram refs, 0 wiki dangling
+- `git commit 7e8ac72` — 80 files, +1740 lines

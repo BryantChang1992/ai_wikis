@@ -480,3 +480,73 @@ READER.md 不是知识节点，是**导航索引页**：
 - 不被 Lint 扫描
 - 内部可用 [[wikilink]] 列出 wiki 页面清单
 - Agent 写入 wiki 新卡片时仍需更新 README.md，但 README 的正确性依赖 Agent 遵守规范，而非 Lint 自动检查
+
+---
+
+## Diagram 规范（技术架构图）
+
+### 工具
+
+统一使用 `fireworks-tech-graph` skill，由 CTO Agent 执行生成。
+
+```bash
+npx skills add yizhiyanhua-ai/fireworks-tech-graph
+```
+
+### 风格
+
+**默认使用 Style 1 (Flat Icon)**：白色背景、tinted 彩色组件框、蓝色系数据流箭头。
+
+| 属性 | 值 |
+|------|-----|
+| 背景 | `#ffffff` |
+| 组件框 | `rx="8"` 圆角，tinted 背景色（`#eff6ff` / `#f0fdf4` / `#faf5ff` / `#fff7ed` 等） |
+| 文字 | `#111827`（主标题）/ `#6b7280`（副标签） |
+| 箭头 | `stroke-width="1.5"`，颜色按语义：蓝=数据流、绿=存储/持久化、紫=计算/查询、红=异常/Compaction |
+| 字体 | `Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif` |
+
+**为什么不用 Dark Terminal（Style 2）？** 浅色背景在 GitHub README、飞书文档、GitPage 上阅读体验更佳，可读性更强，适合知识库长期维护。
+
+### 输出
+
+每张图同时产出：
+- `.svg` — 矢量源文件，GitHub 直接渲染
+- `.png` — `@2x` 光栅导出（`rsvg-convert -w <2x宽度>`），用于嵌入文档、飞书、GitPage
+
+### 存储位置
+
+```
+知识库/wiki/diagram/
+├── doris-architecture.svg
+├── doris-architecture.png
+├── fluss-architecture.svg
+├── fluss-architecture.png
+└── ...
+```
+
+文件命名：`{主题-slug}-{类型}.svg`，kebab-case。
+
+### 引用方式
+
+Wiki 卡片中用 Markdown 图片语法引用相对路径：
+
+```markdown
+![Architecture Diagram](../diagram/doris-architecture.svg)
+```
+
+GitPage 发布时需转义为 GitHub raw URL。
+
+### 配图优先级
+
+| 优先级 | 范围 | 说明 |
+|--------|------|------|
+| **P0** | `wiki/synthesis/*.md` 全部综述页 | 每张至少 1 张主架构图，必须配图 |
+| **P1** | `wiki/` 根目录下架构性强、有对比关系的概念卡片 | 如：架构演进、读写路径、对比分析类卡片 |
+| **P2** | 其余概念卡片 | 按需，信息密度足够时配图 |
+
+### Lint 检查
+
+Diagram 纳入 Lint 体系：
+- **引用完整性**：卡片中 `![...](../diagram/xxx.svg)` 指向的文件必须实际存在于 `diagram/` 目录
+- **命名一致性**：diagram 文件名与卡片主题对应，不允许死链接
+- **SVG 有效性**：每次 commit 前需验证 SVG XML 语法（`python3 -c "import xml.etree.ElementTree as ET; ET.parse('file.svg')"`）

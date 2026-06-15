@@ -37,6 +37,9 @@ sources/  →  wiki/  →  Schema
 
 ### 领域综述（`wiki/synthesis/`）
 - [[wiki/synthesis/LSM-Tree-存储引擎体系综述]] — 从 7 张 LSM 卡片提炼：三条主线（写放大/合并优化/硬件适配）+ RUM 猜想框架
+- [[wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述]] — 🆕 Silo 分布式 Compaction 调度 + Fluss LSM 实践
+- [[wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述]] — 🆕 CockroachDB + Aurora + Rosé + Agent-First 四系统事务设计横向对比
+- [[wiki/synthesis/Fluss-流处理平台架构综述]] — 🆕 Fluss 五大模块综述：Kafka 兼容 + LSM 存储 + Arrow 列式 + Lake 湖仓
 - [[wiki/synthesis/OLAP与TSDB全景综述]] — Doris 与 InfluxDB 横向对比：存储引擎/查询模式/架构趋同趋势
 - [[wiki/synthesis/分布式数据系统一致性体系]] — 元层次提炼：事务层/副本层/会话层 + 协调代价统一框架
 - [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
@@ -78,6 +81,31 @@ sources/  →  wiki/  →  Schema
 - [[wiki/存储计算分离数据库的-Tail-Latency]] — 问题根因(日志链长度差异+CPU争抢)、传统解法为何无效
 - [[wiki/Log-as-the-Database-模式]] — Log-as-Database 设计原理、结构性代价、Kafka 类比
 - [[wiki/Event-Horizon-非对称依赖]] — Event Horizon (CIDR 2026): 半线性化与非对称依赖，降低跨地域协调延迟
+
+### 2026 顶会论文概念卡片 🆕
+
+#### CockroachDB Leader Leases (SIGMOD 2026)
+- [[wiki/CockroachDB-Leader-Lease-整体设计]] — Leader Leases 三层解耦：Lease ← Fortification ← Liveness Fabric，CPU 节省 85%+
+- [[wiki/CockroachDB-Liveness-Fabric-故障检测层]] — 去中心化集群故障检测：有向 support 关系 (epoch, expiration)，O(N_nodes²)
+- [[wiki/CockroachDB-Leader-Fortification]] — Raft 增强领导保证：MsgFortifyLeader 确定性承诺替代心跳超时
+
+#### Aurora PostgreSQL Limitless (SIGMOD 2026 Industry)
+- [[wiki/Aurora-Limitless-分布式架构]] — Router/Shard 解耦架构、三种表类型、co-location、查询 pushdown 优化
+- [[wiki/Aurora-Limitless-时间戳事务]] — Clock-SI + HLC 混合方案、Lead Shard 2PC、外部一致性实现
+- [[wiki/Aurora-Limitless-自适应扩缩容]] — ACU 垂直扩缩 + Table Slice 水平 shard split 二维扩缩
+
+#### Rosé (CIDR 2026)
+- [[wiki/Rosé-异步复制协议设计]] — 主备异步复制：单调前缀一致性、分区灵活配置
+- [[wiki/Rosé-Coordinated-Apply-协调应用]] — WAL/KV 持久化解耦的协调应用机制
+
+#### Silo (FAST 2026)
+- [[wiki/Silo-分布式LSM-Compaction调度]] — 全局 compaction 调度：Anti-hog / Pro-hog 策略、跨节点 compaction 迁移
+- [[wiki/Silo-Compaction-迁移协议]] — Compaction 迁移协议设计：数据一致性、WAL 协调、网络开销
+
+#### Agent-First Data (CIDR 2026)
+- [[wiki/Agent-First-Data-Systems]] — Agent 优先的数据系统架构：分支事务、语义缓存、Agentic Speculation
+- [[wiki/Agent-First-Branch-Transactions-分支事务]] — MVCC 快照 fork + 分支合并策略的 Agent 事务模型
+- [[wiki/Agentic-Memory-语义缓存]] — 基于语义相似度而非精确 key match 的缓存层
 - [[wiki/InfluxDB-数据模型]] — 时序数据模型核心概念：Bucket、Measurement、Tag、Field、Timestamp
 - [[wiki/InfluxDB-TSM存储引擎]] — TSM 引擎（TSI++）结构、时序压缩算法族、碎片化问题
 - [[wiki/InfluxDB-3-列存引擎]] — InfluxDB 3.0 列存引擎：与 TSM 架构对比、读写路径变更、Parquet + Arrow 生态

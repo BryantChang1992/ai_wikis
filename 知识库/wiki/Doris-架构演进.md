@@ -23,6 +23,7 @@ related:
 
 # Doris 架构演进：Palo → 3.0 存算分离
 
+![Architecture Diagram](../diagram/doris-architecture-evolution.svg)
 ## 概述
 
 Apache Doris 经历了从百度内部 OLAP 引擎到 Apache 顶级项目的十多年演进，核心架构从 Shared-Nothing MPP 逐步演进到 3.0 的存算分离。

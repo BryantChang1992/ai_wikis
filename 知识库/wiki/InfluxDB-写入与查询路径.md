@@ -25,6 +25,7 @@ related:
 
 # InfluxDB 写入与查询路径
 
+![Architecture Diagram](../diagram/influxdb-read-write-path.svg)
 ## 一、写入路径对比
 
 ### v1/v2 写入路径 (Go)

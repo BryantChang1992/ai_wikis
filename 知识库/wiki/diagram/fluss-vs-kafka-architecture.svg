@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 490" width="860" height="490">
+  <style>
+    text { font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei",sans-serif; }
+  </style>
+  <defs>
+    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="860" height="490" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Fluss vs Kafka — Architecture Comparison</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">Kafka-compatible protocol on rebuilt storage kernel with Arrow/Parquet lakehouse</text>
+  <text x="30" y="82" fill="#dc2626" font-size="12" font-weight="700">Kafka 2.7.2</text>
+  <rect x="30" y="96" width="350" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="205" y="116" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Producer API</text>
+  <text x="205" y="132" fill="#6b7280" font-size="9" text-anchor="middle">batch send</text>
+  <rect x="30" y="156" width="350" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="205" y="176" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Broker</text>
+  <text x="205" y="192" fill="#6b7280" font-size="9" text-anchor="middle">partition leader + ISR</text>
+  <rect x="30" y="216" width="350" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="205" y="236" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Log Segment</text>
+  <text x="205" y="252" fill="#6b7280" font-size="9" text-anchor="middle">.log + .index + .timeindex</text>
+  <rect x="30" y="276" width="350" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="205" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Consumer</text>
+  <text x="205" y="312" fill="#6b7280" font-size="9" text-anchor="middle">pull + offset commit</text>
+  <rect x="30" y="336" width="350" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="205" y="356" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">ZooKeeper</text>
+  <text x="205" y="372" fill="#6b7280" font-size="9" text-anchor="middle">metadata + controller</text>
+  <text x="440" y="82" fill="#16a34a" font-size="12" font-weight="700">Fluss (Next-Gen)</text>
+  <rect x="440" y="96" width="380" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="630" y="116" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Fluss Client</text>
+  <text x="630" y="132" fill="#6b7280" font-size="9" text-anchor="middle">wire-compat with Kafka</text>
+  <rect x="440" y="156" width="380" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="630" y="176" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Coordinator</text>
+  <text x="630" y="192" fill="#6b7280" font-size="9" text-anchor="middle">ISR + metadata + routing</text>
+  <rect x="440" y="216" width="380" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="630" y="236" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">LogSegment</text>
+  <text x="630" y="252" fill="#6b7280" font-size="9" text-anchor="middle">Arrow batch + Parquet</text>
+  <rect x="440" y="276" width="380" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="630" y="296" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">TieredStorage</text>
+  <text x="630" y="312" fill="#6b7280" font-size="9" text-anchor="middle">L0→S3 automatic</text>
+  <rect x="440" y="336" width="380" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="630" y="356" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Lakehouse</text>
+  <text x="630" y="372" fill="#6b7280" font-size="9" text-anchor="middle">Iceberg catalog + query</text>
+  <line x1="385" y1="120" x2="432" y2="120" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="409" y="114" fill="#9333ea" font-size="7" text-anchor="middle">→</text>
+  <line x1="385" y1="180" x2="432" y2="180" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="409" y="174" fill="#9333ea" font-size="7" text-anchor="middle">→</text>
+  <line x1="385" y1="240" x2="432" y2="240" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="409" y="234" fill="#9333ea" font-size="7" text-anchor="middle">→</text>
+  <line x1="385" y1="300" x2="432" y2="300" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="409" y="294" fill="#9333ea" font-size="7" text-anchor="middle">→</text>
+  <line x1="385" y1="360" x2="432" y2="360" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="409" y="354" fill="#9333ea" font-size="7" text-anchor="middle">→</text>
+  <text x="30" y="410" fill="#9333ea" font-size="12" font-weight="700">Key Differentiation</text>
+  <rect x="30" y="426" width="182" height="44" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="121" y="448" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Arrow Col.</text>
+  <text x="121" y="464" fill="#6b7280" font-size="9" text-anchor="middle">batch format</text>
+  <rect x="230" y="426" width="182" height="44" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="321" y="448" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Parquet Lake</text>
+  <text x="321" y="464" fill="#6b7280" font-size="9" text-anchor="middle">open table</text>
+  <rect x="430" y="426" width="182" height="44" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="521" y="448" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Tiered Store</text>
+  <text x="521" y="464" fill="#6b7280" font-size="9" text-anchor="middle">∞ retention</text>
+  <rect x="630" y="426" width="182" height="44" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="721" y="448" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Native Flink</text>
+  <text x="721" y="464" fill="#6b7280" font-size="9" text-anchor="middle">SQL engine</text>
+</svg>

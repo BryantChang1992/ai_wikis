@@ -22,6 +22,7 @@ updated: 2026-06-15
 
 # CockroachDB Leader-Lease — 可扩展多组租约方案
 
+![Architecture Diagram](../diagram/cockroachdb-leader-lease.svg)
 ## 一句话总结
 
 CockroachDB 通过 **Liveness Fabric（共享故障检测层）+ Leader Fortification（增强 Raft 领导保证）** 将 lease 维护成本从 O(N_groups) 降到 O(N_nodes²)，**CPU 节省 85%+**，同时消除了集中化 lease 在部分网络分区下的永久不可用问题。

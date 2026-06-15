@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 390" width="820" height="390">
+  <style>
+    text { font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei",sans-serif; }
+  </style>
+  <defs>
+    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="820" height="390" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">LSM-Tree Write Amplification</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">Total bytes written to disk / bytes inserted — grows with level depth</text>
+  <rect x="20" y="80" width="118" height="52" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="79" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">Insert</text>
+  <text x="79" y="116" fill="#6b7280" font-size="9" text-anchor="middle">1 KB</text>
+  <line x1="138" y1="106" x2="152" y2="106" stroke="#6b7280" stroke-width="1.5" marker-end="url(#a-gray)"/>
+  <rect x="152" y="80" width="118" height="52" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="211" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">WAL</text>
+  <text x="211" y="116" fill="#6b7280" font-size="9" text-anchor="middle">1 KB seq</text>
+  <line x1="270" y1="106" x2="284" y2="106" stroke="#6b7280" stroke-width="1.5" marker-end="url(#a-gray)"/>
+  <rect x="284" y="80" width="118" height="52" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="343" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">MemTable</text>
+  <text x="343" y="116" fill="#6b7280" font-size="9" text-anchor="middle">1 KB mem</text>
+  <line x1="402" y1="106" x2="416" y2="106" stroke="#6b7280" stroke-width="1.5" marker-end="url(#a-gray)"/>
+  <rect x="416" y="80" width="118" height="52" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="475" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L0 Flush</text>
+  <text x="475" y="116" fill="#6b7280" font-size="9" text-anchor="middle">1 KB</text>
+  <line x1="534" y1="106" x2="548" y2="106" stroke="#6b7280" stroke-width="1.5" marker-end="url(#a-gray)"/>
+  <rect x="548" y="80" width="118" height="52" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="607" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L0→L1</text>
+  <text x="607" y="116" fill="#6b7280" font-size="9" text-anchor="middle">~10 KB</text>
+  <line x1="666" y1="106" x2="680" y2="106" stroke="#6b7280" stroke-width="1.5" marker-end="url(#a-gray)"/>
+  <rect x="680" y="80" width="118" height="52" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="739" y="100" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L1→L2</text>
+  <text x="739" y="116" fill="#6b7280" font-size="9" text-anchor="middle">~10×</text>
+  <text x="30" y="160" fill="#dc2626" font-size="12" font-weight="700">Amplification Accumulation</text>
+  <rect x="20" y="176" width="148" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="94" y="198" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">App</text>
+  <text x="94" y="214" fill="#6b7280" font-size="9" text-anchor="middle">1×</text>
+  <text x="175" y="200" fill="#ef4444" font-size="14">+</text>
+  <rect x="185" y="176" width="148" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="259" y="198" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">WAL</text>
+  <text x="259" y="214" fill="#6b7280" font-size="9" text-anchor="middle">1×</text>
+  <text x="340" y="200" fill="#ef4444" font-size="14">+</text>
+  <rect x="350" y="176" width="148" height="48" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="424" y="198" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L0 Flush</text>
+  <text x="424" y="214" fill="#6b7280" font-size="9" text-anchor="middle">~1×</text>
+  <text x="505" y="200" fill="#ef4444" font-size="14">+</text>
+  <rect x="515" y="176" width="148" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="589" y="198" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L0→L1</text>
+  <text x="589" y="214" fill="#6b7280" font-size="9" text-anchor="middle">~10×</text>
+  <text x="670" y="200" fill="#ef4444" font-size="14">+</text>
+  <rect x="680" y="176" width="148" height="48" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="754" y="198" fill="#111827" font-size="10" font-weight="600" text-anchor="middle">L1→L2</text>
+  <text x="754" y="214" fill="#6b7280" font-size="9" text-anchor="middle">10×/level</text>
+  <text x="30" y="258" fill="#16a34a" font-size="12" font-weight="700">Mitigation</text>
+  <rect x="30" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="121" y="298" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Tiered Merge</text>
+  <text x="121" y="314" fill="#6b7280" font-size="9" text-anchor="middle">reduce freq</text>
+  <rect x="230" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="321" y="298" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Universal</text>
+  <text x="321" y="314" fill="#6b7280" font-size="9" text-anchor="middle">sort-then-merge</text>
+  <rect x="430" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="521" y="298" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">KV Separation</text>
+  <text x="521" y="314" fill="#6b7280" font-size="9" text-anchor="middle">values in log</text>
+  <rect x="630" y="276" width="182" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="721" y="298" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Zoned NS</text>
+  <text x="721" y="314" fill="#6b7280" font-size="9" text-anchor="middle">HW alignment</text>
+  <g transform="translate(30,360)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="20" y="12" fill="#6b7280" font-size="10">Write Path</text>
+    <rect x="140" y="0" width="14" height="14" rx="3" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+    <text x="160" y="12" fill="#6b7280" font-size="10">Amplification</text>
+    <rect x="280" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="300" y="12" fill="#6b7280" font-size="10">Mitigation</text>
+  </g>
+</svg>

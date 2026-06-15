@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <style>
+    text { font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei",sans-serif; }
+  </style>
+  <defs>
+    <marker id="a-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="820" height="420" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">InfluxDB Write &amp; Read Path</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">Write: Line Protocol → WAL → TSM cache → Parquet. Read: TSI Index → Bloom → Cache → Arrow</text>
+  <text x="30" y="82" fill="#2563eb" font-size="12" font-weight="700">Write Path (Time-Ordered)</text>
+  <rect x="30" y="96" width="370" height="52" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="50" y="116" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Line Protocol</text>
+  <text x="50" y="132" fill="#6b7280" font-size="9" text-anchor="start">measurement,tags fields ts</text>
+  <line x1="400" y1="122" x2="434" y2="122" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a-blue)"/>
+  <rect x="30" y="162" width="370" height="52" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="50" y="182" fill="#111827" font-size="12" font-weight="600" text-anchor="start">WAL Append</text>
+  <text x="50" y="198" fill="#6b7280" font-size="9" text-anchor="start">sequential durability</text>
+  <line x1="400" y1="188" x2="434" y2="188" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a-blue)"/>
+  <rect x="30" y="228" width="370" height="52" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="50" y="248" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Cache → TSM</text>
+  <text x="50" y="264" fill="#6b7280" font-size="9" text-anchor="start">dict compress → file</text>
+  <line x1="400" y1="254" x2="434" y2="254" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a-blue)"/>
+  <rect x="30" y="294" width="370" height="52" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="50" y="314" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Parquet (v3)</text>
+  <text x="50" y="330" fill="#6b7280" font-size="9" text-anchor="start">Arrow Flight write</text>
+  <text x="440" y="82" fill="#9333ea" font-size="12" font-weight="700">Read Path</text>
+  <rect x="440" y="96" width="370" height="52" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="460" y="116" fill="#111827" font-size="12" font-weight="600" text-anchor="start">TSI Index</text>
+  <text x="460" y="132" fill="#6b7280" font-size="9" text-anchor="start">tag → seriesID lookup</text>
+  <rect x="440" y="162" width="370" height="52" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="460" y="182" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Bloom Filter</text>
+  <text x="460" y="198" fill="#6b7280" font-size="9" text-anchor="start">TSM existence check</text>
+  <rect x="440" y="228" width="370" height="52" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="460" y="248" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Cache Read</text>
+  <text x="460" y="264" fill="#6b7280" font-size="9" text-anchor="start">WAL + TSM block cache</text>
+  <rect x="440" y="294" width="370" height="52" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="460" y="314" fill="#111827" font-size="12" font-weight="600" text-anchor="start">Parquet Read</text>
+  <text x="460" y="330" fill="#6b7280" font-size="9" text-anchor="start">Arrow + DataFusion</text>
+  <g transform="translate(30,390)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="20" y="12" fill="#6b7280" font-size="10">Write Path</text>
+    <rect x="160" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
+    <text x="180" y="12" fill="#6b7280" font-size="10">Read Path</text>
+    <rect x="320" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="340" y="12" fill="#6b7280" font-size="10">v3.0 Arrow</text>
+  </g>
+</svg>

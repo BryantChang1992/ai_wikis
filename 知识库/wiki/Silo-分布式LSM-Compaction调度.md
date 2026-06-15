@@ -23,6 +23,7 @@ updated: 2026-06-15
 
 # Silo — 分布式 LSM-Tree Compaction 全局调度
 
+![Architecture Diagram](../diagram/silo-compaction-scheduling.svg)
 ## 一句话总结
 
 第一个将 LSM-Tree compaction 调度从**单节点提升到集群层面**的框架：用 WAF（写放大因子）作为跨节点可比较的健康度量信号，通过四种迁移策略（anti-hog/pro-hog/cross-zone/延迟判断）消除 tail node 的 compaction 瓶颈，将 SLO 满足率提升 +57%，P99 读延迟降低 -62%。

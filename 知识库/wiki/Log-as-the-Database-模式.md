@@ -28,6 +28,7 @@ related:
 
 ---
 
+![Architecture Diagram](../diagram/log-as-the-database.svg)
 ## 1. 什么是 Log-as-the-Database？
 
 在传统单机数据库中，WAL（Write-Ahead Log）只是持久化的第一站——数据页最终会被刷入磁盘。WAL 是"保险"，不是"真相来源"。

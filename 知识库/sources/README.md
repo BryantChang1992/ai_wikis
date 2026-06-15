@@ -82,10 +82,9 @@ sources/papers/
   - → wiki: Aurora-Limitless-分布式架构.md, Aurora-Limitless-时间戳事务.md, Aurora-Limitless-自适应扩缩容.md
 
 ### web/
-- [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（7 篇，2026-06-10）
-  - 01-整体架构对比.md / 02-存储引擎模块.md / 03-分布式协调.md / 04-网络与RPC.md
-  - 05-客户端与计算集成.md / 06-Lake层与湖仓融合.md / 07-模块对应关系总表.md
-  - 原文件: tech_research/fluss/*.html
+- [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
+  - 01-整体架构对比.md（已入库）
+  - 02~07 待补（原文件: tech_research/fluss/*.html，需从 HTML 转换为 md）
 
 ### notes/
 *(待入库)*

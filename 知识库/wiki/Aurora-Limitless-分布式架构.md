@@ -1,7 +1,16 @@
 ---
 type: concept
-tags: [distributed-database, aurora, architecture, sharding, postgresql]
-related: [[Aurora-存储计算分离]] [[Aurora-Limitless-时间戳事务]] [[Aurora-Limitless-自适应扩缩容]] [[概念-两阶段提交]]
+tags:
+  - distributed-database
+  - aurora
+  - architecture
+  - sharding
+  - postgresql
+related:
+  - [[Aurora-存储计算分离]]
+  - [[Aurora-Limitless-时间戳事务]]
+  - [[Aurora-Limitless-自适应扩缩容]]
+  - [[概念-两阶段提交]]
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

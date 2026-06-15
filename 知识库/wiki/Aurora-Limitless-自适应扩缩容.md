@@ -1,7 +1,15 @@
 ---
 type: concept
-tags: [distributed-database, aurora, scaling, serverless, cloud-native]
-related: [[Aurora-Limitless-分布式架构]] [[Aurora-Limitless-时间戳事务]] [[Aurora-存储计算分离]]
+tags:
+  - distributed-database
+  - aurora
+  - scaling
+  - serverless
+  - cloud-native
+related:
+  - [[Aurora-Limitless-分布式架构]]
+  - [[Aurora-Limitless-时间戳事务]]
+  - [[Aurora-存储计算分离]]
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

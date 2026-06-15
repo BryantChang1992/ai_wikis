@@ -1,7 +1,18 @@
 ---
 type: concept
-tags: [distributed-database, aurora, transactions, snapshot-isolation, timestamp, concurrency-control]
-related: [[概念-Snapshot-Isolation]] [[概念-MVCC]] [[概念-两阶段提交]] [[CockroachDB-Leader-Leases]] [[事务模型深度调研]]
+tags:
+  - distributed-database
+  - aurora
+  - transactions
+  - snapshot-isolation
+  - timestamp
+  - concurrency-control
+related:
+  - [[概念-Snapshot-Isolation]]
+  - [[概念-MVCC]]
+  - [[概念-两阶段提交]]
+  - [[CockroachDB-Leader-Leases]]
+  - [[事务模型深度调研]]
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

@@ -19,6 +19,8 @@ updated: 2026-06-14
 status: draft
 related:
   - "[[事务模型深度调研]]"
+diagram: "diagram/event-horizon-asymmetric-dep.svg"
+
 ---
 
 # Event Horizon：非对称依赖与半线性化

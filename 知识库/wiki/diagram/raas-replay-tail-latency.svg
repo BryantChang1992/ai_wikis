@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380">
+  <defs>
+    <marker id="arr-raas" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-raas-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+    <filter id="shadow-rs" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="380" fill="#ffffff"/>
+
+  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">RaaS: Replay-as-a-Service · 消除 Tail Latency</text>
+  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">SIGMOD 2026 · 存储计算分离场景下 Replay 请求到热副本 · 消除日志链长度差异导致的 Tail Latency</text>
+
+  <!-- Problem -->
+  <rect x="30" y="75" width="440" height="130" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5" filter="url(#shadow-rs)"/>
+  <text x="250" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#dc2626" text-anchor="middle">问题: 日志链长度差异 → Tail Latency</text>
+
+  <text x="50" y="125" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Compute Node A: 本地日志链长 (缓存热) → 快 (ms)</text>
+  <text x="50" y="145" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Compute Node B: 日志链短 (缓存冷) → 慢 (s)</text>
+  <text x="50" y="165" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Root Cause: 存储计算分离 → 无数据亲和性</text>
+  <text x="50" y="185" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#dc2626">└ 传统解法: Caching / Preloading → 治标不治本</text>
+
+  <!-- Solution -->
+  <rect x="490" y="75" width="440" height="130" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow-rs)"/>
+  <text x="710" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">RaaS 解决方案</text>
+
+  <text x="510" y="125" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Replay Request 到热副本 (缓存节点)</text>
+  <text x="510" y="145" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ 热节点: 本地重放 log → 快路径响应</text>
+  <text x="510" y="165" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a">├ ✓ 消除日志链长度带来的缓存依赖</text>
+  <text x="510" y="185" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a">└ ✓ 利用已有热副本 · 零额外开销</text>
+
+  <!-- Architecture -->
+  <rect x="30" y="220" width="900" height="140" rx="10" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow-rs)"/>
+  <text x="480" y="245" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">RaaS 架构</text>
+
+  <!-- Client -->
+  <rect x="60" y="260" width="120" height="34" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+  <text x="120" y="282" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151" text-anchor="middle">Client</text>
+
+  <line x1="180" y1="277" x2="215" y2="277" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-raas)"/>
+
+  <!-- Node B (cold) -->
+  <rect x="220" y="258" width="160" height="38" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="300" y="274" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle">Node B (冷: 日志链短)</text>
+  <text x="300" y="288" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#dc2626" text-anchor="middle">响应: 2.3s ⚠</text>
+
+  <!-- Replay redirect -->
+  <path d="M 300,296 Q 300,330 480,330 Q 660,330 660,296" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-raas-g)"/>
+  <text x="480" y="355" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a" text-anchor="middle">Replay Request → 热副本</text>
+
+  <!-- Node A (hot) -->
+  <rect x="590" y="258" width="160" height="38" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="670" y="274" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#166534" text-anchor="middle">Node A (热: 日志链长)</text>
+  <text x="670" y="288" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#166534" text-anchor="middle">响应: 12ms ✅</text>
+
+  <line x1="750" y1="277" x2="785" y2="277" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-raas-g)"/>
+
+  <rect x="790" y="260" width="120" height="34" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="850" y="282" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#166534" text-anchor="middle">12ms → Client</text>
+
+  <text x="480" y="370" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">核心洞察: 在存储计算分离架构下, Replay 比 Caching/Preloading 更具确定性地消除 Tail Latency</text>
+</svg>

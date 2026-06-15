@@ -21,6 +21,8 @@ related:
   - "[[InfluxDB-TSM存储引擎]]"
   - "[[InfluxDB-写入与查询路径]]"
   - "[[存储计算分离数据库的-Tail-Latency]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB 3 列存存储引擎

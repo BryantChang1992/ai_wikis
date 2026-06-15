@@ -16,6 +16,8 @@ status: draft
 related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-Kafka兼容层]]"
+diagram: "diagram/fluss-architecture.svg"
+
 ---
 
 # Fluss RPC 与网络层分析

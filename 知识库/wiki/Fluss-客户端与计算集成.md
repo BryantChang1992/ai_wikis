@@ -17,6 +17,8 @@ related:
   - "[[Fluss-存储引擎]]"
   - "[[Fluss-Lake层与湖仓融合]]"
   - "[[Fluss-KV存储-RocksDB]]"
+diagram: "diagram/fluss-architecture.svg"
+
 ---
 
 # Fluss 客户端与计算集成分析

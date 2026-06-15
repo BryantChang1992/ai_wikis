@@ -15,6 +15,8 @@ sources:
   - "sources/papers/Aurora-Limitless/精读分析.md"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
+diagram: "diagram/aurora-limitless-architecture.svg"
+
 ---
 
 # Aurora Limitless 时间戳事务

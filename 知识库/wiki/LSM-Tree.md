@@ -21,6 +21,8 @@ related:
   - "[[LSM-Tree-自动调参]]"
   - "[[LSM-Tree-二级索引]]"
   - "[[LSM-Tree-RUM猜想]]"
+diagram: "diagram/lsm-tree-full-overview.svg"
+
 ---
 
 # LSM-Tree (Log-Structured Merge-Tree)

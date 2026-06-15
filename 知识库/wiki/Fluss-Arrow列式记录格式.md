@@ -16,6 +16,8 @@ related:
   - "[[Fluss-存储引擎]]"
   - "[[Fluss-KV存储-RocksDB]]"
   - "[[Fluss-客户端与计算集成]]"
+diagram: "diagram/fluss-architecture.svg"
+
 ---
 
 # Fluss Arrow 列式记录格式

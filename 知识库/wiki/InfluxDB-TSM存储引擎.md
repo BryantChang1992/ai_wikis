@@ -19,6 +19,8 @@ related:
   - "[[InfluxDB-3-列存引擎]]"
   - "[[LSM-Tree]]"
   - "[[LSM-Tree-写放大]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB TSM 存储引擎

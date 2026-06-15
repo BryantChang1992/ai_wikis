@@ -21,6 +21,8 @@ related:
   - "[[Doris-Compaction-策略]]"
   - "[[LSM-Tree]]"
   - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris Segment v2 存储格式

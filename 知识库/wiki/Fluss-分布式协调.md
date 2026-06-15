@@ -16,6 +16,8 @@ status: draft
 related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-RPC与网络]]"
+diagram: "diagram/fluss-coordinator-server.svg"
+
 ---
 
 # Fluss 分布式协调层分析

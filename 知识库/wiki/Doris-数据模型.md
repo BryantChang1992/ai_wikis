@@ -20,6 +20,8 @@ related:
   - "[[Doris-Segment-v2-存储格式]]"
   - "[[Doris-Compaction-策略]]"
   - "[[LSM-Tree-RUM猜想]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris 数据模型：Duplicate / Aggregate / Unique

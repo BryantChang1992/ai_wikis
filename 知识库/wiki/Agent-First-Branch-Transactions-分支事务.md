@@ -16,6 +16,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+diagram: "diagram/agent-first-data-systems.svg"
+
 ---
 
 # Agent-First Branch Transactions — Agent 优先的分支事务

@@ -17,6 +17,8 @@ related:
   - "[[Fluss-KV存储-RocksDB]]"
   - "[[Fluss-Arrow列式记录格式]]"
   - "[[LSM-Tree]]"
+diagram: "diagram/fluss-storage-engine-3-layer.svg"
+
 ---
 
 # Fluss 存储引擎模块分析

@@ -32,6 +32,8 @@ related:
   - "[[事务模型深度调研]]"
   - "[[LSM-Tree]]"
   - "[[LSM-Tree-RUM猜想]]"
+diagram: "diagram/doris-architecture-evolution.svg"
+
 ---
 
 # Apache Doris 实时分析数据库深度调研

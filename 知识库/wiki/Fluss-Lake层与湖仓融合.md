@@ -17,6 +17,8 @@ related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-客户端与计算集成]]"
   - "[[Fluss-Tiering分层架构]]"
+diagram: "diagram/fluss-lake-backends.svg"
+
 ---
 
 # Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化

@@ -30,6 +30,8 @@ related:
   - "[[InfluxDB-Catalog元数据]]"
   - "[[LSM-Tree]]"
   - "[[事务模型深度调研]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB 深度调研：从 TSM 到列存引擎

@@ -18,6 +18,8 @@ status: draft
 related:
   - "[[Doris-深度调研]]"
   - "[[Doris-MPP-向量化查询引擎]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris Nereids CBO 优化器

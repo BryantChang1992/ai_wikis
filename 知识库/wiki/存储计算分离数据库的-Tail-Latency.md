@@ -19,6 +19,8 @@ related:
   - "[[RaaS-Replay-as-a-Service]]"
   - "[[Log-as-the-Database-模式]]"
   - "[[事务模型深度调研]]"
+diagram: "diagram/raas-replay-tail-latency.svg"
+
 ---
 
 # 存储计算分离数据库的 Tail Latency 问题

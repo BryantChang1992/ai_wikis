@@ -21,6 +21,8 @@ related:
   - "[[LSM-Tree-合并优化]]"
   - "[[LSM-Tree-RUM猜想]]"
   - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris Compaction 策略

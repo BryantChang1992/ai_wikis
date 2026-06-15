@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420">
+  <defs>
+    <marker id="arr-crdb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    </marker>
+    <filter id="shadow-cr" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="420" fill="#ffffff"/>
+
+  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">CockroachDB Leader Leases 三层解耦</text>
+  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">SIGMOD 2026 · Lease ← Fortification ← Liveness Fabric · CPU 节省 85%+</text>
+
+  <!-- ====== Three layers ====== -->
+  <rect x="30" y="80" width="900" height="310" rx="10" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow-cr)"/>
+
+  <!-- Layer 1: Lease -->
+  <rect x="60" y="100" width="840" height="85" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="80" y="125" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#1e40af" text-anchor="middle">L1: Leader Lease (租约)</text>
+
+  <text x="250" y="128" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ 基于时间的 Leader 授权 · 任期内无需心跳确认</text>
+  <text x="250" y="148" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ 替代传统 Raft heartbeat 的巨大改进: Leader 无需每次操作都等 quorum</text>
+  <text x="250" y="168" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">└ 关键: Lease 的有效期由 Fortification 保证</text>
+
+  <!-- Layer 2: Fortification -->
+  <rect x="60" y="195" width="840" height="85" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="80" y="220" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#166534" text-anchor="middle">L2: Leader Fortification (领导强化)</text>
+
+  <text x="285" y="223" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ MsgFortifyLeader: 确定性承诺替代心跳超时推测</text>
+  <text x="285" y="243" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ Raft 增强: Leader 获得 Majority 的显式"我不挑战你"承诺</text>
+  <text x="285" y="263" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">└ 与心跳超时的本质区别: 心跳是"假设没出事"→ Fortification 是"确认没出事"</text>
+
+  <!-- Layer 3: Liveness -->
+  <rect x="60" y="290" width="840" height="85" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="80" y="315" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#6b21a8" text-anchor="middle">L3: Liveness Fabric (故障检测层)</text>
+
+  <text x="282" y="318" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ 去中心化集群故障检测: 每个节点维护有向 support 关系 (epoch, expiration)</text>
+  <text x="282" y="338" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ 复杂度 O(N_nodes²): 每对节点独立维护双向 support graph</text>
+  <text x="282" y="358" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">└ 输出: 上层 Fortification 可据此判断"多少节点还活着"→ Lease 是否有效</text>
+
+  <!-- ====== Bottom: impact summary ====== -->
+  <text x="480" y="410" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#dc2626" text-anchor="middle">核心影响: CPU 节省 85%+ · Leader Lease 消除每次操作的心跳等待 · 延迟降低 · 吞吐提升</text>
+</svg>

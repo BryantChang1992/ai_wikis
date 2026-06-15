@@ -19,6 +19,8 @@ related:
   - "[[InfluxDB-多副本与高可用]]"
   - "[[InfluxDB-TSM存储引擎]]"
   - "[[存储计算分离数据库的-Tail-Latency]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB Catalog 元数据存储

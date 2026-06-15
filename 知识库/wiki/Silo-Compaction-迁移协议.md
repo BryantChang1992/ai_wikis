@@ -16,6 +16,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+diagram: "diagram/silo-compaction-scheduling.svg"
+
 ---
 
 # Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计

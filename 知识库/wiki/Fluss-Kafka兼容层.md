@@ -14,6 +14,8 @@ status: draft
 related:
   - "[[Fluss-RPC与网络]]"
   - "[[Fluss-整体架构]]"
+diagram: "diagram/fluss-kafka-compat-layer.svg"
+
 ---
 
 # Fluss Kafka 兼容层

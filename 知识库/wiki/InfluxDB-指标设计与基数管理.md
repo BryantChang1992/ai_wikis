@@ -17,6 +17,8 @@ author: Stark (CTO, CHANG_AI_TEAM)
 related:
   - "[[InfluxDB深度调研]]"
   - "[[InfluxDB-数据模型]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB 指标设计与基数管理

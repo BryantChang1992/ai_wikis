@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580">
+  <defs>
+    <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#9ca3af"/>
+    </marker>
+    <marker id="arr-green2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#d97706"/>
+    </marker>
+    <filter id="shadow2" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="580" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">流处理 Exactly-Once 四级语义</text>
+  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">At-Most-Once → At-Least-Once → Exactly-Once on State → Exactly-Once on Output</text>
+
+  <!-- Level 1: At-Most-Once -->
+  <rect x="20" y="75" width="910" height="70" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow2)"/>
+  <rect x="20" y="75" width="120" height="70" rx="10" fill="#f3f4f6"/>
+  <rect x="130" y="75" width="10" height="70" fill="#f3f4f6"/>
+  <text x="80" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#6b7280" text-anchor="middle">At-Most-Once</text>
+  <text x="80" y="120" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">不保证送达</text>
+  <text x="160" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#111827">Input → Process → 可能丢数据</text>
+  <text x="160" y="120" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#9ca3af">已过时 · 现代系统不再使用</text>
+  <rect x="800" y="90" width="110" height="40" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+  <text x="855" y="108" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle">⚠ 已淘汰</text>
+  <text x="855" y="122" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#dc2626" text-anchor="middle">状态 / 输出 均无保证</text>
+
+  <!-- Level 2: At-Least-Once -->
+  <rect x="20" y="155" width="910" height="70" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow2)"/>
+  <rect x="20" y="155" width="120" height="70" rx="10" fill="#dbeafe"/>
+  <rect x="130" y="155" width="10" height="70" fill="#dbeafe"/>
+  <text x="80" y="180" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#1e40af" text-anchor="middle">At-Least-Once</text>
+  <text x="80" y="200" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle">保证送达</text>
+  <text x="160" y="180" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#111827">Input → Backpressure + Ack 机制 → Sink</text>
+  <text x="160" y="200" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Storm Acker · 可能重复输出 · 状态无一致性保证</text>
+  <rect x="800" y="170" width="110" height="40" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
+  <text x="855" y="188" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#92400e" text-anchor="middle">⚠ 需要幂等 Sink</text>
+  <text x="855" y="202" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#92400e" text-anchor="middle">输出可能重复</text>
+
+  <!-- Level 3: Exactly-Once on State -->
+  <rect x="20" y="235" width="910" height="70" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" filter="url(#shadow2)"/>
+  <rect x="20" y="235" width="120" height="70" rx="10" fill="#dcfce7"/>
+  <rect x="130" y="235" width="10" height="70" fill="#dcfce7"/>
+  <text x="80" y="260" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">Exactly-Once</text>
+  <text x="80" y="280" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a" text-anchor="middle">on State</text>
+  <text x="160" y="260" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#111827">Input → Epoch Snapshot (Chandy-Lamport) → State ✓ · Output ✗</text>
+  <text x="160" y="280" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Flink · Samza · Spark · Beam 主流方案 · Output Commit Problem 仍需处理</text>
+  <rect x="800" y="250" width="110" height="40" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="855" y="268" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#166534" text-anchor="middle">✅ 系统内正确</text>
+  <text x="855" y="282" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#16a34a" text-anchor="middle">外部输出可能重复</text>
+
+  <!-- Level 4: Exactly-Once on Output -->
+  <rect x="20" y="315" width="910" height="70" rx="10" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1" filter="url(#shadow2)"/>
+  <rect x="20" y="315" width="120" height="70" rx="10" fill="#f3e8ff"/>
+  <rect x="130" y="315" width="10" height="70" fill="#f3e8ff"/>
+  <text x="80" y="340" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#6b21a8" text-anchor="middle">Exactly-Once</text>
+  <text x="80" y="360" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea" text-anchor="middle">on Output</text>
+  <text x="160" y="340" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#111827">Input → Atomic Checkpoint + 事务 Sink → State ✓ · Output ✓</text>
+  <text x="160" y="360" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Millwheel > S-Store · 需事务 Sink 或 Idempotent Sink 配合</text>
+  <rect x="800" y="330" width="110" height="40" rx="6" fill="#f3e8ff" stroke="#c084fc" stroke-width="1"/>
+  <text x="855" y="348" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b21a8" text-anchor="middle">🌟 终极目标</text>
+  <text x="855" y="362" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#9333ea" text-anchor="middle">极少数系统实现</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="405" x2="920" y2="405" stroke="#e5e7eb" stroke-width="1"/>
+
+  <!-- Bottom: Four dimensions of FT -->
+  <text x="480" y="430" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="bold" fill="#111827" text-anchor="middle">容错四个维度 (Table 4)</text>
+
+  <!-- Dim 1: Semantics -->
+  <rect x="20" y="448" width="217" height="110" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="128" y="470" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">1. Processing Semantics</text>
+  <text x="40" y="492" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">At-Most-Once / At-Least-Once</text>
+  <text x="40" y="510" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Exactly-Once on State</text>
+  <text x="40" y="528" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Exactly-Once on Output</text>
+  <text x="40" y="546" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea">→ 18 系统全量对比</text>
+
+  <!-- Dim 2: Replication -->
+  <rect x="250" y="448" width="217" height="110" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="358" y="470" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">2. Replication</text>
+  <text x="270" y="492" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Active: 主备同步执行 (2× 资源)</text>
+  <text x="270" y="510" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Passive: Checkpoint → Standby</text>
+  <text x="270" y="528" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">None: 从上游 Replay 重放</text>
+  <text x="270" y="546" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea">→ Borealis / Flink / Storm</text>
+
+  <!-- Dim 3: Recovery Data -->
+  <rect x="480" y="448" width="217" height="110" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="588" y="470" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">3. Recovery Data</text>
+  <text x="500" y="492" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">State Snapshots (一致性快照)</text>
+  <text x="500" y="510" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Output Buffers (未确认输出)</text>
+  <text x="500" y="528" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">State Changelog (增量变更日志)</text>
+  <text x="500" y="546" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea">→ Flink / Samza / TimeStream</text>
+
+  <!-- Dim 4: Storage -->
+  <rect x="710" y="448" width="230" height="110" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="825" y="470" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">4. Storage Medium</text>
+  <text x="730" y="492" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Local Resilient: SSD+RocksDB</text>
+  <text x="730" y="510" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Remote: HDFS / S3 / GCS</text>
+  <text x="730" y="528" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">In-Memory: 仅限 Active Rep.</text>
+  <text x="730" y="546" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea">→ Flink / Spark / Borealis</text>
+</svg>

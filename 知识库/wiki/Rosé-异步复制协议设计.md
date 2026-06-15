@@ -17,6 +17,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+diagram: "diagram/rose-async-replication.svg"
+
 ---
 
 # Rosé — 分区数据库异步复制协议

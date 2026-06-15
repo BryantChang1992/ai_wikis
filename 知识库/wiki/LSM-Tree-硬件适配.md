@@ -21,6 +21,8 @@ related:
   - "[[LSM-Tree-写放大]]"
   - "[[LSM-Tree-合并优化]]"
   - "[[LSM-Tree-RUM猜想]]"
+diagram: "diagram/lsm-tree-architecture.svg"
+
 ---
 
 # LSM-Tree 硬件适配 (Hardware Adaptation)

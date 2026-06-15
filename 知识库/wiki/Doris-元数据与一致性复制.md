@@ -23,6 +23,8 @@ related:
   - "[[Doris-架构演进]]"
   - "[[事务模型深度调研]]"
   - "[[Event-Horizon-非对称依赖]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris 元数据存储与一致性复制

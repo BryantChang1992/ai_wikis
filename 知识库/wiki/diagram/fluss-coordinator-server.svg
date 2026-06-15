@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480">
+  <defs>
+    <marker id="arr-coord" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    </marker>
+    <filter id="shadow-co" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="480" fill="#ffffff"/>
+
+  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">Fluss 分布式协调 · CoordinatorServer</text>
+  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">事件驱动 + 双状态机 · 16 种事件类型 · 内建 Rebalance / AutoPartition / LakeTiering</text>
+
+  <!-- ====== Left: Architecture ====== -->
+  <rect x="30" y="75" width="580" height="380" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5" filter="url(#shadow-co)"/>
+  <text x="320" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">CoordinatorServer 架构</text>
+
+  <!-- ZK -->
+  <rect x="60" y="115" width="180" height="34" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <text x="150" y="137" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#374151" text-anchor="middle">ZooKeeper</text>
+
+  <line x1="240" y1="132" x2="270" y2="132" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-coord)"/>
+
+  <!-- EventManager -->
+  <rect x="275" y="115" width="170" height="34" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="360" y="137" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">EventManager</text>
+
+  <line x1="445" y1="132" x2="480" y2="132" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-coord)"/>
+
+  <!-- EventProcessor -->
+  <rect x="485" y="115" width="100" height="34" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="535" y="137" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">Processor</text>
+
+  <!-- Down to state machines -->
+  <line x1="320" y1="149" x2="320" y2="170" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-coord)"/>
+
+  <!-- State Machines -->
+  <rect x="60" y="175" width="250" height="80" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="185" y="196" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">ReplicaStateMachine</text>
+  <text x="80" y="216" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">NonExistent → New → Online/Offline</text>
+  <text x="80" y="232" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">→ MigrationStarted → DeletionStarted → Deleted</text>
+  <text x="80" y="248" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">6 种状态</text>
+
+  <rect x="330" y="175" width="260" height="80" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="460" y="196" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">TableBucketStateMachine</text>
+  <text x="350" y="216" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">NonExistent → New → Online/Offline</text>
+  <text x="350" y="232" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">DefaultLeaderElection: AR[0] ∈ ISR</text>
+  <text x="350" y="248" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">5 种状态</text>
+
+  <!-- Rebalance Box -->
+  <rect x="60" y="270" width="530" height="85" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+  <text x="325" y="293" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="bold" fill="#6b21a8" text-anchor="middle">RebalanceManager + GoalOptimizer (内建，非外挂)</text>
+
+  <text x="80" y="316" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ BalancedCapacityGoal (均衡存储容量)</text>
+  <text x="80" y="332" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ ReplicaCountGoal (均衡副本数量分布)</text>
+  <text x="80" y="348" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">└ RackAwareGoal (跨机架分布)</text>
+
+  <!-- Special managers -->
+  <rect x="60" y="368" width="530" height="75" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="325" y="392" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#9a3412" text-anchor="middle">独有管理器 (vs Kafka 无对应)</text>
+  <text x="80" y="412" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">├ AutoPartitionManager (自动分片) · LakeTableTieringManager · LeaseManager · SchemaManager</text>
+  <text x="80" y="428" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">└ Kafka 需 Cruise Control + Schema Registry 外挂 → Fluss 内核集成</text>
+
+  <!-- ====== Right: vs Kafka ====== -->
+  <rect x="625" y="75" width="310" height="380" rx="10" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" filter="url(#shadow-co)"/>
+  <text x="780" y="100" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">Fluss vs Kafka 协调</text>
+
+  <text x="645" y="130" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#ea580c">Fluss Coordinator</text>
+
+  <rect x="645" y="142" width="270" height="22" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="655" y="158" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">Java · Protobuf RPC</text>
+
+  <rect x="645" y="168" width="270" height="22" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="655" y="184" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">16 种事件 · 事件队列驱动</text>
+
+  <rect x="645" y="194" width="270" height="22" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="655" y="210" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">Curator LeaderLatch 选举</text>
+
+  <rect x="645" y="218" width="270" height="22" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="655" y="234" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a">✓ 内建 Rebalance / AutoPartition</text>
+
+  <rect x="645" y="244" width="270" height="22" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="655" y="260" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a">✓ Lake 分层 / Schema / ACL 管理</text>
+
+  <line x1="645" y1="285" x2="915" y2="285" stroke="#e5e7eb" stroke-width="1"/>
+
+  <text x="645" y="310" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#6b7280">Kafka Controller 2.7.2</text>
+
+  <rect x="645" y="322" width="270" height="22" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="655" y="338" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Scala · Kafka 二进制协议</text>
+
+  <rect x="645" y="348" width="270" height="22" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="655" y="364" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">switch-case 事件处理</text>
+
+  <rect x="645" y="374" width="270" height="22" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="655" y="390" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">ZK 临时节点竞争</text>
+
+  <rect x="645" y="400" width="270" height="22" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="655" y="416" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">✗ Rebalance: 需 Cruise Control 外挂</text>
+
+  <rect x="645" y="426" width="270" height="22" rx="4" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="655" y="442" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">✗ Schema: 需 Schema Registry 外挂</text>
+</svg>

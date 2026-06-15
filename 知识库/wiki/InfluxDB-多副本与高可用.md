@@ -19,6 +19,8 @@ related:
   - "[[InfluxDB-Catalog元数据]]"
   - "[[事务模型深度调研]]"
   - "[[InfluxDB-写入与查询路径]]"
+diagram: "diagram/influxdb-architecture.svg"
+
 ---
 
 # InfluxDB 多副本与高可用

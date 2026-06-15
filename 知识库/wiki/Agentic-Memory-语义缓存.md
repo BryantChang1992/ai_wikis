@@ -14,6 +14,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+diagram: "diagram/agent-first-data-systems.svg"
+
 ---
 
 # Agentic Memory — Agent-First 语义缓存

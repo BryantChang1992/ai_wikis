@@ -18,6 +18,8 @@ related:
   - "[[LSM-Tree]]"
   - "[[LSM-Tree-合并优化]]"
   - "[[事务模型深度调研]]"
+diagram: "diagram/lsm-tree-architecture.svg"
+
 ---
 
 # LSM-Tree 二级索引 (Secondary Indexing)

@@ -16,6 +16,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+diagram: "diagram/rose-async-replication.svg"
+
 ---
 
 # Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制

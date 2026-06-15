@@ -19,6 +19,8 @@ status: draft
 related:
   - "[[Doris-深度调研]]"
   - "[[Doris-Nereids-CBO-优化器]]"
+diagram: "diagram/doris-architecture.svg"
+
 ---
 
 # Doris MPP 向量化查询引擎

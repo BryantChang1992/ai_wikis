@@ -17,6 +17,8 @@ related:
   - "[[Fluss-存储引擎]]"
   - "[[Fluss-整体架构]]"
   - "[[LSM-Tree]]"
+diagram: "diagram/fluss-kv-rocksdb-subsystem.svg"
+
 ---
 
 # Fluss KV 存储（RocksDB）

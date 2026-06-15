@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+  <defs>
+    <marker id="arr-blue3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-green3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-purple3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#9333ea"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ea580c"/>
+    </marker>
+    <filter id="shadow3" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="620" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="32" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="#111827" text-anchor="middle">Fluss 三层存储架构</text>
+  <text x="480" y="54" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">ReplicaManager 调度 LogManager · KvManager · RemoteLogManager 三子系统 · 从 append-only 到结构化存储</text>
+
+  <!-- ====== Top: ReplicaManager ====== -->
+  <rect x="330" y="75" width="300" height="44" rx="10" fill="#1e3a5f" stroke="#1e40af" stroke-width="1.5" filter="url(#shadow3)"/>
+  <text x="480" y="103" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">ReplicaManager</text>
+
+  <!-- Branch lines from ReplicaManager -->
+  <line x1="400" y1="119" x2="400" y2="150" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-blue3)"/>
+  <line x1="480" y1="119" x2="480" y2="150" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-green3)"/>
+  <line x1="560" y1="119" x2="560" y2="150" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-purple3)"/>
+
+  <text x="390" y="140" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle">appendRecords()</text>
+  <text x="475" y="140" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a" text-anchor="middle">putKv()</text>
+  <text x="560" y="140" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea" text-anchor="middle">tiering</text>
+
+  <!-- ====== L1: LogManager (Blue) ====== -->
+  <rect x="240" y="155" width="320" height="130" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" filter="url(#shadow3)"/>
+  <rect x="240" y="155" width="320" height="36" rx="12" fill="#dbeafe"/>
+  <rect x="240" y="179" width="320" height="12" fill="#dbeafe"/>
+  <text x="400" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#1e40af" text-anchor="middle">L1: LogManager</text>
+  <text x="400" y="195" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle">基于 Kafka Log 改造 · .log Segments · Arrow 列式格式</text>
+
+  <rect x="260" y="210" width="130" height="28" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="325" y="229" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">LogTablet</text>
+
+  <line x1="390" y1="224" x2="410" y2="224" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-blue3)"/>
+
+  <rect x="415" y="210" width="125" height="28" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="478" y="229" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">LocalLog → Segments</text>
+
+  <!-- Kafka comparison badge -->
+  <rect x="260" y="248" width="280" height="24" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
+  <text x="400" y="264" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#92400e" text-anchor="middle">vs Kafka: 内存 NavigableMap · 无 .index/.timeindex 文件</text>
+
+  <!-- ====== L2: KvManager (Green) ====== -->
+  <rect x="240" y="300" width="320" height="155" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow3)"/>
+  <rect x="240" y="300" width="320" height="36" rx="12" fill="#dcfce7"/>
+  <rect x="240" y="324" width="320" height="12" fill="#dcfce7"/>
+  <text x="400" y="323" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#166534" text-anchor="middle">L2: KvManager ⚡ Fluss 最大差异化模块</text>
+  <text x="400" y="340" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#16a34a" text-anchor="middle">WAL 复用 Changelog LogTablet · 零额外 WAL 文件 · Write-Once Read-Multiple</text>
+
+  <rect x="260" y="355" width="90" height="26" rx="6" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+  <text x="305" y="373" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">KvTablet</text>
+
+  <line x1="350" y1="368" x2="375" y2="368" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arr-green3)"/>
+
+  <rect x="380" y="355" width="100" height="26" rx="6" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+  <text x="430" y="373" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">RocksDBKv</text>
+
+  <!-- Sub-components -->
+  <text x="265" y="405" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ WalBuilder (Arrow / Compacted / Indexed)</text>
+  <text x="265" y="422" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ SnapshotManager → Uploader → Committer</text>
+  <text x="265" y="439" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">├ RowMerger (Default / FirstRow / Versioned / Aggregate)</text>
+
+  <text x="265" y="454" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af">└ PartialUpdater · AutoIncrementManager · KvPreWriteBuffer</text>
+
+  <!-- ====== L3: RemoteLogManager (Purple) ====== -->
+  <rect x="240" y="470" width="320" height="115" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#shadow3)"/>
+  <rect x="240" y="470" width="320" height="36" rx="12" fill="#f3e8ff"/>
+  <rect x="240" y="494" width="320" height="12" fill="#f3e8ff"/>
+  <text x="400" y="493" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#6b21a8" text-anchor="middle">L3: RemoteLogManager</text>
+  <text x="400" y="510" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9333ea" text-anchor="middle">冷数据分层 · S3 / HDFS / OSS · 原生支持（非 KIP-405 afterthought）</text>
+
+  <rect x="260" y="525" width="130" height="26" rx="6" fill="#ffffff" stroke="#c084fc" stroke-width="1"/>
+  <text x="325" y="543" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">Remote Log Segments</text>
+
+  <line x1="390" y1="538" x2="415" y2="538" stroke="#9333ea" stroke-width="1.2" marker-end="url(#arr-purple3)"/>
+
+  <rect x="420" y="525" width="120" height="26" rx="6" fill="#ffffff" stroke="#c084fc" stroke-width="1"/>
+  <text x="480" y="543" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#111827" text-anchor="middle">S3 / HDFS / OSS</text>
+
+  <text x="310" y="572" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">remoteLogStart/EndOffset 内建管理</text>
+
+  <!-- ====== Right side: Tablet vs Partition ====== -->
+  <rect x="600" y="155" width="340" height="255" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="770" y="178" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#9a3412" text-anchor="middle">Tablet vs Kafka Partition</text>
+
+  <text x="615" y="202" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#ea580c">Fluss Tablet</text>
+  <line x1="725" y1="200" x2="725" y2="396" stroke="#ea580c" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <text x="615" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">物理实体: LogTablet / KvTablet</text>
+  <text x="615" y="240" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">存储层: Log + KV + Remote 三层</text>
+  <text x="615" y="258" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">恢复: Log Replay / Snapshot Restore</text>
+  <text x="615" y="276" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">合并: RowMerger 四种策略</text>
+  <text x="615" y="294" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">删除: 真正 DELETE (KV 删除)</text>
+  <text x="615" y="312" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#374151">索引: RocksDB (PK 索引)</text>
+
+  <!-- Kafka side labels -->
+  <text x="745" y="202" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="bold" fill="#6b7280">Kafka Partition</text>
+  <text x="745" y="222" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">仅 Log</text>
+  <text x="745" y="240" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">单层本地 Log</text>
+  <text x="745" y="258" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">仅 Log Replay</text>
+  <text x="745" y="276" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">无合并逻辑</text>
+  <text x="745" y="294" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Tombstone 标记</text>
+  <text x="745" y="312" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Offset + Time 索引</text>
+
+  <!-- Bottom insight -->
+  <rect x="600" y="425" width="340" height="70" rx="8" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="770" y="450" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="bold" fill="#374151" text-anchor="middle">💡 核心洞察</text>
+  <text x="770" y="472" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">Fluss 的创新不是 Log 实现（大量复用 Kafka），</text>
+  <text x="770" y="488" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">而是在 Log 之上加 KV Store，从消息队列进化到实时分析 DB</text>
+</svg>

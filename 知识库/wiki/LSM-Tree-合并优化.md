@@ -19,6 +19,8 @@ related:
   - "[[LSM-Tree-写放大]]"
   - "[[LSM-Tree-自动调参]]"
   - "[[LSM-Tree-RUM猜想]]"
+diagram: "diagram/lsm-tree-full-overview.svg"
+
 ---
 
 # LSM-Tree 合并优化 (Merge Optimization)

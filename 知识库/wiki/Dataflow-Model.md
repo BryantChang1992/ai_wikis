@@ -32,15 +32,6 @@ related:
 ## 批流统一的基础
 
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 130" width="580" height="130">
-  <rect x="30" y="5" width="520" height="120" rx="8" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="290" y="28" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Dataflow Model</text>
-  <line x1="60" y1="38" x2="520" y2="38" stroke="currentColor" stroke-width="0.8"/>
-  <text x="290" y="60" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">批处理 = 有界数据流 + 全局聚合</text>
-  <text x="290" y="82" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">流处理 = 无界数据流 + 窗口聚合</text>
-  <line x1="60" y1="98" x2="520" y2="98" stroke="currentColor" stroke-width="0.8"/>
-  <text x="290" y="115" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">同一模型、同一 API 处理批和流</text>
-</svg>
 
 > 这直接催生了 Apache Beam 项目，并成为 Flink、Spark Structured Streaming 等系统的语义基础。
 

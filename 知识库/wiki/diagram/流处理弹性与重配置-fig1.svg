@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-e1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-down1" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto">
+      <path d="M0,0 L3,8 L6,0 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Boxes: top row -->
+  <rect x="10" y="10" width="120" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="70" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">症状检测</text>
+  <rect x="155" y="10" width="120" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="215" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">根因分析</text>
+  <rect x="300" y="10" width="120" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="360" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">扩缩容决策</text>
+  <rect x="445" y="10" width="120" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="505" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">执行重新分配</text>
+  <rect x="590" y="10" width="120" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="650" y="32" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">验证</text>
+  <!-- Horizontal arrows -->
+  <line x1="130" y1="30" x2="150" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e1)"/>
+  <line x1="275" y1="30" x2="295" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e1)"/>
+  <line x1="420" y1="30" x2="440" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e1)"/>
+  <line x1="565" y1="30" x2="585" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e1)"/>
+  <!-- Vertical arrows down -->
+  <line x1="70" y1="50" x2="70" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-down1)"/>
+  <line x1="215" y1="50" x2="215" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-down1)"/>
+  <line x1="360" y1="50" x2="360" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-down1)"/>
+  <line x1="505" y1="50" x2="505" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-down1)"/>
+  <line x1="650" y1="50" x2="650" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-down1)"/>
+  <!-- Boxes: bottom row -->
+  <rect x="10" y="80" width="120" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="70" y="100" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">背压信号</text>
+  <text x="70" y="116" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">延迟升高</text>
+  <rect x="155" y="80" width="120" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="215" y="100" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">数据倾斜</text>
+  <text x="215" y="116" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">热点识别</text>
+  <rect x="300" y="80" width="120" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="360" y="100" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">增加/减少</text>
+  <text x="360" y="116" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">并行度</text>
+  <rect x="445" y="80" width="120" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="505" y="100" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">状态迁移</text>
+  <text x="505" y="116" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">流水线重启</text>
+  <rect x="590" y="80" width="120" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="650" y="100" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">延迟/吞吐</text>
+  <text x="650" y="116" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">恢复正常?</text>
+</svg>

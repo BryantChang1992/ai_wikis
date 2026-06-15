@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a2l" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+    <marker id="a2r" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6 Z" fill="currentColor"/></marker>
+  </defs>
+  <!-- Participants -->
+  <rect x="20" y="5" width="110" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="75" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Coordinator</text>
+  <rect x="240" y="5" width="100" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="290" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Participant A</text>
+  <rect x="440" y="5" width="100" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="490" y="27" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Participant B</text>
+  <!-- Phase 1: Prepare -->
+  <line x1="130" y1="42" x2="235" y2="42" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
+  <text x="180" y="38" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Prepare</text>
+  <line x1="130" y1="58" x2="435" y2="58" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
+  <text x="280" y="54" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Prepare</text>
+  <!-- Phase 2: Yes (Vote) -->
+  <line x1="240" y1="74" x2="125" y2="74" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
+  <text x="180" y="70" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <line x1="440" y1="90" x2="125" y2="90" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
+  <text x="280" y="86" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <!-- Phase 3: Commit -->
+  <line x1="130" y1="106" x2="235" y2="106" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
+  <text x="180" y="102" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Commit</text>
+  <line x1="130" y1="122" x2="435" y2="122" stroke="currentColor" stroke-width="2" marker-end="url(#a2l)"/>
+  <text x="280" y="118" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Commit</text>
+  <!-- Phase 4: ACK -->
+  <line x1="240" y1="138" x2="125" y2="138" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
+  <text x="180" y="134" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ACK</text>
+  <line x1="440" y1="154" x2="125" y2="154" stroke="currentColor" stroke-width="2" marker-end="url(#a2r)"/>
+  <text x="280" y="150" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ACK</text>
+</svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ar2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 12px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+    line, path { stroke: currentColor; stroke-width: 1.5; fill: none; }
+    rect { fill: transparent; stroke: currentColor; stroke-width: 1.5; rx: 4; }
+  </style>
+
+  <!-- Transaction Log -->
+  <rect x="220" y="10" width="260" height="28"/>
+  <text x="350" y="24">Transaction Log (PostgreSQL WAL)</text>
+
+  <line x1="350" y1="38" x2="350" y2="58" marker-end="url(#ar2)"/>
+
+  <!-- Tx Log note -->
+  <rect x="190" y="62" width="320" height="28"/>
+  <text x="350" y="76">Catalog 更新在 Tx Log 中有序记录</text>
+
+  <line x1="350" y1="90" x2="350" y2="108" marker-end="url(#ar2)"/>
+
+  <!-- Daily Full Backup -->
+  <rect x="130" y="112" width="200" height="28"/>
+  <text x="230" y="126">Daily Full Backup</text>
+  <line x1="330" y1="126" x2="370" y2="126" marker-end="url(#ar2)"/>
+  <rect x="374" y="112" width="200" height="28"/>
+  <text x="474" y="126">Object Store (≥ 100 天, 3 AZ)</text>
+
+  <line x1="350" y1="140" x2="350" y2="158" marker-end="url(#ar2)"/>
+
+  <!-- Disaster Recovery -->
+  <rect x="150" y="162" width="400" height="28"/>
+  <text x="350" y="176">Disaster Recovery: Backup + Tx Log 重放 → 恢复至 crash 时刻</text>
+
+  <line x1="350" y1="190" x2="350" y2="208" marker-end="url(#ar2)"/>
+
+  <!-- PostgreSQL Streaming Replication -->
+  <rect x="180" y="212" width="340" height="28"/>
+  <text x="350" y="226">PostgreSQL Streaming Replication (Primary + Standby)</text>
+</svg>

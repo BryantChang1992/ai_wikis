@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 130" width="380" height="130">
+  <defs>
+    <marker id="arrow-fl4" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="10" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-weight="bold">Fluss = Streaming Storage + Lakehouse Integration</text>
+
+  <rect x="110" y="32" width="150" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="45" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">实时写入 (ms 级)</text>
+
+  <line x1="185" y1="58" x2="185" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl4)"/>
+
+  <rect x="85" y="75" width="200" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="88" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Fluss Tablet (oltp level)</text>
+
+  <line x1="185" y1="101" x2="185" y2="112" stroke="currentColor" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="185" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">async tiering (minute-level)</text>
+  <line x1="185" y1="118" x2="185" y2="128" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl4)"/>
+
+  <rect x="80" y="130" width="210" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="143" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Lakehouse (olap level)</text>
+</svg>

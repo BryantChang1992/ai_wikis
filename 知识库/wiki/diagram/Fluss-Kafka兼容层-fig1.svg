@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-netty" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Title -->
+  <text x="10" y="18" font-family="sans-serif" font-size="13" fill="currentColor" font-weight="bold">Netty Pipeline:</text>
+  
+  <!-- Layer 1 -->
+  <rect x="200" y="25" width="120" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="260" y="40" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">网络字节流</text>
+  <line x1="200" y1="38" x2="195" y2="38" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-netty)"/>
+  
+  <!-- Arrow down -->
+  <line x1="260" y1="51" x2="260" y2="60" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-netty)"/>
+  
+  <!-- Layer 2 -->
+  <rect x="50" y="62" width="420" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="260" y="77" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Fluss Magic Bytes 检测 → 非 Fluss 协议 → fallback 到 Kafka 协议</text>
+  <line x1="50" y1="75" x2="42" y2="75" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-netty)"/>
+  
+  <!-- Arrow down -->
+  <line x1="260" y1="88" x2="260" y2="96" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-netty)"/>
+  
+  <!-- Layer 3 -->
+  <rect x="120" y="98" width="280" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="260" y="113" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">KafkaProtocolPlugin（插件注册）</text>
+  
+  <!-- Arrow down -->
+  <line x1="260" y1="124" x2="260" y2="130" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-netty)"/>
+  
+  <!-- Layer 4 -->
+  <rect x="100" y="132" width="320" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="260" y="147" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">KafkaChannelInitializer（Kafka 协议初始化）</text>
+</svg>

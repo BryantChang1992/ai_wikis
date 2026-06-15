@@ -38,30 +38,8 @@ CockroachDB 原有的两种方案都有硬伤：
 ## 解法：Leader Leases
 
 ### 三层架构
-<svg viewBox="0 0 660 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <defs>
-    <marker id="arrow-up3" markerWidth="6" markerHeight="8" refX="3" refY="0" orient="auto">
-      <path d="M0,8 L3,0 L6,8 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <!-- Layer 1: Leader Lease -->
-  <rect x="160" y="8" width="110" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="2"/>
-  <text x="215" y="23" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">Leader Lease</text>
-  <line x1="270" y1="21" x2="295" y2="21" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-up3)"/>
-  <text x="380" y="23" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">极薄包装：lease = fortified leader 的 [now, LSU)</text>
-  
-  <!-- Layer 2 -->
-  <rect x="160" y="42" width="110" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="215" y="57" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Raft (修改版)</text>
-  <line x1="270" y1="55" x2="295" y2="55" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-up3)"/>
-  <text x="410" y="57" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Fortification / LSU 计算 / 关闭心跳</text>
-  
-  <!-- Layer 3 -->
-  <rect x="155" y="76" width="120" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="215" y="91" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Liveness Fabric</text>
-  <line x1="275" y1="89" x2="300" y2="89" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-up3)"/>
-  <text x="430" y="91" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">集群 mesh：每对 store 间双向 support</text>
-</svg>
+
+![Architecture Diagram](../diagram/cockroachdb-leader-lease-3-layer.svg)
 
 
 ### 关键机制

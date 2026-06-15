@@ -33,65 +33,9 @@ InfluxDB 3 的 Catalog 是整个系统的**元数据中心**——唯一存储�
 
 Catalog 使用 **PostgreSQL 兼容的关系数据库** 存储层级元数据：
 
-<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="ar1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <style>
-    text { font-family: sans-serif; font-size: 12px; fill: currentColor; dominant-baseline: middle; }
-    line, path { stroke: currentColor; stroke-width: 1.5; fill: none; }
-    rect { fill: transparent; stroke: currentColor; stroke-width: 1.5; rx: 4; }
-  </style>
+![InfluxDB-Catalog元数据 - 图1](../diagram/InfluxDB-Catalog元数据-fig1.svg)
 
-  <!-- Namespace -->
-  <rect x="260" y="10" width="140" height="28"/>
-  <text x="330" y="24">Namespace (Database)</text>
 
-  <!-- vertical line from Namespace down -->
-  <line x1="330" y1="38" x2="330" y2="60" marker-end="url(#ar1)"/>
-
-  <!-- Table -->
-  <rect x="260" y="64" width="140" height="28"/>
-  <text x="330" y="78">Table (Measurement)</text>
-
-  <!-- horizontal branch from Table -->
-  <line x1="280" y1="92" x2="280" y2="110"/>
-  <line x1="280" y1="110" x2="180" y2="110"/>
-  <line x1="380" y1="110" x2="380" y2="92"/>
-  <line x1="180" y1="110" x2="180" y2="130"/>
-  <line x1="380" y1="110" x2="380" y2="130"/>
-
-  <!-- Column -->
-  <rect x="105" y="134" width="150" height="28"/>
-  <text x="180" y="148">Column</text>
-  <line x1="150" y1="162" x2="150" y2="180"/>
-  <rect x="75" y="184" width="210" height="50"/>
-  <text x="180" y="198" font-size="11px">name, type</text>
-  <text x="180" y="216" font-size="11px">(i64/u64/f64/string/bool/tag/time)</text>
-  <text x="180" y="232" font-size="11px">nullable</text>
-
-  <!-- Partition -->
-  <rect x="290" y="134" width="180" height="28"/>
-  <text x="380" y="148">Partition (time range)</text>
-  <line x1="380" y1="162" x2="380" y2="185"/>
-
-  <!-- Parquet File -->
-  <rect x="290" y="189" width="180" height="28"/>
-  <text x="380" y="203">Parquet File</text>
-  <line x1="340" y1="217" x2="340" y2="238"/>
-
-  <!-- File metadata fields -->
-  <rect x="260" y="242" width="240" height="150"/>
-  <text x="380" y="258" font-size="11px">object_store_path</text>
-  <text x="380" y="276" font-size="11px">file_size_bytes</text>
-  <text x="380" y="294" font-size="11px">row_count</text>
-  <text x="380" y="312" font-size="11px">min_time, max_time</text>
-  <text x="380" y="330" font-size="11px">created_at</text>
-  <text x="380" y="348" font-size="11px">to_delete (soft delete flag)</text>
-  <line x1="310" y1="258" x2="310" y2="258"/>
-</svg>
 
 **核心设计原则**：
 1. Catalog 只存储**文件级别的指针信息**，不存储实际数据
@@ -111,49 +55,7 @@ Catalog 使用 **PostgreSQL 兼容的关系数据库** 存储层级元数据：
 
 依赖 PostgreSQL 生态的成熟能力：
 
-<svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="ar2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <style>
-    text { font-family: sans-serif; font-size: 12px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
-    line, path { stroke: currentColor; stroke-width: 1.5; fill: none; }
-    rect { fill: transparent; stroke: currentColor; stroke-width: 1.5; rx: 4; }
-  </style>
-
-  <!-- Transaction Log -->
-  <rect x="220" y="10" width="260" height="28"/>
-  <text x="350" y="24">Transaction Log (PostgreSQL WAL)</text>
-
-  <line x1="350" y1="38" x2="350" y2="58" marker-end="url(#ar2)"/>
-
-  <!-- Tx Log note -->
-  <rect x="190" y="62" width="320" height="28"/>
-  <text x="350" y="76">Catalog 更新在 Tx Log 中有序记录</text>
-
-  <line x1="350" y1="90" x2="350" y2="108" marker-end="url(#ar2)"/>
-
-  <!-- Daily Full Backup -->
-  <rect x="130" y="112" width="200" height="28"/>
-  <text x="230" y="126">Daily Full Backup</text>
-  <line x1="330" y1="126" x2="370" y2="126" marker-end="url(#ar2)"/>
-  <rect x="374" y="112" width="200" height="28"/>
-  <text x="474" y="126">Object Store (≥ 100 天, 3 AZ)</text>
-
-  <line x1="350" y1="140" x2="350" y2="158" marker-end="url(#ar2)"/>
-
-  <!-- Disaster Recovery -->
-  <rect x="150" y="162" width="400" height="28"/>
-  <text x="350" y="176">Disaster Recovery: Backup + Tx Log 重放 → 恢复至 crash 时刻</text>
-
-  <line x1="350" y1="190" x2="350" y2="208" marker-end="url(#ar2)"/>
-
-  <!-- PostgreSQL Streaming Replication -->
-  <rect x="180" y="212" width="340" height="28"/>
-  <text x="350" y="226">PostgreSQL Streaming Replication (Primary + Standby)</text>
-</svg>
+![InfluxDB-Catalog元数据 - 图2](../diagram/InfluxDB-Catalog元数据-fig2.svg)
 
 **RPO 分析**：
 - 正常故障（Primary Crash）→ Auto Failover to Standby → **秒级 RPO**

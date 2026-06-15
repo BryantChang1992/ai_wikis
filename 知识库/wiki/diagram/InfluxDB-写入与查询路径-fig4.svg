@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="v3q1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v3 查询路径:</text>
+<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">SQL (FlightSQL) / InfluxQL Query</text>
+<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
+<rect x="245" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="345" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Query Router → Querier</text>
+<line x1="445" y1="38" x2="475" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
+<rect x="480" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FlightSQL Server</text>
+<text x="10" y="72" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Querier 处理步骤:</text>
+<text x="25" y="92" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">① Catalog Cache Sync (Table · Column · Partition Metadata)</text>
+<text x="25" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">② SQL Parse & Plan</text>
+<text x="25" y="132" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">③ Object Store Scan (Parquet File Pruning via Catalog + Filter Pushdown)</text>
+<text x="25" y="152" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">④ Merge Results → FlightSQL Stream Back to Client</text>
+<text x="25" y="172" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">⑤ DataFrame/Iceberg 集成读取已持久化数据</text>
+</svg>

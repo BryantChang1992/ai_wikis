@@ -62,50 +62,14 @@ CoordinatorEventProcessor 是核心事件分发循环，处理 16 种事件类�
 
 ### ReplicaStateMachine（6 种状态）
 
-<svg viewBox="0 0 650 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <defs>
-    <marker id="arrow-sm" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="10" y="8" width="150" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="85" y="23" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">NonExistentReplica</text>
-  <line x1="160" y1="21" x2="180" y2="21" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-sm)"/>
-  <rect x="185" y="8" width="100" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="235" y="23" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">NewReplica</text>
-  <line x1="285" y1="21" x2="305" y2="21" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-sm)"/>
-  <rect x="310" y="8" width="130" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="375" y="23" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">OnlineReplica / OfflineReplica</text>
-  <!-- Down arrow -->
-  <line x1="375" y1="34" x2="375" y2="48" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-sm)"/>
-  <rect x="280" y="52" width="190" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="375" y="67" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ReplicaMigrationStarted → ReplicaDeletionStarted</text>
-  <!-- Down arrow -->
-  <line x1="460" y1="65" x2="480" y2="65" stroke="currentColor" stroke-width="2"/>
-  <line x1="470" y1="65" x2="470" y2="78" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-sm)"/>
-  <rect x="420" y="82" width="150" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="495" y="97" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ReplicaDeletionSuccessful</text>
-</svg>
+![Fluss-分布式协调 - 图1](../diagram/Fluss-分布式协调-fig1.svg)
+
+
 
 
 ### TableBucketStateMachine（5 种状态）
 
-<svg viewBox="0 0 520 30" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <defs>
-    <marker id="arrow-tb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="10" y="4" width="130" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="75" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">NonExistentBucket</text>
-  <line x1="140" y1="17" x2="160" y2="17" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-tb)"/>
-  <rect x="165" y="4" width="100" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="215" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">NewBucket</text>
-  <line x1="265" y1="17" x2="285" y2="17" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-tb)"/>
-  <rect x="290" y="4" width="160" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="370" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">OnlineBucket / OfflineBucket</text>
-</svg>
-
+![Fluss-分布式协调 - 图2](../diagram/Fluss-分布式协调-fig2.svg)
 
 Leader 选举策略：`DefaultLeaderElection` 在 AR（Assigned Replicas）中选取第一个 ISR 内的副本。
 

@@ -31,16 +31,10 @@ related:
 ### v1/v2 写入路径 (Go)
 
 ```svg
-<svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v1/v2 写入路径:</text>
-<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HTTP /write (Line Protocol)</text>
-<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5"/>
-<text x="245" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ① WAL (Snappy Compressed, fsync to disk)</text>
-<line x1="245" y1="52" x2="245" y2="68" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ② In-Memory Cache (Series → Time-Sorted Fields Map)</text>
-<line x1="245" y1="96" x2="245" y2="110" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── ③ TSM 文件 (Compaction × 合并为更大 TSM 文件)</text>
-</svg>
+
+![InfluxDB-写入与查询路径 - 图1](../diagram/InfluxDB-写入与查询路径-fig1.svg)
+
+
 
 ```
 
@@ -55,21 +49,10 @@ related:
 ### v3 写入路径 (Rust)
 
 ```svg
-<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="v3w1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
-<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v3 写入路径:</text>
-<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HTTP /write (Line Protocol)</text>
-<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3w1)"/>
-<rect x="245" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="345" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingest Router</text>
-<line x1="445" y1="38" x2="475" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3w1)"/>
-<rect x="480" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingester</text>
-<text x="10" y="72" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Ingest Router: Line Protocol Parser → Consistent Hash → Ingester</text>
-<text x="10" y="94" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Ingester Processing:</text>
-<text x="25" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">① 写入 Object Store (Parquet - Write-Optimized + Recent Write Buffer)</text>
-<text x="25" y="132" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">② 更新 Catalog (PostgreSQL/SQLite: Partition + Parquet File + Tombstone Meta)</text>
-<text x="25" y="152" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">③ 异步 Writ Buffer Flush → Compaction into Read-Optimized Parquet</text>
-<text x="25" y="172" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">④ WAL 优化: 批量写入 Object Store，非逐条 fsync</text>
-</svg>
+
+![InfluxDB-写入与查询路径 - 图2](../diagram/InfluxDB-写入与查询路径-fig2.svg)
+
+
 
 ```
 
@@ -91,16 +74,10 @@ v3:    HTTP → Ingest Router → Ingester (校验/分区/排序/去重) → Par
 ### v1/v2 查询路径 — Iterator 模型
 
 ```svg
-<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v1/v2 查询路径:</text>
-<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">InfluxQL / Flux Query</text>
-<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5"/>
-<text x="245" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── Parse & Validate → AST</text>
-<line x1="245" y1="52" x2="245" y2="68" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="68" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── TSI Index Lookup: Measurement+Tag → Series IDs → Shards</text>
-<line x1="245" y1="82" x2="245" y2="96" stroke="currentColor" stroke-width="1"/>
-<text x="245" y="98" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── TSM File Scan (Merge from Cache + WAL + TSM Files)</text>
-</svg>
+
+![InfluxDB-写入与查询路径 - 图3](../diagram/InfluxDB-写入与查询路径-fig3.svg)
+
+
 
 ```
 
@@ -113,21 +90,8 @@ v3:    HTTP → Ingest Router → Ingester (校验/分区/排序/去重) → Par
 ### v3 查询路径 — DataFusion 向量化
 
 ```svg
-<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="v3q1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
-<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v3 查询路径:</text>
-<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">SQL (FlightSQL) / InfluxQL Query</text>
-<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
-<rect x="245" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="345" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Query Router → Querier</text>
-<line x1="445" y1="38" x2="475" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
-<rect x="480" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FlightSQL Server</text>
-<text x="10" y="72" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Querier 处理步骤:</text>
-<text x="25" y="92" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">① Catalog Cache Sync (Table · Column · Partition Metadata)</text>
-<text x="25" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">② SQL Parse & Plan</text>
-<text x="25" y="132" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">③ Object Store Scan (Parquet File Pruning via Catalog + Filter Pushdown)</text>
-<text x="25" y="152" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">④ Merge Results → FlightSQL Stream Back to Client</text>
-<text x="25" y="172" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">⑤ DataFrame/Iceberg 集成读取已持久化数据</text>
-</svg>
+
+![InfluxDB-写入与查询路径 - 图4](../diagram/InfluxDB-写入与查询路径-fig4.svg)
 
 ```
 

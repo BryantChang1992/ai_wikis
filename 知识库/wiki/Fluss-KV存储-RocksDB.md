@@ -29,40 +29,9 @@ Fluss KV 存储是为 **Primary Key 表** 提供类数据库 Upsert/Delete 语�
 
 ## 核心组件
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" width="700" height="180">
-  <defs>
-    <marker id="arrow-fkv1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="10" y="5" width="150" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="85" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">KvManager（全局入口）</text>
-  <line x1="85" y1="31" x2="85" y2="45" stroke="currentColor" stroke-width="1.2"/>
-  <text x="105" y="45" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ KvTablet（单 bucket 的 KV 管理单元）</text>
-  <line x1="105" y1="55" x2="105" y2="70" stroke="currentColor" stroke-width="1.2"/>
-  <!-- Sub items -->
-  <line x1="50" y1="70" x2="680" y2="70" stroke="currentColor" stroke-width="1"/>
-  <line x1="50" y1="70" x2="50" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="140" y1="70" x2="140" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="300" y1="70" x2="300" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="430" y1="70" x2="430" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="550" y1="70" x2="550" y2="82" stroke="currentColor" stroke-width="1"/>
-  <line x1="640" y1="70" x2="640" y2="82" stroke="currentColor" stroke-width="1"/>
-  <text x="12" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ RocksDBKv</text>
-  <text x="12" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　→ RocksDB 实例</text>
-  <text x="102" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ WalBuilder</text>
-  <text x="102" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（三种格式）</text>
-  <text x="210" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ PeriodicSnapshotManager</text>
-  <text x="210" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（定时快照触发）</text>
-  <text x="380" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ RowMerger</text>
-  <text x="380" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（四种实现）</text>
-  <text x="480" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ PartialUpdater</text>
-  <text x="480" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（部分列更新）</text>
-  <text x="560" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ AutoIncrementManager</text>
-  <text x="560" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（自增 ID）</text>
-  <text x="620" y="97" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ KvPreWriteBuffer</text>
-  <text x="620" y="112" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（预写缓冲）</text>
-</svg>
+![Fluss-KV存储-RocksDB - 图1](../diagram/Fluss-KV存储-RocksDB-fig1.svg)
+
+
 
 ## WAL 设计：Write-Once Read-Multiple
 
@@ -74,17 +43,9 @@ Fluss KV 的最大设计创新。传统 RocksDB 有自己的 WAL 文件（`*.log
 
 恢复路径：**重放 changelog LogTablet** 来重建 RocksDB 状态（而非读 WAL 文件）
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 65" width="600" height="65">
-  <defs>
-    <marker id="arrow-fkv2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <text x="10" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-weight="bold">传统方案：</text>
-  <text x="100" y="16" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">写 → RocksDB WAL + RocksDB SST → 恢复时读 WAL</text>
-  <text x="10" y="40" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-weight="bold">Fluss 方案：</text>
-  <text x="100" y="40" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">写 → RocksDB SST + changelog LogTablet → 恢复时重放 LogTablet</text>
-</svg>
+![Fluss-KV存储-RocksDB - 图2](../diagram/Fluss-KV存储-RocksDB-fig2.svg)
+
+
 
 **优势**：changelog 既是外部可读的 CDC 流，又是内部恢复的 WAL。一份数据两份用途，消除了 WAL 文件的额外 IO。
 
@@ -98,27 +59,7 @@ Fluss KV 的最大设计创新。传统 RocksDB 有自己的 WAL 文件（`*.log
 
 ## Snapshot 全链路（近 30 个类）
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200">
-  <defs>
-    <marker id="arrow-fkv3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <rect x="15" y="5" width="170" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="100" y="18" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">PeriodicSnapshotManager</text>
-  <text x="200" y="18" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">（定时触发，周期可配）</text>
-  <line x1="100" y1="31" x2="100" y2="45" stroke="currentColor" stroke-width="1.2"/>
-  <text x="120" y="45" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ KvTabletSnapshotTarget（执行快照）</text>
-  <line x1="120" y1="55" x2="120" y2="70" stroke="currentColor" stroke-width="1.2"/>
-  <text x="140" y="70" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ RocksIncrementalSnapshot</text>
-  <text x="300" y="70" font-family="sans-serif" font-size="9" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">（RocksDB Checkpoint → 仅传输变更 SST）</text>
-  <line x1="140" y1="80" x2="140" y2="95" stroke="currentColor" stroke-width="1.2"/>
-  <text x="160" y="95" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ KvSnapshotDataUploader（上传至远程 S3/HDFS）</text>
-  <line x1="160" y1="105" x2="160" y2="120" stroke="currentColor" stroke-width="1.2"/>
-  <text x="180" y="120" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ CompletedKvSnapshotCommitter（提交快照元数据）</text>
-  <line x1="180" y1="130" x2="180" y2="145" stroke="currentColor" stroke-width="1.2"/>
-  <text x="200" y="145" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ ZooKeeperCompletedSnapshotHandleStore（ZK 记录）</text>
-</svg>
+![Fluss-KV存储-RocksDB - 图3](../diagram/Fluss-KV存储-RocksDB-fig3.svg)
 
 关键组件：
 - **SharedKvFileRegistry**：去重已存在于远程存储的 SST 文件，避免重复上传

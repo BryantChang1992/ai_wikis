@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="18" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor">XID 空间逻辑视图（环形）:</text>
+  <!-- Header: 2^31-1 label -->
+  <text x="340" y="50" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2^31-1 ↓</text>
+  <!-- Regions -->
+  <rect x="10" y="60" width="160" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="90" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">... 过去</text>
+  <rect x="175" y="60" width="100" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="225" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Frozen</text>
+  <rect x="280" y="60" width="60" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="310" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Cur</text>
+  <rect x="350" y="60" width="130" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="415" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">未来...</text>
+  <!-- Arrow -->
+  <line x1="495" y1="78" x2="530" y2="78" stroke="currentColor" stroke-width="2" marker-end="url(#a4)"/>
+  <rect x="535" y="60" width="90" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="580" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Wraparound</text>
+  <!-- Labels -->
+  <text x="310" y="105" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">↑ 0 (回卷点)</text>
+</svg>

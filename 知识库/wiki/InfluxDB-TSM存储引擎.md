@@ -31,20 +31,7 @@ TSM (Time-Structured Merge Tree) 是 InfluxDB v1/v2 自研的列式存储格式�
 
 ## 存储结构
 
-<svg viewBox="0 0 500 70" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <text x="10" y="16" font-family="sans-serif" font-size="13" fill="currentColor">db/rp/ShardID/</text>
-  <line x1="10" y1="26" x2="30" y2="26" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="30" y1="26" x2="30" y2="54" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="30" y1="36" x2="50" y2="36" stroke="currentColor" stroke-width="1.5"/>
-  <text x="55" y="39" font-family="sans-serif" font-size="12" fill="currentColor" dominant-baseline="middle">TSM0001.tsm</text>
-  <text x="215" y="39" font-family="sans-serif" font-size="11" fill="currentColor" dominant-baseline="middle" font-style="italic"># 数据文件（不可变）</text>
-  <line x1="30" y1="46" x2="50" y2="46" stroke="currentColor" stroke-width="1.5"/>
-  <text x="55" y="50" font-family="sans-serif" font-size="12" fill="currentColor" dominant-baseline="middle">TSM0002.tsm</text>
-  <line x1="10" y1="56" x2="30" y2="56" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="30" y1="56" x2="50" y2="56" stroke="currentColor" stroke-width="1.5"/>
-  <text x="55" y="60" font-family="sans-serif" font-size="12" fill="currentColor" dominant-baseline="middle">...</text>
-</svg>
-
+![InfluxDB-TSM存储引擎 - 图1](../diagram/InfluxDB-TSM存储引擎-fig.svg)
 
 **TSM 文件内部布局**：
 - **Header**: 文件魔数 + 版本

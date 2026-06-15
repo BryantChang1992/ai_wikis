@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+
+  <!-- Title -->
+  <text x="130" y="18" font-weight="bold">I. In-Memory State</text>
+  <text x="400" y="18" font-weight="bold">II. Out-of-Core State</text>
+  <text x="670" y="18" font-weight="bold">III. External State</text>
+
+  <!-- Column 1: In-Memory -->
+  <rect x="55" y="35" width="150" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="130" y="55">MemTable (全内存)</text>
+
+  <!-- Column 2: Out-of-Core -->
+  <rect x="325" y="35" width="150" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="400" y="55">MemTable (热数据)</text>
+
+  <line x1="400" y1="75" x2="400" y2="105" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="460" y="90" font-size="11" text-anchor="start">Flush</text>
+
+  <rect x="325" y="110" width="150" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="400" y="130">LSM-Tree (SSD/磁盘)</text>
+
+  <!-- Column 3: External -->
+  <rect x="595" y="35" width="150" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="670" y="55">Operator (无状态)</text>
+
+  <line x1="670" y1="75" x2="670" y2="105" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="680" y="90" font-size="11" text-anchor="start">RPC</text>
+
+  <rect x="595" y="110" width="150" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="670" y="130">BigTable/Spanner</text>
+
+  <text x="670" y="163" font-size="11" fill="currentColor">(状态与计算解耦)</text>
+
+  <!-- Separator lines between columns -->
+  <line x1="258" y1="30" x2="258" y2="175" stroke="currentColor" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="533" y1="30" x2="533" y2="175" stroke="currentColor" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+</svg>

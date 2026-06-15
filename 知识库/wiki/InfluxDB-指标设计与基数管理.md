@@ -35,75 +35,9 @@ Series Cardinality = |tag₁| × |tag₂| × ... × |tagₙ| × |fields|
 
 ### 决策流程
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" width="700" height="210">
-  <defs>
-    <marker id="arrow-idb1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <!-- Start: 需要 WHERE 过滤? -->
-  <rect x="10" y="10" width="170" height="32" rx="16" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="95" y="26" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">需要 WHERE 过滤?</text>
+![InfluxDB-指标设计与基数管理 - 图1](../diagram/InfluxDB-指标设计与基数管理-fig1.svg)
 
-  <!-- YES branch -->
-  <line x1="180" y1="26" x2="290" y2="26" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb1)"/>
-  <text x="235" y="20" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" fill-opacity="0.7">YES</text>
 
-  <rect x="293" y="10" width="180" height="32" rx="16" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="383" y="26" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">仍需检查基数</text>
-
-  <line x1="473" y1="26" x2="560" y2="26" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb1)"/>
-
-  <!-- Branch lines from 检查基数 -->
-  <line x1="560" y1="26" x2="560" y2="50" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="500" y1="50" x2="620" y2="50" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="500" y1="50" x2="500" y2="70" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="560" y1="50" x2="560" y2="70" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="620" y1="50" x2="620" y2="70" stroke="currentColor" stroke-width="1.5"/>
-
-  <!-- LOW -->
-  <rect x="430" y="70" width="140" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="500" y="85" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">LOW (&lt;10K)</text>
-  <line x1="570" y1="85" x2="615" y2="85" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow-idb1)"/>
-  <text x="615" y="85" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">✅ 作为 Tag</text>
-
-  <!-- MED -->
-  <rect x="490" y="106" width="140" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="560" y="121" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MED (10K-100K)</text>
-  <line x1="630" y1="121" x2="670" y2="121" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow-idb1)"/>
-  <text x="670" y="121" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">⚠ 谨慎 Tag</text>
-
-  <!-- HIGH -->
-  <rect x="490" y="142" width="140" height="30" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="560" y="157" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HIGH (&gt;100K)</text>
-  <line x1="630" y1="157" x2="670" y2="157" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow-idb1)"/>
-  <text x="670" y="157" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">❌ 绝不能 Tag</text>
-
-  <!-- NO branch flows downward -->
-  <line x1="95" y1="42" x2="95" y2="85" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="10" y1="85" x2="95" y2="85" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="10" y1="85" x2="10" y2="105" stroke="currentColor" stroke-width="1.5"/>
-  <text x="48" y="100" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" fill-opacity="0.7">NO</text>
-
-  <!-- 需要 GROUP BY? -->
-  <rect x="5" y="105" width="170" height="32" rx="16" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="90" y="121" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">需要 GROUP BY?</text>
-
-  <!-- GROUP BY YES -->
-  <line x1="175" y1="121" x2="255" y2="121" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb1)"/>
-  <text x="215" y="115" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" fill-opacity="0.7">YES</text>
-  <rect x="258" y="108" width="120" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="318" y="122" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">必须 Tag</text>
-
-  <!-- GROUP BY NO -->
-  <line x1="90" y1="137" x2="90" y2="165" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="10" y1="165" x2="90" y2="165" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="10" y1="165" x2="10" y2="180" stroke="currentColor" stroke-width="1.5"/>
-  <text x="50" y="177" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" fill-opacity="0.7">NO</text>
-
-  <rect x="8" y="180" width="150" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="83" y="194" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">✅ 作为 Field 存储</text>
-</svg>
 
 ### Tag 适用场景
 - **低基数额外信息**：host, region, environment, datacenter, service, method, status_code
@@ -173,46 +107,7 @@ cpu、mem、disk、net 全部写入 sensor_data。
 
 ## 下采样策略
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 60" width="700" height="60">
-  <defs>
-    <marker id="arrow-idb2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-    <marker id="arrow-idb3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-    <marker id="arrow-idb4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <!-- Raw -->
-  <rect x="10" y="5" width="120" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="70" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Raw (10s)</text>
-  <text x="70" y="30" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">RP: 7d</text>
-
-  <line x1="130" y1="19" x2="190" y2="19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb2)"/>
-  <text x="160" y="13" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Task</text>
-
-  <!-- Hourly -->
-  <rect x="193" y="5" width="150" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="268" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Hourly Agg (1h)</text>
-  <text x="268" y="30" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">RP: 90d</text>
-
-  <line x1="343" y1="19" x2="403" y2="19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb3)"/>
-  <text x="373" y="13" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Task</text>
-
-  <!-- Daily -->
-  <rect x="406" y="5" width="150" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="481" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Daily Agg (1d)</text>
-  <text x="481" y="30" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">RP: 365d</text>
-
-  <line x1="556" y1="19" x2="610" y2="19" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-idb4)"/>
-
-  <!-- Archive -->
-  <rect x="613" y="5" width="85" height="28" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="655" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Archive</text>
-  <text x="655" y="30" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">Parquet (v3)</text>
-</svg>
+![InfluxDB-指标设计与基数管理 - 图2](../diagram/InfluxDB-指标设计与基数管理-fig2.svg)
 
 **关键原则**：
 1. 尽早做下采样，减少高精度存储成本

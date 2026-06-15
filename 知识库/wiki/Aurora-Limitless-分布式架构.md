@@ -28,43 +28,7 @@ Aurora Limitless Database 是 Amazon Aurora PostgreSQL 的水平扩展方案，�
 
 ## 三层架构
 
-<svg viewBox="0 0 680 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
-  <defs>
-    <marker id="arrow-al" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
-    </marker>
-  </defs>
-  <!-- Client -->
-  <rect x="10" y="15" width="55" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="37" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Client</text>
-  <line x1="65" y1="29" x2="80" y2="29" stroke="currentColor" stroke-width="1.8" marker-end="url(#arrow-al)"/>
-  
-  <!-- DNS LB -->
-  <rect x="83" y="15" width="70" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="118" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">DNS LB</text>
-  <line x1="153" y1="29" x2="168" y2="29" stroke="currentColor" stroke-width="1.8" marker-end="url(#arrow-al)"/>
-  
-  <!-- Routers -->
-  <rect x="171" y="15" width="100" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="221" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Routers (无状态)</text>
-  <line x1="271" y1="29" x2="286" y2="29" stroke="currentColor" stroke-width="1.8" marker-end="url(#arrow-al)"/>
-  
-  <!-- Shards -->
-  <rect x="289" y="15" width="100" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="339" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Shards (有状态)</text>
-  <line x1="389" y1="29" x2="404" y2="29" stroke="currentColor" stroke-width="1.8" marker-end="url(#arrow-al)"/>
-  
-  <!-- Aurora Storage -->
-  <rect x="407" y="15" width="160" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="487" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Aurora Storage (3-AZ, 6副本)</text>
-  
-  <!-- Control Plane up/down arrow -->
-  <line x1="221" y1="43" x2="221" y2="60" stroke="currentColor" stroke-width="1.8"/>
-  <line x1="209" y1="60" x2="233" y2="60" stroke="currentColor" stroke-width="1.8"/>
-  <text x="228" y="68" font-family="sans-serif" font-size="12" fill="currentColor">↕</text>
-  <rect x="155" y="78" width="130" height="24" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.8"/>
-  <text x="220" y="92" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Control Plane</text>
-</svg>
+![Architecture Diagram](../diagram/aurora-limitless-architecture.svg)
 
 
 - **Router**：服务应用流量，持有 schema + topology + shard mapping 元数据。无 standby（通过 DNS LB 实现高可用），每个连接绑定至一个 Router

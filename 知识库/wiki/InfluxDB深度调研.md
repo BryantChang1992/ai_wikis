@@ -73,53 +73,7 @@ CHANG_AI_TEAM 正在建设 Agent 基础设施可观测性平台，时序数据�
 
 ## 核心概念导图
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200">
-  <!-- Root -->
-  <rect x="15" y="5" width="180" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-  <text x="105" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">InfluxDB 概念体系</text>
-
-  <!-- Lines from root to items -->
-  <line x1="105" y1="31" x2="105" y2="45" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="55" y1="45" x2="680" y2="45" stroke="currentColor" stroke-width="1.2"/>
-
-  <line x1="55" y1="45" x2="55" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="160" y1="45" x2="160" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="265" y1="45" x2="265" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="370" y1="45" x2="370" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="475" y1="45" x2="475" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="560" y1="45" x2="560" y2="62" stroke="currentColor" stroke-width="1.2"/>
-  <line x1="665" y1="45" x2="665" y2="62" stroke="currentColor" stroke-width="1.2"/>
-
-  <!-- Row 1: items -->
-  <text x="12" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-数据模型]]</text>
-  <text x="12" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Measurement / Tag / Field / </text>
-  <text x="12" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Timestamp / Series / Cardinality</text>
-
-  <text x="117" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-TSM存储引擎]]</text>
-  <text x="117" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　TSM 引擎 + TSI 倒排索引</text>
-
-  <text x="222" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-3-列存引擎]]</text>
-  <text x="222" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Parquet / Arrow / </text>
-  <text x="222" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　DataFusion / 存算分离 / </text>
-  <text x="222" y="127" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　无索引剪枝</text>
-
-  <text x="327" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-写入与查询路径]]</text>
-  <text x="327" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　v1/v2 Iterator vs </text>
-  <text x="327" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　v3 DataFusion 向量化</text>
-
-  <text x="432" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-指标设计与基数管理]]</text>
-  <text x="432" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Tag/Field 决策 / </text>
-  <text x="432" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　基数计算 / 五大实践</text>
-
-  <text x="520" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ [[InfluxDB-多副本与高可用]]</text>
-  <text x="520" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Router 双副本 / </text>
-  <text x="520" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　WAL 崩溃恢复 / </text>
-  <text x="520" y="127" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Object Store 3 AZ</text>
-
-  <text x="620" y="78" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ [[InfluxDB-Catalog元数据]]</text>
-  <text x="620" y="97" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　PostgreSQL RDBMS / </text>
-  <text x="620" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　BoltDB vs 独立服务</text>
-</svg>
+![InfluxDB深度调研 - 图1](../diagram/InfluxDB深度调研-fig.svg)
 
 ## 选型建议
 

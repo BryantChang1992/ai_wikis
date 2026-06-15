@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 600 90" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="580" height="70" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+<text x="300" y="30" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">提交阶段 (Parallel Commit):</text>
+<text x="25" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">将 Transaction Record 状态改为 COMMITTED</text>
+<text x="25" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">参与者并行确认 → 只需等待最慢的写入 | 异步清理 Write Intents</text>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
+<text x="180" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">传统 Shared-Nothing</text>
+<text x="540" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">存算分离 3.0</text>
+<rect x="60" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE (BDB-JE)</text>
+<text x="180" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
+<text x="180" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
+<rect x="420" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+<text x="540" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE</text>
+<text x="540" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
+<text x="540" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
+<rect x="60" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+<text x="180" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (本地存储 + CPU)</text>
+<text x="180" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Paxos-Replicated Local Storage</text>
+<text x="180" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute + Storage coupled</text>
+<rect x="420" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+<text x="540" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (纯计算)</text>
+<text x="540" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Shared-Storage (S3/HDFS)</text>
+<text x="540" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute-Storage Decoupled</text>
+<rect x="60" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="180" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">数据 3 副本 → 存储膨胀</text>
+<rect x="420" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="540" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">EC + 冷热分层 → 成本降低</text>
+</svg>

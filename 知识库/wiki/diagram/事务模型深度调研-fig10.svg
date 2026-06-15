@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 520 120" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="20" font-family="sans-serif" font-size="13" font-weight="bold" fill="currentColor">表元组（Heap Tuple）:</text>
+  <rect x="10" y="30" width="500" height="80" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="25" y="50" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">t_xmin: 插入/创建该元组的事务 ID</text>
+  <text x="25" y="68" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">t_xmax: 删除/更新该元组的事务 ID</text>
+  <text x="25" y="86" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">t_ctid: 指向新版本的指针（更新时） · t_infomask: 标志位</text>
+</svg>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" width="720" height="180">
+  <defs>
+    <marker id="arrow-fl2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="10" y="5" width="170" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="95" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">IcebergLakeStorage</text>
+  <line x1="95" y1="33" x2="95" y2="48" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="35" y1="48" x2="680" y2="48" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="35" y1="48" x2="35" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="180" y1="48" x2="180" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="340" y1="48" x2="340" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="500" y1="48" x2="500" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="660" y1="48" x2="660" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <!-- Row 1 -->
+  <text x="12" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeCatalog</text>
+  <text x="12" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（建表、管理 Namespace）</text>
+  <text x="157" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeWriter</text>
+  <text x="157" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　─ AppendOnlyTaskWriter</text>
+  <text x="157" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　─ DeltaTaskWriter</text>
+  <text x="317" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeCommitter</text>
+  <text x="317" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（收集 WriteResult →</text>
+  <text x="317" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　提交 Snapshot → 过期清理）</text>
+  <text x="477" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeSource</text>
+  <text x="477" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（Split 规划 +</text>
+  <text x="477" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Parquet → InternalRow）</text>
+  <text x="637" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ IcebergRewriteDataFiles</text>
+  <text x="637" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（Compaction：</text>
+  <text x="637" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　合并小文件 +</text>
+  <text x="637" y="130" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　清理 Delete Files）</text>
+</svg>

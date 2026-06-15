@@ -69,28 +69,10 @@ Apache Doris 经历了从百度内部 OLAP 引擎到 Apache 顶级项目的十�
 核心变革：**Compute-Storage Separation**
 
 ```svg
-<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
-<text x="180" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">传统 Shared-Nothing</text>
-<text x="540" y="16" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">存算分离 3.0</text>
-<rect x="60" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="180" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE (BDB-JE)</text>
-<text x="180" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
-<text x="180" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
-<rect x="420" y="30" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="540" y="50" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FE</text>
-<text x="540" y="66" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Metadata + Query Planning</text>
-<text x="540" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Multi-Master + Raft</text>
-<rect x="60" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="180" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (本地存储 + CPU)</text>
-<text x="180" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Paxos-Replicated Local Storage</text>
-<text x="180" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute + Storage coupled</text>
-<rect x="420" y="108" width="240" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
-<text x="540" y="126" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">BE (纯计算)</text>
-<text x="540" y="144" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Shared-Storage (S3/HDFS)</text>
-<text x="540" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute-Storage Decoupled</text>
-<rect x="60" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="180" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">数据 3 副本 → 存储膨胀</text>
-<rect x="420" y="186" width="240" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="540" y="201" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">EC + 冷热分层 → 成本降低</text>
-</svg>
+
+![Doris-架构演进 - 图1](../diagram/Doris-架构演进-fig1.svg)
+
+
 
 ```
 
@@ -141,29 +123,8 @@ Apache Doris 经历了从百度内部 OLAP 引擎到 Apache 顶级项目的十�
 ## 竞品定位
 
 ```svg
-<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
-<text x="10" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">实时分析 OLAP 生态:</text>
-<rect x="30" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="100" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">维度</text>
-<rect x="190" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="260" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Doris</text>
-<rect x="350" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="420" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ClickHouse</text>
-<rect x="510" y="30" width="140" height="32" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="46" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">StarRocks</text>
-<text x="50" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">架构</text>
-<text x="50" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">SQL</text>
-<text x="50" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">事务</text>
-<text x="50" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">存储</text>
-<text x="210" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP + 存算分离</text>
-<text x="420" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP</text>
-<text x="580" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MPP + 存算分离</text>
-<text x="210" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MySQL兼容</text>
-<text x="420" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">SQL扩展</text>
-<text x="580" y="108" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">MySQL兼容</text>
-<text x="210" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2PC + MVCC</text>
-<text x="420" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">无</text>
-<text x="580" y="134" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">2PC + MVCC</text>
-<text x="210" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存 + 索引</text>
-<text x="420" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存</text>
-<text x="580" y="160" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">列存 + 索引</text>
-</svg>
+
+![Doris-架构演进 - 图2](../diagram/Doris-架构演进-fig2.svg)
 
 ```
 

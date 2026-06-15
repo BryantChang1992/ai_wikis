@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <style>
+    text { font-family: monospace; font-size: 13px; fill: currentColor; dominant-baseline: middle; }
+  </style>
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="20" y="25" font-size="13" text-anchor="start" font-weight="bold">fe/doris-meta/</text>
+  <text x="40" y="50" font-size="13" text-anchor="start">├── bdb/           # BDB-JE Journal + Data</text>
+  <text x="40" y="73" font-size="13" text-anchor="start">├── image/         # LFS 格式 Checkpoint</text>
+  <text x="40" y="96" font-size="13" text-anchor="start">└── edit_log/      # 增量日志</text>
+</svg>

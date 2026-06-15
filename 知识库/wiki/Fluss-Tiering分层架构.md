@@ -17,7 +17,6 @@ related:
   - "[[Fluss-Lake层与湖仓融合]]"
   - "[[Fluss-存储引擎]]"
   - "[[Fluss-KV存储-RocksDB]]"
-diagram: "diagram/fluss-tiering-architecture.svg"
 
 ---
 

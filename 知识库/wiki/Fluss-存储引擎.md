@@ -17,7 +17,6 @@ related:
   - "[[Fluss-KV存储-RocksDB]]"
   - "[[Fluss-Arrow列式记录格式]]"
   - "[[LSM-Tree]]"
-diagram: "diagram/fluss-storage-engine-3-layer.svg"
 
 ---
 
@@ -26,8 +25,6 @@ diagram: "diagram/fluss-storage-engine-3-layer.svg"
 ## 概述
 
 Fluss 存储引擎采用**三层存储模型**，与 Kafka 单层本地 Log 有根本差异。在 TabletServer 内部，ReplicaManager 统一调度三个子系统：LogManager（本地 Log）、KvManager（RocksDB KV）、RemoteLogManager（远程分层）。
-
-![Fluss-存储引擎 - 图1](../diagram/Fluss-存储引擎-fig1.svg)
 
 
 
@@ -59,8 +56,6 @@ LogFormat 枚举：`ARROW` / `COMPACTED` / `INDEXED`。其中 `COMPACTED` 和 `I
 ## KV 存储子系统（Fluss 最大差异化模块）
 
 详见 [[Fluss-KV存储-RocksDB]]。核心架构：
-
-![Fluss-存储引擎 - 图2](../diagram/Fluss-存储引擎-fig2.svg)
 
 **关键设计决策**：Fluss KV 的 WAL 不是额外文件——它**直接复用 changelog LogTablet 的 segment**。这意味着 KV 恢复时不是读 WAL 文件，而是**重放 changelog LogTablet**。这实现了 Write-Once Read-Multiple 的架构模式。
 

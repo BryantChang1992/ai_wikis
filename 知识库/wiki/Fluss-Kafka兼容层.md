@@ -14,7 +14,6 @@ status: draft
 related:
   - "[[Fluss-RPC与网络]]"
   - "[[Fluss-整体架构]]"
-diagram: "diagram/fluss-kafka-compat-layer.svg"
 
 ---
 
@@ -25,8 +24,6 @@ diagram: "diagram/fluss-kafka-compat-layer.svg"
 Fluss 的 Kafka 兼容层是通过 `NetworkProtocolPlugin` 接口实现的**协议级别的 Kafka 兼容**。它使 Fluss 能够接受标准的 Kafka 客户端连接（Java/Go/Python/...），并处理 Kafka 二进制协议——但**当前处于骨架阶段**。
 
 ## 协议链路
-
-![Fluss-Kafka兼容层 - 图1](../diagram/Fluss-Kafka兼容层-fig1.svg)
 
 
 

@@ -17,7 +17,6 @@ related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-客户端与计算集成]]"
   - "[[Fluss-Tiering分层架构]]"
-diagram: "diagram/fluss-lake-backends.svg"
 
 ---
 

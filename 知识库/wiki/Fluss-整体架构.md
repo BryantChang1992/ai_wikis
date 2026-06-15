@@ -23,7 +23,7 @@ related:
 
 # Fluss 整体架构与 Kafka 2.7.2 对照
 
-![Architecture Diagram](../diagram/fluss-vs-kafka-architecture.svg)
+![[diagram/fluss-vs-kafka-architecture.svg]]
 ## 概述
 
 Apache Fluss (Incubating) 是新一代流存储系统，从 Kafka 生态演化而来但在架构上有根本性设计差异。核心发现：**Fluss 约 30% 代码复用 Kafka（Log Segment 管理 + Replica 复制框架），70% 自研（KV 存储、Arrow 列式、Lake 集成、RPC 框架）**。

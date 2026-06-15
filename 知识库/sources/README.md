@@ -3,7 +3,7 @@ type: meta
 title: "源文件索引"
 tags: ["meta", "sources"]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-15
 ---
 
 # 源文件索引 (Raw Sources)
@@ -57,6 +57,25 @@ sources/papers/
 - [RaaS/](papers/RaaS/) — SIGMOD 2026，Purdue，存储计算分离 Tail Latency 消除
   - RaaS-SIGMOD2026.pdf（原文，3.2MB）
   - 精读分析.md / 全文翻译.md
+- [CockroachDB-Leader-Leases/](papers/CockroachDB-Leader-Leases/) — SIGMOD 2026，CockroachDB，多 Raft 组 Leader Lease 扩展
+  - Scalable-Leader-Leases-SIGMOD2026.pdf（原文，1.2MB）
+  - 精读分析.md / 全文翻译.md ✅
+  - → wiki: CockroachDB-Leader-Lease-整体设计.md, CockroachDB-Liveness-Fabric-故障检测层.md, CockroachDB-Leader-Fortification.md
+- [Rose/](papers/Rose/) — CIDR 2026，Columbia，分区数据库的灵活复制
+  - Rose-CIDR2026.pdf（原文，536KB）
+  - 精读分析.md / 全文翻译.md ✅
+  - → wiki: Rosé-异步复制协议设计.md, Rosé-Coordinated-Apply-协调应用.md
+- [Agent-First-Data/](papers/Agent-First-Data/) — CIDR 2026，Berkeley，Agent-First 数据系统
+  - Agent-First-Data-CIDR2026.pdf（原文，849KB）
+  - 精读分析.md / 全文翻译.md ✅
+  - → wiki: Agent-First-Data-Systems.md, Agentic-Memory-语义缓存.md, Agent-First-Branch-Transactions-分支事务.md
+- [LSM-Scheduling/](papers/LSM-Scheduling/) — FAST 2026，UC Riverside，分布式 LSM Compaction 全局调度
+  - LSM-Scheduling-FAST2026.pdf（原文，3.2MB）
+  - 精读分析.md / 全文翻译.md ✅
+  - → wiki: Silo-分布式LSM-Compaction调度.md, Silo-Compaction-迁移协议.md
+- [LSM-Raft/](papers/LSM-Raft/) — SIGMOD 2026 Poster，Tsinghua，LSM-tree 与 Raft 协同优化（⚠️ 无法获取）
+  - SIGMOD Poster 仅有摘要公开，ACM Cloudflare 封锁，ResearchGate IP 被封
+  - 目录已预留，后续若能获取 PDF 再补充 Ingest
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（7 篇，2026-06-10）

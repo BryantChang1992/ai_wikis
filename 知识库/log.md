@@ -12,6 +12,14 @@ updated: 2026-06-14
 
 ## 2026-06-15
 
+- `[09:25-09:30] CTO Agent`: **INGEST** — 4 篇论文批量入库（精读分析 + 全文翻译 + concept cards）
+  - CockroachDB Leader Leases (SIGMOD 2026): 精读分析 + 全文翻译 + 3 张 wiki 卡片
+  - Rosé (CIDR 2026): 精读分析 + 全文翻译 + 2 张 wiki 卡片
+  - Agent-First Data (CIDR 2026): 精读分析 + 全文翻译 + 3 张 wiki 卡片
+  - Silo / LSM-Scheduling (FAST 2026): 精读分析 + 全文翻译 + 2 张 wiki 卡片
+  - LSM-Raft (SIGMOD 2026): ⚠️ 确认为 Poster（非 full paper），ACM/ResearchGate 均封锁，无法获取 PDF
+  - 所有 wiki 卡片已通过 [[wikilink]] 与知识库现有节点互联
+
 - `[00:10] rd-task Worker`: **INGEST** — Fluss 源码分析 10 张 wiki 卡片
   - 源文件: 7 个 HTML 源文件（sources/web/fluss/01-07）
   - 产出: 10 张 wiki 卡片（6 analysis + 4 concept）

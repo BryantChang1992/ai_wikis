@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" width="900" height="540">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+  </defs>
+  <rect width="900" height="540" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Apache Doris — MPP OLAP Architecture</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">Real-time analytical database with F2E separation, MoW model, and vectorized execution</text>
+  <text x="30" y="78" fill="#2563eb" font-size="12" font-weight="700">01 // DATA INGESTION</text>
+  <rect x="30" y="92" width="195" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="128" y="112" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Stream Load</text>
+  <text x="128" y="128" fill="#6b7280" font-size="10" text-anchor="middle">HTTP push</text>
+  <line x1="225" y1="116" x2="245" y2="116" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <rect x="245" y="92" width="195" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="343" y="112" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Routine Load</text>
+  <text x="343" y="128" fill="#6b7280" font-size="10" text-anchor="middle">Kafka</text>
+  <line x1="440" y1="116" x2="460" y2="116" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <rect x="460" y="92" width="195" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="558" y="112" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Broker Load</text>
+  <text x="558" y="128" fill="#6b7280" font-size="10" text-anchor="middle">HDFS/S3</text>
+  <line x1="655" y1="116" x2="675" y2="116" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <rect x="675" y="92" width="195" height="48" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="773" y="112" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Binlog Sync</text>
+  <text x="773" y="128" fill="#6b7280" font-size="10" text-anchor="middle">Canal/CDC</text>
+  <line x1="450" y1="140" x2="450" y2="168" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="30" y="188" fill="#16a34a" font-size="12" font-weight="700">02 // FRONTEND (Java FE)</text>
+  <rect x="30" y="202" width="195" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="128" y="222" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Query Planner</text>
+  <text x="128" y="238" fill="#6b7280" font-size="10" text-anchor="middle">Nereids/CBO/MPP</text>
+  <rect x="245" y="202" width="195" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="343" y="222" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Catalog Mgr</text>
+  <text x="343" y="238" fill="#6b7280" font-size="10" text-anchor="middle">metadata</text>
+  <rect x="460" y="202" width="195" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="558" y="222" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Coordinator</text>
+  <text x="558" y="238" fill="#6b7280" font-size="10" text-anchor="middle">RPC dispatch</text>
+  <rect x="675" y="202" width="195" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="773" y="222" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Load Mgr</text>
+  <text x="773" y="238" fill="#6b7280" font-size="10" text-anchor="middle">txn/progress</text>
+  <line x1="450" y1="250" x2="450" y2="278" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <text x="30" y="298" fill="#9333ea" font-size="12" font-weight="700">03 // BACKEND + STORAGE (C++ BE)</text>
+  <rect x="30" y="312" width="195" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="128" y="332" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Segment v2</text>
+  <text x="128" y="348" fill="#6b7280" font-size="10" text-anchor="middle">col. storage</text>
+  <rect x="245" y="312" width="195" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="343" y="332" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Compaction</text>
+  <text x="343" y="348" fill="#6b7280" font-size="10" text-anchor="middle">CU/MoW merge</text>
+  <rect x="460" y="312" width="195" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="558" y="332" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Vectorized Exec</text>
+  <text x="558" y="348" fill="#6b7280" font-size="10" text-anchor="middle">SIMD/pipeline</text>
+  <rect x="675" y="312" width="195" height="48" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="773" y="332" fill="#111827" font-size="12" font-weight="600" text-anchor="middle">Primary Key Idx</text>
+  <text x="773" y="348" fill="#6b7280" font-size="10" text-anchor="middle">MoW upsert</text>
+  <line x1="450" y1="360" x2="450" y2="388" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <text x="30" y="408" fill="#f97316" font-size="12" font-weight="700">04 // KEY OPTIMIZATIONS</text>
+  <rect x="30" y="422" width="195" height="44" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="128" y="440" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">MPP Plan</text>
+  <text x="128" y="456" fill="#6b7280" font-size="9" text-anchor="middle">data shuffle</text>
+  <rect x="245" y="422" width="195" height="44" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="343" y="440" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">CBO/Nereids</text>
+  <text x="343" y="456" fill="#6b7280" font-size="9" text-anchor="middle">cost model</text>
+  <rect x="460" y="422" width="195" height="44" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="558" y="440" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Pipeline Exec</text>
+  <text x="558" y="456" fill="#6b7280" font-size="9" text-anchor="middle">non-blocking</text>
+  <rect x="675" y="422" width="195" height="44" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="773" y="440" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Compaction CLI</text>
+  <text x="773" y="456" fill="#6b7280" font-size="9" text-anchor="middle">MoW tuning</text>
+  <g transform="translate(30, 498)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="20" y="12" fill="#6b7280" font-size="10">Ingestion</text>
+    <rect x="100" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="120" y="12" fill="#6b7280" font-size="10">Frontend</text>
+    <rect x="200" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
+    <text x="220" y="12" fill="#6b7280" font-size="10">Backend + Storage</text>
+    <rect x="340" y="0" width="14" height="14" rx="3" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+    <text x="360" y="12" fill="#6b7280" font-size="10">Optimizations</text>
+  </g>
+</svg>

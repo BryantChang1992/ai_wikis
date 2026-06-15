@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+  </defs>
+  <rect width="880" height="500" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">OLAP vs. Time-Series Database — Domain Comparison</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">Doris (OLAP) vs. InfluxDB (TSDB) — different design paradigms, shared columnar trends</text>
+  <text x="30" y="82" fill="#2563eb" font-size="12" font-weight="700">OLAP — MPP Importer-Query Model</text>
+  <rect x="30" y="96" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Semantic Model</text>
+  <text x="220" y="128" fill="#6b7280" font-size="9" text-anchor="middle">star/snowflake schema</text>
+  <rect x="30" y="144" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="162" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Data Model</text>
+  <text x="220" y="176" fill="#6b7280" font-size="9" text-anchor="middle">Aggregate/Unique/Duplicate</text>
+  <rect x="30" y="192" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Query Engine</text>
+  <text x="220" y="224" fill="#6b7280" font-size="9" text-anchor="middle">MPP + vectorized + CBO</text>
+  <rect x="30" y="240" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="258" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Storage</text>
+  <text x="220" y="272" fill="#6b7280" font-size="9" text-anchor="middle">Segment v2 columnar</text>
+  <rect x="30" y="288" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="306" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Write Model</text>
+  <text x="220" y="320" fill="#6b7280" font-size="9" text-anchor="middle">batch append + MoW update</text>
+  <rect x="30" y="336" width="380" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="220" y="354" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Use Case</text>
+  <text x="220" y="368" fill="#6b7280" font-size="9" text-anchor="middle">multi-dim ad-hoc analysis</text>
+  <text x="470" y="82" fill="#16a34a" font-size="12" font-weight="700">TSDB — Time-Ordered Query Model</text>
+  <rect x="470" y="96" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Data Model</text>
+  <text x="660" y="128" fill="#6b7280" font-size="9" text-anchor="middle">measurement + tags</text>
+  <rect x="470" y="144" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="162" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Write Model</text>
+  <text x="660" y="176" fill="#6b7280" font-size="9" text-anchor="middle">time-ordered append</text>
+  <rect x="470" y="192" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Query Engine</text>
+  <text x="660" y="224" fill="#6b7280" font-size="9" text-anchor="middle">DataFusion pushdown</text>
+  <rect x="470" y="240" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="258" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Storage</text>
+  <text x="660" y="272" fill="#6b7280" font-size="9" text-anchor="middle">TSM → Parquet col.</text>
+  <rect x="470" y="288" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="306" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Compression</text>
+  <text x="660" y="320" fill="#6b7280" font-size="9" text-anchor="middle">timestamp delta + Gorilla</text>
+  <rect x="470" y="336" width="380" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="660" y="354" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Use Case</text>
+  <text x="660" y="368" fill="#6b7280" font-size="9" text-anchor="middle">metrics / monitoring</text>
+  <line x1="415" y1="116" x2="462" y2="116" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="415" y1="164" x2="462" y2="164" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="415" y1="212" x2="462" y2="212" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="415" y1="260" x2="462" y2="260" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="415" y1="308" x2="462" y2="308" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="415" y1="356" x2="462" y2="356" stroke="#9333ea" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="30" y="410" fill="#9333ea" font-size="12" font-weight="700">Convergence Trend → Both moving toward columnar + cloud-native</text>
+  <rect x="30" y="424" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="128" y="442" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Columnar Storage</text>
+  <text x="128" y="456" fill="#6b7280" font-size="9" text-anchor="middle">Arrow/Parquet</text>
+  <rect x="245" y="424" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="343" y="442" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Query Federation</text>
+  <text x="343" y="456" fill="#6b7280" font-size="9" text-anchor="middle">Unified SQL</text>
+  <rect x="460" y="424" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="558" y="442" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">S3/Tiered Store</text>
+  <text x="558" y="456" fill="#6b7280" font-size="9" text-anchor="middle">∞ scale</text>
+  <rect x="675" y="424" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="773" y="442" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Real-Time</text>
+  <text x="773" y="456" fill="#6b7280" font-size="9" text-anchor="middle">stream/materialize</text>
+  <g transform="translate(30, 484)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="20" y="12" fill="#6b7280" font-size="10">OLAP (Doris)</text>
+    <rect x="170" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="190" y="12" fill="#6b7280" font-size="10">TSDB (InfluxDB)</text>
+    <rect x="340" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
+    <text x="360" y="12" fill="#6b7280" font-size="10">Convergence</text>
+  </g>
+</svg>

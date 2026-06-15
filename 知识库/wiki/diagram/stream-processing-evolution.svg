@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="880" height="480">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="880" height="480" fill="#ffffff"/>
+  <text x="30" y="32" fill="#111827" font-size="16" font-weight="700">Stream Processing Evolution — 1992→2022 (3 Generations)</text>
+  <text x="30" y="50" fill="#6b7280" font-size="11">DSMS → Dataflow → Event-Driven Microservices — based on Fragkoulis et al. Survey</text>
+  <text x="30" y="82" fill="#2563eb" font-size="12" font-weight="700">GEN 1: DSMS (2000–2010) — "Database Inverted"</text>
+  <rect x="30" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="128" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">STREAM</text>
+  <text x="128" y="128" fill="#6b7280" font-size="9" text-anchor="middle">Stanford CQL</text>
+  <rect x="245" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="343" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Aurora/Borealis</text>
+  <text x="343" y="128" fill="#6b7280" font-size="9" text-anchor="middle">MIT/Brown</text>
+  <rect x="460" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="558" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">TelegraphCQ</text>
+  <text x="558" y="128" fill="#6b7280" font-size="9" text-anchor="middle">Berkeley</text>
+  <rect x="675" y="96" width="195" height="40" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="773" y="114" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">System S</text>
+  <text x="773" y="128" fill="#6b7280" font-size="9" text-anchor="middle">IBM streams</text>
+  <line x1="450" y1="136" x2="450" y2="158" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="30" y="178" fill="#16a34a" font-size="12" font-weight="700">GEN 2: Dataflow (2011–2022) — Distributed Processing</text>
+  <rect x="30" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="128" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Storm</text>
+  <text x="128" y="224" fill="#6b7280" font-size="9" text-anchor="middle">record-at-a-time</text>
+  <rect x="245" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="343" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Flink</text>
+  <text x="343" y="224" fill="#6b7280" font-size="9" text-anchor="middle">checkpoint/barrier</text>
+  <rect x="460" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="558" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Spark Str.</text>
+  <text x="558" y="224" fill="#6b7280" font-size="9" text-anchor="middle">micro-batch</text>
+  <rect x="675" y="192" width="195" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="773" y="210" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Kafka Str.</text>
+  <text x="773" y="224" fill="#6b7280" font-size="9" text-anchor="middle">topic-table</text>
+  <line x1="450" y1="232" x2="450" y2="258" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <text x="30" y="278" fill="#9333ea" font-size="12" font-weight="700">GEN 3: Emerging (2022–) — Event-Driven + Microservices</text>
+  <rect x="30" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="128" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Serverless</text>
+  <text x="128" y="324" fill="#6b7280" font-size="9" text-anchor="middle">auto-scale</text>
+  <rect x="245" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="343" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Streaming DB</text>
+  <text x="343" y="324" fill="#6b7280" font-size="9" text-anchor="middle">RisingWave/Materialize</text>
+  <rect x="460" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="558" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Data Mesh</text>
+  <text x="558" y="324" fill="#6b7280" font-size="9" text-anchor="middle">domain ownership</text>
+  <rect x="675" y="292" width="195" height="40" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="773" y="310" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Agent Stream</text>
+  <text x="773" y="324" fill="#6b7280" font-size="9" text-anchor="middle">AI-driven</text>
+  <text x="30" y="360" fill="#f97316" font-size="12" font-weight="700">CROSS-CUTTING CONCERNS</text>
+  <rect x="30" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="108" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Out-of-Order</text>
+  <text x="108" y="402" fill="#6b7280" font-size="8" text-anchor="middle">watermarks</text>
+  <rect x="200" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="278" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">State Mgmt</text>
+  <text x="278" y="402" fill="#6b7280" font-size="8" text-anchor="middle">RocksDB back</text>
+  <rect x="370" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="448" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Fault Tolerance</text>
+  <text x="448" y="402" fill="#6b7280" font-size="8" text-anchor="middle">checkpoint</text>
+  <rect x="540" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="618" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Elasticity</text>
+  <text x="618" y="402" fill="#6b7280" font-size="8" text-anchor="middle">reconfig</text>
+  <rect x="710" y="374" width="155" height="36" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="788" y="388" fill="#374151" font-size="10" font-weight="600" text-anchor="middle">Dataflow Model</text>
+  <text x="788" y="402" fill="#6b7280" font-size="8" text-anchor="middle">Beam</text>
+  <g transform="translate(30, 440)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="20" y="12" fill="#6b7280" font-size="10">Gen1 DSMS</text>
+    <rect x="160" y="0" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="180" y="12" fill="#6b7280" font-size="10">Gen2 Dataflow</text>
+    <rect x="320" y="0" width="14" height="14" rx="3" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1"/>
+    <text x="340" y="12" fill="#6b7280" font-size="10">Gen3 Emerging</text>
+    <rect x="480" y="0" width="14" height="14" rx="3" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+    <text x="500" y="12" fill="#6b7280" font-size="10">Concerns</text>
+  </g>
+</svg>

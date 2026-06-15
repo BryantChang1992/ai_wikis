@@ -22,9 +22,14 @@ related:
 created: 2026-06-15
 ---
 
+
 # LSM-Tree 存储引擎新进展：从单机到分布式 Compaction
 
+
 > 基于 Silo (FAST 2026) 的分布式 LSM compaction 调度 + Fluss 的 RocksDB 存储引擎实践，综合 10 张 LSM-Tree wiki 卡片。
+
+
+![Architecture Diagram](../diagram/lsm-tree-2026-progress.svg)
 
 ## 一、LSM-Tree 为什么需要新突破？
 

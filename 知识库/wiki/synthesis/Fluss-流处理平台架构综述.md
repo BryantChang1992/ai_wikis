@@ -22,9 +22,14 @@ related:
 created: 2026-06-15
 ---
 
+
 # Fluss 流处理平台架构综述
 
+
 > 基于 Fluss trunk vs Kafka 2.7.2 源码级对比，综合 10 张 wiki 卡片，覆盖 Fluss 的存储引擎、分布式协调、RPC 网络、客户端集成、Lake 层五大模块。
+
+
+![Architecture Diagram](../diagram/fluss-architecture.svg)
 
 ## 一、定位：Fluss 是什么？
 

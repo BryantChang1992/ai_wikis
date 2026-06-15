@@ -34,90 +34,15 @@ related:
 
 ---
 
+
+![Architecture Diagram](../diagram/doris-architecture.svg)
+
 ## 领域定义
 
 **Apache Doris** 是百度开源、Apache 毕业的 MPP 架构实时分析数据库，专为 OLAP 高并发低延迟多维分析设计。C++ BE（计算+存储）和 Java FE（元数据+查询规划）。在 **Upsert (MoW) + 高并发查询 + 实时导入** 三个维度形成独特优势组合。
 
 ---
 
-## 概念关系图
-
-<svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13px">
-  <defs>
-    <marker id="arrow-d1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
-    <marker id="arrow-d2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
-  </defs>
-  <!-- Top: Doris 深度调研 -->
-  <rect x="240" y="10" width="280" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="380" y="30" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Doris 深度调研</text>
-  <text x="380" y="48" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">(总览 · 选型 · 历史)</text>
-  
-  <!-- Vertical connector -->
-  <line x1="380" y1="60" x2="380" y2="90" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  
-  <!-- Horizontal branching -->
-  <line x1="140" y1="90" x2="620" y2="90" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="140" y1="90" x2="140" y2="120" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  <line x1="380" y1="90" x2="380" y2="120" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  <line x1="620" y1="90" x2="620" y2="120" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  
-  <!-- Three boxes: 数据模型, 存储引擎, 查询引擎 -->
-  <rect x="60" y="120" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="140" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">数据模型</text>
-  <text x="140" y="162" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Duplicate</text>
-  <text x="140" y="178" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Aggregate</text>
-  <text x="140" y="194" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Unique MoW/MoR</text>
-  
-  <rect x="300" y="120" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="380" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">存储引擎</text>
-  <text x="380" y="162" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Segment v2</text>
-  <text x="380" y="178" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Compaction</text>
-  <text x="380" y="194" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">四种策略</text>
-  
-  <rect x="540" y="120" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="620" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">查询引擎</text>
-  <text x="620" y="162" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">MPP 向量化</text>
-  <text x="620" y="178" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Nereids CBO</text>
-  <text x="620" y="194" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Runtime Filter</text>
-  
-  <!-- Arrows between boxes -->
-  <line x1="220" y1="150" x2="298" y2="155" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-d2)"/>
-  <text x="255" y="140" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">DELETE_BITMAP</text>
-  <line x1="460" y1="155" x2="538" y2="160" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-d2)"/>
-  <text x="500" y="145" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">索引+裁剪</text>
-  
-  <!-- Bottom merge -->
-  <line x1="140" y1="200" x2="140" y2="250" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="620" y1="200" x2="620" y2="250" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="140" y1="250" x2="620" y2="250" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="380" y1="250" x2="380" y2="280" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  
-  <!-- 架构演进 -->
-  <rect x="240" y="280" width="280" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="380" y="302" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">架构演进</text>
-  <text x="380" y="320" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Shared-Nothing → 存算分离</text>
-  <text x="380" y="336" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Palo → 1.x → 2.x → 3.0</text>
-  
-  <line x1="380" y1="340" x2="380" y2="370" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  
-  <!-- Horizontal split -->
-  <line x1="190" y1="370" x2="570" y2="370" stroke="currentColor" stroke-width="1.5"/>
-  <line x1="190" y1="370" x2="190" y2="400" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  <line x1="570" y1="370" x2="570" y2="400" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-d1)"/>
-  
-  <!-- Bottom two boxes -->
-  <rect x="70" y="400" width="240" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="190" y="422" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">元数据 · 复制</text>
-  <text x="190" y="442" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">BDB-JE → Meta</text>
-  <text x="190" y="462" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Service</text>
-  <text x="190" y="478" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Doris 3.0 一致性</text>
-  
-  <rect x="450" y="400" width="240" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
-  <text x="570" y="422" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">生态整合</text>
-  <text x="570" y="442" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Lakehouse</text>
-  <text x="570" y="462" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Catalog联邦</text>
-  <text x="570" y="478" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">查询</text>
-</svg>
 
 **关系说明**：数据模型决定写入语义（Duplicate/Aggregate/Unique），存储引擎 Segment v2 和 Compaction 策略实现这些语义（特别是 DELETE_BITMAP 实现 MoW）。查询引擎利用存储层的索引（前缀索引/ZoneMap/Bloom Filter）进行过滤剪枝，Nereids CBO 生成最优查询计划，MPP 向量化引擎执行。架构从 Shared-Nothing 演进到存算分离，元数据从 BDB-JE 演进到独立 Meta Service。
 

@@ -35,6 +35,9 @@ related:
 
 > 本页横向对比两大分析型数据库赛道：OLAP（以 Doris 为代表）与时序数据库（以 InfluxDB 为代表）。
 
+
+![Architecture Diagram](../diagram/olap-tsdb-comparison.svg)
+
 ## 1. 领域定义
 
 | 赛道 | 代表系统 | 核心场景 | 数据特征 |

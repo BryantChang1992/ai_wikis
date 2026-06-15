@@ -34,14 +34,49 @@ related:
 
 在存储计算分离架构（Aurora、Socrates、AlloyDB、Neon）中，**redo log 上升为唯一的数据传输载体**：
 
-```
-传统架构：                                    存储计算分离架构：
-Compute ──data pages──► Storage              Compute ──redo log only──► Storage
-         ──WAL──────►                                                      │
-                                                                     异步 replay
-                                                                          ▼
-                                                                     data page
-```
+<svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-e3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Traditional architecture -->
+  <text x="175" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" font-weight="bold">传统架构：</text>
+  <!-- Compute box -->
+  <rect x="40" y="30" width="90" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="85" y="49" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute</text>
+  <!-- data pages arrow -->
+  <line x1="130" y1="37" x2="195" y2="37" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e3)"/>
+  <text x="162" y="28" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">data pages</text>
+  <!-- WAL arrow -->
+  <line x1="130" y1="55" x2="195" y2="55" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-e3)"/>
+  <text x="162" y="66" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">WAL</text>
+  <!-- Storage box -->
+  <rect x="200" y="30" width="90" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="245" y="49" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Storage</text>
+
+  <!-- Separator -->
+  <line x1="340" y1="10" x2="340" y2="120" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Disaggregated architecture -->
+  <text x="525" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" font-weight="bold">存储计算分离架构：</text>
+  <!-- Compute box -->
+  <rect x="400" y="30" width="90" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="445" y="49" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Compute</text>
+  <!-- redo log only arrow -->
+  <line x1="490" y1="47" x2="555" y2="47" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e3)"/>
+  <text x="522" y="38" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">redo log only</text>
+  <!-- Storage box -->
+  <rect x="560" y="30" width="90" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="605" y="49" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Storage</text>
+  <!-- Async replay downward arrow -->
+  <line x1="605" y1="64" x2="605" y2="90" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-e3)"/>
+  <text x="630" y="80" font-family="sans-serif" font-size="11" fill="currentColor">异步 replay</text>
+  <!-- data page box -->
+  <rect x="555" y="92" width="100" height="26" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="605" y="107" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">data page</text>
+</svg>
+
 
 ### 核心差异
 

@@ -40,15 +40,16 @@ UC Berkeley 的愿景论文：传统数据系统是为人机交互的**被动查
 
 ## 三层架构
 
-```
-┌─────────────────────────────────────────────────┐
-│ Query Interfaces: Probe + Brief + Sleeper Agent  │
-├─────────────────────────────────────────────────┤
-│ Probe Optimizer: Satisficing / MQO / AQP         │
-├─────────────────────────────────────────────────┤
-│ Storage: Agentic Memory + Branch Transactions    │
-└─────────────────────────────────────────────────┘
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120">
+  <rect x="20" y="5" width="500" height="32" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="270" y="21" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Query Interfaces: Probe + Brief + Sleeper Agent</text>
+  <line x1="20" y1="37" x2="520" y2="37" stroke="currentColor" stroke-width="1"/>
+  <rect x="20" y="40" width="500" height="32" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="270" y="56" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Probe Optimizer: Satisficing / MQO / AQP</text>
+  <line x1="20" y1="72" x2="520" y2="72" stroke="currentColor" stroke-width="1"/>
+  <rect x="20" y="75" width="500" height="32" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="270" y="91" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Storage: Agentic Memory + Branch Transactions</text>
+</svg>
 
 ### Layer 1: Probe > Query
 

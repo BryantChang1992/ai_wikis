@@ -44,26 +44,111 @@ related:
 
 ## 2. 概念关系图
 
-```
-                    ┌──────────────────────────────────────┐
-                    │         数据分析系统全景               │
-                    └──────────┬───────────────┬───────────┘
-                               │               │
-                    ┌──────────▼──────┐ ┌──────▼───────────┐
-                    │   OLAP (Doris)  │ │  TSDB (InfluxDB) │
-                    └──────────┬──────┘ └──────┬───────────┘
-                               │               │
-          ┌────────────────────┼───────┐ ┌──────┼────────────────────┐
-          ▼          ▼         ▼       ▼ ▼      ▼          ▼         ▼
-    数据模型   Segment v2  Compaction  TSM  列存引擎  写入路径  基数管理
-    (4种表)    (列式存储)  (4种策略)  (引擎) (3.0)   (WAL)   (Series)
-          │          │         │       │      │        │         │
-          └──────────┴────┬────┘       └──────┴────┬───┘         │
-                          ▼                        ▼             │
-                    CBO 优化器 + MPP           多副本高可用 ←─────┘
-                         │
-                   架构演进（十年）
-```
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13px">
+  <defs>
+    <marker id="arrow-o1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+    <marker id="arrow-o2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+  </defs>
+  <!-- Top -->
+  <rect x="230" y="10" width="340" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="400" y="32" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">数据分析系统全景</text>
+  
+  <!-- Two branches -->
+  <line x1="400" y1="50" x2="400" y2="70" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="200" y1="70" x2="600" y2="70" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="200" y1="70" x2="200" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o1)"/>
+  <line x1="600" y1="70" x2="600" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o1)"/>
+  
+  <!-- OLAP and TSDB boxes -->
+  <rect x="100" y="95" width="200" height="50" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="200" y="122" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">OLAP (Doris)</text>
+  
+  <rect x="500" y="95" width="200" height="50" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="600" y="122" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">TSDB (InfluxDB)</text>
+  
+  <!-- Merge top arrow -->
+  <line x1="400" y1="50" x2="400" y2="70" stroke="currentColor" stroke-width="1.5"/>
+  
+  <!-- OLAP sub-branches -->
+  <line x1="200" y1="145" x2="200" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  
+  <line x1="40" y1="165" x2="200" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="200" y1="165" x2="340" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  
+  <line x1="40" y1="165" x2="40" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <line x1="120" y1="165" x2="120" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <line x1="200" y1="165" x2="200" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <line x1="280" y1="165" x2="280" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  
+  <!-- OLAP sub-items -->
+  <text x="40" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">数据模型</text>
+  <text x="40" y="226" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(4种表)</text>
+  <text x="120" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Segment v2</text>
+  <text x="120" y="226" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(列式存储)</text>
+  <text x="200" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Compaction</text>
+  <text x="200" y="226" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(4种策略)</text>
+  
+  <!-- TSDB sub-branches -->
+  <line x1="600" y1="145" x2="600" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  
+  <line x1="440" y1="165" x2="600" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="600" y1="165" x2="760" y2="165" stroke="currentColor" stroke-width="1.5"/>
+  
+  <line x1="520" y1="165" x2="520" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <line x1="600" y1="165" x2="600" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <line x1="680" y1="165" x2="680" y2="190" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  
+  <!-- TSDB sub-items (adjusted positions) -->
+  <text x="512" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">TSM</text>
+  <text x="512" y="226" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(引擎)</text>
+  <text x="600" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">列存引擎 3.0</text>
+  <text x="680" y="210" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">写入路径</text>
+  <text x="680" y="226" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(WAL)</text>
+  
+  <!-- Third row - OLAP side -->
+  <line x1="40" y1="235" x2="40" y2="260" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="120" y1="235" x2="120" y2="260" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="200" y1="235" x2="200" y2="260" stroke="currentColor" stroke-width="1.5"/>
+  
+  <!-- TSDB third row - 基数管理 -->
+  <line x1="680" y1="235" x2="680" y2="260" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o2)"/>
+  <text x="680" y="278" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">基数管理</text>
+  <text x="680" y="294" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">(Series)</text>
+  
+  <!-- OLAP merge arrow down -->
+  <line x1="40" y1="260" x2="40" y2="290" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="200" y1="260" x2="200" y2="290" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="290" x2="200" y2="290" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="120" y1="290" x2="120" y2="310" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o1)"/>
+  
+  <!-- CBO 优化器 + MPP -->
+  <rect x="30" y="310" width="180" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="120" y="328" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">CBO 优化器 + MPP</text>
+  
+  <line x1="120" y1="340" x2="120" y2="350" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o1)"/>
+  
+  <!-- 架构演进 -->
+  <rect x="30" y="350" width="180" height="25" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="120" y="365" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">架构演进（十年）</text>
+  
+  <!-- TSDB merge to 多副本高可用 and link from 基数管理 -->
+  <line x1="680" y1="260" x2="680" y2="340" stroke="currentColor" stroke-width="1.5"/>
+  
+  <line x1="600" y1="235" x2="600" y2="300" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="520" y1="235" x2="520" y2="300" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="520" y1="300" x2="680" y2="300" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="600" y1="300" x2="600" y2="325" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-o1)"/>
+  
+  <!-- 多副本高可用 -->
+  <rect x="510" y="325" width="180" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="600" y="343" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">多副本高可用</text>
+  
+  <!-- Arrow from 基数管理 to 多副本高可用 -->
+  <line x1="680" y1="294" x2="600" y2="300" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-o1)"/>
+  
+  <!-- TSDB 写入路径 third row -->
+  <line x1="680" y1="235" x2="680" y2="250" stroke="currentColor" stroke-width="1.5"/>
+</svg>
 
 ## 3. 存储引擎对比
 

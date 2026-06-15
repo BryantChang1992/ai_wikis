@@ -23,11 +23,34 @@ related:
 
 InfluxDB 的数据模型围绕 **Point（数据点）** 构建，每个 Point 包含四个组件：
 
-```
-cpu,host=server-a,region=us-west usage_user=64.5,usage_sys=12.3 1718200000000000000
-│     └────── Tag Set ──────┘ └──────── Field Set ────────┘ └─ Timestamp ─┘
-│ Measurement
-```
+<svg viewBox="0 0 720 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <!-- The actual Line Protocol line as code-like text -->
+  <text x="10" y="18" font-family="monospace, sans-serif" font-size="11" fill="currentColor">cpu,host=server-a,region=us-west usage_user=64.5,usage_sys=12.3 1718200000000000000</text>
+  
+  <!-- Measurement bracket -->
+  <line x1="10" y1="28" x2="10" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="10" y1="40" x2="40" y2="40" stroke="currentColor" stroke-width="2"/>
+  <text x="12" y="55" font-family="sans-serif" font-size="12" fill="currentColor">Measurement</text>
+  
+  <!-- Tag set bracket -->
+  <line x1="47" y1="28" x2="47" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="47" y1="40" x2="205" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="205" y1="28" x2="205" y2="40" stroke="currentColor" stroke-width="2"/>
+  <text x="126" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Tag Set</text>
+  
+  <!-- Field set bracket -->
+  <line x1="213" y1="28" x2="213" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="213" y1="40" x2="342" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="342" y1="28" x2="342" y2="40" stroke="currentColor" stroke-width="2"/>
+  <text x="278" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Field Set</text>
+  
+  <!-- Timestamp bracket -->
+  <line x1="350" y1="28" x2="350" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="350" y1="40" x2="490" y2="40" stroke="currentColor" stroke-width="2"/>
+  <line x1="490" y1="28" x2="490" y2="40" stroke="currentColor" stroke-width="2"/>
+  <text x="420" y="55" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle">Timestamp</text>
+</svg>
+
 
 | 组件 | 说明 | 类型 | 是否索引 |
 |------|------|------|----------|

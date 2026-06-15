@@ -41,36 +41,93 @@ related:
 
 ## 概念关系图
 
-```
-                          ┌──────────────────────────┐
-                          │   InfluxDB 深度调研       │
-                          │   (总览 · 选型建议)       │
-                          └────────────┬─────────────┘
-                                       │
-          ┌────────────────────────────┼────────────────────────────┐
-          │                            │                            │
-          ▼                            ▼                            ▼
-┌─────────────────┐          ┌─────────────────┐          ┌─────────────────┐
-│   数据模型       │          │   存储引擎       │          │   写入与查询     │
-│  Measurement    │◄────────►│  TSM / Columnar  │◄────────►│  Iterator /     │
-│  Tag / Field    │          │  Compaction      │          │  DataFusion     │
-│  Series / Card  │          └────────┬────────┘          └────────┬────────┘
-└────────┬────────┘                   │                            │
-         │                            │                            │
-         ▼                            ▼                            ▼
-┌─────────────────┐          ┌─────────────────┐          ┌─────────────────┐
-│ 指标设计 · 基数 │          │  多副本 · 高可用│          │  Catalog 元数据 │
-│ 管理             │          │  Router 双副本  │          │  PostgreSQL     │
-│ Tag/Field 决策  │          │  WAL 恢复       │          │  BoltDB → RDBMS │
-│ 五大最佳实践    │          │  Object Store   │          │                 │
-└─────────────────┘          └─────────────────┘          └─────────────────┘
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13px">
+  <defs>
+    <marker id="arrow-i1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+    <marker id="arrow-i2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+  </defs>
+  <!-- Top box -->
+  <rect x="270" y="10" width="260" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="currentColor">InfluxDB 深度调研</text>
+  <text x="400" y="48" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">(总览 · 选型建议)</text>
+  
+  <line x1="400" y1="60" x2="400" y2="90" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  
+  <line x1="140" y1="90" x2="660" y2="90" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="140" y1="90" x2="140" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  <line x1="400" y1="90" x2="400" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  <line x1="660" y1="90" x2="660" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  
+  <!-- Three top boxes -->
+  <rect x="50" y="115" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="140" y="137" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">数据模型</text>
+  <text x="140" y="157" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Measurement</text>
+  <text x="140" y="175" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Tag / Field</text>
+  <text x="140" y="191" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Series / Card</text>
+  
+  <rect x="310" y="115" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="400" y="137" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">存储引擎</text>
+  <text x="400" y="157" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">TSM / Columnar</text>
+  <text x="400" y="175" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Compaction</text>
+  
+  <rect x="570" y="115" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="660" y="137" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">写入与查询</text>
+  <text x="660" y="157" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Iterator /</text>
+  <text x="660" y="175" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">DataFusion</text>
+  
+  <!-- Bidirectional arrows between top three -->
+  <line x1="230" y1="140" x2="308" y2="150" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-i2)"/>
+  <line x1="308" y1="170" x2="230" y2="175" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-i2)"/>
+  <line x1="490" y1="140" x2="568" y2="150" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-i2)"/>
+  <line x1="568" y1="170" x2="490" y2="175" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-i2)"/>
+  
+  <!-- Vertical down -->
+  <line x1="140" y1="195" x2="140" y2="230" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  <line x1="400" y1="195" x2="400" y2="230" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  <line x1="660" y1="195" x2="660" y2="230" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-i1)"/>
+  
+  <!-- Three bottom boxes -->
+  <rect x="50" y="230" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="140" y="252" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">指标设计 · 基数</text>
+  <text x="140" y="272" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">管理</text>
+  <text x="140" y="290" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Tag/Field 决策</text>
+  <text x="140" y="306" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">五大最佳实践</text>
+  
+  <rect x="310" y="230" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="400" y="252" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">多副本 · 高可用</text>
+  <text x="400" y="272" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Router 双副本</text>
+  <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">WAL 恢复</text>
+  <text x="400" y="306" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Object Store</text>
+  
+  <rect x="570" y="230" width="180" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="660" y="252" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">Catalog 元数据</text>
+  <text x="660" y="272" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">PostgreSQL</text>
+  <text x="660" y="290" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">BoltDB → RDBMS</text>
 
-                    版本演进轴线
-  v1.x ──────────► v2.x ──────────► v3.0 Edge / Clustered
-  TSM+TSI          +Flux/Tasks      Parquet+Arrow+DataFusion
-  Go               Go               Rust
-  单机             单机             存算分离
-```
+  <!-- Timeline at bottom -->
+  <line x1="60" y1="430" x2="740" y2="430" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Arrow heads for timeline -->
+  <polygon points="740,430 730,425 730,435" fill="currentColor"/>
+  
+  <!-- v1.x -->
+  <line x1="100" y1="430" x2="100" y2="418" stroke="currentColor" stroke-width="1.5"/>
+  <text x="100" y="410" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px" font-weight="bold">v1.x</text>
+  <text x="100" y="450" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">TSM+TSI</text>
+  <text x="100" y="466" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">Go | 单机</text>
+  
+  <!-- v2.x -->
+  <line x1="350" y1="430" x2="350" y2="418" stroke="currentColor" stroke-width="1.5"/>
+  <text x="350" y="410" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px" font-weight="bold">v2.x</text>
+  <text x="350" y="450" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">+Flux/Tasks</text>
+  <text x="350" y="466" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">Go | 单机</text>
+  
+  <!-- v3.0 -->
+  <line x1="640" y1="430" x2="640" y2="418" stroke="currentColor" stroke-width="1.5"/>
+  <text x="640" y="410" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px" font-weight="bold">v3.0 Edge / Clustered</text>
+  <text x="640" y="450" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Parquet+Arrow+DataFusion</text>
+  <text x="640" y="466" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="11px">Rust | 存算分离</text>
+</svg>
 
 **关系说明**：数据模型是根基——Tag/Field 决策直接影响存储引擎的索引和行为（基数）。存储引擎经历了从 TSM（LSM 衍生）到 Columnar（Parquet 原生）的架构跃迁。读写路径从 Iterator 模型到 DataFusion 向量化体现查询引擎的根本性变革。指标设计需要理解模型才能做好——基数管理是 v1/v2 的生存问题。多副本和 Catalog 共同构成分布式基础设施层。
 

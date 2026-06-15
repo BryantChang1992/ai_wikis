@@ -27,32 +27,117 @@ Fluss 客户端 API 在 Kafka Producer/Consumer 范式上做了根本性的扩�
 
 ## 客户端架构
 
-```
-FlussTable（统一表访问入口）
-  ├── Writer 层
-  │   ├── AppendWriter    → 追加写入（≈ KafkaProducer.send）
-  │   ├── UpsertWriter    → 写入/更新（PK 表专用）
-  │   └── TableWriter<T>  → 类型化写入器
-  ├── Scanner 层
-  │   ├── LogScanner      → 顺序日志扫描
-  │   ├── BatchScanner    → 批量扫描（快照 + 日志合并）
-  │   │   ├── KvBatchScanner        → KV 快照过滤扫描
-  │   │   ├── KvSnapshotBatchScanner → 纯快照扫描
-  │   │   ├── LimitBatchScanner     → Limit 扫描
-  │   │   └── CompositeBatchScanner → 多源组合扫描
-  │   └── RemoteLogDownloader       → 远程日志透明下载
-  └── Lookuper 层
-      ├── PrimaryKeyLookuper  → PK 精确查找
-      └── PrefixKeyLookuper   → 前缀查找
-```
+<svg viewBox="0 0 780 520" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+
+  <!-- Root -->
+  <rect x="280" y="10" width="200" height="36" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="380" y="28" font-weight="bold" font-size="14">FlussTable</text>
+  <text x="380" y="43" font-size="11">（统一表访问入口）</text>
+
+  <!-- Vertical trunk -->
+  <line x1="380" y1="46" x2="380" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- Horizontal trunk -->
+  <line x1="380" y1="75" x2="380" y2="80" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="380" y1="80" x2="680" y2="80" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="380" y1="80" x2="100" y2="80" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Branch to Writer -->
+  <line x1="100" y1="80" x2="100" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="25" y="100" width="150" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="100" y="120" font-weight="bold">Writer 层</text>
+
+  <line x1="100" y1="130" x2="100" y2="145" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="10" y="150" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="100" y="167" font-size="12">AppendWriter → 追加写入</text>
+  <text x="100" y="182" font-size="10" opacity="0.7">（≈ KafkaProducer.send）</text>
+
+  <line x1="100" y1="190" x2="100" y2="200" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <rect x="10" y="205" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="100" y="222" font-size="12">UpsertWriter → 写入/更新</text>
+  <text x="100" y="237" font-size="10" opacity="0.7">（PK 表专用）</text>
+
+  <line x1="100" y1="245" x2="100" y2="255" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <rect x="10" y="260" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="100" y="277" font-size="12">TableWriter&lt;T&gt; → 类型化写入器</text>
+
+  <!-- Branch to Scanner -->
+  <line x1="380" y1="80" x2="380" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="305" y="100" width="150" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="380" y="120" font-weight="bold">Scanner 层</text>
+
+  <line x1="380" y1="130" x2="380" y2="145" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="290" y="150" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="380" y="167" font-size="12">LogScanner → 顺序日志扫描</text>
+
+  <line x1="380" y1="174" x2="380" y2="187" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <rect x="290" y="192" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="380" y="209" font-size="12">BatchScanner → 批量扫描</text>
+  <text x="380" y="224" font-size="10" opacity="0.7">（快照 + 日志合并）</text>
+
+  <line x1="380" y1="232" x2="380" y2="244" stroke="currentColor" stroke-width="1"/>
+  <line x1="380" y1="244" x2="250" y2="244" stroke="currentColor" stroke-width="1"/>
+  <line x1="250" y1="244" x2="250" y2="258" stroke="currentColor" stroke-width="1" marker-end="url(#a1)"/>
+  <text x="250" y="275" font-size="11">KvBatchScanner</text>
+  <text x="250" y="290" font-size="11">KvSnapshotBatchScanner</text>
+  <text x="250" y="305" font-size="11">LimitBatchScanner</text>
+  <text x="250" y="320" font-size="11">CompositeBatchScanner</text>
+
+  <line x1="380" y1="244" x2="510" y2="244" stroke="currentColor" stroke-width="1"/>
+  <line x1="510" y1="244" x2="510" y2="258" stroke="currentColor" stroke-width="1" marker-end="url(#a1)"/>
+  <text x="510" y="275" font-size="11">RemoteLogDownloader</text>
+  <text x="510" y="290" font-size="11">→ 远程日志透明下载</text>
+
+  <!-- Branch to Lookuper -->
+  <line x1="680" y1="80" x2="680" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="605" y="100" width="150" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="680" y="120" font-weight="bold">Lookuper 层</text>
+
+  <line x1="680" y1="130" x2="680" y2="145" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+  <rect x="590" y="150" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="680" y="167" font-size="12">PrimaryKeyLookuper → PK 精确查找</text>
+
+  <line x1="680" y1="174" x2="680" y2="187" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <rect x="590" y="192" width="180" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="680" y="209" font-size="12">PrefixKeyLookuper → 前缀查找</text>
+</svg>
 
 ## 写入路径
 
 与 Kafka Producer 架构相似但有重要扩展：
 
-```
-AppendWriter → RecordAccumulator → BucketAssigner → Sender → TabletServer
-```
+<svg viewBox="0 0 700 50" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+  <rect x="10" y="8" width="110" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="65" y="23" font-size="12">AppendWriter</text>
+  <line x1="120" y1="23" x2="145" y2="23" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+  <rect x="150" y="8" width="130" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="215" y="23" font-size="12">RecordAccumulator</text>
+  <line x1="280" y1="23" x2="305" y2="23" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+  <rect x="310" y="8" width="110" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="365" y="23" font-size="12">BucketAssigner</text>
+  <line x1="420" y1="23" x2="445" y2="23" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+  <rect x="450" y="8" width="75" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="487" y="23" font-size="12">Sender</text>
+  <line x1="525" y1="23" x2="550" y2="23" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+  <rect x="555" y="8" width="110" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="610" y="23" font-size="12">TabletServer</text>
+</svg>
 
 ### 写入批次类型
 
@@ -132,25 +217,106 @@ fluss-flink/
 
 ### Sink 写入模型
 
-```
-INSERT INTO fluss_table SELECT ...
-  → FlussSink → SinkWriter (pre-commit → commit cycle)
-    → RecordAccumulator (batch buffer)
-    → AppendWriter / UpsertWriter
-      → TabletServer (ProduceLog / PutKv)
-```
+<svg viewBox="0 0 780 130" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+  <text x="10" y="15" font-size="12" text-anchor="start">INSERT INTO fluss_table SELECT ...</text>
+
+  <rect x="10" y="35" width="110" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="65" y="55" font-size="12">FlussSink</text>
+
+  <line x1="120" y1="50" x2="145" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <rect x="150" y="30" width="160" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="230" y="45" font-size="12">SinkWriter</text>
+  <text x="230" y="62" font-size="11">(pre-commit → commit cycle)</text>
+
+  <line x1="310" y1="50" x2="335" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <rect x="340" y="35" width="140" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="410" y="55" font-size="12">RecordAccumulator</text>
+  <text x="410" y="70" font-size="10" opacity="0.7">(batch buffer)</text>
+
+  <line x1="480" y1="50" x2="505" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <rect x="510" y="25" width="130" height="45" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="575" y="40" font-size="12">AppendWriter</text>
+  <text x="575" y="55" font-size="12">/ UpsertWriter</text>
+
+  <line x1="640" y1="50" x2="665" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <rect x="670" y="35" width="100" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="720" y="55" font-size="12">TabletServer</text>
+  <text x="720" y="72" font-size="10" opacity="0.7">(ProduceLog / PutKv)</text>
+</svg>
 
 ### Source 读取模型
 
-```
-SELECT * FROM fluss_table
-  → FlussSource → FlussSourceEnumerator (split discovery)
-    → LogSplit / KvSnapshotSplit / LakeSplit
-  → FlussSourceReader → FlussSplitReader
-    → LogScanner (log split)
-    → KvBatchScanner (snapshot split)
-    → IcebergLakeSource / PaimonLakeSource (lake split)
-```
+<svg viewBox="0 0 780 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+  <text x="10" y="18" font-size="12" text-anchor="start">SELECT * FROM fluss_table</text>
+
+  <rect x="10" y="35" width="130" height="30" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="75" y="55" font-size="12">FlussSource</text>
+
+  <line x1="140" y1="50" x2="165" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <rect x="170" y="30" width="180" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="260" y="45" font-size="12">FlussSourceEnumerator</text>
+  <text x="260" y="62" font-size="11">(split discovery)</text>
+
+  <line x1="350" y1="55" x2="350" y2="80" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="250" y1="80" x2="450" y2="80" stroke="currentColor" stroke-width="1.5"/>
+
+  <line x1="250" y1="80" x2="250" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="180" y="100" width="140" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="250" y="117" font-size="12">LogSplit</text>
+
+  <line x1="350" y1="80" x2="350" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="280" y="100" width="140" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="350" y="117" font-size="12">KvSnapshotSplit</text>
+
+  <line x1="450" y1="80" x2="450" y2="95" stroke="currentColor" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="380" y="100" width="140" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="450" y="117" font-size="12">LakeSplit</text>
+
+  <line x1="250" y1="124" x2="250" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="350" y1="124" x2="350" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="450" y1="124" x2="450" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="250" y1="140" x2="450" y2="140" stroke="currentColor" stroke-width="1"/>
+  <line x1="350" y1="140" x2="350" y2="155" stroke="currentColor" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <rect x="275" y="160" width="150" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="350" y="177" font-size="12">FlussSourceReader</text>
+  <text x="350" y="192" font-size="11">→ FlussSplitReader</text>
+
+  <rect x="525" y="100" width="150" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="600" y="117" font-size="11">LogScanner (log split)</text>
+
+  <rect x="525" y="130" width="150" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="600" y="147" font-size="11">KvBatchScanner (snapshot split)</text>
+
+  <rect x="525" y="160" width="170" height="24" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="610" y="177" font-size="11">IcebergLakeSource / PaimonLakeSource</text>
+  <text x="610" y="192" font-size="10" opacity="0.7">(lake split)</text>
+
+  <line x1="450" y1="112" x2="520" y2="117" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#a4)"/>
+  <line x1="450" y1="112" x2="520" y2="142" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#a4)"/>
+  <line x1="450" y1="112" x2="530" y2="172" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#a4)"/>
+</svg>
 
 Flink Source 能同时从三种 Split 类型读取数据——这是"流批一体"在 Source 层的具体实现。
 

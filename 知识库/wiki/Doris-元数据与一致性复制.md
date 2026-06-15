@@ -43,18 +43,67 @@ Doris 采用 **控制面集中协调 + 数据面去中心化执行** 架构。FE
 
 ### 元数据对象关系
 
-```
-Catalog Root
-├── Internal Catalog (Doris 原生表)
-│   └── Database → Table
-│       ├── Column (类型/编码/压缩)
-│       ├── Index (前缀/Bloom/Bitmap/Inverted)
-│       └── Partition (Range/List/TTL)
-│           └── Tablet → Replica (NORMAL/ALTER/CLONE)
-├── Hive Catalog → ExternalTable
-├── Iceberg Catalog → IcebergTable
-└── ES/JDBC Catalog → ExternalTable
-```
+<svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; }
+    .dim { font-size: 11px; opacity: 0.7; }
+  </style>
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <!-- Root -->
+  <text x="20" y="25" font-weight="bold" font-size="14" text-anchor="start">Catalog Root</text>
+
+  <!-- Internal Catalog branch -->
+  <line x1="40" y1="32" x2="40" y2="45" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="45" x2="60" y2="45" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="45" font-size="13" text-anchor="start">Internal Catalog (Doris 原生表)</text>
+  <line x1="40" y1="45" x2="40" y2="58" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Database → Table -->
+  <line x1="40" y1="58" x2="60" y2="58" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="58" font-size="13" text-anchor="start">Database → Table</text>
+
+  <!-- Column -->
+  <line x1="40" y1="58" x2="40" y2="74" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="74" x2="60" y2="74" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="45" y="78" width="180" height="20" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="55" y="92" font-size="12" text-anchor="start">Column (类型/编码/压缩)</text>
+
+  <!-- Index -->
+  <line x1="40" y1="74" x2="40" y2="102" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="102" x2="60" y2="102" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="45" y="106" width="210" height="20" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="55" y="120" font-size="12" text-anchor="start">Index (前缀/Bloom/Bitmap/Inverted)</text>
+
+  <!-- Partition -->
+  <line x1="40" y1="102" x2="40" y2="130" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="130" x2="60" y2="130" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="45" y="134" width="190" height="20" rx="3" fill="transparent" stroke="currentColor"/>
+  <text x="55" y="148" font-size="12" text-anchor="start">Partition (Range/List/TTL)</text>
+
+  <!-- Tablet → Replica -->
+  <line x1="40" y1="130" x2="40" y2="160" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="160" x2="60" y2="160" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="160" font-size="13" text-anchor="start">Tablet → Replica</text>
+  <text x="65" y="175" class="dim" text-anchor="start">(NORMAL/ALTER/CLONE)</text>
+
+  <!-- External Catalogs -->
+  <line x1="40" y1="160" x2="40" y2="195" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="195" x2="60" y2="195" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="195" font-size="13" text-anchor="start">Hive Catalog → ExternalTable</text>
+
+  <line x1="40" y1="195" x2="40" y2="210" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="210" x2="60" y2="210" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="210" font-size="13" text-anchor="start">Iceberg Catalog → IcebergTable</text>
+
+  <line x1="40" y1="210" x2="40" y2="225" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="225" x2="60" y2="225" stroke="currentColor" stroke-width="1.5"/>
+  <text x="65" y="225" font-size="13" text-anchor="start">ES/JDBC Catalog → ExternalTable</text>
+</svg>
 
 ### BDB-JE 时代 (v0.x~v2.x)
 
@@ -66,12 +115,21 @@ Doris 0.x~2.x 使用 BDB-JE 作为 FE 元数据持久化引擎：
 - **Follower 回放**：BRPC 拉取 EditLog → 校验 CheckSum → 逐 Entry 回放到本地内存
 
 FE 元数据文件布局：
-```
-fe/doris-meta/
-├── bdb/           # BDB-JE Journal + Data
-├── image/         # LFS 格式 Checkpoint
-└── edit_log/      # 增量日志
-```
+
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <style>
+    text { font-family: monospace; font-size: 13px; fill: currentColor; dominant-baseline: middle; }
+  </style>
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="20" y="25" font-size="13" text-anchor="start" font-weight="bold">fe/doris-meta/</text>
+  <text x="40" y="50" font-size="13" text-anchor="start">├── bdb/           # BDB-JE Journal + Data</text>
+  <text x="40" y="73" font-size="13" text-anchor="start">├── image/         # LFS 格式 Checkpoint</text>
+  <text x="40" y="96" font-size="13" text-anchor="start">└── edit_log/      # 增量日志</text>
+</svg>
 
 ### Meta Service (Doris 3.0+)
 
@@ -141,13 +199,59 @@ Meta Service Key 设计：
 
 Doris 采用 **FE 2PC 事务协调 + BE 本地 WAL** 保证写入一致性：
 
-```
-1. BEGIN Txn → 生成事务 ID
-2. PREPARE → 所有 BE 写入本地 WAL（任一失败则 ABORT）
-3. COMMIT → 全部成功则提交
-4. PUBLISH → 版本号递增，查询可见
-5. TabletScheduler → 异步修复失败 Replica
-```
+<svg viewBox="0 0 750 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: currentColor; dominant-baseline: middle; text-anchor: middle; }
+    .dim { font-size: 11px; opacity: 0.7; }
+  </style>
+
+  <!-- 1. BEGIN Txn -->
+  <rect x="10" y="10" width="130" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="75" y="30" font-size="12">1. BEGIN Txn</text>
+
+  <line x1="140" y1="30" x2="168" y2="30" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- 2. PREPARE -->
+  <rect x="172" y="10" width="130" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="237" y="30" font-size="12">2. PREPARE</text>
+
+  <line x1="302" y1="30" x2="330" y2="30" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- 3. COMMIT -->
+  <rect x="334" y="10" width="100" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="384" y="30" font-size="12">3. COMMIT</text>
+
+  <line x1="434" y1="30" x2="462" y2="30" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- 4. PUBLISH -->
+  <rect x="466" y="10" width="110" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="521" y="30" font-size="12">4. PUBLISH</text>
+
+  <line x1="576" y1="30" x2="604" y2="30" stroke="currentColor" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- 5. TabletScheduler -->
+  <rect x="608" y="10" width="130" height="40" rx="4" fill="transparent" stroke="currentColor"/>
+  <text x="673" y="30" font-size="12">5. TabletScheduler</text>
+
+  <!-- Details below -->
+  <text x="75" y="68" class="dim">生成事务ID</text>
+  <text x="237" y="68" class="dim">所有BE写入本地WAL</text>
+  <text x="384" y="68" class="dim">全部成功则提交</text>
+  <text x="521" y="68" class="dim">版本号递增，查询可见</text>
+  <text x="673" y="68" class="dim">异步修复失败Replica</text>
+
+  <!-- Failure annotations -->
+  <text x="75" y="92" class="dim" font-size="10">—</text>
+  <text x="237" y="92" class="dim" font-size="10">任一失败则ABORT</text>
+  <text x="384" y="92" class="dim" font-size="10">—</text>
+  <text x="521" y="92" class="dim" font-size="10">—</text>
+  <text x="673" y="92" class="dim" font-size="10">—</text>
+</svg>
 
 ### 事务类型
 

@@ -28,22 +28,105 @@ related:
 
 ## 演化时间线（Figure 1）
 
-```
-1st Gen: From DBs to DSMS          2nd Gen: Scale-Out Data Streaming    3rd Gen: ?
- ──────────────────────────────────┬──────────────────────────────────┬──────────
- '92-'00    '00-'03     '04      '10-'12    '13-'17    '18-         '22-
- ─────────┬──────────┬──────────┬─────────┬──────────┬───────────┬──────────
- Tapestry Aurora    IBM System S Storm   Flink/Beam Ray        Stateful Functions
- NiagaraCQ STREAM   Oracle CQL   S4      Naiad       Neptune    Ambrosia
-          TelegraphCQ            Spark   Millwheel   Arcon
-          Borealis               Streaming Kafka Streams
-          Gigascope                       Samza
-│          │           │          │         │          │           │
-Continuous  Sliding    CEP/      Out-of-   State      Fixpoint    Cloud Apps
-Queries     Windows    Commercial Order    Management Computation  Microservices
-Inverted    Synopses              Proc.    SQL Stream Transaction  HW Accel.
-DBs                              Guarantees Reconfig
-```
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-gen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Title bands -->
+  <rect x="5" y="5" width="240" height="24" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="125" y="20" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">1st Gen: From DBs to DSMS</text>
+  <rect x="245" y="5" width="235" height="24" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="362" y="20" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">2nd Gen: Scale-Out Data Streaming</text>
+  <rect x="480" y="5" width="235" height="24" rx="4" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="597" y="20" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-weight="bold">3rd Gen: ?</text>
+  <!-- Separator lines between gens -->
+  <line x1="245" y1="17" x2="245" y2="340" stroke="currentColor" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="480" y1="17" x2="480" y2="340" stroke="currentColor" stroke-width="2" stroke-dasharray="4,3"/>
+  
+  <!-- Horizontal baseline with tick marks -->
+  <line x1="10" y1="42" x2="710" y2="42" stroke="currentColor" stroke-width="2"/>
+  <!-- Year tick labels -->
+  <text x="40" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'92-'00</text>
+  <line x1="40" y1="42" x2="40" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="140" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'00-'03</text>
+  <line x1="140" y1="42" x2="140" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="230" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'04</text>
+  <line x1="230" y1="42" x2="230" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="320" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'10-'12</text>
+  <line x1="320" y1="42" x2="320" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="420" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'13-'17</text>
+  <line x1="420" y1="42" x2="420" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="515" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'18-</text>
+  <line x1="515" y1="42" x2="515" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  <text x="620" y="58" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">'22-</text>
+  <line x1="620" y1="42" x2="620" y2="48" stroke="currentColor" stroke-width="1.5"/>
+  
+  <!-- Systems row -->
+  <text x="40" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Tapestry</text>
+  <text x="60" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">NiagaraCQ</text>
+  <text x="140" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Aurora</text>
+  <text x="140" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">STREAM</text>
+  <text x="140" y="114" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">TelegraphCQ</text>
+  <text x="140" y="130" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Borealis</text>
+  <text x="140" y="146" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Gigascope</text>
+  <text x="230" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">IBM System S</text>
+  <text x="230" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Oracle CQL</text>
+  
+  <text x="320" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Storm</text>
+  <text x="320" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">S4</text>
+  <text x="320" y="114" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Spark Streaming</text>
+  
+  <text x="420" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Flink/Beam</text>
+  <text x="420" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Naiad</text>
+  <text x="420" y="114" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Millwheel</text>
+  <text x="420" y="130" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Kafka Streams</text>
+  <text x="420" y="146" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Samza</text>
+  
+  <text x="515" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Ray</text>
+  <text x="515" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Neptune</text>
+  <text x="515" y="114" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Arcon</text>
+  
+  <text x="620" y="82" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Stateful Functions</text>
+  <text x="620" y="98" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Ambrosia</text>
+  
+  <!-- Horizontal arrow -->
+  <line x1="10" y1="170" x2="710" y2="170" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-gen)"/>
+  
+  <!-- Separator line -->
+  <line x1="10" y1="180" x2="710" y2="180" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2,3"/>
+  
+  <!-- Innovations row -->
+  <text x="40" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Continuous</text>
+  <text x="40" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Queries</text>
+  <text x="40" y="237" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Inverted DBs</text>
+  
+  <text x="140" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Sliding</text>
+  <text x="140" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Windows</text>
+  <text x="140" y="237" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Synopses</text>
+  
+  <text x="230" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">CEP/</text>
+  <text x="230" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Commercial</text>
+  
+  <text x="320" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Out-of-Order</text>
+  <text x="320" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Processing</text>
+  <text x="320" y="237" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Guarantees</text>
+  
+  <text x="420" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">State</text>
+  <text x="420" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Management</text>
+  <text x="420" y="237" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">SQL Stream</text>
+  <text x="420" y="253" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Reconfig</text>
+  
+  <text x="515" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Fixpoint</text>
+  <text x="515" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Computation</text>
+  
+  <text x="620" y="205" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Cloud Apps</text>
+  <text x="620" y="221" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Microservices</text>
+  <text x="620" y="237" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Transaction</text>
+  <text x="620" y="253" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">HW Accel.</text>
+</svg>
+
 
 ## 三代对比（Table 1）
 

@@ -65,11 +65,40 @@ SELECT * FROM user_stats WHERE cnt > 500;
 
 Join 的 Build 侧（小表）生成 Bloom Filter，**提前下推到 Scan 侧**过滤无效数据：
 
-```
-Step 1: 小表 Build Hash Table → 同时生成 Bloom Filter
-Step 2: Bloom Filter 广播到左表 Scan Node
-Step 3: Scan Node 利用 Bloom Filter 提前过滤 → 大幅减少 Shuffle 数据量
-```
+<svg viewBox="0 0 680 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-rf" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Step 1 -->
+  <rect x="10" y="8" width="200" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="110" y="27" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">小表 Build Hash Table</text>
+  <line x1="210" y1="25" x2="240" y2="25" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
+  <rect x="244" y="8" width="160" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="324" y="27" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">同时生成 Bloom Filter</text>
+  <!-- Label Step 1 -->
+  <text x="10" y="50" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 1</text>
+
+  <!-- Step 2 arrow -->
+  <line x1="324" y1="42" x2="324" y2="62" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
+
+  <!-- Step 2 -->
+  <rect x="140" y="65" width="180" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="230" y="84" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Bloom Filter 广播到左表 Scan Node</text>
+  <!-- Label Step 2 -->
+  <text x="10" y="84" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 2</text>
+
+  <!-- Step 3 arrow -->
+  <line x1="230" y1="99" x2="230" y2="112" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-rf)"/>
+
+  <!-- Step 3 -->
+  <rect x="20" y="115" width="420" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="230" y="134" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Scan Node 利用 Bloom Filter 提前过滤 → 大幅减少 Shuffle 数据量</text>
+  <!-- Label Step 3 -->
+  <text x="10" y="134" font-family="sans-serif" font-size="11" fill="currentColor" stroke="currentColor" font-weight="bold">Step 3</text>
+</svg>
+
 
 **效果**：大表 Join 小表场景，可过滤 50%~99% 的无效行。
 

@@ -27,15 +27,25 @@ related:
 
 ## 1. Lake 存储插件架构
 
-```
-LakeStoragePlugin (SPI)
-  → LakeStorage.createLakeStorage()
-    → LakeCatalog (createTable/dropTable/listTables/alterTable)
-    → LakeTable
-      → LakeTableRead (谓词下推读取)
-      → LakeTableAppend (追加写)
-      → LakeTableDelta (Delta 写：Upsert/Delete)
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200">
+  <defs>
+    <marker id="arrow-fl1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="10" y="5" width="200" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="110" y="18" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">LakeStoragePlugin (SPI)</text>
+  <line x1="110" y1="31" x2="110" y2="45" stroke="currentColor" stroke-width="1.2"/>
+  <text x="130" y="45" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeStorage.createLakeStorage()</text>
+  <line x1="130" y1="55" x2="130" y2="68" stroke="currentColor" stroke-width="1.2"/>
+  <text x="130" y="68" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeCatalog (createTable/dropTable/listTables/alterTable)</text>
+  <line x1="130" y1="78" x2="130" y2="90" stroke="currentColor" stroke-width="1.2"/>
+  <text x="130" y="90" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeTable</text>
+  <line x1="130" y1="100" x2="130" y2="115" stroke="currentColor" stroke-width="1.2"/>
+  <text x="150" y="115" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeTableRead (谓词下推读取)</text>
+  <text x="150" y="135" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeTableAppend (追加写)</text>
+  <text x="150" y="155" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">→ LakeTableDelta (Delta 写：Upsert/Delete)</text>
+</svg>
 
 ### 四种 Lake 后端
 
@@ -50,16 +60,38 @@ LakeStoragePlugin (SPI)
 
 ## 2. Iceberg 集成全链路
 
-```
-IcebergLakeStorage
-├── IcebergLakeCatalog        // 建表、管理 Namespace/Properties
-├── IcebergLakeWriter
-│   ├── AppendOnlyTaskWriter  // 普通表：纯追加 → Parquet DataFile
-│   └── DeltaTaskWriter       // PK 表：支持 Position Delete / Equality Delete
-├── IcebergLakeCommitter      // 收集 WriteResult → 提交 Snapshot → 过期清理
-├── IcebergLakeSource         // 读取：Split 规划 + Parquet → InternalRow
-└── IcebergRewriteDataFiles   // Compaction：合并小文件 + 清理 Delete Files
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" width="720" height="180">
+  <defs>
+    <marker id="arrow-fl2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="10" y="5" width="170" height="28" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="95" y="19" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">IcebergLakeStorage</text>
+  <line x1="95" y1="33" x2="95" y2="48" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="35" y1="48" x2="680" y2="48" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="35" y1="48" x2="35" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="180" y1="48" x2="180" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="340" y1="48" x2="340" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="500" y1="48" x2="500" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="660" y1="48" x2="660" y2="65" stroke="currentColor" stroke-width="1.2"/>
+  <!-- Row 1 -->
+  <text x="12" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeCatalog</text>
+  <text x="12" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（建表、管理 Namespace）</text>
+  <text x="157" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeWriter</text>
+  <text x="157" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　─ AppendOnlyTaskWriter</text>
+  <text x="157" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　─ DeltaTaskWriter</text>
+  <text x="317" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeCommitter</text>
+  <text x="317" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（收集 WriteResult →</text>
+  <text x="317" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　提交 Snapshot → 过期清理）</text>
+  <text x="477" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├ IcebergLakeSource</text>
+  <text x="477" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（Split 规划 +</text>
+  <text x="477" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　Parquet → InternalRow）</text>
+  <text x="637" y="83" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└ IcebergRewriteDataFiles</text>
+  <text x="637" y="100" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　（Compaction：</text>
+  <text x="637" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　合并小文件 +</text>
+  <text x="637" y="130" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-style="italic">　　清理 Delete Files）</text>
+</svg>
 
 ### 写入模式
 
@@ -87,12 +119,20 @@ Paimon 集成的一个关键亮点是 `MergeTreeWriter`——直接写入 Paimon
 
 Lance 是新兴的 Arrow-native 列式存储格式。Fluss 集成它的核心优势：
 
-```
-Fluss Arrow batch → ShadedArrowBatchWriter → Lance 文件（零拷贝）
-
-无需序列化/反序列化转换，直接操作 Arrow Vector。
-列裁剪 + 谓词下推完全复用 Arrow 能力。
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 50" width="600" height="50">
+  <defs>
+    <marker id="arrow-fl3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="10" y="8" width="200" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="110" y="21" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Fluss Arrow batch</text>
+  <line x1="210" y1="21" x2="260" y2="21" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl3)"/>
+  <rect x="263" y="8" width="200" height="26" rx="5" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="363" y="21" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">ShadedArrowBatchWriter</text>
+  <line x1="463" y1="21" x2="510" y2="21" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl3)"/>
+  <text x="520" y="21" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="start" dominant-baseline="middle">Lance 文件（零拷贝）</text>
+</svg>
 
 这是四种后端中与 Fluss Arrow 内部格式最天然契合的方案。
 
@@ -112,15 +152,29 @@ Fluss Arrow batch → ShadedArrowBatchWriter → Lance 文件（零拷贝）
 
 ### 设计哲学
 
-```
-Fluss = Streaming Storage + Lakehouse Integration
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 130" width="380" height="130">
+  <defs>
+    <marker id="arrow-fl4" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="10" y="18" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="start" dominant-baseline="middle" font-weight="bold">Fluss = Streaming Storage + Lakehouse Integration</text>
 
-    实时写入 (ms 级)
-         ↓
-  Fluss Tablet (oltp level)
-         ↓ async tiering (minute-level)
-  Lakehouse (olap level)
-```
+  <rect x="110" y="32" width="150" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="45" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">实时写入 (ms 级)</text>
+
+  <line x1="185" y1="58" x2="185" y2="72" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl4)"/>
+
+  <rect x="85" y="75" width="200" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="88" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Fluss Tablet (oltp level)</text>
+
+  <line x1="185" y1="101" x2="185" y2="112" stroke="currentColor" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="185" y="115" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle" font-style="italic">async tiering (minute-level)</text>
+  <line x1="185" y1="118" x2="185" y2="128" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-fl4)"/>
+
+  <rect x="80" y="130" width="210" height="26" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="185" y="143" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Lakehouse (olap level)</text>
+</svg>
 
 这不是"存储分层"，而是 **"实时存储 + 数据湖"的融合架构**——与 Kafka 的"消息队列 + 外部 ETL"是完全不同的范式。
 

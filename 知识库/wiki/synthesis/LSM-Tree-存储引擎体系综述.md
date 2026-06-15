@@ -40,40 +40,82 @@ related:
 
 ## 概念关系图
 
-```
-                        ┌─────────────────────────────────┐
-                        │     RUM 猜想 (理论框架)          │
-                        │  Read-Update-Memory Trade-off   │
-                        └──────────────┬──────────────────┘
-                                       │ 约束所有优化空间
-           ┌───────────────────────────┼───────────────────────────┐
-           │                           │                           │
-           ▼                           ▼                           ▼
-   ┌───────────────┐          ┌───────────────┐          ┌───────────────┐
-   │   写放大       │          │   合并优化     │          │   硬件适配     │
-   │  (瓶颈中心)    │◄────────►│  (节奏控制)    │◄────────►│  (环境适配)    │
-   └───────┬───────┘          └───────┬───────┘          └───────┬───────┘
-           │                          │                          │
-           │  Leveling vs Tiering     │  LSbM / bLSM             │  WiscKey / HashKV
-           │  Merge Skipping          │  流水线合并              │  NoveLSM / cLSM
-           │  TRIAD                   │  写入停顿                │  LDS / LOCS
-           │                          │                          │
-           └──────────────────────────┼──────────────────────────┘
-                                      │ 统一调参入口
-                                      ▼
-                           ┌───────────────────────┐
-                           │     自动调参          │
-                           │  Monkey / Dostoevsky  │
-                           │  ElasticBF / Mutant   │
-                           └───────────┬───────────┘
-                                       │ 从 KV 走向数据库
-                                       ▼
-                           ┌───────────────────────┐
-                           │     二级索引          │
-                           │  走向完整数据库引擎    │
-                           │  Diff-Index / LSII    │
-                           └───────────────────────┘
-```
+<svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13px">
+  <defs>
+    <marker id="arrow-l1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+    <marker id="arrow-l2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker>
+  </defs>
+  <!-- Top: RUM 猜想 -->
+  <rect x="220" y="10" width="320" height="50" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="380" y="30" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">RUM 猜想 (理论框架)</text>
+  <text x="380" y="48" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Read-Update-Memory Trade-off</text>
+  
+  <line x1="380" y1="60" x2="380" y2="80" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  <text x="390" y="76" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-size="11px">约束所有优化空间</text>
+  
+  <!-- Horizontal row -->
+  <line x1="140" y1="80" x2="620" y2="80" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="140" y1="80" x2="140" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  <line x1="380" y1="80" x2="380" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  <line x1="620" y1="80" x2="620" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  
+  <!-- Three boxes top row -->
+  <rect x="60" y="100" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">写放大</text>
+  <text x="140" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">(瓶颈中心)</text>
+  
+  <rect x="300" y="100" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="380" y="122" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">合并优化</text>
+  <text x="380" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">(节奏控制)</text>
+  
+  <rect x="540" y="100" width="160" height="80" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="620" y="122" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">硬件适配</text>
+  <text x="620" y="142" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">(环境适配)</text>
+  
+  <!-- Bidirectional arrows between top boxes -->
+  <line x1="220" y1="120" x2="298" y2="130" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-l2)"/>
+  <line x1="298" y1="145" x2="220" y2="155" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-l2)"/>
+  <line x1="460" y1="120" x2="538" y2="130" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-l2)"/>
+  <line x1="538" y1="145" x2="460" y2="155" stroke="currentColor" stroke-width="1" marker-end="url(#arrow-l2)"/>
+  
+  <!-- Bottom branches from each -->
+  <line x1="140" y1="180" x2="140" y2="210" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="380" y1="180" x2="380" y2="210" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="620" y1="180" x2="620" y2="210" stroke="currentColor" stroke-width="1.5"/>
+  
+  <text x="140" y="230" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Leveling vs Tiering</text>
+  <text x="140" y="248" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Merge Skipping</text>
+  <text x="140" y="266" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">TRIAD</text>
+  
+  <text x="380" y="230" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">LSbM / bLSM</text>
+  <text x="380" y="248" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">流水线合并</text>
+  <text x="380" y="266" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">写入停顿</text>
+  
+  <text x="620" y="230" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">WiscKey / HashKV</text>
+  <text x="620" y="248" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">NoveLSM / cLSM</text>
+  <text x="620" y="266" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">LDS / LOCS</text>
+  
+  <!-- Merge to 自动调参 -->
+  <line x1="140" y1="275" x2="140" y2="330" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="620" y1="275" x2="620" y2="330" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="140" y1="330" x2="620" y2="330" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="380" y1="330" x2="380" y2="355" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  <text x="390" y="348" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-size="11px">统一调参入口</text>
+  
+  <!-- 自动调参 -->
+  <rect x="240" y="355" width="280" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="380" y="377" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">自动调参</text>
+  <text x="380" y="397" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Monkey / Dostoevsky / ElasticBF / Mutant</text>
+  
+  <line x1="380" y1="415" x2="380" y2="440" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-l1)"/>
+  <text x="390" y="434" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-size="11px">从 KV 走向数据库</text>
+  
+  <!-- 二级索引 -->
+  <rect x="240" y="440" width="280" height="60" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="380" y="462" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-weight="bold">二级索引</text>
+  <text x="380" y="482" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">走向完整数据库引擎</text>
+  <text x="380" y="498" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="12px">Diff-Index / LSII</text>
+</svg>
 
 **关系说明**：RUM 猜想是理论顶层——写放大、合并、硬件适配三者互相关联，自动调参在三者之上提供自适应控制，二级索引在所有基础上使 LSM-tree 从 KV-store 走向完整数据库引擎。
 

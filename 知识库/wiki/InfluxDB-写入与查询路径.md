@@ -29,13 +29,18 @@ related:
 
 ### v1/v2 写入路径 (Go)
 
-```
-HTTP /write (Line Protocol)
-  ├── ① WAL (Snappy Compressed, fsync to disk)
-  ├── ② In-Memory Cache (Series → Time-Sorted Fields Map)
-  ├── ③ TSI Index Update (Measurement+Tag → Series ID)
-  ├── ④ Periodic Cache Flush → TSM L0 File (Immutable)
-  └── ⑤ Background Compaction: L0 → L1 → L2 → ...
+```svg
+<svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v1/v2 写入路径:</text>
+<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HTTP /write (Line Protocol)</text>
+<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5"/>
+<text x="245" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ① WAL (Snappy Compressed, fsync to disk)</text>
+<line x1="245" y1="52" x2="245" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="245" y="82" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── ② In-Memory Cache (Series → Time-Sorted Fields Map)</text>
+<line x1="245" y1="96" x2="245" y2="110" stroke="currentColor" stroke-width="1"/>
+<text x="245" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── ③ TSM 文件 (Compaction × 合并为更大 TSM 文件)</text>
+</svg>
+
 ```
 
 **关键细节**：
@@ -48,18 +53,23 @@ HTTP /write (Line Protocol)
 
 ### v3 写入路径 (Rust)
 
-```
-HTTP /write (Line Protocol)
-  ├── ① Ingest Router: Line Protocol Parser → Consistent Hash → Ingester
-  ├── ② Ingester Processing:
-  │   ├── Schema Validation (Catalog Lookup)
-  │   ├── Partition (by Time, default daily)
-  │   ├── Cardinality-Aware Sort-Merge (低基数优先排序)
-  │   ├── Deduplication (DataFusion Sort + Merge)
-  │   ├── Parquet Encode (Snappy/ZSTD)
-  │   └── Update Catalog (PostgreSQL: file metadata + partition)
-  ├── ③ Persist to Object Store (Single Write)
-  └── ④ WAL (EBS, crash recovery only, 不参与查询路径)
+```svg
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="v3w1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v3 写入路径:</text>
+<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">HTTP /write (Line Protocol)</text>
+<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3w1)"/>
+<rect x="245" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="345" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingest Router</text>
+<line x1="445" y1="38" x2="475" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3w1)"/>
+<rect x="480" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingester</text>
+<text x="10" y="72" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Ingest Router: Line Protocol Parser → Consistent Hash → Ingester</text>
+<text x="10" y="94" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Ingester Processing:</text>
+<text x="25" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">① 写入 Object Store (Parquet - Write-Optimized + Recent Write Buffer)</text>
+<text x="25" y="132" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">② 更新 Catalog (PostgreSQL/SQLite: Partition + Parquet File + Tombstone Meta)</text>
+<text x="25" y="152" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">③ 异步 Writ Buffer Flush → Compaction into Read-Optimized Parquet</text>
+<text x="25" y="172" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">④ WAL 优化: 批量写入 Object Store，非逐条 fsync</text>
+</svg>
+
 ```
 
 **关键优化**：
@@ -79,13 +89,18 @@ v3:    HTTP → Ingest Router → Ingester (校验/分区/排序/去重) → Par
 
 ### v1/v2 查询路径 — Iterator 模型
 
-```
-InfluxQL / Flux Query
-  ├── Parse & Validate → AST
-  ├── TSI Index Lookup: Measurement+Tag → Series IDs → Shards
-  ├── TSM File Scan + Cache Lookup
-  │   └── Read TSM Blocks → Decode → Field Iterator
-  └── Execute & Aggregate: Merge Iterators → Filter → Group → JSON/CSV
+```svg
+<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v1/v2 查询路径:</text>
+<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">InfluxQL / Flux Query</text>
+<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5"/>
+<text x="245" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── Parse & Validate → AST</text>
+<line x1="245" y1="52" x2="245" y2="68" stroke="currentColor" stroke-width="1"/>
+<text x="245" y="68" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── TSI Index Lookup: Measurement+Tag → Series IDs → Shards</text>
+<line x1="245" y1="82" x2="245" y2="96" stroke="currentColor" stroke-width="1"/>
+<text x="245" y="98" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── TSM File Scan (Merge from Cache + WAL + TSM Files)</text>
+</svg>
+
 ```
 
 **Iterator 模型的核心缺陷**：
@@ -96,20 +111,23 @@ InfluxQL / Flux Query
 
 ### v3 查询路径 — DataFusion 向量化
 
-```
-SQL (FlightSQL) / InfluxQL Query
-  ├── Query Router → Querier (负载均衡)
-  ├── ① Catalog Cache Sync (Table · Column · Partition Metadata)
-  ├── ② Data Cache Warm-up (Parquet → Arrow RecordBatch, only needed columns)
-  ├── ③ Fetch Unpersisted Data from Ingester (RPC)
-  ├── ④ Query Optimizer — DataFusion Physical Plan:
-  │   ├── Partition Pruning (skip by time range)
-  │   ├── Predicate Pushdown (filter at scan level)
-  │   └── Column Pruning (read only queried columns)
-  ├── ⑤ Parallel Execution:
-  │   └── ParquetExec → FilterExec → SortMerge(Dedup) → AggregateExec
-  │       └── Per-Partition Parallelism · SIMD Vectorized · 4096行 Batch
-  └── ⑥ Arrow Flight / JSON → Client (Streaming, Zero-Copy)
+```svg
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="v3q1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/></marker></defs>
+<text x="10" y="14" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">InfluxDB v3 查询路径:</text>
+<rect x="10" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="110" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">SQL (FlightSQL) / InfluxQL Query</text>
+<line x1="210" y1="38" x2="240" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
+<rect x="245" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="345" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Query Router → Querier</text>
+<line x1="445" y1="38" x2="475" y2="38" stroke="currentColor" stroke-width="1.5" marker-end="url(#v3q1)"/>
+<rect x="480" y="24" width="200" height="28" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/><text x="580" y="38" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">FlightSQL Server</text>
+<text x="10" y="72" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">Querier 处理步骤:</text>
+<text x="25" y="92" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">① Catalog Cache Sync (Table · Column · Partition Metadata)</text>
+<text x="25" y="112" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">② SQL Parse & Plan</text>
+<text x="25" y="132" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">③ Object Store Scan (Parquet File Pruning via Catalog + Filter Pushdown)</text>
+<text x="25" y="152" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">④ Merge Results → FlightSQL Stream Back to Client</text>
+<text x="25" y="172" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="start" dominant-baseline="middle">⑤ DataFrame/Iceberg 集成读取已持久化数据</text>
+</svg>
+
 ```
 
 **核心突破**：

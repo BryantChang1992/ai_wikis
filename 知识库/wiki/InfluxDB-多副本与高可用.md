@@ -35,12 +35,43 @@ InfluxDB 3 的数据持久化通过**三层防护**确保数据不丢失：
 
 ## Router 双副本写入
 
-```
-Write Client → Ingest Router → Consistent Hash (Shard Key)
-                              ├──→ Ingester A (WAL + Process)
-                              ├──→ Ingester B (WAL + Process)
-Ack ←──────────────────────────┘  (双副本确认后才返回客户端)
-```
+<svg viewBox="0 0 650 130" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+  <defs>
+    <marker id="arrow-right" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-left" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <path d="M8,0 L0,3 L8,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Write Client -->
+  <rect x="10" y="30" width="95" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="57" y="49" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Write Client</text>
+  <!-- Arrow to Router -->
+  <line x1="105" y1="47" x2="155" y2="47" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-right)"/>
+  <!-- Ingest Router -->
+  <rect x="155" y="28" width="110" height="38" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="210" y="47" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingest Router</text>
+  <text x="210" y="65" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">Consistent Hash (Shard Key)</text>
+  <!-- Fork point -->
+  <circle cx="285" cy="47" r="4" fill="currentColor"/>
+  <!-- Upper arrow to Ingester A -->
+  <line x1="289" y1="43" x2="340" y2="30" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-right)"/>
+  <!-- Lower arrow to Ingester B -->
+  <line x1="289" y1="51" x2="340" y2="64" stroke="currentColor" stroke-width="2" marker-end="url(#arrow-right)"/>
+  <!-- Ingester A -->
+  <rect x="345" y="12" width="150" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="420" y="31" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingester A</text>
+  <text x="420" y="44" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">(WAL + Process)</text>
+  <!-- Ingester B -->
+  <rect x="345" y="48" width="150" height="34" rx="6" fill="transparent" stroke="currentColor" stroke-width="2"/>
+  <text x="420" y="67" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Ingester B</text>
+  <text x="420" y="80" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">(WAL + Process)</text>
+  <!-- Ack arrow back -->
+  <line x1="345" y1="100" x2="57" y2="100" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-left)"/>
+  <text x="210" y="113" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Ack (双副本确认后才返回客户端)</text>
+</svg>
+
 
 **关键设计**：
 - Router 在**确认写入成功前**将数据复制到至少 2 个 Ingester

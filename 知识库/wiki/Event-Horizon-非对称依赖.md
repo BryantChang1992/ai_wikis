@@ -72,11 +72,38 @@ related:
 
 用**有向依赖图**替代无向冲突图：
 
-```
-new_bid ──(eventually ordered)──► close_auction
-new_bid ──(commutative)──────────► new_bid
-close_auction ──(no dep)─────────► new_bid   ← 非对称！
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" width="700" height="180">
+  <defs>
+    <marker id="arrow-eh1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-eh2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-eh3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- new_bid box -->
+  <rect x="40" y="60" width="230" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="155" y="80" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">new_bid</text>
+  <!-- close_auction box -->
+  <rect x="420" y="60" width="240" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="540" y="80" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">close_auction</text>
+  <!-- new_bid (self loop box) -->
+  <rect x="40" y="130" width="230" height="40" rx="6" fill="transparent" stroke="currentColor" stroke-width="1.5"/>
+  <text x="155" y="150" font-family="sans-serif" font-size="13" fill="currentColor" text-anchor="middle" dominant-baseline="middle">new_bid</text>
+  <!-- Arrow 1: new_bid --> close_auction -->
+  <line x1="270" y1="80" x2="410" y2="80" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-eh1)"/>
+  <text x="340" y="72" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">eventually ordered</text>
+  <!-- Arrow 2: new_bid (self) with curve -->
+  <path d="M270,150 Q320,150 320,130 Q320,110 270,110" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-eh2)"/>
+  <text x="338" y="130" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">commutative</text>
+  <!-- Arrow 3: close_auction --> new_bid (dashed, no dep) -->
+  <line x1="420" y1="75" x2="280" y2="145" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-eh3)"/>
+  <text x="370" y="130" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">no dep</text>
+  <text x="390" y="150" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" font-weight="bold">← 非对称！</text>
+</svg>
 
 关键特征：
 - `close_auction` **不依赖**未来的 `new_bid`（消息方向 ≠ 依赖方向）
@@ -131,16 +158,46 @@ DeMon 是 SL 的参考执行引擎，核心架构：
 2. **强操作**向**主副本（Primary）**发送请求，由 Primary 执行并广播
 3. **强操作执行时**，从 bag 中收集所有因果相关的弱操作 → 本地重排序确定最终序列
 
-```
-Client A: new_bid("item1", 100) ──causal broadcast──► 各副本本地执行（微秒级）
-Client B: new_bid("item1", 150) ──causal broadcast──► 各副本本地执行（微秒级）
-Client A: close_auction("item1")
-  ├── 发送给 Primary
-  ├── Primary 从 bag 中收集所有相关 new_bid
-  ├── 本地重排序确定最终 bid 序列
-  ├── 广播结果
-  └── 所有副本执行 close → 确定赢家 = Client B
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" width="720" height="220">
+  <defs>
+    <marker id="arrow-eh-exec1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-eh-exec2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+    <marker id="arrow-eh-exec3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <!-- Client A: new_bid -->
+  <rect x="10" y="20" width="280" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="150" y="35" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Client A: new_bid("item1", 100)</text>
+  <line x1="290" y1="35" x2="470" y2="35" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-eh-exec1)"/>
+  <text x="380" y="28" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">causal broadcast</text>
+  <rect x="475" y="20" width="220" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="585" y="35" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">副本本地执行（微秒级）</text>
+
+  <!-- Client B: new_bid -->
+  <rect x="10" y="65" width="280" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="150" y="80" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Client B: new_bid("item1", 150)</text>
+  <line x1="290" y1="80" x2="470" y2="80" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow-eh-exec2)"/>
+  <text x="380" y="73" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle" dominant-baseline="middle">causal broadcast</text>
+  <rect x="475" y="65" width="220" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="585" y="80" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="middle" dominant-baseline="middle">副本本地执行（微秒级）</text>
+
+  <!-- Client A: close_auction -->
+  <rect x="10" y="115" width="290" height="30" rx="4" fill="transparent" stroke="currentColor" stroke-width="1.2"/>
+  <text x="155" y="130" font-family="sans-serif" font-size="12" fill="currentColor" text-anchor="middle" dominant-baseline="middle">Client A: close_auction("item1")</text>
+
+  <!-- Sub-steps -->
+  <line x1="30" y1="145" x2="30" y2="160" stroke="currentColor" stroke-width="1.2"/>
+  <text x="50" y="160" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── 发送给 Primary</text>
+  <text x="50" y="176" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── Primary 从 bag 中收集所有相关 new_bid</text>
+  <text x="50" y="192" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── 本地重排序确定最终 bid 序列</text>
+  <text x="50" y="208" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">├── 广播结果</text>
+  <text x="50" y="220" font-family="sans-serif" font-size="11" fill="currentColor" text-anchor="start" dominant-baseline="middle">└── 所有副本执行 close → 确定赢家 = Client B</text>
+</svg>
 
 ### 4.3 与现有系统的关键差异
 

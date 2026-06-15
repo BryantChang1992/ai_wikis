@@ -14,6 +14,7 @@ related:
   - "[[synthesis/分布式数据系统一致性体系]]"
 sources:
   - "sources/papers/Rose/Rose-CIDR2026.pdf"
+status: draft
 created: 2026-06-15
 updated: 2026-06-15
 ---

@@ -11,6 +11,7 @@ related:
   - "[[Agent-First-Data-Systems]]"
 sources:
   - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
+status: draft
 created: 2026-06-15
 updated: 2026-06-15
 ---

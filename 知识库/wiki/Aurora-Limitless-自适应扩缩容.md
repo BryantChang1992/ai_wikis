@@ -10,6 +10,9 @@ related:
   - "[[Aurora-Limitless-分布式架构]]"
   - "[[Aurora-Limitless-时间戳事务]]"
   - "[[存储计算分离数据库的-Tail-Latency]]"
+status: draft
+sources:
+  - "sources/papers/Aurora-Limitless/精读分析.md"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

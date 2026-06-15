@@ -16,6 +16,7 @@ related:
   - "[[Silo-Compaction-迁移协议]]"
 sources:
   - "sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf"
+status: draft
 created: 2026-06-15
 updated: 2026-06-15
 ---

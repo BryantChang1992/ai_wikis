@@ -44,6 +44,8 @@ sources/  →  wiki/  →  Schema
 - [[wiki/synthesis/分布式数据系统一致性体系]] — 元层次提炼：事务层/副本层/会话层 + 协调代价统一框架
 - [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
 - [[wiki/synthesis/InfluxDB-时序数据库体系综述]] — InfluxDB 体系综述
+- [[wiki/synthesis/流处理系统演化综述]] — 🆕 SP-Survey 论文驱动：三代演化、乱序/状态/容错/弹性/Dataflow 五大域、与 LSM-Tree/Fluss/事务 交叉关联
+- [[wiki/synthesis/知识库优化方案-2026-06-15]] — 知识库 frontmatter/索引/tags 优化清单
 
 ### 健康检查
 - [[wiki/synthesis/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
@@ -70,6 +72,16 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Doris-深度调研]] — Apache Doris 实时分析数据库全面调研：5 大模块（核心概念/存储引擎/查询流程/架构演进/元数据与一致性）
 
 ### 概念卡片
+
+#### 流处理 🆕
+- [[wiki/Stream-Processing-System-Generations]] — 流处理三代演化（DSMS → Dataflow → Emerging）：Table 1 七大维度、Figure 1 时间线
+- [[wiki/流处理乱序数据管理]] — 五种进度追踪机制（Slack/Heartbeat/LWM/Punctuation/Pointstamp）+ 三种修正策略
+- [[wiki/流处理状态管理]] — Synopsis → App-Managed → System-Managed 三阶段 + In-Memory/Out-of-Core/External 架构
+- [[wiki/流处理容错模型]] — Exactly-Once 四级分类 + Output Commit Problem + Table 4 四维度 18 系统对比
+- [[wiki/流处理弹性与重配置]] — SEEP/Chi/Megaphone 三种重配置方案 + Buffer vs Credit 流控
+- [[wiki/Dataflow-Model]] — Google Dataflow 批流统一四抽象 + What/Where/When/How 四问
+
+#### 存储引擎
 - [[wiki/LSM-Tree]] — LSM-Tree 总览：定义、历史、架构、Leveling/Tiering、经典优化、代表系统
 - [[wiki/LSM-Tree-写放大]] — 写放大根因、Leveling vs Tiering 对比、Tiering 变体、Merge Skipping、TRIAD
 - [[wiki/LSM-Tree-合并优化]] — VT-tree stitching、LSbM-tree、bLSM 写停顿调度
@@ -106,33 +118,6 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Agent-First-Data-Systems]] — Agent 优先的数据系统架构：分支事务、语义缓存、Agentic Speculation
 - [[wiki/Agent-First-Branch-Transactions-分支事务]] — MVCC 快照 fork + 分支合并策略的 Agent 事务模型
 - [[wiki/Agentic-Memory-语义缓存]] — 基于语义相似度而非精确 key match 的缓存层
-- [[wiki/InfluxDB-数据模型]] — 时序数据模型核心概念：Bucket、Measurement、Tag、Field、Timestamp
-- [[wiki/InfluxDB-TSM存储引擎]] — TSM 引擎（TSI++）结构、时序压缩算法族、碎片化问题
-- [[wiki/InfluxDB-3-列存引擎]] — InfluxDB 3.0 列存引擎：与 TSM 架构对比、读写路径变更、Parquet + Arrow 生态
-- [[wiki/InfluxDB-写入与查询路径]] — InfluxDB 写入与查询路径：WAL 机制、Query 执行链、下推优化
-- [[wiki/InfluxDB-指标设计与基数管理]] — 时序指标设计原则、Serie Cardinality 根因与应对策略
-- [[wiki/InfluxDB-多副本与高可用]] — InfluxDB Enterprise 多副本复制：Hinted Handoff、Anti-Entropy、Raft 灾备
-- [[wiki/InfluxDB-Catalog元数据]] — InfluxDB 3.0 Catalog 元数据管理模式与演进
-- [[wiki/Doris-数据模型]] — Doris 四种表模型：Duplicate/Aggregate/Unique MoW/Unique MoR 的设计与权衡
-- [[wiki/Doris-Segment-v2-存储格式]] — Doris 自研 Segment v2 列式存储：Page 体系、索引层级、DELETE_BITMAP、与 Parquet 对比
-- [[wiki/Doris-Compaction-策略]] — Cumulative/Base/Quick/Vertical 四种 Compaction 的触发条件与一致性保证
-- [[wiki/Doris-MPP-向量化查询引擎]] — MPP 分布式查询三阶段、四种 Shuffle 策略、向量化执行、Lakehouse 联邦查询
-- [[wiki/Doris-Nereids-CBO-优化器]] — Nereids CBO 优化器：Join Reorder、CTE 物化、Runtime Filter、统计信息
-- [[wiki/Doris-架构演进]] — Palo → Doris 3.0 存算分离的十年演进、关键架构决策、竞品定位
-- [[wiki/Doris-元数据与一致性复制]] — BDB-JE → Meta Service 元数据演进、TabletScheduler 多副本复制、2PC 事务与故障恢复
-
-### Apache Fluss 调研
-- [[wiki/Fluss-整体架构]] — Fluss vs Kafka 2.7.2 对比：8 个核心差异维度、代码复用分析（~30% Kafka, 70% 自研）、8 个 Fluss 独有能力
-- [[wiki/Fluss-存储引擎]] — 三层存储模型（L1 LocalLog/L2 KvTablet/L3 RemoteLog）、Log 子系统 10 项差异对照、KV 子系统、Snapshot 全链路 30 类、RowMerger 四种实现
-- [[wiki/Fluss-分布式协调]] — CoordinatorServer 架构、16 种事件类型、双状态机模型（Replica 6 状态 + TableBucket 5 状态）、Goal 优化器重平衡
-- [[wiki/Fluss-RPC与网络]] — Protobuf + Netty 双协议栈、61 API Key（1000-1061）分类、双协议引擎（Fluss/Kafka）、GatewayClientProxy JDK 动态代理
-- [[wiki/Fluss-客户端与计算集成]] — Writer/Scanner/Lookuper 三大 API、5 种 BucketAssigner、Flink Connector 全能力矩阵、Lake Storage 插件架构
-- [[wiki/Fluss-Lake层与湖仓融合]] — 四种 Lake 后端（Iceberg ★5/Paimon ★5/Hudi ★2/Lance ★3）、Iceberg 全链路、与 Kafka KIP-405 本质区别
-- [[wiki/Fluss-KV存储-RocksDB]] — RocksDBKv 封装、WAL 复用 changelog LogTablet（Write-Once Read-Multiple）、增量快照、PartialUpdater
-- [[wiki/Fluss-Tiering分层架构]] — 独立 Flink 作业驱动的湖仓物化、Tiering 工作流、设计哲学（控制面+数据面分离）
-- [[wiki/Fluss-Kafka兼容层]] — 协议热插拔链路、KafkaRequestHandler 骨架状态、双协议端口复用
-- [[wiki/Fluss-Arrow列式记录格式]] — Arrow 列式 vs Kafka 行式字节流、列裁剪/谓词下推/向量化计算/零拷贝 Flink 集成、Schema Evolution
-
 ---
 
 ## 第3层: Schema

@@ -12,6 +12,7 @@ related:
   - "[[事务模型深度调研]]"
 sources:
   - "sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf"
+status: draft
 created: 2026-06-15
 updated: 2026-06-15
 ---

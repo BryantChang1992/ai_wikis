@@ -121,3 +121,10 @@ updated: 2026-06-15
 - **交叉关联**：LSM-Tree、Fluss 综述、分布式事务综述
 - **6张概念卡片全面重写**：从精读分析摘要升级为论文原文级技术深度（+664行增量）
 
+
+## 2026-06-15 (续2) — 知识库 P0 修复
+
+- **补全 frontmatter**：13张卡片缺 status → 全部补 status: draft；3张 Aurora 卡片缺 sources → 补 sources 指向
+- **README 去重**：删除底部 Fluss/InfluxDB/Doris 重复块（Fluss 10条重复全删）
+- **README 补新**：+6张流处理概念卡片（Stream-Processing-System-Generations + 流处理4张 + Dataflow-Model）+ 2张 synthesis（流处理系统演化综述 + 知识库优化方案）
+- **修复后基线**：57张卡片 + 10张综述，全部 frontmatter 完整（type/src/status/tags/related），README 无重复

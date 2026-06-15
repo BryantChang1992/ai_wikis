@@ -10,6 +10,9 @@ tags:
 related:
   - "[[事务模型深度调研]]"
   - "[[CockroachDB-Leader-Lease-整体设计]]"
+status: draft
+sources:
+  - "sources/papers/Aurora-Limitless/精读分析.md"
 created: 2026-06-15
 source: Aurora PostgreSQL Limitless Database (SIGMOD 2026)
 ---

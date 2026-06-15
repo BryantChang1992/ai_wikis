@@ -92,3 +92,11 @@ sources/papers/
 ---
 
 *由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-15*
+
+## 2026-06-15 新增
+
+| 文件 | 类型 | 来源 |
+|------|------|------|
+| `papers/SP-Survey/` | Survey 论文 + 精读分析 | arXiv:2008.00842 |
+| `papers/SP-Survey/SP-Survey.pdf` | PDF 原文 | arXiv |
+| `papers/SP-Survey/精读分析.md` | 精读分析 | CTO 自产 |

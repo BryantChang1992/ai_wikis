@@ -102,3 +102,14 @@ updated: 2026-06-15
   - 迁移 6 个文件到 `wiki/synthesis/`：LSM-Tree-存储引擎体系综述、OLAP与TSDB全景综述、分布式数据系统一致性体系、Apache-Doris-OLAP-数据库体系综述、InfluxDB-时序数据库体系综述、Lint-2026-06-14
   - 原因：综述/synthesis 与研究型页面（survey/concept）混放不利于查找
   - 影响文件：schema.md（目录结构+三层层角色表+Synthesize写入路径）、README.md（索引引用路径）、HEARTBEAT.md（转义规则+关键文件清单）
+## 2026-06-15 — SP-Survey 流处理综述纳入
+
+- **源文件归档**：`sources/papers/SP-Survey/`（PDF + 精读分析）
+- **概念卡片 (6)**：
+  - `wiki/Stream-Processing-System-Generations.md` — 流处理三代演化
+  - `wiki/流处理乱序数据管理.md` — Watermark/Trigger/Refinement
+  - `wiki/流处理状态管理.md` — In-Memory/Out-of-Core/External + 持久化粒度
+  - `wiki/流处理容错模型.md` — At-Least-Once → Exactly-Once 分级 + Output Commit
+  - `wiki/流处理弹性与重配置.md` — 弹性/重配置/Flow Control
+  - `wiki/Dataflow-Model.md` — 批流统一四抽象
+- **关联卡片**：与 LSM-Tree、Fluss 综述、事务综述建立 wikilink

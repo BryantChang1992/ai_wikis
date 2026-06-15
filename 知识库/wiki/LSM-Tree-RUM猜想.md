@@ -24,7 +24,7 @@ related:
 
 # LSM-Tree RUM 猜想 (RUM Conjecture)
 
-![Architecture Diagram](../diagram/rum-conjecture.svg)
+![[diagram/rum-conjecture.svg]]
 ## 定义
 
 **RUM 猜想** 是 LSM-tree 领域的一个基本 trade-off 理论：在存储系统中，**读 (Read)、写 (Update)、空间/内存 (Memory/Space) 三者不可兼得**——优化其中任何一个维度必然以牺牲另外两个维度为代价。

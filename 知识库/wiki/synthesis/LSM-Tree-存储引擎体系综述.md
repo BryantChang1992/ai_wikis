@@ -28,7 +28,7 @@ related:
 
 # LSM-Tree 存储引擎体系综述
 
-![LSM-Tree 体系架构图](../diagram/lsm-tree-architecture.svg)
+![[diagram/lsm-tree-architecture.svg]]
 
 > 本综述基于 VLDB Journal 2019 Survey 形成的 7 张 wiki 卡片，以 RUM 猜想为统一理论框架，串联 LSM-tree 的写放大、合并优化、硬件适配、自动调参、二级索引等子领域。
 

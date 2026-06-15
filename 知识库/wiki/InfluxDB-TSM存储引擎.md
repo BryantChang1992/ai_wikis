@@ -31,7 +31,7 @@ TSM (Time-Structured Merge Tree) 是 InfluxDB v1/v2 自研的列式存储格式�
 
 ## 存储结构
 
-![InfluxDB-TSM存储引擎 - 图1](../diagram/InfluxDB-TSM存储引擎-fig.svg)
+![[diagram/InfluxDB-TSM存储引擎-fig.svg]]
 
 **TSM 文件内部布局**：
 - **Header**: 文件魔数 + 版本

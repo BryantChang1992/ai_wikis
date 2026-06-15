@@ -31,7 +31,7 @@ Doris 查询引擎基于自研 C++ 向量化执行引擎，支持标准 SQL 和 
 
 ## 查询架构
 
-![Doris-MPP-向量化查询引擎 - 图1](../diagram/Doris-MPP-向量化查询引擎-fig1.svg)
+![[diagram/Doris-MPP-向量化查询引擎-fig1.svg]]
 
 
 
@@ -44,7 +44,7 @@ Doris 查询引擎基于自研 C++ 向量化执行引擎，支持标准 SQL 和 
 
 FE 将 SQL Plan 拆分为多个 Fragment，每个 Fragment 由 BE 上一个 Instance 执行：
 
-![Doris-MPP-向量化查询引擎 - 图2](../diagram/Doris-MPP-向量化查询引擎-fig2.svg)
+![[diagram/Doris-MPP-向量化查询引擎-fig2.svg]]
 
 
 
@@ -66,7 +66,7 @@ BE 间通过 BRPC 进行数据交换，四种策略：
 
 BE 内部以 **4096 行**为一个 Columnar Batch 流水线处理：
 
-![Doris-MPP-向量化查询引擎 - 图3](../diagram/Doris-MPP-向量化查询引擎-fig3.svg)
+![[diagram/Doris-MPP-向量化查询引擎-fig3.svg]]
 
 全程列式操作，利用 SIMD 指令集加速。
 

@@ -33,7 +33,7 @@ Segment v2 是 Apache Doris 自研的列式存储格式，专为 OLAP 低延迟�
 
 ## 存储层级结构
 
-![Doris-Segment-v2-存储格式 - 图1](../diagram/Doris-Segment-v2-存储格式-fig.svg)
+![[diagram/Doris-Segment-v2-存储格式-fig.svg]]
 
 ## Segment 核心设计
 

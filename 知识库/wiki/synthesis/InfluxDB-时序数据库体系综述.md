@@ -34,7 +34,7 @@ related:
 ---
 
 
-![Architecture Diagram](../diagram/influxdb-architecture.svg)
+![[diagram/influxdb-architecture.svg]]
 
 ## 领域定义
 

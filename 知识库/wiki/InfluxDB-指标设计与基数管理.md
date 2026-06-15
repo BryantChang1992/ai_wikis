@@ -35,7 +35,7 @@ Series Cardinality = |tag₁| × |tag₂| × ... × |tagₙ| × |fields|
 
 ### 决策流程
 
-![InfluxDB-指标设计与基数管理 - 图1](../diagram/InfluxDB-指标设计与基数管理-fig1.svg)
+![[diagram/InfluxDB-指标设计与基数管理-fig1.svg]]
 
 
 
@@ -107,7 +107,7 @@ cpu、mem、disk、net 全部写入 sensor_data。
 
 ## 下采样策略
 
-![InfluxDB-指标设计与基数管理 - 图2](../diagram/InfluxDB-指标设计与基数管理-fig2.svg)
+![[diagram/InfluxDB-指标设计与基数管理-fig2.svg]]
 
 **关键原则**：
 1. 尽早做下采样，减少高精度存储成本

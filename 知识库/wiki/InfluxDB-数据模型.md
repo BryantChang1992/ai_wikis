@@ -25,7 +25,7 @@ diagram: "diagram/influxdb-architecture.svg"
 
 InfluxDB 的数据模型围绕 **Point（数据点）** 构建，每个 Point 包含四个组件：
 
-![InfluxDB-数据模型 - 图1](../diagram/InfluxDB-数据模型-fig.svg)
+![[diagram/InfluxDB-数据模型-fig.svg]]
 
 | 组件 | 说明 | 类型 | 是否索引 |
 |------|------|------|----------|

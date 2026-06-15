@@ -45,7 +45,7 @@ Doris 采用 **控制面集中协调 + 数据面去中心化执行** 架构。FE
 
 ### 元数据对象关系
 
-![Doris-元数据与一致性复制 - 图1](../diagram/Doris-元数据与一致性复制-fig1.svg)
+![[diagram/Doris-元数据与一致性复制-fig1.svg]]
 
 
 
@@ -60,7 +60,7 @@ Doris 0.x~2.x 使用 BDB-JE 作为 FE 元数据持久化引擎：
 
 FE 元数据文件布局：
 
-![Doris-元数据与一致性复制 - 图2](../diagram/Doris-元数据与一致性复制-fig2.svg)
+![[diagram/Doris-元数据与一致性复制-fig2.svg]]
 
 
 
@@ -132,7 +132,7 @@ Meta Service Key 设计：
 
 Doris 采用 **FE 2PC 事务协调 + BE 本地 WAL** 保证写入一致性：
 
-![Doris-元数据与一致性复制 - 图3](../diagram/Doris-元数据与一致性复制-fig3.svg)
+![[diagram/Doris-元数据与一致性复制-fig3.svg]]
 
 ### 事务类型
 

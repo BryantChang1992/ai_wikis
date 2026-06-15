@@ -36,7 +36,7 @@ Apache Doris 提供四种表模型（实际为三种基础模型 + Unique 的两
 
 **定位**：明细数据、日志类 Append-only 场景。
 
-![Doris-数据模型 - 图1](../diagram/Doris-数据模型-fig1.svg)
+![[diagram/Doris-数据模型-fig1.svg]]
 
 
 
@@ -50,7 +50,7 @@ Apache Doris 提供四种表模型（实际为三种基础模型 + Unique 的两
 
 **定位**：预聚合指标场景。
 
-![Doris-数据模型 - 图2](../diagram/Doris-数据模型-fig2.svg)
+![[diagram/Doris-数据模型-fig2.svg]]
 
 
 
@@ -69,7 +69,7 @@ Doris 提供两种实现方式，核心差异在于"何时合并去重"：
 
 #### 3.1 Merge-on-Write (MoW) — Doris 2.1+ 默认
 
-![Doris-数据模型 - 图3](../diagram/Doris-数据模型-fig3.svg)
+![[diagram/Doris-数据模型-fig3.svg]]
 
 
 
@@ -84,7 +84,7 @@ Doris 提供两种实现方式，核心差异在于"何时合并去重"：
 
 #### 3.2 Merge-on-Read (MoR) — 传统实现
 
-![Doris-数据模型 - 图4](../diagram/Doris-数据模型-fig4.svg)
+![[diagram/Doris-数据模型-fig4.svg]]
 
 
 
@@ -99,7 +99,7 @@ Doris 提供两种实现方式，核心差异在于"何时合并去重"：
 
 ## 模型选择指南
 
-![Doris-数据模型 - 图5](../diagram/Doris-数据模型-fig5.svg)
+![[diagram/Doris-数据模型-fig5.svg]]
 
 ## 与 LSM-Tree 的关系
 

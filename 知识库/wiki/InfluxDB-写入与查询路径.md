@@ -25,14 +25,14 @@ related:
 
 # InfluxDB 写入与查询路径
 
-![Architecture Diagram](../diagram/influxdb-read-write-path.svg)
+![[diagram/influxdb-read-write-path.svg]]
 ## 一、写入路径对比
 
 ### v1/v2 写入路径 (Go)
 
 ```svg
 
-![InfluxDB-写入与查询路径 - 图1](../diagram/InfluxDB-写入与查询路径-fig1.svg)
+![[diagram/InfluxDB-写入与查询路径-fig1.svg]]
 
 
 
@@ -50,7 +50,7 @@ related:
 
 ```svg
 
-![InfluxDB-写入与查询路径 - 图2](../diagram/InfluxDB-写入与查询路径-fig2.svg)
+![[diagram/InfluxDB-写入与查询路径-fig2.svg]]
 
 
 
@@ -75,7 +75,7 @@ v3:    HTTP → Ingest Router → Ingester (校验/分区/排序/去重) → Par
 
 ```svg
 
-![InfluxDB-写入与查询路径 - 图3](../diagram/InfluxDB-写入与查询路径-fig3.svg)
+![[diagram/InfluxDB-写入与查询路径-fig3.svg]]
 
 
 
@@ -91,7 +91,7 @@ v3:    HTTP → Ingest Router → Ingester (校验/分区/排序/去重) → Par
 
 ```svg
 
-![InfluxDB-写入与查询路径 - 图4](../diagram/InfluxDB-写入与查询路径-fig4.svg)
+![[diagram/InfluxDB-写入与查询路径-fig4.svg]]
 
 ```
 

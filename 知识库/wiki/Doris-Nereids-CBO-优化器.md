@@ -67,7 +67,7 @@ SELECT * FROM user_stats WHERE cnt > 500;
 
 Join 的 Build 侧（小表）生成 Bloom Filter，**提前下推到 Scan 侧**过滤无效数据：
 
-![Doris-Nereids-CBO-优化器 - 图1](../diagram/Doris-Nereids-CBO-优化器-fig.svg)
+![[diagram/Doris-Nereids-CBO-优化器-fig.svg]]
 
 **效果**：大表 Join 小表场景，可过滤 50%~99% 的无效行。
 

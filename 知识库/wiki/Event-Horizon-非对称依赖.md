@@ -74,7 +74,7 @@ diagram: "diagram/event-horizon-asymmetric-dep.svg"
 
 用**有向依赖图**替代无向冲突图：
 
-![Event-Horizon-非对称依赖 - 图1](../diagram/Event-Horizon-非对称依赖-fig1.svg)
+![[diagram/Event-Horizon-非对称依赖-fig1.svg]]
 
 
 
@@ -131,7 +131,7 @@ DeMon 是 SL 的参考执行引擎，核心架构：
 2. **强操作**向**主副本（Primary）**发送请求，由 Primary 执行并广播
 3. **强操作执行时**，从 bag 中收集所有因果相关的弱操作 → 本地重排序确定最终序列
 
-![Event-Horizon-非对称依赖 - 图2](../diagram/Event-Horizon-非对称依赖-fig2.svg)
+![[diagram/Event-Horizon-非对称依赖-fig2.svg]]
 
 ### 4.3 与现有系统的关键差异
 

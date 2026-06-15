@@ -28,14 +28,14 @@ related:
 
 ---
 
-![Architecture Diagram](../diagram/log-as-the-database.svg)
+![[diagram/log-as-the-database.svg]]
 ## 1. 什么是 Log-as-the-Database？
 
 在传统单机数据库中，WAL（Write-Ahead Log）只是持久化的第一站——数据页最终会被刷入磁盘。WAL 是"保险"，不是"真相来源"。
 
 在存储计算分离架构（Aurora、Socrates、AlloyDB、Neon）中，**redo log 上升为唯一的数据传输载体**：
 
-![Log-as-the-Database-模式 - 图1](../diagram/Log-as-the-Database-模式-fig.svg)
+![[diagram/Log-as-the-Database-模式-fig.svg]]
 
 
 ### 核心差异

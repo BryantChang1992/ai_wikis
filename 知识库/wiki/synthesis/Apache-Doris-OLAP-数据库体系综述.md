@@ -35,7 +35,7 @@ related:
 ---
 
 
-![Architecture Diagram](../diagram/doris-architecture.svg)
+![[diagram/doris-architecture.svg]]
 
 ## 领域定义
 

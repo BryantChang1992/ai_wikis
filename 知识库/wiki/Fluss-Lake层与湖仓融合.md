@@ -28,7 +28,7 @@ related:
 
 ## 1. Lake 存储插件架构
 
-![Fluss-Lake层与湖仓融合 - 图1](../diagram/Fluss-Lake层与湖仓融合-fig1.svg)
+![[diagram/Fluss-Lake层与湖仓融合-fig1.svg]]
 
 
 
@@ -45,7 +45,7 @@ related:
 
 ## 2. Iceberg 集成全链路
 
-![Fluss-Lake层与湖仓融合 - 图2](../diagram/Fluss-Lake层与湖仓融合-fig2.svg)
+![[diagram/Fluss-Lake层与湖仓融合-fig2.svg]]
 
 
 
@@ -75,7 +75,7 @@ Paimon 集成的一个关键亮点是 `MergeTreeWriter`——直接写入 Paimon
 
 Lance 是新兴的 Arrow-native 列式存储格式。Fluss 集成它的核心优势：
 
-![Fluss-Lake层与湖仓融合 - 图3](../diagram/Fluss-Lake层与湖仓融合-fig3.svg)
+![[diagram/Fluss-Lake层与湖仓融合-fig3.svg]]
 
 
 
@@ -97,7 +97,7 @@ Lance 是新兴的 Arrow-native 列式存储格式。Fluss 集成它的核心优
 
 ### 设计哲学
 
-![Fluss-Lake层与湖仓融合 - 图4](../diagram/Fluss-Lake层与湖仓融合-fig4.svg)
+![[diagram/Fluss-Lake层与湖仓融合-fig4.svg]]
 
 这不是"存储分层"，而是 **"实时存储 + 数据湖"的融合架构**——与 Kafka 的"消息队列 + 外部 ETL"是完全不同的范式。
 

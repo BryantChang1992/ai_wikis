@@ -42,7 +42,7 @@ UC Berkeley 的愿景论文：传统数据系统是为人机交互的**被动查
 
 ## 三层架构
 
-![Architecture Diagram](../diagram/agent-first-data-systems.svg)
+![[diagram/agent-first-data-systems.svg]]
 
 
 ### Layer 1: Probe > Query

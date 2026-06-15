@@ -39,7 +39,7 @@ CockroachDB 原有的两种方案都有硬伤：
 
 ### 三层架构
 
-![Architecture Diagram](../diagram/cockroachdb-leader-lease-3-layer.svg)
+![[diagram/cockroachdb-leader-lease-3-layer.svg]]
 
 
 ### 关键机制

@@ -40,7 +40,7 @@ diagram: "diagram/raas-replay-tail-latency.svg"
 
 ## 2. 架构
 
-![RaaS-Replay-as-a-Service - 图1](../diagram/RaaS-Replay-as-a-Service-fig.svg)
+![[diagram/RaaS-Replay-as-a-Service-fig.svg]]
 
 ### 两个新组件
 

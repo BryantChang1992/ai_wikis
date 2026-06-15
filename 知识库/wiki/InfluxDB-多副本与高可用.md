@@ -37,7 +37,7 @@ InfluxDB 3 的数据持久化通过**三层防护**确保数据不丢失：
 
 ## Router 双副本写入
 
-![InfluxDB-多副本与高可用 - 图1](../diagram/InfluxDB-多副本与高可用-fig.svg)
+![[diagram/InfluxDB-多副本与高可用-fig.svg]]
 
 **关键设计**：
 - Router 在**确认写入成功前**将数据复制到至少 2 个 Ingester

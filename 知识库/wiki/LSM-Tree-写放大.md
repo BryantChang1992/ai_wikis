@@ -22,7 +22,7 @@ related:
 
 # LSM-Tree 写放大 (Write Amplification)
 
-![Architecture Diagram](../diagram/lsm-write-amplification.svg)
+![[diagram/lsm-write-amplification.svg]]
 ## 定义
 
 **写放大 (Write Amplification, WA)** 指实际写入磁盘的数据量与应用写入数据量之比。在 LSM-tree 中，写放大主要源于合并（compaction）过程中同一数据被反复读写：一条记录从 L0 逐层合并到 L_max，在 Leveling 策略下每层都要重写一次。

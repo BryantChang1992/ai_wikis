@@ -83,6 +83,5 @@ UC Berkeley 的愿景论文：传统数据系统是为人机交互的**被动查
 
 ## 与知识库的关联
 
-- [[Agent-First-Data-Systems]]：本架构是该方向的最完整 vision
 - [[事务模型深度调研]]：分支事务是 MVCC 在 agent 方向的自然延伸
 - [[Agentic-Memory-语义缓存]]：Agentic Memory 需要向量索引 + 结构化查询双重能力

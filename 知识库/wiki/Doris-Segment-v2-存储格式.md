@@ -20,6 +20,7 @@ related:
   - "[[Doris-数据模型]]"
   - "[[Doris-Compaction-策略]]"
   - "[[LSM-Tree]]"
+  - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
 ---
 
 # Doris Segment v2 存储格式

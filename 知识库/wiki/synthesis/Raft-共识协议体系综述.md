@@ -25,6 +25,8 @@ related:
 
 # Raft 共识协议体系综述
 
+![[diagram/raft-ecosystem-overview.svg]]
+
 > 基于 Ongaro 博士论文 "CONSENSUS: BRIDGING THEORY AND PRACTICE" (Stanford, 2014) 拆解出的 5 张概念卡片，结合已入库的 CockroachDB、Rosé、Event-Horizon 等关联卡片，构建 Raft 协议从理论设计到工程实践的全景视图。
 
 ## 一句话总结

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="480" y="35" fill="white" font-size="16" font-weight="700" text-anchor="middle">Raft Joint Consensus · 集群成员变更</text>
+  <text x="480" y="55" fill="#94a3b8" font-size="11" text-anchor="middle">Cold → Cold,new (双重多数确认) → Cnew · 变更期间集群持续可用</text>
+
+  <!-- Phase 1: Cold -->
+  <rect x="50" y="80" width="260" height="100" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="2"/>
+  <text x="180" y="110" fill="#22d3ee" font-size="14" font-weight="700" text-anchor="middle">Phase 1: Cold</text>
+  <text x="180" y="135" fill="#94a3b8" font-size="10" text-anchor="middle">旧配置: {S₁, S₂, S₃}</text>
+  <text x="180" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">多数派: ceil(3/2) = 2</text>
+  <text x="180" y="175" fill="#64748b" font-size="9" text-anchor="middle">正常运作</text>
+
+  <!-- Arrow -->
+  <line x1="310" y1="130" x2="368" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="340" y="123" fill="#22d3ee" font-size="9" text-anchor="middle">Leader</text>
+  <text x="340" y="148" fill="#22d3ee" font-size="9" text-anchor="middle">提交</text>
+  <text x="340" y="163" fill="#64748b" font-size="8" text-anchor="middle">Cold,new</text>
+
+  <!-- Phase 2: Cold,new (Joint) -->
+  <rect x="370" y="80" width="260" height="100" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+  <text x="500" y="110" fill="#fbbf24" font-size="14" font-weight="700" text-anchor="middle">Phase 2: Cold,new</text>
+  <text x="500" y="135" fill="#94a3b8" font-size="10" text-anchor="middle">Joint: {S₁,S₂,S₃} U {S₃,S₄,S₅}</text>
+  <text x="500" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">双重多数: 2/3 Old + 2/3 New</text>
+  <text x="500" y="175" fill="#fbbf24" font-size="9" text-anchor="middle">消除脑裂窗口</text>
+
+  <!-- Arrow -->
+  <line x1="630" y1="130" x2="688" y2="130" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="660" y="123" fill="#34d399" font-size="9" text-anchor="middle">Joint</text>
+  <text x="660" y="148" fill="#34d399" font-size="9" text-anchor="middle">多数确认</text>
+  <text x="660" y="163" fill="#64748b" font-size="8" text-anchor="middle">→ Cnew</text>
+
+  <!-- Phase 3: Cnew -->
+  <rect x="690" y="80" width="220" height="100" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
+  <text x="800" y="110" fill="#34d399" font-size="14" font-weight="700" text-anchor="middle">Phase 3: Cnew</text>
+  <text x="800" y="135" fill="#94a3b8" font-size="10" text-anchor="middle">新配置: {S₃, S₄, S₅}</text>
+  <text x="800" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">多数派: ceil(3/2) = 2</text>
+  <text x="800" y="175" fill="#64748b" font-size="9" text-anchor="middle">变更完成</text>
+
+  <!-- Cluster visualization -->
+  <rect x="50" y="205" width="860" height="100" rx="8" fill="none" stroke="#334155" stroke-width="1"/>
+  
+  <!-- Servers row -->
+  <text x="80" y="235" fill="#94a3b8" font-size="10" font-weight="600">Servers:</text>
+  
+  <!-- Cold servers -->
+  <rect x="160" y="220" width="50" height="28" rx="5" fill="#083344" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="185" y="238" fill="#22d3ee" font-size="10" text-anchor="middle">S₁</text>
+  <rect x="220" y="220" width="50" height="28" rx="5" fill="#083344" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="245" y="238" fill="#22d3ee" font-size="10" text-anchor="middle">S₂</text>
+  <rect x="280" y="220" width="50" height="28" rx="5" fill="#022c22" stroke="#34d399" stroke-width="1.5"/>
+  <text x="305" y="238" fill="#34d399" font-size="10" text-anchor="middle">S₃</text>
+  <rect x="340" y="220" width="50" height="28" rx="5" fill="#022c22" stroke="#34d399" stroke-width="1.5"/>
+  <text x="365" y="238" fill="#34d399" font-size="10" text-anchor="middle">S₄</text>
+  <rect x="400" y="220" width="50" height="28" rx="5" fill="#022c22" stroke="#34d399" stroke-width="1.5"/>
+  <text x="425" y="238" fill="#34d399" font-size="10" text-anchor="middle">S₅</text>
+
+  <text x="160" y="268" fill="#64748b" font-size="9" text-anchor="middle">Cold 旧节点</text>
+  <text x="305" y="268" fill="#64748b" font-size="9" text-anchor="middle">重叠节点</text>
+  <text x="365" y="268" fill="#64748b" font-size="9" text-anchor="middle">Cnew 新节点</text>
+
+  <!-- Single-server shortcut -->
+  <rect x="500" y="220" width="390" height="70" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="520" y="248" fill="#a78bfa" font-size="12" font-weight="700">Single-Server Change 优化</text>
+  <text x="520" y="268" fill="#94a3b8" font-size="9">一次仅变更一台节点: 新旧多数派必然重叠 → 可跳过 Joint Consensus</text>
+  <text x="520" y="285" fill="#64748b" font-size="9">限制: 一次一台 → 大集群变更慢; 但安全, 为 etcd/Consul 默认方案</text>
+</svg>

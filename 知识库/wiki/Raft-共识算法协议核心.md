@@ -22,9 +22,15 @@ related:
 
 # Raft 共识算法协议核心
 
+![[diagram/raft-three-states.svg]]
+
 ## 定义
 
 **Raft** 是 Diego Ongaro 在 John Ousterhout 指导下完成的博士论文中提出的共识算法，其核心设计目标是 **Understandability（可理解性）优先**。Raft 通过**问题分解**将共识拆解为三个相对独立的子问题——Leader Election、Log Replication、Safety——并用强 Leader 模型、随机化选举超时、Joint Consensus 等机制，构建了第一个被社区广泛正确实现的共识协议。论文于 2014 年发表，被引用超过 15000 次，是 etcd、TiKV、CockroachDB、Consul、Kafka KRaft 等主流分布式系统的共识引擎理论基础。
+
+## 三态模型与 Leader Election
+
+> 上图展示了 Raft 的三态转换模型：Follower → Candidate → Leader，以及 Election Restriction 和随机超时机制。
 
 ## 设计哲学：Understandability First
 

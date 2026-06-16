@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="480" y="35" fill="white" font-size="16" font-weight="700" text-anchor="middle">Chandy-Lamport 分布式快照 · Marker 传播机制</text>
+  <text x="480" y="55" fill="#94a3b8" font-size="11" text-anchor="middle">TOCS 1985 · SIGOPS Hall of Fame 2013 · Flink Checkpoint 理论基础</text>
+
+  <!-- Process topology diagram -->
+  <rect x="30" y="75" width="900" height="250" rx="8" fill="none" stroke="#334155" stroke-width="1"/>
+
+  <!-- Process timeline visualization -->
+  <!-- Process P1 -->
+  <text x="60" y="115" fill="#22d3ee" font-size="12" font-weight="700">Process P₁ (Initiator)</text>
+  <line x1="250" y1="120" x2="900" y2="120" stroke="#22d3ee" stroke-width="1.5"/>
+  <!-- Snapshot mark -->
+  <circle cx="350" cy="120" r="6" fill="#22d3ee"/>
+  <text x="350" y="108" fill="#22d3ee" font-size="9" text-anchor="middle">snap₁</text>
+  
+  <!-- Marker arrows from P1 -->
+  <line x1="350" y1="120" x2="500" y2="180" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+  <text x="420" y="142" fill="#fbbf24" font-size="9">marker</text>
+  
+  <line x1="350" y1="120" x2="500" y2="280" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+  <text x="390" y="210" fill="#fbbf24" font-size="9">marker</text>
+
+  <!-- Process P2 -->
+  <text x="60" y="175" fill="#34d399" font-size="12" font-weight="700">Process P₂</text>
+  <line x1="250" y1="180" x2="900" y2="180" stroke="#34d399" stroke-width="1.5"/>
+  <!-- Snapshot mark -->
+  <circle cx="500" cy="180" r="6" fill="#34d399"/>
+  <text x="500" y="168" fill="#34d399" font-size="9" text-anchor="middle">snap₂</text>
+
+  <!-- Marker from P2 to P3 -->
+  <line x1="500" y1="180" x2="650" y2="280" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+  <text x="560" y="222" fill="#fbbf24" font-size="9">marker</text>
+
+  <!-- Channel recording indicator for P2 -->
+  <line x1="500" y1="185" x2="500" y2="230" stroke="#a78bfa" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="510" y="210" fill="#a78bfa" font-size="8">监听入边</text>
+
+  <!-- Process P3 -->
+  <text x="60" y="275" fill="#fb7185" font-size="12" font-weight="700">Process P₃</text>
+  <line x1="250" y1="280" x2="900" y2="280" stroke="#fb7185" stroke-width="1.5"/>
+  <!-- Snapshot mark -->
+  <circle cx="650" cy="280" r="6" fill="#fb7185"/>
+  <text x="650" y="268" fill="#fb7185" font-size="9" text-anchor="middle">snap₃</text>
+
+  <!-- Channel recording for P3 -->
+  <line x1="650" y1="285" x2="650" y2="330" stroke="#a78bfa" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="662" y="310" fill="#a78bfa" font-size="8">监听入边</text>
+
+  <!-- Channel states explanation area -->
+  <rect x="30" y="340" width="440" height="85" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="55" y="365" fill="#fbbf24" font-size="12" font-weight="700">通道状态记录</text>
+  <text x="55" y="385" fill="#94a3b8" font-size="9">├ 从 snap 时刻到收到 marker 之间: 监听该入边通道</text>
+  <text x="55" y="402" fill="#94a3b8" font-size="9">├ 到达的消息序列 → 作为该通道的 State</text>
+  <text x="55" y="419" fill="#64748b" font-size="9">└ 首次收到 marker 的通道 → 状态为空 (marker 前无消息)</text>
+
+  <!-- Consistency Theorem area -->
+  <rect x="490" y="340" width="440" height="85" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="515" y="365" fill="#34d399" font-size="12" font-weight="700">一致性定理</text>
+  <text x="515" y="385" fill="#94a3b8" font-size="9">├ 快照对应系统"真实可达"的全局状态</text>
+  <text x="515" y="402" fill="#94a3b8" font-size="9">├ 一致性切割: 无"收未发"的因果倒置</text>
+  <text x="515" y="419" fill="#64748b" font-size="9">└ Marker 充当逻辑时钟 → 传播切割边界</text>
+
+  <!-- Flink mapping -->
+  <rect x="30" y="440" width="900" height="105" rx="8" fill="none" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="470" fill="#22d3ee" font-size="13" font-weight="700">Chandy-Lamport → Flink Checkpoint 映射</text>
+
+  <!-- Mapping table -->
+  <rect x="60" y="485" width="200" height="45" rx="4" fill="#083344" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="160" y="504" fill="#22d3ee" font-size="9" text-anchor="middle">Marker 消息</text>
+  <text x="160" y="522" fill="#64748b" font-size="8" text-anchor="middle">→ Checkpoint Barrier</text>
+
+  <rect x="280" y="485" width="200" height="45" rx="4" fill="#083344" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="380" y="504" fill="#22d3ee" font-size="9" text-anchor="middle">进程状态快照</text>
+  <text x="380" y="522" fill="#64748b" font-size="8" text-anchor="middle">→ Task State (StateBackend)</text>
+
+  <rect x="500" y="485" width="200" height="45" rx="4" fill="#083344" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="600" y="504" fill="#22d3ee" font-size="9" text-anchor="middle">通道状态</text>
+  <text x="600" y="522" fill="#64748b" font-size="8" text-anchor="middle">→ In-flight Records</text>
+
+  <rect x="720" y="485" width="190" height="45" rx="4" fill="#083344" stroke="#22d3ee" stroke-width="0.5"/>
+  <text x="815" y="504" fill="#22d3ee" font-size="9" text-anchor="middle">稳定属性检测</text>
+  <text x="815" y="522" fill="#64748b" font-size="8" text-anchor="middle">→ Exactly-Once 语义</text>
+</svg>

@@ -21,6 +21,8 @@ related:
 
 # Chandy-Lamport 分布式快照算法
 
+![[diagram/chandy-lamport-marker.svg]]
+
 ## 定义
 
 **Chandy-Lamport 算法**（1985）是分布式快照问题的开山之作——在无全局时钟的分布式系统中，通过进程状态 + 通道状态的协同记录，在不停止系统运行的情况下捕获一个**一致的全局状态**（consistent global state）。2013 年获 ACM SIGOPS Hall of Fame Award，被引用超过 5000 次，是 Flink Checkpoint 机制的理论基石。

@@ -18,6 +18,8 @@ related:
 
 # Raft 集群成员变更
 
+![[diagram/raft-joint-consensus.svg]]
+
 ## 定义
 
 Raft **集群成员变更（Cluster Membership Changes）** 是 Ongaro 博士论文中 Raft 的三大差异化创新之一。它通过 **Joint Consensus（联合共识）** 机制，在集群配置变更期间**避免脑裂**，同时**保持集群可用性**——在不停止服务的情况下安全地添加或移除节点。

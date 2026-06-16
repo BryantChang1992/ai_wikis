@@ -88,6 +88,11 @@ sources/papers/
   - Chandy-Lamport-Snapshot-TOCS1985.pdf（原文，969KB）
   - 精读分析.md ✅
   - → wiki: Chandy-Lamport-分布式快照算法.md
+- [Raft-Dissertation/](papers/Raft-Dissertation/) — Stanford 2014，Ongaro，Raft 共识算法博士论文（被引 15000+）
+  - Ongaro-Raft-Dissertation-Stanford2014.pdf（原文，5.1MB）
+  - 精读分析.md ✅
+  - → wiki: Raft-共识算法协议核心.md, Raft-集群成员变更.md, Raft-日志压缩.md, Raft-客户端交互.md, Paxos-理论到实践的鸿沟.md
+  - → synthesis: Raft-共识协议体系综述.md
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
@@ -108,6 +113,9 @@ sources/papers/
 | `papers/Chandy-Lamport-Snapshot/` | 经典论文 + 精读分析 | ACM TOCS 1985 |
 | `papers/Chandy-Lamport-Snapshot/Chandy-Lamport-Snapshot-TOCS1985.pdf` | PDF 原文 | lamport.azurewebsites.net |
 | `papers/Chandy-Lamport-Snapshot/精读分析.md` | 精读分析 | CTO 自产 |
+| `papers/Raft-Dissertation/` | 博士论文 + 精读分析 | Stanford University 2014 |
+| `papers/Raft-Dissertation/Ongaro-Raft-Dissertation-Stanford2014.pdf` | PDF 原文 | GitHub ongardie/dissertation |
+| `papers/Raft-Dissertation/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-06-15 新增
 

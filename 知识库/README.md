@@ -3,7 +3,7 @@ type: meta
 title: "CHANG_AI_TEAM 知识库"
 tags: ["meta", "知识库"]
 created: 2026-06-14
-updated: 2026-06-15
+updated: 2026-06-16
 ---
 
 # CHANG_AI_TEAM 知识库
@@ -45,6 +45,7 @@ sources/  →  wiki/  →  Schema
 - [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
 - [[wiki/synthesis/InfluxDB-时序数据库体系综述]] — InfluxDB 体系综述
 - [[wiki/synthesis/流处理系统演化综述]] — 🆕 SP-Survey 论文驱动：三代演化、乱序/状态/容错/弹性/Dataflow 五大域、与 LSM-Tree/Fluss/事务 交叉关联
+- [[wiki/synthesis/Raft-共识协议体系综述]] — 🆕 Ongaro 博士论文 (Stanford 2014) 五维拆解：Leader Election/Log Replication/Safety → 集群成员/日志压缩/客户端交互全景
 - [[wiki/synthesis/知识库优化方案-2026-06-15]] — 知识库 frontmatter/索引/tags 优化清单
 
 ### 健康检查
@@ -118,6 +119,14 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Agent-First-Data-Systems]] — Agent 优先的数据系统架构：分支事务、语义缓存、Agentic Speculation
 - [[wiki/Agent-First-Branch-Transactions-分支事务]] — MVCC 快照 fork + 分支合并策略的 Agent 事务模型
 - [[wiki/Agentic-Memory-语义缓存]] — 基于语义相似度而非精确 key match 的缓存层
+
+#### Raft 共识协议 🆕
+- [[wiki/Raft-共识算法协议核心]] — Leader Election (Term 逻辑时钟) + Log Replication + Safety 三维分解
+- [[wiki/Paxos-理论到实践的鸿沟]] — Single-decree Paxos 的四大缺失 + Multi-Paxos 实现者魔改问题
+- [[wiki/Raft-集群成员变更]] — Joint Consensus (Cold ∪ Cnew) 消除配置变更脑裂风险
+- [[wiki/Raft-日志压缩]] — Snapshot 机制替代前缀日志 + InstallSnapshot RPC 分块传输
+- [[wiki/Raft-客户端交互]] — Linearizability 保证 / Read Index-Lease Read / 幂等操作去重
+- [[wiki/Chandy-Lamport-分布式快照算法]] — 🆕 分布式快照开山论文 (TOCS 1985)：Marker 传播 + Flink Checkpoint 映射
 ---
 
 ## 第3层: Schema
@@ -132,4 +141,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-15*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-16*

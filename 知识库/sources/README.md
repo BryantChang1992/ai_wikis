@@ -3,7 +3,7 @@ type: meta
 title: "源文件索引"
 tags: ["meta", "sources"]
 created: 2026-06-14
-updated: 2026-06-15
+updated: 2026-06-16
 ---
 
 # 源文件索引 (Raw Sources)
@@ -84,6 +84,10 @@ sources/papers/
   - Aurora-Limitless-SIGMOD2026.pdf（原文，1.7MB）
   - 精读分析.md / 全文翻译.md ✅
   - → wiki: Aurora-Limitless-分布式架构.md, Aurora-Limitless-时间戳事务.md, Aurora-Limitless-自适应扩缩容.md
+- [Chandy-Lamport-Snapshot/](papers/Chandy-Lamport-Snapshot/) — TOCS 1985，Chandy & Lamport，分布式快照算法开山之作（SIGOPS Hall of Fame 2013）
+  - Chandy-Lamport-Snapshot-TOCS1985.pdf（原文，969KB）
+  - 精读分析.md ✅
+  - → wiki: Chandy-Lamport-分布式快照算法.md
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
@@ -95,7 +99,15 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-15*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-16*
+
+## 2026-06-16 新增
+
+| 文件 | 类型 | 来源 |
+|------|------|------|
+| `papers/Chandy-Lamport-Snapshot/` | 经典论文 + 精读分析 | ACM TOCS 1985 |
+| `papers/Chandy-Lamport-Snapshot/Chandy-Lamport-Snapshot-TOCS1985.pdf` | PDF 原文 | lamport.azurewebsites.net |
+| `papers/Chandy-Lamport-Snapshot/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-06-15 新增
 

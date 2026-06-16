@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="600" fill="#ffffff"/>
+
+  <text x="480" y="28" fill="#111827" font-size="16" font-weight="600" text-anchor="middle">Paxos Epochs Revised · 从 Unique Epoch 到 Multi-path Paxos</text>
+  <text x="480" y="48" fill="#6b7280" font-size="12" text-anchor="middle">4 种 Epoch 分配方案对比 + Epochs by Recovery 核心突破 + Multi-path 混合策略</text>
+
+  <!-- ====== Comparison Table ====== -->
+  <rect x="30" y="65" width="900" height="165" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="480" y="90" fill="#111827" font-size="13" font-weight="600" text-anchor="middle">4 种 Epoch 分配方案对比</text>
+
+  <!-- Header row -->
+  <rect x="50" y="105" width="120" height="30" rx="4" fill="#e5e7eb"/>
+  <text x="110" y="125" fill="#374151" font-size="11" font-weight="600" text-anchor="middle">方案</text>
+  <rect x="175" y="105" width="130" height="30" rx="4" fill="#e5e7eb"/>
+  <text x="240" y="125" fill="#374151" font-size="11" font-weight="600" text-anchor="middle">Epoch 唯一性</text>
+  <rect x="310" y="105" width="180" height="30" rx="4" fill="#e5e7eb"/>
+  <text x="400" y="125" fill="#374151" font-size="11" font-weight="600" text-anchor="middle">最少 RTT</text>
+  <rect x="495" y="105" width="140" height="30" rx="4" fill="#e5e7eb"/>
+  <text x="565" y="125" fill="#374151" font-size="11" font-weight="600" text-anchor="middle">中心化</text>
+  <rect x="640" y="105" width="270" height="30" rx="4" fill="#e5e7eb"/>
+  <text x="775" y="125" fill="#374151" font-size="11" font-weight="600" text-anchor="middle">代表</text>
+
+  <!-- Row 1: Pre-allocation -->
+  <rect x="50" y="138" width="120" height="28" rx="3" fill="#fef3c7"/>
+  <text x="110" y="157" fill="#92400e" font-size="10" font-weight="600" text-anchor="middle">Pre-allocation</text>
+  <rect x="175" y="138" width="130" height="28" rx="3" fill="#f9fafb"/>
+  <text x="240" y="157" fill="#475569" font-size="10" text-anchor="middle">全局唯一</text>
+  <rect x="310" y="138" width="180" height="28" rx="3" fill="#f9fafb"/>
+  <text x="400" y="157" fill="#475569" font-size="10" text-anchor="middle">2 RTT (多数) / 1 RTT (leader)</text>
+  <rect x="495" y="138" width="140" height="28" rx="3" fill="#f9fafb"/>
+  <text x="565" y="157" fill="#475569" font-size="10" text-anchor="middle">是 (Leader)</text>
+  <rect x="640" y="138" width="270" height="28" rx="3" fill="#f9fafb"/>
+  <text x="775" y="157" fill="#6b7280" font-size="10" text-anchor="middle">Classic Paxos / Multi-Paxos</text>
+
+  <!-- Row 2: Allocator -->
+  <rect x="50" y="168" width="120" height="28" rx="3" fill="#eff6ff"/>
+  <text x="110" y="187" fill="#2563eb" font-size="10" font-weight="600" text-anchor="middle">Epochs by Allocator</text>
+  <rect x="175" y="168" width="130" height="28" rx="3" fill="#f9fafb"/>
+  <text x="240" y="187" fill="#475569" font-size="10" text-anchor="middle">全局唯一(allocator)</text>
+  <rect x="310" y="168" width="180" height="28" rx="3" fill="#f9fafb"/>
+  <text x="400" y="187" fill="#475569" font-size="10" text-anchor="middle">2 RTT (1 到 allocator + 1 到 acceptors)</text>
+  <rect x="495" y="168" width="140" height="28" rx="3" fill="#f9fafb"/>
+  <text x="565" y="187" fill="#475569" font-size="10" text-anchor="middle">是 (Allocator)</text>
+  <rect x="640" y="168" width="270" height="28" rx="3" fill="#f9fafb"/>
+  <text x="775" y="187" fill="#6b7280" font-size="10" text-anchor="middle">§7.1 · 适用 allocator 可部署场景</text>
+
+  <!-- Row 3: Value Mapping -->
+  <rect x="50" y="198" width="120" height="28" rx="3" fill="#f0fdf4"/>
+  <text x="110" y="217" fill="#16a34a" font-size="10" font-weight="600" text-anchor="middle">Epochs by Value</text>
+  <rect x="175" y="198" width="130" height="28" rx="3" fill="#f9fafb"/>
+  <text x="240" y="217" fill="#475569" font-size="10" text-anchor="middle">同值同 epoch</text>
+  <rect x="310" y="198" width="180" height="28" rx="3" fill="#f9fafb"/>
+  <text x="400" y="217" fill="#475569" font-size="10" text-anchor="middle">1 RTT (同值) / 2 RTT (异值)</text>
+  <rect x="495" y="198" width="140" height="28" rx="3" fill="#f9fafb"/>
+  <text x="565" y="217" fill="#475569" font-size="10" text-anchor="middle">否 (hash-based)</text>
+  <rect x="640" y="198" width="270" height="28" rx="3" fill="#f9fafb"/>
+  <text x="775" y="217" fill="#6b7280" font-size="10" text-anchor="middle">§7.2 · hash(value) → epoch</text>
+
+  <!-- Row 4: Recovery (HIGHLIGHTED) -->
+  <rect x="50" y="228" width="120" height="28" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="110" y="247" fill="#ea580c" font-size="10" font-weight="600" text-anchor="middle">★ Epochs by Recovery</text>
+  <rect x="175" y="228" width="130" height="28" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="240" y="247" fill="#ea580c" font-size="10" font-weight="600" text-anchor="middle">不强求唯一</text>
+  <rect x="310" y="228" width="180" height="28" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="400" y="247" fill="#ea580c" font-size="10" font-weight="600" text-anchor="middle">1 RTT (任意 proposer)</text>
+  <rect x="495" y="228" width="140" height="28" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="565" y="247" fill="#ea580c" font-size="10" font-weight="600" text-anchor="middle">否 (无中心)</text>
+  <rect x="640" y="228" width="270" height="28" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="775" y="247" fill="#ea580c" font-size="10" font-weight="600" text-anchor="middle">§7.3 · 泛化 Fast Paxos</text>
+
+  <!-- ====== Epochs by Recovery Flow ====== -->
+  <rect x="30" y="250" width="560" height="235" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="310" y="275" fill="#ea580c" font-size="13" font-weight="600" text-anchor="middle">Epochs by Recovery · 核心机制</text>
+
+  <!-- 3 properties -->
+  <rect x="50" y="295" width="240" height="60" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+  <text x="170" y="315" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">Property 17</text>
+  <text x="60" y="332" fill="#475569" font-size="10">acceptor 收到相同 epoch 时只接受</text>
+  <text x="60" y="346" fill="#475569" font-size="10">相同 value 的 proposal</text>
+
+  <rect x="310" y="295" width="260" height="60" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+  <text x="440" y="315" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">Property 18</text>
+  <text x="320" y="332" fill="#475569" font-size="10">proposer 在 phase-1 收到足够承诺</text>
+  <text x="320" y="346" fill="#475569" font-size="10">确认 ≤1 个 value 可能已 commit</text>
+
+  <!-- Lemma 26+27 -->
+  <rect x="50" y="370" width="520" height="55" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+  <text x="310" y="390" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">Safety 保证</text>
+  <text x="60" y="407" fill="#475569" font-size="10">Lemma 26: Acceptor 不会接受同一 epoch 的两个不同 value (Property 17 推出)</text>
+  <text x="60" y="420" fill="#475569" font-size="10">Lemma 27: 同一 epoch 内不能有两个不同的 value 被 commit (Lemma 26 推出)</text>
+
+  <!-- Concurrent proposers -->
+  <rect x="50" y="440" width="520" height="35" rx="5" fill="#dcfce7" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="310" y="458" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">✦ 多个 proposer 并发相同 candidate value → 1 RTT 全部完成</text>
+  <text x="310" y="472" fill="#475569" font-size="9" text-anchor="middle">不同 candidate value 时仍需完整 phase-1 + phase-2 来解决 conflict</text>
+
+  <!-- ====== Multi-path Paxos ====== -->
+  <rect x="610" y="250" width="320" height="235" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="770" y="275" fill="#16a34a" font-size="13" font-weight="600" text-anchor="middle">Multi-path Paxos (§7.4)</text>
+
+  <rect x="630" y="295" width="280" height="30" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="770" y="315" fill="#166534" font-size="10" font-weight="600" text-anchor="middle">Path 1: Allocator 可用 → 2 RTT</text>
+
+  <rect x="630" y="335" width="280" height="30" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="770" y="355" fill="#166534" font-size="10" font-weight="600" text-anchor="middle">Path 2: Value Mapping → 1~2 RTT</text>
+
+  <rect x="630" y="375" width="280" height="30" rx="4" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
+  <text x="770" y="395" fill="#92400e" font-size="10" font-weight="600" text-anchor="middle">Path 3: Recovery 模式 → 1 RTT</text>
+
+  <rect x="630" y="415" width="280" height="30" rx="4" fill="#e5e7eb" stroke="#d1d5db" stroke-width="1"/>
+  <text x="770" y="435" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">Path 4: Classic Fallback → 2 RTT</text>
+
+  <text x="770" y="470" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">按可用资源自适应选择最优路径</text>
+
+  <!-- ====== Bottom: vs Fast Paxos ====== -->
+  <rect x="30" y="500" width="900" height="85" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="480" y="525" fill="#9333ea" font-size="13" font-weight="600" text-anchor="middle">泛化 Fast Paxos: 核心差异</text>
+  <text x="60" y="550" fill="#475569" font-size="11">Fast Paxos: fast quorum (≈3/4) 必须与 classic quorum (majority) intersect → 导致 fast quorum 过大</text>
+  <text x="60" y="570" fill="#16a34a" font-size="11" font-weight="600">Epochs by Recovery: 不需要此要求 · 多 proposer 并发相同值无冲突 · 只有冲突时才付出完整 round 代价</text>
+</svg>

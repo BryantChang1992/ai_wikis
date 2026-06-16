@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+
+  <rect width="960" height="640" fill="#ffffff"/>
+
+  <text x="480" y="30" fill="#111827" font-size="16" font-weight="600" text-anchor="middle">共识算法族系 · 从 Paxos 到广义解</text>
+  <text x="480" y="50" fill="#6b7280" font-size="12" text-anchor="middle">Heidi Howard (2019) — 4 层递进泛化：Quorum Intersection → Value Selection → Epoch Allocation → Generalized Family</text>
+
+  <!-- ============ Row 1: Classic Paxos ============ -->
+  <rect x="60" y="70" width="840" height="60" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="90" y="96" fill="#92400e" font-size="14" font-weight="600">Level 0: Classic Paxos (Lamport, 1998)</text>
+  <text x="90" y="116" fill="#78716c" font-size="11">所有 Quorum 两两相交 (all-to-all) · Majority Quorum (⌊n/2⌋+1) · Unique Epoch per proposer · Highest-epoch value selection</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="130" x2="480" y2="150" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ============ Row 2: Revision A ============ -->
+  <rect x="60" y="155" width="400" height="80" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="90" y="180" fill="#2563eb" font-size="13" font-weight="600">Level 1: Revision A — Flexible Paxos (§4.1)</text>
+  <text x="90" y="198" fill="#475569" font-size="11">∀Q₁∈Q₁, ∀Q₂∈Q₂: Q₁∩Q₂≠∅ 即可</text>
+  <text x="90" y="216" fill="#6b7280" font-size="10">Q₁ 内部无需相交 · Q₂ 内部无需相交 · FPaxos 已初步部署验证</text>
+
+  <rect x="500" y="155" width="400" height="80" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="530" y="180" fill="#111827" font-size="12" font-weight="600">示例: Q₁={{a₁,a₂},{a₃,a₄}}, Q₂={{a₁,a₃},{a₂,a₄}}</text>
+  <text x="530" y="200" fill="#6b7280" font-size="10">四个acceptor, 最小交集满足跨phase相交</text>
+  <circle cx="560" cy="218" r="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="1"/>
+  <text x="560" y="222" fill="#2563eb" font-size="9" text-anchor="middle">a₁</text>
+  <circle cx="590" cy="218" r="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="1"/>
+  <text x="590" y="222" fill="#2563eb" font-size="9" text-anchor="middle">a₂</text>
+  <circle cx="620" cy="218" r="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="1"/>
+  <text x="620" y="222" fill="#2563eb" font-size="9" text-anchor="middle">a₃</text>
+  <circle cx="650" cy="218" r="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="1"/>
+  <text x="650" y="222" fill="#2563eb" font-size="9" text-anchor="middle">a₄</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="235" x2="480" y2="255" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ============ Row 3: Revision B ============ -->
+  <rect x="60" y="260" width="400" height="80" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="90" y="285" fill="#16a34a" font-size="13" font-weight="600">Level 2: Revision B — Per-Epoch (§4.2)</text>
+  <text x="90" y="303" fill="#475569" font-size="11">∀Q∈Qᵉ₁, ∀f&lt;e: Q∩Qᶠ₂≠∅</text>
+  <text x="90" y="321" fill="#6b7280" font-size="10">Epoch e 的 Phase-1 只需与 f&lt;e 的 Phase-2 相交 · e_min proposer 可跳过 Phase-1</text>
+
+  <rect x="500" y="260" width="400" height="80" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="530" y="285" fill="#111827" font-size="12" font-weight="600">推论: All Aboard Paxos</text>
+  <text x="530" y="303" fill="#475569" font-size="11">Qᵏ₁={{a₁},{a₂},{a₃}}, Qᵏ₂={{a₁,a₂,a₃}}</text>
+  <text x="530" y="321" fill="#6b7280" font-size="10">全部存活 → 1 RTT 决策 · 多数存活 → 回退 Classic Paxos (2 RTT)</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="340" x2="480" y2="360" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ============ Row 4: Quorum Transitivity + Value Selection ============ -->
+  <rect x="60" y="365" width="400" height="75" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="90" y="390" fill="#9333ea" font-size="13" font-weight="600">Level 3: Quorum Transitivity (§5) + Value Selection (§6)</text>
+  <text x="90" y="408" fill="#475569" font-size="11">收到 promise(e,v) → 覆盖所有 ≤e epoch · Quorum-based 选值不是简单取最高 epoch</text>
+  <text x="90" y="426" fill="#6b7280" font-size="10">Proposer 有更多机会 propose 自己的 candidate value</text>
+
+  <rect x="500" y="365" width="400" height="75" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="530" y="390" fill="#111827" font-size="12" font-weight="600">Value Selection 决策树</text>
+  <text x="530" y="408" fill="#475569" font-size="10">Per-quorum 判断：nil return? → no decision </text>
+  <text x="530" y="423" fill="#475569" font-size="10">同一 quorum 内不同值冲突? → no decision</text>
+  <text x="530" y="435" fill="#475569" font-size="10">所有 quorum → 同一 value? → must propose that value</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="440" x2="480" y2="460" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ============ Row 5: Epochs Revised ============ -->
+  <rect x="60" y="465" width="840" height="85" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="90" y="490" fill="#ea580c" font-size="14" font-weight="600">Level 4: Epochs Revised (§7) — Multi-path Paxos</text>
+  <text x="90" y="510" fill="#475569" font-size="11">Epoch 不再要求全局唯一 · Epochs by Recovery 允许多 proposer 并发 · 泛化 Fast Paxos (弱化 quorum 要求)</text>
+
+  <!-- 4 sub-boxes within Row 5 -->
+  <rect x="70" y="520" width="190" height="22" rx="4" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="165" y="535" fill="#475569" font-size="10" text-anchor="middle">Epochs by Allocator</text>
+
+  <rect x="275" y="520" width="190" height="22" rx="4" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="370" y="535" fill="#475569" font-size="10" text-anchor="middle">Epochs by Value Mapping</text>
+
+  <rect x="480" y="520" width="190" height="22" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="575" y="535" fill="#ea580c" font-size="10" text-anchor="middle">★ Epochs by Recovery</text>
+
+  <rect x="685" y="520" width="190" height="22" rx="4" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="780" y="535" fill="#475569" font-size="10" text-anchor="middle">Multi-path Paxos (Hybrid)</text>
+
+  <!-- Bottom summary -->
+  <rect x="60" y="570" width="840" height="50" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="480" y="594" fill="#111827" font-size="13" font-weight="600" text-anchor="middle">共识算法族（Consensus Family）: Classic Paxos ⊂ Flexible Paxos ⊂ Generalised Paxos ⊂ Multi-path Paxos</text>
+  <text x="480" y="612" fill="#6b7280" font-size="10" text-anchor="middle">Q₁ / Q₂ 独立可配 · Value Selection 按 quorum 粒度 · Epoch 不再唯一 · 多种路径自适应达成共识</text>
+
+  <defs>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>

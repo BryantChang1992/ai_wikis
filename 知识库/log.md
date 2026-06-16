@@ -148,3 +148,25 @@ updated: 2026-06-15
 - 新增 `stream-processing-generations.svg` (流处理三代演化)
 - 验证: 0 broken diagram refs, 0 wiki dangling
 - `git commit 7e8ac72` — 80 files, +1740 lines
+
+### 2026-06-16 12:07 — Distributed Consensus Revised (Howard 2019) 论文入库
+- **操作**：Ingest + Synthesize + 配图
+- **来源**：Heidi Howard 博士论文 "Distributed Consensus Revised" (Cambridge, 2019, UCAM-CL-TR-935)
+- **源文件**：
+  - PDF: `sources/papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` (1.2MB)
+  - ArXiv: `sources/papers/Distributed-Consensus-Revised/arxiv-1902.06776.pdf` (213KB)
+- **精读分析**：`sources/papers/Distributed-Consensus-Revised/精读分析.md` (CTO 自产)
+- **新增 wiki 卡片（4 张）**：
+  1. `wiki/共识算法族系-从Paxos到广义解.md` — 全貌综述：4 层递进泛化全景 (CTO 自产)
+  2. `wiki/Paxos-Quorum-Intersection-Revised.md` — Flexible Paxos + Revision A/B §4 (Worker)
+  3. `wiki/Paxos-Value-Selection-Revised.md` — Quorum-based Value Selection §6 (Worker)
+  4. `wiki/Paxos-Epochs-Revised.md` — Epochs by Recovery + Multi-path §7 (Worker)
+- **综述更新**：`synthesis/共识协议体系综述.md` → 重命名/扩展为 `synthesis/共识协议体系综述.md`，新增 Howard 广义共识框架章节
+- **新增配图（4 张，Style 1 Flat Icon）**：
+  1. `diagram/consensus-generalised-family.svg/.png` — 4 层递进泛化全景
+  2. `diagram/paxos-quorum-intersection.svg/.png` — Classic vs Flexible Paxos quorum 对比
+  3. `diagram/paxos-value-selection.svg/.png` — Quorum-based 决策流
+  4. `diagram/paxos-epochs-revised.svg/.png` — 4 种 Epoch 方案对比 + Recovery 机制
+- **索引更新**：`sources/README.md` + `知识库/README.md`
+- **Worker 效率**：3 个 rd-task Worker 并行生产，总耗时 <3min
+- **Commit**: 待提交

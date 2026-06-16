@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" height="580">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="580" fill="#ffffff"/>
+
+  <text x="480" y="28" fill="#111827" font-size="16" font-weight="600" text-anchor="middle">Paxos Value Selection Revised · Quorum-based Decision</text>
+  <text x="480" y="48" fill="#6b7280" font-size="12" text-anchor="middle">从"选最高 epoch 的 value"到"按 quorum 粒度逐个判断"——更多机会 propose candidate value</text>
+
+  <!-- ====== Left Panel: Classic vs Quorum-based ====== -->
+  <rect x="30" y="65" width="440" height="230" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="50" y="90" fill="#92400e" font-size="13" font-weight="600">Classic Value Selection</text>
+  <text x="50" y="110" fill="#78716c" font-size="10">规则: 取 phase-1 中收到的最高 epoch 关联的 value</text>
+
+  <text x="50" y="138" fill="#475569" font-size="11" font-weight="600">为什么保守?</text>
+  <text x="65" y="155" fill="#6b7280" font-size="10">• 收到 promise(5, A) 和 promise(3, nil)</text>
+  <text x="65" y="170" fill="#6b7280" font-size="10">• Classic: 必须 propose A (epoch 5 最高)</text>
+  <text x="65" y="185" fill="#2563eb" font-size="10">• 但 epoch 3 的 acceptor 返回 nil → 它所在的</text>
+  <text x="65" y="200" fill="#2563eb" font-size="10">  quorum 未发生 commit → 可以 propose candidate!</text>
+
+  <text x="50" y="230" fill="#475569" font-size="11" font-weight="600">Lemma 19 (nil exclusion)</text>
+  <text x="65" y="248" fill="#6b7280" font-size="10">若 acceptor a 返回 promise(f,nil)</text>
+  <text x="65" y="263" fill="#6b7280" font-size="10">→ 包含 a 的 quorum 在 epoch ≤f 未 commit 任何值</text>
+  <text x="65" y="278" fill="#16a34a" font-size="10">→ 可以 propose candidate value</text>
+
+  <rect x="500" y="65" width="430" height="230" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="520" y="90" fill="#16a34a" font-size="13" font-weight="600">Quorum-based Value Selection</text>
+  <text x="520" y="110" fill="#475569" font-size="10">规则: 对每个 Phase-2 Quorum Q 独立判断</text>
+
+  <text x="520" y="138" fill="#475569" font-size="11" font-weight="600">判断逻辑</text>
+  <text x="535" y="155" fill="#6b7280" font-size="10">For each Q ∈ Q₂:</text>
+  <text x="535" y="172" fill="#6b7280" font-size="10">  if ∃a∈Q: R[a]=nil → Q 无 commit → D[Q]=no</text>
+  <text x="535" y="189" fill="#6b7280" font-size="10">  if ∃a₁,a₂∈Q: 不同 value 且 不同 epoch</text>
+  <text x="535" y="206" fill="#6b7280" font-size="10">    → 有冲突 → D[Q]=no</text>
+  <text x="535" y="223" fill="#6b7280" font-size="10">  else → D[Q]=v (可能已 commit v)</text>
+
+  <text x="520" y="250" fill="#2563eb" font-size="11" font-weight="600">决策</text>
+  <text x="535" y="268" fill="#6b7280" font-size="10">∀Q: D[Q]=no → Vdec=∅ → propose candidate ✓</text>
+  <text x="535" y="285" fill="#6b7280" font-size="10">∃v: D[Q]=v for all Q → Vdec={v} → must propose v</text>
+
+  <!-- ====== Bottom: Decision Flow ====== -->
+  <rect x="30" y="310" width="900" height="250" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="480" y="338" fill="#111827" font-size="14" font-weight="600" text-anchor="middle">Quorum-based Value Selection · 完整决策流</text>
+
+  <!-- Phase 1 box -->
+  <rect x="60" y="355" width="180" height="55" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="150" y="378" fill="#2563eb" font-size="12" font-weight="600" text-anchor="middle">Phase-1</text>
+  <text x="150" y="395" fill="#475569" font-size="10" text-anchor="middle">发送 prepare(e) → acceptors</text>
+
+  <!-- Arrow -->
+  <line x1="240" y1="382" x2="300" y2="382" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="270" y="376" fill="#2563eb" font-size="9" text-anchor="middle">收集承诺</text>
+
+  <!-- Per-quorum analysis box -->
+  <rect x="310" y="355" width="250" height="55" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="435" y="378" fill="#9333ea" font-size="12" font-weight="600" text-anchor="middle">Per-Quorum Analysis</text>
+  <text x="435" y="395" fill="#475569" font-size="10" text-anchor="middle">对每个 Q∈Q₂ 逐个判断 D[Q]</text>
+
+  <!-- Arrows to decision branches -->
+  <line x1="560" y1="370" x2="610" y2="370" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- All NO branch -->
+  <rect x="620" y="355" width="150" height="35" rx="6" fill="#dcfce7" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="695" y="377" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">∀Q: D[Q]=no</text>
+
+  <line x1="695" y1="390" x2="695" y2="420" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="620" y="425" width="150" height="35" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="695" y="447" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">Propose Candidate ✓</text>
+
+  <!-- All same value branch -->
+  <rect x="790" y="355" width="120" height="35" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="850" y="377" fill="#92400e" font-size="10" font-weight="600" text-anchor="middle">∃v: ∀Q D[Q]=v</text>
+
+  <line x1="850" y1="390" x2="850" y2="420" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="790" y="425" width="120" height="35" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="850" y="447" fill="#92400e" font-size="10" font-weight="600" text-anchor="middle">Must Propose v</text>
+
+  <!-- Wait for more promises branch -->
+  <rect x="60" y="425" width="250" height="35" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="185" y="447" fill="#dc2626" font-size="11" font-weight="600" text-anchor="middle">∃Q: D[Q]=nil (信息不足)</text>
+
+  <line x1="310" y1="410" x2="310" y2="425" stroke="#9333ea" stroke-width="1.5"/>
+  <line x1="310" y1="425" x2="185" y2="440" stroke="#dc2626" stroke-width="1.5"/>
+
+  <line x1="185" y1="460" x2="185" y2="480" stroke="#dc2626" stroke-width="1.5"/>
+
+  <rect x="60" y="485" width="250" height="35" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="185" y="507" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">继续收集更多承诺 → 回跳 Per-Quorum</text>
+
+  <!-- Key insight -->
+  <rect x="350" y="485" width="560" height="60" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="380" y="510" fill="#2563eb" font-size="12" font-weight="600">关键洞察</text>
+  <text x="380" y="528" fill="#475569" font-size="10">Lamport 的"选最高 epoch"规则是 sufficient 但不是 necessary —— Howard 证明</text>
+  <text x="380" y="542" fill="#475569" font-size="10">通过 quorum 级别的分析，prop 有更多机会 propose 自己的 candidate value</text>
+</svg>

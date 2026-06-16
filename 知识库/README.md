@@ -45,7 +45,7 @@ sources/  →  wiki/  →  Schema
 - [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
 - [[wiki/synthesis/InfluxDB-时序数据库体系综述]] — InfluxDB 体系综述
 - [[wiki/synthesis/流处理系统演化综述]] — 🆕 SP-Survey 论文驱动：三代演化、乱序/状态/容错/弹性/Dataflow 五大域、与 LSM-Tree/Fluss/事务 交叉关联
-- [[wiki/synthesis/Raft-共识协议体系综述]] — 🆕 Ongaro 博士论文 (Stanford 2014) 五维拆解：Leader Election/Log Replication/Safety → 集群成员/日志压缩/客户端交互全景
+- [[wiki/synthesis/共识协议体系综述]] — 🆕 Ongaro (Stanford 2014) + Howard (Cambridge 2019) 双博士论文驱动：Raft 工程简化 + Howard 理论泛化双线并进
 - [[wiki/synthesis/知识库优化方案-2026-06-15]] — 知识库 frontmatter/索引/tags 优化清单
 
 ### 健康检查
@@ -120,13 +120,17 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Agent-First-Branch-Transactions-分支事务]] — MVCC 快照 fork + 分支合并策略的 Agent 事务模型
 - [[wiki/Agentic-Memory-语义缓存]] — 基于语义相似度而非精确 key match 的缓存层
 
-#### Raft 共识协议 🆕
+#### 共识协议 🆕
 - [[wiki/Raft-共识算法协议核心]] — Leader Election (Term 逻辑时钟) + Log Replication + Safety 三维分解
 - [[wiki/Paxos-理论到实践的鸿沟]] — Single-decree Paxos 的四大缺失 + Multi-Paxos 实现者魔改问题
 - [[wiki/Raft-集群成员变更]] — Joint Consensus (Cold ∪ Cnew) 消除配置变更脑裂风险
 - [[wiki/Raft-日志压缩]] — Snapshot 机制替代前缀日志 + InstallSnapshot RPC 分块传输
 - [[wiki/Raft-客户端交互]] — Linearizability 保证 / Read Index-Lease Read / 幂等操作去重
 - [[wiki/Chandy-Lamport-分布式快照算法]] — 🆕 分布式快照开山论文 (TOCS 1985)：Marker 传播 + Flink Checkpoint 映射
+- [[wiki/共识算法族系-从Paxos到广义解]] — 🆕 Heidi Howard 2019 博士论文全景：4 层递进泛化 → 共识算法族
+- [[wiki/Paxos-Quorum-Intersection-Revised]] — 🆕 Flexible Paxos: Phase-1/Phase-2 quorum 仅跨 phase 相交
+- [[wiki/Paxos-Value-Selection-Revised]] — 🆕 Quorum-based 选值：不被"最高 epoch"规则过度限制
+- [[wiki/Paxos-Epochs-Revised]] — 🆕 Epochs by Recovery：去中心化 1 RTT 决策 + Multi-path Paxos
 ---
 
 ## 第3层: Schema

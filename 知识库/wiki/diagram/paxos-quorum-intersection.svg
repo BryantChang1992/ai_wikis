@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="960" height="620">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+
+  <rect width="960" height="620" fill="#ffffff"/>
+
+  <text x="480" y="28" fill="#111827" font-size="16" font-weight="600" text-anchor="middle">Paxos Quorum Intersection Revised · Flexible Paxos</text>
+  <text x="480" y="48" fill="#6b7280" font-size="12" text-anchor="middle">从 All-to-All Quorum Intersection 到 Phase-Only Intersection — 4 个 Acceptor 示例</text>
+
+  <!-- ====== Classic Paxos Section ====== -->
+  <rect x="40" y="65" width="425" height="250" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="55" y="90" fill="#92400e" font-size="14" font-weight="600">Classic Paxos: 全部相交</text>
+  <text x="55" y="108" fill="#78716c" font-size="10">∀Q,Q'∈Q: Q∩Q'≠∅</text>
+
+  <!-- 4 acceptor circles -->
+  <circle cx="90" cy="155" r="24" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="90" y="160" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">a₁</text>
+  <circle cx="190" cy="155" r="24" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="190" y="160" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">a₂</text>
+  <circle cx="290" cy="155" r="24" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="290" y="160" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">a₃</text>
+  <circle cx="390" cy="155" r="24" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="390" y="160" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">a₄</text>
+
+  <!-- Phase-1 group -->
+  <rect x="55" y="200" width="170" height="45" rx="6" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="140" y="220" fill="#c2410c" font-size="12" font-weight="600" text-anchor="middle">Phase-1 Quorum (Q₁)</text>
+  <text x="140" y="237" fill="#9a3412" font-size="10" text-anchor="middle">{a₁,a₂,a₃} · 任一 majority</text>
+
+  <!-- Phase-2 group -->
+  <rect x="255" y="200" width="170" height="45" rx="6" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="340" y="220" fill="#c2410c" font-size="12" font-weight="600" text-anchor="middle">Phase-2 Quorum (Q₂)</text>
+  <text x="340" y="237" fill="#9a3412" font-size="10" text-anchor="middle">{a₂,a₃,a₄} · 任一 majority</text>
+
+  <!-- Intersection requirement labels -->
+  <text x="252" y="280" fill="#dc2626" font-size="10" text-anchor="middle">Q₁ ∩ Q₁' ≠ ∅</text>
+  <text x="252" y="292" fill="#dc2626" font-size="9" text-anchor="middle">(phase 内部必须相交)</text>
+
+  <text x="430" y="280" fill="#dc2626" font-size="10" text-anchor="middle">Q₁ ∩ Q₂ ≠ ∅</text>
+  <text x="430" y="292" fill="#dc2626" font-size="9" text-anchor="middle">(跨 phase 必须相交)</text>
+
+  <text x="252" y="304" fill="#6b7280" font-size="9" text-anchor="middle">全部 3 条 inequation 都必须满足</text>
+
+  <!-- ====== Flexible Paxos Section ====== -->
+  <rect x="495" y="65" width="425" height="250" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="510" y="90" fill="#2563eb" font-size="14" font-weight="600">Flexible Paxos (Revision A): 仅跨 Phase 相交</text>
+  <text x="510" y="108" fill="#475569" font-size="10">∀Q₁∈Q₁,∀Q₂∈Q₂: Q₁∩Q₂≠∅ (仅 1 条)</text>
+
+  <!-- 4 acceptor circles -->
+  <circle cx="540" cy="155" r="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="540" y="160" fill="#1d4ed8" font-size="11" font-weight="600" text-anchor="middle">a₁</text>
+  <circle cx="640" cy="155" r="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="640" y="160" fill="#1d4ed8" font-size="11" font-weight="600" text-anchor="middle">a₂</text>
+  <circle cx="740" cy="155" r="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="740" y="160" fill="#1d4ed8" font-size="11" font-weight="600" text-anchor="middle">a₃</text>
+  <circle cx="840" cy="155" r="24" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="840" y="160" fill="#1d4ed8" font-size="11" font-weight="600" text-anchor="middle">a₄</text>
+
+  <!-- Phase-1 Q1 = {{a1,a2},{a3,a4}} -->
+  <rect x="505" y="200" width="180" height="45" rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="595" y="218" fill="#1e40af" font-size="12" font-weight="600" text-anchor="middle">Phase-1 Quorum (Q₁)</text>
+  <text x="595" y="235" fill="#1e40af" font-size="10" text-anchor="middle">{a₁,a₂} 或 {a₃,a₄}</text>
+
+  <!-- Phase-2 Q2 = {{a1,a3},{a2,a4}} -->
+  <rect x="715" y="200" width="180" height="45" rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="805" y="218" fill="#1e40af" font-size="12" font-weight="600" text-anchor="middle">Phase-2 Quorum (Q₂)</text>
+  <text x="805" y="235" fill="#1e40af" font-size="10" text-anchor="middle">{a₁,a₃} 或 {a₂,a₄}</text>
+
+  <!-- Intersection check labels -->
+  <text x="595" y="268" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">Q₁ 内部不相交 ✓</text>
+  <text x="595" y="282" fill="#6b7280" font-size="9" text-anchor="middle">{a₁,a₂} ∩ {a₃,a₄} = ∅</text>
+
+  <text x="805" y="268" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">Q₂ 内部不相交 ✓</text>
+  <text x="805" y="282" fill="#6b7280" font-size="9" text-anchor="middle">{a₁,a₃} ∩ {a₂,a₄} = ∅</text>
+
+  <text x="700" y="298" fill="#2563eb" font-size="11" font-weight="600" text-anchor="middle">Q₁ ∩ Q₂ 必须相交 ✓</text>
+  <text x="700" y="312" fill="#6b7280" font-size="9" text-anchor="middle">{a₁,a₂}∩{a₁,a₃}=a₁ · {a₃,a₄}∩{a₂,a₄}=a₄</text>
+
+  <!-- ====== Revision B Section ====== -->
+  <rect x="40" y="330" width="880" height="110" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="70" y="355" fill="#16a34a" font-size="14" font-weight="600">Revision B: Per-Epoch Weakening (§4.2)</text>
+  <text x="70" y="373" fill="#475569" font-size="11">∀Q∈Qᵉ₁, ∀f∈E where f&lt;e: Q∩Qᶠ₂≠∅ — Epoch e 的 Phase-1 只需与**之前** epoch 的 Phase-2 Quorums 相交</text>
+
+  <!-- Epoch timeline visualization -->
+  <rect x="70" y="390" width="80" height="30" rx="4" fill="#bbf7d0" stroke="#86efac" stroke-width="1"/>
+  <text x="110" y="409" fill="#166534" font-size="11" font-weight="600" text-anchor="middle">e₀=0</text>
+  <text x="185" y="409" fill="#6b7280" font-size="9">Q²₀={a₁,..,aₙ}</text>
+
+  <rect x="240" y="390" width="80" height="30" rx="4" fill="#bbf7d0" stroke="#86efac" stroke-width="1"/>
+  <text x="280" y="409" fill="#166534" font-size="11" font-weight="600" text-anchor="middle">e₁=2</text>
+  <text x="355" y="409" fill="#6b7280" font-size="9">Q²₁=Q²₀</text>
+
+  <rect x="410" y="390" width="80" height="30" rx="4" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="450" y="409" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">e₂=4</text>
+  <text x="500" y="409" fill="#6b7280" font-size="9">Phase-1: Q¹₂</text>
+
+  <text x="400" y="393" fill="#2563eb" font-size="10" font-weight="600">Q¹₂ ∩ Q²₀ ≠ ∅ 且 Q¹₂ ∩ Q²₁ ≠ ∅</text>
+
+  <rect x="560" y="390" width="80" height="30" rx="4" fill="#e5e7eb" stroke="#d1d5db" stroke-width="1"/>
+  <text x="600" y="409" fill="#9ca3af" font-size="11" font-weight="600" text-anchor="middle">e₃=6</text>
+
+  <text x="680" y="409" fill="#6b7280" font-size="10">Q¹₂ 不需要 intersect Q²₃ (后续 epoch, e&gt;2)</text>
+  <text x="680" y="425" fill="#16a34a" font-size="10" font-weight="600">✦ 推论: e_min(=0) proposer 可以跳过 Phase-1 直接进入 Phase-2</text>
+
+  <!-- ====== Configurations Section ====== -->
+  <rect x="40" y="455" width="880" height="145" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="70" y="480" fill="#111827" font-size="14" font-weight="600">典型 Quorum 配置示例 (3 acceptors)</text>
+
+  <rect x="60" y="495" width="270" height="95" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="195" y="515" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">All Aboard Paxos</text>
+  <text x="80" y="535" fill="#475569" font-size="10">Q₁ = {{a₁},{a₂},{a₃}}</text>
+  <text x="80" y="552" fill="#475569" font-size="10">Q₂ = {{a₁,a₂,a₃}}</text>
+  <text x="80" y="572" fill="#6b7280" font-size="9">全存活 → 1 RTT · 否则回退 Classic</text>
+
+  <rect x="350" y="495" width="270" height="95" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="485" y="515" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">Singleton Paxos</text>
+  <text x="370" y="535" fill="#475569" font-size="10">Q₁ = {{a₁,a₂,a₃}}</text>
+  <text x="370" y="552" fill="#475569" font-size="10">Q₂ = {{a₁},{a₂},{a₃}}</text>
+  <text x="370" y="572" fill="#6b7280" font-size="9">Phase-2 极快 · Phase-1 需全体</text>
+
+  <rect x="640" y="495" width="265" height="95" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="773" y="515" fill="#111827" font-size="11" font-weight="600" text-anchor="middle">General Flexible</text>
+  <text x="660" y="535" fill="#475569" font-size="10">Phase-2 size↓ (n/2)→ 稳态更快</text>
+  <text x="660" y="552" fill="#475569" font-size="10">Phase-1 size↑ → 恢复更慢</text>
+  <text x="660" y="572" fill="#6b7280" font-size="9">按场景配置 Q₁/Q₂ trade-off</text>
+</svg>

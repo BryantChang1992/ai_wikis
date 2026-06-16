@@ -92,7 +92,16 @@ sources/papers/
   - Ongaro-Raft-Dissertation-Stanford2014.pdf（原文，5.1MB）
   - 精读分析.md ✅
   - → wiki: Raft-共识算法协议核心.md, Raft-集群成员变更.md, Raft-日志压缩.md, Raft-客户端交互.md, Paxos-理论到实践的鸿沟.md
-  - → synthesis: Raft-共识协议体系综述.md
+  - → synthesis: 共识协议体系综述.md
+- [Distributed-Consensus-Revised/](papers/Distributed-Consensus-Revised/) — Cambridge 2019，Heidi Howard，分布式共识博士论文
+  - UCAM-CL-TR-935.pdf（原文，1.2MB）+ arxiv-1902.06776.pdf
+  - 精读分析.md ✅
+  - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
+- [Distributed-Consensus-Revised/](papers/Distributed-Consensus-Revised/) — Cambridge 2019，Heidi Howard，分布式共识博士论文（Cited 100+）
+  - UCAM-CL-TR-935.pdf（原文，1.2MB）+ arxiv-1902.06776.pdf
+  - 精读分析.md ✅
+  - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
+  - → synthesis: 将整合入共识协议体系综述（待更新）
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
@@ -116,6 +125,13 @@ sources/papers/
 | `papers/Raft-Dissertation/` | 博士论文 + 精读分析 | Stanford University 2014 |
 | `papers/Raft-Dissertation/Ongaro-Raft-Dissertation-Stanford2014.pdf` | PDF 原文 | GitHub ongardie/dissertation |
 | `papers/Raft-Dissertation/精读分析.md` | 精读分析 | CTO 自产 |
+| `papers/Distributed-Consensus-Revised/` | 博士论文 + 精读分析 | Cambridge 2019 |
+| `papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` | PDF 原文 | cl.cam.ac.uk |
+| `papers/Distributed-Consensus-Revised/精读分析.md` | 精读分析 | CTO 自产 |
+| `papers/Distributed-Consensus-Revised/` | 博士论文 + 精读分析 | Cambridge 2019 |
+| `papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` | PDF 原文 | cl.cam.ac.uk |
+| `papers/Distributed-Consensus-Revised/arxiv-1902.06776.pdf` | ArXiv 版本 | arxiv.org |
+| `papers/Distributed-Consensus-Revised/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-06-15 新增
 

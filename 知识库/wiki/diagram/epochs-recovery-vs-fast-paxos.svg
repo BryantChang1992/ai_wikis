@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+
+  <rect width="800" height="340" fill="#ffffff"/>
+
+  <text x="400" y="25" fill="#111827" font-size="14" font-weight="600" text-anchor="middle">Epochs by Recovery 对比 Fast Paxos · 为何不需要额外 quorum 约束</text>
+
+  <!-- Fast Paxos problem -->
+  <rect x="30" y="45" width="355" height="160" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="208" y="70" fill="#92400e" font-size="13" font-weight="600" text-anchor="middle">Fast Paxos 的隐患</text>
+
+  <rect x="50" y="85" width="140" height="65" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+  <text x="120" y="108" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">fast quorum</text>
+  <text x="120" y="124" fill="#6b7280" font-size="10" text-anchor="middle">P₁ proposes v₁</text>
+  <text x="120" y="140" fill="#6b7280" font-size="10" text-anchor="middle">Q_fast decides v₁</text>
+
+  <rect x="225" y="85" width="140" height="65" rx="5" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+  <text x="295" y="108" fill="#92400e" font-size="11" font-weight="600" text-anchor="middle">classic quorum</text>
+  <text x="295" y="124" fill="#6b7280" font-size="10" text-anchor="middle">P₂ proposes v₂</text>
+  <text x="295" y="140" fill="#6b7280" font-size="10" text-anchor="middle">Q_classic decides v₂</text>
+
+  <text x="208" y="172" fill="#dc2626" font-size="11" font-weight="600" text-anchor="middle">Q_fast ∩ Q_classic 可能 = ∅</text>
+  <text x="208" y="190" fill="#dc2626" font-size="10" text-anchor="middle">v₁ 和 v₂ 可能同时被 commit → 歧义！</text>
+  <text x="208" y="205" fill="#92400e" font-size="9" text-anchor="middle">必须强制 f + c > n (fast quorum 异常大)</text>
+
+  <!-- VS arrow -->
+  <path d="M400,125 L430,125" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow-vs)"/>
+  <text x="415" y="118" fill="#6b7280" font-size="11" font-weight="700" text-anchor="middle">vs</text>
+
+  <defs>
+    <marker id="arrow-vs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- Recovery solution -->
+  <rect x="415" y="45" width="355" height="160" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="593" y="70" fill="#16a34a" font-size="13" font-weight="600" text-anchor="middle">Epochs by Recovery 的解决方案</text>
+
+  <rect x="435" y="85" width="315" height="65" rx="5" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+  <text x="593" y="108" fill="#16a34a" font-size="11" font-weight="700" text-anchor="middle">epoch e</text>
+  <text x="593" y="124" fill="#16a34a" font-size="11" text-anchor="middle">P₁ / P₂ / P₃ 均 proposes 相同值 v</text>
+  <text x="593" y="140" fill="#475569" font-size="10" text-anchor="middle">Property 17: acceptor 在同一 epoch 只接受同一值</text>
+
+  <text x="593" y="172" fill="#16a34a" font-size="11" font-weight="600" text-anchor="middle">不同 value 的冲突不会发生在同 epoch</text>
+  <text x="593" y="190" fill="#16a34a" font-size="10" text-anchor="middle">→ 无需 fast quorum 与 classic quorum 相交</text>
+  <text x="593" y="205" fill="#16a34a" font-size="10" font-weight="600" text-anchor="middle">→ 不需要 f + c > n 约束！</text>
+
+  <!-- Bottom: Property chain -->
+  <rect x="30" y="225" width="740" height="95" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="400" y="250" fill="#2563eb" font-size="13" font-weight="600" text-anchor="middle">Safety 证明链 (Property Chaining)</text>
+
+  <rect x="50" y="265" width="200" height="42" rx="5" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="150" y="284" fill="#2563eb" font-size="10" font-weight="600" text-anchor="middle">Property 17</text>
+  <text x="150" y="300" fill="#475569" font-size="9" text-anchor="middle">同一 epoch 只接受同一值</text>
+
+  <text x="270" y="290" fill="#6b7280" font-size="14" font-weight="700">→</text>
+
+  <rect x="300" y="265" width="200" height="42" rx="5" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="400" y="284" fill="#2563eb" font-size="10" font-weight="600" text-anchor="middle">Lemma 26</text>
+  <text x="400" y="300" fill="#475569" font-size="9" text-anchor="middle">同一 epoch 无双值 commit</text>
+
+  <text x="520" y="290" fill="#6b7280" font-size="14" font-weight="700">→</text>
+
+  <rect x="550" y="265" width="200" height="42" rx="5" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="650" y="284" fill="#2563eb" font-size="10" font-weight="600" text-anchor="middle">Safety 结论</text>
+  <text x="650" y="300" fill="#475569" font-size="9" text-anchor="middle">冲突仅跨 epoch 发生 (需 phase-1)</text>
+
+</svg>

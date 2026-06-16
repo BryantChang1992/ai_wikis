@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700" height="320">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+
+  <rect width="700" height="320" fill="#ffffff"/>
+
+  <text x="350" y="28" fill="#111827" font-size="14" font-weight="600" text-anchor="middle">Fluss-Flink 连接器模块结构 (215 Java 文件)</text>
+
+  <!-- fluss-flink root box -->
+  <rect x="230" y="55" width="240" height="36" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="350" y="78" fill="#2563eb" font-size="14" font-weight="700" text-anchor="middle">fluss-flink</text>
+
+  <!-- 6 branches to modules -->
+  <line x1="260" y1="91" x2="120" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="310" y1="91" x2="220" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="350" y1="91" x2="350" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="390" y1="91" x2="480" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="425" y1="91" x2="550" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="465" y1="91" x2="620" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+
+  <!-- Row 1 -->
+  <rect x="40" y="125" width="160" height="30" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="120" y="145" fill="#166534" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-1.18</text>
+
+  <rect x="210" y="125" width="160" height="30" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="290" y="145" fill="#166534" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-1.19</text>
+
+  <rect x="380" y="125" width="160" height="30" rx="5" fill="#e5e7eb" stroke="#d1d5db" stroke-width="1"/>
+  <text x="460" y="145" fill="#9ca3af" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-1.20</text>
+  <text x="460" y="158" fill="#9ca3af" font-size="8" text-anchor="middle">(DummyClass 仅占位)</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="170" width="160" height="30" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="120" y="190" fill="#166534" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-2.2</text>
+
+  <rect x="210" y="170" width="160" height="30" rx="5" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="290" y="190" fill="#7c3aed" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-common</text>
+
+  <rect x="380" y="170" width="160" height="30" rx="5" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="460" y="190" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">fluss-flink-tiering</text>
+
+  <!-- Descriptions -->
+  <text x="120" y="218" fill="#6b7280" font-size="9" text-anchor="middle">Flink 1.18 适配</text>
+  <text x="290" y="218" fill="#6b7280" font-size="9" text-anchor="middle">Flink 1.19 适配</text>
+  <text x="460" y="218" fill="#6b7280" font-size="9" text-anchor="middle">Flink 1.20 适配</text>
+  <text x="120" y="235" fill="#6b7280" font-size="9" text-anchor="middle">Flink 2.2 适配</text>
+  <text x="290" y="235" fill="#6b7280" font-size="9" text-anchor="middle">共享逻辑</text>
+  <text x="460" y="235" fill="#6b7280" font-size="9" text-anchor="middle">Lake Tiering 入口</text>
+
+  <!-- Bottom note -->
+  <rect x="140" y="260" width="420" height="35" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="350" y="275" fill="#475569" font-size="10" text-anchor="middle">🔄 多版本适配架构：每个 Flink 版本独立模块 + common 共享层 + tiering 独立入口</text>
+  <text x="350" y="289" fill="#6b7280" font-size="9" text-anchor="middle">总计 215 个 Java 源文件 · 插件化架构</text>
+</svg>

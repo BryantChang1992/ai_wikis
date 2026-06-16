@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+
+  <rect width="700" height="300" fill="#ffffff"/>
+
+  <text x="350" y="28" fill="#111827" font-size="14" font-weight="600" text-anchor="middle">Flink Checkpoint Barrier 对齐 · Chandy-Lamport 算法的工程映射</text>
+
+  <!-- Flow -->
+  <rect x="30" y="70" width="100" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="80" y="95" fill="#2563eb" font-size="13" font-weight="600" text-anchor="middle">Source</text>
+
+  <line x1="130" y1="90" x2="170" y2="90" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <rect x="170" y="65" width="120" height="50" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="230" y="87" fill="#16a34a" font-size="13" font-weight="600" text-anchor="middle">Map(A)</text>
+  <text x="230" y="104" fill="#475569" font-size="9" text-anchor="middle">算子 A</text>
+
+  <line x1="290" y1="90" x2="330" y2="90" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <rect x="330" y="65" width="120" height="50" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="390" y="87" fill="#16a34a" font-size="13" font-weight="600" text-anchor="middle">KeyBy</text>
+  <text x="390" y="104" fill="#475569" font-size="9" text-anchor="middle">shuffle</text>
+
+  <line x1="450" y1="90" x2="490" y2="90" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <rect x="490" y="65" width="140" height="50" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="560" y="87" fill="#9333ea" font-size="13" font-weight="600" text-anchor="middle">Window(B)</text>
+  <text x="560" y="104" fill="#475569" font-size="9" text-anchor="middle">算子 B · 双入边</text>
+
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Barrier injection arrows -->
+  <line x1="230" y1="115" x2="230" y2="155" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <line x1="560" y1="115" x2="560" y2="155" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- Barrier boxes -->
+  <rect x="180" y="155" width="100" height="32" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="230" y="176" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">barrier-1</text>
+
+  <rect x="510" y="155" width="100" height="32" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="560" y="176" fill="#ea580c" font-size="11" font-weight="600" text-anchor="middle">barrier-2</text>
+
+  <!-- Alignment zone -->
+  <rect x="30" y="210" width="640" height="70" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="350" y="235" fill="#92400e" font-size="13" font-weight="600" text-anchor="middle">Barrier Alignment (对齐窗口)</text>
+  <text x="350" y="255" fill="#92400e" font-size="11" text-anchor="middle">barrier-1 先到 → Window(B) 阻塞 channel-1，等待 barrier-2</text>
+  <text x="350" y="272" fill="#92400e" font-size="11" text-anchor="middle">barrier-2 到达 → 全部 barrier 齐 → 触发 Checkpoint · 对应 Chandy-Lamport Marker 收集</text>
+
+</svg>

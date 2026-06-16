@@ -60,25 +60,7 @@ Howard 在 §1.3 总结了 6 大局限：
 
 ## 4 层递进泛化（核心框架）
 
-Howard 通过系统性地在 4 个维度上弱化 Classic Paxos，构建了广义共识算法族：
-
-```
-Level 0: Classic Paxos ─── Majority Quorums only
-                               │
-Level 1: Revision A ─────── Phase-1 quorums 和 Phase-2 quorums 不需要自相交（Flexible Paxos）
-                               │
-Level 2: Revision B ─────── Phase-1 quorum 只需 ≤ 前 epoch 的 Phase-2 相交（Per-epoch）
-                               │
-Level 3: Quorum Transitivity ─ 收到 (e,v) 即可覆盖所有 ≤e epoch（Ch 5）
-                               │
-Level 4: Value Selection ──── Quorum-based 判断：不简单取最高 epoch（Ch 6）
-                               │
-Level 5: Epochs Revised ──── Epochs by Recovery：任意 proposer 一轮决策（Ch 7）
-                               │
-                            ┌─┴─────────────────────────────────┐
-                    Epochs by Value         Multi-path Paxos
-                    Epochs by Allocator     (Hybrid 混合方案)
-```
+Howard 通过系统性地在 4 个维度上弱化 Classic Paxos，构建了广义共识算法族。详见下方架构图。
 
 ### 各层的核心贡献
 

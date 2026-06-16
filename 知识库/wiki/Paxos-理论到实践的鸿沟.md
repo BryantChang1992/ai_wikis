@@ -97,13 +97,8 @@ Ongaro 的核心设计原则之一是**问题分解**——将复杂问题拆成
 
 ```
 共识问题（Paxos 的视角）：
-  └── 一个复杂的、高度耦合的协议
 
-共识问题（Raft 的分解视角）：
-  ├── Leader Election（独立子问题）
-  ├── Log Replication（独立子问题）
-  └── Safety（独立子问题，约束前两者）
-```
+![[diagram/paxos-vs-raft-decomposition.svg]]
 
 > Ongaro 在 User Study 中验证了这一方法论的有效性：43 名学生分别学习 Raft 和 Paxos 后进行理解测试，Raft 组的正确率显著高于 Paxos 组。
 

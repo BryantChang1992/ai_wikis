@@ -13,6 +13,12 @@
     <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
     <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
     <marker id="od" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#f97316"/></marker>
+      <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
+    </marker>
+    <marker id="arrow-f97316" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
   </defs>
   <rect width="600" height="160" fill="url(#bg)"/>
   <!-- Top row: Service A → Service B -->
@@ -23,7 +29,7 @@
   <text x="215" y="32" class="t1" text-anchor="middle" dominant-baseline="middle">Service B</text>
   <!-- Down from Service A and Service B -->
   <line x1="65" y1="50" x2="65" y2="75" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ad)"/>
-  <line x1="175" y1="50" x2="65" y2="75" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="175" y1="50" x2="65" y2="75" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
   <!-- Bottom row: Service C → Service D -->
   <rect x="10" y="80" width="110" height="40" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
   <text x="65" y="102" class="t1" text-anchor="middle" dominant-baseline="middle">Service C</text>
@@ -33,10 +39,10 @@
   <!-- Orchestrator -->
   <rect x="400" y="10" width="140" height="30" rx="6" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
   <text x="470" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">Orchestrator</text>
-  <line x1="470" y1="40" x2="470" y2="55" stroke="#f97316" stroke-width="1.5"/>
-  <line x1="470" y1="55" x2="380" y2="55" stroke="#f97316" stroke-width="1.5"/>
-  <line x1="380" y1="55" x2="380" y2="75" stroke="#f97316" stroke-width="1.5"/>
-  <line x1="380" y1="75" x2="405" y2="75" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="470" y1="40" x2="470" y2="55" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
+  <line x1="470" y1="55" x2="380" y2="55" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
+  <line x1="380" y1="55" x2="380" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
+  <line x1="380" y1="75" x2="405" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
   <!-- Compensation nodes -->
   <rect x="345" y="75" width="50" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
   <text x="370" y="93" class="t2" text-anchor="middle" dominant-baseline="middle">A</text>

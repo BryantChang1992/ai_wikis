@@ -11,7 +11,8 @@
   <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
   <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
   <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
-</defs>
+
+  </defs>
 <rect width="960" height="500" fill="url(#bg-grad)"/>
 
 <!-- Title -->
@@ -81,7 +82,7 @@
 <rect x="640" y="236" width="280" height="22" rx="4" fill="#1c1917" stroke="#ea580c" stroke-width="0.5"/>
 <text x="650" y="251" font-size="10" fill="#10b981">✓ ISR 感知的 Leader 选举</text>
 
-<line x1="640" y1="278" x2="920" y2="278" stroke="#334155" stroke-width="1"/>
+  <line x1="640" y1="278" x2="920" y2="278" stroke="#334155" stroke-width="1"/>
 
 <text x="640" y="302" font-size="12" font-weight="bold" fill="#64748b">Kafka Controller 2.7.2</text>
 <rect x="640" y="314" width="280" height="22" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>

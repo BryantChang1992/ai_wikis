@@ -12,6 +12,9 @@
     <marker id="arrow-back" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
     </marker>
+      <marker id="arrow-6b7280" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
   </defs>
 
   <rect width="800" height="280" fill="#ffffff"/>
@@ -29,9 +32,9 @@
   <text x="640" y="64" fill="#16a34a" font-size="12" font-weight="700" text-anchor="middle">Acceptors</text>
 
   <!-- Lifelines -->
-  <line x1="160" y1="73" x2="160" y2="240" class="lifeline"/>
-  <line x1="400" y1="73" x2="400" y2="240" class="lifeline"/>
-  <line x1="640" y1="73" x2="640" y2="240" class="lifeline"/>
+  <line x1="160" y1="73" x2="160" y2="240" class="lifeline" marker-end="url(#arrow-6b7280)"/>
+  <line x1="400" y1="73" x2="400" y2="240" class="lifeline" marker-end="url(#arrow-6b7280)"/>
+  <line x1="640" y1="73" x2="640" y2="240" class="lifeline" marker-end="url(#arrow-6b7280)"/>
 
   <!-- RTT 1: GetEpoch → e_min -->
   <line x1="160" y1="95" x2="385" y2="95" class="msg" stroke="#ea580c" marker-end="url(#arrow-alloc)"/>

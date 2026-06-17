@@ -11,6 +11,12 @@
     <marker id="arr-p2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
     </marker>
+      <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
+    </marker>
+    <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
   </defs>
   <style>
     text { font-family: "SF Mono","Fira Code","Cascadia Code","Courier New","Microsoft YaHei","SimHei",monospace; }
@@ -26,11 +32,11 @@
   <text x="370" y="32" font-size="12" fill="#e2e8f0" text-anchor="middle" dominant-baseline="central">仍需检查基数</text>
   <line x1="455" y1="32" x2="518" y2="32" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arr-p)"/>
   <!-- Branch lines from 检查基数 → low/med/high -->
-  <line x1="518" y1="32" x2="518" y2="58" stroke="#a855f7" stroke-width="1.5"/>
-  <line x1="420" y1="58" x2="600" y2="58" stroke="#a855f7" stroke-width="1.5"/>
-  <line x1="420" y1="58" x2="420" y2="80" stroke="#a855f7" stroke-width="1.5"/>
-  <line x1="518" y1="58" x2="518" y2="80" stroke="#a855f7" stroke-width="1.5"/>
-  <line x1="600" y1="58" x2="600" y2="80" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="518" y1="32" x2="518" y2="58" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
+  <line x1="420" y1="58" x2="600" y2="58" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
+  <line x1="420" y1="58" x2="420" y2="80" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
+  <line x1="518" y1="58" x2="518" y2="80" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
+  <line x1="600" y1="58" x2="600" y2="80" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
   <!-- LOW -->
   <rect x="352" y="80" width="136" height="30" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
   <text x="420" y="95" font-size="12" fill="#10b981" text-anchor="middle" dominant-baseline="central">LOW (&lt;10K)</text>
@@ -47,9 +53,9 @@
   <line x1="518" y1="171" x2="558" y2="171" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arr-p2)"/>
   <text x="562" y="171" font-size="12" fill="#fca5a5" dominant-baseline="central">❌ 绝不能 Tag</text>
   <!-- NO branch (downward from start) -->
-  <line x1="90" y1="54" x2="90" y2="90" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="10" y1="90" x2="90" y2="90" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="10" y1="90" x2="10" y2="110" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="90" y1="54" x2="90" y2="90" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="10" y1="90" x2="90" y2="90" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="10" y1="90" x2="10" y2="110" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
   <text x="48" y="82" font-size="10" fill="#3b82f6" text-anchor="middle" dominant-baseline="central">NO</text>
   <!-- 需要 GROUP BY? → rounded rect -->
   <rect x="5" y="110" width="170" height="32" rx="16" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
@@ -60,9 +66,9 @@
   <rect x="262" y="112" width="120" height="28" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
   <text x="322" y="126" font-size="12" fill="#10b981" text-anchor="middle" dominant-baseline="central">必须 Tag</text>
   <!-- GROUP BY NO ↓ -->
-  <line x1="90" y1="142" x2="90" y2="170" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="10" y1="170" x2="90" y2="170" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="10" y1="170" x2="10" y2="188" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="90" y1="142" x2="90" y2="170" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="10" y1="170" x2="90" y2="170" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="10" y1="170" x2="10" y2="188" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
   <text x="48" y="162" font-size="10" fill="#3b82f6" text-anchor="middle" dominant-baseline="central">NO</text>
   <rect x="8" y="188" width="150" height="28" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
   <text x="83" y="202" font-size="12" fill="#10b981" text-anchor="middle" dominant-baseline="central">✅ 作为 Field 存储</text>

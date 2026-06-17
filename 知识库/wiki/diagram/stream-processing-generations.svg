@@ -7,6 +7,15 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
+      <marker id="arrow-rgba251-191-" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(251,191,36,0.3)"/>
+    </marker>
+    <marker id="arrow-rgba34-211-2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(34,211,238,0.3)"/>
+    </marker>
+    <marker id="arrow-rgba52-211-1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(52,211,153,0.3)"/>
+    </marker>
   </defs>
 
   <!-- Background -->
@@ -31,7 +40,7 @@
   <text x="50" y="170" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">流 = 单个算子持续处理</text>
   <text x="50" y="190" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#94a3b8">无 DAG · 无并行 · 无状态</text>
 
-  <line x1="50" y1="205" x2="300" y2="205" stroke="rgba(251,191,36,0.3)" stroke-width="1"/>
+  <line x1="50" y1="205" x2="300" y2="205" stroke="rgba(251,191,36,0.3)" stroke-width="1" marker-end="url(#arrow-rgba251-191-)"/>
 
   <!-- Representative Systems -->
   <text x="50" y="225" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#fbbf24">代表系统:</text>
@@ -40,7 +49,7 @@
   <text x="50" y="288" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">STREAM (2003)</text>
   <text x="50" y="308" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">Borealis (2005)</text>
 
-  <line x1="50" y1="323" x2="300" y2="323" stroke="rgba(251,191,36,0.3)" stroke-width="1"/>
+  <line x1="50" y1="323" x2="300" y2="323" stroke="rgba(251,191,36,0.3)" stroke-width="1" marker-end="url(#arrow-rgba251-191-)"/>
 
   <!-- Limitations -->
   <text x="50" y="345" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#fb7185">局限:</text>
@@ -64,7 +73,7 @@
   <text x="355" y="170" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">流 = DAG 多算子 + 并行执行</text>
   <text x="355" y="190" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#94a3b8">有状态 · 分布式 · Exactly-Once</text>
 
-  <line x1="355" y1="205" x2="605" y2="205" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+  <line x1="355" y1="205" x2="605" y2="205" stroke="rgba(34,211,238,0.3)" stroke-width="1" marker-end="url(#arrow-rgba34-211-2)"/>
 
   <!-- Representative Systems -->
   <text x="355" y="225" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#22d3ee">代表系统:</text>
@@ -74,7 +83,7 @@
   <text x="355" y="308" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">Heron (2016)</text>
   <text x="355" y="328" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">Samza (2015)</text>
 
-  <line x1="355" y1="345" x2="605" y2="345" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+  <line x1="355" y1="345" x2="605" y2="345" stroke="rgba(34,211,238,0.3)" stroke-width="1" marker-end="url(#arrow-rgba34-211-2)"/>
 
   <!-- Breakthroughs -->
   <text x="355" y="368" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#34d399">突破:</text>
@@ -97,7 +106,7 @@
   <text x="660" y="170" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">流 = 通用数据处理机制</text>
   <text x="660" y="190" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#94a3b8">弹性计算 · Serverless · 存算分</text>
 
-  <line x1="660" y1="205" x2="910" y2="205" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <line x1="660" y1="205" x2="910" y2="205" stroke="rgba(52,211,153,0.3)" stroke-width="1" marker-end="url(#arrow-rgba52-211-1)"/>
 
   <!-- Representative Systems -->
   <text x="660" y="225" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#34d399">代表系统:</text>
@@ -106,7 +115,7 @@
   <text x="660" y="288" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">RisingWave (2024)</text>
   <text x="660" y="308" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" fill="#e2e8f0">Materialize (2024)</text>
 
-  <line x1="660" y1="323" x2="910" y2="323" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <line x1="660" y1="323" x2="910" y2="323" stroke="rgba(52,211,153,0.3)" stroke-width="1" marker-end="url(#arrow-rgba52-211-1)"/>
 
   <!-- New Paradigms -->
   <text x="660" y="345" font-family="'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif" font-size="10" font-weight="700" fill="#34d399">新范式:</text>

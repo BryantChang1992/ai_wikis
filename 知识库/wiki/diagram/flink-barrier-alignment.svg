@@ -2,6 +2,15 @@
   <style>
     text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
   </style>
+<defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+  </defs>
+
 
   <rect width="700" height="300" fill="#ffffff"/>
 
@@ -27,18 +36,7 @@
 
   <rect x="490" y="65" width="140" height="50" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5"/>
   <text x="560" y="87" fill="#9333ea" font-size="13" font-weight="600" text-anchor="middle">Window(B)</text>
-  <text x="560" y="104" fill="#475569" font-size="9" text-anchor="middle">算子 B · 双入边</text>
-
-  <defs>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
-    </marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
-    </marker>
-  </defs>
-
-  <!-- Barrier injection arrows -->
+  <text x="560" y="104" fill="#475569" font-size="9" text-anchor="middle">算子 B · 双入边</text><!-- Barrier injection arrows -->
   <line x1="230" y1="115" x2="230" y2="155" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6,3"/>
   <line x1="560" y1="115" x2="560" y2="155" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6,3"/>
 

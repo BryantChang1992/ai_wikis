@@ -15,6 +15,15 @@
     <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
     </marker>
+      <marker id="arrow-2563eb" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-16a34a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-9333ea" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    </marker>
   </defs>
 
   <rect width="960" height="480" fill="#ffffff"/>
@@ -28,7 +37,7 @@
 
   <!-- Process P1 (Initiator) -->
   <text x="45" y="108" fill="#2563eb" font-size="14" font-weight="700">Process P₁ (Initiator)</text>
-  <line x1="230" y1="115" x2="920" y2="115" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="230" y1="115" x2="920" y2="115" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
   <!-- Snapshot mark -->
   <circle cx="360" cy="115" r="6" fill="#2563eb"/>
   <text x="360" y="104" fill="#2563eb" font-size="10" text-anchor="middle">快照₁</text>
@@ -43,7 +52,7 @@
 
   <!-- Process P2 -->
   <text x="45" y="175" fill="#16a34a" font-size="14" font-weight="700">Process P₂</text>
-  <line x1="230" y1="182" x2="920" y2="182" stroke="#16a34a" stroke-width="1.5"/>
+  <line x1="230" y1="182" x2="920" y2="182" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-16a34a)"/>
   <!-- Snapshot mark -->
   <circle cx="520" cy="182" r="6" fill="#16a34a"/>
   <text x="520" y="171" fill="#16a34a" font-size="10" text-anchor="middle">快照₂</text>
@@ -58,7 +67,7 @@
 
   <!-- Process P3 -->
   <text x="45" y="257" fill="#9333ea" font-size="14" font-weight="700">Process P₃</text>
-  <line x1="230" y1="264" x2="920" y2="264" stroke="#9333ea" stroke-width="1.5"/>
+  <line x1="230" y1="264" x2="920" y2="264" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-9333ea)"/>
   <!-- Snapshot mark -->
   <circle cx="660" cy="264" r="6" fill="#9333ea"/>
   <text x="660" y="253" fill="#9333ea" font-size="10" text-anchor="middle">快照₃</text>

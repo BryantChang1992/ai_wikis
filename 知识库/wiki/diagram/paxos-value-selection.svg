@@ -9,6 +9,12 @@
     <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
     </marker>
+      <marker id="arrow-9333ea" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333ea"/>
+    </marker>
+    <marker id="arrow-dc2626" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    </marker>
   </defs>
 
   <rect width="960" height="580" fill="#ffffff"/>
@@ -90,10 +96,10 @@
   <rect x="60" y="425" width="250" height="35" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
   <text x="185" y="447" fill="#dc2626" font-size="11" font-weight="600" text-anchor="middle">∃Q: D[Q]=nil (信息不足)</text>
 
-  <line x1="310" y1="410" x2="310" y2="425" stroke="#9333ea" stroke-width="1.5"/>
-  <line x1="310" y1="425" x2="185" y2="440" stroke="#dc2626" stroke-width="1.5"/>
+  <line x1="310" y1="410" x2="310" y2="425" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arrow-9333ea)"/>
+  <line x1="310" y1="425" x2="185" y2="440" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-dc2626)"/>
 
-  <line x1="185" y1="460" x2="185" y2="480" stroke="#dc2626" stroke-width="1.5"/>
+  <line x1="185" y1="460" x2="185" y2="480" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-dc2626)"/>
 
   <rect x="60" y="485" width="250" height="35" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
   <text x="185" y="507" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">继续收集更多承诺 → 回跳 Per-Quorum</text>

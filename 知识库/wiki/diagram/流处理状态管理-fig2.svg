@@ -10,6 +10,18 @@
     <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
     </marker>
+      <marker id="arrow-22d3ee" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-60a5fa" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrow-fbbf24" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-fb7185" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
   </defs>
 
   <!-- Background -->
@@ -27,28 +39,28 @@
   <text x="795" y="72" fill="#94a3b8" font-size="12" text-anchor="end">粗粒度</text>
 
   <!-- Tick: Record-Level -->
-  <line x1="110" y1="44" x2="110" y2="56" stroke="#22d3ee" stroke-width="1.5"/>
+  <line x1="110" y1="44" x2="110" y2="56" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-22d3ee)"/>
   <text x="110" y="36" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">Record-Level</text>
   <text x="110" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Millwheel</text>
   <text x="110" y="108" fill="#64748b" font-size="9" text-anchor="middle">每条输出 + 状态写入事务</text>
   <text x="110" y="126" fill="#475569" font-size="9" text-anchor="middle">最高正确性 · 最高延迟</text>
 
   <!-- Tick: Epoch-Level (highlighted as standard) -->
-  <line x1="290" y1="44" x2="290" y2="56" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="290" y1="44" x2="290" y2="56" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow-60a5fa)"/>
   <text x="290" y="36" fill="#60a5fa" font-size="11" font-weight="600" text-anchor="middle">Epoch-Level</text>
   <text x="290" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Flink / Samza</text>
   <text x="290" y="108" fill="#64748b" font-size="9" text-anchor="middle">Chandy-Lamport 异步快照</text>
   <text x="290" y="126" fill="#475569" font-size="9" text-anchor="middle">平衡性能+正确性 · 标准方案</text>
 
   <!-- Tick: Batch-Level -->
-  <line x1="520" y1="44" x2="520" y2="56" stroke="#fbbf24" stroke-width="1.5"/>
+  <line x1="520" y1="44" x2="520" y2="56" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-fbbf24)"/>
   <text x="520" y="36" fill="#fbbf24" font-size="11" font-weight="600" text-anchor="middle">Batch-Level</text>
   <text x="520" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Spark / Trident</text>
   <text x="520" y="108" fill="#64748b" font-size="9" text-anchor="middle">微批次结束时持久化</text>
   <text x="520" y="126" fill="#475569" font-size="9" text-anchor="middle">高吞吐 · 混合批流</text>
 
   <!-- Tick: No Persistence -->
-  <line x1="700" y1="44" x2="700" y2="56" stroke="#fb7185" stroke-width="1.5"/>
+  <line x1="700" y1="44" x2="700" y2="56" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-fb7185)"/>
   <text x="700" y="36" fill="#fb7185" font-size="11" font-weight="600" text-anchor="middle">No Persistence</text>
   <text x="700" y="90" fill="#e2e8f0" font-size="11" font-weight="500" text-anchor="middle">Storm / DSMS</text>
   <text x="700" y="108" fill="#64748b" font-size="9" text-anchor="middle">无状态保证</text>

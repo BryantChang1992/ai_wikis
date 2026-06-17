@@ -21,6 +21,15 @@
     <marker id="gl" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#10b981"/></marker>
     <marker id="or" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
     <marker id="ol" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#f97316"/></marker>
+      <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-10b981" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
+    </marker>
   </defs>
   <rect width="680" height="210" fill="url(#bg)"/>
   <!-- Participants -->
@@ -52,10 +61,10 @@
   <text x="295" y="149" class="t6" text-anchor="middle">ACK</text>
   <!-- Legend -->
   <rect x="500" y="160" width="170" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-  <line x1="508" y1="172" x2="530" y2="172" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="508" y1="172" x2="530" y2="172" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
   <text x="535" y="175" class="t2">Phase 1: Prepare</text>
-  <line x1="508" y1="184" x2="530" y2="184" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="508" y1="184" x2="530" y2="184" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-10b981)"/>
   <text x="535" y="187" class="t2">Phase 2: Vote</text>
-  <line x1="508" y1="196" x2="530" y2="196" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="508" y1="196" x2="530" y2="196" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
   <text x="535" y="199" class="t2">Phase 3: Commit</text>
 </svg>

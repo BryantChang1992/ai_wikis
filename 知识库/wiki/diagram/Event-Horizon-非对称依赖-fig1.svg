@@ -14,9 +14,7 @@
     <marker id="arrow-order" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="#f97316"/>
     </marker>
-    <marker id="arrow-nodep" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
-    </marker>
+
   </defs>
   <rect width="700" height="180" fill="url(#bg-grad)"/>
   <text x="350" y="25" font-family="'SF Mono','Fira Code','Microsoft YaHei',monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">非对称依赖有向图</text>
@@ -30,7 +28,7 @@
   <text x="341" y="58" font-size="10" fill="#f97316" text-anchor="middle">eventually ordered</text>
   <path d="M270,145 Q320,145 320,125 Q320,105 270,105" fill="none" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-comm)"/>
   <text x="338" y="128" font-size="10" fill="#10b981" text-anchor="middle">commutative</text>
-  <line x1="420" y1="60" x2="280" y2="140" stroke="#475569" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#arrow-nodep)"/>
+  <line x1="420" y1="60" x2="280" y2="140" stroke="#475569" stroke-width="1.2" stroke-dasharray="5,4"/>
   <text x="375" y="118" font-size="10" fill="#475569" text-anchor="middle">no dep</text>
   <text x="395" y="140" font-size="10" fill="#f97316" text-anchor="middle" font-weight="700">← 非对称！</text>
 </svg>

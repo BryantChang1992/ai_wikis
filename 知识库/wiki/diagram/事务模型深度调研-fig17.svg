@@ -13,14 +13,17 @@
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
     <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
+      <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
+    </marker>
   </defs>
   <rect width="700" height="420" fill="url(#bg)"/>
   <!-- Decision -->
   <rect x="230" y="5" width="240" height="38" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="1.5"/>
   <text x="350" y="27" class="t1" text-anchor="middle" dominant-baseline="middle">需要分布式事务？</text>
   <!-- Branches -->
-  <line x1="270" y1="43" x2="270" y2="60" stroke="#a855f7" stroke-width="1.5"/>
-  <line x1="130" y1="60" x2="410" y2="60" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="270" y1="43" x2="270" y2="60" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
+  <line x1="130" y1="60" x2="410" y2="60" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-a855f7)"/>
   <line x1="130" y1="60" x2="130" y2="75" stroke="#10b981" stroke-width="1.5" marker-end="url(#ad)"/>
   <line x1="410" y1="60" x2="410" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#ad)"/>
   <text x="260" y="56" class="t4">No</text>

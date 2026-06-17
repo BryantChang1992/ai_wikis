@@ -7,7 +7,8 @@
   <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker>
   <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
   <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
-</defs>
+
+  </defs>
 <rect width="960" height="580" fill="url(#bg-grad)"/>
 
 <text x="480" y="28" font-size="16" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Fluss Lake 层 · 四种后端插件架构</text>
@@ -76,7 +77,7 @@
 <text x="45" y="512" font-size="10" fill="#e2e8f0">可查: Trino / Spark / Flink 直接查询</text>
 <text x="45" y="530" font-size="10" fill="#e2e8f0">Schema: Lake Catalog + Schema Evolution</text>
 
-<line x1="450" y1="432" x2="450" y2="545" stroke="#334155" stroke-width="1"/>
+  <line x1="450" y1="432" x2="450" y2="545" stroke="#334155" stroke-width="1"/>
 
 <text x="470" y="456" font-size="11" font-weight="bold" fill="#64748b">Kafka KIP-405</text>
 <text x="470" y="476" font-size="10" fill="#94a3b8">目标: 释放本地磁盘 (Log Offload)</text>

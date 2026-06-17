@@ -5,6 +5,18 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
+      <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-f97316" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-10b981" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-eab308" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#eab308"/>
+    </marker>
   </defs>
   <style>
     text { font-family: "SF Mono","Fira Code","Cascadia Code","Courier New","Microsoft YaHei","SimHei",monospace; }
@@ -32,23 +44,23 @@
   <text x="598" y="23" font-size="12" fill="#94a3b8"> </text>
   <text x="606" y="23" font-size="12" fill="#eab308">1718200000000000000</text>
   <!-- Measurement bracket -->
-  <line x1="14" y1="42" x2="14" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="14" y1="56" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="46" y1="42" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="14" y1="42" x2="14" y2="56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="14" y1="56" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
+  <line x1="46" y1="42" x2="46" y2="56" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-3b82f6)"/>
   <text x="30" y="72" font-size="11" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">Measurement</text>
   <!-- Tag set bracket -->
-  <line x1="54" y1="42" x2="54" y2="56" stroke="#f97316" stroke-width="1.5"/>
-  <line x1="54" y1="56" x2="310" y2="56" stroke="#f97316" stroke-width="1.5"/>
-  <line x1="310" y1="42" x2="310" y2="56" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="54" y1="42" x2="54" y2="56" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
+  <line x1="54" y1="56" x2="310" y2="56" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
+  <line x1="310" y1="42" x2="310" y2="56" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-f97316)"/>
   <text x="182" y="72" font-size="11" fill="#f97316" text-anchor="middle" dominant-baseline="central">Tag Set</text>
   <!-- Field set bracket -->
-  <line x1="318" y1="42" x2="318" y2="56" stroke="#10b981" stroke-width="1.5"/>
-  <line x1="318" y1="56" x2="594" y2="56" stroke="#10b981" stroke-width="1.5"/>
-  <line x1="594" y1="42" x2="594" y2="56" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="318" y1="42" x2="318" y2="56" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-10b981)"/>
+  <line x1="318" y1="56" x2="594" y2="56" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-10b981)"/>
+  <line x1="594" y1="42" x2="594" y2="56" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-10b981)"/>
   <text x="456" y="72" font-size="11" fill="#10b981" text-anchor="middle" dominant-baseline="central">Field Set</text>
   <!-- Timestamp bracket -->
-  <line x1="602" y1="42" x2="602" y2="56" stroke="#eab308" stroke-width="1.5"/>
-  <line x1="602" y1="56" x2="724" y2="56" stroke="#eab308" stroke-width="1.5"/>
-  <line x1="724" y1="42" x2="724" y2="56" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="602" y1="42" x2="602" y2="56" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrow-eab308)"/>
+  <line x1="602" y1="56" x2="724" y2="56" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrow-eab308)"/>
+  <line x1="724" y1="42" x2="724" y2="56" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrow-eab308)"/>
   <text x="663" y="72" font-size="11" fill="#eab308" text-anchor="middle" dominant-baseline="central">Timestamp</text>
 </svg>

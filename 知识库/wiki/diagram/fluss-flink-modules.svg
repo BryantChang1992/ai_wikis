@@ -3,6 +3,12 @@
     text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
   </style>
 
+  <defs>
+    <marker id="arrow-2563eb" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+  </defs>
+
   <rect width="700" height="320" fill="#ffffff"/>
 
   <text x="350" y="28" fill="#111827" font-size="14" font-weight="600" text-anchor="middle">Fluss-Flink 连接器模块结构 (215 Java 文件)</text>
@@ -12,12 +18,12 @@
   <text x="350" y="78" fill="#2563eb" font-size="14" font-weight="700" text-anchor="middle">fluss-flink</text>
 
   <!-- 6 branches to modules -->
-  <line x1="260" y1="91" x2="120" y2="125" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="310" y1="91" x2="220" y2="125" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="350" y1="91" x2="350" y2="125" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="390" y1="91" x2="480" y2="125" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="425" y1="91" x2="550" y2="125" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="465" y1="91" x2="620" y2="125" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="260" y1="91" x2="120" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
+  <line x1="310" y1="91" x2="220" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
+  <line x1="350" y1="91" x2="350" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
+  <line x1="390" y1="91" x2="480" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
+  <line x1="425" y1="91" x2="550" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
+  <line x1="465" y1="91" x2="620" y2="125" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-2563eb)"/>
 
   <!-- Row 1 -->
   <rect x="40" y="125" width="160" height="30" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>

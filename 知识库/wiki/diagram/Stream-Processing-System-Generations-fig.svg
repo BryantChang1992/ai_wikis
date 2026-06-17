@@ -7,19 +7,19 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
-    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-      <marker id="arrow-94a3b8" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <marker id="arrow-94a3b8" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
     </marker>
-    <marker id="arrow-a78bfa" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-a78bfa" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
     </marker>
-    <marker id="arrow-34d399" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-34d399" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arrow-22d3ee" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-22d3ee" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
   </defs>

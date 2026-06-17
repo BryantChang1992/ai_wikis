@@ -3,7 +3,7 @@
     text { font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei",sans-serif; }
   </style>
   <defs>
-    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="a-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
     </marker>
   </defs>

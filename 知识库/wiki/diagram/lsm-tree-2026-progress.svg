@@ -8,19 +8,19 @@
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
     
-    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
     </marker>
-    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
     </marker>
-    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
     </marker>
-    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
     </marker>
-    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
     </marker>
   </defs>

@@ -8,13 +8,13 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-    <marker id="arrow-data" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="arrow-data" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-back" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+    <marker id="arrow-back" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M8,0 L0,3 L8,6 Z" fill="#f97316"/>
     </marker>
-    <marker id="arrow-credit" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+    <marker id="arrow-credit" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M8,0 L0,3 L8,6 Z" fill="#10b981"/>
     </marker>
   </defs>

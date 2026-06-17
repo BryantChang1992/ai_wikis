@@ -7,10 +7,10 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-    <marker id="arr-comm" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="arr-comm" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M0,0 L8,3 L0,6 Z" fill="#10b981"/>
     </marker>
-    <marker id="arr-order" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="arr-order" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M0,0 L8,3 L0,6 Z" fill="#f97316"/>
     </marker>
   </defs>

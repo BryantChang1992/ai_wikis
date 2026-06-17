@@ -7,13 +7,13 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
     </pattern>
-      <marker id="arrow-rgba251-191-" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <marker id="arrow-rgba251-191-" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="rgba(251,191,36,0.3)"/>
     </marker>
-    <marker id="arrow-rgba34-211-2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-rgba34-211-2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="rgba(34,211,238,0.3)"/>
     </marker>
-    <marker id="arrow-rgba52-211-1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-rgba52-211-1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="rgba(52,211,153,0.3)"/>
     </marker>
   </defs>

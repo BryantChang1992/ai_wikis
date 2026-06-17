@@ -8,10 +8,10 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <path d="M0,0 L8,3 L0,6 Z" fill="#f97316"/>
     </marker>
   </defs>

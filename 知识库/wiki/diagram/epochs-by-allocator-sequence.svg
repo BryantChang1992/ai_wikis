@@ -6,13 +6,13 @@
     .msg-label { font-size: 10px; fill: #374151; }
   </style>
   <defs>
-    <marker id="arrow-alloc" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-alloc" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#ea580c"/>
     </marker>
-    <marker id="arrow-back" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-back" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
     </marker>
-      <marker id="arrow-6b7280" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <marker id="arrow-6b7280" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
     </marker>
   </defs>

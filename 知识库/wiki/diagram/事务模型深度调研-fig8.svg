@@ -9,7 +9,7 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
+    <marker id="ad" markerWidth="6" markerHeight="8" refX="3" refY="7" orient="auto" markerUnits="userSpaceOnUse" overflow="visible"><polygon points="0 0, 3 8, 6 0" fill="#a855f7"/></marker>
   </defs>
   <rect width="680" height="320" fill="url(#bg)"/>
   <!-- Phase 1 -->

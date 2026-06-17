@@ -7,10 +7,10 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-      <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-ea580c" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-ea580c" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#ea580c"/>
     </marker>
   </defs>

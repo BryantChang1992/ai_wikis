@@ -5,16 +5,16 @@
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
-    <marker id="arr-p" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-p" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 8 3, 0 6" fill="#a855f7"/>
     </marker>
-    <marker id="arr-p2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-p2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
     </marker>
-      <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <marker id="arrow-a855f7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
     </marker>
-    <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <marker id="arrow-3b82f6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="userSpaceOnUse" overflow="visible">
       <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
     </marker>
   </defs>

@@ -1,9 +1,9 @@
 ---
 title: Skill 隔离与共享机制
 status: active
-version: v0.6
+version: v0.7
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-18
 tags:
   - skill
   - 权限
@@ -65,10 +65,11 @@ Bryant
 | baoyu-electron-extract | ✅ | — | — | — | ✅ | — |
 | openai-whisper / api | ✅ | — | — | — | ✅ | — |
 
-### 类 3：内容创作（10 个）
+### 类 3：内容创作（11 个）
 
 | Skill | CEO | CFO | COO | CPO | CTO | Worker |
 |-------|:---:|:---:|:---:|:---:|:---:|:---:|
+| fireworks-tech-graph 🔴 | ✅ | — | — | ✅ | ✅ | — |
 | baoyu-diagram | ✅ | — | — | ✅ | ✅ | — |
 | baoyu-image-gen | ✅ | — | — | — | ✅ | — |
 | baoyu-infographic | ✅ | — | — | — | ✅ | — |
@@ -78,6 +79,12 @@ Bryant
 | baoyu-article-illustrator | ✅ | — | — | — | — | — |
 | baoyu-xhs-images | ✅ | — | — | — | — | — |
 | gemini | ✅ | — | — | — | ✅ | — |
+
+> 🔴 **fireworks-tech-graph** 是团队所有非 UML 技术图的**强制统一 skill**。
+> 覆盖：架构图、数据流图、流程图、序列图、Agent 架构图、Memory 架构图、对比矩阵、时间线、思维导图、网络拓扑、状态机、ER 图。
+> UML 类图 / 用例图 / 状态机图 / ER 图也由 fireworks-tech-graph 覆盖（含完整 UML 14 种图支持）。
+> `baoyu-diagram` 仅保留作为 UML 之外的备选（不得主动使用）。
+> 详细规范见 [[画图规范]]。
 
 ### 类 4：内容发布（3 个）—— ⚠️ P0 仅 CEO
 
@@ -193,4 +200,4 @@ Worker **不应有**：内容创作、内容发布、知识管理、通讯操作
 | v0.3 | 2026-06-06 | 权限矩阵 + 实施计划 |
 | v0.4 | 2026-06-07 | 对齐 10 Agent 架构，126 Skill 矩阵 |
 | v0.5 | 2026-06-07 | 精简为 CEO + CTO + Worker 三层 |
-| v0.6 | 2026-06-08 | 恢复 CXO 全保留，新增 CFO/COO/CPO Skill 列 |
+| v0.7 | 2026-06-18 | 新增 fireworks-tech-graph 为技术图强制 Skill（替代 baoyu-diagram 非 UML 场景）|

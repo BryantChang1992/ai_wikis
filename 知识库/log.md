@@ -217,8 +217,16 @@ updated: 2026-06-15
 #### CTO 备注
 - Worker 并行派发 6 个 rd-task 全部 failed（runtime lost active execution context），CTO 直接手写 11 张卡片
 - Agent-First 标签体系新增 `agent-infra` / `agent-security` / `agent-harness` / `agent-memory` 等标签
-- 新卡片全部 `status: draft`，related 字段暂空（留待 Synthesize 建立内链）
-- 增量 Lint：11 卡 sources 引用全部有效，0 dangling
+- 新卡片全部 `status: draft`，每张含详细分析和 3-6 条 related 内链
+- 增量 Lint：11 卡 sources + related 全部有效，0 dangling
 - **索引更新**：`sources/README.md` + `知识库/README.md` 新增 AI Infra + Fluss 实践 section
 - **Commit**: `6121932` — feat(ingest): CEO 派发 11 篇文章入库 — AI Infra + Fluss 实践
+
+- `[16:30] CTO Agent`: **REWRITE** — 11 张卡片深度重写 + related 补全
+  - **根因**：初版为 Worker 全部 failed 后 CTO 紧急手写，内容仅为源文件摘要级，related 全部为空
+  - **修复**：逐张重写，每张基于源精读分析深度展开，添加系统对比/架构关系/交叉引用
+  - **related 网络效果**：11 张卡共 48 条 related，形成 AI Infra 知识子图（Agent Memory ↔ Security ↔ Harness ↔ Cost）
+  - 卡片大小从平均 ~300 bytes 提升到 ~2600 bytes
+  - **Lint**：48 条 related 全量验证，0 dangling
+  - **Commit**: pending — rewrite(ingest): 11 张卡片深度重写
 

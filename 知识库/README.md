@@ -132,6 +132,25 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Paxos-Quorum-Intersection-Revised]] — 🆕 Flexible Paxos: Phase-1/Phase-2 quorum 仅跨 phase 相交
 - [[wiki/Paxos-Value-Selection-Revised]] — 🆕 Quorum-based 选值：不被"最高 epoch"规则过度限制
 - [[wiki/Paxos-Epochs-Revised]] — 🆕 Epochs by Recovery：去中心化 1 RTT 决策 + Multi-path Paxos
+### AI Infra — Agent 基础设施 🆕
+
+#### Agent Memory & Security
+- [[wiki/Agent-Memory-Survey-2026综述]] — ArXiv 2026-03：Agent Memory 系统化综述（write→manage→read 循环 + 五大机制家族）
+- [[wiki/Parallax-Agent安全架构]] — ArXiv 2026-04：四原则架构（Cognitive-Executive Separation）+ 98.9% 攻击阻断率
+- [[wiki/Anthropic-Agent安全容器化实践]] — Anthropic Engineering Blog：三产品容器化实践（三类风险 × 三类防御 × 三种隔离模式）
+- [[wiki/Agent-Sandbox-安全沙箱选型]] — LangChain Blog：Lethal Trifecta + Sandbox 五要素 + microVM 内核隔离
+
+#### Agent Harness & 工程实践
+- [[wiki/Custom-Agent-Harness-Middleware架构]] — LangChain Blog：agent = model + harness + Middleware 四杠杆 + 能力映射表
+- [[wiki/Loop-Engineering-多层Agent循环架构]] — LangChain Blog：四层循环架构（Agent→Verification→Event-Driven→Hill Climbing）
+- [[wiki/Model-Neutrality-模型中立与反锁定]] — LangChain Blog：云→模型 锁定模式重演 + 中立 Harness 三要素
+- [[wiki/Agent-Fault-Tolerance-容错设计]] — LangChain Blog：RetryPolicy/TimeoutPolicy/error_handler + SAGA 补偿模式
+- [[wiki/Agent-Cost-Control-Gateway成本控制]] — LangChain Blog：LLM Gateway 四维预算 + 分钟级成本可观测性
+
+### Fluss 实践 🆕
+- [[wiki/Fluss-EKS-生产部署实践-Fresha]] — Fresha Data Engineering Blog：EKS 部署四限制修复 + Flink Connector 踩坑
+- [[wiki/Fluss-PR-3420-Watermark-to-Paimon]] — GitHub apache/fluss #3420：Watermark → Paimon Snapshot 全链路（49 文件变更）
+
 ---
 
 ## 第3层: Schema
@@ -146,4 +165,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-16*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-19*

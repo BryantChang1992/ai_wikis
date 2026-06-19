@@ -185,4 +185,40 @@ updated: 2026-06-15
 - **Synthesize Refresh**：10 篇综述全部健康（3-5 天内更新，related 零 dangling），无触发增量更新
 - **新综述待合成**：Fluss-流处理平台架构综述（已存在但未入索引，9 子卡片达临界质量）
 - **新增**：`wiki/synthesis/Lint-2026-06-19.md` — 本周 Lint 报告
+- **Commit**: `432be45` — fix(lint): Week 07 维护日 — 修复 13 处 synthesis/ 前缀引用 + 新增 Lint 报告
+
+### 2026-06-19 13:30 — CEO 派发 11 篇文章入库
+
+- **操作**：Source Ingest — 11 篇 AI Infra / Fluss 文章源文件归档 + 概念卡片生成
+- **背景**：CEO 通过交互卡片委派，要求 11 篇源文件入库
+
+#### 入库清单
+| # | 文章 | 来源 | 方向 | 子卡片 |
+|---|------|------|------|--------|
+| 1 | Memory for Autonomous LLM Agents | ArXiv 2603.07670 | Agent Memory | Agent-Memory-Survey-2026综述 |
+| 2 | Parallax: Why AI Agents That Think Must Never Act | ArXiv 2604.12986 | Agent Security | Parallax-Agent安全架构 |
+| 3 | How We Contain Claude | Anthropic Engineering | Agent Security | Anthropic-Agent安全容器化实践 |
+| 4 | The Art of Loop Engineering | LangChain Blog | Agent Harness | Loop-Engineering-多层Agent循环架构 |
+| 5 | Why Model Neutrality Matters More Than Cloud Neutrality | LangChain Blog | Agent Harness | Model-Neutrality-模型中立与反锁定 |
+| 6 | Fault Tolerance in LangGraph | LangChain Blog | Agent Harness | Agent-Fault-Tolerance-容错设计 |
+| 7 | How to Build a Custom Agent Harness | LangChain Blog | Agent Harness | Custom-Agent-Harness-Middleware架构 |
+| 8 | How We Made Coding Agent Spend Predictable | LangChain Blog | Cost Control | Agent-Cost-Control-Gateway成本控制 |
+| 9 | How to Choose the Right Sandbox for Your Agent | LangChain Blog | Agent Security | Agent-Sandbox-安全沙箱选型 |
+| 10 | Bottling the River: Apache Fluss on EKS | Fresha Blog | Fluss 实践 | Fluss-EKS-生产部署实践-Fresha |
+| 11 | Fluss PR #3420 — Watermark → Paimon Snapshot | GitHub | Fluss | Fluss-PR-3420-Watermark-to-Paimon |
+
+#### 源文件归档
+- `sources/papers/Agent-Memory-Survey/` + `Parallax/`（论文精读 ×2）
+- `sources/web/anthropic/`（1 篇）
+- `sources/web/langchain/`（6 篇）
+- `sources/web/fresha/`（1 篇）
+- `sources/web/fluss/`（1 篇 PR 精读）
+
+#### CTO 备注
+- Worker 并行派发 6 个 rd-task 全部 failed（runtime lost active execution context），CTO 直接手写 11 张卡片
+- Agent-First 标签体系新增 `agent-infra` / `agent-security` / `agent-harness` / `agent-memory` 等标签
+- 新卡片全部 `status: draft`，related 字段暂空（留待 Synthesize 建立内链）
+- 增量 Lint：11 卡 sources 引用全部有效，0 dangling
+- **索引更新**：`sources/README.md` + `知识库/README.md` 新增 AI Infra + Fluss 实践 section
 - **Commit**: 待提交
+

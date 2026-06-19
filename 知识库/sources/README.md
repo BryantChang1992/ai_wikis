@@ -102,18 +102,51 @@ sources/papers/
   - 精读分析.md ✅
   - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
   - → synthesis: 将整合入共识协议体系综述（待更新）
+- [Agent-Memory-Survey/](papers/Agent-Memory-Survey/) — ArXiv 2026-03，Agent Memory 综述
+  - 精读分析.md
+  - → wiki: Agent-Memory-Survey-2026综述.md
+- [Parallax/](papers/Parallax/) — ArXiv 2026-04，Agent 安全架构（Cognitive-Executive Separation）
+  - 精读分析.md
+  - → wiki: Parallax-Agent安全架构.md
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
   - 01-整体架构对比.md（已入库）
   - 02~07 待补（原文件: tech_research/fluss/*.html，需从 HTML 转换为 md）
+- [Anthropic — How We Contain Claude](web/anthropic/how-we-contain-claude-精读.md) — Anthropic Engineering Blog 2026
+  - 精读分析.md
+  - → wiki: Anthropic-Agent安全容器化实践.md
+- [The Art of Loop Engineering](web/langchain/the-art-of-loop-engineering-精读.md) — LangChain Blog 2026-06
+  - 精读分析.md
+  - → wiki: Loop-Engineering-多层Agent循环架构.md
+- [Why Model Neutrality Matters](web/langchain/model-neutrality-精读.md) — LangChain Blog 2026-06
+  - 精读分析.md
+  - → wiki: Model-Neutrality-模型中立与反锁定.md
+- [Fault Tolerance in LangGraph](web/langchain/fault-tolerance-in-langgraph-精读.md) — LangChain Blog 2026-06
+  - 精读分析.md
+  - → wiki: Agent-Fault-Tolerance-容错设计.md
+- [Custom Agent Harness](web/langchain/custom-agent-harness-精读.md) — LangChain Blog 2026-06-03
+  - 精读分析.md
+  - → wiki: Custom-Agent-Harness-Middleware架构.md
+- [Coding Agent Spend Predictable](web/langchain/coding-agent-spend-精读.md) — LangChain Blog 2026-06-15
+  - 精读分析.md
+  - → wiki: Agent-Cost-Control-Gateway成本控制.md
+- [Right Sandbox for Agent](web/langchain/right-sandbox-agent-精读.md) — LangChain Blog 2026-06-12
+  - 精读分析.md
+  - → wiki: Agent-Sandbox-安全沙箱选型.md
+- [Bottling the River: Fluss on EKS](web/fresha/bottling-the-river-fluss-eks-精读.md) — Fresha Data Engineering Blog 2026-04-30
+  - 精读分析.md
+  - → wiki: Fluss-EKS-生产部署实践-Fresha.md
+- [Fluss PR #3420](web/fluss/Fluss-PR-3420-Watermark-Paimon-精读.md) — GitHub apache/fluss 2026-06
+  - 精读分析.md
+  - → wiki: Fluss-PR-3420-Watermark-to-Paimon.md
 
 ### notes/
 *(待入库)*
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-16*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-19*
 
 ## 2026-06-16 新增
 

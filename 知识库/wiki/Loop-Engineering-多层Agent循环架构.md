@@ -17,6 +17,7 @@ related:
   - "[[Agent-Fault-Tolerance-容错设计]]"
   - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Agent-First-Data-Systems]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Loop Engineering — 多层 Agent 循环架构

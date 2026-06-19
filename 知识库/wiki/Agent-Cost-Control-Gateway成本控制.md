@@ -16,6 +16,7 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[Model-Neutrality-模型中立与反锁定]]"
   - "[[Loop-Engineering-多层Agent循环架构]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Agent Cost Control — Gateway 成本控制

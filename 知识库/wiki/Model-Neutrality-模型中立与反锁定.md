@@ -17,6 +17,7 @@ related:
   - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Loop-Engineering-多层Agent循环架构]]"
   - "[[Agent-First-Data-Systems]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Model Neutrality — 模型中立与反锁定

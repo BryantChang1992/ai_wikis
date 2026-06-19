@@ -19,6 +19,7 @@ related:
   - "[[Model-Neutrality-模型中立与反锁定]]"
   - "[[Agentic-Memory-语义缓存]]"
   - "[[Agent-Sandbox-安全沙箱选型]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Custom Agent Harness — Middleware 架构

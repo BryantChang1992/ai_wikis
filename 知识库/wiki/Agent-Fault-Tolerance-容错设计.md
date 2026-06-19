@@ -18,6 +18,7 @@ related:
   - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Agent-First-Data-Systems]]"
   - "[[流处理容错模型]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Agent Fault Tolerance — 容错设计

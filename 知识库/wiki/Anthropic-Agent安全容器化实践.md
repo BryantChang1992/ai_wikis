@@ -17,6 +17,7 @@ related:
   - "[[Parallax-Agent安全架构]]"
   - "[[Custom-Agent-Harness-Middleware架构]]"
   - "[[Agent-First-Data-Systems]]"
+  - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
 
 # Anthropic Agent 安全容器化实践

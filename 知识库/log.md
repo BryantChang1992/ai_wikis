@@ -220,5 +220,5 @@ updated: 2026-06-15
 - 新卡片全部 `status: draft`，related 字段暂空（留待 Synthesize 建立内链）
 - 增量 Lint：11 卡 sources 引用全部有效，0 dangling
 - **索引更新**：`sources/README.md` + `知识库/README.md` 新增 AI Infra + Fluss 实践 section
-- **Commit**: 待提交
+- **Commit**: `6121932` — feat(ingest): CEO 派发 11 篇文章入库 — AI Infra + Fluss 实践
 

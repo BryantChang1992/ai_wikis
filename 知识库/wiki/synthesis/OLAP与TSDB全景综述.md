@@ -27,7 +27,7 @@ created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
+  - "[[LSM-Tree-存储引擎体系综述]]"
   - "[[事务模型深度调研]]"
 ---
 
@@ -85,7 +85,7 @@ related:
 
 ## 7. 对外桥接
 
-- [[synthesis/LSM-Tree-存储引擎体系综述]]：两大引擎的共同基石
+- [[LSM-Tree-存储引擎体系综述]]：两大引擎的共同基石
 - [[事务模型深度调研]]：Doris 的 2PC 导入事务、InfluxDB 的副本一致性都直接依赖分布式事务理论
 - [[存储计算分离数据库的-Tail-Latency]]：二者都在往存算分离方向演进
 

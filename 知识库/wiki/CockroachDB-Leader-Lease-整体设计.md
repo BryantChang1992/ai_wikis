@@ -10,7 +10,7 @@ tags:
   - 大规模共识
 related:
   - "[[事务模型深度调研]]"
-  - "[[synthesis/分布式数据系统一致性体系]]"
+  - "[[分布式数据系统一致性体系]]"
   - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
   - "[[CockroachDB-Leader-Fortification]]"
 sources:

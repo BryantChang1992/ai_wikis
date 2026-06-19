@@ -50,6 +50,7 @@ sources/  →  wiki/  →  Schema
 
 ### 健康检查
 - [[wiki/synthesis/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
+- [[wiki/synthesis/Lint-2026-06-19]] — Week 07 维护日 Lint：0 dangling、1 孤儿页（Chandy-Lamport）、修复 13 处 synthesis/ 前缀引用
 
 ### Apache Fluss 调研（新增）
 

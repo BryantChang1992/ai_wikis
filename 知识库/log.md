@@ -170,3 +170,19 @@ updated: 2026-06-15
 - **索引更新**：`sources/README.md` + `知识库/README.md`
 - **Worker 效率**：3 个 rd-task Worker 并行生产，总耗时 <3min
 - **Commit**: 待提交
+
+### 2026-06-19 13:15 — Week 07 周五 Wiki 维护日
+
+- **操作**：全量 Lint + 修复 + Synthesize Refresh 检测 + 索引更新
+- **背景**：本周无新周报产出（Week 06 周三提前发布），无 CEO 审阅标记，跳过 Ingest
+- **Lint 结果**：
+  - Dangling wikilink：13 处 `synthesis/` 前缀引用 → 全部修复为页面名引用
+  - 循环自引：0
+  - Diagram 断链：0
+  - ASCII 残留：2 文件（P2 优先级，待替换）
+  - 孤儿页面：1（Chandy-Lamport-分布式快照算法，0 inbound）
+  - sources dangling：Doris/InfluxDB/Fluss 系列为合法远程源引用，非断链
+- **Synthesize Refresh**：10 篇综述全部健康（3-5 天内更新，related 零 dangling），无触发增量更新
+- **新综述待合成**：Fluss-流处理平台架构综述（已存在但未入索引，9 子卡片达临界质量）
+- **新增**：`wiki/synthesis/Lint-2026-06-19.md` — 本周 Lint 报告
+- **Commit**: 待提交

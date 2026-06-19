@@ -22,8 +22,8 @@ created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
-  - "[[synthesis/Apache-Doris-OLAP-数据库体系综述]]"
+  - "[[LSM-Tree-存储引擎体系综述]]"
+  - "[[Apache-Doris-OLAP-数据库体系综述]]"
   - "[[事务模型深度调研]]"
 ---
 
@@ -107,8 +107,8 @@ InfluxDB 3 的全 Rust 重写证明了 Rust（零 GC、内存安全）+ Arrow（
 
 | 交叉领域 | 关联页面 | 说明 |
 |----------|---------|------|
-| LSM-Tree | [[synthesis/LSM-Tree-存储引擎体系综述]] | TSM 引擎本质是 LSM 在时序场景的衍生 |
-| OLAP 数据库 | [[synthesis/Apache-Doris-OLAP-数据库体系综述]] | Parquet 列存 + Compaction + 索引策略与 Doris 高度可比 |
+| LSM-Tree | [[LSM-Tree-存储引擎体系综述]] | TSM 引擎本质是 LSM 在时序场景的衍生 |
+| OLAP 数据库 | [[Apache-Doris-OLAP-数据库体系综述]] | Parquet 列存 + Compaction + 索引策略与 Doris 高度可比 |
 | 事务系统 | [[事务模型深度调研]] | WAL 机制与事务数据库同源 |
 | 存算分离 | [[存储计算分离数据库的-Tail-Latency]] | v3 存算分离架构与 RaaS 论文的 tail latency 讨论直接对齐 |
 

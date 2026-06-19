@@ -20,7 +20,7 @@ related:
   - "[[Doris-数据模型]]"
   - "[[LSM-Tree-合并优化]]"
   - "[[LSM-Tree-RUM猜想]]"
-  - "[[synthesis/LSM-Tree-存储引擎体系综述]]"
+  - "[[LSM-Tree-存储引擎体系综述]]"
 diagram: "diagram/doris-architecture.svg"
 
 ---

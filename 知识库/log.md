@@ -228,5 +228,13 @@ updated: 2026-06-15
   - **related 网络效果**：11 张卡共 48 条 related，形成 AI Infra 知识子图（Agent Memory ↔ Security ↔ Harness ↔ Cost）
   - 卡片大小从平均 ~300 bytes 提升到 ~2600 bytes
   - **Lint**：48 条 related 全量验证，0 dangling
-  - **Commit**: pending — rewrite(ingest): 11 张卡片深度重写
+  - **Commit**: `81e1294` — rewrite(ingest): 11 张卡片深度重写 + related 网络补全
+
+- `[16:00] CTO Agent`: **REWRITE** — 11 篇 source 层精读分析全面重写
+  - **根因**：初版 9 篇网页精读仅 28-42 行，是源文件摘要级敷衍壳，远低于历史标准（150-200 行）
+  - **修复**：逐篇基于完整原文系统拆解——关键论点的结构梳理 + 架构判断 + 交叉关联 + 工程启示
+  - **效果**：网页精读从平均 35 行 → 平均 ~134 行（~3.8x 提升），论文精读保持 194-241 行
+  - **重写清单**：custom-agent-harness(42→153L)、how-we-contain-claude(40→162L)、fault-tolerance(35→153L)、loop-engineering(28→138L)、fluss-eks(36→124L)、Fluss-PR-3420(39→145L)、sandbox(40→121L)、model-neutrality(31→114L)、coding-agent-spend(已有 115L 保持)
+  - Agent Memory Survey (241L) + Parallax (194L): 论文精读保持完整
+  - **Commit**: pending — rewrite(source): 11 篇 source 精读全面升级
 

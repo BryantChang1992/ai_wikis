@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640">
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="640" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="36" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="600" fill="#111827">Agent Harness Middleware 五层架构</text>
+
+  <!-- ===== LAYER 1: Core Loop (center) ===== -->
+  <rect x="350" y="60" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" width="260" height="60" filter="url(#shadow)"/>
+  <text x="480" y="90" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#1d4ed8">Agent Core Loop</text>
+  <text x="480" y="108" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">before_model → model → after_model → tool</text>
+
+  <!-- ===== LAYER 2: Fault Tolerance (left) ===== -->
+  <rect x="40" y="160" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5" width="200" height="55" filter="url(#shadow)"/>
+  <text x="140" y="185" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#dc2626">🛡️ 容错层</text>
+  <text x="140" y="203" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Retry · Timeout · Checkpoint</text>
+
+  <!-- ===== LAYER 2: Memory (center-left) ===== -->
+  <rect x="270" y="160" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" width="200" height="55" filter="url(#shadow)"/>
+  <text x="370" y="185" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#16a34a">🧠 记忆层</text>
+  <text x="370" y="203" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Working · Episodic · Semantic</text>
+
+  <!-- ===== LAYER 2: Security (center-right) ===== -->
+  <rect x="500" y="160" rx="8" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5" width="200" height="55" filter="url(#shadow)"/>
+  <text x="600" y="185" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8b5cf6">🔒 安全层</text>
+  <text x="600" y="203" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Sandbox · Approval · Validate</text>
+
+  <!-- ===== LAYER 2: Model Routing (right) ===== -->
+  <rect x="730" y="160" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" width="200" height="55" filter="url(#shadow)"/>
+  <text x="830" y="185" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#ea580c">🔀 模型路由层</text>
+  <text x="830" y="203" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Fallback · Switch · Neutrality</text>
+
+  <!-- ===== LAYER 3: Cost Control (bottom center) ===== -->
+  <rect x="330" y="260" rx="8" fill="#fefce8" stroke="#fef08a" stroke-width="1.5" width="300" height="55" filter="url(#shadow)"/>
+  <text x="480" y="285" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#ca8a04">💰 成本控制层</text>
+  <text x="480" y="303" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#6b7280">Rate Limit · Cache · Meter · Attribution</text>
+
+  <!-- ===== Arrows: Core Loop → Layers ===== -->
+  <path d="M 400 120 L 400 140 L 140 140 L 140 155" stroke="#ef4444" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+  <path d="M 450 120 L 450 140 L 370 140 L 370 155" stroke="#10b981" stroke-width="1.5" fill="none" marker-end="url(#arrow-green)"/>
+  <path d="M 520 120 L 520 140 L 600 140 L 600 155" stroke="#8b5cf6" stroke-width="1.5" fill="none" marker-end="url(#arrow-purple)"/>
+  <path d="M 580 120 L 580 140 L 830 140 L 830 155" stroke="#f97316" stroke-width="1.5" fill="none" marker-end="url(#arrow-orange)"/>
+
+  <!-- ===== Arrows: Layers → Cost Control ===== -->
+  <path d="M 140 215 L 140 240 L 400 240 L 400 255" stroke="#3b82f6" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <path d="M 370 215 L 370 240 L 480 240 L 480 255" stroke="#3b82f6" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <path d="M 600 215 L 600 240 L 560 240 L 560 255" stroke="#3b82f6" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <path d="M 830 215 L 830 240 L 600 240 L 600 255" stroke="#3b82f6" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+
+  <!-- ===== Wiki Cards Mapping ===== -->
+  <rect x="40" y="360" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" width="880" height="260"/>
+  <text x="60" y="388" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#111827">Wiki 概念卡片映射</text>
+
+  <!-- Card tiles -->
+  <rect x="60" y="405" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1" width="190" height="48"/>
+  <text x="155" y="424" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#dc2626">Agent-Fault-Tolerance</text>
+  <text x="155" y="440" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">容错设计</text>
+
+  <rect x="265" y="405" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" width="190" height="48"/>
+  <text x="360" y="424" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#16a34a">Agentic-Memory</text>
+  <text x="360" y="440" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">语义缓存</text>
+
+  <rect x="470" y="405" rx="6" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1" width="190" height="48"/>
+  <text x="565" y="424" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#8b5cf6">Agent-Sandbox</text>
+  <text x="565" y="440" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">安全沙箱选型</text>
+
+  <rect x="675" y="405" rx="6" fill="#fefce8" stroke="#fef08a" stroke-width="1" width="230" height="48"/>
+  <text x="790" y="424" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#ca8a04">Agent-Cost-Control-Gateway</text>
+  <text x="790" y="440" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">成本控制</text>
+
+  <rect x="60" y="465" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1" width="190" height="48"/>
+  <text x="155" y="484" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#ea580c">Model-Neutrality</text>
+  <text x="155" y="500" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">模型中立与反锁定</text>
+
+  <rect x="265" y="465" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" width="190" height="48"/>
+  <text x="360" y="484" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#1d4ed8">Loop-Engineering</text>
+  <text x="360" y="500" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">多层Agent循环架构</text>
+
+  <rect x="470" y="465" rx="6" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1" width="190" height="48"/>
+  <text x="565" y="484" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#0d9488">Custom-Agent-Harness</text>
+  <text x="565" y="500" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Middleware 架构（本页）</text>
+
+  <rect x="675" y="465" rx="6" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1" width="230" height="48"/>
+  <text x="790" y="484" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#8b5cf6">AI-Infra-Agent基础设施体系综述</text>
+  <text x="790" y="500" text-anchor="middle" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">Synthesis 综述页</text>
+
+  <!-- Legend -->
+  <rect x="60" y="540" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" width="840" height="60"/>
+  <text x="80" y="560" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#374151">图例</text>
+  <line x1="80" y1="580" x2="110" y2="580" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="120" y="584" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">数据流 / 依赖</text>
+  <line x1="220" y1="580" x2="250" y2="580" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <text x="260" y="584" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">容错</text>
+  <line x1="330" y1="580" x2="360" y2="580" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="370" y="584" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">记忆</text>
+  <line x1="440" y1="580" x2="470" y2="580" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <text x="480" y="584" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">安全</text>
+  <line x1="550" y1="580" x2="580" y2="580" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <text x="590" y="584" font-family="Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#6b7280">模型路由</text>
+</svg>

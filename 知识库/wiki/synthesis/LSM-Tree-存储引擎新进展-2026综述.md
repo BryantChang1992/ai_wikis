@@ -1,12 +1,25 @@
 ---
 type: synthesis
+title: "LSM-Tree 存储引擎新进展 (2026)"
+created: 2026-06-16
+updated: 2026-06-19
+status: draft
+sources:
+  - "[[Silo-分布式LSM-Compaction调度]]"
+  - "[[Silo-Compaction-迁移协议]]"
+  - "[[LSM-Tree]]"
+  - "[[LSM-Tree-写放大]]"
+  - "[[LSM-Tree-合并优化]]"
+  - "[[LSM-Tree-自动调参]]"
+  - "[[LSM-Tree-RUM猜想]]"
+  - "[[LSM-Tree-硬件适配]]"
 tags:
-  - synthesis
   - LSM-Tree
   - Compaction
   - storage-engines
   - scheduling
   - distributed-storage
+  - synthesis
 related:
   - "[[Silo-分布式LSM-Compaction调度]]"
   - "[[Silo-Compaction-迁移协议]]"

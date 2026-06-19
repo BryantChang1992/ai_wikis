@@ -1,12 +1,26 @@
 ---
 type: synthesis
+title: "Fluss 流处理平台架构综述"
+created: 2026-06-17
+updated: 2026-06-19
+status: draft
+sources:
+  - "[[Fluss-整体架构]]"
+  - "[[Fluss-存储引擎]]"
+  - "[[Fluss-分布式协调]]"
+  - "[[Fluss-RPC与网络]]"
+  - "[[Fluss-客户端与计算集成]]"
+  - "[[Fluss-Lake层与湖仓融合]]"
+  - "[[Fluss-Tiering分层架构]]"
+  - "[[Fluss-Kafka兼容层]]"
+  - "[[Fluss-KV存储-RocksDB]]"
+  - "[[Fluss-Arrow列式记录格式]]"
 tags:
-  - synthesis
   - Fluss
-  - Kafka
   - streaming
   - lakehouse
   - messaging
+  - synthesis
 related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-存储引擎]]"

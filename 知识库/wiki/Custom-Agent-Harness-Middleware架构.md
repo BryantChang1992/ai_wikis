@@ -83,24 +83,6 @@ Middleware 架构是模型中立的天然载体。`ModelFallbackMiddleware` + `D
 
 ## 系统关系全景
 
-```
-                     Agent Core Loop
-                          │
-    ┌─────────────────────┼─────────────────────┐
-    │                     │                     │
-    ▼                     ▼                     ▼
- 容错层                 记忆层                安全层
- (retry/timeout)     (memory/cache)        (sandbox/approval)
- [[Agent-Fault-Tol...]] [[Agentic-Memory...]] [[Agent-Sandbox...]]
-    │                     │                     │
-    └─────────────────────┼─────────────────────┘
-                          ▼
-                    成本控制层
-                    (limit/cache/meter)
-               [[Agent-Cost-Control-Gateway...]]
-                          │
-                          ▼
-                    模型路由层
-                    (fallback/switch)
-               [[Model-Neutrality...]]
-```
+![Agent Harness Middleware 五层架构](../diagram/agent-harness-5layer.svg)
+
+> Agent Core Loop 之上叠加四层 Middleware：**容错层** ([[Agent-Fault-Tolerance-容错设计]])、**记忆层** ([[Agentic-Memory-语义缓存]])、**安全层** ([[Agent-Sandbox-安全沙箱选型]])、**模型路由层** ([[Model-Neutrality-模型中立与反锁定]])，四层之下统一的**成本控制层** ([[Agent-Cost-Control-Gateway成本控制]]) 做全局计量与限流。

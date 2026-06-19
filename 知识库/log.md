@@ -244,3 +244,42 @@ updated: 2026-06-15
   - Agent Memory Survey (241L) + Parallax (194L): 论文精读保持完整
   - **Commit**: pending — rewrite(source): 11 篇 source 精读全面升级
 
+
+### 2026-06-19 18:00 — Week 07 第二轮维护（严格按 ai-wiki-maintain skill）
+
+- **触发**：CEO 要求严格按照知识库 skill 重新执行周五维护任务
+- **执行范围**：Lint(全量) → Diagram → Synthesize Refresh → 集群更新
+
+#### Lint 第二轮
+- Dangling wikilink：5 处 `...` 截断名（Custom-Agent-Harness-Middleware 的 ASCII 树形图）
+  - `Agent-Fault-Tol...` → `Agent-Fault-Tolerance-容错设计`
+  - `Agentic-Memory...` → `Agentic-Memory-语义缓存`
+  - `Agent-Sandbox...` → `Agent-Sandbox-安全沙箱选型`
+  - `Agent-Cost-Control-Gateway...` → `Agent-Cost-Control-Gateway成本控制`
+  - `Model-Neutrality...` → `Model-Neutrality-模型中立与反锁定`
+- 修复方式：ASCII 树形代码块 → SVG diagram + 纯文本叙述
+
+#### Diagram 新图
+- `agent-harness-5layer.svg` + `agent-harness-5layer.png`：Agent Harness Middleware 五层架构
+  - Style 1 (Flat Icon)：Core Loop → 容错/记忆/安全/模型路由 → 成本控制
+  - 7 张 wiki 卡片映射、箭头语义着色、图例
+  - SVG 验证 + PNG @2x (1920px) 导出
+
+#### Frontmatter 修复
+- 5 张 synthesis 页缺 `created`/`updated`/`sources`/`title` → 全部补全：
+  - AI-Infra-Agent基础设施体系综述 (2026-06-19)
+  - Fluss-流处理平台架构综述 (2026-06-17)
+  - LSM-Tree-存储引擎新进展-2026综述 (2026-06-16)
+  - 分布式数据系统事务与一致性新进展-2026综述 (2026-06-16)
+  - 流处理系统演化综述 (2026-06-17)
+
+#### Synthesize Refresh
+- 增量检测：所有 synthesis updated ≤ 6 天，无触发重写/增量追加
+- 已有 synthesis 的 diagram 引用完整（每张 ≥ 1 张主图 P0 ✅）
+
+#### 集群状态更新
+- AI Infra 集群：4 张 → 11 张（达临界质量），综述已合成
+- Fluss 综述：已存在且已入索引
+- Lint 报告 `Lint-2026-06-19.md` 已更新第二轮修复记录
+
+- **Commit**: pending

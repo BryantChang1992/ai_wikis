@@ -1,16 +1,30 @@
 ---
 type: synthesis
+title: "AI Infra Agent 基础设施体系综述"
+created: 2026-06-19
+updated: 2026-06-19
+status: draft
+sources:
+  - "[[Custom-Agent-Harness-Middleware架构]]"
+  - "[[Loop-Engineering-多层Agent循环架构]]"
+  - "[[Agent-Cost-Control-Gateway成本控制]]"
+  - "[[Agent-Fault-Tolerance-容错设计]]"
+  - "[[Agent-Sandbox-安全沙箱选型]]"
+  - "[[Anthropic-Agent安全容器化实践]]"
+  - "[[Parallax-Agent安全架构]]"
+  - "[[Agent-Memory-Survey-2026综述]]"
+  - "[[Agentic-Memory-语义缓存]]"
+  - "[[Model-Neutrality-模型中立与反锁定]]"
 tags:
-  - synthesis
   - agent-infra
   - agent-harness
   - agent-security
   - agent-memory
   - loop-engineering
+  - synthesis
 related:
   - "[[Custom-Agent-Harness-Middleware架构]]"
   - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Model-Neutrality-模型中立与反锁定]]"
   - "[[Agent-Cost-Control-Gateway成本控制]]"
@@ -28,6 +42,8 @@ created: 2026-06-19
 
 > 基于 10 张 wiki 卡片 + 2 篇论文 + 7 篇 blog 精读的跨层整合。AI Infra 是 Agent 时代的"基础设施层"——不是 Agent 本身，而是 Agent 运行所需的所有支持系统。
 
+![AI Infra 四层体系架构](../diagram/ai-infra-4layer-arch.svg)
+
 ---
 
 ## 一、全景结构
@@ -35,30 +51,24 @@ created: 2026-06-19
 Agent 基础设施不是一个系统，而是**一个分层体系**。10 张 Wiki 卡片分布在四个互锁层面：
 
 ```
-┌──────────────────────────────────────────────────────┐
-│                    L2: 安全层                          │
-│   Sandbox 选型  │  Anthropic 容器化  │  Parallax      │
-│     (环境隔离)         (产品实践)      (架构分离)       │
-├──────────────────────────────────────────────────────┤
-│                    L1: Harness 层                      │
-│   Custom Harness  │  Loop Engineering  │  Fault Tol.  │
-│    (执行引擎)         (循环架构)           (可靠性)     │
-├──────────────────────────────────────────────────────┤
-│                    L0: 控制面                          │
-│   Cost Control/Gateway  │  Model Neutrality          │
-│      (成本管控)             (供应商策略)               │
-├──────────────────────────────────────────────────────┤
-│                    L-1: 状态层                         │
-│   Agent Memory Survey  │  Agentic Memory 语义缓存    │
-│      (理论全景)             (工程实践)                 │
-└──────────────────────────────────────────────────────┘
-                        ▲
-                        │ 迭代反馈
-                        ▼
-┌──────────────────────────────────────────────────────┐
-│              L4: 进化层 (Loop Engineering)              │
-│             Hill Climbing — 自我优化循环                │
-└──────────────────────────────────────────────────────┘
+                    L2: 安全层
+   Sandbox 选型  |  Anthropic 容器化  |  Parallax
+     (环境隔离)         (产品实践)      (架构分离)
+
+                    L1: Harness 层
+   Custom Harness  |  Loop Engineering  |  Fault Tol.
+    (执行引擎)         (循环架构)           (可靠性)
+
+                    L0: 控制面
+   Cost Control/Gateway  |  Model Neutrality
+      (成本管控)             (供应商策略)
+
+                    L-1: 状态层
+   Agent Memory Survey  |  Agentic Memory 语义缓存
+      (理论全景)             (工程实践)
+
+                    L4: 进化层
+             Hill Climbing — 自我优化循环
 ```
 
 ---
@@ -308,5 +318,11 @@ AI Infra 的核心设计原则是**各层正交可组合**：
 | [[LSM-Tree]] | Agent Memory 中的 Compaction 问题与 LSM-Tree 的 Compaction 异曲同工——增量合并升级 |
 
 ---
+
+## 变更记录
+
+| 日期 | 动作 | 变更说明 |
+|------|------|----------|
+| 2026-06-19 | 创建 | 初始版本，覆盖 10 张 AI Infra wiki 卡片：Harness 层（Middleware/Loop/Fault Tolerance）、安全层（Sandbox/Anthropic/Parallax）、控制面（Cost/Neutrality）、状态层（Memory Survey/缓存）、进化层（Hill Climbing）+ 架构图 `ai-infra-4layer-arch.svg` |
 
 *合成日期：2026-06-19 | 基于 10 张 wiki 卡片 + 11 篇 source 精读分析*

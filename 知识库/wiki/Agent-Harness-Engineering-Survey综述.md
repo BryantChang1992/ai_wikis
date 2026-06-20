@@ -28,6 +28,8 @@ related:
 
 # Agent Harness Engineering 综述
 
+![ETCLOVG七层体系全景](../diagram/agent-harness-etclovg-7layer.svg)
+
 > 本页为 Li et al. (2026) "Agent Harness Engineering: A Survey" 的 Wiki 概念卡片，覆盖核心论点和生态全景。
 > 七层 ETCLOVG 的详细分析见各自独立卡片。
 

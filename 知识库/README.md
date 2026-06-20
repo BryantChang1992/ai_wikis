@@ -3,7 +3,7 @@ type: meta
 title: "CHANG_AI_TEAM 知识库"
 tags: ["meta", "知识库"]
 created: 2026-06-14
-updated: 2026-06-16
+updated: 2026-06-20
 ---
 
 # CHANG_AI_TEAM 知识库
@@ -135,6 +135,16 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Paxos-Epochs-Revised]] — 🆕 Epochs by Recovery：去中心化 1 RTT 决策 + Multi-path Paxos
 ### AI Infra — Agent 基础设施 🆕
 
+#### Agent Harness Engineering 综述 🆕🆕
+- [[wiki/Agent-Harness-Engineering-Survey综述]] — TMLR 2026 综述：170+ OSS 项目 ETCLOVG 七层分类 + 三个核心主张 + 三阶段演化
+- [[wiki/Agent-Harness-Execution-Environment执行环境]] — E 层：7 类沙箱（Computer-Use/Code/Browser/OS/Managed/Abstraction）+ 沙箱逃逸 & 规模化挑战
+- [[wiki/Agent-Harness-Tool-Interface工具接口]] — T 层：MCP vs A2A 协议竞赛 + 工具设计四原则 + Schema 粒度 & Prompt Injection 面
+- [[wiki/Agent-Harness-Context-Memory上下文管理]] — C 层：三层记忆架构 + Context Drift 四大来源 & 幻觉沉淀（QSAF）+ MemBench/MemoryArena
+- [[wiki/Agent-Harness-Lifecycle-Orchestration编排]] — L 层：三层编排（Inner Loop → Multi-Agent → Full Lifecycle）+ 5 种编排模式 + 四大故障模式
+- [[wiki/Agent-Harness-Observability可观测性]] — O 层：可观测堆栈（Tracing→Agent-Specific→Cognitive→System-Level）+ 成本优化 + Anthropic Managed Agents 架构
+- [[wiki/Agent-Harness-Verification-Evaluation评估]] — V 层：5 阶段 Task-to-Feedback Lifecycle + 评估噪声归因 + LLM-as-Judge
+- [[wiki/Agent-Harness-Governance治理]] — G 层：6 大治理机制（Identity→Guardrails→Hooks→Constitutions→Audit→Security） + 治理覆盖缺口分析
+
 #### Agent Memory & Security
 - [[wiki/Agent-Memory-Survey-2026综述]] — ArXiv 2026-03：Agent Memory 系统化综述（write→manage→read 循环 + 五大机制家族）
 - [[wiki/Parallax-Agent安全架构]] — ArXiv 2026-04：四原则架构（Cognitive-Executive Separation）+ 98.9% 攻击阻断率
@@ -166,4 +176,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-19*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-20*

@@ -3,7 +3,7 @@ type: meta
 title: "源文件索引"
 tags: ["meta", "sources"]
 created: 2026-06-14
-updated: 2026-06-16
+updated: 2026-06-20
 ---
 
 # 源文件索引 (Raw Sources)
@@ -108,6 +108,10 @@ sources/papers/
 - [Parallax/](papers/Parallax/) — ArXiv 2026-04，Agent 安全架构（Cognitive-Executive Separation）
   - 精读分析.md
   - → wiki: Parallax-Agent安全架构.md
+- [Agent-Harness-Engineering-Survey/](papers/Agent-Harness-Engineering-Survey/) — TMLR 2026 (under review)，Agent Harness Engineering 综述
+  - Agent-Harness-Engineering-Survey-OpenReview2026.pdf（原文，3.4MB）
+  - 精读分析.md ✅
+  - → wiki: Agent-Harness-Engineering-Survey综述.md + 7 张 ETCLOVG 分层卡片
 
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
@@ -146,7 +150,7 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-19*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-20*
 
 ## 2026-06-16 新增
 

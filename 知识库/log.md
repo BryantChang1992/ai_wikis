@@ -3,12 +3,29 @@ type: meta
 title: "知识库操作日志"
 tags: ["meta", "log"]
 created: 2026-06-14
-updated: 2026-06-15
+updated: 2026-06-20
 ---
 
 # 知识库操作日志
 
 > 时序记录所有增删改操作。格式：`[日期 时间] 操作者: 操作类型 — 描述`
+
+## 2026-06-20
+
+- `[17:30] CTO Agent`: **INGEST** — 入库论文 "Agent Harness Engineering: A Survey" (TMLR 2026 under review)
+  - 源文件归档: `sources/papers/Agent-Harness-Engineering-Survey/` (PDF 3.4MB + 精读分析.md)
+  - 生成 1 张 Survey 综述卡 + 7 张 ETCLOVG 分层概念卡片:
+    - `Agent-Harness-Engineering-Survey综述.md` — 三条核心主张 + 三阶段演化 + 跨层规律 + 五大开放问题
+    - `Agent-Harness-Execution-Environment执行环境.md` — E 层：7 类沙箱 + 逃逸/规模化/可复制性挑战
+    - `Agent-Harness-Tool-Interface工具接口.md` — T 层：MCP vs A2A 协议 + 工具设计四原则
+    - `Agent-Harness-Context-Memory上下文管理.md` — C 层：三层记忆 + Context Drift + 幻觉沉淀(QSAF)
+    - `Agent-Harness-Lifecycle-Orchestration编排.md` — L 层：三层编排 + 5 种模式 + 四大故障模式
+    - `Agent-Harness-Observability可观测性.md` — O 层：可观测堆栈 + 成本优化 + Managed Agents
+    - `Agent-Harness-Verification-Evaluation评估.md` — V 层：5 阶段 Task-to-Feedback Lifecycle
+    - `Agent-Harness-Governance治理.md` — G 层：6 大治理机制 + 覆盖缺口分析
+  - 增量 Lint: 0 dangling / 0 missing source / 0 self-ref / 0 duplicate
+  - 更新 README.md + sources/README.md 索引
+  - 覆盖 170+ OSS 项目映射，7 层完整分析
 
 ## 2026-06-15
 

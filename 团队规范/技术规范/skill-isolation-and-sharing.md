@@ -1,9 +1,9 @@
 ---
 title: Skill 隔离与共享机制
 status: active
-version: v0.7
+version: v0.8
 created: 2026-06-06
-updated: 2026-06-18
+updated: 2026-06-21
 tags:
   - skill
   - 权限
@@ -191,7 +191,38 @@ Worker **不应有**：内容创作、内容发布、知识管理、通讯操作
 
 ---
 
-## 6. 修订记录
+## 6. 自研 Skill 仓库 (ai_skills)
+
+团队自研的 Skill 统一托管在 GitHub 仓库：
+- 仓库地址：`git@github.com:BryantChang1992/ai_skills.git`
+- 安装方式：`npx skills add BryantChang1992/ai_skills/{skill-name}`
+
+### 当前自研 Skill
+
+| Skill | 类型 | 负责人 | 说明 |
+|-------|------|--------|------|
+| ai-wiki-maintain | 知识管理 | CTO | 知识库全生命周期维护（Ingest/Diagram/Lint/Synthesize）|
+| release-skills | 基础设施 | CTO | 通用发布流程（版本检测/Changelog/GitHub Release）|
+
+### Skill 目录结构规范
+
+每个自研 Skill 遵循统一目录结构：
+
+```
+{skill-name}/
+├── SKILL.md              ← 严格编号执行步骤（步骤 0→N）
+├── scripts/              ← 确定性操作脚本（Lint/验证/导出）
+├── reference/            ← 格式模板、风格色板、示例实录
+└── templates/            ← Worker 任务模板（兼容保留）
+```
+
+### 脚本化原则
+
+所有确定性操作（Lint 扫描、frontmatter 检查、SVG 验证、PNG 导出）**必须脚本化**放入 `scripts/`，禁止在 SKILL.md 中用叙述性段落描述可脚本化的逻辑。
+
+---
+
+## 7. 修订记录
 
 | 版本 | 日期 | 内容 |
 |------|------|------|
@@ -201,3 +232,4 @@ Worker **不应有**：内容创作、内容发布、知识管理、通讯操作
 | v0.4 | 2026-06-07 | 对齐 10 Agent 架构，126 Skill 矩阵 |
 | v0.5 | 2026-06-07 | 精简为 CEO + CTO + Worker 三层 |
 | v0.7 | 2026-06-18 | 新增 fireworks-tech-graph 为技术图强制 Skill（替代 baoyu-diagram 非 UML 场景）|
+| v0.8 | 2026-06-21 | 自研 Skill 统一仓库 `ai_skills` 建立；`ai-wiki-maintain` 脚本化重构；新增 Skill 目录结构规范

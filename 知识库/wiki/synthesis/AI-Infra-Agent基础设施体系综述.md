@@ -27,7 +27,6 @@ related:
   - "[[Loop-Engineering-多层Agent循环架构]]"
   - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Model-Neutrality-模型中立与反锁定]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
   - "[[Agent-Fault-Tolerance-容错设计]]"
   - "[[Agent-Sandbox-安全沙箱选型]]"
   - "[[Anthropic-Agent安全容器化实践]]"
@@ -35,7 +34,6 @@ related:
   - "[[Agent-Memory-Survey-2026综述]]"
   - "[[Agentic-Memory-语义缓存]]"
   - "[[Agent-First-Data-Systems]]"
-created: 2026-06-19
 ---
 
 # AI Infra — Agent 基础设施体系综述

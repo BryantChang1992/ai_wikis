@@ -181,3 +181,7 @@ Anthropic (2026a) 发现基础设施配置可偏移 Agent 编码评估分数 **6
 3. **成本追踪不能只靠 LLM Provider 的 Dashboard**——需要应用级 Per-Task 成本归因
 4. **AgentSight 的系统级监控**值得关注——对于安全关键部署，应用级工具可绕过
 5. **关闭可观测-评估鸿沟**——技术调研周报的评估应与可观测数据打通
+
+---
+
+> 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · O 层（Observability & Operations）

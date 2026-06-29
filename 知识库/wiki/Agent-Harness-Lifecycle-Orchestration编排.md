@@ -149,3 +149,7 @@ Planner ──→ Generator ──→ Evaluator
 3. **Harness 复杂度应随模型能力自适应**——模型变强时主动移除不必要的脚手架
 4. **Durable Progress Artifacts**：确保 Agent 的进展以可恢复的工件形式持久化（Git repo、进度文件、初始化脚本）
 5. **Clean Handoff**：Agent 在 Session 间交接时应留下"干净的状态"，让下一 Session 的 Agent 可以无摩擦继续
+
+---
+
+> 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · L 层（Lifecycle & Orchestration）

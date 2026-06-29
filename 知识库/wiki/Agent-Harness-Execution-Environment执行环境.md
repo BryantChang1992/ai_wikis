@@ -171,3 +171,7 @@ Docker 继承 Linux 内核假设：
 | OS-Level | Progent | — | seccomp | 高风险部署 |
 | Managed Platform | E2B | ~7 | 托管 VM | 生产沙箱 |
 | Abstraction | Composio | ~30 | 多后端 | 跨平台编排 |
+
+---
+
+> 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · E 层（Execution Environment & Sandbox）

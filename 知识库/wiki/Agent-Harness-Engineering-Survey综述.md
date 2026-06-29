@@ -97,6 +97,20 @@ G → Governance                      (§9)
 
 ---
 
+## 4b. ETCLOVG 七层子页面索引
+
+每层均有独立 Wiki 概念卡片，详细展开：
+
+- **E** — [[Agent-Harness-Execution-Environment执行环境]]：7 类沙箱架构、沙箱逃逸、规模化挑战
+- **T** — [[Agent-Harness-Tool-Interface工具接口]]：MCP vs A2A 协议竞赛、工具设计四原则、Prompt Injection
+- **C** — [[Agent-Harness-Context-Memory上下文管理]]：三层记忆架构、Context Drift 四大来源、幻觉沉淀
+- **L** — [[Agent-Harness-Lifecycle-Orchestration编排]]：三层编排、5 种编排模式、四大故障模式
+- **O** — [[Agent-Harness-Observability可观测性]]：四级可观测堆栈、成本优化、Anthropic Managed Agents
+- **V** — [[Agent-Harness-Verification-Evaluation评估]]：5 阶段评估生命周期、评估噪声归因
+- **G** — [[Agent-Harness-Governance治理]]：6 大治理机制、治理覆盖缺口分析
+
+---
+
 ## 5. 跨层规律
 
 ### 5.1 Cost-Quality-Speed Trilemma

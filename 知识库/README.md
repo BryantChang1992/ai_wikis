@@ -72,7 +72,26 @@ sources/  →  wiki/  →  Schema
 ### 调研报告
 - [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
 - [[wiki/InfluxDB深度调研]] — InfluxDB 时序数据库全面调研：从 TSM 到 InfluxDB 3.0 列存引擎的演进（5 模块）
+  - [[wiki/InfluxDB-数据模型]] — Measurement / Tag / Field 三元组 + Line Protocol 与基数问题
+  - [[wiki/InfluxDB-TSM存储引擎]] — TSM 四层架构：WAL → MemTable → TSM → TSI + 写入与压缩链路
+  - [[wiki/InfluxDB-Catalog元数据]] — 元数据管理架构：Shard / Continuous Query / Subscription 三类
+  - [[wiki/InfluxDB-写入与查询路径]] — 写入路径全链路 + 查询路径下推优化
+  - [[wiki/InfluxDB-多副本与高可用]] — Hinted Handoff + Anti-Entropy + Raft 共识副本
+  - [[wiki/InfluxDB-指标设计与基数管理]] — 基数爆炸根因与 Tag 设计原则 + Series Cardinality
+  - [[wiki/InfluxDB-3-列存引擎]] — InfluxDB 3.0 Project Rampen：原生列存 + 统一 SQL + 无基数上限
 - [[wiki/Doris-深度调研]] — Apache Doris 实时分析数据库全面调研：5 大模块（核心概念/存储引擎/查询流程/架构演进/元数据与一致性）
+  - [[wiki/Doris-数据模型]] — Aggregate/Unique/Duplicate 三种模型 + Merge-on-Read/Write 策略
+  - [[wiki/Doris-Segment-v2-存储格式]] — Segment v2 列存格式：Short Key Index + Bloom Filter + Zone Map
+  - [[wiki/Doris-Compaction-策略]] — Cumulative → Base Compaction 两阶段 + 自动调参
+  - [[wiki/Doris-MPP-向量化查询引擎]] — Pipeline 并行 + 向量化算子 + Runtime Filter 优化
+  - [[wiki/Doris-Nereids-CBO-优化器]] — Nereids 新优化器：Cascades 框架 + 规则/成本双引擎
+  - [[wiki/Doris-元数据与一致性复制]] — FE 三节点 Pacifca + BE 去中心化 + Memory Checkpoint
+  - [[wiki/Doris-架构演进]] — 从 Palo 到 Doris 2.x：存算一体 → 存算分离 + Lakehouse 方向
+
+### ByteHouse 调研
+- [[wiki/ByteHouse-架构与设计]] — ByteDance 自研 OLAP 引擎：存算分离 + 统一表引擎
+- [[wiki/ByteHouse-统一表引擎]] — UniTable：一种表引擎覆盖全场景（主键更新/聚合/点查）
+- [[wiki/ByteHouse-多模态查询优化]] — 多模态（结构化/半结构化/向量）查询优化策略
 
 ### 概念卡片
 

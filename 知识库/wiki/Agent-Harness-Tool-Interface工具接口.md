@@ -125,3 +125,7 @@ A2A 是 Agent 间通信的协议规范，定位与 MCP **互补**而非竞争。
 2. **工具列表不应膨胀**：每个工具需经过威胁评估后才暴露给 Agent
 3. **A2A** 在需要多 Agent 协作的复杂场景（如代码审查 + 测试 + 部署流水线）中值得采用
 4. **工具响应应结构化**——错误码、部分成功、超时等状态需明确定义，让 Agent 能正确决策
+
+---
+
+> 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · T 层（Tool Interface & Protocol）

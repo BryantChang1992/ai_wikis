@@ -9,10 +9,10 @@
     .node-box-accent { fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5; }
     .layer-box { fill: none; stroke: #e5e7eb; stroke-width: 1; stroke-dasharray: 6 3; }
     .legend-text { font-size: 12px; fill: #6b7280; }
+    .arrow-label { font-size: 11px; fill: #6b7280; }
   </style>
 
   <defs>
-    <!-- Arrow markers -->
     <marker id="arrow-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
     </marker>
@@ -27,197 +27,188 @@
   <!-- Title -->
   <text x="480" y="32" text-anchor="middle" class="title">Fluss 客户端写入引擎 — 核心组件架构图</text>
 
-  <!-- Layer backgrounds -->
+  <!-- LAYER BACKGROUNDS -->
   <rect x="20" y="50" width="920" height="90" rx="6" class="layer-box"/>
   <text x="32" y="68" class="layer-label">APPLICATION LAYER</text>
 
-  <rect x="20" y="150" width="920" height="120" rx="6" class="layer-box"/>
+  <rect x="20" y="150" width="920" height="110" rx="6" class="layer-box"/>
   <text x="32" y="168" class="layer-label">TABLE API LAYER</text>
 
-  <rect x="20" y="280" width="920" height="300" rx="6" class="layer-box"/>
-  <text x="32" y="298" class="layer-label">WRITE ENGINE LAYER</text>
+  <rect x="20" y="270" width="920" height="300" rx="6" class="layer-box"/>
+  <text x="32" y="288" class="layer-label">WRITE ENGINE LAYER</text>
 
-  <rect x="20" y="590" width="920" height="60" rx="6" class="layer-box"/>
-  <text x="32" y="608" class="layer-label">RPC TRANSPORT</text>
+  <rect x="20" y="580" width="920" height="60" rx="6" class="layer-box"/>
+  <text x="32" y="598" class="layer-label">RPC TRANSPORT</text>
 
-  <rect x="20" y="660" width="920" height="100" rx="6" class="layer-box"/>
-  <text x="32" y="678" class="layer-label">SERVER SIDE</text>
+  <rect x="20" y="650" width="920" height="110" rx="6" class="layer-box"/>
+  <text x="32" y="668" class="layer-label">SERVER SIDE</text>
+
+  <!-- ===== NODES ===== -->
 
   <!-- APPLICATION LAYER -->
-  <!-- User Code -->
-  <rect x="80" y="75" width="160" height="46" rx="8" class="node-box"/>
-  <text x="160" y="95" text-anchor="middle" class="node-label">User Code</text>
-  <text x="160" y="111" text-anchor="middle" class="node-sublabel">.append() / .flush()</text>
+  <rect x="60" y="72" width="170" height="50" rx="8" class="node-box"/>
+  <text x="145" y="93" text-anchor="middle" class="node-label">User Code</text>
+  <text x="145" y="110" text-anchor="middle" class="node-sublabel">append() · flush() · close()</text>
 
-  <!-- Connection -->
-  <rect x="360" y="75" width="160" height="46" rx="8" class="node-box"/>
-  <text x="440" y="95" text-anchor="middle" class="node-label">Connection</text>
-  <text x="440" y="111" text-anchor="middle" class="node-sublabel">FlussConnection</text>
+  <rect x="380" y="72" width="180" height="50" rx="8" class="node-box"/>
+  <text x="470" y="93" text-anchor="middle" class="node-label">Connection</text>
+  <text x="470" y="110" text-anchor="middle" class="node-sublabel">FlussConnection</text>
 
-  <!-- Bootstrap -->
-  <rect x="620" y="75" width="160" height="46" rx="8" class="node-box"/>
-  <text x="700" y="95" text-anchor="middle" class="node-label">ConnectionFactory</text>
-  <text x="700" y="111" text-anchor="middle" class="node-sublabel">bootstrap.servers</text>
+  <rect x="700" y="72" width="180" height="50" rx="8" class="node-box"/>
+  <text x="790" y="93" text-anchor="middle" class="node-label">ConnectionFactory</text>
+  <text x="790" y="110" text-anchor="middle" class="node-sublabel">bootstrap.servers → RpcClient</text>
 
   <!-- TABLE API LAYER -->
-  <!-- Table (FlussTable) -->
-  <rect x="80" y="185" width="160" height="56" rx="8" class="node-box"/>
-  <text x="160" y="207" text-anchor="middle" class="node-label">Table</text>
-  <text x="160" y="223" text-anchor="middle" class="node-sublabel">FlussTable</text>
-  <text x="160" y="235" text-anchor="middle" class="node-sublabel">AutoCloseable</text>
+  <rect x="60" y="170" width="170" height="72" rx="8" class="node-box"/>
+  <text x="145" y="192" text-anchor="middle" class="node-label">Table</text>
+  <text x="145" y="208" text-anchor="middle" class="node-sublabel">FlussTable</text>
+  <text x="145" y="224" text-anchor="middle" class="node-sublabel">conn.getTable(path)</text>
 
-  <!-- AppendWriterImpl -->
-  <rect x="340" y="185" width="170" height="56" rx="8" class="node-box-accent"/>
-  <text x="425" y="207" text-anchor="middle" class="node-label">AppendWriter</text>
-  <text x="425" y="223" text-anchor="middle" class="node-sublabel">AppendWriterImpl</text>
-  <text x="425" y="235" text-anchor="middle" class="node-sublabel">IndexedRowEncoder</text>
+  <rect x="380" y="170" width="180" height="72" rx="8" class="node-box-accent"/>
+  <text x="470" y="192" text-anchor="middle" class="node-label">AppendWriter</text>
+  <text x="470" y="208" text-anchor="middle" class="node-sublabel">AppendWriterImpl</text>
+  <text x="470" y="224" text-anchor="middle" class="node-sublabel">IndexedRow / Arrow encoder</text>
 
-  <!-- UpsertWriterImpl -->
-  <rect x="610" y="185" width="170" height="56" rx="8" class="node-box-accent"/>
-  <text x="695" y="207" text-anchor="middle" class="node-label">UpsertWriter</text>
-  <text x="695" y="223" text-anchor="middle" class="node-sublabel">UpsertWriterImpl</text>
-  <text x="695" y="235" text-anchor="middle" class="node-sublabel">KeyEncoder</text>
+  <rect x="700" y="170" width="180" height="72" rx="8" class="node-box-accent"/>
+  <text x="790" y="192" text-anchor="middle" class="node-label">UpsertWriter</text>
+  <text x="790" y="208" text-anchor="middle" class="node-sublabel">UpsertWriterImpl</text>
+  <text x="790" y="224" text-anchor="middle" class="node-sublabel">KeyEncoder + RowEncoder</text>
 
   <!-- WRITE ENGINE LAYER -->
-  <!-- WriterClient (central) -->
-  <rect x="330" y="315" width="190" height="56" rx="8" class="node-box-accent"/>
-  <text x="425" y="337" text-anchor="middle" class="node-label">WriterClient</text>
-  <text x="425" y="353" text-anchor="middle" class="node-sublabel">doSend() · flush() · close()</text>
+  <!-- Row 1 -->
+  <rect x="60" y="295" width="200" height="56" rx="8" class="node-box"/>
+  <text x="160" y="317" text-anchor="middle" class="node-label">BucketAssigner</text>
+  <text x="160" y="333" text-anchor="middle" class="node-sublabel">Hash · RoundRobin · Sticky</text>
+  <text x="160" y="345" text-anchor="middle" class="node-sublabel">assignBucket(key, cluster) → bucketId</text>
 
-  <!-- BucketAssigner (left) -->
-  <rect x="50" y="370" width="190" height="50" rx="8" class="node-box"/>
-  <text x="145" y="390" text-anchor="middle" class="node-label">BucketAssigner</text>
-  <text x="145" y="407" text-anchor="middle" class="node-sublabel">Hash · RoundRobin · Sticky</text>
+  <rect x="380" y="295" width="200" height="56" rx="8" class="node-box-accent"/>
+  <text x="480" y="317" text-anchor="middle" class="node-label">WriterClient</text>
+  <text x="480" y="333" text-anchor="middle" class="node-sublabel">doSend() · flush() · close()</text>
+  <text x="480" y="345" text-anchor="middle" class="node-sublabel">全局协调枢纽</text>
 
-  <!-- RecordAccumulator (left-bottom) -->
-  <rect x="50" y="455" width="190" height="56" rx="8" class="node-box"/>
-  <text x="145" y="477" text-anchor="middle" class="node-label">RecordAccumulator</text>
-  <text x="145" y="493" text-anchor="middle" class="node-sublabel">Batch buffer · Arrow memory pool</text>
-  <text x="145" y="505" text-anchor="middle" class="node-sublabel">ready() / drain() / append()</text>
+  <rect x="700" y="295" width="200" height="56" rx="8" class="node-box-accent"/>
+  <text x="800" y="317" text-anchor="middle" class="node-label">Sender</text>
+  <text x="800" y="333" text-anchor="middle" class="node-sublabel">IO 单线程 · runOnce()</text>
+  <text x="800" y="345" text-anchor="middle" class="node-sublabel">ready → drain → send → handle</text>
 
-  <!-- Sender (right) -->
-  <rect x="620" y="315" width="190" height="56" rx="8" class="node-box-accent"/>
-  <text x="715" y="337" text-anchor="middle" class="node-label">Sender</text>
-  <text x="715" y="353" text-anchor="middle" class="node-sublabel">IO 单线程 · runOnce()</text>
+  <!-- Row 2 -->
+  <rect x="60" y="390" width="200" height="56" rx="8" class="node-box"/>
+  <text x="160" y="412" text-anchor="middle" class="node-label">RecordAccumulator</text>
+  <text x="160" y="428" text-anchor="middle" class="node-sublabel">per-bucket Deque&lt;WriteBatch&gt;</text>
+  <text x="160" y="440" text-anchor="middle" class="node-sublabel">Arrow pool / ready() / drain()</text>
 
-  <!-- IdempotenceManager (right-bottom) -->
-  <rect x="620" y="400" width="190" height="50" rx="8" class="node-box"/>
-  <text x="715" y="420" text-anchor="middle" class="node-label">IdempotenceManager</text>
-  <text x="715" y="437" text-anchor="middle" class="node-sublabel">writerId · sequence · inflight</text>
+  <rect x="380" y="390" width="200" height="56" rx="8" class="node-box"/>
+  <text x="480" y="412" text-anchor="middle" class="node-label">MetadataUpdater</text>
+  <text x="480" y="428" text-anchor="middle" class="node-sublabel">Cluster · BucketLocation</text>
+  <text x="480" y="440" text-anchor="middle" class="node-sublabel">coordinatorGateway</text>
 
-  <!-- MetadataUpdater (center-bottom) -->
-  <rect x="330" y="455" width="190" height="56" rx="8" class="node-box"/>
-  <text x="425" y="477" text-anchor="middle" class="node-label">MetadataUpdater</text>
-  <text x="425" y="493" text-anchor="middle" class="node-sublabel">Cluster · BucketLocation</text>
-  <text x="425" y="505" text-anchor="middle" class="node-sublabel">updatePhysicalTableMetadata()</text>
+  <rect x="700" y="390" width="200" height="56" rx="8" class="node-box"/>
+  <text x="800" y="412" text-anchor="middle" class="node-label">IdempotenceManager</text>
+  <text x="800" y="428" text-anchor="middle" class="node-sublabel">writerId · batchSequence</text>
+  <text x="800" y="440" text-anchor="middle" class="node-sublabel">inflight tracking · initWriter</text>
 
-  <!-- DynamicPartitionCreator (bottom-right) -->
-  <rect x="620" y="540" width="190" height="40" rx="8" class="node-box"/>
-  <text x="715" y="558" text-anchor="middle" class="node-label">DynamicPartitionCreator</text>
-  <text x="715" y="573" text-anchor="middle" class="node-sublabel">checkAndCreatePartitionAsync()</text>
+  <!-- Row 3 -->
+  <rect x="380" y="485" width="200" height="48" rx="8" class="node-box"/>
+  <text x="480" y="507" text-anchor="middle" class="node-label">DynamicPartitionCreator</text>
+  <text x="480" y="523" text-anchor="middle" class="node-sublabel">checkAndCreatePartitionAsync()</text>
 
-  <!-- RPC TRANSPORT LAYER -->
-  <!-- RpcClient (Netty) -->
-  <rect x="330" y="605" width="190" height="40" rx="8" class="node-box"/>
-  <text x="425" y="623" text-anchor="middle" class="node-label">RpcClient (Netty)</text>
-  <text x="425" y="638" text-anchor="middle" class="node-sublabel">TabletServerGateway · CoordinatorGateway</text>
+  <!-- RPC TRANSPORT -->
+  <rect x="380" y="595" width="200" height="42" rx="8" class="node-box"/>
+  <text x="480" y="614" text-anchor="middle" class="node-label">RpcClient (Netty)</text>
+  <text x="480" y="629" text-anchor="middle" class="node-sublabel">TabletServerGateway · CoordinatorGateway</text>
 
-  <!-- SERVER SIDE LAYER -->
-  <!-- TabletServer -->
-  <rect x="280" y="690" width="190" height="50" rx="8" class="node-box-accent"/>
-  <text x="375" y="710" text-anchor="middle" class="node-label">TabletServer</text>
-  <text x="375" y="727" text-anchor="middle" class="node-sublabel">ProduceLog · PutKv handler</text>
+  <!-- SERVER SIDE -->
+  <rect x="280" y="685" width="200" height="52" rx="8" class="node-box-accent"/>
+  <text x="380" y="707" text-anchor="middle" class="node-label">TabletServer</text>
+  <text x="380" y="723" text-anchor="middle" class="node-sublabel">ProduceLog / PutKv handler</text>
 
-  <!-- Coordinator -->
-  <rect x="550" y="690" width="190" height="50" rx="8" class="node-box"/>
-  <text x="645" y="710" text-anchor="middle" class="node-label">Coordinator</text>
-  <text x="645" y="727" text-anchor="middle" class="node-sublabel">InitWriter · Metadata store</text>
+  <rect x="600" y="685" width="200" height="52" rx="8" class="node-box"/>
+  <text x="700" y="707" text-anchor="middle" class="node-label">Coordinator</text>
+  <text x="700" y="723" text-anchor="middle" class="node-sublabel">InitWriter · Metadata store</text>
 
-  <!-- ARROWS -->
+  <!-- ===== ARROWS (all orthogonal paths) ===== -->
 
   <!-- ConnFactory → Connection -->
-  <line x1="620" y1="98" x2="530" y2="98" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="575" y="92" text-anchor="middle" class="node-sublabel">create()</text>
+  <path d="M 700 97 L 565 97" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="633" y="91" text-anchor="middle" class="arrow-label">create()</text>
 
   <!-- Connection → Table -->
-  <line x1="440" y1="121" x2="240" y2="180" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="310" y="145" text-anchor="middle" class="node-sublabel">getTable()</text>
+  <path d="M 380 97 L 280 97 L 280 170 L 235 170" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="280" y="135" text-anchor="start" dx="4" class="arrow-label">getTable(path)</text>
 
   <!-- Table → AppendWriter -->
-  <line x1="240" y1="213" x2="335" y2="213" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="288" y="207" text-anchor="middle" class="node-sublabel">newAppend()</text>
+  <path d="M 230 206 L 375 206" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="303" y="200" text-anchor="middle" class="arrow-label">.newAppend().createWriter()</text>
 
   <!-- Table → UpsertWriter -->
-  <line x1="240" y1="213" x2="605" y2="213" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
+  <path d="M 230 206 L 695 206" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="463" y="200" text-anchor="middle" class="arrow-label">.newUpsert().createWriter()</text>
 
-  <!-- AppendWriter → WriterClient -->
-  <line x1="425" y1="241" x2="425" y2="310" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="435" y="280" text-anchor="start" class="node-sublabel">send(record, cb)</text>
+  <!-- AppendWriter → WriterClient: vertical down -->
+  <path d="M 470 242 L 470 290" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="480" y="272" class="arrow-label">send(record, cb)</text>
 
-  <!-- UpsertWriter → WriterClient -->
-  <line x1="695" y1="241" x2="695" y2="275" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="695" y1="275" x2="520" y2="310" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
+  <!-- UpsertWriter → WriterClient: right→down→left -->
+  <path d="M 790 242 L 790 260 L 480 260 L 480 290" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
 
-  <!-- WriterClient → BucketAssigner -->
-  <line x1="330" y1="370" x2="245" y2="370" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="288" y="364" text-anchor="middle" class="node-sublabel">assignBucket()</text>
+  <!-- WriterClient → BucketAssigner: left horizontal -->
+  <path d="M 380 323 L 265 323" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="323" y="317" text-anchor="middle" class="arrow-label">assignBucket()</text>
 
-  <!-- BucketAssigner → RecordAccumulator (via WriterClient path) -->
-  <path d="M 145 420 L 145 450" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
+  <!-- BucketAssigner → RecordAccumulator: down vertical -->
+  <path d="M 160 351 L 160 385" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
 
-  <!-- WriterClient → RecordAccumulator -->
-  <line x1="330" y1="470" x2="245" y2="470" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="288" y="464" text-anchor="middle" class="node-sublabel">append()</text>
+  <!-- WriterClient → RecordAccumulator: left horizontal -->
+  <path d="M 380 418 L 265 418" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="325" y="412" text-anchor="middle" class="arrow-label">append(record, cb)</text>
 
-  <!-- RecordAccumulator → Sender -->
-  <line x1="240" y1="480" x2="615" y2="370" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="440" y="420" text-anchor="middle" class="node-sublabel">drain() batches</text>
+  <!-- RecordAccumulator → Sender: diagonal bottom-right to top-right -->
+  <path d="M 260 418 L 340 418 L 340 323 L 695 323" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="520" y="370" text-anchor="middle" class="arrow-label">drain() → batches by node</text>
 
-  <!-- Sender → WriterClient (wake-up / callback) -->
-  <line x1="620" y1="343" x2="525" y2="343" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-async)"/>
-  <text x="573" y="337" text-anchor="middle" class="node-sublabel">callback</text>
+  <!-- Sender → RpcClient: vertical down -->
+  <path d="M 800 351 L 800 590 L 585 590 L 585 590" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+  <path d="M 800 351 L 800 420 L 580 420 L 580 590" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
+  <text x="690" y="505" text-anchor="middle" class="arrow-label">ProduceLog / PutKv RPC</text>
 
-  <!-- Sender → RpcClient (ProduceLog/PutKv) -->
-  <line x1="715" y1="371" x2="715" y2="435" stroke="#2563eb" stroke-width="1.5"/>
-  <line x1="715" y1="435" x2="520" y2="605" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="640" y="525" text-anchor="middle" class="node-sublabel">ProduceLog / PutKv</text>
+  <!-- RpcClient → TabletServer: vertical down -->
+  <path d="M 380 637 L 380 680" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-data)"/>
 
-  <!-- RpcClient → TabletServer -->
-  <line x1="375" y1="645" x2="375" y2="685" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
+  <!-- RpcClient → Coordinator: right-down -->
+  <path d="M 580 616 L 700 680" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="655" y="652" text-anchor="middle" class="arrow-label">initWriter / metadata</text>
 
-  <!-- RpcClient → Coordinator -->
-  <line x1="475" y1="645" x2="645" y2="685" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="570" y="668" text-anchor="middle" class="node-sublabel">initWriter / metadata</text>
+  <!-- MetadataUpdater → Sender: right-up -->
+  <path d="M 580 418 L 695 418 L 695 356" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="645" y="435" text-anchor="middle" class="arrow-label">getCluster()</text>
 
-  <!-- MetadataUpdater → Sender -->
-  <line x1="520" y1="470" x2="615" y2="398" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="575" y="432" text-anchor="middle" class="node-sublabel">getCluster()</text>
+  <!-- IdempotenceManager → Sender: up -->
+  <path d="M 800 390 L 800 356" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="810" y="375" class="arrow-label">sequences</text>
 
-  <!-- IdempotenceManager → Sender -->
-  <line x1="620" y1="425" x2="715" y2="371" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="675" y="400" text-anchor="middle" class="node-sublabel">sequence</text>
+  <!-- Sender → WriterClient (async callback): left -->
+  <path d="M 700 323 L 585 323" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-async)"/>
+  <text x="643" y="317" text-anchor="middle" class="arrow-label">callback (async)</text>
 
-  <!-- WriterClient → MetadataUpdater -->
-  <line x1="425" y1="371" x2="425" y2="450" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
+  <!-- WriterClient → MetadataUpdater: down vertical -->
+  <path d="M 480 351 L 480 385" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="490" y="372" class="arrow-label">updateMetadata()</text>
 
-  <!-- Sender → DynamicPartitionCreator -->
-  <path d="M 715 371 L 715 535" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
+  <!-- WriterClient → DynamicPartitionCreator: down vertical -->
+  <path d="M 480 351 L 480 480" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="490" y="420" class="arrow-label">checkAndCreatePartitionAsync()</text>
 
-  <!-- DynamicPartitionCreator → WriterClient (async callback) -->
-  <line x1="620" y1="560" x2="525" y2="560" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-async)"/>
+  <!-- DynamicPartitionCreator → RpcClient: vertical down -->
+  <path d="M 480 533 L 480 590" stroke="#dc2626" stroke-width="1.5" fill="none" marker-end="url(#arrow-control)"/>
+  <text x="490" y="565" class="arrow-label">admin.createPartition()</text>
 
-  <!-- DynamicPartitionCreator → RpcClient -->
-  <line x1="715" y1="580" x2="715" y2="600" stroke="#dc2626" stroke-width="1.5"/>
-  <line x1="715" y1="600" x2="525" y2="605" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="630" y="575" text-anchor="middle" class="node-sublabel">createPartition()</text>
-
-  <!-- Legend -->
-  <rect x="770" y="290" width="170" height="100" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="785" y="312" class="node-label" font-size="12">图例</text>
-  <line x1="785" y1="330" x2="820" y2="330" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
-  <text x="828" y="334" class="legend-text">数据流</text>
-  <line x1="785" y1="352" x2="820" y2="352" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
-  <text x="828" y="356" class="legend-text">控制流</text>
-  <line x1="785" y1="374" x2="820" y2="374" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-async)"/>
-  <text x="828" y="378" class="legend-text">异步/回调</text>
+  <!-- ===== LEGEND ===== -->
+  <rect x="770" y="460" width="170" height="100" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="785" y="482" font-size="12" font-weight="600" fill="#111827">图例</text>
+  <line x1="785" y1="500" x2="820" y2="500" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-data)"/>
+  <text x="828" y="504" class="legend-text">数据流</text>
+  <line x1="785" y1="522" x2="820" y2="522" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow-control)"/>
+  <text x="828" y="526" class="legend-text">控制流 / 元数据</text>
+  <line x1="785" y1="544" x2="820" y2="544" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-async)"/>
+  <text x="828" y="548" class="legend-text">异步回调</text>
 </svg>

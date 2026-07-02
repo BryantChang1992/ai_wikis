@@ -102,6 +102,10 @@ sources/papers/
   - 精读分析.md ✅
   - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
   - → synthesis: 将整合入共识协议体系综述（待更新）
+- [LSM-tree-KV-Survey-2025/](papers/LSM-tree-KV-Survey-2025/) — ArXiv 2025-07，MBZUAI + OceanBase + 厦门大学，LSM-tree KV Store 综述（2020-2025）
+  - LSM-tree-KV-Survey-2025.pdf（原文，1.6MB）
+  - 精读分析.md ✅
+  - → wiki: LSM-tree-KV-Survey-综述.md（生成中）
 - [Agent-Memory-Survey/](papers/Agent-Memory-Survey/) — ArXiv 2026-03，Agent Memory 综述
   - 精读分析.md
   - → wiki: Agent-Memory-Survey-2026综述.md
@@ -150,7 +154,7 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-20*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-02*
 
 ## 2026-06-16 新增
 
@@ -169,6 +173,14 @@ sources/papers/
 | `papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` | PDF 原文 | cl.cam.ac.uk |
 | `papers/Distributed-Consensus-Revised/arxiv-1902.06776.pdf` | ArXiv 版本 | arxiv.org |
 | `papers/Distributed-Consensus-Revised/精读分析.md` | 精读分析 | CTO 自产 |
+
+## 2026-07-02 新增
+
+| 文件 | 类型 | 来源 |
+|------|------|------|
+| `papers/LSM-tree-KV-Survey-2025/` | 综述论文 + 精读分析 | ArXiv 2025-07 |
+| `papers/LSM-tree-KV-Survey-2025/LSM-tree-KV-Survey-2025.pdf` | PDF 原文 | arxiv.org (2507.09642) |
+| `papers/LSM-tree-KV-Survey-2025/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-06-15 新增
 

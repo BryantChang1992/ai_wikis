@@ -117,6 +117,15 @@ sources/papers/
   - 精读分析.md ✅
   - → wiki: Agent-Harness-Engineering-Survey综述.md + 7 张 ETCLOVG 分层卡片
 
+### Week 09 入库 — 2026-07-03 🆕
+- [Hermes Agent](web/hermes-agent/) — Nous Research 自进化 Agent 框架 GitHub README 精读
+- [Qwen 3.6](web/qwen-3.6/) — Alibaba Qwen 3.6 模型发布精读分析
+- [Agent 框架对比 2026](web/agent-frameworks-2026/) — 五大 Agent 框架 2026 全景对比精读
+- [Apache Flink 2.3.0](web/flink-2.3.0/) — Apache Flink 2.3.0 官方发布公告精读
+- [Fluss 客户端写入分析](web/fluss-client-write/) — Fluss 客户端写入流程源码深度分析（8 模块全完成）
+- [CockroachDB vs TiDB](web/cockroachdb-vs-tidb/) — CockroachDB vs TiDB 2026 架构对比精读
+- [CXL 3.0](web/cxl-3.0/) — CXL 3.0 内存池化产业趋势精读
+
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
   - 01-整体架构对比.md（已入库）
@@ -154,7 +163,7 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-02*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-03*
 
 ## 2026-06-16 新增
 

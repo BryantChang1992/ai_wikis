@@ -181,6 +181,23 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Fluss-EKS-生产部署实践-Fresha]] — Fresha Data Engineering Blog：EKS 部署四限制修复 + Flink Connector 踩坑
 - [[wiki/Fluss-PR-3420-Watermark-to-Paimon]] — GitHub apache/fluss #3420：Watermark → Paimon Snapshot 全链路（49 文件变更）
 
+### Week 09 入库 — 2026-07-03 🆕
+
+#### AI Infra · Agent 基础设施
+- [[wiki/Hermes-Agent-自进化Agent框架]] — Nous Research 自进化 Agent 框架：内建学习循环 + 隔离子 Agent + OpenRouter #1（140k⭐）
+- [[wiki/Qwen-3.6-模型发布]] — Alibaba Qwen 3.6 参数效率革命：27B（匹配 400B）+ 35B（超越 120B）
+- [[wiki/Agent-框架-2026-全景对比]] — LangGraph/CrewAI/AutoGen/Semantic Kernel/Hermes 五大框架横向对比
+
+#### 流处理
+- [[wiki/Apache-Flink-2.3.0-版本发布]] — Flink 2.3.0：FROM_CHANGELOG/TO_CHANGELOG + Materialized Table DDL + Native S3 FS
+- [[wiki/Fluss-客户端写入流程源码分析]] — Connection/Table/AppendWriter 三层约定 + 8 模块源码分析全完成
+
+#### 分布式数据库
+- [[wiki/CockroachDB-vs-TiDB-2026-对比]] — 紧耦合 vs 存算分离两大路线 2026 横评：事务/弹性/混合负载/生态
+
+#### 存储引擎
+- [[wiki/CXL-3.0-内存池化新范式]] — CXL 3.0（PCIe 6.0）内存池化 + 对 LSM-tree/内存数据库/存算分离的影响
+
 ---
 
 ## 第3层: Schema
@@ -195,4 +212,4 @@ sources/  →  wiki/  →  Schema
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-06-20*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-03*

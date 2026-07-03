@@ -10,6 +10,43 @@ updated: 2026-06-20
 
 > 时序记录所有增删改操作。格式：`[日期 时间] 操作者: 操作类型 — 描述`
 
+## 2026-07-03 — Week 09 周报入库（补做）
+
+> CEO 审阅后指令："需要补，每一个入库都要遵守规范"。全部 Web 源（非论文），精读分析以 CTO 自产 + 周报内容合成。
+
+- `[10:40] CTO Agent`: **INGEST** — 入库 7 张 Wiki 概念卡片 + 7 个 sources/web/ 精读分析
+
+### AI Infra · Agent 基础设施
+- `Hermes-Agent-自进化Agent框架.md` — Nous Research 自进化 Agent 框架：内建学习循环 + 隔离子 Agent + OpenRouter #1（140k⭐）
+  - sources: `sources/web/hermes-agent/精读分析.md`（基于 GitHub README）
+- `Qwen-3.6-模型发布.md` — Alibaba Qwen 3.6 参数效率革命：27B（匹配 400B）+ 35B（超越 120B）
+  - sources: `sources/web/qwen-3.6/精读分析.md`（基于周报 + Nvidia/Hermes 相关资料）
+- `Agent-框架-2026-全景对比.md` — LangGraph/CrewAI/AutoGen/Semantic Kernel/Hermes 五大框架对比
+  - sources: `sources/web/agent-frameworks-2026/精读分析.md`（基于多家评测机构年度对比）
+
+### 流处理
+- `Apache-Flink-2.3.0-版本发布.md` — Flink 2.3.0：FROM_CHANGELOG/TO_CHANGELOG + Materialized Table DDL + Native S3 FS
+  - sources: `sources/web/flink-2.3.0/精读分析.md`（基于 flink.apache.org 官方公告）
+- `Fluss-客户端写入流程源码分析.md` — Connection/Table/AppendWriter 三层约定 + 8 模块全部完成
+  - sources: `sources/web/fluss-client-write/精读分析.md`（基于 Fluss 源码 a3a59fd~53b4f65）
+
+### 分布式数据库
+- `CockroachDB-vs-TiDB-2026-对比.md` — 紧耦合 vs 存算分离两大路线 2026 横评
+  - sources: `sources/web/cockroachdb-vs-tidb/精读分析.md`（基于多家评测机构年比）
+
+### 存储引擎
+- `CXL-3.0-内存池化新范式.md` — CXL 3.0（PCIe 6.0）内存池化 + 对数据库的影响
+  - sources: `sources/web/cxl-3.0/精读分析.md`（基于 CXL 联盟 + EDBT 2026 论文）
+
+### Lint 结果
+- 增量 Lint：0 dangling / 0 self-ref / 0 missing source / 所有 wikilink 有效
+- 更新 README.md + sources/README.md 索引
+
+### 备注
+- 原 URL 获取遇到多处 404（JetBrains/CockroachLabs/ComputerWeekly），精读分析以周报内容 + 可用替代源合成
+- 不含论文 PDF（Web 源非学术论文），精读分析即源文件
+- 跳过入库：HPE Agent 战略（信息量小，合并入 Hermes 卡）、Flink 2.1.3（补丁版，在 Flink 2.3.0 卡提及）、内部图谱修复（维护类）
+
 ## 2026-06-20
 
 - `[17:30] CTO Agent`: **INGEST** — 入库论文 "Agent Harness Engineering: A Survey" (TMLR 2026 under review)

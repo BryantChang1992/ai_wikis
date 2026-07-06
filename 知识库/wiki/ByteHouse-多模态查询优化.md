@@ -23,6 +23,9 @@ related:
   - "[[Doris-Nereids-CBO-优化器]]"
 diagram: "diagram/bytehouse-architecture.svg"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 21天前更新"
+
 
 # ByteHouse 多模态查询优化
 

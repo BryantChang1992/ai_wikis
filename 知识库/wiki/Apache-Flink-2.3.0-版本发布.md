@@ -16,6 +16,8 @@ related:
   - "[[流处理系统演化综述]]"
   - "[[Stream-Processing-System-Generations]]"
   - "[[Fluss-整体架构]]"
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
 ---
 
 # Apache Flink 2.3.0 — SQL 层与存储层重大升级

@@ -19,6 +19,9 @@ related:
   - "[[LSM-Tree]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.83
+confidence_rationale: "类型=survey; 来源×1; 17天前更新"
+
 
 # Agent Memory 综述 2026
 

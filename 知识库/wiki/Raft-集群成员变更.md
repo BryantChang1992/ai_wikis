@@ -14,6 +14,8 @@ updated: 2026-06-16
 status: stable
 related:
   - "[[Raft-共识算法协议核心]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
 ---
 
 # Raft 集群成员变更

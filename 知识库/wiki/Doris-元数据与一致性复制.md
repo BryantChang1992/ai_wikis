@@ -2,7 +2,7 @@
 type: concept
 title: "Doris 元数据存储与一致性复制"
 sources:
-  - "技术文章/Doris调研/05-元数据存储与一致性复制.md"
+  - "../技术文章/Doris调研/05-元数据存储与一致性复制.md"
 tags:
   - 数据库
   - OLAP
@@ -26,6 +26,9 @@ related:
 diagram: "diagram/doris-architecture.svg"
 
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 22天前更新"
+
 
 # Doris 元数据存储与一致性复制
 

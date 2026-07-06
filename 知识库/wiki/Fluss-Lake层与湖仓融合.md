@@ -2,7 +2,7 @@
 type: analysis
 title: "Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化"
 sources:
-  - "sources/web/fluss/06-Lake层与湖仓融合.md"
+  - "sources/web/fluss/01-整体架构对比.md"
 tags:
   - Fluss
   - Lakehouse
@@ -19,6 +19,9 @@ related:
   - "[[Fluss-Tiering分层架构]]"
 
 ---
+confidence: 0.83
+confidence_rationale: "类型=analysis; 来源×1; 21天前更新"
+
 
 # Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化
 

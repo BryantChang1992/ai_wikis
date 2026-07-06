@@ -17,6 +17,8 @@ related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-RPC与网络]]"
 
+confidence: 0.78
+confidence_rationale: "类型=analysis; 更新于21天前"
 ---
 
 # Fluss 分布式协调层分析

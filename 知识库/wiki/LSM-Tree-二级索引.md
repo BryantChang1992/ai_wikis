@@ -21,6 +21,9 @@ related:
 diagram: "diagram/lsm-tree-architecture.svg"
 
 ---
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 22天前更新"
+
 
 # LSM-Tree 二级索引 (Secondary Indexing)
 

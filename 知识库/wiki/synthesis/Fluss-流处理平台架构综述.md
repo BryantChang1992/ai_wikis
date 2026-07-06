@@ -32,8 +32,14 @@ related:
   - "[[Fluss-Kafka兼容层]]"
   - "[[Fluss-KV存储-RocksDB]]"
   - "[[Fluss-Arrow列式记录格式]]"
+  - "[[Fluss-EKS-生产部署实践-Fresha]]"
+  - "[[Fluss-PR-3420-Watermark-to-Paimon]]"
+  - "[[Fluss-客户端写入流程源码分析]]"
   - "[[LSM-Tree]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
+
 
 
 # Fluss 流处理平台架构综述

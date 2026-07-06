@@ -22,6 +22,9 @@ related:
 diagram: "diagram/raas-replay-tail-latency.svg"
 
 ---
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 22天前更新"
+
 
 # 存储计算分离数据库的 Tail Latency 问题
 

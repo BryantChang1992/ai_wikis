@@ -15,6 +15,8 @@ status: draft
 related:
   - "[[Agent-Harness-Engineering-Survey综述]]"
   - "[[Agent-Cost-Control-Gateway成本控制]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
 ---
 
 # Agent Harness: Observability & Operations (O)
@@ -111,15 +113,15 @@ Observability 从 Lifecycle Hooks 独立为第一级层的理由：
 ### 4.1 Anthropic 的 Managed Agents 架构（2026b）
 
 ```
-┌─────────────────────────────────────┐
-│  Brain（Harness + LLM）              │ ← 独立恢复：wake(sessionId)
-├─────────────────────────────────────┤
-│  Hands（Sandboxes + Tools）           │ ← 独立恢复：sandbox 失败 → 新建
-├─────────────────────────────────────┤
-│  Session（持久事件日志）              │ ← 独立恢复：reboot 从最后事件继续
-├─────────────────────────────────────┤
-│  Credentials Vault（凭证外置）        │ ← 凭证永不进入沙箱
-└─────────────────────────────────────┘
+-------------------------------------
+|  Brain（Harness + LLM）              | ← 独立恢复：wake(sessionId)
+---------------------------------------
+|  Hands（Sandboxes + Tools）           | ← 独立恢复：sandbox 失败 → 新建
+---------------------------------------
+|  Session（持久事件日志）              | ← 独立恢复：reboot 从最后事件继续
+---------------------------------------
+|  Credentials Vault（凭证外置）        | ← 凭证永不进入沙箱
+-------------------------------------
 ```
 
 核心原则：**将组件从"宠物"（不可替代、手工维护）变为"牲畜"（可互换、自动重新供给）**。

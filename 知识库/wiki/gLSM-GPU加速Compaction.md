@@ -1,8 +1,7 @@
 ---
 type: concept
 title: "gLSM — GPU 加速 LSM-Tree Compaction"
-sources:
-  - "sources/papers/gLSM/ToS2024.pdf"
+sources: []
 tags:
   - 存储引擎
   - LSM-Tree
@@ -19,6 +18,9 @@ related:
   - "[[LSM-Tree-硬件适配]]"
   - "[[LSM-tree-KV-Survey-综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 4天前更新"
+
 
 # gLSM — GPU 加速 LSM-Tree Compaction
 
@@ -34,10 +36,10 @@ LSM-tree 的写路径将数据追加写入内存 MemTable，然后按层级 flus
 
 ```
 Compaction 过程:
-  SSTable_1 (sorted)  ─┐
-  SSTable_2 (sorted)  ─┼──► Multi-way Merge Sort ──► SSTable_new (sorted)
-  ...                  ─┤
-  SSTable_k (sorted)  ─┘
+  SSTable_1 (sorted)  -
+  SSTable_2 (sorted)  ----► Multi-way Merge Sort --► SSTable_new (sorted)
+  ...                  --
+  SSTable_k (sorted)  -
 ```
 
 **痛点**：
@@ -87,9 +89,9 @@ gLSM GPU Merge:
 **gLSM 流水线设计**：
 
 ```
-阶段 1:  CPU 读 SSTable ──► 缓冲 ──► PCIe DMA 上传
+阶段 1:  CPU 读 SSTable --► 缓冲 --► PCIe DMA 上传
 阶段 2:                         GPU 归并排序 (并行)
-阶段 3:  GPU 结果 ◄── PCIe DMA 下传 ◄── 写磁盘
+阶段 3:  GPU 结果 ◄-- PCIe DMA 下传 ◄-- 写磁盘
          ↑_____________ 流水线并行 _____________↑
 ```
 
@@ -139,27 +141,27 @@ offset 数组方便 GPU threads 通过 `thread_id` 直接索引到具体 kv pair
 ### 整体架构
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                    gLSM Engine                        │
-│                                                       │
-│  ┌──────────┐   ┌──────────┐   ┌───────────────┐     │
-│  │ MemTable │──►│ WAL/Log  │──►│ Compaction    │     │
-│  │ (CPU)    │   │ (CPU)    │   │ Scheduler     │     │
-│  └──────────┘   └──────────┘   └───────┬───────┘     │
-│                                         │             │
-│                          ┌──────────────▼──────────┐  │
-│                          │   Compaction Router     │  │
-│                          │   ┌──────┐  ┌──────┐    │  │
-│                          │   │ CPU  │  │ GPU  │    │  │
-│                          │   │ Path │  │ Path │    │  │
-│                          │   └──────┘  └──┬───┘    │  │
-│                          └────────────────┼────────┘  │
-│                                           │           │
-│                          ┌────────────────▼────────┐  │
-│                          │    GPU Pipeline          │  │
-│                          │  Upload → Merge → Down   │  │
-│                          └─────────────────────────┘  │
-└─────────────────────────────────────────────────────┘
+-----------------------------------------------------
+|                    gLSM Engine                        |
+|                                                       |
+|  ----------   ----------   ---------------     |
+|  | MemTable |--►| WAL/Log  |--►| Compaction    |     |
+|  | (CPU)    |   | (CPU)    |   | Scheduler     |     |
+|  ----------   ----------   ---------------     |
+|                                         |             |
+|                          --------------▼----------  |
+|                          |   Compaction Router     |  |
+|                          |   ------  ------    |  |
+|                          |   | CPU  |  | GPU  |    |  |
+|                          |   | Path |  | Path |    |  |
+|                          |   ------  ------    |  |
+|                          -------------------------  |
+|                                           |           |
+|                          ----------------▼--------  |
+|                          |    GPU Pipeline          |  |
+|                          |  Upload → Merge → Down   |  |
+|                          -------------------------  |
+-----------------------------------------------------
 ```
 
 ### Compaction Router 决策逻辑

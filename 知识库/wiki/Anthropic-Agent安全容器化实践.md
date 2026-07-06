@@ -19,6 +19,9 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.83
+confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
+
 
 # Anthropic Agent 安全容器化实践
 

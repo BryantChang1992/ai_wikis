@@ -35,6 +35,9 @@ related:
   - "[[Agentic-Memory-语义缓存]]"
   - "[[Agent-First-Data-Systems]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
+
 
 # AI Infra — Agent 基础设施体系综述
 
@@ -252,17 +255,17 @@ Harness 层和 Loop 层的关系是正交互补：
 ### 6.1 依赖关系
 
 ```
-状态层 (Memory) ←── 无强依赖，但记忆质量 → Harness 效率
-     │
+状态层 (Memory) ←-- 无强依赖，但记忆质量 → Harness 效率
+     |
      ▼
-Harness 层 (Middleware + Loop + Fault Tolerance) ←── 核心执行引擎
-     │
-     ├──→ 控制面 (Cost + Neutrality) —— Harness 运行需要成本控制
-     │
-     └──→ 安全层 (Sandbox + Anthropic + Parallax) —— Harness 执行工具需要安全边界
-     │
+Harness 层 (Middleware + Loop + Fault Tolerance) ←-- 核心执行引擎
+     |
+     ---→ 控制面 (Cost + Neutrality) —— Harness 运行需要成本控制
+     |
+     --→ 安全层 (Sandbox + Anthropic + Parallax) —— Harness 执行工具需要安全边界
+     |
      ▼
-进化层 (Hill Climbing) ←── L1-L3 运行产生 trace → 自我优化
+进化层 (Hill Climbing) ←-- L1-L3 运行产生 trace → 自我优化
 ```
 
 ### 6.2 各层不绑定的独立性

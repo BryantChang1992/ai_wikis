@@ -2,7 +2,7 @@
 type: concept
 title: "InfluxDB 写入与查询路径"
 sources:
-  - "技术文章/InfluxDB调研/03-写入与查询路径.md"
+  - "../技术文章/InfluxDB调研/03-写入与查询路径.md"
 tags:
   - InfluxDB
   - 写入路径
@@ -22,6 +22,9 @@ related:
   - "[[事务模型深度调研]]"
   - "[[LSM-Tree]]"
 ---
+confidence: 0.88
+confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
+
 
 # InfluxDB 写入与查询路径
 

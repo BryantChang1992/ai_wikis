@@ -15,6 +15,8 @@ related:
   - "[[Fluss-RPC与网络]]"
   - "[[Fluss-整体架构]]"
 
+confidence: 0.75
+confidence_rationale: "类型=concept; 更新于21天前"
 ---
 
 # Fluss Kafka 兼容层

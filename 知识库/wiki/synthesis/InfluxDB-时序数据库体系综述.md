@@ -25,6 +25,8 @@ related:
   - "[[LSM-Tree-存储引擎体系综述]]"
   - "[[Apache-Doris-OLAP-数据库体系综述]]"
   - "[[事务模型深度调研]]"
+confidence: 0.8
+confidence_rationale: "类型=synthesis; 更新于22天前"
 ---
 
 # InfluxDB 时序数据库体系综述

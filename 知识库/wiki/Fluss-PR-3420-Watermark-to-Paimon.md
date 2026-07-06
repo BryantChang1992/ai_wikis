@@ -20,6 +20,9 @@ related:
   - "[[Fluss-分布式协调]]"
   - "[[流处理乱序数据管理]]"
 ---
+confidence: 0.83
+confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
+
 
 # Fluss PR #3420 — Watermark → Paimon Snapshot
 
@@ -41,13 +44,13 @@ PR #3420 让 Fluss 在 Lake Tiering 时将 watermark 报告给 Paimon snapshot�
 
 ```
 PaimonLakeWriter
-  └── 写入期间提取/聚合每个 writer 的最大 watermark
+  -- 写入期间提取/聚合每个 writer 的最大 watermark
         ↓
 PaimonLakeCommitter
-  └── 聚合 watermark → 传入 committable 创建
+  -- 聚合 watermark → 传入 committable 创建
         ↓
 PaimonWriteResult (携带 watermark)
-  └── PaimonWriteResultSerializer (v0 → v1 序列化升级)
+  -- PaimonWriteResultSerializer (v0 → v1 序列化升级)
 ```
 
 ### Flink Connector 适配（fluss-flink-common）
@@ -86,16 +89,16 @@ Watermark 在流处理中用于处理乱序数据——它是"我们不会再看
 ## 架构意义
 
 ```
-┌──────────┐    watermark(rows)    ┌──────────────┐
-│  Fluss   │ ────────────────────→ │ Paimon       │
-│ Tablet   │                       │ Snapshot     │
-│ Server   │                       │ (带 watermark)│
-└──────────┘                       └──────┬───────┘
-                                          │
-                                    ┌─────▼──────┐
-                                    │ 下游批作业  │
-                                    │ "读到 T 为止"│
-                                    └────────────┘
+----------    watermark(rows)    --------------
+|  Fluss   | --------------------→ | Paimon       |
+| Tablet   |                       | Snapshot     |
+| Server   |                       | (带 watermark)|
+----------                       --------------
+                                          |
+                                    -----▼------
+                                    | 下游批作业  |
+                                    | "读到 T 为止"|
+                                    ------------
 ```
 
 这是 **Fluss 从"流存储"到"批流一体 Lakehouse 基础架构"演进的关键一步**。Watermark 是流和批之间的时间契约——一旦这个契约在 Paimon snapshot 中可查询，批处理就可以按时间确定性消费流数据。

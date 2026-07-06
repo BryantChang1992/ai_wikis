@@ -15,6 +15,8 @@ status: stable
 related:
   - "[[Raft-共识算法协议核心]]"
   - "[[LSM-Tree-合并优化]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
 ---
 
 # Raft 日志压缩

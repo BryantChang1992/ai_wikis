@@ -11,11 +11,13 @@ tags:
   - hotness-awareness
   - elastic-resource
 status: draft
+created: 2026-07-03
 related:
-  - LSM-Tree
-  - LSM-Tree-自动调参
-  - LSM-tree-KV-Survey-综述
-  - Monkey-BF
+  - "[[LSM-Tree]]"
+  - "[[LSM-Tree-自动调参]]"
+  - "[[LSM-tree-KV-Survey-综述]]"
+confidence: 0.75
+confidence_rationale: "类型=concept"
 ---
 
 ## 一句话摘要

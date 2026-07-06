@@ -18,6 +18,8 @@ sources:
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
 ---
 
 # CockroachDB Leader-Lease — 可扩展多组租约方案

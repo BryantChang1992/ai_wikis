@@ -19,6 +19,8 @@ related:
   - "[[存储计算分离数据库的-Tail-Latency]]"
   - "[[RaaS-Replay-as-a-Service]]"
   - "[[事务模型深度调研]]"
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
 ---
 
 # Log-as-the-Database 模式

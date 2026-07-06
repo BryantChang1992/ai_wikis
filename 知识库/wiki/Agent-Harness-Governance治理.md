@@ -19,6 +19,9 @@ related:
   - "[[Custom-Agent-Harness-Middleware架构]]"
   - "[[Anthropic-Agent安全容器化实践]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 16天前更新"
+
 
 # Agent Harness: Governance (G)
 

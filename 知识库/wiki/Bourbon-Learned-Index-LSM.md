@@ -22,6 +22,9 @@ related:
   - "[[LSM-tree-KV-Survey-综述]]"
   - "[[LSM-Tree-合并优化]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 4天前更新"
+
 
 # Bourbon: LSM-Tree 学习索引
 

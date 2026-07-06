@@ -20,6 +20,9 @@ related:
   - "[[Raft-共识算法协议核心]]"
   - "[[Raft-集群成员变更]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
+
 
 # Paxos Epochs Revised
 

@@ -2,8 +2,8 @@
 type: concept
 title: "Doris 数据模型：Duplicate / Aggregate / Unique"
 sources:
-  - "技术文章/Doris调研/01-概述与核心概念.md"
-  - "技术文章/Doris调研/02-存储引擎.md"
+  - "../技术文章/Doris调研/01-概述与核心概念.md"
+  - "../技术文章/Doris调研/02-存储引擎.md"
 tags:
   - 数据库
   - OLAP
@@ -23,6 +23,9 @@ related:
 diagram: "diagram/doris-architecture.svg"
 
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 22天前更新"
+
 
 # Doris 数据模型：Duplicate / Aggregate / Unique
 

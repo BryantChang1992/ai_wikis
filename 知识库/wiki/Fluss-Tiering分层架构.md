@@ -19,6 +19,9 @@ related:
   - "[[Fluss-KV存储-RocksDB]]"
 
 ---
+confidence: 0.75
+confidence_rationale: "类型=concept; 来源×0; 21天前更新"
+
 
 # Fluss Tiering 分层架构
 

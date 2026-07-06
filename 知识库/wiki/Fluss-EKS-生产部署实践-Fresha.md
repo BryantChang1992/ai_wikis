@@ -20,6 +20,9 @@ related:
   - "[[Fluss-分布式协调]]"
   - "[[流处理弹性与重配置]]"
 ---
+confidence: 0.73
+confidence_rationale: "类型=lesson; 来源×1; 17天前更新"
+
 
 # Fluss EKS 生产部署实践 — Fresha
 
@@ -33,9 +36,9 @@ Fresha 团队将 Fluss 定位为：
 
 ```
 数据流入 → Tablet Server (按 bucket 分片)
-             ├── 日志段 → Apache Arrow IPC 列式存储（端到端，wire → disk）
-             ├── Primary Key Table → RocksDB 存储最新值 + CDC log
-             └── 可选 tier → 对象存储 (Iceberg/Paimon)
+             --- 日志段 → Apache Arrow IPC 列式存储（端到端，wire → disk）
+             --- Primary Key Table → RocksDB 存储最新值 + CDC log
+             -- 可选 tier → 对象存储 (Iceberg/Paimon)
 ```
 
 - 每个表按 bucket 分片，分布到 tablet servers 并复制（含主备本）

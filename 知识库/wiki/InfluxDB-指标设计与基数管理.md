@@ -2,7 +2,7 @@
 type: concept
 title: "InfluxDB 指标设计与基数管理"
 sources:
-  - "技术文章/InfluxDB调研/04-指标设计最佳实践.md"
+  - "../技术文章/InfluxDB调研/04-指标设计最佳实践.md"
 tags:
   - InfluxDB
   - 指标设计
@@ -20,6 +20,9 @@ related:
 diagram: "diagram/influxdb-architecture.svg"
 
 ---
+confidence: 0.88
+confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
+
 
 # InfluxDB 指标设计与基数管理
 

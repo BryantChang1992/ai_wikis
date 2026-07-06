@@ -2,7 +2,7 @@
 type: concept
 title: "Doris MPP 向量化查询引擎"
 sources:
-  - "技术文章/Doris调研/03-查询流程.md"
+  - "../技术文章/Doris调研/03-查询流程.md"
 tags:
   - 数据库
   - OLAP
@@ -22,6 +22,9 @@ related:
 diagram: "diagram/doris-architecture.svg"
 
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 22天前更新"
+
 
 # Doris MPP 向量化查询引擎
 

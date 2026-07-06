@@ -25,6 +25,9 @@ related:
   - "[[Doris-Segment-v2-存储格式]]"
   - "[[事务模型深度调研]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=synthesis; 来源×0; 21天前更新"
+
 
 # LSM-Tree 存储引擎体系综述
 

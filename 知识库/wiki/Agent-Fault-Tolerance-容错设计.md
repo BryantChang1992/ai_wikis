@@ -20,6 +20,9 @@ related:
   - "[[流处理容错模型]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 17天前更新"
+
 
 # Agent Fault Tolerance — 容错设计
 

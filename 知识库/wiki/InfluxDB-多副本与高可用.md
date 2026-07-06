@@ -2,7 +2,7 @@
 type: concept
 title: "InfluxDB 多副本与高可用"
 sources:
-  - "技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
+  - "../技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
 tags:
   - InfluxDB
   - 高可用
@@ -22,6 +22,9 @@ related:
 diagram: "diagram/influxdb-architecture.svg"
 
 ---
+confidence: 0.88
+confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
+
 
 # InfluxDB 多副本与高可用
 

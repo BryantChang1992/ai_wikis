@@ -18,6 +18,8 @@ related:
   - "[[流处理乱序数据管理]]"
   - "[[流处理状态管理]]"
   - "[[Stream-Processing-System-Generations]]"
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×2; status=stable; 更新于21天前"
 ---
 
 # Dataflow 模型

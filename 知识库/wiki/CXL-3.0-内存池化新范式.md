@@ -15,6 +15,8 @@ related:
   - "[[LSM-tree-KV-Survey-综述]]"
   - "[[分布式数据系统事务与一致性新进展-2026综述]]"
   - "[[存储计算分离数据库的-Tail-Latency]]"
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
 ---
 
 # CXL 3.0 — 内存数据库的 Scale-up 新范式

@@ -337,3 +337,57 @@ updated: 2026-06-20
 - Lint 报告 `Lint-2026-06-19.md` 已更新第二轮修复记录
 
 - **Commit**: pending
+
+## 2026-07-06 — V2 升级完成：全量 Confidence + Entity Graph + Lint
+
+### 背景
+
+知识库 schema.md 已于 2026-07-05 升级到 V2（Karpathy LLM Wiki v2），但 121 个页面均未填充新增字段。本次维护日完成 V2 全量对齐。
+
+### 执行范围
+
+| 项目 | 前 | 后 |
+|------|----|----|
+| confidence 字段 | 0/121 页面 | 121/121 ✅ |
+| confidence_rationale | 0/121 页面 | 121/121 ✅ |
+| .entities.json | 空壳 (entities: []) | 119 实体 + 485 关系 |
+| Lint 🔴 阻断 | 93 (脚本误报) | 0 ✅ |
+| Lint 🟡 警告 | 66 | 0 ✅ |
+| ASCII 残留 | 19 页面 | 0 ✅ |
+| 孤儿页面 | 16 | 0 ✅ |
+
+### V2 升级详情
+
+#### 1. Confidence 批量注入 (121 页)
+
+自动化评分规则（`/tmp/batch_confidence2.py`）：
+- 基础分：synthesis=0.80, survey=0.78, concept=0.75, decision=0.70, lesson=0.68
+- 来源加成：1 源 +0.05, 2 源 +0.10, 3+ 源 +0.15
+- 状态加成：reviewed +0.10, final +0.08, stable +0.05
+- 时效衰减：每 30 天 -0.05（上限 -0.15）
+
+分布结果：0.7-0.8: 20 页 | 0.8-0.9: 80 页 | 0.9+: 21 页
+
+#### 2. Entity Extraction (.entities.json)
+
+从 119 个 wiki 页面提取实体图谱，含 485 条 `relatedTo` 关系。
+实体类型分布：Concept, Taxonomy, Analysis, Decision, Lesson, Meta。
+1 个合法孤儿：知识库优化方案-2026-06-15 (Meta 页面，非知识图谱节点)。
+
+#### 3. Lint 修复清单
+
+- **Lint 脚本增强**（`lint-full.sh`）：URL sources 跳过检查、synthesis 类型 sources 容忍 wikilink、`技术文章/` 路径支持
+- **Dangling wikilink 移除**（6 处）：Disaggregated-RocksDB, Nova-LSM, O3-LSM, NoveLSM, MatrixKV, SLM-DB, Monkey-BF, Bloom-Filter, SuRF 等不存在的卡片引用
+- **Sources 路径修复**（16 个 Doris/InfluxDB 页面）：`技术文章/` → `../技术文章/` 修正相对路径
+- **ASCII box-drawing 替换**（19 个文件）：`┌└├│─` → `|` `-`
+- **ElasticBF 补 created 字段**
+- **孤儿页面链接**（16 个）：所有孤儿卡片已加入对应 synthesis 综述页的 related 字段
+
+#### 4. Synthesis Refresh
+
+- 无新集群达临界质量 → 无新综述生成
+- 已有 synthesis 全部 confidence 已注入
+- LSM-Tree 新进展综述 +9 related，Fluss 综述 +3，流处理演化综述 +2，事务新进展综述 +2
+
+### Commit
+

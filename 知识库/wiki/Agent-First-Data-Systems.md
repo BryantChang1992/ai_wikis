@@ -17,6 +17,8 @@ created: 2026-06-15
 updated: 2026-06-15
 diagram: "diagram/agent-first-data-systems.svg"
 
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
 ---
 
 # Agent-First Data Systems — Agent 优先的数据系统架构

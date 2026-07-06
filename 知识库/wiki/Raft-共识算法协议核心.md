@@ -19,6 +19,9 @@ related:
   - "[[CockroachDB-Leader-Lease-整体设计]]"
   - "[[分布式数据系统一致性体系]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
+
 
 # Raft 共识算法协议核心
 
@@ -104,7 +107,7 @@ Raft 采用**强 Leader 模型**：所有日志条目**只从 Leader 流向 Foll
 Index:   1     2     3     4     5     6     7
 Term:    1     1     2     2     3     3     3
 Cmd:   [SET] [ADD] [DEL] [SET] [SET] [ADD] [SET]
-       ──────────────────┬─────────────────────
+       ----------------------------------------
                     committed     uncommitted
 ```
 

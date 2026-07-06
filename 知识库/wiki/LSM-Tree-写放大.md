@@ -18,6 +18,8 @@ related:
   - "[[LSM-Tree]]"
   - "[[LSM-Tree-合并优化]]"
   - "[[LSM-Tree-RUM猜想]]"
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
 ---
 
 # LSM-Tree 写放大 (Write Amplification)

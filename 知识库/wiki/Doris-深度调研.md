@@ -2,12 +2,12 @@
 type: survey
 title: "Apache Doris 实时分析数据库深度调研"
 sources:
-  - "技术文章/Doris调研.md"
-  - "技术文章/Doris调研/01-概述与核心概念.md"
-  - "技术文章/Doris调研/02-存储引擎.md"
-  - "技术文章/Doris调研/03-查询流程.md"
-  - "技术文章/Doris调研/04-架构演进.md"
-  - "技术文章/Doris调研/05-元数据存储与一致性复制.md"
+  - "../技术文章/Doris调研.md"
+  - "../技术文章/Doris调研/01-概述与核心概念.md"
+  - "../技术文章/Doris调研/02-存储引擎.md"
+  - "../技术文章/Doris调研/03-查询流程.md"
+  - "../技术文章/Doris调研/04-架构演进.md"
+  - "../技术文章/Doris调研/05-元数据存储与一致性复制.md"
 tags:
   - 数据库
   - OLAP
@@ -35,6 +35,9 @@ related:
 diagram: "diagram/doris-architecture-evolution.svg"
 
 ---
+confidence: 0.95
+confidence_rationale: "类型=survey; 来源×6; status=final; 22天前更新"
+
 
 # Apache Doris 实时分析数据库深度调研
 

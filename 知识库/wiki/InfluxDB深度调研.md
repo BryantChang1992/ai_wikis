@@ -2,12 +2,12 @@
 type: survey
 title: "InfluxDB 深度调研：从 TSM 到列存引擎"
 sources:
-  - "技术文章/InfluxDB调研/01-概述与核心概念.md"
-  - "技术文章/InfluxDB调研/02-存储引擎.md"
-  - "技术文章/InfluxDB调研/03-写入与查询路径.md"
-  - "技术文章/InfluxDB调研/04-指标设计最佳实践.md"
-  - "技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
-  - "技术文章/InfluxDB调研.md"
+  - "../技术文章/InfluxDB调研/01-概述与核心概念.md"
+  - "../技术文章/InfluxDB调研/02-存储引擎.md"
+  - "../技术文章/InfluxDB调研/03-写入与查询路径.md"
+  - "../技术文章/InfluxDB调研/04-指标设计最佳实践.md"
+  - "../技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
+  - "../技术文章/InfluxDB调研.md"
 tags:
   - InfluxDB
   - 时序数据库
@@ -33,6 +33,9 @@ related:
 diagram: "diagram/influxdb-architecture.svg"
 
 ---
+confidence: 0.95
+confidence_rationale: "类型=survey; 来源×6; status=final; 22天前更新"
+
 
 # InfluxDB 深度调研：从 TSM 到列存引擎
 

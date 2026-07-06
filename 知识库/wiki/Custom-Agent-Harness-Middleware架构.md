@@ -21,6 +21,9 @@ related:
   - "[[Agent-Sandbox-安全沙箱选型]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 17天前更新"
+
 
 # Custom Agent Harness — Middleware 架构
 
@@ -30,7 +33,7 @@ LangChain 的 `create_agent` 设计理念：**`agent = model + harness`**。Harn
 
 ```
 startup → [before_model → model_call → after_model → before_tool → tool_call → after_tool] × N → teardown
-               └────────────────── Middleware hook points ───────────────────────┘
+               ------------------ Middleware hook points -----------------------
 ```
 
 `create_agent` 是最小化核心 Loop，所有逻辑通过 middleware hook 注入。

@@ -18,6 +18,8 @@ created: 2026-06-16
 updated: 2026-06-16
 sources:
   - "sources/papers/Raft-Dissertation/精读分析.md"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
 ---
 
 # Raft 客户端交互 — 线性一致性与请求路由

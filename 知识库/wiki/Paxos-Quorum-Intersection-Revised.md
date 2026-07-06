@@ -20,6 +20,9 @@ related:
   - "[[Paxos-Epochs-Revised]]"
   - "[[分布式数据系统一致性体系]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
+
 
 # Paxos Quorum Intersection Revised
 

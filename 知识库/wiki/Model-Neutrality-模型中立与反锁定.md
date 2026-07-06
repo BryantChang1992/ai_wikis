@@ -19,6 +19,9 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 17天前更新"
+
 
 # Model Neutrality — 模型中立与反锁定
 

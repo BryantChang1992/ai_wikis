@@ -25,6 +25,9 @@ related:
   - "[[Loop-Engineering-多层Agent循环架构]]"
   - "[[Model-Neutrality-模型中立与反锁定]]"
 ---
+confidence: 0.88
+confidence_rationale: "类型=survey; 来源×2; 16天前更新"
+
 
 # Agent Harness Engineering 综述
 

@@ -15,6 +15,8 @@ status: draft
 related:
   - "[[Hermes-Agent-自进化Agent框架]]"
   - "[[Agent-Harness-Execution-Environment执行环境]]"
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
 ---
 
 # Qwen 3.6 — 参数效率革命

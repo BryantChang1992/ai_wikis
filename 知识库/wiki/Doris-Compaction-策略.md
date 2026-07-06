@@ -2,7 +2,7 @@
 type: concept
 title: "Doris Compaction 策略"
 sources:
-  - "技术文章/Doris调研/02-存储引擎.md"
+  - "../技术文章/Doris调研/02-存储引擎.md"
 tags:
   - 数据库
   - OLAP
@@ -24,6 +24,9 @@ related:
 diagram: "diagram/doris-architecture.svg"
 
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 22天前更新"
+
 
 # Doris Compaction 策略
 

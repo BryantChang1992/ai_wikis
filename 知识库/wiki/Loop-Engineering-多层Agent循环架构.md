@@ -19,6 +19,9 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 17天前更新"
+
 
 # Loop Engineering — 多层 Agent 循环架构
 
@@ -37,17 +40,17 @@ LangChain 提出 Agent 不是模型 + tool loop 这么简单，而是**多层循
 
 ```
 L4 (Hill Climbing)
-  │ 分析 L1-L3 的 trace，产出优化建议
-  │ 返回值箭头穿透 L3 → 修改 L1-L2 的 prompt/tool 配置
+  | 分析 L1-L3 的 trace，产出优化建议
+  | 返回值箭头穿透 L3 → 修改 L1-L2 的 prompt/tool 配置
   ▼
 L3 (Event-Driven)
-  │ cron/webhook/消息 → 触发 L2
+  | cron/webhook/消息 → 触发 L2
   ▼
 L2 (Verification)
-  │ 校验 L1 的输出 → 失败 → 反馈给 L1 → L1 重试
+  | 校验 L1 的输出 → 失败 → 反馈给 L1 → L1 重试
   ▼
 L1 (Agent Loop)
-  │ 模型 ↔ 工具循环 → 产出
+  | 模型 ↔ 工具循环 → 产出
 ```
 
 **关键递进**：L1 自动化工作 / L2 保证质量 / L3 规模化 / L4 自我进化。

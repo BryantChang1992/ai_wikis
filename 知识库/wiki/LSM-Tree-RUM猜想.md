@@ -21,6 +21,9 @@ related:
   - "[[LSM-Tree-自动调参]]"
   - "[[LSM-Tree-硬件适配]]"
 ---
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 22天前更新"
+
 
 # LSM-Tree RUM 猜想 (RUM Conjecture)
 

@@ -19,6 +19,9 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.83
+confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
+
 
 # Parallax — Agent 安全架构
 
@@ -79,9 +82,9 @@ Parallax 的认知-执行分离可以通过 Harness Middleware 实现：
 Agent Core (推理系统)
      ↓ 产出 intent
 SecurityMiddleware (Parallax 验证层)
-     ├── RuleEngineMiddleware   (高确定性)
-     ├── ClassifierMiddleware   (中确定性)
-     └── LLMValidatorMiddleware (低确定性)
+     --- RuleEngineMiddleware   (高确定性)
+     --- ClassifierMiddleware   (中确定性)
+     -- LLMValidatorMiddleware (低确定性)
      ↓ 验证通过
 ToolMiddleware (执行系统)
      ↓

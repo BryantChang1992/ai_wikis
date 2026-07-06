@@ -17,6 +17,8 @@ status: draft
 created: 2026-06-15
 updated: 2026-06-15
 
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
 ---
 
 # Liveness Fabric — 去中心化集群故障检测层

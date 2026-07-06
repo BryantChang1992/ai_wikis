@@ -18,6 +18,9 @@ related:
   - "[[Custom-Agent-Harness-Middleware架构]]"
   - "[[Agent-Fault-Tolerance-容错设计]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 16天前更新"
+
 
 # Agent Harness: Lifecycle & Orchestration (L)
 
@@ -77,9 +80,9 @@ Lifecycle & Orchestration 结合了两个在早期框架中经常分离的关注
 **Anthropic 的 Planner-Generator-Evaluator 三 Agent 架构**（GAN 启发）：
 
 ```
-Planner ──→ Generator ──→ Evaluator
-   ↑            ↑              │
-   └──────── Sprint Contract ───┘
+Planner --→ Generator --→ Evaluator
+   ↑            ↑              |
+   -------- Sprint Contract ---
               (重规划)
 ```
 

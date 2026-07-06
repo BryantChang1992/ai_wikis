@@ -21,6 +21,9 @@ related:
   - "[[LSM-Tree-自动调参]]"
   - "[[Silo-Compaction-迁移协议]]"
 ---
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 4天前更新"
+
 
 ## 一句话摘要
 

@@ -2,7 +2,7 @@
 type: concept
 title: "InfluxDB TSM 存储引擎"
 sources:
-  - "技术文章/InfluxDB调研/02-存储引擎.md"
+  - "../技术文章/InfluxDB调研/02-存储引擎.md"
 tags:
   - InfluxDB
   - 存储引擎
@@ -22,6 +22,9 @@ related:
 diagram: "diagram/influxdb-architecture.svg"
 
 ---
+confidence: 0.88
+confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
+
 
 # InfluxDB TSM 存储引擎
 

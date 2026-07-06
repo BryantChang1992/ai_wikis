@@ -20,6 +20,9 @@ related:
   - "[[Qwen-3.6-模型发布]]"
   - "[[Agent-框架-2026-全景对比]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 3天前更新"
+
 
 # Hermes Agent — 自进化 Agent 框架
 

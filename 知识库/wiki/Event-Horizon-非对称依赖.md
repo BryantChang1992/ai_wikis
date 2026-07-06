@@ -21,6 +21,8 @@ related:
   - "[[事务模型深度调研]]"
 diagram: "diagram/event-horizon-asymmetric-dep.svg"
 
+confidence: 0.9
+confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
 ---
 
 # Event Horizon：非对称依赖与半线性化

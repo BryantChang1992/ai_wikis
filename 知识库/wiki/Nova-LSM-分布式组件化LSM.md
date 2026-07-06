@@ -24,6 +24,9 @@ related:
   - "[[Hailstorm-存算分离LSM数据库]]"
   - "[[LSM-tree-KV-Survey-综述]]"
 ---
+confidence: 0.75
+confidence_rationale: "类型=concept; 来源×0; 4天前更新"
+
 
 ## 一句话摘要
 

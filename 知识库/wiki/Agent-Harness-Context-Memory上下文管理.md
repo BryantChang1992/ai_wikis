@@ -16,6 +16,8 @@ related:
   - "[[Agent-Harness-Engineering-Survey综述]]"
   - "[[Agent-Memory-Survey-2026综述]]"
   - "[[Agentic-Memory-语义缓存]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
 ---
 
 # Agent Harness: Context Management & Memory (C)

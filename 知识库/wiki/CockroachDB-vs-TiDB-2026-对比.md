@@ -17,6 +17,9 @@ related:
   - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
   - "[[事务模型深度调研]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 3天前更新"
+
 
 # CockroachDB vs TiDB 2026 架构对比
 

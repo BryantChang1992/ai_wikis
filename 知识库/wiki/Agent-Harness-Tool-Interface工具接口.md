@@ -16,6 +16,8 @@ status: draft
 related:
   - "[[Agent-Harness-Engineering-Survey综述]]"
   - "[[Agent-Harness-Execution-Environment执行环境]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
 ---
 
 # Agent Harness: Tool Interface & Protocol (T)

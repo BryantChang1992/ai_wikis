@@ -17,6 +17,8 @@ related:
   - "[[Fluss-整体架构]]"
   - "[[Fluss-Kafka兼容层]]"
 
+confidence: 0.78
+confidence_rationale: "类型=analysis; 更新于21天前"
 ---
 
 # Fluss RPC 与网络层分析

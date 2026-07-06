@@ -2,7 +2,7 @@
 type: concept
 title: "Doris 架构演进：Palo → 3.0 存算分离"
 sources:
-  - "技术文章/Doris调研/04-架构演进.md"
+  - "../技术文章/Doris调研/04-架构演进.md"
 tags:
   - 数据库
   - OLAP
@@ -19,6 +19,8 @@ related:
   - "[[Doris-深度调研]]"
   - "[[Doris-MPP-向量化查询引擎]]"
   - "[[Doris-元数据与一致性复制]]"
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于22天前"
 ---
 
 # Doris 架构演进：Palo → 3.0 存算分离

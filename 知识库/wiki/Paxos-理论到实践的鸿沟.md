@@ -16,6 +16,8 @@ related:
   - "[[Raft-共识算法协议核心]]"
   - "[[分布式数据系统一致性体系]]"
   - "[[事务模型深度调研]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
 ---
 
 # Paxos-理论到实践的鸿沟

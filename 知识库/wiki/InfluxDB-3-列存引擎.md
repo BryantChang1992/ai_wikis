@@ -2,8 +2,8 @@
 type: concept
 title: "InfluxDB 3 列存存储引擎"
 sources:
-  - "技术文章/InfluxDB调研/02-存储引擎.md"
-  - "技术文章/InfluxDB调研/03-写入与查询路径.md"
+  - "../技术文章/InfluxDB调研/02-存储引擎.md"
+  - "../技术文章/InfluxDB调研/03-写入与查询路径.md"
 tags:
   - InfluxDB
   - 列存
@@ -24,6 +24,9 @@ related:
 diagram: "diagram/influxdb-architecture.svg"
 
 ---
+confidence: 0.93
+confidence_rationale: "类型=concept; 来源×2; status=final; 22天前更新"
+
 
 # InfluxDB 3 列存存储引擎
 

@@ -32,7 +32,19 @@ related:
   - "[[LSM-Tree-二级索引]]"
   - "[[Fluss-KV存储-RocksDB]]"
   - "[[Fluss-存储引擎]]"
+  - "[[PebblesDB-碎片化LSM-Tree]]"
+  - "[[Pacman-持久内存Compaction]]"
+  - "[[gLSM-GPU加速Compaction]]"
+  - "[[ElasticBF-弹性BloomFilter]]"
+  - "[[Lethe-删除感知LSM引擎]]"
+  - "[[Bourbon-Learned-Index-LSM]]"
+  - "[[REMIX-全局排序索引]]"
+  - "[[Nova-LSM-分布式组件化LSM]]"
+  - "[[CaaS-LSM-Compaction即服务]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
+
 
 
 # LSM-Tree 存储引擎新进展：从单机到分布式 Compaction

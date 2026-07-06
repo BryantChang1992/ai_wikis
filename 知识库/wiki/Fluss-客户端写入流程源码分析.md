@@ -18,6 +18,9 @@ related:
   - "[[Fluss-存储引擎]]"
   - "[[Fluss-分布式协调]]"
 ---
+confidence: 0.83
+confidence_rationale: "类型=analysis; 来源×1; 3天前更新"
+
 
 # Fluss 客户端写入流程 — 源码深度分析
 
@@ -35,12 +38,12 @@ Fluss 客户端写入遵循 Connection（重量级全局单例）→ Table（轻
 
 ```
 Connection（重量级全局单例）
-  │  持有 RPC 客户端、配置、schema registry
-  │  生命周期 = 应用进程
-  ├─ Table（轻量级 per-thread）
-  │   表级别配置/schema 绑定
-  │   生命周期 = 线程
-  └─ AppendWriter（异步 flush）
+  |  持有 RPC 客户端、配置、schema registry
+  |  生命周期 = 应用进程
+  -- Table（轻量级 per-thread）
+  |   表级别配置/schema 绑定
+  |   生命周期 = 线程
+  - AppendWriter（异步 flush）
       本地缓冲 → batch → flush → RpcClient
       生命周期 = 单 bucket
 ```

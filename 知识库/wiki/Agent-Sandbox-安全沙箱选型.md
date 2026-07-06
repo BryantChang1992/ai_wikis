@@ -19,6 +19,9 @@ related:
   - "[[Agent-First-Data-Systems]]"
   - "[[AI-Infra-Agent基础设施体系综述]]"
 ---
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 17天前更新"
+
 
 # Agent Sandbox — 安全沙箱选型
 
@@ -58,12 +61,12 @@ Meta 补充的 **Rule of Two**：三个条件同时满足时，Agent **不能完
 
 ```
 Agent 需要执行代码？
-├── 否 → 无需沙箱
-├── 是 → 是否处理不可信输入？
-│   ├── 否 → Docker 容器（信任输入源）
-│   ├── 是 → Lethal Trifecta 检查
-│       ├── 三项不全满足 → Docker + 网络白名单 + 资源限制
-│       └── 三项全满足 → microVM（Firecracker/gVisor）+ human-in-the-loop
+--- 否 → 无需沙箱
+--- 是 → 是否处理不可信输入？
+|   --- 否 → Docker 容器（信任输入源）
+|   --- 是 → Lethal Trifecta 检查
+|       --- 三项不全满足 → Docker + 网络白名单 + 资源限制
+|       -- 三项全满足 → microVM（Firecracker/gVisor）+ human-in-the-loop
 ```
 
 ## 与相关领域交叉

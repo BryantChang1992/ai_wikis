@@ -17,6 +17,8 @@ related:
   - "[[流处理容错模型]]"
   - "[[流处理状态管理]]"
   - "[[Dataflow-Model]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
 ---
 
 # Chandy-Lamport 分布式快照算法

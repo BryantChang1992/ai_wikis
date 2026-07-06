@@ -16,6 +16,8 @@ related:
   - "[[Agent-Harness-Engineering-Survey综述]]"
   - "[[Agent-Sandbox-安全沙箱选型]]"
   - "[[Anthropic-Agent安全容器化实践]]"
+confidence: 0.85
+confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
 ---
 
 # Agent Harness: Execution Environment & Sandbox (E)

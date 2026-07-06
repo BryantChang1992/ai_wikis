@@ -18,6 +18,9 @@ related:
   - "[[Fluss-客户端与计算集成]]"
 
 ---
+confidence: 0.75
+confidence_rationale: "类型=concept; 来源×0; 21天前更新"
+
 
 # Fluss Arrow 列式记录格式
 

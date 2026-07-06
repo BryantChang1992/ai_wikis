@@ -20,6 +20,9 @@ related:
   - "[[Fluss-客户端与计算集成]]"
   - "[[Fluss-Lake层与湖仓融合]]"
 ---
+confidence: 0.78
+confidence_rationale: "类型=analysis; 来源×0; 21天前更新"
+
 
 # Fluss 整体架构与 Kafka 2.7.2 对照
 

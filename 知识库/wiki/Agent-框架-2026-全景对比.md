@@ -15,6 +15,8 @@ related:
   - "[[Agent-Harness-Engineering-Survey综述]]"
   - "[[Hermes-Agent-自进化Agent框架]]"
   - "[[Custom-Agent-Harness-Middleware架构]]"
+confidence: 0.8
+confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
 ---
 
 # Agent 框架 2026 全景对比

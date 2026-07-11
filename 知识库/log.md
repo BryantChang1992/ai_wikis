@@ -3,12 +3,30 @@ type: meta
 title: "知识库操作日志"
 tags: ["meta", "log"]
 created: 2026-06-14
-updated: 2026-06-20
+updated: 2026-07-11
 ---
 
 # 知识库操作日志
 
 > 时序记录所有增删改操作。格式：`[日期 时间] 操作者: 操作类型 — 描述`
+
+## 2026-07-11 — Bigtable 论文入库
+
+> CEO 指令：录入 Bigtable (OSDI 2006) 论文到知识库。
+
+- **操作者**：CTO Stark（spawn rd-task Worker 执行）
+- **操作**：
+  1. 论文 PDF 下载：`sources/papers/Bigtable/Bigtable-OSDI-2006.pdf`（221KB）
+  2. 精读分析（580 行）：8 章全覆盖 — 问题动机/数据模型/系统架构/存储引擎/容错与一致性/性能优化/生产经验/影响与后续发展
+  3. Wiki 概念卡片（198 行）：`wiki/Bigtable-分布式结构化存储系统.md`，confidence 0.95，related 10 条 wikilink
+  4. .entities.json 新增 Bigtable 实体（120 实体总数）
+  5. 更新 README.md + sources/README.md + log.md
+- **commit**：（待提交）
+
+### 入库内容概述
+- **Bigtable (OSDI 2006)**：Google PB 级分布式结构化存储系统，SSTable/MemTable/Compaction/Chubby/GFS 五层架构
+- **核心价值**：LSM-Tree 的经典工程实现、NoSQL 运动基石（直接影响了 HBase/Cassandra/LevelDB/RocksDB）
+- **知识图谱链接**：关联 LSM-Tree、LSM-Tree-KV-Survey、共识协议体系、Fluss 整体架构等
 
 ## 2026-07-03 — Week 09 周报入库（补做）
 

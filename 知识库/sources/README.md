@@ -117,6 +117,12 @@ sources/papers/
   - 精读分析.md ✅
   - → wiki: Agent-Harness-Engineering-Survey综述.md + 7 张 ETCLOVG 分层卡片
 
+### 2026-07-11 新增
+- [Bigtable/](sources/papers/Bigtable/) — OSDI 2006，Google，PB 级分布式结构化存储系统（NoSQL 基石）
+  - Bigtable-OSDI-2006.pdf（原文，221KB）
+  - 精读分析.md（CTO 自产）
+  - → wiki: Bigtable-分布式结构化存储系统.md
+
 ### Week 09 入库 — 2026-07-03 🆕
 - [Hermes Agent](web/hermes-agent/) — Nous Research 自进化 Agent 框架 GitHub README 精读
 - [Qwen 3.6](web/qwen-3.6/) — Alibaba Qwen 3.6 模型发布精读分析
@@ -163,7 +169,7 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-03*
+*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-11*
 
 ## 2026-06-16 新增
 

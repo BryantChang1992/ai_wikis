@@ -4455,8 +4455,65 @@
         "file": "synthesis/知识库优化方案-2026-06-15.md"
       },
       "relationships": []
+    },
+    {
+      "id": "bigtable-分布式结构化存储系统",
+      "type": "Concept",
+      "name": "Bigtable — 分布式结构化存储系统",
+      "confidence": 0.95,
+      "attributes": {
+        "description": "concept page: Bigtable 分布式结构化存储系统 (OSDI 2006, Google)",
+        "created": "2026-07-11",
+        "file": "Bigtable-分布式结构化存储系统.md",
+        "tags": [
+          "分布式存储",
+          "NoSQL",
+          "SSTable",
+          "LSM-Tree",
+          "Wide-Column",
+          "Google基础设施"
+        ]
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree",
+          "type": "implements",
+          "confidence": 0.95,
+          "note": "Bigtable 的 MemTable+SSTable 是 LSM-Tree 的经典工程实现"
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "confidence": 0.9,
+          "note": "LSM 家族起源，Bigtable 是 Survey 覆盖的关键先驱"
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "confidence": 0.85,
+          "note": "Compaction 写放大问题最早在 Bigtable 中体现"
+        },
+        {
+          "to": "raft-共识算法协议核心",
+          "type": "relatedTo",
+          "confidence": 0.7,
+          "note": "Bigtable 使用 Chubby (Paxos) 做分布式协调；Raft 是 Paxos 的后续替代"
+        },
+        {
+          "to": "共识协议体系综述",
+          "type": "relatedTo",
+          "confidence": 0.75,
+          "note": "Bigtable 依赖 Chubby/Paxos 做成员发现和故障检测"
+        },
+        {
+          "to": "fluss-整体架构",
+          "type": "relatedTo",
+          "confidence": 0.7,
+          "note": "Fluss 的 SSTable 格式继承自 Bigtable"
+        }
+      ]
     }
   ],
-  "lastUpdated": "2026-07-06",
-  "updatedBy": "CTO Agent (Stark)"
+  "lastUpdated": "2026-07-11",
+  "updatedBy": "CTO-Stark"
 }

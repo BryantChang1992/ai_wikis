@@ -104,6 +104,7 @@ sources/  →  wiki/  →  Schema
 - [[wiki/Dataflow-Model]] — Google Dataflow 批流统一四抽象 + What/Where/When/How 四问
 
 #### 存储引擎
+- [[wiki/Bigtable-分布式结构化存储系统]] — 🆕 Bigtable (OSDI 2006, Google): PB级分布式结构化存储、SSTable/MemTable/Compaction、LSM-Tree 经典工程实现、NoSQL 运动基石
 - [[wiki/LSM-Tree]] — LSM-Tree 总览：定义、历史、架构、Leveling/Tiering、经典优化、代表系统
 - [[wiki/LSM-Tree-写放大]] — 写放大根因、Leveling vs Tiering 对比、Tiering 变体、Merge Skipping、TRIAD
 - [[wiki/LSM-Tree-合并优化]] — VT-tree stitching、LSbM-tree、bLSM 写停顿调度

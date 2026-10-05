@@ -10,21 +10,23 @@ tags:
 - Agent编排
 - 多Agent
 created: 2026-06-20
-updated: 2026-06-20
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
 - '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
 - '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
 - '[[知识库/wiki/Agent-Fault-Tolerance-容错设计]]'
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 16天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Lifecycle-Orchestration编排/
 blog_source: _posts/2026-06-20-knowledge-017695c8a4.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent Harness: Lifecycle & Orchestration (L)
+
+> 来源边界：本页对照综述 2026-05-08 截止的项目快照及所列章节。该文采用文献/公开项目编码，没有统一 benchmark 重跑各系统；引用工作数字为综述的二手转述，未在本次独立复现。产品能力描述不等于当前版本保证。
 
 > ETCLOVG 第四层：Agent 如何跨多轮推理、工具调用、失败恢复和交付物交接来完成任务——从单一循环到完整工程流水线。
 
@@ -49,46 +51,34 @@ Lifecycle & Orchestration 结合了两个在早期框架中经常分离的关注
 | 核心模式 | 观察 → 决策 → 行动 → 反馈，遵循 ReAct 范式（Yao et al., 2023） |
 | 执行模型两种 | **Stateless Replay** vs. **Hybrid（Stateful+Replay）** |
 
-**Stateless vs. Stateful 之争**：
+**Replay 与持久状态**：原文用 replay-based 与 hybrid 描述控制方式，但模型调用的无状态接口不等于整个产品没有会话、文件、检查点或任务状态。比较时应明确恢复的是模型上下文、编排进度还是外部工件，不能把 Codex 简化成“纯无状态”。
 
-| 模型 | 代表系统 | 机制 | 优点 | 缺点 |
-|------|----------|------|------|------|
-| **Stateless Replay** | Codex CLI (OpenAI, 82k ⭐) | 从交互历史重建执行 | 可复制、可审计 | 轨迹长时重建成本高 |
-| **Hybrid** | Claude Code (123k ⭐), OpenCode (159k ⭐), Aider (45k ⭐), Gemini CLI (104k ⭐) | 可重播历史 + 持久化工件 | 连续性 + 审计性 | 一致性和调试挑战 |
-
-**代表系统能力对比**：
-
-| 系统 | GitHub Stars (k) | 主要特点 |
-|------|-----------------|----------|
-| OpenCode | 159 | 开源最大，多模型支持 |
-| Claude Code | 123 | Anthropic 生态，强架构感知 |
-| Gemini CLI | 104 | Google 生态，多模态 |
-| Codex CLI | 82 | OpenAI 生态，纯无状态设计 |
-| Aider | 45 | AI 结对编程，Git 原生集成 |
-| SWE-agent | 19 | 学术代码修复，AID 接口设计 |
+例如进程退出后，可以重放事件构建下一次模型输入，同时从任务表读取已完成节点；外部工具是否重做仍需幂等性或结果对账。这是可恢复性设计，不是特定产品的完整实现描述。
 
 ### 2.2 Level 2: Multi-Agent Orchestration（多 Agent 编排）
 
 **五种编排模式**：
 
-| 模式 | 核心机制 | 代表系统（Stars k） | 何时使用 |
+| 模式 | 核心机制 | 代表系统（论文快照） | 何时使用 |
 |------|----------|---------------------|----------|
-| **Hierarchical** | 高级控制器分配任务，Agent 作为执行者 | AutoGen (58), OpenAI Agents SDK (26), DeerFlow (67), DeepAgents (23) | 任务可清晰分解为子任务 |
-| **Team** | 具名角色的专业化 Agent 协作 | oh-my-claudecode (34) | 需要明确的角色分工（规划者/编码者/审查者） |
-| **Workflow** | Agent/工具组成显式阶段 | Semantic Kernel (28) | 业务流程/流水线式的任务 |
-| **Fan-out** | 多 Agent 并行探索 | Emdash (4) | 需要多样性（代码生成、创意任务） |
-| **Graph Composition** | Agent/工具/状态为节点的交互图 | LangGraph (32), Hive (10) | 复杂的、条件分支多的任务 |
+| **Hierarchical** | 高级控制器分配任务，Agent 作为执行者 | AutoGen, OpenAI Agents SDK, DeerFlow, DeepAgents | 任务可清晰分解为子任务 |
+| **Team** | 具名角色的专业化 Agent 协作 | oh-my-claudecode | 需要明确的角色分工（规划者/编码者/审查者） |
+| **Workflow** | Agent/工具组成显式阶段 | Semantic Kernel | 业务流程/流水线式的任务 |
+| **Fan-out** | 多 Agent 并行探索 | Emdash | 需要多样性（代码生成、创意任务） |
+| **Graph Composition** | Agent/工具/状态为节点的交互图 | LangGraph, Hive | 复杂的、条件分支多的任务 |
 
 **Anthropic 的 Planner-Generator-Evaluator 三 Agent 架构**（GAN 启发）：
 
-```
-Planner --→ Generator --→ Evaluator
-   ↑            ↑              |
-   -------- Sprint Contract ---
-              (重规划)
+```mermaid
+flowchart LR
+ P[Planner：任务与约束] --> G[Generator：生成工件]
+ G --> E[Evaluator：检验结果]
+ E -->|未通过：反馈| G
+ E -->|需调整目标或计划| P
+ E -->|通过| D[交付与记录]
 ```
 
-关键发现：升级到 Opus 4.6 后，**移除** sprint 构造和 context resets，成本 $200 → $125，质量不变——证明 Harness 复杂度和模型能力负相关。
+关键发现：升级到 Opus 4.6 后，**移除** sprint 构造和 context resets，成本 $200 → $125，质量不变——这是综述引用的单个工程案例，说明应重新检验旧脚手架的价值；不能推出复杂度与能力必然负相关。该费用比较未由本次复现。
 
 ### 2.3 Level 3: Full Lifecycle Pipeline（完整生命周期）
 
@@ -138,7 +128,7 @@ Planner --→ Generator --→ Evaluator
 **AgentErrorTaxonomy**（Zhu et al., 2025）的核心发现：
 - **错误传播（Error Propagation）是核心可靠性瓶颈**
 - 失败按模块分解：记忆错误 → 反思错误 → 规划错误 → 行动错误 → 系统错误 → 级联
-- AgentDebug 框架：隔离根因而非治疗表面症状，相对任务成功率提升 26%
+- AgentDebug 框架：隔离根因而非治疗表面症状，其引用实验报告相对任务成功率提升 26%，不是本综述对所有编排框架的提升率
 
 **MAST**（Cemri et al., 2025）：14 种多 Agent 故障模式（κ=0.88），聚类为三类：
 1. 系统设计问题
@@ -158,3 +148,7 @@ Planner --→ Generator --→ Evaluator
 ---
 
 > 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · L 层（Lifecycle & Orchestration）
+
+## 恢复检查例子（工程建议）
+
+“生成报告→上传→通知”在上传后崩溃，不能仅重放模型历史就认为未上传。持久化上传结果、对象标识和幂等键；恢复先查询外部状态，再决定续传或跳过。若通知不可撤销，应在发出前设独立提交边界。详见 [[Agent-Fault-Tolerance-容错设计]]。

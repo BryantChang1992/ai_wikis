@@ -11,126 +11,63 @@ tags:
 - 下采样
 - 反模式
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
 - '[[知识库/wiki/InfluxDB深度调研]]'
 - '[[知识库/wiki/InfluxDB-数据模型]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.88
-confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-指标设计与基数管理/
 blog_source: _posts/2026-06-14-knowledge-386895582f.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/
+diagram_format: mermaid
 ---
 
 # InfluxDB 指标设计与基数管理
 
-## 核心公式
+## 先定义统计口径
 
-```
-Series Cardinality = |tag₁| × |tag₂| × ... × |tagₙ| × |fields|
-```
+一组实际出现的 measurement 与 tag-set 构成时序维度。TSM 内部还按 field key 组织各字段的时间序列；谈“series 数”必须注明使用产品监控指标还是内部存储键口径。维度取值数相乘只是所有组合都出现时的上界，不是实际 distinct 数。
 
-每个 Tag Key 的取值数量相乘，再乘以 Field Key 数量，得到 Series 总数。这是评估 Schema 是否合理的**唯一量化标准**。
+例如 500 台主机总共运行 2,000 个 Pod，而非每台各运行 2,000 个 Pod，不能直接把 host 与 pod 基数相乘成一百万条实际维度。字段数还要另列，避免把字段序列数和 tag-set 数混为一谈。
 
-## Tag vs Field 决策框架
+## Tag 与 Field 取决于查询和引擎
 
-### 决策流程
-
-![[diagram/InfluxDB-指标设计与基数管理-fig1.svg]]
-
-
-
-### Tag 适用场景
-- **低基数额外信息**：host, region, environment, datacenter, service, method, status_code
-- **GROUP BY 维度**
-- **WHERE 过滤条件**
-
-### Field 适用场景
-- **高基数值**：user_id, request_id, trace_id, session_id, ip_address
-- **实际度量值**：cpu_usage, memory_bytes, latency_ms, count, throughput
-- **需要聚合运算的值**：SUM, AVG, MAX, MIN, PERCENTILE
-
-## 五大最佳实践
-
-### P1 — 避免 Measurement 中编码数据
-```
-❌ cpu.server-5.us-west.usage_user
-✅ cpu, host=server-5, region=us-west, field=usage_user
-```
-将维度信息编码到 Measurement 名称中会导致 Measurement 数量爆炸，且无法按 Tag 过滤/聚合。
-
-### P2 — 唯一标识符作为 Field，绝不做 Tag
-```
-❌ user_id, order_id, request_id, trace_id 作为 Tag
-✅ 以上全部作为 Field
-```
-这被称为 "Runaway Cardinality"——每个唯一值创建一个新 Series，直接导致索引爆炸。
-
-### P3 — Bucket/Table 按保留策略分离
-```
-✅ raw_metrics (RP: 7d) → ds_hourly (RP: 90d) → ds_daily (RP: 365d)
-```
-不同精度的数据存放在不同 Bucket，配置不同保留策略。
-
-### P4 — 不同采样率的指标分 Measurement
-```
-cpu (10s precision, measurement=cpu)
-cpu_daily (1d precision, measurement=cpu_daily)
+```mermaid
+flowchart TD
+  A[列出过滤、分组与聚合查询] --> B[明确 TSM 或 InfluxDB 3 产品]
+  B --> C[估算实际维度组合及增长速度]
+  C --> D[设计 Tag、Field、表和保留期]
+  D --> E[以真实数据测试内存、扫描量和延迟]
+  E --> F{满足成本和延迟目标}
+  F -->|是| G[上线并监测基数增长]
+  F -->|否| D
 ```
 
-### P5 — Bucket/Measurement 命名简短
+在 TSM 中，tag 索引使高基数维度的成本尤其值得注意；字段也能过滤，但访问路径不同。InfluxDB 3 的存储设计缓解了旧引擎的一些限制，不能因此推断任意基数没有成本。也不能把“超过十万绝不能做 Tag”作为跨版本规则。唯一标识符放在哪里，应结合检索需求与实测决定。
+
+## 保留期与降采样
+
+用业务问题决定原始数据窗口和聚合粒度；降低采样率会不可逆地丢失瞬时峰值或细粒度分布。均值的均值只有在样本权重一致时才正确，分层汇总通常应同时保留 sum 与 count；分位数不能直接平均。
+
+```mermaid
+flowchart TD
+  R[原始点：保留业务要求的窗口] --> H[小时汇总：sum、count、min、max]
+  H --> D[日汇总：按权重再合并]
+  R --> A[按需归档原始数据]
 ```
-❌ my_application_production_environment_metrics_v2
-✅ app_metrics
-```
-简短命名在百万级 Series 场景下节省显著。
 
-## 常见反模式
+图表示业务生命周期示例，不表示所有版本都使用相同 Task 或 Retention Policy API。实际生产还需处理迟到数据、重算窗口、重复点、时区和 timestamp 精度。
 
-### 💀 反模式 1：Runaway Cardinality
-将 user_id、session_id、ip_address 等唯一值作为 Tag。
-**后果**：内存爆炸 → TSI 索引膨胀 → 写入/查询全链路退化 → OOM Kill
-**修复**：改为 Field；如需按 user 查询，在应用层预聚合或使用 InfluxDB 3。
+关联：[[InfluxDB-数据模型]]、[[InfluxDB-TSM存储引擎]]、[[InfluxDB-3-列存引擎]]。
 
-### 💀 反模式 2：所有维度塞一个 Measurement
-cpu、mem、disk、net 全部写入 sensor_data。
-**后果**：查询必须 filter by _field → 扫描无关数据 → 无法独立配置保留策略
-**修复**：按语义拆分 measurement（cpu、mem、disk、net）。
 
-### 💀 反模式 3：时间戳精度问题
-同一 Tag Set + 同一时间戳写入多个 Point。
-**后果**：后写入覆盖先写入，数据静默丢失。
-**修复**：确保同一 Series 的时间戳唯一。
+## 核验来源
 
-### 💀 反模式 4：无下采样策略
-30 天全精度 raw data，无 Continuous Query 或 Task。
-**后果**：存储成本线性增长，查询扫描大量数据点。
-
-## 下采样策略
-
-![[diagram/InfluxDB-指标设计与基数管理-fig2.svg]]
-
-**关键原则**：
-1. 尽早做下采样，减少高精度存储成本
-2. 下采样维度与查询维度对齐
-3. 聚合函数根据业务需求选择 (mean/max/min/p99)
-
-**实现方式**：
-- v1/v2：Continuous Query (v1) / Task (v2)
-- v3：Embedded VM 或外部 ETL
-
-## 基数计算示例
-
-| 场景 | Tag 组合 | 公式 | Series 数 | 评级 |
-|------|----------|------|-----------|------|
-| 服务器监控 | host(100) × region(3) × env(2) × 4 fields | 100×3×2×4 | 2,400 | ✅ 安全 |
-| K8s Pod 监控 | host(500) × pod(2000) × 10 fields | 500×2000×10 | 10,000,000 | ⚠ 危险 |
-| IoT 设备 | device_id(100K) × sensor(5) × 3 fields | 100K×5×3 | 1,500,000 | ⚠ 危险 |
-| 用户行为 | user_id(1M) × event(10) × 5 fields | 1M×10×5 | 50,000,000 | 💀 爆炸 |
-
----
-
-*参考: "Data Layout and Schema Design Best Practices for InfluxDB" — Anais Dotis-Georgiou*
+- [TSM 存储与索引口径](https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/)
+- [InfluxData 基数说明](https://www.influxdata.com/glossary/cardinality/)

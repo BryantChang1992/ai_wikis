@@ -2,9 +2,8 @@
 type: concept
 title: LSM-Tree 硬件适配 (Hardware Adaptation)
 sources:
-- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 - '[[知识库/sources/papers/LSM-Survey/精读分析]]'
-- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 tags:
 - 存储引擎
 - LSM-Tree
@@ -14,19 +13,19 @@ tags:
 - KV分离
 - WiscKey
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/LSM-Tree-写放大]]'
 - '[[知识库/wiki/LSM-Tree-合并优化]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
-diagram: diagram/lsm-tree-architecture.svg
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-硬件适配/
 blog_source: _posts/2026-06-14-knowledge-d10ec966b9.md
+source_check_scope: 本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # LSM-Tree 硬件适配 (Hardware Adaptation)
@@ -43,10 +42,11 @@ LSM-tree 最初为 HDD 设计（优化顺序写、减少随机 I/O），但现�
 
 **核心思想**：当内存足够大时，在内存中实现多层存储结构，减少磁盘 I/O。
 
-```
-内存架构 (Accordion):
-  Mutable MemTable → Immutable MemTable → ... → Disk Component
-        ↑ 内存内 flush/merge ↑                ↑ 最后才落盘 ↑
+```mermaid
+flowchart LR
+  M[Mutable Memtable] --> I[Immutable内存组件]
+  I --> IM[内存内flush与merge]
+  IM --> Disk[最终磁盘组件]
 ```
 
 | 系统 | 特点 |
@@ -77,13 +77,14 @@ LSM-tree 最初为 HDD 设计（优化顺序写、减少随机 I/O），但现�
 - **LSM-tree** 只存 `key → (offset, size)`
 - **Value Log**：值追加写入独立的 append-only log
 
-```
-传统 LSM-tree:
-  MemTable → L0 → L1 → L2 → ...  (key+value 一起合并)
-
-WiscKey:
-  LSM-tree: key → (offset, size)   ← size 小，写放大低
-  Value Log: [value1][value2]...   ← 追加写入，无需合并
+```mermaid
+flowchart LR
+  KV[写入key与value] --> Index[LSM-tree保存key和value位置]
+  KV --> Log[追加value log]
+  Index --> Merge[Compaction主要整理较小索引]
+  Log --> GC[仍需value垃圾回收]
+  Scan[范围查询] --> Index
+  Index -->|可能非连续取值| Log
 ```
 
 | 维度 | 传统 LSM-tree | WiscKey (KV 分离) |
@@ -110,9 +111,10 @@ WiscKey:
 
 **核心思想**：利用 NVM（Non-Volatile Memory）的持久化和低延迟特性，在内存和磁盘之间增加一层持久化内存组件。
 
-```
-NoveLSM 架构:
-  DRAM MemTable → NVM MemTable → Disk SSTable
+```mermaid
+flowchart LR
+  D[DRAM缓冲] --> N[NVM持久组件]
+  N --> Disk[磁盘SSTable]
 ```
 
 **效果**：
@@ -155,3 +157,8 @@ NoveLSM 架构:
 ---
 
 *参考论文: Luo & Carey, "LSM-based Storage Techniques: A Survey", VLDB Journal 2019*
+
+
+## 来源核验与边界
+
+2026-10-05核验本地[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf|2019综述]]相应章节；这是综述级证据，不等于每个被引方案已独立复现。基础成本模型参见§2.3/表1（页6–7），合并优化§3.3（页11–12），硬件§3.4（页12–14），二级索引§3.7（页17–19）。较新的调度、卸载和硬件方向见[[LSM-tree-KV-Survey-综述]]。

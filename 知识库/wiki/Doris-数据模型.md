@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Doris 数据模型：Duplicate / Aggregate / Unique
+title: Doris 数据模型：三种模型与 Unique 的两种实现
 sources:
 - '[[技术文章/Doris调研/01-概述与核心概念]]'
 - '[[技术文章/Doris调研/02-存储引擎]]'
@@ -13,105 +13,60 @@ tags:
 - Merge-on-Write
 - UPSERT
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
 - '[[知识库/wiki/Doris-Segment-v2-存储格式]]'
 - '[[知识库/wiki/Doris-Compaction-策略]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
-diagram: diagram/doris-architecture.svg
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-数据模型/
 blog_source: _posts/2026-06-14-knowledge-1063bdf2b0.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://doris.apache.org/docs/4.x/key-features/data-update-delete/
+- https://doris.apache.org/docs/dev/key-features/preaggregation-and-rollup/
+diagram_format: mermaid
 ---
 
-# Doris 数据模型：Duplicate / Aggregate / Unique
+# Doris 数据模型：三种模型与 Unique 的两种实现
 
-## 概述
+模型先决定“同键数据的业务含义”，再影响写入、读取和合并成本。Duplicate、Aggregate、Unique 是三种表模型；MoW 与 MoR 是 Unique 模型的实现方式，不应再计为第四种模型。
 
-Apache Doris 提供四种表模型（实际为三种基础模型 + Unique 的两种实现），针对不同 OLAP 场景优化。模型选择直接影响写入性能、查询性能和存储成本。
+| 模型 | 同键两行的含义 | 必须承担的工作 | 适合的问题 |
+|---|---|---|---|
+| Duplicate | 保留两条明细，排序键不等于唯一约束 | 查询按需要聚合 | 日志、事件明细 |
+| Aggregate | 按声明的聚合函数合并值 | 导入、compaction、查询阶段可能继续合并 | 固定维度指标 |
+| Unique | 同一主键保留逻辑上的有效版本 | 判定版本、覆盖与删除 | CDC、主键更新 |
 
-## 模型详解
+## 用三条记录检验模型
 
-### 1. Duplicate 模型
+设输入为 `(A, 10), (A, 20), (B, 5)`。Duplicate 保留三行；Aggregate 的 value 列声明 SUM 时，A 的聚合结果为 30；Unique 的结果取决于版本顺序、sequence 配置等，不能把任意到达较晚的网络包都理解为业务上最新的数据。
 
-**定位**：明细数据、日志类 Append-only 场景。
+```mermaid
+flowchart TD
+  S[同键输入] --> D[Duplicate：保留明细]
+  S --> A[Aggregate：按聚合函数合并]
+  S --> U[Unique：按版本规则覆盖]
+  U --> W[MoW：写入路径维护删除位图]
+  U --> R[MoR：读取路径合并版本]
+```
 
-![[diagram/Doris-数据模型-fig1.svg]]
+## MoW 的逻辑删除不等于立即回收空间
 
+MoW 将新行写入新 rowset，同时维护旧行的删除位图。查询跳过不可见的旧行；旧数据的物理字节仍可能保留到 compaction 等回收过程。它减少了查询时合并主键版本的工作，但不承诺所有查询都最快，也不是“磁盘只存最新版本”。部分列更新还可能需要查找、补齐未更新列。
 
+MoR 把更多版本合并工作留在读取路径。二者的取舍应结合更新比例、主键宽度、批次大小、查询选择性与 compaction 压力实测。不能用一个没有硬件和负载条件的吞吐排序代替选型。
 
-- **特点**：无聚合开销，写入吞吐最高
-- **适用场景**：原始日志、事件流、无需去重的明细表
-- **关键参数**：Sort Key（用于前缀索引，加速范围查询）
+Aggregate 也不保证查询无需聚合：多个 rowset 中的同键聚合状态仍需合并，查询维度更粗时还要再次聚合。预聚合会失去一部分明细可恢复性，因此应先验证需要保留的查询能力。
 
----
-
-### 2. Aggregate 模型
-
-**定位**：预聚合指标场景。
-
-![[diagram/Doris-数据模型-fig2.svg]]
-
-
-
-- **特点**：写入时有聚合开销、查询无需聚合，查询极快
-- **适用场景**：多维分析报表、漏斗分析、UV/PV 统计
-- **聚合类型**：SUM、MAX、MIN、REPLACE（覆盖）、HLL_UNION（近似去重）、BITMAP_UNION（精准去重）
-- **注意**：不能直接查询明细行，仅查询聚合结果
-
----
-
-### 3. Unique 模型
-
-**定位**：主键更新场景（宽表、CDC 同步、实时 UPSERT）。
-
-Doris 提供两种实现方式，核心差异在于"何时合并去重"：
-
-#### 3.1 Merge-on-Write (MoW) — Doris 2.1+ 默认
-
-![[diagram/Doris-数据模型-fig3.svg]]
+关联：[[Doris-Segment-v2-存储格式]]、[[Doris-Compaction-策略]]、[[LSM-Tree-RUM猜想]]。
 
 
+## 核验来源
 
-| 维度 | 表现 |
-|------|------|
-| 写入延迟 | 略高（需 Key 去重查询） |
-| 查询延迟 | **最低**（无需多版本合并） |
-| 存储空间 | 仅最新版本 |
-| 适用 | 实时报表、CDC 同步、频繁更新 |
-
----
-
-#### 3.2 Merge-on-Read (MoR) — 传统实现
-
-![[diagram/Doris-数据模型-fig4.svg]]
-
-
-
-| 维度 | 表现 |
-|------|------|
-| 写入延迟 | 低（无去重开销） |
-| 查询延迟 | **较高**（需合并多版本） |
-| 存储空间 | 多版本历史 |
-| 适用 | 大量追加、偶尔查询 |
-
----
-
-## 模型选择指南
-
-![[diagram/Doris-数据模型-fig5.svg]]
-
-## 与 LSM-Tree 的关系
-
-Doris Unique MoW 的 DELETE_BITMAP 机制本质上借鉴了 [[LSM-Tree]] 的"写入时标记删除"策略，但不同于典型 LSM 的多层级合并——Doris 通过 Compaction 周期性地物理删除被标记的行，符合 [[LSM-Tree-RUM猜想]] 中"以写入开销换取查询性能"的 trade-off。
-
-## 关键权衡
-
-- **Duplicate**：极致写吞吐，但无去重/聚合能力
-- **Aggregate**：极致查询速度，但丢失明细、写入有成本
-- **Unique MoW**：查询最优，写入需 Key 查重
-- **Unique MoR**：写入最快，查询需版本合并
+- [Doris 4.x 更新与删除](https://doris.apache.org/docs/4.x/key-features/data-update-delete/)
+- [Doris 预聚合与 Rollup](https://doris.apache.org/docs/dev/key-features/preaggregation-and-rollup/)

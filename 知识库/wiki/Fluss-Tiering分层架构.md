@@ -11,18 +11,21 @@ tags:
 - 数据湖
 - Flink
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
 - '[[知识库/wiki/Fluss-存储引擎]]'
 - '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
-confidence: 0.75
-confidence_rationale: 类型=concept; 来源×0; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Tiering分层架构/
 blog_source: _posts/2026-06-15-knowledge-5188b34b3d.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss Tiering 分层架构
 
@@ -32,7 +35,16 @@ Tiering 是 Fluss 将本地 Tablet 数据**异步、持续**写入 Lakehouse（�
 
 ## 架构位置
 
-![[diagram/Fluss-Tiering分层架构-fig1.svg]]
+
+```mermaid
+flowchart TD
+  W[实时写入] --> T[Fluss Log / PK 状态]
+  T --> J[Lake 分层作业]
+  J --> L[持久化湖表数据]
+  L --> C[提交快照与进度]
+  C --> G[满足保留和恢复约束后回收旧日志]
+```
+
 
 
 
@@ -41,11 +53,29 @@ Tiering 是 Fluss 将本地 Tablet 数据**异步、持续**写入 Lakehouse（�
 
 ## Tiering 工作流
 
-![[diagram/Fluss-Tiering分层架构-fig2.svg]]
+
+```mermaid
+sequenceDiagram
+  participant C as Coordinator
+  participant J as Tiering 作业
+  participant L as Lake 表
+  C->>J: 调度任务和进度
+  J->>L: 写入数据文件
+  J->>L: 提交快照
+  J->>C: 报告已提交进度
+```
 
 
 
-![[diagram/Fluss-Tiering分层架构-fig3.svg]]
+
+
+```mermaid
+flowchart TD
+  C[确认已提交的 Lake 进度] --> N[通知 tablet 的对应 offset]
+  N --> P[检查日志保留与恢复条件]
+  P --> G[回收符合条件的 segment]
+```
+
 
 ### 组件清单
 

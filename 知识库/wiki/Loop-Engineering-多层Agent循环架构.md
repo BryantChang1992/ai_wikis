@@ -10,7 +10,7 @@ tags:
 - loop-engineering
 - langchain
 created: 2026-06-19
-updated: 2026-06-19
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
@@ -18,75 +18,38 @@ related:
 - '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
 - '[[知识库/wiki/Agent-First-Data-Systems]]'
 - '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 17天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Loop-Engineering-多层Agent循环架构/
 blog_source: _posts/2026-06-19-knowledge-94bcbdbdbc.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Loop Engineering — 多层 Agent 循环架构
 
-LangChain 提出 Agent 不是模型 + tool loop 这么简单，而是**多层循环的叠加**（"loopcraft"）。Satya Nadella 的判断：**早期建立学习循环的公司（人类判断 + token capital 复合），将建立难以复制的优势**。
+四种循环分别处理执行、结果验证、事件触发和跨运行改进。它们可以组合，但不要求所有系统都堆满四层。
 
-## 四层循环架构
-
-| 层 | 名称 | 作用 | LangChain 原语 | 人类参与 |
-|----|------|------|----------------|----------|
-| **L1** | Agent Loop | 模型反复调用工具直到完成任务 | `create_agent` | 敏感操作审批 |
-| **L2** | Verification Loop | 输出质量校验 + 失败反馈重试 | `RubricMiddleware`, `after_agent` hook | 人类做 grader |
-| **L3** | Event-Driven Loop | 事件触发 Agent 运行 | LangSmith Deployment, Fleet | 配置触发规则 |
-| **L4** | Hill Climbing Loop | 分析生产 trace → 自动优化 harness 配置 | LangSmith Engine | 审查改动的 prompt/tool 配置 |
-
-## 层间关系
-
-```
-L4 (Hill Climbing)
-  | 分析 L1-L3 的 trace，产出优化建议
-  | 返回值箭头穿透 L3 → 修改 L1-L2 的 prompt/tool 配置
-  ▼
-L3 (Event-Driven)
-  | cron/webhook/消息 → 触发 L2
-  ▼
-L2 (Verification)
-  | 校验 L1 的输出 → 失败 → 反馈给 L1 → L1 重试
-  ▼
-L1 (Agent Loop)
-  | 模型 ↔ 工具循环 → 产出
+```mermaid
+flowchart TD
+ E[事件触发] --> A[Agent 执行循环]
+ A --> V[结果验证]
+ V -->|反馈重试：有预算| A
+ V -->|通过| D[交付]
+ A --> T[Trace]
+ V --> T
+ T --> H[跨运行分析与改进候选]
+ H --> R[独立回归与审查]
+ R --> C[更新配置]
+ C --> A
 ```
 
-**关键递进**：L1 自动化工作 / L2 保证质量 / L3 规模化 / L4 自我进化。
+[原文](https://www.langchain.com/blog/the-art-of-loop-engineering) 用文档 Agent 举例：链接/CI 检查负责可执行判据，事件连接持续工作，Trace 分析发现重复问题并请求修改 Harness。它没有提供每一层带来多少收益的消融实验。
 
-## 四层的演进逻辑
+- 验证循环提供反馈；grader 的覆盖与可靠性决定它能发现哪些错误，不能保证所有结果正确。
+- 事件循环需要去重、限频和持久任务标识，避免重投产生重复副作用。
+- 改进循环产生候选方案；以独立样本和人工判断接受变更，避免只追逐当前 grader 的分数。
+- 总费用受调用数、上下文和频率影响；嵌套重试可放大费用，但不存在通用“层数越多必然指数增长”规律。
 
-### L1 → L2：从"能跑"到"跑得对"
+例如链接全通的文档仍可能写错参数语义，必须增加事实核验或测试；新增 grader 后又要检查其费用和误拦截。外层 deadline 应向内传播剩余预算，而不是机械要求比所有内层超时之和更大。
 
-单 Agent Loop 能完成任务但不可靠。Verification Loop 引入质检环节——输出先过 grader（可以是 LLM as judge 或规则引擎），不合格则把 grader 的评论写回 agent prompt 让 L1 重试。
-
-### L2 → L3：从"单次"到"持续"
-
-单个 Agent 运行是离散的，但业务场景需要持续运作。Event-Driven Loop 通过 cron、webhook、消息队列让 Agent 从"被调用"变为"持续监听"。这是从工具到服务的跨越。
-
-### L3 → L4：从"运维"到"进化"
-
-生产 Agent 运行产生的 trace 数据是优化燃料。Hill Climbing Loop 分析 trace 中的成功/失败模式，自动调整 prompt 策略和 tool 配置。**L4 的返回值穿透到 L1-L3 内部——这不是简单的配置调整，而是 Agent 的自我进化**。
-
-## 与 [[Custom-Agent-Harness-Middleware架构]] 的关系
-
-Loop Engineering 和 Middleware Harness 是正交互补：
-
-| 维度 | Loop Engineering | Middleware Harness |
-|------|-----------------|-------------------|
-| 关注点 | 循环层级怎么设计 | 每一步注入什么逻辑 |
-| 抽象层次 | 架构结构（骨骼） | 执行策略（肌肉） |
-| 关系 | 循环定义结构 | Middleware 在结构上注入行为 |
-
-L1 的 Agent Loop 正是 Middleware Hook 附着的地方——`before_model` / `after_model` 等注入点都在 L1 循环内。
-
-## 与成本控制的交叉
-
-Agent 循环层数越深，单任务 token 消耗指数增长。[[Agent-Cost-Control-Gateway成本控制]] 需要感知循环层级——L4 的 hill climbing 本身也在消耗 token，需要纳入成本模型。
-
-## 与容错的关系
-
-每一层循环都需要独立的容错策略。[[Agent-Fault-Tolerance-容错设计]] 的 retry/timeout/error_handler 在每一层有不同的参数：L1 的 timeout 应小于 L2，否则 L2 可能在等待 L1 时先超时，产生竞态。
+详读：[[知识库/sources/web/langchain/the-art-of-loop-engineering-精读]]；相关：[[Agent-Harness-Verification-Evaluation评估]]、[[Custom-Agent-Harness-Middleware架构]]、[[Agent-Fault-Tolerance-容错设计]]。

@@ -10,7 +10,7 @@ tags:
 - 分布式系统
 - 综述
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: stable
 related:
 - '[[知识库/wiki/Dataflow-Model]]'
@@ -18,26 +18,31 @@ related:
 - '[[知识库/wiki/流处理容错模型]]'
 - '[[知识库/wiki/流处理乱序数据管理]]'
 - '[[知识库/wiki/流处理弹性与重配置]]'
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×2; status=stable; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Stream-Processing-System-Generations/
 blog_source: _posts/2026-06-15-knowledge-dd412cbe1e.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # 流处理系统代际演化
 
 ## 定义
 
-流处理系统经历了三个代际的演化，每代有不同的架构哲学、处理模型和能力边界。论文是**首个从演化视角审视流处理系统**的综述，覆盖从 1992 年 Tapestry 到 2022 年 Stateful Functions 的 30 年发展。
+论文重点比较两代系统，并展望可能的第三代，每代有不同的架构哲学、处理模型和能力边界。作者将其定位为从演化视角审视流处理系统的综述，覆盖从 1992 年 Tapestry 到 2022 年 Stateful Functions 的 30 年发展。
 
 ## 演化时间线（Figure 1）
 
-![[diagram/Stream-Processing-System-Generations-fig.svg]]
+```mermaid
+flowchart LR
+  A[1992起：连续查询探索] --> B[约2000至2010：DSMS]
+  B --> C[约2011至2022：Scale-out数据流]
+  C -.-> D[待形成第三代：事件驱动、Actors、事务、硬件加速]
+```
 
-![[diagram/stream-processing-generations.svg]]
+## 两代比较与第三代展望
 
-## 三代对比（Table 1）
+Table1比较前两代；下表第三列为Fig.1与展望的方向性归纳，**不是Table1原文或已实现能力保证**。
 
 | 维度 | 1st Gen (DSMS) | 2nd Gen (Dataflow) | 3rd Gen (Emerging) |
 |------|---------------|-------------------|-------------------|
@@ -46,11 +51,11 @@ blog_source: _posts/2026-06-15-knowledge-dd412cbe1e.md
 | **查询模型** | 全局共享查询计划 | 独立 Job/DAG，各自分配资源 | Actor 模型、定点计算 |
 | **数据模型** | Relational 扩展（CQL，Schema-on-System） | Dataflow（Schema-on-User，仅需 Timestamp） | 事件原生 |
 | **查询语言** | SQL 扩展（CQL） | UDF 为主（Java/Scala/Python）+ SQL-like | 编程语言原生（Python/Java） |
-| **结果保证** | Approximate or Exact | Exact | Exact |
+| **结果保证** | 因方案而异 | 依赖输入、状态与sink协议 | 研究方向，未统一定义 |
 | **执行模型** | Pipeline | Data / Pipeline / Task 并行 | 事件触发 + 定点迭代 |
 | **时间与进度** | Heartbeats, Slack, Punctuations | Low-Watermark, Frontiers | 待定义 |
 | **状态管理** | Shared Synopses, In-Memory | Per-Query, Partitioned, Persistent, Larger-than-Memory | 外部化 + 可插拔 |
-| **容错** | HA-focused, Limited Correctness | Distributed Snapshots, Exactly-Once | 事务化 |
+| **容错** | 高可用与正确性的多种折中 | 分布式快照及可配置处理保证 | 事务化等研究方向 |
 | **负载管理** | Load Shedding, Load-aware Scheduling | Backpressure, Elasticity | 自动弹性 |
 
 ## 三大基石的演化历程
@@ -95,7 +100,7 @@ blog_source: _posts/2026-06-15-knowledge-dd412cbe1e.md
 3. **Dataflow Model**：批流统一的原理和影响
 4. **弹性与运行时重配置**：Scale-Out 架构下的动态扩缩容策略
 
-与 [[LSM-Tree]] 的关联：论文多处指出 LSM-Tree 变体（RocksDB/FASTER）是 Out-of-Core 状态管理的事实标准，且 LSM-Tree 的合并策略直接影响流处理状态的写放大和读性能。
+与 [[LSM-Tree]] 的关联：论文多处指出 RocksDB等LSM后端是Out-of-Core的一类实现；FASTER为hash index + hybrid log，不应视为LSM变体，且 LSM-Tree 的合并策略直接影响流处理状态的写放大和读性能。
 
 ## 展望：3rd Gen 的趋势
 
@@ -110,3 +115,8 @@ blog_source: _posts/2026-06-15-knowledge-dd412cbe1e.md
 
 *参考论文: Fragkoulis et al., "A Survey on the Evolution of Stream Processing Systems", arXiv:2008.00842v2, 2023*
 *关键框架: Table 1 (Evolution of streaming systems), Figure 1 (Evolution overview)*
+
+
+## 如何使用这张分类图
+
+本页核对的是2023年v2综述（Fig1、Table1），不是当前产品排行榜。做选型时从[[流处理状态管理]]、[[流处理容错模型]]和[[流处理弹性与重配置]]逐项验证假设；代际标签无法替代吞吐、延迟、故障与迁移实测。详细证据与FASTER源文纠正见[[知识库/sources/papers/SP-Survey/精读分析]]。

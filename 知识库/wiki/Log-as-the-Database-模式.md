@@ -13,17 +13,18 @@ tags:
 - 数据库架构
 - LSN
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
 - '[[知识库/wiki/RaaS-Replay-as-a-Service]]'
 - '[[知识库/wiki/事务模型深度调研]]'
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 更新于22天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Log-as-the-Database-模式/
 blog_source: _posts/2026-06-14-knowledge-bdb517df9b.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
 
 # Log-as-the-Database 模式
@@ -33,14 +34,34 @@ blog_source: _posts/2026-06-14-knowledge-bdb517df9b.md
 
 ---
 
-![[diagram/log-as-the-database.svg]]
+
+```mermaid
+flowchart TD
+  C[计算节点] --> L[持久化 redo 日志]
+  L --> R[回放并物化数据页]
+  R --> P[存储层数据页]
+  Q[页面读取] --> P
+  Q -. 所需版本尚未物化 .-> R
+```
+
 ## 1. 什么是 Log-as-the-Database？
 
 在传统单机数据库中，WAL（Write-Ahead Log）只是持久化的第一站——数据页最终会被刷入磁盘。WAL 是"保险"，不是"真相来源"。
 
 在存储计算分离架构（Aurora、Socrates、AlloyDB、Neon）中，**redo log 上升为唯一的数据传输载体**：
 
-![[diagram/Log-as-the-Database-模式-fig.svg]]
+
+```mermaid
+sequenceDiagram
+  participant C as 计算节点
+  participant S as 存储节点
+  C->>S: 发送 redo 日志
+  S-->>C: 按协议确认持久化
+  C->>S: 请求目标版本的数据页
+  S->>S: 必要时回放尚未物化的日志
+  S-->>C: 返回页面
+```
+
 
 
 ### 核心差异

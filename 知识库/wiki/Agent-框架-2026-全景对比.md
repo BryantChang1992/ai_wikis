@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Agent 框架 2026 全景对比
+title: Agent 框架 2026 — 能力与选型对照
 sources:
 - '[[知识库/sources/web/agent-frameworks-2026/精读分析]]'
 tags:
@@ -9,58 +9,40 @@ tags:
 - 框架对比
 - 技术选型
 created: 2026-07-03
-updated: 2026-07-03
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
 - '[[知识库/wiki/Hermes-Agent-自进化Agent框架]]'
 - '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于3天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-框架-2026-全景对比/
 blog_source: _posts/2026-07-03-knowledge-e199a8fcf9.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
-# Agent 框架 2026 全景对比
+# Agent 框架 2026 — 能力与选型对照
 
-## 一句话
+本卡片按 2026-10-05 官方公开资料核验；没有执行统一性能/质量横评。各项目抽象层不同，先确定需要编排库、集成 SDK 还是可直接运行的 Agent 应用，再比较补齐组件后的整体方案。
 
-2026 年 Agent 框架从"胶水代码时代"进入"编排引擎时代"，关键决策从"用哪个框架"转向"需要多少自主性、控制力和治理能力"。
+| 项目 | 主要抽象 | 应核验的选型问题 |
+|---|---|---|
+| LangGraph | 可包含循环的状态图/工作流 | 持久化、恢复、副作用与部署组件如何配置？ |
+| CrewAI | Crews + Flows | 角色协作与显式流程分别承担什么状态和控制？ |
+| AutoGen | Core 事件运行时 + AgentChat | 已进入维护模式；新项目应评估官方推荐的替代方向 |
+| Semantic Kernel | 多语言模型/插件集成 | 身份、权限和业务审计需要哪些额外组件？ |
+| Hermes Agent | 含记忆、技能、工具和调度的 Agent 应用 | 默认行为、执行后端与持续运行的权限是否适用？ |
 
-## 五大框架横向对比
+[AutoGen 官方 README](https://github.com/microsoft/autogen) 在核验时说明不再新增功能，社区维护，并推荐新用户使用 Microsoft Agent Framework；这里未验证迁移兼容性。
 
-| 框架 | 定位 | 编排风格 | 核心优势 |
-|------|------|----------|----------|
-| **LangGraph** | 生产级工作流 | 显式状态机/DAG | 精细状态控制、持久化、Human-in-the-loop |
-| **CrewAI** | 角色式多 Agent | 团队角色模拟 | 上手门槛低、快速构建 |
-| **AutoGen** | 研究导向对话 | 多轮对话协商 | 学术场景成熟、复杂的 Agent 交互 |
-| **Semantic Kernel** | 企业级编排 | 插件式集成 | Azure/.NET 深度集成、企业治理 |
-| **Hermes Agent** | 自进化个人 Agent | 经验生长式 | 内建学习循环、OpenRouter #1、140k⭐ |
+```mermaid
+flowchart LR
+ N[固定需求与威胁模型] --> P[各候选实现同一工作流]
+ P --> T[结果、故障恢复和权限测试]
+ T --> C[比较总成本与维护投入]
+```
 
-## 决策矩阵
+例如统一实现“生成草稿→人工审批→发布”，在发布响应丢失时验证不会重复发布；测任务成功率、恢复时间、未决状态和单位成功任务费用。把 [[Agent-Harness-Engineering-Survey综述]] 的七层作为检查清单，不把某项目的广告词或 Stars 当作覆盖与成熟度分数。
 
-| 需求特征 | 推荐框架 | 原因 |
-|----------|----------|------|
-| 需要显式状态管理、条件分支 | LangGraph | 图结构编排天生支持 |
-| 快速构建多 Agent 协作原型 | CrewAI | 角色模型直观、学习曲线低 |
-| 学术研究、复杂对话实验 | AutoGen | 对话式设计成熟 |
-| 微软技术栈企业 | Semantic Kernel | Azure 集成 + 企业治理 |
-| 个人生产力、持续运行 | Hermes Agent | 自进化、低硬件门槛 |
-| 原生平台集成 | OpenAI SDK / Claude SDK | 零额外依赖 |
-
-## 与 Agent Harness Engineering Survey 的关系
-
-[[Agent-Harness-Engineering-Survey综述]] 提出的 ETCLOVG 七层分析框架可应用于这五个框架的比较：
-- **Execution Environment（E 层）**：LangGraph 和 Hermes 提供最灵活的多后端支持
-- **Tool Interface（T 层）**：Hermes 通过 MCP + RPC 双模式，LangGraph 通过 LangChain 工具生态
-- **Context Memory（C 层）**：Hermes 的 Honcho user modeling 是独有设计
-- **Lifecycle Orchestration（L 层）**：Hermes 的子 Agent spawn + cron 调度最完善
-- **Verification（V 层）**：各框架在评估体系上均较弱，是通用短板
-- **Governance（G 层）**：Semantic Kernel 和 LangGraph 在企业治理上领先
-
-## 趋势
-
-1. **编排风格分化**：显式 vs 角色式 vs 对话式 vs 自进化 → 不再是同质化竞争
-2. **Vendor SDK 挤压通用框架**：OpenAI/Anthropic 原生 SDK 吸引了大量不想引入第三方框架的用户
-3. **自进化成为新范式**：[[Hermes-Agent-自进化Agent框架]] 的经验生长式编排区别于所有传统框架
+本次删除了无共同实验支持的“最完善、独有、治理领先”及“原生 SDK 零依赖”等排名。官方来源、版本状态与完整实验设计见 [[知识库/sources/web/agent-frameworks-2026/精读分析]]；相关：[[Hermes-Agent-自进化Agent框架]]、[[Custom-Agent-Harness-Middleware架构]]。

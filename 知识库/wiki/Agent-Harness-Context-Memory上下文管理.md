@@ -10,20 +10,22 @@ tags:
 - 上下文管理
 - Agent记忆
 created: 2026-06-20
-updated: 2026-06-20
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
 - '[[知识库/wiki/Agent-Memory-Survey-2026综述]]'
 - '[[知识库/wiki/Agentic-Memory-语义缓存]]'
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 更新于16天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Context-Memory上下文管理/
 blog_source: _posts/2026-06-20-knowledge-81db274424.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent Harness: Context Management & Memory (C)
+
+> 来源边界：本页对照综述 2026-05-08 截止的项目快照及所列章节。该文采用文献/公开项目编码，没有统一 benchmark 重跑各系统；引用工作数字为综述的二手转述，未在本次独立复现。产品能力描述不等于当前版本保证。
 
 > ETCLOVG 第三层：Agent 如何在短期、中期和长期跨度上维护状态——Context Drift 是长期 Agent 的顶级威胁。
 
@@ -37,16 +39,18 @@ Context Management 关心的是**提供给模型用于推理的信息**——这
 
 ---
 
-## 2. 三层记忆架构
+## 2. 三种时间跨度
+
+时间跨度与存储载体是两个轴。向量库也可服务长期记忆，结构化状态也可用于单次会话；以下产品为原文例子，不是排他归类。
 
 ### 2.1 Short-Term Memory（短期记忆）
 
 | 维度 | 详情 |
 |------|------|
-| 跨度 | 单次推理（一个 Context Window） |
+| 跨度 | 当前推理可见的 Context Window |
 | 存储方式 | Prompt Assembly + System Messages + Tool Results |
 | 代表技术 | Structured Prompt Templates, Anthropic 的 Context Assembly |
-| 核心风险 | Token 消耗随对话增长线性上升 |
+| 核心风险 | 未裁剪消息会扩大上下文；计费还受缓存、压缩和模型影响 |
 | 优化手段 | Prompt-cache-aware ordering, 工具结果截断, 早段消息摘要化 |
 
 ### 2.2 Mid-Term Memory（中期记忆）
@@ -75,7 +79,7 @@ Context Management 关心的是**提供给模型用于推理的信息**——这
 
 ### 3.1 定义
 
-Context Drift 是指 Agent 在长时间运行中，其内部状态逐渐偏离真实任务状态的**不可逆过程**。这不是偶尔发生的边角案例——它是长期 Agent 的**系统性属性**。
+Context Drift 是指 Agent 在长时间运行中，其内部状态逐渐偏离真实任务状态的现象。信息若只存于已丢弃的上下文可能无法恢复，但若有外部原始记录，可通过重新读取和对账校正；漂移不是不可逆定律。
 
 ### 3.2 四大漂移来源
 
@@ -88,7 +92,7 @@ Context Drift 是指 Agent 在长时间运行中，其内部状态逐渐偏离�
 
 ### 3.3 幻觉沉淀（Hallucination Sedimentation）——QSAF 框架
 
-QSAF（Atta et al., 2025）将认知退化形式化为六阶段生命周期，验证在 5 个 LLM 平台上：
+QSAF（Atta et al., 2025）在综述引用的工作中描述认知退化。以下六步是该风险链的概念展开，不代表所有平台必然发生：
 1. Agent 产生幻觉输出
 2. 幻觉被存入持久记忆存储
 3. 未来 Session 中 RAG 召回该幻觉
@@ -104,7 +108,7 @@ QSAF（Atta et al., 2025）将认知退化形式化为六阶段生命周期，�
 | Retrieval | 相关信息的表面匹配 | 漂移中的 Agent 不知道需要检索什么 |
 | Sub-agent Isolation | 子任务上下文污染 | 编排器自身的上下文漂移 |
 
-Bowne-Anderson & Huber (2026) 的**边界论**：Context Engineering 本身永远无法解决长期可靠性——需要完整的 Harness 层（验证循环 + 检查点 + 异常检测）。
+Bowne-Anderson & Huber (2026) 的**边界论**：仅靠上下文技巧不足以保证长期可靠性——需要完整的 Harness 层（验证循环 + 检查点 + 异常检测）。
 
 ---
 
@@ -112,14 +116,13 @@ Bowne-Anderson & Huber (2026) 的**边界论**：Context Engineering 本身永�
 
 论文和 Zhang et al. (2025) / Du (2026) 将 Agent 记忆形式化为三阶段循环：
 
-```
-Write（写入）  →  新信息纳入记忆系统
-   ↓
-Manage（管理） →  去重、合并、过期、冲突解决、策略学习
-   ↓
-Read（读取）   →  RAG 检索、结构化查询、上下文注入
-   ↓__________________________________
-        (新的交互产生新信息 → 回到 Write)
+```mermaid
+flowchart LR
+ X[交互与新证据] --> W[Write：选择与编码]
+ W --> M[Manage：去重、冲突与过期]
+ M --> R[Read：检索与上下文组装]
+ R --> A[执行并验证]
+ A --> X
 ```
 
 **策略学习的记忆管理**（Policy-Learned Management）是新兴机制——动态学习哪些信息应保留、哪些应遗忘。
@@ -131,14 +134,14 @@ Read（读取）   →  RAG 检索、结构化查询、上下文注入
 | 基准 | 作者 | 核心测量 | 发现 |
 |------|------|----------|------|
 | **MemoryArena** | He et al. (2026) | 相互依赖的多 Session 任务 | Context Drift 最具破坏性的场景 |
-| **MemBench** | Tan et al. (2025) | 跨 Session 时序推理、知识更新、聚合 | 记忆质量在时序推理中退化最快 |
+| **MemBench** | Tan et al. (2025) | 综述将其用于讨论多会话记忆评价 | 本综述没有统一实验支持“时序推理退化最快”的排序 |
 | **增量多轮评估** | Hu et al. (2025b) | 隔离记忆质量与生成质量 | 记忆系统是独立于模型生成能力的瓶颈 |
 
-这些基准的局限性：它们证明漂移发生，但尚未提供**防止漂移的机制性理解**。
+综述借这些基准说明评估长期状态的必要性；不能把不同任务的分数直接比较，也不能据此声称某种存储机制普遍防止漂移。
 
 ---
 
-## 6. 设计原则
+## 6. 设计原则（从综述提炼的工程建议）
 
 1. **将上下文管理重新定义为状态估计**：量化每次压缩/检索/遗忘的信息损失
 2. **不确定性感知摘要**：摘要应附带置信度标记——哪些信息是确定的，哪些是推测的
@@ -158,3 +161,7 @@ Read（读取）   →  RAG 检索、结构化查询、上下文注入
 ---
 
 > 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · C 层（Context Management & Memory）
+
+## 具体检查例子
+
+若用户把需求从“部署生产”改为“只生成审阅草稿”，摘要必须保留最新约束及其来源，旧计划应标记失效。执行前从原始消息/任务状态对账，既测最终结果，也检查是否执行了已撤销的动作。这比只测记忆召回率更能发现有害漂移。

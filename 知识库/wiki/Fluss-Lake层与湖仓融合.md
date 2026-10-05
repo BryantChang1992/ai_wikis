@@ -11,18 +11,21 @@ tags:
 - 数据湖
 - Lake Storage
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-整体架构]]'
 - '[[知识库/wiki/Fluss-客户端与计算集成]]'
 - '[[知识库/wiki/Fluss-Tiering分层架构]]'
-confidence: 0.83
-confidence_rationale: 类型=analysis; 来源×1; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Lake层与湖仓融合/
 blog_source: _posts/2026-06-15-knowledge-de46d856c9.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化
 
@@ -32,7 +35,16 @@ blog_source: _posts/2026-06-15-knowledge-de46d856c9.md
 
 ## 1. Lake 存储插件架构
 
-![[diagram/Fluss-Lake层与湖仓融合-fig1.svg]]
+
+```mermaid
+flowchart TD
+  P[Lake 插件抽象] --> C[Catalog 与表管理]
+  P --> R[读取与 split 规划]
+  P --> W[写入与提交]
+  W --> A[Append]
+  W --> D[按后端能力支持变更写入]
+```
+
 
 
 
@@ -49,7 +61,16 @@ blog_source: _posts/2026-06-15-knowledge-de46d856c9.md
 
 ## 2. Iceberg 集成全链路
 
-![[diagram/Fluss-Lake层与湖仓融合-fig2.svg]]
+
+```mermaid
+flowchart TD
+  C[湖表 Catalog] --> T[Table]
+  T --> W[写数据文件]
+  W --> S[提交 Snapshot]
+  S --> R[读取规划]
+  S --> M[按表格式规则维护与清理]
+```
+
 
 
 
@@ -79,7 +100,14 @@ Paimon 集成的一个关键亮点是 `MergeTreeWriter`——直接写入 Paimon
 
 Lance 是新兴的 Arrow-native 列式存储格式。Fluss 集成它的核心优势：
 
-![[diagram/Fluss-Lake层与湖仓融合-fig3.svg]]
+
+```mermaid
+flowchart TD
+  A[Fluss 列式 batch] --> W[湖表写入适配器]
+  W --> F[后端文件格式]
+  W --> C[编码、压缩与数据所有权检查]
+```
+
 
 
 
@@ -101,7 +129,15 @@ Lance 是新兴的 Arrow-native 列式存储格式。Fluss 集成它的核心优
 
 ### 设计哲学
 
-![[diagram/Fluss-Lake层与湖仓融合-fig4.svg]]
+
+```mermaid
+flowchart TD
+  W[实时输入] --> F[Fluss 流存储]
+  F --> C[实时计算 / 查询]
+  F --> T[异步 Lake 分层]
+  T --> L[湖表分析与历史数据]
+```
+
 
 这不是"存储分层"，而是 **"实时存储 + 数据湖"的融合架构**——与 Kafka 的"消息队列 + 外部 ETL"是完全不同的范式。
 

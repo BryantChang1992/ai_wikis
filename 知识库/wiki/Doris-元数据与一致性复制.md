@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Doris 元数据存储与一致性复制
+title: Doris 元数据、复制与导入可见性
 sources:
 - '[[技术文章/Doris调研/05-元数据存储与一致性复制]]'
 tags:
@@ -16,164 +16,80 @@ tags:
 - 复制
 - 事务
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
 - '[[知识库/wiki/Doris-架构演进]]'
 - '[[知识库/wiki/事务模型深度调研]]'
 - '[[知识库/wiki/Event-Horizon-非对称依赖]]'
-diagram: diagram/doris-architecture.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-元数据与一致性复制/
 blog_source: _posts/2026-06-14-knowledge-3825d0c77d.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://doris.apache.org/community/design/metadata-design/
+- https://doris.apache.org/docs/dev/features-architecture/system-architecture/
+- https://doris.apache.org/docs/dev/key-features/load-transaction/
+- https://doris.apache.org/docs/dev/data-operate/import/load-best-practices/load-high-availability/
+diagram_format: mermaid
 ---
 
-# Doris 元数据存储与一致性复制
+# Doris 元数据、复制与导入可见性
 
-## 概述
+## 先分清三类状态
 
-Doris 采用 **控制面集中协调 + 数据面去中心化执行** 架构。FE 负责元数据一致性和全局调度，BE 间无中心依赖。元数据管理经历了 BDB-JE 单机 → BDB-JE Replication → Meta Service 存算分离的演进。
+FE 的 SQL 元数据、BE 上的数据副本、存算分离模式的存储元数据，不能画成一条统一的 Raft 日志。
 
-## 元数据存储
+| 状态 | 经典存算一体模式 | 存算分离模式中的变化 |
+|---|---|---|
+| 库表 schema、权限、集群信息 | FE 管理 | FE 仍保留 SQL 层职责 |
+| FE 元数据持久化和复制 | image + BDB JE journal；单 Leader 接受变更 | 不能据 Meta Service 的存在推断 FE 元数据全部消失 |
+| tablet / rowset 等数据层元数据 | BE 与 FE 按职责管理 | Meta Service 承担数据层元数据及相关事务职责，依赖 FoundationDB |
+| 数据文件 | BE 本地副本 | 远端存储持久化，计算节点本地缓存 |
 
-### 三层存储模型
+FE 元数据设计文档说明各 FE 在内存中保存完整元数据，Follower 回放 Leader 复制的 journal。Observer 接收同步但不参加选举。这里的 BDB JE 复制机制不应直接标成 Raft；也不应画成只缓存热点表、LRU 淘汰其余 schema。
 
-| 层级 | 位置 | 内容 | 特点 |
-|------|------|------|------|
-| **Catalog** | FE 持久化层 (BDB-JE / Meta Service) | 元数据全集 | 持久化，版本化，支持事务 |
-| **FE 内存缓存** | FE Heap | 热点元数据 | LRU 淘汰，惰性加载 |
-| **BE 内存** | BE Heap | 本地 Tablet 子集 | 仅自己所管理的 Tablet |
-
-### 元数据对象关系
-
-![[diagram/Doris-元数据与一致性复制-fig1.svg]]
-
-
-
-### BDB-JE 时代 (v0.x~v2.x)
-
-Doris 0.x~2.x 使用 BDB-JE 作为 FE 元数据持久化引擎：
-
-- **单 Leader 写入**：BDB-JE 类 Paxos 协议实现 FE 间复制
-- **EditLog 机制**：每次变更生成 Entry，Follower 重放
-- **Checkpoint**：定期 Snapshot，减少回放开销
-- **Follower 回放**：BRPC 拉取 EditLog → 校验 CheckSum → 逐 Entry 回放到本地内存
-
-FE 元数据文件布局：
-
-![[diagram/Doris-元数据与一致性复制-fig2.svg]]
-
-
-
-### Meta Service (Doris 3.0+)
-
-Doris 3.0 将元数据从 FE 剥离到独立集中式服务：
-
-| 特性 | BDB-JE (v2.x) | Meta Service (v3.0) |
-|------|--------------|---------------------|
-| 存储引擎 | BDB-JE | FoundationDB (FDB) 或自研 Raft KV |
-| 写入 | 单 Leader 顺序写 | 多 FE 并发写不同 Key 范围 |
-| 恢复 | 回放完整 EditLog | 直接查询 Meta Service |
-| 解耦 | FE 内嵌 | 独立服务 |
-
-Meta Service Key 设计：
-```
-/meta/{cluster}/db/{db}/table/{table}         → 表层元数据
-/meta/{cluster}/tablet/{tablet}                → Tablet 元数据
-/meta/{cluster}/tablet/{tablet}/replica/{be}   → Replica 状态
-/txn/{cluster}/db/{db}/txn/{txn}               → 事务元数据
+```mermaid
+flowchart TD
+  U[元数据变更请求] --> L[FE Leader]
+  L --> J[BDB JE journal]
+  J --> F[FE Follower：回放并参与选举]
+  J --> O[FE Observer：回放，不参与选举]
+  L --> I[Checkpoint image]
+  I --> R[重启：加载 image 后回放后续 journal]
 ```
 
----
+## 写入成功、提交、查询可见是不同阶段
 
-## 多副本复制
+经典多副本导入默认要求 tablet 的多数副本成功；相关配置可以改变要求。因此，“任一副本成功就默认完成，剩余靠异步 Clone”不成立。副本修复是故障处理机制，不等于正常写入确认协议。
 
-### Shared-Nothing 复制 (v0.x~v2.x)
+```mermaid
+flowchart TD
+  P[PREPARE：写入并检查副本结果] --> C[COMMITTED：事务已提交]
+  P --> A[ABORTED：失败中止]
+  P -. 显式两阶段提交接口 .-> PC[PRECOMMITTED]
+  PC --> C
+  C --> V[发布版本完成：VISIBLE]
+  V --> Q[查询读取可见版本]
+```
 
-**写入策略**：Single-Replica Write（单副本成功即完成）→ TabletScheduler 异步 Clone 补齐。
+图是导入事务状态的概念图；并非每种导入 API 都把 PRECOMMITTED 暴露给用户。COMMITTED 后仍需发布版本才能进入 VISIBLE。收到超时不代表事务一定失败，应使用 label/事务状态查询处理重试，避免业务重复提交。
 
-**TabletScheduler 核心功能**：
+## 故障分析应检查什么
 
-| 功能 | 说明 |
-|------|------|
-| 修复 | Replica 缺失/版本落后 → 创建 Clone Task |
-| 均衡 | BE 间 Tablet 不均衡 → Balance Task |
-| 变更 | Alter Job 触发 Tablet 重写 |
-| 退役 | Decommission BE 时迁移 |
+FE 故障检查元数据选举、journal 同步和恢复；BE 故障检查副本数量、版本完整性及调度修复；存算分离再检查 Meta Service、FoundationDB、对象存储和缓存预热。恢复时间取决于故障类型、数据规模和配置，不能统一写成“10–30 秒”或“秒级”。
 
-优先级：**REPAIR > BALANCE > ALTER**
+单个旧副本暂时落后，不意味着系统只提供任意陈旧数据的最终一致性读取。分析一致性要具体到事务可见版本、可读副本选择及读写接口，而不是只看后台是否有异步修复。
 
-**多副本一致性**：
+关联：[[Doris-架构演进]]、[[事务模型深度调研]]、[[Raft-共识算法协议核心]]。Raft 卡片用于比较协议，不代表 Doris FE 实现了 Raft。
 
-| 阶段 | 策略 |
-|------|------|
-| 写入 | Single-Replica Write |
-| 复制 | Asynchronous Clone (TabletScheduler) |
-| 读取 | 仅选版本足够的 Replica |
-| 健康 | BE 每 10s 心跳 + VersionReport |
-| 修复 | 自动检测版本缺失 → 触发 Clone |
 
-### 存算分离复制 (Doris 3.0+)
+## 核验来源
 
-从「BE 间 Clone」变为「Object Store 为中心」：
-
-| 维度 | Shared-Nothing | 存算分离 |
-|------|---------------|----------|
-| 复制目标 | BE 间 Clone | Object Store 持久数据 |
-| 副本数 | 3 | 1 (Object Store 高可用) |
-| 一致性 | 最终一致性 | 写后即持久 |
-| 故障恢复 | TabletScheduler 克隆 | 直读 Object Store |
-| 存储成本 | 3× | 1× + Object Store 副本 |
-
----
-
-## 写入路径与事务模型
-
-### 2PC 分布式事务
-
-Doris 采用 **FE 2PC 事务协调 + BE 本地 WAL** 保证写入一致性：
-
-![[diagram/Doris-元数据与一致性复制-fig3.svg]]
-
-### 事务类型
-
-| 类型 | 场景 | 特点 |
-|------|------|------|
-| **单 Tablet 事务** | Routine Load / Small Batch | 延迟最低 |
-| **2PC 分布式事务** | Broker Load / INSERT INTO SELECT | 跨 Tablet 原子性 |
-
-### Label 幂等性
-
-每个 Load Job 有全局唯一 Label → FE 持久化 `Label → TxnId` → 重试返回已存在 TxnId → **Exactly-Once Write**
-
-### 失败处理
-
-| 阶段 | 失败 | 恢复 |
-|------|------|------|
-| PREPARE 部分成功 | BE 写入失败 | FE 发 ABORT，BE 撤销 WAL |
-| COMMIT 部分到达 | 网络分区 | BE 重启后 Gossip 同步 + TabletScheduler 修复 |
-| PUBLISH 后不可见 | 部分 Replica 落后 | 查询跳过不可见 Replica，补齐后恢复 |
-
----
-
-## 故障恢复
-
-| 故障 | 检测 | 恢复 | RTO |
-|------|------|------|-----|
-| FE Master 宕机 | BDB-JE 心跳 | Follower 提升，重放 EditLog | ~10-30s |
-| BE 宕机 (SN) | FE 心跳 10s | TabletScheduler Clone | 分钟级 |
-| BE 宕机 (存算分离) | FE 心跳 | 新 Node 直读 Object Store | **秒级** |
-| 磁盘故障 | BE 自检 | TabletScheduler 修复 | 分钟级 |
-| 版本不一致 | VersionReport | TabletScheduler 自动补齐 | 分钟级 |
-| Meta Service 宕机 | FE 检测 | RAFT 自身高可用 | 秒级 |
-
-## 设计哲学
-
-> 控制面集中协调 + 数据面去中心化执行。FE 负责 2PC、TabletScheduler、Load Manager；BE 独立管理 Segment、Compaction、WAL。存算分离 3.0 进一步将控制面元数据从 FE 剥离到独立 Meta Service，实现完全解耦。
-
-与 [[事务模型深度调研]] 中 Spanner/Percolator 的对比：Doris 采用更轻量的 2PC + 异步复制策略，以最终一致性换取更高写入吞吐，适合 OLAP 场景而非 OLTP 强一致性场景。
-
-与 [[Event-Horizon-非对称依赖]] 的关联：Doris Shared-Nothing 模式下多副本异步 Clone 本质上是最终一致性模型——数据面不要求同步多副本写入，这与 Event Horizon 的"半线性化"思路一致：**不追求全局即时一致性，而是通过非对称依赖降低协调开销**。
+- [FE 元数据设计](https://doris.apache.org/community/design/metadata-design/)
+- [两种部署模式](https://doris.apache.org/docs/dev/features-architecture/system-architecture/)
+- [导入事务状态](https://doris.apache.org/docs/dev/key-features/load-transaction/)
+- [导入高可用](https://doris.apache.org/docs/dev/data-operate/import/load-best-practices/load-high-availability/)

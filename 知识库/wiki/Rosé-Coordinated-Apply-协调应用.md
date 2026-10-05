@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制
+title: Rosé Coordinated Apply：将不可用尾部留在 WAL
 tags:
 - 异步复制
 - WAL
@@ -15,90 +15,53 @@ sources:
 - '[[知识库/sources/papers/Rose/Rose-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
-updated: 2026-06-15
-diagram: diagram/rose-async-replication.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Rosé-Coordinated-Apply-协调应用/
 blog_source: _posts/2026-06-15-knowledge-db635cab52.md
+source_checked: '2026-10-05'
+source_check_basis: 'Rosé: Flexible Replication With Strong Semantics For Partitioned Databases, CIDR2026，原始PDF
+  §2、§4–5，pp.2–7'
+diagram_format: mermaid
 ---
 
-# Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制
+# Rosé Coordinated Apply：将不可用尾部留在 WAL
 
-## 一句话总结
+> 核对原文§4.3、Figures2–4（PDF pp.4–6）与§5.3 Figure6。这里的“协调”是共同安全应用边界，不要求所有CPU同时执行apply。
 
-Rosé 将写操作的**WAL 复制**和**KV 存储应用**解耦：WAL 条目自由复制到备份，但只在所有 partition 的一致 epoch 内统一 apply——使故障恢复仅需秒级 trim WAL，且 KV 存储中始终干净，恢复后无性能退化。
+## 三个水位必须区分
 
-## 问题：异步复制中"不必要"的数据
+1. 每个备份分区**完整复制到WAL**的epoch。
+2. 所有分区复制水位的最小值R，即允许apply的上界。
+3. 各分区**实际完整应用到KV**的进度；只读快照需要共同可读的应用边界。
 
-在异步复制中，不同 partition 的备份可能处于不同 epoch。假设：
-- P₁ 已复制到 epoch 10
-- P₂ 仅复制到 epoch 8
-- 全局 snapshot epoch = 8
+复制可以超前，KV不能应用超出管理者许可的共同前缀。通知apply不等于apply立即完成。
 
-那么 P₁ 备份中 epoch 9-10 的数据在故障时**不可用**——因为它对应的 P₂ 中 epoch 9-10 的数据还没到达。故障恢复时需要将这些"超额"数据清理掉。
+```mermaid
+flowchart TD
+    W1[P1 WAL 已复制到 10] --> M[共同复制边界 R=8]
+    W2[P2 WAL 已复制到 8] --> M
+    M --> A1[P1 仅应用至 8]
+    M --> A2[P2 仅应用至 8]
+    A1 --> F[提升至主库时 KV 无超界尾部]
+    A2 --> F
+    W1 -.仅需清理 WAL 中的9到10.-> F
+```
 
-## Yugabyte 的做法（及代价）
+这是自构两分区示例。若P1已经把9–10写入KV，则提升到8时必须删除或过滤这些记录；Rosé提前阻止这类应用，改为快速截断WAL尾部。原文只称快速trim，**没有给出任意日志存储下严格O(1)的保证**。
 
-Yugabyte 的 RocksDB 每个 SST 文件有一个 metadata block，记录该文件中的 max_ts。故障恢复策略：
-- 遍历所有 SST 文件
-- 如果 file.max_ts > desired_snapshot_ts → 在 metadata block 写入 keep_ts
-- 读操作需检查 keep_ts 并跳过超过此时间戳的数据
-- 后台 compaction 逐步清理
+## 与Yugabyte基线的差别
 
-**结果**：即时恢复做到，但读路径上有大量"无效数据"过滤开销：
-- **吞吐下降 22%**
-- **P99 延迟上升 15%**
+§4.3.1的Figure3描述：按SST的max_ts判断是否超出恢复目标，再记录keep_ts；读取时过滤超界记录，compaction后续清理。Rosé避免把这些未来无效版本先写进KV，因此减少恢复后的过滤工作。这是特定恢复路径的比较，不是LSM结构必然低效的证据。
 
-## Rosé 的做法：Coordinated Apply
+## 等待开销不是零成本定理
 
-### 原理
+冷热分区示例中`dead_time_i=max(RT)−RT_i`。RT依赖本epoch数据量和网络带宽，较短epoch减少等待。Figure4假设较快分区延迟开始后仍可在慢分区完成前apply完，所以最终快照推进时间不变；若apply速度、负载或故障条件不同，需重新测量。
 
-大多数数据库的两阶段写入路径：
-1. **WAL**：顺序写，保证持久性，格式适合快速 trim
-2. **KV Store**：结构化组织，适合快速读取
+回压可以帮助仍在处理的掉队分区追赶，但完全停机分区仍会卡住共同水位；不能说队列有界就排除了所有全局停滞，见 [[Rosé-异步复制协议设计]]。
 
-Rosé 观察到：**WAL 是天然适合协调的层**——数据按插入顺序排列，trim 到指定偏移量是 O(1) 操作。
+## 实验支持范围
 
-### 协议
+§5.3：单机模拟，每区域两节点主备，均匀读写后断开一备份连接。Yugabyte2.25.2.0-b359与Rosé均小于2秒切换；前者读吞吐下降22%、P99上升15%，后者对应0%。作者只对比各自恢复前后的相对性能，不比较绝对吞吐。0%不是所有系统都“恢复后永远满性能”的保证。
 
-1. 备份集群持续跟踪 min(replicated_epoch) — 全局 snapshot epoch
-2. 当且仅当所有 partition 都到达某个 epoch，才通知各 partition 将该 epoch 之前的数据从 WAL apply 到 KV store
-3. 备份 partition 的 WAL 可能已经包含未来 epoch 的数据（复制快），但**KV store 中永远不会超过 snapshot epoch**
-4. 故障恢复时：
-   - Trim WAL 到 snapshot epoch（极快）
-   - KV store 无需清理——因为原本就没有超出一致点的数据
-   - 恢复后立即满性能
-
-### Dead Time 分析
-
-不同 partition 的写入速度不同（hot partition → 复制时间长，cold partition → 复制时间短）。Coordinated apply 意味着快的 partition 要等待慢的完成才能 apply。
-
-**dead_timeᵢ = max(RTⱼ) − RTᵢ**
-
-其中 RT = 复制时间 = (write_bandwidth × epoch_duration) / network_bandwidth
-
-**缓解**：
-- Rosé 使用**毫秒级 epoch** → dead time 量级极低
-- 在没有极端 hot partition 的场景下，dead time ≈ 0
-- snapshot epoch 推进不受影响——快 partition 虽延迟开始 apply，但应当在慢 partition 传输完成前完成（因为传输才是瓶颈，不是 apply）
-
-## 效果
-
-| | Yugabyte xCluster | Rosé Coordinated Apply |
-|---|---|---|
-| **故障切换时间** | <2s | <2s |
-| **恢复后吞吐** | 退化 22% | **不退化** |
-| **恢复后 P99 延迟** | 退化 15% | **不退化** |
-| **KV 存储状态** | 含脏数据，需后台清理 | **始终干净** |
-| **清理方式** | 后台 compaction | trim WAL（极快） |
-
-## 通用性
-
-这个思路可以推广到任何使用"WAL + 结构化存储"架构的系统：
-- 只要 WAL 格式支持快速 trim
-- 只要 KV store 支持批量 apply
-- 只要副本有全局一致性的 notion of time（epoch/snapshot/HLC）
-
-**前提**：需要回压机制配合——如果没有 lag 限制，掉队 partition 会使所有 partition 的 apply 卡住（见 [[Rosé-异步复制协议设计]]）。
+来源与其他边界见 [[知识库/sources/papers/Rose/精读分析]]。快照/日志截断还必须与宿主的事务元数据、持久性、读可见性和故障提升协议集成。

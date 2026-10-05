@@ -1,8 +1,8 @@
 ---
 type: synthesis
-title: LSM-Tree 存储引擎新进展 (2026)
+title: LSM 近期进展：调度、卸载和存储接口
 created: 2026-06-16
-updated: 2026-06-19
+updated: '2026-10-05'
 status: draft
 sources:
 - '[[知识库/wiki/Silo-分布式LSM-Compaction调度]]'
@@ -44,111 +44,45 @@ related:
 - '[[知识库/wiki/Hailstorm-存算分离LSM数据库]]'
 - '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 - '[[知识库/wiki/Bigtable-分布式结构化存储系统]]'
-confidence: 0.8
-confidence_rationale: 类型=synthesis; 来源×0; 17天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-存储引擎新进展-2026综述/
 blog_source: _posts/2026-06-16-knowledge-aa56613e6a.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
 
-# LSM-Tree 存储引擎新进展：从单机到分布式 Compaction
+# LSM 近期进展：调度、卸载和存储接口
 
+本次原文核对发现，旧笔记以“Silo 分布式 Compaction”命名的内容不对应所附论文。实际 PDF 是 FAST 2026 的 HATS。旧 WAF 调度、任务迁移协议及 62% / 57% 结果已撤回；保留旧路径仅为兼容链接，显示名称改为 HATS。
 
-> 基于 Silo (FAST 2026) 的分布式 LSM compaction 调度 + Fluss 的 RocksDB 存储引擎实践，综合 10 张 LSM-Tree wiki 卡片。
+## HATS 在协调什么
 
+压实干扰使不同副本的读取代价随时间变化；只均匀分发读请求无法消除延迟差异，一直推迟压实又会累积读放大。HATS 将合法副本间的读路由与各副本本地 compaction 预算放进同一反馈过程。
 
-![[diagram/lsm-tree-2026-progress.svg]]
+```mermaid
+flowchart TD
+  O[读负载与延迟观测] --> S[调度器计算期望分布]
+  S --> R[读请求选择合法副本]
+  S --> B[本地 LSM 分配 compaction rate]
+  R --> F[性能反馈]
+  B --> F
+  F --> O
+```
 
-## 一、LSM-Tree 为什么需要新突破？
+Raft 在这项设计中选出 scheduler，不替代 Cassandra 的用户数据复制协议。数据也不会随每次读调度迁移。因此它不能被画成远端 compaction 服务。
 
-LSM-Tree 是写入优化存储引擎的事实标准——RocksDB、LevelDB、Apache Cassandra、HBase、TiKV 都建立在它的基础之上。Fluss 也选用 RocksDB 作为本地存储引擎。
+## 实驗支持哪些结论
 
-但 LSM 有一个系统性问题：**写放大（Write Amplification, WA）和空间放大（Space Amplification, SA）之间的 tradeoff**——这是 LSM-Tree 的 RUM 猜想的物理极限——Read amplification、Update amplification、Memory amplification 三者不可同时最优。
+论文以 Cassandra 5.0 为基础，默认 10 个四核/16GiB/SATA SSD 节点、10Gbps 网络、R=3、读响应数 1、写响应数 3，使用 YCSB、100M 记录及多轮运行。read-dominant 负载中，作者报告相对 C3/DEPART 的 P99 与吞吐改善；具体数值和图表位置见 [[知识库/sources/papers/LSM-Scheduling/精读分析]]。这些结果不是通用 SLO 达标率，也没有验证所有强一致读取配置或千节点规模。
 
-过去 15 年，学术界和工业界的优化主要围绕：
-- **Compaction 策略**：Leveled vs Tiered vs Hybrid (SILK, Dostoevsky, RocksDB 的动态选择)
-- **索引结构**：Bloom filter, partition index, data block index
-- **自动调参**：Monkey, RocksDB autotuner
+## 与其他路线比较
 
-但这些优化有一个共同假设：**compaction 调度是每个节点独立进行的，不跨节点协调**。
+| 路线 | 调整的对象 | 应验证的额外代价 |
+|---|---|---|
+| [[Silo-分布式LSM-Compaction调度|HATS 读与压实协同]] | 路由与本地预算 | 状态过期、调度震荡、写密集负载 |
+| [[CaaS-LSM-Compaction即服务]] | 压实计算的位置 | 网络、任务一致性、失败清理 |
+| [[Hailstorm-存算分离LSM数据库]] | 计算、存储池与卸载 | 原文实验仍待独立精读 |
+| [[Fluss-KV存储-RocksDB]] | 流日志与 PK 状态接口 | 快照和日志的恢复边界 |
 
-Silo (FAST 2026) 改变了这个假设。
-
----
-
-## 二、Silo：分布式 LSM Compaction 的全局调度
-
-### 核心问题
-
-在分布式 KV 存储里（如 TiKV、HBase、Cassandra），每个节点独立决定自己的 compaction 时机和策略。这导致：
-
-1. **负载倾斜**：热点 Range 的 compaction 可能同时触发多个 SST files 的 merge → 瞬时 I/O 打满 → 前台请求受影响
-2. **冗余 compaction**：相邻 Range 可能互相 compact 大量重叠的数据（特别是 range split/merge 后）
-3. **不可预知**：无法在全局层面规划 compaction 窗口和优先级
-
-### Silo 的两阶段方法
-
-**全局调度层**：中心化的 Scheduler 全局监控所有 store 的 compaction 队列深度、I/O 负载、pending SST file count，做出**全局最优**的调度决策——哪些 Range 现在 compact、哪些延后、哪个 store 承接 compaction 负载。
-
-**本地执行层**：每个 store 执行分配到的 compaction 任务。Silo 对 RocksDB compaction 线程池进行了修改，允许外部注入优先级。
-
-### 关键机制
-
-1. **Anti-hog（反霸占）**：防止某个热点 Range 的 compaction 霸占全部 I/O 带宽。调度器限制每个 Range 同时 active compaction 的数量
-2. **Pro-hog（优先霸占）**：当检测到某个 Range 的 write stall 风险（L0 文件数接近上限）时，调度器给予该 Range 最高优先级
-3. **Compaction 迁移**：如果某个 store 已过载，调度器可以将该 store 的某些 Range 的 compaction 任务**迁移到其他空闲 store 执行**——这是一个根本性的范式变化：compaction 不一定要在数据所在的节点执行
-
-### 迁移协议的挑战
-
-Compaction 迁移需要解决几个关键问题：
-- **读取一致性**：被迁移的 compaction 产出的新 SST files 需要以原子方式取代旧 files
-- **WAL 协调**：迁移期间的写入需要同步到迁移目标节点
-- **网络开销**：大 SST files 跨节点传输的成本
-
-Silo 的 Anti-hog + Pro-hog 策略使得迁移协议是**按需触发**的（只有在过载时才迁移），而非缺省启用的——避免了不必要的网络开销。
-
----
-
-## 三、Fluss 的 LSM 实践
-
-Fluss 对 RocksDB 的使用是"教科书式"的 LSM 应用，但有两个值得关注的实践：
-
-**Tiering 与 LSM compaction 的协同**：
-- 热数据在 RocksDB 的各级 SST files 中
-- 当 SST files 到达最深层级（bottommost level），且数据时间戳超过 TTL，直接迁移到 Iceberg Lake Storage——**compaction 和 tiering 合并为一个流程**
-- 效果：warm/cold tier 的 LSM compaction 开销几乎为零——数据直接出 LSM 树，进入列式湖仓
-
-**Arrow columnar format 的副产品**：
-- Fluss 在 RocksDB 的 value 中存储 Arrow RecordBatch
-- 当 compaction merge 多个 SST files 时，Arrow 的列式格式允许**列级合并**（而非行级）→ compaction I/O 减少
-- 读路径上的投影裁剪：如果 Flink 只需要 2 列，Fluss 可以从 Arrow 格式中只读取这 2 列——减少了 LSM 的 read amplification
-
----
-
-## 四、LSM-Tree 的技术路线图
-
-
-三个方向不是互斥的——可以组合：
-- **Silo 的全局调度** + **Fluss 的 tiering** = 全局最优的 compaction + 冷数据零 compaction 成本
-- **Silo 的迁移协议** + **多租户 RocksDB** = 跨租户的 compaction 负载均衡
-
----
-
-## 五、知识库 LSM 卡片体系
-
-| 卡片 | 层级 | 主题 |
-|------|------|------|
-| [[LSM-Tree]] | 概念 | LSM-Tree 基础理论 |
-| [[LSM-Tree-写放大]] | 概念 | WA / SA / RA tradeoff |
-| [[LSM-Tree-合并优化]] | 概念 | Leveled vs Tiered compaction |
-| [[LSM-Tree-自动调参]] | 概念 | Monkey, autotuner |
-| [[LSM-Tree-硬件适配]] | 概念 | PMem, ZNS SSD, SMR |
-| [[LSM-Tree-二级索引]] | 概念 | Secondary index on LSM |
-| [[Silo-分布式LSM-Compaction调度]] | 概念 | 全局 compaction 调度（新） |
-| [[Silo-Compaction-迁移协议]] | 概念 | Compaction 跨节点迁移（新） |
-| [[Fluss-KV存储-RocksDB]] | 概念 | Fluss 中 RocksDB 的应用（新） |
-| [[Fluss-存储引擎]] | 概念 | Fluss 存储层总览（新） |
-
----
-
-*合成日期：2026-06-15 | 基于 Silo (FAST 2026) + Fluss 源码分析 + 既有 LSM 知识卡片体系*
+下一步实证问题是：同一硬件与一致性目标下，调度与卸载是否可组合、何时竞争同一网络预算，而不是仅比较不同论文摘要中的最大倍数。基础成本模型见 [[LSM-Tree-存储引擎体系综述]]。

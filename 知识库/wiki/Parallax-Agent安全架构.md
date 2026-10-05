@@ -10,7 +10,7 @@ tags:
 - prompt-injection
 - sandbox
 created: 2026-06-19
-updated: 2026-06-19
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
@@ -18,85 +18,50 @@ related:
 - '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
 - '[[知识库/wiki/Agent-First-Data-Systems]]'
 - '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
-confidence: 0.83
-confidence_rationale: 类型=analysis; 来源×1; 17天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Parallax-Agent安全架构/
 blog_source: _posts/2026-06-19-knowledge-0b11ef3ad0.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Parallax — Agent 安全架构
 
-Fokou et al. (2026) 提出 **Parallax 范式**。核心论断：**think 和 act 必须在架构层面分离**。Prompt 级安全（prompt-level guardrails）对于具备执行能力的 Agent 架构是不足的——因为 Prompt 级防护和推理系统在同一被攻破的进程中，相当于让被入侵的大脑监督自己。
+## 威胁模型与信任边界
 
-## 四原则
+Joel Fokou 的 *Parallax: Why AI Agents That Think Must Never Act*（arXiv:2604.12986v1，2026-04-14，20 页）假设推理 Agent 已被攻破，转而约束它能造成的真实副作用。可信基础是 OS/沙箱、engine 进程和策略/验证层。**分离进程需要配合文件、网络和凭证权限隔离**，不能只在同一权限内加一个 hook。
 
-### 1. Cognitive-Executive Separation（认知-执行分离）
-
-**结构性地阻止推理系统执行动作。** 推理系统（LLM）只产出"意图"（intent），独立的执行系统负责将意图转化为动作。这从根本上切断了 prompt injection 的攻击链路——即使推理被攻破，执行系统不会自动执行攻击意图。
-
-### 2. Adversarial Validation with Graduated Determinism（对抗验证 + 渐进确定性）
-
-推理与执行之间插入**独立的多层验证器**，按确定性递减排列：
-1. **高确定性层**：规则引擎、签名匹配、白名单
-2. **中确定性层**：ML classifier（检测异常意图模式）
-3. **低确定性层**：LLM as validator（判断意图是否安全）
-
-验证失败 → 拒绝执行 → 触发回滚。
-
-### 3. Information Flow Control（信息流控制）
-
-通过 Agent 工作流传播**数据敏感性标签**：
-- 敏感数据（如 PII、credentials）打上 `confidential` 标签
-- 标签跟随数据流动，任何组件读写 sensitive data 时触发验证
-- 与 [[Anthropic-Agent安全容器化实践]] 中的"凭证不进沙箱"原则互补——IFC 处理策略层，沙箱处理隔离层
-
-### 4. Reversible Execution（可逆执行）
-
-捕捉预破坏状态（pre-destructive state）以支持验证失败时回滚：
-- 每个执行步骤前做 snapshot
-- 验证失败 → 回滚到最近的 snapshot
-- 回滚不仅是数据层面（如 SQL rollback），还包括副作用层面（撤销已发送的消息、已修改的配置）
-
-## 实验结果
-
-| 配置 | 攻击阻断率 | 误报率 | 说明 |
-|------|-----------|--------|------|
-| 默认 | 98.9% | 0% | 280 对抗用例，9 类攻击 |
-| 最高安全 | 100% | 未公布 | 可能引入性能开销 |
-
-**关键结论**：当推理系统被攻破时，prompt-level guardrails 提供零保护。
-
-## 与现有安全方案的对比
-
-| 方案 | 防御层次 | 核心机制 | 被攻破时 |
-|------|----------|----------|----------|
-| Prompt guardrails | 推理层内 | "Don't do X" prompt | ❌ 完全失效 |
-| Sandbox（[[Agent-Sandbox-安全沙箱选型]]） | 环境层 | 隔离执行 | ✅ 限制攻击面 |
-| Anthropic 三层（[[Anthropic-Agent安全容器化实践]]） | 环境+模型+内容 | 多重叠加 | ⚠️ 模型层仍可被绕过 |
-| **Parallax** | 架构层 | think-act 分离 | ✅ 推理被破，执行不受控 |
-
-## 在 [[Custom-Agent-Harness-Middleware架构]] 中的落地
-
-Parallax 的认知-执行分离可以通过 Harness Middleware 实现：
-
-```
-Agent Core (推理系统)
-     ↓ 产出 intent
-SecurityMiddleware (Parallax 验证层)
-     --- RuleEngineMiddleware   (高确定性)
-     --- ClassifierMiddleware   (中确定性)
-     -- LLMValidatorMiddleware (低确定性)
-     ↓ 验证通过
-ToolMiddleware (执行系统)
-     ↓
-SandboxMiddleware
+```mermaid
+flowchart TD
+ A[不可信推理进程] --> B[受限 RPC：提出动作]
+ B --> C[Engine 自保护与 Tier 0 确定性策略]
+ C -->|需要判断| D[Tier 1：启发式与 DeBERTa]
+ D -->|升级| E[Tier 2：LLM evaluator]
+ E -->|升级| F[Tier 3：人工审批]
+ C -->|允许| X[受控执行器]
+ D -->|允许| X
+ E -->|允许| X
+ F -->|批准| X
+ I[IFC：来源与敏感性标签] -.-> C
+ I -.-> D
+ I -.-> E
+ X --> L[结果、快照和审计]
 ```
 
-关键是 Intent 和执行之间必须有一个独立的 Middleware 层——不依赖同一个 LLM context。
+图简化 Fig.1 与 §5，省略拒绝分支；任一层拒绝或验证故障均应阻止执行。并非所有动作都跑完四层。Chronicle 对可控资源保存执行前状态，不能撤销已发邮件、第三方 API 效果或已泄露的信息。
 
-## 工程启示
+**例子**：读凭证与发送 HTTP 各自可能是合法工具；IFC 必须跟踪凭证数据经过字符串拼接后的来源，并在外发前拒绝。事后恢复本地文件无法收回远端数据。
 
-1. **Think 和 Act 分离不是性能优化，是安全架构原则**——任何允许 Agent 直接执行代码的架构都有这个安全缺口
-2. **Graduated Determinism 是实用方案**——纯规则太死板、纯 LLM 太不可靠，分层验证兼顾准确性和灵活性
-3. **Reversible Execution 在 Agent 语境下难度很高**——Agent 的副作用不限于数据（消息、配置、文件），完整回滚需要 infrastructure 支持
+## 作者报告的评估（§6，表 3–5）
+
+直接注入工具动作，绕过模型推理：280 个恶意用例、50 个合法用例，加 7 个模拟人工审批用例。默认配置阻断 277/280（98.9%），误拦截 0/50；最高安全配置阻断 280/280，**误拦截 18/50（36%）**。
+
+这不是所有 prompt 防御与 Parallax 的自然语言攻击横评。Config B 的 prompt-only 在直接注入模式没有可应用阶段；论文初步 LLM 模式下三个模型均拒绝测试危险请求，无法区分配置。策略也在同一测试集上调过，未报告独立留出攻击上的结果。
+
+表 5 的实测 P50：Tier 0 <1ms，Tier 1 **1947ms**，Tier 2 **2089ms**。Tier 1 的 10–50ms 是讨论中的优化预期，不能当作实测。表 4 按层阻断合计 280，与默认配置的 277 不同，配置归属不够清楚。
+
+## 工程含义与局限
+
+外部执行边界、最小权限和信息流检查值得借鉴，但其有效性依赖策略覆盖、标签传播和可信基础未被攻破。作者自建用例、单机参考实现和未复现实验不支持“绝对安全”或“任何外部操作可回滚”。部署评估要加入合法任务误报、未参与调优的攻击、故障时拒绝执行和真实任务时延。
+
+完整证据：[[知识库/sources/papers/Parallax/arxiv-2604.12986-精读]]；关联：[[Agent-Sandbox-安全沙箱选型]]、[[Agent-Harness-Governance治理]]、[[Custom-Agent-Harness-Middleware架构]]。

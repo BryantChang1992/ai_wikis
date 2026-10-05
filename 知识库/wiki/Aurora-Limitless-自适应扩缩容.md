@@ -14,22 +14,22 @@ related:
 status: draft
 sources:
 - '[[知识库/sources/papers/Aurora-Limitless/精读分析]]'
-created: &id001 2026-06-15
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
-updated: *id001
+- '[[知识库/sources/papers/Aurora-Limitless/Aurora-Limitless-SIGMOD2026.pdf]]'
+created: 2026-06-15
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Aurora-Limitless-自适应扩缩容/
 blog_source: _posts/2026-06-15-knowledge-eda3e82471.md
+source_check_scope: 本地PDF §2–5、§7–8，页2–11；图3、表2与图4–7。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
-
-![[diagram/aurora-limitless-architecture.svg]]
 
 # Aurora Limitless 自适应扩缩容
 
 ## 概述
 
-Aurora Limitless 实现了**二维自适应扩缩容**：垂直方向通过 Aurora Serverless V2 动态调整单节点 ACU，水平方向通过 table slice 粒度的 shard split 增加 shard 数量。这是竞品中独一无二的组合方案。
+Aurora Limitless 实现了**二维自适应扩缩容**：垂直方向通过 Aurora Serverless V2 动态调整单节点 ACU，水平方向通过 table slice 粒度的 shard split 增加 shard 数量。这是本文提出的组合设计，其收益依赖分片分布与资源预算。
 
 ## ACU 模型
 
@@ -64,7 +64,7 @@ dynamicMaxACU_i = shardGroupMaxACU × (consumedACU_i / ΣconsumedACU)
 
 ### Table Slice 机制
 
-- 每个 sharded table **最多 512 个 slice**
+- 每个 sharded table **典型为 512 个 slices**
 - Slice 是数据迁移的最小粒度
 - Shard 将所属 slice 表示为 PostgreSQL partitioned table（partition = slice）
 - **Co-located 表的对应 slice 一起迁移**，保持 join 优化能力
@@ -132,4 +132,22 @@ ACU 分配图显示：更多 shard 带来更均衡的负载分布（shard 间峰
 ## 与知识库关联
 - [[Aurora-Limitless-分布式架构]]：Router/Shard 解耦为二维扩缩容提供基础
 - [[存储计算分离数据库的-Tail-Latency]]：copy-on-write 克隆依赖 Aurora Storage 层
-- [[Silo-Compaction-迁移协议]]：shard split 的数据迁移 vs Silo 的 compaction 迁移
+- [[Silo-Compaction-迁移协议|HATS副本选择与配额]]：只调读流量和本地压实配额，不是shard数据迁移
+
+
+## 机制图与核验边界
+
+```mermaid
+flowchart TB
+  C[客户端] --> DNS[DNS分发连接]
+  DNS --> R[Router：规划、事务编排、持久元数据]
+  R --> S1[Shard 1]
+  R --> S2[Shard 2]
+  S1 --> V1[Aurora存储卷1]
+  S2 --> V2[Aurora存储卷2]
+  CP[控制面] -.拓扑和扩缩容.-> R
+  CP -.-> S1
+  CP -.-> S2
+```
+
+来源：本地PDF §2–5、§7–8，页2–11；协议图3、扩展表2和图4–7。RR首个查询取快照，RC每语句取快照；Router持有持久元数据，无专用standby不等于无状态。实验NOPM不是TPS，NEWORD平均延迟不是P99。完整条件与r4→r5原文百分比勘误见[[知识库/sources/papers/Aurora-Limitless/精读分析|精读分析]]。

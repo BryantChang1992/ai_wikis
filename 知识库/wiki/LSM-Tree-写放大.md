@@ -2,9 +2,8 @@
 type: concept
 title: LSM-Tree 写放大 (Write Amplification)
 sources:
-- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 - '[[知识库/sources/papers/LSM-Survey/精读分析]]'
-- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 tags:
 - 存储引擎
 - LSM-Tree
@@ -12,22 +11,32 @@ tags:
 - 性能优化
 - Tiering
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/LSM-Tree-合并优化]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 更新于22天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-写放大/
 blog_source: _posts/2026-06-14-knowledge-f7207c03da.md
+source_check_scope: 本地PDF§2.3、§3.1，页6–10；明确模型与实测统计口径。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # LSM-Tree 写放大 (Write Amplification)
 
-![[diagram/lsm-write-amplification.svg]]
+```mermaid
+flowchart LR
+  User[逻辑用户写入] --> WAL[WAL写入]
+  User --> Flush[Memtable flush]
+  Flush --> C1[跨层compaction重写]
+  C1 --> C2[后续compaction重写]
+  WAL --> Physical[统计物理写入总字节]
+  C2 --> Physical
+  Physical --> Ratio[写放大：物理写字节除以逻辑写字节]
+```
 ## 定义
 
 **写放大 (Write Amplification, WA)** 指实际写入磁盘的数据量与应用写入数据量之比。在 LSM-tree 中，写放大主要源于合并（compaction）过程中同一数据被反复读写：一条记录从 L0 逐层合并到 L_max，在 Leveling 策略下每层都要重写一次。
@@ -110,3 +119,8 @@ WA_tiering = O(L / B)
 ---
 
 *参考论文: Luo & Carey, "LSM-based Storage Techniques: A Survey", VLDB Journal 2019*
+
+
+## 统计口径与核验
+
+来源为2019综述§2.3、§3.1（PDF6–10页）。`O(TL/B)`与`O(L/B)`描述模型中的摊销I/O/entry，不是直接以字节定义的写放大测量值。实际报告要注明是否计WAL、复制、文件系统及设备内部GC，不能把不同统计层的倍率横比。新方法应同时报告读/空间代价，见[[LSM-Tree-RUM猜想]]。

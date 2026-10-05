@@ -9,17 +9,20 @@ tags:
 - 协议兼容
 - 迁移
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-RPC与网络]]'
 - '[[知识库/wiki/Fluss-整体架构]]'
-confidence: 0.75
-confidence_rationale: 类型=concept; 更新于21天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Kafka兼容层/
 blog_source: _posts/2026-06-15-knowledge-6c1d48fed4.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss Kafka 兼容层
 
@@ -31,7 +34,16 @@ Fluss 的 Kafka 兼容层是通过 `NetworkProtocolPlugin` 接口实现的**协�
 
 
 
-![[diagram/Fluss-Kafka兼容层-fig2.svg]]
+
+```mermaid
+flowchart TD
+  C[Kafka 客户端请求] --> D[协议解析入口]
+  D --> H[逐 API 适配处理]
+  H --> S[Fluss 数据与控制服务]
+  H --> V[按版本验证兼容语义]
+  V --> E[错误码、事务、消费位点等]
+```
+
 
 ## 双协议枚举
 

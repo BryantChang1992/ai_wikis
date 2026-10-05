@@ -2,9 +2,8 @@
 type: concept
 title: LSM-Tree (Log-Structured Merge-Tree)
 sources:
-- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 - '[[知识库/sources/papers/LSM-Survey/精读分析]]'
-- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 tags:
 - 存储引擎
 - LSM-Tree
@@ -12,7 +11,7 @@ tags:
 - 数据库
 - 写优化
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/LSM-Tree-写放大]]'
@@ -22,12 +21,12 @@ related:
 - '[[知识库/wiki/LSM-Tree-二级索引]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
 - '[[知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述]]'
-diagram: diagram/lsm-tree-full-overview.svg
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree/
 blog_source: _posts/2026-06-14-knowledge-f0ae968052.md
+source_check_scope: 本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # LSM-Tree (Log-Structured Merge-Tree)
@@ -50,17 +49,18 @@ blog_source: _posts/2026-06-14-knowledge-f0ae968052.md
 
 ## 核心架构
 
-```
-Write Path:
-  Write → MemTable (in-memory) → Immutable MemTable → Flush → L0 (SSTable)
-         ↓ (WAL 同步写入)
-       WAL (Write-Ahead Log)
-
-Read Path:
-  Read → MemTable → Immutable MemTable → L0 → L1 → ... → L_max
-
-Compaction (Merge):
-  L_i + L_{i+1} → merge-sort → new L_{i+1}
+```mermaid
+flowchart TB
+  Write[写入] --> WAL[WAL持久化规则]
+  Write --> Mem[可变Memtable]
+  Mem --> Imm[冻结Memtable]
+  Imm --> Flush[Flush成L0 SSTable]
+  Flush --> L1[后续磁盘层]
+  L1 --> Merge[合并重叠版本并生成新文件]
+  Read[读取] --> View[内存及磁盘run的可见版本]
+  Mem -.-> View
+  Imm -.-> View
+  L1 -.-> View
 ```
 
 ### 关键组件
@@ -113,3 +113,8 @@ Compaction (Merge):
 ---
 
 *参考论文: Luo & Carey, "LSM-based Storage Techniques: A Survey", VLDB Journal 2019*
+
+
+## 来源核验与边界
+
+2026-10-05核验本地[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf|2019综述]]相应章节；这是综述级证据，不等于每个被引方案已独立复现。基础成本模型参见§2.3/表1（页6–7），合并优化§3.3（页11–12），硬件§3.4（页12–14），二级索引§3.7（页17–19）。较新的调度、卸载和硬件方向见[[LSM-tree-KV-Survey-综述]]。

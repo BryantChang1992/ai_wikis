@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Doris 架构演进：Palo → 3.0 存算分离
+title: Doris 架构演进：共同的查询入口与两种存储部署
 sources:
 - '[[技术文章/Doris调研/04-架构演进]]'
 tags:
@@ -13,124 +13,58 @@ tags:
 - MPP
 - 技术决策
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
 - '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
 - '[[知识库/wiki/Doris-元数据与一致性复制]]'
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于22天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-架构演进/
 blog_source: _posts/2026-06-14-knowledge-397c3019fa.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://doris.apache.org/docs/dev/features-architecture/system-architecture/
+diagram_format: mermaid
 ---
 
-# Doris 架构演进：Palo → 3.0 存算分离
+# Doris 架构演进：共同的查询入口与两种存储部署
 
-![[diagram/doris-architecture-evolution.svg]]
-## 概述
+本文按架构职责比较经典存算一体和 3.0 引入的存算分离模式。版本功能首次出现的时间，需要逐版本发布说明佐证；旧稿中未找到依据的 Falcon、全面改用 Parquet 等路线图已撤回。
 
-Apache Doris 经历了从百度内部 OLAP 引擎到 Apache 顶级项目的十多年演进，核心架构从 Shared-Nothing MPP 逐步演进到 3.0 的存算分离。
-
-## 演进全景
-
-### Phase 1: Palo (2013~2017) — 百度内部时代
-
-| 维度 | 特征 |
-|------|------|
-| 背景 | 百度广告报表，MySQL 单机无法满足 |
-| 架构 | Shared-Nothing MPP，单 FE + 多 BE |
-| 存储 | Segment v1，基础列式，无 Page 级索引 |
-| 查询 | C++ 解释执行，无向量化 |
-| 数据模型 | 仅 Aggregate 模型 |
-| 成就 | 验证 MPP + 列存方案可行性 |
-
-### Phase 2: Doris 0.x (2017~2021) — 开源孵化期
-
-| 维度 | 特征 |
-|------|------|
-| 架构 | FE 多 Master (BDB-JE replication) |
-| 存储 | **Segment v2**：Page 级索引、ZoneMap、Bloom Filter |
-| 查询 | **向量化引擎** (SIMD)，性能 5-10x 提升 |
-| 数据模型 | 新增 Duplicate、Unique (MoR) |
-| 生态 | Routine Load (Kafka)、Broker Load (HDFS/S3)、Colocate Join |
-
-### Phase 3: Doris 1.x~2.x (2022~2024) — 功能爆发期
-
-| 维度 | 特征 |
-|------|------|
-| 架构 | Shared-Nothing 成熟，FE HA，BE 横向扩展 |
-| 存储 | Segment v2 完善，**DELETE_BITMAP** 支持 |
-| 数据模型 | **Unique MoW 成为默认** |
-| 索引 | **Inverted Index** (全文搜索)、N-Gram Bloom Filter |
-| 查询 | **Nereids CBO** (实验→稳定) |
-| 湖仓 | Multi-Catalog (Hive/Iceberg/Hudi) |
-| 半结构化 | Variant 类型 |
-| 运维 | Workload Group、Auto Partition、Arrow Flight SQL |
-
-### Phase 4: Doris 3.0+ (2024~至今) — 存算分离
-
-核心变革：**Compute-Storage Separation**
-
-```svg
-
-![[diagram/Doris-架构演进-fig1.svg]]
-
-
-
+```mermaid
+flowchart TD
+  SQL[SQL 与导入请求] --> FE[FE：解析、优化、SQL 元数据]
+  FE --> B[存算一体 BE：计算与本地持久化副本]
+  FE --> C[存算分离 Compute Group：计算与缓存]
+  C --> OBJ[远端持久化存储]
+  C --> MS[Meta Service：数据层元数据]
+  MS --> FDB[FoundationDB]
 ```
 
-| 新能力 | 说明 |
-|--------|------|
-| Remote Storage | S3/HDFS/MinIO 作为持久层 |
-| Compute Group | 计算集群弹性扩缩，秒级 |
-| File Cache | 本地 SSD 缓存热数据，保证查询延迟不退化 |
-| Meta Service | 集中式元数据，替代 BDB-JE 单机瓶颈 |
-| 读写分离 | Read/Write Compute Group 独立 |
-| 远程 Compaction | 存算分离专用 Compaction |
+两条分支是可选部署模式，不是一个查询顺次经过的流水线。FE 仍负责规划和 SQL 层元数据；Meta Service 负责数据层元数据，不能理解为替换所有 FE/BDB JE 职责。
 
-### Phase 5: 4.x+ Roadmap (2025+)
+## 架构变化解决了什么
 
-| 方向 | 说明 |
-|------|------|
-| **Falcon 执行引擎** | 全新 C++ 向量化引擎 |
-| **Parquet 原生存储** | Segment v2 → Parquet，与数据湖生态打通 |
-| **Streaming SQL** | 流批一体 |
-| **Multi-Warehouse** | 多计算集群共享数据 |
-| **AI/ML 集成** | 内置 ML 推理算子、Python UDF |
+| 维度 | 存算一体 | 存算分离 |
+|---|---|---|
+| 扩容 | 本地数据与计算一同规划 | 计算组可独立调整，持久数据共享 |
+| 数据访问 | 本地副本读取 | 缓存命中或远端读取 |
+| 运维重点 | 副本分布、磁盘、compaction | 远端存储、元数据服务、缓存预热及隔离 |
+| 延迟风险 | 数据倾斜、合并竞争 | 冷缓存、网络、远端存储与元数据依赖 |
 
-## 关键架构决策
+本地 File Cache 降低远端读取成本，但不保证扩容或故障后延迟完全不变。“无状态计算”描述持久化职责，不表示节点没有缓存状态，也不意味着扩容瞬时完成。
 
-| 时间 | 决策 | 影响 |
-|------|------|------|
-| 2013 | C++ 实现 BE | 极致性能基础，无 GC 开销 |
-| 2017 | 开源 + Apache 捐赠 | 生态增长 |
-| 2021 | Segment v2 + 向量化 | 性能超越 Impala/Kylin |
-| 2022 | Unique Key MoW | 实时 Upsert 能力突破 |
-| 2023 | Nereids CBO | Join 优化重大提升 |
-| 2023 | Multi-Catalog 湖仓 | 联邦查询扩展 |
-| 2024 | 存算分离 3.0 | 成本优化 + 弹性扩展 |
-| 2025 | 倒排索引 2.0 | 日志搜索直接竞争 ES |
+## 与查询和存储演进的关系
 
-## Shared-Nothing vs 存算分离
+Nereids 影响计划选择，向量化执行影响算子效率，Unique MoW 影响主键更新和读取合并，存算分离影响资源配置。这些是不同维度，不能把某次向量化基准的倍数直接套在架构升级的全部负载上。
 
-| 维度 | 2.x (Shared-Nothing) | 3.x (存算分离) |
-|------|---------------------|---------------|
-| 存储层 | 本地 SSD/HDD | Object Store (S3/HDFS/MinIO) |
-| 弹性扩缩 | 数据重分布，小时级 | 计算秒级弹性 |
-| 成本 | 高 (计算+存储绑定) | 低 (按需弹性) |
-| 写路径 | MoW 本地 | MoW + 远程 Compaction |
-| 读路径 | 本地 Segment | File Cache + 远程拉取 |
-| 高可用 | Multi-Replica | Multi-Replica + 远程副本 |
-| 成熟度 | 7年+ | 1年+，快速发展 |
+学习路径：[[Doris-数据模型]] → [[Doris-Segment-v2-存储格式]] → [[Doris-Compaction-策略]] → [[Doris-MPP-向量化查询引擎]] → [[Doris-元数据与一致性复制]]。
 
-## 竞品定位
 
-```svg
+## 核验来源
 
-![[diagram/Doris-架构演进-fig2.svg]]
-
-```
-
-> **核心差异化**：Doris 在 Upsert (MoW) + 高并发查询 + 实时导入三个维度形成独特优势组合。
+- [Doris 系统架构](https://doris.apache.org/docs/dev/features-architecture/system-architecture/)
+- [存算分离部署与 FoundationDB](https://doris.apache.org/docs/4.x/install/deploy-on-kubernetes/separating-storage-compute/install-doris-cluster/)

@@ -2,9 +2,8 @@
 type: concept
 title: LSM-Tree 合并优化 (Merge Optimization)
 sources:
-- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 - '[[知识库/sources/papers/LSM-Survey/精读分析]]'
-- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 tags:
 - 存储引擎
 - LSM-Tree
@@ -12,19 +11,19 @@ tags:
 - Compaction
 - 性能优化
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/LSM-Tree-写放大]]'
 - '[[知识库/wiki/LSM-Tree-自动调参]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
-diagram: diagram/lsm-tree-full-overview.svg
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-合并优化/
 blog_source: _posts/2026-06-14-knowledge-f455d0b201.md
+source_check_scope: 本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # LSM-Tree 合并优化 (Merge Optimization)
@@ -61,10 +60,12 @@ LSM-tree 的合并（compaction/merge）是将一个或多个 SSTable 按 key �
 
 **核心思想**：合并完成后**不立即删除**旧 SSTable，而是将其附加到目标层的缓冲区中。利用操作系统的 buffer cache 访问频率信息，逐步清理访问最少的旧文件。
 
-```
-Merge(SST_old_Li, SST_Li+1) → SST_new_Li+1 + SST_old_kept_in_buffer
-                                    ↑
-                         buffer cache 根据访问频率逐步驱逐旧 SSTable
+```mermaid
+flowchart LR
+  Old[输入旧组件] --> Merge[Compaction]
+  Merge --> New[新输出组件]
+  Old --> Buffer[暂留旧组件以利用缓存]
+  Buffer --> Evict[按访问情况逐步清理]
 ```
 
 | 优点 | 缺点 |
@@ -83,19 +84,17 @@ Merge(SST_old_Li, SST_Li+1) → SST_new_Li+1 + SST_old_kept_in_buffer
 
 #### bLSM — Spring-and-Gear 调度器
 
-**唯一尝试系统性地解决写入停顿的工作**（SIGMOD 2012）。
+**2019综述收录范围内聚焦写入停顿的代表**（SIGMOD 2012）。
 
-**核心机制**：
-1. **Spring**：弹性调度——合并线程根据写入负载动态调整工作速率
-2. **Gear**：多级调度——在不同层使用不同的合并速率阈值
+**核心机制（综述§3.3.3）**：每层容忍额外组件以便不同层的merge并行；调度进度使上层生成下一组件前，下层上一轮merge已完成。这种背压最终约束内存写入速度。论文针对unpartitioned leveling，并不只处理内存到磁盘的单阶段。
 
 | 已解决 | 未解决 |
 |--------|--------|
 | Bounded 了写入内存组件的延迟 | 未解决排队延迟 |
 | 提供可预测的写入延迟 | 端到端延迟方差仍是盲区 |
-| | 只考虑了内存到磁盘的阶段 |
+| | 面向未分区的leveling；没有覆盖全部实现 |
 
-**现状**：bLSM 之后，写入停顿问题没有获得更多系统性的关注，尽管大量生产系统（RocksDB、HBase）实际受到写入停顿的困扰。
+**时间边界**：这是2019综述的研究空白判断，不代表2026仍无人研究。2025综述收录SILK、Vigil-KV、ADOC等，2026还有HATS。
 
 ## 与其他优化的关系
 
@@ -108,10 +107,15 @@ Merge(SST_old_Li, SST_Li+1) → SST_new_Li+1 + SST_old_kept_in_buffer
 
 ## 未来方向
 
-1. **写入停顿的系统性解决**：bLSM 之后近十年，端到端延迟方差仍是盲区
+1. **写入停顿的系统性解决**：需区分局部服务时间上界与端到端排队尾延迟
 2. **流水线合并与多核**：将现代多核架构与流水线合并结合的潜力未充分挖掘
 3. **合并策略与负载自适应**：根据实时负载特征动态切换合并策略
 
 ---
 
 *参考论文: Luo & Carey, "LSM-based Storage Techniques: A Survey", VLDB Journal 2019*
+
+
+## 来源核验与边界
+
+2026-10-05核验本地[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf|2019综述]]相应章节；这是综述级证据，不等于每个被引方案已独立复现。基础成本模型参见§2.3/表1（页6–7），合并优化§3.3（页11–12），硬件§3.4（页12–14），二级索引§3.7（页17–19）。较新的调度、卸载和硬件方向见[[LSM-tree-KV-Survey-综述]]。

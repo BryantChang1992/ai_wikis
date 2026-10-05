@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Doris Compaction 策略
+title: Doris Compaction：选哪些文件与怎样合并
 sources:
 - '[[技术文章/Doris调研/02-存储引擎]]'
 tags:
@@ -12,7 +12,7 @@ tags:
 - LSM-Tree
 - Merge-on-Write
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
@@ -21,107 +21,45 @@ related:
 - '[[知识库/wiki/LSM-Tree-合并优化]]'
 - '[[知识库/wiki/LSM-Tree-RUM猜想]]'
 - '[[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述]]'
-diagram: diagram/doris-architecture.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-Compaction-策略/
 blog_source: _posts/2026-06-14-knowledge-1cd9b2bb17.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://doris.apache.org/docs/dev/admin-manual/trouble-shooting/compaction/
+diagram_format: mermaid
 ---
 
-# Doris Compaction 策略
+# Doris Compaction：选哪些文件与怎样合并
 
-## 概述
+不能把 Cumulative、Base、Vertical 和一次导入内的 Segment Compaction 当成四个互斥的同级策略：前两者偏向 rowset 选择与合并范围，Vertical 是执行算法，Segment Compaction 位于导入内的 segment 合并过程。
 
-Doris Compaction 负责将多个小 Rowset 合并为大 Rowset，减少碎片、加速查询、物理回收 DELETE_BITMAP 空间。每个 Replica 独立执行 Compaction，不依赖跨副本一致性。
+| 机制 | 主要解决的问题 | 代价或限制 |
+|---|---|---|
+| Cumulative | 小增量 rowset 积累 | 与导入和读取竞争资源 |
+| Base / Full | 更大范围的历史 rowset 整理 | 大任务的 I/O 与运行时间 |
+| Vertical | 分列组处理，降低宽表合并工作集 | 需要维护行来源顺序；收益依赖宽度与 I/O |
+| Segment Compaction | 单次大批量导入产生过多 segment | 需结合导入路径与版本配置 |
 
-## 四种 Compaction 类型
-
-### 1. Cumulative Compaction
-
-| 项目 | 说明 |
-|------|------|
-| 触发条件 | Cumulate Point 之前的 Rowset 数量超过阈值 |
-| 作用 | 合并大量小 Rowset 为较大的 Rowset |
-| 频率 | 高频（数据写入密集时持续触发） |
-| 优先级 | 低（不影响在线服务） |
-
-**典型场景**：Routine Load 持续写入产生大量小 Rowset，通过 Cumulative Compaction 逐步合并。
-
----
-
-### 2. Base Compaction
-
-| 项目 | 说明 |
-|------|------|
-| 触发条件 | Base Rowset 版本过期，或累积到一定条件 |
-| 作用 | 合并所有 Rowset 为单一 Base Rowset |
-| 频率 | 低频（仅当数据不再频繁写入时） |
-| 优先级 | 低 |
-
-**典型场景**：历史分区数据不再写入，触发 Base Compaction 将全部增量 Rowset 合并为一个，释放空间、提升查询效率。
-
----
-
-### 3. Quick Compaction
-
-| 项目 | 说明 |
-|------|------|
-| 触发条件 | MoW 表 Segment 数超过阈值（由 DELETE_BITMAP 过多导致） |
-| 作用 | 局部合并 DELETE_BITMAP 过多的小 Segment |
-| 频率 | 中频 |
-| 优先级 | 中 |
-
-**核心价值**：DELETE_BITMAP 过多会显著拖慢查询（每个查询需加载大量位图）。Quick Compaction 快速回收被标记删除的空间，降低查询开销。
-
----
-
-### 4. Vertical Compaction
-
-| 项目 | 说明 |
-|------|------|
-| 触发条件 | 宽表（Column 数 > 阈值） |
-| 作用 | 按列组合并，将大宽表拆分为多次合并 |
-| 频率 | 低频（仅宽表触发） |
-| 优先级 | 低 |
-
-**核心价值**：传统 Rowset 合并需同时加载所有列到内存，宽表（数千列）可能 OOM。Vertical Compaction 按列组分批合并，降低内存峰值。
-
-## Compaction 执行流程
-
-```
-1. BE Compaction 线程池定期扫描 Tablet 状态
-2. 选取待合并 Rowset 列表
-3. 读取源 Rowset 所有 Segment，按 Sort Key 归并排序
-4. MoW 表：同时合并 DELETE_BITMAP，物理删除标记行
-5. 写入新 Rowset 到磁盘
-6. 原子替换旧 Rowset 元数据
+```mermaid
+flowchart TD
+  S[扫描 tablet 与合并压力] --> L[选择连续版本的输入 rowset]
+  L --> C[检查并发与资源预算]
+  C --> M[按表模型合并并生成新 rowset]
+  M --> V[原子切换相关元数据与可见文件集合]
+  V --> G[按引用与回收规则清理旧文件]
 ```
 
-## 一致性保证
+新输出必须保持原来版本范围和表模型的逻辑结果。更多线程并非必然更快：当磁盘或内存已饱和，会放大前台尾延迟。观察 rowset 数、compaction score、待处理字节、写入失败和查询 P99，再结合批量大小及时间序列策略调整。
 
-| 阶段 | 保证 |
-|------|------|
-| 选择 Rowset | 仅选已 Publish 版本 |
-| 合并执行 | 读取源 → 合并 → 写新文件（**不修改源文件**） |
-| 原子替换 | CAS 替换元数据指针 |
-| 并发安全 | 每 Tablet 同时最多 1 个 Compaction |
-| 失败处理 | 新 Rowset 作废，下次重试 |
+官方宽表案例中的内存和速度收益只适用于其条件，不应改写为全部表的性能保证。LSM 的写放大框架有助于分析，但 Doris 的 rowset/version 与标准 RocksDB 层级并不一一对应。
 
-## 与 LSM-Tree Compaction 的对比
+关联：[[Doris-Segment-v2-存储格式]]、[[LSM-Tree-合并优化]]。
 
-Doris Compaction 与经典 [[LSM-Tree-合并优化|LSM-Tree 合并优化]] 的核心差异：
 
-| 维度 | 经典 LSM (RocksDB) | Doris Compaction |
-|------|---------------------|-------------------|
-| 合并层级 | 固定层级 (L0→L1→...→Ln) | 无固定层级（Rowset 版本链） |
-| 触发策略 | 层级大小超限 | Rowset 数量/版本过期 |
-| 列式优化 | 无 | Vertical Compaction 按列分批 |
-| MoW 适配 | 无内建支持 | Quick Compaction 回收 DELETE_BITMAP |
-| 并发模型 | 单线程或多线程 Level | 各 Tablet 独立并发 |
+## 核验来源
 
-## 性能影响
-
-- Cumulative/Base Compaction：IO 和 CPU 开销较大，通过优先级控制避免影响在线查询
-- Quick Compaction：轻量级，快速回收过期 DELETE_BITMAP 空间
-- 过度 Compaction 会导致 [[LSM-Tree-RUM猜想|写放大]]，需监控 Compaction Score
+- [Compaction 原理](https://doris.apache.org/docs/4.x/admin-manual/trouble-shooting/compaction-principles/)
+- [Vertical 与 Segment Compaction](https://doris.apache.org/docs/dev/admin-manual/trouble-shooting/compaction/)

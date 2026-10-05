@@ -1,9 +1,9 @@
 ---
 type: concept
-title: ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引
+title: ByteHouse 多模态查询优化
 sources:
-- '[[知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf]]'
 - '[[知识库/sources/papers/ByteHouse/精读分析]]'
+- '[[知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf]]'
 tags:
 - ByteHouse
 - 查询优化
@@ -14,19 +14,19 @@ tags:
 - AI-Assisted
 - Runtime Filter
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/ByteHouse-架构与设计]]'
 - '[[知识库/wiki/ByteHouse-统一表引擎]]'
 - '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
 - '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
-diagram: diagram/bytehouse-architecture.svg
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/ByteHouse-多模态查询优化/
 blog_source: _posts/2026-06-15-knowledge-5b9838a415.md
+source_check_scope: 本地PDF §2–7，页2–12，图2–10；修正索引媒介、实验条件与跨产品断言。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # ByteHouse 多模态查询优化
@@ -89,15 +89,24 @@ LIMIT 50;
 - 然后在过滤后的子集上做向量检索
 - 避免全表向量扫描
 
-## 分级向量索引 (Tiered Vector Index)
+## 分级向量索引（论文§6）
 
-为不同业务需求提供三类索引：
+- 在线低延迟、高召回：HNSW + SQ。
+- 近实时、强调快速可见：IVFFlat / IVFSQ / IVFPQ；原文给的较宽松延迟例是100ms–1s，而非统一小于100ms。
+- 成本敏感：DiskANN 的图在SSD，routing metadata在内存；更宽松归档可选DiskIVFSQ，不是DiskANN直接只读对象存储。
 
-| 层级 | 索引类型 | 延迟 | 成本 | 适用场景 |
-|------|---------|------|------|----------|
-| 在线 | HNSW (内存) | <10ms | 高 | SDK/实时代码推荐 |
-| 近实时 | IVF+PQ (SSD) | <100ms | 中 | 实时运营看板 |
-| 经济型 | DiskANN (对象存储) | <1s | 低 | 批量分析/归档检索 |
+```mermaid
+flowchart LR
+  Scalar[标量过滤与join键] --> Filter[Runtime filter]
+  Filter --> Vector[向量候选]
+  Filter --> Text[文本候选]
+  Vector --> Fusion[归一化加权或RRF]
+  Text --> Fusion
+  Fusion --> Exact[Post-join精确谓词检查]
+  Exact --> Top[排序并返回Top K]
+```
+
+RRF使用`sum 1/(k+rank)`融合排名，k通常60；分数加权路径先做Min–Max归一化。上面的SQL仅为教学伪代码，非官方可执行语法；runtime Bloom filter可能误报，仍需最终谓词验证。
 
 ## 三模式执行引擎
 
@@ -109,12 +118,11 @@ LIMIT 50;
 
 所有模式共享统一优化器 + runtime → 无缝切换。
 
-## 与 Doris Nereids CBO 的对比
+## 对比边界
 
-| 维度 | ByteHouse | Doris |
-|------|-----------|-------|
-| 核心优化 | HBO + ML 回归 | 规则 + CBO (Nereids) |
-| 历史统计 | ✅ 执行后收集 real cardinality | ❌ 依赖 ANALYZE 统计 |
-| 向量检索 | ✅ RANK_FUSION + 分级索引 | ❌ 无原生支持 |
-| Join 优化 | ML 模型决策 | Join Reorder (贪心+枚举) |
-| Runtime Filter | 推入向量扫描 | Bloom/Bitmap Filter |
+本卡描述论文版本的ByteHouse。删除未逐一验证的当前竞品能力矩阵；比较Doris、ClickHouse或Snowflake应固定版本、部署模式和相同工作负载。
+
+
+## 证据与适用条件
+
+核验本地PDF：§2–3（页2–6）架构与存储，§4–6（页6–10）执行和优化，§7（页10–12）实验。ClickBench 43查询各跑5次取最快，较ClickHouse总延迟降低25.4%；向量实验为99%召回、1%标量过滤；CrossCache对照含无缓存、100%/50%本地命中。不同实验不能混为统一收益。细节见[[知识库/sources/papers/ByteHouse/精读分析|精读分析]]。

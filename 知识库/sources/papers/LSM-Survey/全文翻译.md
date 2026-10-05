@@ -1,4 +1,18 @@
-# LSM-based Storage Techniques: A Survey — 全文翻译
+---
+title: 'LSM-based Storage Techniques: A Survey — 中文译述'
+translation_status: partial
+translation_coverage: 摘要与§1–6的压缩译述；未逐段覆盖全部图表、推导、系统配置及参考文献。
+source_check_scope: 核对本地PDF主题、覆盖范围及精读所列重点；未宣称逐段校译。
+related:
+- '[[知识库/sources/papers/LSM-Survey/精读分析]]'
+updated: '2026-10-05'
+source_checked: '2026-10-05'
+created: '2026-06-12'
+---
+
+> **译稿覆盖声明（2026-10-05）**：摘要与§1–6的压缩译述；未逐段覆盖全部图表、推导、系统配置及参考文献。 本文件名沿用历史链接，不能视为已逐段校对的完整出版译本。关键机制与数值以同目录 PDF 及本次精读中的定位为准。
+
+# LSM-based Storage Techniques: A Survey — 中文译述
 
 > **论文**：LSM-based Storage Techniques: A Survey  
 > **作者**：Chen Luo, Michael J. Carey (UC Irvine)  
@@ -247,7 +261,7 @@ SSD/NVM 改进的一般主题是利用高随机读吞吐量的同时降低 LSM-t
 
 **Lim et al.**：提出了一个纳入键分布的分析模型，以改进 LSM-tree 操作的成本估计，并使用该模型来调优 LSM-tree 的参数。关键洞察是：传统的基于最坏情况的分析（第 2.3 节）未能将键分布纳入考虑。如果在早期合并中发现某个键已被删除或更新，则该键将不会参与后续合并，从而降低其总体写入成本。该模型假设由概率质量函数 f_X(k) 测量的键分布的先验知识——该函数度量特定键 k 被写入请求写入的概率。给定 p 个总写入请求，唯一键数使用其期望估计为 Unique(p) = N − ∑_{k∈K} (1 − f_X(k))^p，其中 N 是唯一条目总数，K 是键空间大小。基于该公式，p 次写入的总写入成本可以通过将所有刷新和合并的成本求和来计算，只是重复键（如有）将从后续合并中排除。最后，该成本模型用于通过最小化总写入成本来找到最优系统参数。
 
-**Monkey**：协同调优合并策略、大小比例以及内存组件与 Bloom filter 之间的内存分配，为给定工作负载找到最优 LSM-tree 设计。Monkey 的第一项贡献是证明了通常的 Bloom filter 内存分配方案（所有 Bloom filter 分配相同的每键位数）导致次优性能。直觉是：最后一层（最大层级）的 T 个组件包含了大部分数据，消耗了大部分 Bloom filter 内存，但它们的 Bloom filter 最多只能为点查找节省 T 次磁盘 I/O。为最小化所有 Bloom filter 的整体假阳性率，Monkey 分析性地证明应为较低层级的组件分配更多位数，使得 Bloom filter 假阳性率呈指数增长。在这种方案下，零结果点查找查询的 I/O 成本将由最大层级主导，新的 I/O 成本对于 leveling 变为 O(e^(-M/N))，对于 tiering 变为 O(T·e^(-M/N))。Monkey 然后使用类似于第 2.3 节的成本模型，通过考虑工作负载中各种操作的混合来最大化总体吞吐量，找到最优 LSM-tree 设计。
+**Monkey**：协同调优合并策略、大小比例以及内存组件与 Bloom filter 之间的内存分配，为给定工作负载找到最优 LSM-tree 设计。Monkey 的第一项贡献是证明了通常的 Bloom filter 内存分配方案（所有 Bloom filter 分配相同的每键位数）导致次优性能。直觉是：最后一层（最大层级）的 T 个组件包含了大部分数据，消耗了大部分 Bloom filter 内存，但它们的 Bloom filter 最多只能为点查找节省 T 次磁盘 I/O。为最小化所有 Bloom filter 的整体假阳性率，Monkey 分析性地证明应给靠近内存、容量较小层的每个key分配更多位数，使Bloom filter假阳性率向容量最大的层指数增长。在这种方案下，零结果点查找查询的 I/O 成本将由最大层级主导，新的 I/O 成本对于 leveling 变为 O(e^(-M/N))，对于 tiering 变为 O(T·e^(-M/N))。Monkey 然后使用类似于第 2.3 节的成本模型，通过考虑工作负载中各种操作的混合来最大化总体吞吐量，找到最优 LSM-tree 设计。
 
 #### 3.6.2 合并策略调优
 
@@ -405,7 +419,7 @@ Apache AsterixDB 是开源大数据管理系统，无共享架构。每分区由
 
 **混合合并策略**：Dostoevsky 已证明同质合并策略是次优的。设计和实现混合策略并重新审视相关设计问题是重要方向。
 
-**最小化性能波动**：LSM-tree 常因解耦内存写入和后台 I/O 而表现出大性能波动。bLSM 是唯一尝试但局限明显（仅未分区 leveling，仅限制写入延迟而非整体方差）。设计最小化性能波动机制非常有用。
+**最小化性能波动**：LSM-tree 常因解耦内存写入和后台 I/O 而表现出大性能波动。在这份综述当时的收录范围内，bLSM是针对该问题的尝试，但局限明显（仅未分区 leveling，仅限制写入延迟而非整体方差）。设计最小化性能波动机制非常有用。
 
 **走向数据库存储引擎**：现有改进多聚焦单 LSM-tree KV-store。随着 LSM-tree 被广泛应用于 DBMS 存储引擎，应开发多索引场景下的新技术：辅助结构自适应维护、LSM-aware 查询优化、合并任务与查询执行协同规划。
 

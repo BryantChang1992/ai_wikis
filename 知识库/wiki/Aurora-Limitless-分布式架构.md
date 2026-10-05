@@ -15,27 +15,24 @@ related:
 status: draft
 sources:
 - '[[知识库/sources/papers/Aurora-Limitless/精读分析]]'
-created: &id001 2026-06-15
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
-updated: *id001
+- '[[知识库/sources/papers/Aurora-Limitless/Aurora-Limitless-SIGMOD2026.pdf]]'
+created: 2026-06-15
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Aurora-Limitless-分布式架构/
 blog_source: _posts/2026-06-15-knowledge-f9bd87f7d9.md
+source_check_scope: 本地PDF §2–5、§7–8，页2–11；图3、表2与图4–7。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Aurora Limitless 分布式架构
 
-![[diagram/aurora-limitless-architecture.svg]]
-
 ## 概述
 
-Aurora Limitless Database 是 Amazon Aurora PostgreSQL 的水平扩展方案，通过 **Router/Shard 解耦架构** 实现透明分布式扩展，应用无需修改分片逻辑。系统已在 AWS 生产环境运行超过一年。
+Aurora Limitless Database 是 Amazon Aurora PostgreSQL 的水平扩展方案，通过 **Router/Shard 解耦架构** 实现透明分布式扩展，系统负责路由分片；客户仍需选择分片键、设计共置关系，并可能修改schema及SQL。系统已在 AWS 生产环境运行超过一年。
 
 ## 三层架构
-
-![[diagram/aurora-limitless-architecture.svg]]
-
 
 - **Router**：服务应用流量，持有 schema + topology + shard mapping 元数据。无 standby（通过 DNS LB 实现高可用），每个连接绑定至一个 Router
 - **Shard**：拥有数据分片。每个 Shard 是独立 Aurora PostgreSQL 集群。支持 0-2 个 standby（跨 AZ）
@@ -77,3 +74,21 @@ Router 连接管理器以**事务粒度**在 shard 连接上复用客户端会�
 - [[存储计算分离数据库的-Tail-Latency]]：完全复用 Aurora 的 storage-compute separation
 - [[Aurora-Limitless-时间戳事务]]：分布式事务协议
 - [[Aurora-Limitless-自适应扩缩容]]：垂直+水平二维扩缩容机制
+
+
+## 机制图与核验边界
+
+```mermaid
+flowchart TB
+  C[客户端] --> DNS[DNS分发连接]
+  DNS --> R[Router：规划、事务编排、持久元数据]
+  R --> S1[Shard 1]
+  R --> S2[Shard 2]
+  S1 --> V1[Aurora存储卷1]
+  S2 --> V2[Aurora存储卷2]
+  CP[控制面] -.拓扑和扩缩容.-> R
+  CP -.-> S1
+  CP -.-> S2
+```
+
+来源：本地PDF §2–5、§7–8，页2–11；协议图3、扩展表2和图4–7。RR首个查询取快照，RC每语句取快照；Router持有持久元数据，无专用standby不等于无状态。实验NOPM不是TPS，NEWORD平均延迟不是P99。完整条件与r4→r5原文百分比勘误见[[知识库/sources/papers/Aurora-Limitless/精读分析|精读分析]]。

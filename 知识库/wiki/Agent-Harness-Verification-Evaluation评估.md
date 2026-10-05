@@ -10,21 +10,23 @@ tags:
 - Agent评估
 - 基准测试
 created: 2026-06-20
-updated: 2026-06-20
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
 - '[[知识库/wiki/Agent-Harness-Observability可观测性]]'
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 更新于16天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Verification-Evaluation评估/
 blog_source: _posts/2026-06-20-knowledge-396925dbf9.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent Harness: Verification & Evaluation (V)
 
-> ETCLOVG 第六层：如何将 Agent 评估从"终局打分"转化为"质量闭环"——论文从 Lifecycle Hooks 独立出来的第二层。
+> 来源边界：本页对照综述 2026-05-08 截止的项目快照及所列章节。该文采用文献/公开项目编码，没有统一 benchmark 重跑各系统；引用工作数字为综述的二手转述，未在本次独立复现。产品能力描述不等于当前版本保证。
+
+> ETCLOVG 第六层：如何将 Agent 评估从"终局打分"转化为"质量闭环"。
 
 ---
 
@@ -46,17 +48,13 @@ blog_source: _posts/2026-06-20-knowledge-396925dbf9.md
 
 ## 2. 五阶段评估生命周期（Task-to-Feedback Lifecycle）
 
-```
-Stage 1: Task & Benchmark Grounding
-    ↓
-Stage 2: Pre-Execution Readiness Validation
-    ↓
-Stage 3: Controlled Execution & Trace Capture
-    ↓
-Stage 4: Multi-Level Judgement & Failure Attribution
-    ↓
-Stage 5: Continuous Regression & Deployment Feedback
-    ↑___________________________________________↓ (反馈循环)
+```mermaid
+flowchart TD
+ A[1 任务与基准定义] --> B[2 执行前环境验证]
+ B --> C[3 受控执行与 Trace 捕获]
+ C --> D[4 结果、轨迹和评估器判定]
+ D --> E[5 回归与部署反馈]
+ E --> A
 ```
 
 ### Stage 1: Task & Benchmark Grounding（基准接地）
@@ -68,7 +66,7 @@ Stage 5: Continuous Regression & Deployment Feedback
 | **SWE-bench** (Jimenez et al., 2024) | 软件工程 | 真实 GitHub Issue + 仓库快照 → 测试验证 Patch | 可执行测试 |
 | **Terminal-Bench** (Merrill et al., 2026) | 命令行工作流 | 终端环境交互（编辑文件、执行命令、依赖管理） | 输出验证 |
 | **WebArena** (Zhou et al., 2024) | Web 任务 | 模拟电商/社交/论坛网站 | 状态变化检测 |
-| **OSWorld** (Xie et al., 2024) | 桌面操作 | 完整 Ubuntu 虚拟机内的真实应用 | 屏幕状态检查 |
+| **OSWorld** (Xie et al., 2024) | 桌面操作 | 桌面应用任务 | 执行式判定与应用/系统状态检查，不能概括为仅看截图 |
 | **GAIA** (Mialon et al., 2023) | 通用推理 | 需要多步推理的问答任务 | 精确匹配 |
 | **TheAgentCompany** (Xu et al., 2024) | 企业工作 | 模拟公司场景的多步任务 | 端到端验证 |
 | **WorkArena++** (Boisvert et al., 2024) | 企业 SaaS | ServiceNow 平台操作 | 平台状态检查 |
@@ -114,7 +112,7 @@ Stage 5: Continuous Regression & Deployment Feedback
 
 **评估工具**：
 - **LLM-as-Judge**（Gu et al., 2024 综述）：GPT-4/Claude 作为评估器——但自身也存在偏差和不稳定性
-- **SWE-bench**：可执行测试作为客观验证器
+- **SWE-bench**：可执行测试提供明确判据，但测试覆盖不完备时仍可能漏掉错误
 - **HAL**：多维度评估 + 故障归因
 - **Terminal-Bench**：终端输出模式匹配 + LLM 评估组合
 
@@ -150,7 +148,7 @@ Bjarnason et al. (2026)：单次运行 Pass Rate 隐藏巨大方差 → 需要�
 
 ### 3.3 长期 Agent 的评估困难
 
-- 传统评估：单个任务（5-30 分钟）
+- 许多基准覆盖有限步数的单个任务（时长随任务变化）
 - 长期 Agent：跨 Session 任务（数小时-数天）
 - 核心评估问题不是"是否成功"，而是"为什么成功/失败，路径是否可接受，哪个 Harness 组件需要改进"
 
@@ -176,3 +174,7 @@ Bjarnason et al. (2026)：单次运行 Pass Rate 隐藏巨大方差 → 需要�
 ---
 
 > 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · V 层（Verification & Evaluation）
+
+## 最小对照设计（本卡片建议）
+
+若验证“压缩历史可以降本且不损害质量”，固定任务集、模型版本、工具、环境、随机设置及预算，只改变压缩策略；多次运行并报告成功率、成本、P95 时延与约束丢失案例。把依赖安装失败单列为环境失败，同时报告总完成率，避免通过排除困难样本美化结果。评估器阈值应在独立校准集上固定。

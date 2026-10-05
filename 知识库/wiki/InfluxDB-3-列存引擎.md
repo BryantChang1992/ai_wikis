@@ -1,6 +1,6 @@
 ---
 type: concept
-title: InfluxDB 3 列存存储引擎
+title: InfluxDB 3 的列式引擎：格式、执行与部署
 sources:
 - '[[技术文章/InfluxDB调研/02-存储引擎]]'
 - '[[技术文章/InfluxDB调研/03-写入与查询路径]]'
@@ -13,7 +13,7 @@ tags:
 - 存储引擎
 - 存算分离
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
@@ -21,91 +21,50 @@ related:
 - '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
 - '[[知识库/wiki/InfluxDB-写入与查询路径]]'
 - '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.93
-confidence_rationale: 类型=concept; 来源×2; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-3-列存引擎/
 blog_source: _posts/2026-06-14-knowledge-4e34cc44e7.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/
+- https://docs.influxdata.com/influxdb3/core/reference/internals/durability/
+diagram_format: mermaid
 ---
 
-# InfluxDB 3 列存存储引擎
+# InfluxDB 3 的列式引擎：格式、执行与部署
 
-## 定义
+Arrow 面向内存列式表示，DataFusion 执行查询计划，Parquet 面向持久化列式数据。三者分别回答“如何表示数据、如何计算、如何落盘”，不能合并成“没有索引、没有合并、无限基数零成本”。
 
-InfluxDB 3.0 从零开始用 Rust 重写了整个存储引擎，以 **Apache Parquet** 作为原生持久化格式，基于 **Apache Arrow** 和 **DataFusion** 构建列式查询引擎。这是 InfluxDB 历史上最根本的架构变革。
-
-## 技术栈
-
-| 技术 | 角色 |
-|------|------|
-| **Apache Arrow** | 列式内存格式，零拷贝数据交换 |
-| **Apache DataFusion** | 向量化 SQL 查询引擎 |
-| **Apache Parquet** | 列式持久化格式，原生统计信息 |
-| **Rust** | 零成本抽象，无 GC，内存安全 |
-
-## 存算分离架构
-
-```
-Line Protocol → Ingester → Parquet (Object Store: S3/MinIO)
-                         → Catalog (PostgreSQL)
+```mermaid
+flowchart TD
+  W[写入与 WAL] --> M[内存列式数据]
+  M --> P[Parquet 持久化]
+  P --> C[Compaction：重写与合并文件]
+  Q[DataFusion 查询计划] --> M
+  Q --> P
+  S[schema、分区、统计信息] --> Q
 ```
 
-InfluxDB 3.0 采用**存算分离**的云原生架构，包含四个独立组件：
+图描述数据职责，不代表独立进程数。Core 与 Clustered 的 WAL 及组件拓扑见 [[InfluxDB-写入与查询路径]]。
 
-| 组件 | 职责 |
-|------|------|
-| **Ingest Router + Ingester** | 数据摄入：Line Protocol 解析、Schema 校验、分区排序、Parquet 持久化 |
-| **Query Router + Querier** | 数据查询：利用 DataFusion 构建和执行查询计划 |
-| **Compactor** | 后台合并小文件，优化存储布局 |
-| **Garbage Collector** | 执行保留策略，回收过期数据 |
+## 与 TSM 的比较应避免什么
 
-所有组件通过 **Catalog** 和 **Object Store** 进行松耦合通信——组件间无需直接通信，只通过共享存储协调状态。这与 [[存储计算分离数据库的-Tail-Latency]] 中讨论的存算分离架构有共同的设计关注点。
+| 维度 | 可用的比较 | 错误的绝对结论 |
+|---|---|---|
+| 格式 | TSM 是时序专用格式；Parquet 是开放列式格式 | TSM 文件可变、Parquet 不可变 |
+| 剪枝 | 分区和列统计帮助减少读取 | 不需要任何索引或元数据 |
+| 基数 | 避开原 TSI 设计的部分扩展限制 | 任意基数都不增加内存与查询成本 |
+| 写放大 | 取决于刷盘、文件大小、合并与重写 | Parquet 只写一次，没有 compaction |
+| 扩容 | 取决于具体产品部署形态 | 所有 3.x 版本原生同样水平扩展 |
 
-## Parquet 作为一等公民的优势
+压缩倍数受排序、列类型、分布、编码与压缩算法共同影响；没有同一数据集、相同统计口径，就不能宣称固定降低十倍成本。开放文件格式方便工具互操作，但还需遵守 Catalog、权限和一致性约束，直接扫描所有对象文件可能包含已被逻辑替换的数据。
 
-### 1. 内置统计信息 — 无索引剪枝
+关联：[[InfluxDB-TSM存储引擎]]、[[InfluxDB-指标设计与基数管理]]、[[InfluxDB-Catalog元数据]]。
 
-每个 Parquet Row Group / Data Page 存储 Min/Max/Null Count 统计信息，查询引擎可以通过这些元数据**直接跳过不相关文件**，无需像 TSI 那样维护全局倒排索引。这是消除基数上限的关键。
 
-```
--- 查询: SELECT * FROM cpu WHERE host='server-a' AND time > now()-1h
--- Parquet Statistics 剪枝:
---   → 跳过 time.max < now()-1h 的 Partition
---   → 跳过 host 列 Min/Max 不含 'server-a' 的 Row Group
--- → 根本不需要索引查找！
-```
+## 核验来源
 
-### 2. 极致压缩比：10-100x
-
-Cardinality-Aware Sort（按基数最低的列优先排序）最大化列式压缩效率：
-- 低基数列（如 `region`）连续存储 → RLE/字典编码效果极佳
-- 高基数列（如 `value`）利用时间序列特性 → Delta 编码 + Snappy/ZSTD
-
-### 3. 开放标准 — 生态兼容
-
-Parquet 可直接被 Spark、Pandas、DuckDB 等工具读取，实现**零 ETL 数据分析**。
-
-### 4. 存算分离 — 弹性伸缩
-
-数据存储在 S3/MinIO，计算（Ingester/Querier/Compactor）可按需独立伸缩，互不影响。
-
-## 与 TSM 引擎的关键对比
-
-| 维度 | TSM (v1/v2) | Columnar (v3) | 突破 |
-|------|-------------|---------------|------|
-| 存储格式 | TSM (自研列式) | Parquet (开放标准) | 生态兼容性 |
-| 索引 | TSI 倒排索引 | Parquet Statistics | **消除基数上限** |
-| 语言 | Go | Rust | 零 GC 停顿 |
-| 压缩比 | 5-10x | 10-100x | 存储成本 10x 降低 |
-| 写放大 | 严重 (多级 Compaction) | 低 (单次 Parquet 写) | 写入吞吐提升 |
-| 扩展 | 手动分片 | 原生水平扩展 | 弹性伸缩 |
-
-## 去重策略演进
-
-- **v1/v2**：写入时无去重，查询时通过 Iterator 合并
-- **v3**：Ingester 写入时 Sort-Merge 去重 + Querier 仅对重叠文件去重
-
----
-
-*参考: "InfluxDB 3.0 System Architecture" — Nga Tran, Paul Dix, Andrew Lamb, Marko Mikulicic*
+- [Clustered 引擎及 compactor](https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/)
+- [Core 存储引擎](https://docs.influxdata.com/influxdb3/core/reference/internals/storage-engine/)

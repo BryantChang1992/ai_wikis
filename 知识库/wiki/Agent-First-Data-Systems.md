@@ -14,74 +14,53 @@ sources:
 - '[[知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
-updated: 2026-06-15
-diagram: diagram/agent-first-data-systems.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-First-Data-Systems/
 blog_source: _posts/2026-06-15-knowledge-2d9a8f2373.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent-First Data Systems — Agent 优先的数据系统架构
 
-## 一句话总结
+## 问题与适用假设
 
-UC Berkeley 的愿景论文：传统数据系统是为人机交互的**被动查询-结果模型**设计的（低并发、精确答案、独立查询），必须重构为 **Probe-Brief 的主动引导模型**（高并发、satisficing、冗余共享、可转向）才能适应 LLM Agent 成为主要 workload 的未来。
+CIDR 2026 愿景论文提出：当 LLM Agent 在同一数据上并行尝试、反复探索元数据并接受系统反馈时，数据库可以利用查询之间的共同目标和冗余来优化整个任务。传统数据库早已支持高并发与近似查询；论文批评的是接口缺少 Agent 的意图和探索阶段，不是断言现有系统只支持低并发人类用户。
 
-## Agentic Speculation 四特性
+四个工作负载特征是规模、异质性、冗余和可引导性。它们提供研究动机，不代表任意 Agent 工作负载都具备相同冗余率。
 
-| 特性 | 含义 | 优化机会 |
-|------|------|----------|
-| **Scale（规模）** | 每秒上千请求 | Satisficing 而非全量执行 |
-| **Heterogeneity（异质性）** | 粗探索→精确验证混合 | Phase-based 近似度控制 |
-| **Redundancy（冗余）** | 不同探针高度重叠 | MQO + 缓存共享 |
-| **Steerability（可引导性）** | Agent 可被引导向更优方向 | Sleeper Agent 提供辅助反馈 |
+## 机制提案（§3–6）
 
-### 实证（BIRD + 多后端 Case Study）
+```mermaid
+flowchart TD
+ A[Agent：任务目标与探索阶段] --> B[Probe：查询加 brief]
+ B --> C[任务级调度：预算与停止条件]
+ C --> D[执行探针或复用中间结果]
+ M[Agentic Memory：元数据与历史探针] --> C
+ D --> M
+ D --> E[返回结果与辅助反馈]
+ E --> A
+ C --> F[分支事务：隔离 what-if 探索]
+ S[Sleeper Agent：生成辅助建议的提案] -.-> E
+```
 
-- 并行 50 次尝试 → 成功率提升 14-70%
-- Distinct sub-plan 仅 10-20%（冗余巨大）
-- 给 hints → SQL 查询减少 18%，部分查询减少 37%
+1. **Probe + brief**：查询附带自然语言目的、阶段、精度需求和优先级；系统才能知道是宽泛探索还是最终验证。语义搜索并非逻辑上不能用 SQL 表达，而是纯查询文本未必充分暴露任务意图。
+2. **Satisficing**：以足以推进下一步决策的结果为目标，在允许的阶段近似、剪枝或提前停止；最终正确性要求不能因此默默降低。
+3. **共享执行**：跨探针复用结果、子计划或物化中间状态。计划相似仅是潜在机会；真正收益要扣除识别、协调和缓存维护成本。
+4. **引导与持久状态**：辅助建议减少盲目探索，记忆复用已知语义，分支事务隔离并行假设。Sleeper Agent 是提案，实验使用的是人工专家给出的 hints。
 
-## 三层架构
+**例子（解释性设计）**：Agent 想比较按订单时间或发货时间统计的销售趋势。brief 标注“探索口径”，系统可先给样本和列语义；口径确定后再精确执行。把探索阶段的近似值直接当最终财务数字，则超出该近似策略的适用范围。
 
-![[diagram/agent-first-data-systems.svg]]
+## 证据与结果边界（§2，表 1、图 1–2）
 
+- BIRD 的并行尝试实验使用 DuckDB，并比较 GPT-4o-mini 与 Qwen2.5-Coder-7B。作者报告成功率的提升范围为 14–70%；须按模型、尝试数和图中相对量理解，不能归结为“50 次一定提升 70 个百分点”。
+- 50 次尝试的查询计划中，distinct sub-plans 占约 10–20%，反映结构冗余；没有实现完整共享执行引擎来证明对应的时延或费用节省。
+- 表 1 在 22 个任务、每任务两次运行上比较有/无人工 hints；o3 的平均 SQL 次数从 12.67 降至 10.38（约 18.1%），其中部分查询尝试从 4.28 降至 2.71（约 36.6%）。这不是 Sleeper Agent 的端到端收益。
+- 论文引用 Neon 的 Agent 分支/回滚观察，但未给足采样分母和测量设计，不能当作通用容量参数。
 
-### Layer 1: Probe > Query
+## 局限与下一步验证
 
-- Probe = SQL + **brief**（NL goals, phase, 近似需求, 优先级）
-- 支持语义相似搜索（"找跟 electronics 相关的表"）——SQL 无法表达
-- 支持终止条件函数（eval on partial results → 提前结束）
+这是有动机实验的愿景论文，尚无完整 Agent-First 数据系统实现或统一 benchmark 证明其整体架构优于现有引擎。需要固定任务成功标准，比较端到端成功率、总时延、SQL/LLM 费用、缓存维护开销、分支冲突和权限隔离；近似导致的错误或额外迭代也应计入。
 
-### Layer 2: Satisficing 不是 Optimizing
-
-- 旧目标：max 吞吐（等所有查询完整结果）
-- 新目标：min 总交互时间（刚好够让 agent 决策下一步）
-- Intra-probe：语义剪枝 + phase-based 近似度 + MQO 共享
-- Inter-probe：去重 + 预物化 + Exploration vs Exploitation
-
-### Layer 3: Agentic Memory + Branch TX
-
-详见 [[Agentic-Memory-语义缓存]] 和 [[Agent-First-Branch-Transactions-分支事务]]
-
-## 核心优势
-
-1. ✅ 不要求 agent 写更好的 SQL — 而是数据库"主动理解" agent
-2. ✅ Satisficing 将成本从"绝对算术"转为"省总时间"——更符合 agent 多轮交互的本质
-3. ✅ 四个特性的抽象有实验数据支持（不是拍脑袋）
-4. ✅ Sleeper agent 本质上是把人类 DBA/分析师的知识自动化
-
-## 局限
-
-- ⚠️ 纯 Vision Paper，无实现，无系统验证
-- ⚠️ Sleeper agent 成本/延迟/精度权衡未讨论
-- ⚠️ Satisficing 如果太激进可能导致更多轮次——无理论界
-- ⚠️ 隐私/安全问题仅被提及无解决方案
-- ⚠️ 未讨论与具体数据库引擎（PostgreSQL/Spark/DuckDB）的结合
-
-## 与知识库的关联
-
-- [[事务模型深度调研]]：分支事务是 MVCC 在 agent 方向的自然延伸
-- [[Agentic-Memory-语义缓存]]：Agentic Memory 需要向量索引 + 结构化查询双重能力
+详读：[[知识库/sources/papers/Agent-First-Data/精读分析]]；相关：[[Agentic-Memory-语义缓存]]、[[Agent-First-Branch-Transactions-分支事务]]、[[Agent-Memory-Survey-2026综述]]。

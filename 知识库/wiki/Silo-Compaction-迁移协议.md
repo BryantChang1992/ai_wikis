@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计
+title: HATS：副本选择与 Compaction 配额
 tags:
 - LSM-Tree
 - Compaction
@@ -12,86 +12,58 @@ related:
 - '[[知识库/wiki/Silo-分布式LSM-Compaction调度]]'
 - '[[知识库/wiki/LSM-Tree-合并优化]]'
 sources:
+- '[[知识库/sources/papers/LSM-Scheduling/精读分析]]'
 - '[[知识库/sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf]]'
 status: draft
 created: 2026-06-15
-updated: 2026-06-15
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Silo-Compaction-迁移协议/
 blog_source: _posts/2026-06-15-knowledge-7f06276984.md
+source_check_scope: 本地HATS PDF 第6–8页，§4.2–5、算法1。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
-# Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计
+# HATS：副本选择与 Compaction 配额
 
-![[diagram/silo-compaction-scheduling.svg]]
+> **历史误命名**：旧文件称“Silo Compaction 迁移协议”，其 Anti-hog、Pro-hog、CrossZone、远程读SST写回协议没有在所引PDF中出现。本文按实际HATS原文纠正，保留路径供旧链接访问。
 
-## 一句话总结
+## 粗粒度算法怎么走（§4.2、算法1）
 
-Silo 实现 Compaction 任务的跨节点迁移：hog node 暂停 compaction（不放弃 metadata）→ target node 远程读 SST 文件 → 在 target 执行 merge-sort compaction → 写回原节点 → 两边更新元数据。三种迁移模式分别针对不同场景。
+记 L 为 epoch 长度，T_i 为节点平均读延迟，C[i,j] 为 range i 第j副本收到的请求数。节点余量 Δ_i=`L/T_i − 本轮读请求总数`。负数表示超载，正数表示余量。
 
-## 三策略总览
+在一个复制组内，依次从超载副本给空闲副本转移 `min(超载量, 空闲量, 原分配请求量)`。转移后的 E 通过 Gossip 分发，客户端按副本期望请求占比选 coordinator。算法保持每个range的总请求数，而不是把数据移动到新节点。
 
-| 策略 | 触发条件 | 含义 | 场景 |
-|------|----------|------|------|
-| **Anti-hog** | Score > μ + 1.5σ 且存在轻载节点 | 被动响应，已 overload 才迁移 | 日常 tail node 处理 |
-| **Pro-hog** | 预测即将 overload | 主动预防，在成为瓶颈前迁移 | 可预见的负载尖峰 |
-| **CrossZone** | 本 Zone 内无轻载节点 | 跨 AZ/DC 利用远端空闲资源 | 本 Zone 整体高负载 |
+教学例：A超载200、B余量120、该range在A有800次请求，则搬移120次期望读，A保留680，B增加120。剩余超载仍需寻找其他副本；这个例子不是论文的benchmark数值。
 
-## Anti-hog 协议详细流程
-
-### Phase 1: Global Scheduler Decision
-
-```
-1. 每 1s 收集 per-node metrics
-2. 计算 health score: Score = 0.5·WAF + 0.3·CPU + 0.2·IO
-3. 统计集群分数分布（μ, σ）
-4. Hog = nodes where Score > μ + 1.5σ
-5. Target = node with min Score (需要 CPU < 70%, IO < 70%)
-6. 从 hog 的 pending compaction queue 选择 WAF 贡献最大的 job
-7. 发送迁移指令给 hog + target
+```mermaid
+flowchart LR
+  C[当前状态 C 与平均延迟] --> D[计算每节点余量]
+  D --> Pair[同组选择超载与空闲副本]
+  Pair --> Min[取三项最小值作为转移读数]
+  Min --> E[更新 E 与双方余量]
+  E --> Publish[Gossip 发布 term 与 epoch]
+  Publish --> Client[客户端按 E 选择 coordinator]
 ```
 
-### Phase 2: Migration Execution
+## 细粒度协调（§4.3）
 
-![[diagram/Silo-Compaction-迁移协议-fig.svg]]
+即时延迟 t[i,j] 包含coordinator到副本的网络和服务时间，使用EWMA（实现权重.5）。令Q为该节点在E中的期望总读数，score=`L/t[i,j] − Q`；选择score最高的合法副本。单纯追逐最快副本容易使大家同时涌向它，这里加入全局已分配负载作为约束。
 
-### 为什么写回原节点而不是留在 target？
+## 压实配额与防饥饿（§4.4–5）
 
-- 数据必须保持本地——Silo 不改变数据分布，只是把 compaction 的计算和 I/O 迁移到轻载节点
+不同range副本分成独立LSM-tree，在一个节点的允许压实预算内，按其期望读比例分配。论文默认总预算64MiB/s、epoch60s。靠近新flush的最低层压实不受该限速，以免新SST积压；其他层限速。
 
-## Pro-hog 的区别
+读冷写热的range不能长期得到零进展。§5给出防饥饿阈值与回退Cassandra FCFS执行的规则。因此调度的目标同时包括读性能与后台工作可推进，不是永远牺牲所有冷副本。
 
-- Pro-hog 在 hog detection 中使用**趋势预测**而非瞬时阈值
-- 算法：跟踪 Score 的短期滑动平均（5s window）
-- 触发条件：Score_trend > threshold_rate（快速增长）
+## 不变量与故障范围
 
-目的：避免"compaction 开始做才 overload"的情况——在任务 big 之前迁移。
+1. 数据仍在原副本，本地压实必须保持相同可见结果。
+2. 只在拥有目标range并满足一致性要求的副本中选路由。
+3. expected state按term、epoch更新，拒绝旧决策倒退。
+4. scheduler故障由seed间Raft重新选举；数据副本故障仍交Cassandra处理。
 
-## 失败处理
+这是一套调度协议，不是新的事务提交或SST跨节点安装协议。故障恢复的详细持久化规则不能从本文的调度机制推导成“任意系统可直接套用”。
 
-- 迁移期间 target 节点故障 → hog Silocal 超时重试（3 次）→ 回退到本地 compaction
-- 迁移期间 hog 节点故障 → 无影响（旧 SST 文件保留）
-- WAF 在 Raft 重放时的冲突 → 论文未处理（未来工作）
-
-## 迁移成本分析
-
-| 成本项 | 数量级 | 影响 |
-|--------|--------|------|
-| **远程读** | SST 大小 × 1（32-64MB chunks stream） | 0.2-1s 网络传输 |
-| **远程 compaction** | 迁移的 compaction CPU+IO | Target 节点负担 |
-| **写回** | 新 SST 文件写回原节点 | 0.3-1s 网络传输 |
-| **元数据更新** | Protobuf metadata RPC | <1ms |
-| **总迁移时间** | **0.5-2s**（SST 5-100MB） | 在 compaction 等待时间内 |
-
-## 局限
-
-- 同 AZ 内 1-5ms RTT 可行，跨 DC（20-50ms RTT）网络开销显著
-- 数 GB 的 SST 文件迁移成本高 → 需要判断"迁移是否值得"
-- 迁移期间该 key range 的 compaction 暂停 → 影响读放大
-
-## 与知识库关联
-
-- [[LSM-Tree-合并优化]]：Silo 的 compaction 迁移是与 Monkey/Dostoevsky 等单节点优化正交的改进
-- [[Silo-分布式LSM-Compaction调度]]：调度框架的总览
+定位：本地PDF第6–8页；算法1、§4.2.1、§4.3、§4.4、§5。完整条件与评估见[[知识库/sources/papers/LSM-Scheduling/精读分析|HATS精读]]；概览见[[Silo-分布式LSM-Compaction调度|HATS协同调度]]。

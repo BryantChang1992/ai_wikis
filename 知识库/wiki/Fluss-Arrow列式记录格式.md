@@ -10,18 +10,20 @@ tags:
 - 记录格式
 - 谓词下推
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-存储引擎]]'
 - '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
 - '[[知识库/wiki/Fluss-客户端与计算集成]]'
-confidence: 0.75
-confidence_rationale: 类型=concept; 来源×0; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Arrow列式记录格式/
 blog_source: _posts/2026-06-15-knowledge-233ee84ac8.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss Arrow 列式记录格式
 
@@ -77,7 +79,7 @@ Fluss Arrow Vector → Flink ArrowReader → Flink RowData（零列拷贝）
 参见 [[Fluss-Lake层与湖仓融合]]。Lance 后端的写入路径：
 
 ```
-Fluss Arrow batch → ShadedArrowBatchWriter → Lance 文件（零拷贝）
+Fluss Arrow batch → ShadedArrowBatchWriter → Lance 文件（减少不必要复制，仍需检查编码与压缩）
 ```
 
 从 Fluss 内存到 Lake 文件，整个路径上没有一次序列化/反序列化。

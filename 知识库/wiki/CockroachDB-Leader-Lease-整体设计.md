@@ -1,6 +1,6 @@
 ---
 type: concept
-title: CockroachDB Leader-Lease — 可扩展多组租约方案
+title: CockroachDB Leader Lease：共享维护与安全读授权
 tags:
 - CockroachDB
 - Raft
@@ -17,94 +17,45 @@ sources:
 - '[[知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf]]'
 status: draft
 created: 2026-06-15
-updated: 2026-06-15
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CockroachDB-Leader-Lease-整体设计/
 blog_source: _posts/2026-06-15-knowledge-3fe237cc58.md
+source_checked: '2026-10-05'
+source_check_basis: Scalable Leader Leases For Multi Consensus Groups in CockroachDB, SIGMOD Companion 2026, 原始PDF
+  §3–5 pp.4–11
+diagram_format: mermaid
 ---
 
-# CockroachDB Leader-Lease — 可扩展多组租约方案
+# CockroachDB Leader Lease：共享维护与安全读授权
 
-![[diagram/cockroachdb-leader-lease-3-layer.svg]]
-## 一句话总结
+## 目标与三层设计
 
-CockroachDB 通过 **Liveness Fabric（共享故障检测层）+ Leader Fortification（增强 Raft 领导保证）** 将 lease 维护成本从 O(N_groups) 降到 O(N_nodes²)，**CPU 节省 85%+**，同时消除了集中化 lease 在部分网络分区下的永久不可用问题。
+原文 §3.1–3.2（PDF p.4）把常态租约续期从每个 Range 下沉到共享支持层。CockroachDB 使用 **Raft**；leader 取得 fortified term 后才可持有 Leader Lease。
 
-## 核心问题
+```mermaid
+flowchart BT
+    F[Liveness Fabric：有向存储对的支持] --> R[Raft：强化领导权、记录 LeadEpoch]
+    R --> L[Leader Lease：以 LSU 作为有效期边界]
+    L --> Q[租约内读授权]
+```
 
-分布式数据库为强一致读引入 **Lease（租约）** 机制——持有 lease 的副本可以在不进行共识通信的情况下服务读请求。但当数据被分割为数十万个 consensus group 时，每个 group 独立维护自己的 lease 成为 CPU 和网络瓶颈。
+Fabric 不是仅知道“某节点在线”，而是知道 A 是否仍被 B 支持；有共同共识组的节点/存储对共享支持。已建立 fortification 后可避免逐 Range 续租与常态心跳，但组级状态、写复制和 leader ticks 仍存在。
 
-CockroachDB 原有的两种方案都有硬伤：
-- **Expiration Lease**：每个 Range 通过 Raft 日志周期性续约 → 10 万 Range 消耗 90%+ CPU
-- **Centralized Lease**：通过集中式 liveness Range 管理 node 级 epoch → CPU 极低，但 partial partition 时 leaseholder 能续约却不能写 → **永久不可用**
+## 从支持到 Lease
 
-## 解法：Leader Leases
+Leader 向 follower 请求 MsgFortifyLeader，收到 quorum 承诺后，仅使用已确认且 LeadEpoch 匹配的支持计算 `LSU=max_Q min_r τ_r`。支持 epoch 变化需要重新强化，不能用新 epoch 的时间自动续旧承诺。具体见 [[CockroachDB-Leader-Fortification]] 和 [[CockroachDB-Liveness-Fabric-故障检测层]]。
 
-### 三层架构
+非合作新 holder 必须先当选leader；合作转移暂时使用expiration lease，待领导权转移后再转换。因此“统一角色”是正常路径设计，不排除转移期短暂分离。
 
-![[diagram/cockroachdb-leader-lease-3-layer.svg]]
+## 安全性和故障例
 
+§4 的目标是 lease 区间不相交。节点4可以访问系统探活节点1–3，却不能访问数据同伴5–6时，集中lease会持续续租，导致数据组在该分区持续期间无法恢复。Fabric的有向支持及fortification让数据组的支持到期后释放领导权，不把集中节点可达当作数据quorum可达。
 
-### 关键机制
+## 测试支持什么
 
-**1. Liveness Fabric（共享故障检测层）**
-- 节点 n₁ → n₂ 有向边维护 support 关系：(epoch, expiration)
-- support 语义：n₂ 承诺在 expiration 前不会撤销对 n₁ 的支持
-- 一旦 support 被撤销（epoch 递增），**永不复原**
-- 允许关闭 Raft 心跳，故障检测完全由 Liveness Fabric 代理
+§5、Figures5–8：统一3秒lease、1秒续约，在无负载的三节点CPU测试中，Leader Leases保持低于15%，expiration在80K Ranges超过90%；作者概括为CPU**最高减少85%**，不是85%以上的保证。相同期限的崩溃/全分区中，Leader Leases P50约4.0–4.7秒，旧类约3.0–3.9秒，反映恢复串行化代价。
 
-**2. Leader Fortification（增强 Raft）**
-- leader 通过 `MsgFortifyLeader` 请求 follower 承诺在时间戳 X 前不投票给他人
-- 收到多数派（含自己）成功响应 = fortified
-- 允许完全关闭 per-group Raft 心跳
+Fabric的1800-store实验约0.225核，是观测实例CPU尺度，不能写作150节点全集群总共0.225核。每节点开销随对端数量增长，并不意味着集群mesh通信总体线性。
 
-**3. LeadSupportUntil (LSU)**
-- LSU = max_{Quorums} min_{r in Q} τ_r
-- 即：所有多数派中，每个多数派的最小 support 到期时间的最大值
-- LSU 是 lease 有效期的直接来源
-- leader 可以保证在 LSU 之前不会被替换
-
-### 为什么要统一 leader 和 leaseholder？
-
-历史上 CockroachDB 分离 leader 和 leaseholder。统一后：
-- 消除了 partial partition 永久不可用：如果 leaseholder 无法与多数派通信 → Liveness Fabric 失去 support → lease 失效
-- 架构更简单：不再需要协调 leader 和 leaseholder 两个角色
-
-### Disk Stall 的处理
-
-要求 Liveness Fabric 心跳前做同步磁盘写：
-- 磁盘 stall → 无法发心跳 → 失去 fortification → 自动触发 leadership 变更
-- 爆炸半径限制在单个 store（心跳 per-store 而非 per-node）
-
----
-
-## 评估亮点
-
-| 维度 | Expiration | Centralized | Leader |
-|------|-----------|-------------|--------|
-| **CPU @ 100K Range** | 90%+ | ~5% | ~15% |
-| **Partial partition** | ✅ | ❌ 永久不可用 | ✅ |
-| **Disk stall** | ❌ | ❌ | ✅ |
-| **恢复延迟(P50)** | 3.0-3.9s | 3.0-3.9s | 4.0-4.7s |
-| **TPC-C 吞吐** | 随 scale 下降 20% | 平稳 | 平稳 |
-
-**核心权衡**：故障恢复慢 1-2 秒（因为 lease 到期才能竞选），但换来了可扩展性和 partial partition 下的可靠性。
-
-**Liveness Fabric 可扩展性**：
-- 150 node × 12 stores = 1800 stores → 仅 0.225 cores (2.8% of 8 vCPU)
-- 线性增长
-
-## 对工程实践的启示
-
-1. **共享故障检测层的设计模式**：任何管理大量共识组的系统都可以借鉴
-2. **"多数派承诺"比"心跳超时随机性"更可靠**：Fortification 提供确定性保证
-3. **紧耦合 leader 和 leaseholder 消除一整类故障模式**
-4. **Disk stall 检测必须与故障检测紧密集成**，否则可能"死了却装死不了"
-
-## 局限性
-
-- 故障恢复延迟略高（1-2s）——对 ultra-low-latency failover 场景可能不够
-- Leader replica 不能 quiesce——论文承认计划 future work
-- 配置变更约束增加变更成本
+实验版本、硬件、TPC-C条件和磁盘stall解释见 [[知识库/sources/papers/CockroachDB-Leader-Leases/精读分析]]。本次核对原文；保持既有draft状态。

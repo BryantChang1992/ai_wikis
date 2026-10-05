@@ -4,22 +4,27 @@
       "id": "agent-cost-control-gateway成本控制",
       "type": "Analysis",
       "name": "Agent Cost Control — Gateway 成本控制",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Agent Cost Control — Gateway 成本控制",
+        "description": "Agent Cost Control — Gateway 成本控制",
         "created": "2026-06-19",
         "file": "Agent-Cost-Control-Gateway成本控制.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "agent-fault-tolerance-容错设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "agent-first-data-systems",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agent-harness-observability可观测性",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -32,6 +37,11 @@
           "to": "model-neutrality-模型中立与反锁定",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
@@ -39,13 +49,13 @@
       "id": "agent-fault-tolerance-容错设计",
       "type": "Concept",
       "name": "Agent Fault Tolerance — 容错设计",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Agent Fault Tolerance — 容错设计",
+        "description": "Agent Fault Tolerance — 容错设计",
         "created": "2026-06-19",
         "file": "Agent-Fault-Tolerance-容错设计.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -55,11 +65,6 @@
         },
         {
           "to": "agent-first-data-systems",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "ai-infra-agent基础设施体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -74,6 +79,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "流处理容错模型",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -84,27 +94,17 @@
       "id": "agent-first-branch-transactions-分支事务",
       "type": "Concept",
       "name": "Agent-First Branch Transactions — Agent 优先的分支事务",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Agent-First Branch Transactions — Agent 优先的分支事务",
+        "description": "Agent-First Branch Transactions — Agent 优先的分支事务",
         "created": "2026-06-15",
         "file": "Agent-First-Branch-Transactions-分支事务.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "agent-first-data-systems",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "cockroachdb-leader-lease-整体设计",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "rosé-coordinated-apply-协调应用",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -119,13 +119,13 @@
       "id": "agent-first-data-systems",
       "type": "Concept",
       "name": "Agent-First Data Systems — Agent 优先的数据系统架构",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Agent-First Data Systems — Agent 优先的数据系统架构",
+        "description": "Agent-First Data Systems — Agent 优先的数据系统架构",
         "created": "2026-06-15",
         "file": "Agent-First-Data-Systems.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -134,12 +134,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "agentic-memory-语义缓存",
+          "to": "agent-memory-survey-2026综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "agentic-memory-语义缓存",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -149,13 +149,13 @@
       "id": "agent-harness-context-memory上下文管理",
       "type": "Concept",
       "name": "Agent Harness: Context Management & Memory (C)",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Agent Harness: Context Management & Memory (C)",
+        "description": "Agent Harness: Context Management & Memory (C)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Context-Memory上下文管理.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -179,13 +179,13 @@
       "id": "agent-harness-engineering-survey综述",
       "type": "Taxonomy",
       "name": "Agent Harness Engineering 综述",
-      "confidence": 0.7,
       "attributes": {
-        "description": "survey page: Agent Harness Engineering 综述",
+        "description": "Agent Harness Engineering 综述",
         "created": "2026-06-20",
         "file": "Agent-Harness-Engineering-Survey综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -254,17 +254,22 @@
       "id": "agent-harness-execution-environment执行环境",
       "type": "Concept",
       "name": "Agent Harness: Execution Environment & Sandbox (E)",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Agent Harness: Execution Environment & Sandbox (E)",
+        "description": "Agent Harness: Execution Environment & Sandbox (E)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Execution-Environment执行环境.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "agent-harness-engineering-survey综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "agent-harness-governance治理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -283,14 +288,14 @@
     {
       "id": "agent-harness-governance治理",
       "type": "Concept",
-      "name": "Agent Harness: Governance (G)",
-      "confidence": 0.7,
+      "name": "Agent Harness: Governance（G）",
       "attributes": {
-        "description": "concept page: Agent Harness: Governance (G)",
+        "description": "Agent Harness: Governance（G）",
         "created": "2026-06-20",
         "file": "Agent-Harness-Governance治理.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -317,6 +322,11 @@
           "to": "custom-agent-harness-middleware架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "parallax-agent安全架构",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
@@ -324,13 +334,13 @@
       "id": "agent-harness-lifecycle-orchestration编排",
       "type": "Concept",
       "name": "Agent Harness: Lifecycle & Orchestration (L)",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Agent Harness: Lifecycle & Orchestration (L)",
+        "description": "Agent Harness: Lifecycle & Orchestration (L)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Lifecycle-Orchestration编排.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -359,13 +369,13 @@
       "id": "agent-harness-observability可观测性",
       "type": "Concept",
       "name": "Agent Harness: Observability & Operations (O)",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Agent Harness: Observability & Operations (O)",
+        "description": "Agent Harness: Observability & Operations (O)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Observability可观测性.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -384,13 +394,13 @@
       "id": "agent-harness-tool-interface工具接口",
       "type": "Concept",
       "name": "Agent Harness: Tool Interface & Protocol (T)",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Agent Harness: Tool Interface & Protocol (T)",
+        "description": "Agent Harness: Tool Interface & Protocol (T)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Tool-Interface工具接口.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -409,13 +419,13 @@
       "id": "agent-harness-verification-evaluation评估",
       "type": "Concept",
       "name": "Agent Harness: Verification & Evaluation (V)",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Agent Harness: Verification & Evaluation (V)",
+        "description": "Agent Harness: Verification & Evaluation (V)",
         "created": "2026-06-20",
         "file": "Agent-Harness-Verification-Evaluation评估.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -433,14 +443,14 @@
     {
       "id": "agent-memory-survey-2026综述",
       "type": "Taxonomy",
-      "name": "Agent Memory 综述 2026",
-      "confidence": 0.7,
+      "name": "Agent Memory Survey 2026 — 机制、评估与边界",
       "attributes": {
-        "description": "survey page: Agent Memory 综述 2026",
+        "description": "Agent Memory Survey 2026 — 机制、评估与边界",
         "created": "2026-06-19",
         "file": "Agent-Memory-Survey-2026综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -449,12 +459,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "agentic-memory-语义缓存",
+          "to": "agent-harness-context-memory上下文管理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agentic-memory-语义缓存",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -469,7 +479,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-写放大",
+          "to": "ai-infra-agent基础设施体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -479,13 +489,13 @@
       "id": "agent-sandbox-安全沙箱选型",
       "type": "Concept",
       "name": "Agent Sandbox — 安全沙箱选型",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Agent Sandbox — 安全沙箱选型",
+        "description": "Agent Sandbox — 安全沙箱选型",
         "created": "2026-06-19",
         "file": "Agent-Sandbox-安全沙箱选型.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -494,7 +504,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agent-harness-execution-environment执行环境",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -512,20 +522,25 @@
           "to": "parallax-agent安全架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "agent-框架-2026-全景对比",
       "type": "Concept",
-      "name": "Agent 框架 2026 全景对比",
-      "confidence": 0.8,
+      "name": "Agent 框架 2026 — 能力与选型对照",
       "attributes": {
-        "description": "concept page: Agent 框架 2026 全景对比",
+        "description": "Agent 框架 2026 — 能力与选型对照",
         "created": "2026-07-03",
         "file": "Agent-框架-2026-全景对比.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -549,17 +564,22 @@
       "id": "agentic-memory-语义缓存",
       "type": "Concept",
       "name": "Agentic Memory — Agent-First 语义缓存",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Agentic Memory — Agent-First 语义缓存",
+        "description": "Agentic Memory — Agent-First 语义缓存",
         "created": "2026-06-15",
         "file": "Agentic-Memory-语义缓存.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "agent-first-data-systems",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "agent-memory-survey-2026综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -574,13 +594,13 @@
       "id": "anthropic-agent安全容器化实践",
       "type": "Analysis",
       "name": "Anthropic Agent 安全容器化实践",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Anthropic Agent 安全容器化实践",
+        "description": "Anthropic Agent 安全容器化实践",
         "created": "2026-06-19",
         "file": "Anthropic-Agent安全容器化实践.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -594,11 +614,6 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "custom-agent-harness-middleware架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -607,20 +622,25 @@
           "to": "parallax-agent安全架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "apache-flink-2.3.0-版本发布",
       "type": "Concept",
-      "name": "Apache Flink 2.3.0 — SQL 层与存储层重大升级",
-      "confidence": 0.8,
+      "name": "Apache Flink 2.3.0：功能与采用边界",
       "attributes": {
-        "description": "concept page: Apache Flink 2.3.0 — SQL 层与存储层重大升级",
+        "description": "Apache Flink 2.3.0：功能与采用边界",
         "created": "2026-07-03",
         "file": "Apache-Flink-2.3.0-版本发布.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -637,6 +657,16 @@
           "to": "流处理系统演化综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "流处理乱序数据管理",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "流处理容错模型",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
@@ -644,13 +674,13 @@
       "id": "aurora-limitless-分布式架构",
       "type": "Concept",
       "name": "Aurora Limitless 分布式架构",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Aurora Limitless 分布式架构",
+        "description": "Aurora Limitless 分布式架构",
         "created": "2026-06-15",
         "file": "Aurora-Limitless-分布式架构.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -679,13 +709,13 @@
       "id": "aurora-limitless-时间戳事务",
       "type": "Concept",
       "name": "Aurora Limitless 时间戳事务",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Aurora Limitless 时间戳事务",
+        "description": "Aurora Limitless 时间戳事务",
         "created": "2026-06-15",
         "file": "Aurora-Limitless-时间戳事务.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -704,13 +734,13 @@
       "id": "aurora-limitless-自适应扩缩容",
       "type": "Concept",
       "name": "Aurora Limitless 自适应扩缩容",
-      "confidence": 0.8,
       "attributes": {
-        "description": "concept page: Aurora Limitless 自适应扩缩容",
+        "description": "Aurora Limitless 自适应扩缩容",
         "created": "2026-06-15",
         "file": "Aurora-Limitless-自适应扩缩容.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -738,10 +768,9 @@
     {
       "id": "bigtable-分布式结构化存储系统",
       "type": "Concept",
-      "name": "Bigtable — 分布式结构化存储系统",
-      "confidence": 0.95,
+      "name": "Bigtable：分布式结构化存储系统",
       "attributes": {
-        "description": "concept page: Bigtable 分布式结构化存储系统 (OSDI 2006, Google)",
+        "description": "Bigtable：分布式结构化存储系统",
         "created": "2026-07-11",
         "file": "Bigtable-分布式结构化存储系统.md",
         "tags": [
@@ -753,47 +782,42 @@
           "Google基础设施"
         ],
         "source_status": "reviewed",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "lsm-tree-rum猜想",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "lsm-tree",
-          "type": "implements",
-          "confidence": 0.95,
-          "note": "Bigtable 的 MemTable+SSTable 是 LSM-Tree 的经典工程实现"
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "bourbon-learned-index-lsm",
       "type": "Concept",
-      "name": "Bourbon: LSM-Tree 学习索引",
-      "confidence": 0.7,
+      "name": "Bourbon：LSM 学习索引的证据与选型",
       "attributes": {
-        "description": "concept page: Bourbon: LSM-Tree 学习索引",
+        "description": "Bourbon：LSM 学习索引的证据与选型",
         "created": "2026-07-02",
         "file": "Bourbon-Learned-Index-LSM.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-kv-survey-综述",
+          "to": "elasticbf-弹性bloomfilter",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -806,20 +830,30 @@
           "to": "lsm-tree-自动调参",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "bytehouse-多模态查询优化",
       "type": "Concept",
-      "name": "ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引",
-      "confidence": 0.7,
+      "name": "ByteHouse 多模态查询优化",
       "attributes": {
-        "description": "concept page: ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引",
+        "description": "ByteHouse 多模态查询优化",
         "created": "2026-06-15",
         "file": "ByteHouse-多模态查询优化.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -847,14 +881,14 @@
     {
       "id": "bytehouse-架构与设计",
       "type": "Concept",
-      "name": "ByteHouse 云原生多模态数仓—整体架构",
-      "confidence": 0.7,
+      "name": "ByteHouse 整体架构 — 三层存算分离",
       "attributes": {
-        "description": "concept page: ByteHouse 云原生多模态数仓—整体架构",
+        "description": "ByteHouse 整体架构 — 三层存算分离",
         "created": "2026-06-15",
         "file": "ByteHouse-架构与设计.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -882,14 +916,14 @@
     {
       "id": "bytehouse-统一表引擎",
       "type": "Concept",
-      "name": "ByteHouse 统一表引擎 — 两阶段写入与多模态存储",
-      "confidence": 0.7,
+      "name": "ByteHouse 统一表引擎",
       "attributes": {
-        "description": "concept page: ByteHouse 统一表引擎 — 两阶段写入与多模态存储",
+        "description": "ByteHouse 统一表引擎",
         "created": "2026-06-15",
         "file": "ByteHouse-统一表引擎.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -908,12 +942,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "log-as-the-database-模式",
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
+          "to": "log-as-the-database-模式",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -922,16 +956,26 @@
     {
       "id": "cxl-3.0-内存池化新范式",
       "type": "Concept",
-      "name": "CXL 3.0 — 内存数据库的 Scale-up 新范式",
-      "confidence": 0.8,
+      "name": "CXL 3.0：内存池化与共享的区别",
       "attributes": {
-        "description": "concept page: CXL 3.0 — 内存数据库的 Scale-up 新范式",
+        "description": "CXL 3.0：内存池化与共享的区别",
         "created": "2026-07-03",
         "file": "CXL-3.0-内存池化新范式.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "aurora-limitless-分布式架构",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "lsm-tree-kv-survey-综述",
           "type": "relatedTo",
@@ -952,16 +996,21 @@
     {
       "id": "caas-lsm-compaction即服务",
       "type": "Concept",
-      "name": "CaaS-LSM: Compaction-as-a-Service",
-      "confidence": 0.75,
+      "name": "CaaS-LSM：独立 Compaction 服务",
       "attributes": {
-        "description": "concept page: CaaS-LSM: Compaction-as-a-Service",
+        "description": "CaaS-LSM：独立 Compaction 服务",
         "created": "2026-07-02",
         "file": "CaaS-LSM-Compaction即服务.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "lsm-tree",
           "type": "relatedTo",
@@ -969,11 +1018,6 @@
         },
         {
           "to": "lsm-tree-kv-survey-综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -992,14 +1036,14 @@
     {
       "id": "chandy-lamport-分布式快照算法",
       "type": "Concept",
-      "name": "Chandy-Lamport 分布式快照算法",
-      "confidence": 0.85,
+      "name": "Chandy–Lamport 分布式快照算法",
       "attributes": {
-        "description": "concept page: Chandy-Lamport 分布式快照算法",
+        "description": "Chandy–Lamport 分布式快照算法",
         "created": "2026-06-16",
         "file": "Chandy-Lamport-分布式快照算法.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1022,14 +1066,14 @@
     {
       "id": "cockroachdb-leader-fortification",
       "type": "Concept",
-      "name": "Leader Fortification — Raft 增强领导保证协议",
-      "confidence": 0.8,
+      "name": "Leader Fortification：强化 Raft 领导权",
       "attributes": {
-        "description": "concept page: Leader Fortification — Raft 增强领导保证协议",
+        "description": "Leader Fortification：强化 Raft 领导权",
         "created": "2026-06-15",
         "file": "CockroachDB-Leader-Fortification.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1043,6 +1087,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "raft-客户端交互",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -1052,14 +1101,14 @@
     {
       "id": "cockroachdb-leader-lease-整体设计",
       "type": "Concept",
-      "name": "CockroachDB Leader-Lease — 可扩展多组租约方案",
-      "confidence": 0.8,
+      "name": "CockroachDB Leader Lease：共享维护与安全读授权",
       "attributes": {
-        "description": "concept page: CockroachDB Leader-Lease — 可扩展多组租约方案",
+        "description": "CockroachDB Leader Lease：共享维护与安全读授权",
         "created": "2026-06-15",
         "file": "CockroachDB-Leader-Lease-整体设计.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1073,12 +1122,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "分布式数据系统一致性体系",
+          "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -1087,14 +1136,14 @@
     {
       "id": "cockroachdb-liveness-fabric-故障检测层",
       "type": "Concept",
-      "name": "Liveness Fabric — 去中心化集群故障检测层",
-      "confidence": 0.8,
+      "name": "Liveness Fabric：有向支持关系",
       "attributes": {
-        "description": "concept page: Liveness Fabric — 去中心化集群故障检测层",
+        "description": "Liveness Fabric：有向支持关系",
         "created": "2026-06-15",
         "file": "CockroachDB-Liveness-Fabric-故障检测层.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1117,14 +1166,14 @@
     {
       "id": "cockroachdb-vs-tidb-2026-对比",
       "type": "Concept",
-      "name": "CockroachDB vs TiDB 2026 架构对比",
-      "confidence": 0.7,
+      "name": "CockroachDB 与 TiDB：事务和存储职责对照",
       "attributes": {
-        "description": "concept page: CockroachDB vs TiDB 2026 架构对比",
+        "description": "CockroachDB 与 TiDB：事务和存储职责对照",
         "created": "2026-07-03",
         "file": "CockroachDB-vs-TiDB-2026-对比.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1138,12 +1187,17 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "raft-共识算法协议核心",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
           "to": "分布式数据系统事务与一致性新进展-2026综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -1153,13 +1207,13 @@
       "id": "custom-agent-harness-middleware架构",
       "type": "Concept",
       "name": "Custom Agent Harness — Middleware 架构",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Custom Agent Harness — Middleware 架构",
+        "description": "Custom Agent Harness — Middleware 架构",
         "created": "2026-06-19",
         "file": "Custom-Agent-Harness-Middleware架构.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1169,11 +1223,6 @@
         },
         {
           "to": "agent-fault-tolerance-容错设计",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "agent-first-data-systems",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -1188,22 +1237,22 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "anthropic-agent安全容器化实践",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "loop-engineering-多层agent循环架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
           "to": "model-neutrality-模型中立与反锁定",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "parallax-agent安全架构",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -1213,13 +1262,13 @@
       "id": "dataflow-model",
       "type": "Concept",
       "name": "Dataflow 模型",
-      "confidence": 0.9,
       "attributes": {
-        "description": "concept page: Dataflow 模型",
+        "description": "Dataflow 模型",
         "created": "2026-06-15",
         "file": "Dataflow-Model.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1233,6 +1282,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "流处理容错模型",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "流处理状态管理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -1242,14 +1296,14 @@
     {
       "id": "doris-compaction-策略",
       "type": "Concept",
-      "name": "Doris Compaction 策略",
-      "confidence": 0.7,
+      "name": "Doris Compaction：选哪些文件与怎样合并",
       "attributes": {
-        "description": "concept page: Doris Compaction 策略",
+        "description": "Doris Compaction：选哪些文件与怎样合并",
         "created": "2026-06-14",
         "file": "Doris-Compaction-策略.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1288,9 +1342,8 @@
       "id": "doris-mpp-向量化查询引擎",
       "type": "Concept",
       "name": "Doris MPP 向量化查询引擎",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Doris MPP 向量化查询引擎",
+        "description": "Doris MPP 向量化查询引擎",
         "created": "2026-06-14",
         "file": "Doris-MPP-向量化查询引擎.md",
         "source_status": "draft",
@@ -1313,9 +1366,8 @@
       "id": "doris-nereids-cbo-优化器",
       "type": "Concept",
       "name": "Doris Nereids CBO 优化器",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Doris Nereids CBO 优化器",
+        "description": "Doris Nereids CBO 优化器",
         "created": "2026-06-14",
         "file": "Doris-Nereids-CBO-优化器.md",
         "source_status": "draft",
@@ -1337,18 +1389,23 @@
     {
       "id": "doris-segment-v2-存储格式",
       "type": "Concept",
-      "name": "Doris Segment v2 存储格式",
-      "confidence": 0.7,
+      "name": "Doris Segment v2：文件布局与表级语义",
       "attributes": {
-        "description": "concept page: Doris Segment v2 存储格式",
+        "description": "Doris Segment v2：文件布局与表级语义",
         "created": "2026-06-14",
         "file": "Doris-Segment-v2-存储格式.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "doris-compaction-策略",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "doris-元数据与一致性复制",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -1377,14 +1434,14 @@
     {
       "id": "doris-元数据与一致性复制",
       "type": "Concept",
-      "name": "Doris 元数据存储与一致性复制",
-      "confidence": 0.7,
+      "name": "Doris 元数据、复制与导入可见性",
       "attributes": {
-        "description": "concept page: Doris 元数据存储与一致性复制",
+        "description": "Doris 元数据、复制与导入可见性",
         "created": "2026-06-14",
         "file": "Doris-元数据与一致性复制.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1403,6 +1460,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "raft-共识算法协议核心",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -1412,14 +1474,14 @@
     {
       "id": "doris-数据模型",
       "type": "Concept",
-      "name": "Doris 数据模型：Duplicate / Aggregate / Unique",
-      "confidence": 0.7,
+      "name": "Doris 数据模型：三种模型与 Unique 的两种实现",
       "attributes": {
-        "description": "concept page: Doris 数据模型：Duplicate / Aggregate / Unique",
+        "description": "Doris 数据模型：三种模型与 Unique 的两种实现",
         "created": "2026-06-14",
         "file": "Doris-数据模型.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1438,11 +1500,6 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "lsm-tree-rum猜想",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -1452,23 +1509,38 @@
     {
       "id": "doris-架构演进",
       "type": "Concept",
-      "name": "Doris 架构演进：Palo → 3.0 存算分离",
-      "confidence": 0.8,
+      "name": "Doris 架构演进：共同的查询入口与两种存储部署",
       "attributes": {
-        "description": "concept page: Doris 架构演进：Palo → 3.0 存算分离",
+        "description": "Doris 架构演进：共同的查询入口与两种存储部署",
         "created": "2026-06-14",
         "file": "Doris-架构演进.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "doris-compaction-策略",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "doris-mpp-向量化查询引擎",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "doris-segment-v2-存储格式",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "doris-元数据与一致性复制",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "doris-数据模型",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -1482,10 +1554,9 @@
     {
       "id": "doris-深度调研",
       "type": "Taxonomy",
-      "name": "Apache Doris 实时分析数据库深度调研",
-      "confidence": 0.7,
+      "name": "Apache Doris 深度调研导航",
       "attributes": {
-        "description": "survey page: Apache Doris 实时分析数据库深度调研",
+        "description": "Apache Doris 深度调研导航",
         "created": "2026-06-14",
         "file": "Doris-深度调研.md",
         "source_status": "final",
@@ -1528,12 +1599,22 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-rum猜想",
+          "to": "lsm-tree-存储引擎体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -1547,16 +1628,21 @@
     {
       "id": "elasticbf-弹性bloomfilter",
       "type": "Concept",
-      "name": "ElasticBF（弹性 Bloom Filter）",
-      "confidence": 0.75,
+      "name": "ElasticBF：按热度激活 Bloom Filter 预算",
       "attributes": {
-        "description": "concept page: ElasticBF（弹性 Bloom Filter）",
+        "description": "ElasticBF：按热度激活 Bloom Filter 预算",
         "created": "2026-06-14",
         "file": "ElasticBF-弹性BloomFilter.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "lsm-tree-自动调参",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "lsm-tree",
           "type": "relatedTo",
@@ -1566,25 +1652,20 @@
           "to": "lsm-tree-kv-survey-综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-自动调参",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "event-horizon-非对称依赖",
       "type": "Concept",
-      "name": "Event Horizon: 非对称依赖与跨地域操作",
-      "confidence": 0.9,
+      "name": "Event Horizon：非对称依赖与半线性化",
       "attributes": {
-        "description": "concept page: Event Horizon: 非对称依赖与跨地域操作",
+        "description": "Event Horizon：非对称依赖与半线性化",
         "created": "2026-06-14",
         "file": "Event-Horizon-非对称依赖.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1598,9 +1679,8 @@
       "id": "fluss-arrow列式记录格式",
       "type": "Concept",
       "name": "Fluss Arrow 列式记录格式",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Fluss Arrow 列式记录格式",
+        "description": "Fluss Arrow 列式记录格式",
         "created": "2026-06-15",
         "file": "Fluss-Arrow列式记录格式.md",
         "source_status": "draft",
@@ -1632,21 +1712,16 @@
     {
       "id": "fluss-eks-生产部署实践-fresha",
       "type": "Lesson",
-      "name": "Fluss EKS 生产部署实践 — Fresha",
-      "confidence": 0.7,
+      "name": "Fresha 的 Fluss / EKS 部署案例",
       "attributes": {
-        "description": "lesson page: Fluss EKS 生产部署实践 — Fresha",
+        "description": "Fresha 的 Fluss / EKS 部署案例",
         "created": "2026-06-19",
         "file": "Fluss-EKS-生产部署实践-Fresha.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "fluss-arrow列式记录格式",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "fluss-kv存储-rocksdb",
           "type": "relatedTo",
@@ -1668,11 +1743,6 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "fluss-客户端与计算集成",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "fluss-整体架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -1688,9 +1758,8 @@
       "id": "fluss-kv存储-rocksdb",
       "type": "Concept",
       "name": "Fluss KV 存储（RocksDB）",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Fluss KV 存储（RocksDB）",
+        "description": "Fluss KV 存储（RocksDB）",
         "created": "2026-06-15",
         "file": "Fluss-KV存储-RocksDB.md",
         "source_status": "draft",
@@ -1718,9 +1787,8 @@
       "id": "fluss-kafka兼容层",
       "type": "Concept",
       "name": "Fluss Kafka 兼容层",
-      "confidence": 0.75,
       "attributes": {
-        "description": "concept page: Fluss Kafka 兼容层",
+        "description": "Fluss Kafka 兼容层",
         "created": "2026-06-15",
         "file": "Fluss-Kafka兼容层.md",
         "source_status": "draft",
@@ -1743,9 +1811,8 @@
       "id": "fluss-lake层与湖仓融合",
       "type": "Analysis",
       "name": "Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化",
+        "description": "Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化",
         "created": "2026-06-15",
         "file": "Fluss-Lake层与湖仓融合.md",
         "source_status": "draft",
@@ -1772,14 +1839,14 @@
     {
       "id": "fluss-pr-3420-watermark-to-paimon",
       "type": "Analysis",
-      "name": "Fluss PR #3420 — Watermark → Paimon Snapshot",
-      "confidence": 0.7,
+      "name": "Fluss PR #3420：Watermark 到 Paimon Snapshot",
       "attributes": {
-        "description": "analysis page: Fluss PR #3420 — Watermark → Paimon Snapshot",
+        "description": "Fluss PR #3420：Watermark 到 Paimon Snapshot",
         "created": "2026-06-19",
         "file": "Fluss-PR-3420-Watermark-to-Paimon.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -1813,9 +1880,8 @@
       "id": "fluss-rpc与网络",
       "type": "Analysis",
       "name": "Fluss RPC 与网络层分析",
-      "confidence": 0.78,
       "attributes": {
-        "description": "analysis page: Fluss RPC 与网络层分析",
+        "description": "Fluss RPC 与网络层分析",
         "created": "2026-06-15",
         "file": "Fluss-RPC与网络.md",
         "source_status": "draft",
@@ -1838,9 +1904,8 @@
       "id": "fluss-tiering分层架构",
       "type": "Concept",
       "name": "Fluss Tiering 分层架构",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Fluss Tiering 分层架构",
+        "description": "Fluss Tiering 分层架构",
         "created": "2026-06-15",
         "file": "Fluss-Tiering分层架构.md",
         "source_status": "draft",
@@ -1868,9 +1933,8 @@
       "id": "fluss-分布式协调",
       "type": "Analysis",
       "name": "Fluss 分布式协调层分析",
-      "confidence": 0.78,
       "attributes": {
-        "description": "analysis page: Fluss 分布式协调层分析",
+        "description": "Fluss 分布式协调层分析",
         "created": "2026-06-15",
         "file": "Fluss-分布式协调.md",
         "source_status": "draft",
@@ -1893,9 +1957,8 @@
       "id": "fluss-存储引擎",
       "type": "Analysis",
       "name": "Fluss 存储引擎模块分析",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Fluss 存储引擎模块分析",
+        "description": "Fluss 存储引擎模块分析",
         "created": "2026-06-15",
         "file": "Fluss-存储引擎.md",
         "source_status": "draft",
@@ -1928,9 +1991,8 @@
       "id": "fluss-客户端与计算集成",
       "type": "Analysis",
       "name": "Fluss 客户端与计算集成分析",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Fluss 客户端与计算集成分析",
+        "description": "Fluss 客户端与计算集成分析",
         "created": "2026-06-15",
         "file": "Fluss-客户端与计算集成.md",
         "source_status": "draft",
@@ -1963,9 +2025,8 @@
       "id": "fluss-客户端写入流程源码分析",
       "type": "Analysis",
       "name": "Fluss 客户端写入流程 — 源码深度分析",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Fluss 客户端写入流程 — 源码深度分析",
+        "description": "Fluss 客户端写入流程 — 源码深度分析",
         "created": "2026-07-03",
         "file": "Fluss-客户端写入流程源码分析.md",
         "source_status": "draft",
@@ -2013,13 +2074,13 @@
       "id": "fluss-整体架构",
       "type": "Analysis",
       "name": "Fluss 整体架构与 Kafka 2.7.2 对照",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Fluss 整体架构与 Kafka 2.7.2 对照",
+        "description": "Fluss 整体架构与 Kafka 2.7.2 对照",
         "created": "2026-06-15",
         "file": "Fluss-整体架构.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -2029,6 +2090,11 @@
         },
         {
           "to": "fluss-rpc与网络",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "fluss-tiering分层架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2052,16 +2118,25 @@
     {
       "id": "hailstorm-存算分离lsm数据库",
       "type": "Concept",
-      "name": "Hailstorm: 存算分离 LSM-tree KV 数据库",
-      "confidence": 0.75,
+      "name": "Hailstorm：存算分离 LSM 的综述证据卡",
       "attributes": {
-        "description": "concept page: Hailstorm: 存算分离 LSM-tree KV 数据库",
+        "description": "Hailstorm：存算分离 LSM 的综述证据卡",
         "created": "2026-07-02",
         "file": "Hailstorm-存算分离LSM数据库.md",
         "source_status": "draft",
         "synced_at": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "lsm-tree",
           "type": "relatedTo",
@@ -2073,7 +2148,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-合并优化",
+          "to": "存储计算分离数据库的-tail-latency",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2082,16 +2157,21 @@
     {
       "id": "hermes-agent-自进化agent框架",
       "type": "Concept",
-      "name": "Hermes Agent — 自进化 Agent 框架",
-      "confidence": 0.7,
+      "name": "Hermes Agent：持久记忆、技能与执行循环",
       "attributes": {
-        "description": "concept page: Hermes Agent — 自进化 Agent 框架",
+        "description": "Hermes Agent：持久记忆、技能与执行循环",
         "created": "2026-07-03",
         "file": "Hermes-Agent-自进化Agent框架.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "agent-fault-tolerance-容错设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "agent-harness-engineering-survey综述",
           "type": "relatedTo",
@@ -2104,6 +2184,11 @@
         },
         {
           "to": "agent-harness-lifecycle-orchestration编排",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "agent-memory-survey-2026综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2127,16 +2212,21 @@
     {
       "id": "influxdb-3-列存引擎",
       "type": "Concept",
-      "name": "InfluxDB 3 列存存储引擎",
-      "confidence": 0.7,
+      "name": "InfluxDB 3 的列式引擎：格式、执行与部署",
       "attributes": {
-        "description": "concept page: InfluxDB 3 列存存储引擎",
+        "description": "InfluxDB 3 的列式引擎：格式、执行与部署",
         "created": "2026-06-14",
         "file": "InfluxDB-3-列存引擎.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "influxdb-catalog元数据",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "influxdb-tsm存储引擎",
           "type": "relatedTo",
@@ -2144,6 +2234,11 @@
         },
         {
           "to": "influxdb-写入与查询路径",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-指标设计与基数管理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2162,18 +2257,23 @@
     {
       "id": "influxdb-catalog元数据",
       "type": "Concept",
-      "name": "InfluxDB Catalog 元数据存储",
-      "confidence": 0.7,
+      "name": "InfluxDB Catalog：元数据边界取决于产品",
       "attributes": {
-        "description": "concept page: InfluxDB Catalog 元数据存储",
+        "description": "InfluxDB Catalog：元数据边界取决于产品",
         "created": "2026-06-14",
         "file": "InfluxDB-Catalog元数据.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "influxdb-tsm存储引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-写入与查询路径",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2198,17 +2298,22 @@
       "id": "influxdb-tsm存储引擎",
       "type": "Concept",
       "name": "InfluxDB TSM 存储引擎",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: InfluxDB TSM 存储引擎",
+        "description": "InfluxDB TSM 存储引擎",
         "created": "2026-06-14",
         "file": "InfluxDB-TSM存储引擎.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "influxdb-3-列存引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-指标设计与基数管理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2218,12 +2323,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
+          "to": "lsm-tree-写放大",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-写放大",
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2232,14 +2337,14 @@
     {
       "id": "influxdb-写入与查询路径",
       "type": "Concept",
-      "name": "InfluxDB 写入与查询路径",
-      "confidence": 0.7,
+      "name": "InfluxDB 写入与查询：先区分产品形态",
       "attributes": {
-        "description": "concept page: InfluxDB 写入与查询路径",
+        "description": "InfluxDB 写入与查询：先区分产品形态",
         "created": "2026-06-14",
         "file": "InfluxDB-写入与查询路径.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -2249,6 +2354,11 @@
         },
         {
           "to": "influxdb-tsm存储引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-多副本与高可用",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2272,14 +2382,14 @@
     {
       "id": "influxdb-多副本与高可用",
       "type": "Concept",
-      "name": "InfluxDB 多副本与高可用",
-      "confidence": 0.7,
+      "name": "InfluxDB 耐久性与高可用：确认边界和故障边界",
       "attributes": {
-        "description": "concept page: InfluxDB 多副本与高可用",
+        "description": "InfluxDB 耐久性与高可用：确认边界和故障边界",
         "created": "2026-06-14",
         "file": "InfluxDB-多副本与高可用.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -2308,15 +2418,25 @@
       "id": "influxdb-指标设计与基数管理",
       "type": "Concept",
       "name": "InfluxDB 指标设计与基数管理",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: InfluxDB 指标设计与基数管理",
+        "description": "InfluxDB 指标设计与基数管理",
         "created": "2026-06-14",
         "file": "InfluxDB-指标设计与基数管理.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "influxdb-3-列存引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-tsm存储引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "influxdb-数据模型",
           "type": "relatedTo",
@@ -2332,16 +2452,26 @@
     {
       "id": "influxdb-数据模型",
       "type": "Concept",
-      "name": "InfluxDB 数据模型与核心概念",
-      "confidence": 0.7,
+      "name": "InfluxDB 数据模型与产品差异",
       "attributes": {
-        "description": "concept page: InfluxDB 数据模型与核心概念",
+        "description": "InfluxDB 数据模型与产品差异",
         "created": "2026-06-14",
         "file": "InfluxDB-数据模型.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "influxdb-catalog元数据",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-写入与查询路径",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "influxdb-指标设计与基数管理",
           "type": "relatedTo",
@@ -2357,10 +2487,9 @@
     {
       "id": "influxdb深度调研",
       "type": "Taxonomy",
-      "name": "InfluxDB 深度调研：从 TSM 到列存引擎",
-      "confidence": 0.7,
+      "name": "InfluxDB 深度调研导航",
       "attributes": {
-        "description": "survey page: InfluxDB 深度调研：从 TSM 到列存引擎",
+        "description": "InfluxDB 深度调研导航",
         "created": "2026-06-14",
         "file": "InfluxDB深度调研.md",
         "source_status": "final",
@@ -2408,17 +2537,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "事务模型深度调研",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "存储计算分离数据库的-tail-latency",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2427,21 +2546,16 @@
     {
       "id": "lsm-tree-rum猜想",
       "type": "Concept",
-      "name": "LSM-Tree RUM 猜想 (RUM Conjecture)",
-      "confidence": 0.7,
+      "name": "LSM-Tree 与 RUM 猜想",
       "attributes": {
-        "description": "concept page: LSM-Tree RUM 猜想 (RUM Conjecture)",
+        "description": "LSM-Tree 与 RUM 猜想",
         "created": "2026-06-14",
         "file": "LSM-Tree-RUM猜想.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "lsm-tree-写放大",
           "type": "relatedTo",
@@ -2463,7 +2577,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2473,20 +2587,15 @@
       "id": "lsm-tree-二级索引",
       "type": "Concept",
       "name": "LSM-Tree 二级索引 (Secondary Indexing)",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: LSM-Tree 二级索引 (Secondary Indexing)",
+        "description": "LSM-Tree 二级索引 (Secondary Indexing)",
         "created": "2026-06-14",
         "file": "LSM-Tree-二级索引.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "lsm-tree-合并优化",
           "type": "relatedTo",
@@ -2499,291 +2608,6 @@
         },
         {
           "to": "lsm-tree-自动调参",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "事务模型深度调研",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree-写放大",
-      "type": "Concept",
-      "name": "LSM-Tree 写放大 (Write Amplification)",
-      "confidence": 0.9,
-      "attributes": {
-        "description": "concept page: LSM-Tree 写放大 (Write Amplification)",
-        "created": "2026-06-14",
-        "file": "LSM-Tree-写放大.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-硬件适配",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree-合并优化",
-      "type": "Concept",
-      "name": "LSM-Tree 合并优化 (Merge Optimization)",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: LSM-Tree 合并优化 (Merge Optimization)",
-        "created": "2026-06-14",
-        "file": "LSM-Tree-合并优化.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-二级索引",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-硬件适配",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-自动调参",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree-硬件适配",
-      "type": "Concept",
-      "name": "LSM-Tree 硬件适配 (Hardware Adaptation)",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: LSM-Tree 硬件适配 (Hardware Adaptation)",
-        "created": "2026-06-14",
-        "file": "LSM-Tree-硬件适配.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "事务模型深度调研",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree-自动调参",
-      "type": "Concept",
-      "name": "LSM-Tree 自动调参 (Auto-Tuning)",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: LSM-Tree 自动调参 (Auto-Tuning)",
-        "created": "2026-06-14",
-        "file": "LSM-Tree-自动调参.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-硬件适配",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree",
-      "type": "Concept",
-      "name": "LSM-Tree (Log-Structured Merge-Tree)",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: LSM-Tree (Log-Structured Merge-Tree)",
-        "created": "2026-06-14",
-        "file": "LSM-Tree.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-二级索引",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-存储引擎新进展-2026综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-硬件适配",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-自动调参",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "事务模型深度调研",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lsm-tree-kv-survey-综述",
-      "type": "Concept",
-      "name": "LSM-tree KV Store 综述（2020-2025）",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: LSM-tree KV Store 综述（2020-2025）",
-        "created": "2026-07-02",
-        "file": "LSM-tree-KV-Survey-综述.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-自动调参",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "silo-compaction-迁移协议",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "lethe-删除感知lsm引擎",
-      "type": "Concept",
-      "name": "Lethe: 删除感知 LSM 引擎",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: Lethe: 删除感知 LSM 引擎",
-        "created": "2026-07-02",
-        "file": "Lethe-删除感知LSM引擎.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "doris-compaction-策略",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2798,6 +2622,111 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "事务模型深度调研",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree-写放大",
+      "type": "Concept",
+      "name": "LSM-Tree 写放大 (Write Amplification)",
+      "attributes": {
+        "description": "LSM-Tree 写放大 (Write Amplification)",
+        "created": "2026-06-14",
+        "file": "LSM-Tree-写放大.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree-合并优化",
+      "type": "Concept",
+      "name": "LSM-Tree 合并优化 (Merge Optimization)",
+      "attributes": {
+        "description": "LSM-Tree 合并优化 (Merge Optimization)",
+        "created": "2026-06-14",
+        "file": "LSM-Tree-合并优化.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-二级索引",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-自动调参",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree-硬件适配",
+      "type": "Concept",
+      "name": "LSM-Tree 硬件适配 (Hardware Adaptation)",
+      "attributes": {
+        "description": "LSM-Tree 硬件适配 (Hardware Adaptation)",
+        "created": "2026-06-14",
+        "file": "LSM-Tree-硬件适配.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
           "to": "lsm-tree-rum猜想",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -2811,6 +2740,221 @@
           "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "事务模型深度调研",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree-自动调参",
+      "type": "Concept",
+      "name": "LSM-Tree 自动调参：模型、过滤器与合并策略",
+      "attributes": {
+        "description": "LSM-Tree 自动调参：模型、过滤器与合并策略",
+        "created": "2026-06-14",
+        "file": "LSM-Tree-自动调参.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "elasticbf-弹性bloomfilter",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree",
+      "type": "Concept",
+      "name": "LSM-Tree (Log-Structured Merge-Tree)",
+      "attributes": {
+        "description": "LSM-Tree (Log-Structured Merge-Tree)",
+        "created": "2026-06-14",
+        "file": "LSM-Tree.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-二级索引",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-硬件适配",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-自动调参",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-存储引擎新进展-2026综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "事务模型深度调研",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lsm-tree-kv-survey-综述",
+      "type": "Concept",
+      "name": "LSM-tree KV Store 综述（2020-2025）",
+      "attributes": {
+        "description": "LSM-tree KV Store 综述（2020-2025）",
+        "created": "2026-07-02",
+        "file": "LSM-tree-KV-Survey-综述.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-自动调参",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "silo-compaction-迁移协议",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "lethe-删除感知lsm引擎",
+      "type": "Concept",
+      "name": "Lethe：删除持久化也是 LSM 设计目标",
+      "attributes": {
+        "description": "Lethe：删除持久化也是 LSM 设计目标",
+        "created": "2026-07-02",
+        "file": "Lethe-删除感知LSM引擎.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "lsm-tree-rum猜想",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-二级索引",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-写放大",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
@@ -2818,9 +2962,8 @@
       "id": "log-as-the-database-模式",
       "type": "Concept",
       "name": "Log-as-the-Database 模式",
-      "confidence": 0.9,
       "attributes": {
-        "description": "concept page: Log-as-the-Database 模式",
+        "description": "Log-as-the-Database 模式",
         "created": "2026-06-14",
         "file": "Log-as-the-Database-模式.md",
         "source_status": "draft",
@@ -2848,13 +2991,13 @@
       "id": "loop-engineering-多层agent循环架构",
       "type": "Concept",
       "name": "Loop Engineering — 多层 Agent 循环架构",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Loop Engineering — 多层 Agent 循环架构",
+        "description": "Loop Engineering — 多层 Agent 循环架构",
         "created": "2026-06-19",
         "file": "Loop-Engineering-多层Agent循环架构.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -2873,12 +3016,17 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agent-harness-verification-evaluation评估",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
           "to": "custom-agent-harness-middleware架构",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2888,13 +3036,13 @@
       "id": "model-neutrality-模型中立与反锁定",
       "type": "Concept",
       "name": "Model Neutrality — 模型中立与反锁定",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Model Neutrality — 模型中立与反锁定",
+        "description": "Model Neutrality — 模型中立与反锁定",
         "created": "2026-06-19",
         "file": "Model-Neutrality-模型中立与反锁定.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -2903,12 +3051,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "agent-first-data-systems",
+          "to": "agent-fault-tolerance-容错设计",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agent-first-data-systems",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2921,24 +3069,39 @@
           "to": "loop-engineering-多层agent循环架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "nova-lsm-分布式组件化lsm",
       "type": "Concept",
-      "name": "Nova-LSM (分布式组件化 LSM-tree KVS)",
-      "confidence": 0.7,
+      "name": "Nova-LSM：基于 RDMA 的组件化 LSM",
       "attributes": {
-        "description": "concept page: Nova-LSM (分布式组件化 LSM-tree KVS)",
+        "description": "Nova-LSM：基于 RDMA 的组件化 LSM",
         "created": "2026-07-02",
         "file": "Nova-LSM-分布式组件化LSM.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
+          "to": "caas-lsm-compaction即服务",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "hailstorm-存算分离lsm数据库",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -2949,11 +3112,6 @@
         },
         {
           "to": "lsm-tree-kv-survey-综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -2962,26 +3120,16 @@
     {
       "id": "pacman-持久内存compaction",
       "type": "Concept",
-      "name": "Pacman: 持久内存加速 LSM-tree Compaction",
-      "confidence": 0.7,
+      "name": "Pacman：持久内存中的 Compaction 路线",
       "attributes": {
-        "description": "concept page: Pacman: 持久内存加速 LSM-tree Compaction",
+        "description": "Pacman：持久内存中的 Compaction 路线",
         "created": "2026-07-02",
         "file": "Pacman-持久内存Compaction.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-kv-survey-综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "lsm-tree-合并优化",
           "type": "relatedTo",
@@ -2991,6 +3139,16 @@
           "to": "lsm-tree-硬件适配",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
@@ -2998,13 +3156,13 @@
       "id": "parallax-agent安全架构",
       "type": "Analysis",
       "name": "Parallax — Agent 安全架构",
-      "confidence": 0.7,
       "attributes": {
-        "description": "analysis page: Parallax — Agent 安全架构",
+        "description": "Parallax — Agent 安全架构",
         "created": "2026-06-19",
         "file": "Parallax-Agent安全架构.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3013,12 +3171,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "agent-sandbox-安全沙箱选型",
+          "to": "agent-harness-governance治理",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "ai-infra-agent基础设施体系综述",
+          "to": "agent-sandbox-安全沙箱选型",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3031,20 +3189,25 @@
           "to": "custom-agent-harness-middleware架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "ai-infra-agent基础设施体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "paxos-epochs-revised",
       "type": "Concept",
-      "name": "Paxos Epochs Revised",
-      "confidence": 0.7,
+      "name": "Paxos Epochs Revised：共享 epoch 与恢复",
       "attributes": {
-        "description": "concept page: Paxos Epochs Revised",
+        "description": "Paxos Epochs Revised：共享 epoch 与恢复",
         "created": "2026-06-16",
         "file": "Paxos-Epochs-Revised.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3078,13 +3241,13 @@
       "id": "paxos-quorum-intersection-revised",
       "type": "Concept",
       "name": "Paxos Quorum Intersection Revised",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Paxos Quorum Intersection Revised",
+        "description": "Paxos Quorum Intersection Revised",
         "created": "2026-06-16",
         "file": "Paxos-Quorum-Intersection-Revised.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3108,12 +3271,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "共识算法族系-从paxos到广义解",
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "分布式数据系统一致性体系",
+          "to": "共识算法族系-从paxos到广义解",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3123,13 +3286,13 @@
       "id": "paxos-value-selection-revised",
       "type": "Concept",
       "name": "Paxos Value Selection Revised",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Paxos Value Selection Revised",
+        "description": "Paxos Value Selection Revised",
         "created": "2026-06-16",
         "file": "Paxos-Value-Selection-Revised.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3157,28 +3320,53 @@
     {
       "id": "paxos-理论到实践的鸿沟",
       "type": "Concept",
-      "name": "Paxos-理论到实践的鸿沟",
-      "confidence": 0.85,
+      "name": "Paxos：从单值共识到可运行系统",
       "attributes": {
-        "description": "concept page: Paxos-理论到实践的鸿沟",
+        "description": "Paxos：从单值共识到可运行系统",
         "created": "2026-06-16",
         "file": "Paxos-理论到实践的鸿沟.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "cockroachdb-leader-lease-整体设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "paxos-quorum-intersection-revised",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "raft-共识算法协议核心",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "raft-客户端交互",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "raft-日志压缩",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "raft-集群成员变更",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
           "to": "分布式数据系统一致性体系",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3187,26 +3375,16 @@
     {
       "id": "pebblesdb-碎片化lsm-tree",
       "type": "Concept",
-      "name": "PebblesDB: 碎片化 LSM-Tree (FLSM)",
-      "confidence": 0.7,
+      "name": "PebblesDB：通过 Guard 组织分区 Tiering",
       "attributes": {
-        "description": "concept page: PebblesDB: 碎片化 LSM-Tree (FLSM)",
+        "description": "PebblesDB：通过 Guard 组织分区 Tiering",
         "created": "2026-07-02",
         "file": "PebblesDB-碎片化LSM-Tree.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-kv-survey-综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "lsm-tree-rum猜想",
           "type": "relatedTo",
@@ -3221,47 +3399,7 @@
           "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "qwen-3.6-模型发布",
-      "type": "Concept",
-      "name": "Qwen 3.6 — 参数效率革命",
-      "confidence": 0.8,
-      "attributes": {
-        "description": "concept page: Qwen 3.6 — 参数效率革命",
-        "created": "2026-07-03",
-        "file": "Qwen-3.6-模型发布.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
-        {
-          "to": "agent-harness-execution-environment执行环境",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
         },
-        {
-          "to": "hermes-agent-自进化agent框架",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        }
-      ]
-    },
-    {
-      "id": "remix-全局排序索引",
-      "type": "Concept",
-      "name": "REMIX — 全局排序索引",
-      "confidence": 0.7,
-      "attributes": {
-        "description": "concept page: REMIX — 全局排序索引",
-        "created": "2026-07-02",
-        "file": "REMIX-全局排序索引.md",
-        "source_status": "draft",
-        "synced_at": "2026-10-05"
-      },
-      "relationships": [
         {
           "to": "lsm-tree",
           "type": "relatedTo",
@@ -3271,7 +3409,57 @@
           "to": "lsm-tree-kv-survey-综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "qwen-3.6-模型发布",
+      "type": "Concept",
+      "name": "Qwen 3.6：27B Dense 与 35B-A3B MoE",
+      "attributes": {
+        "description": "Qwen 3.6：27B Dense 与 35B-A3B MoE",
+        "created": "2026-07-03",
+        "file": "Qwen-3.6-模型发布.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
+        {
+          "to": "agent-harness-engineering-survey综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         },
+        {
+          "to": "agent-harness-execution-environment执行环境",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "hermes-agent-自进化agent框架",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "model-neutrality-模型中立与反锁定",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        }
+      ]
+    },
+    {
+      "id": "remix-全局排序索引",
+      "type": "Concept",
+      "name": "REMIX：跨文件全局有序视图",
+      "attributes": {
+        "description": "REMIX：跨文件全局有序视图",
+        "created": "2026-07-02",
+        "file": "REMIX-全局排序索引.md",
+        "source_status": "draft",
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
+      },
+      "relationships": [
         {
           "to": "lsm-tree-合并优化",
           "type": "relatedTo",
@@ -3281,20 +3469,30 @@
           "to": "lsm-tree-自动调参",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "raas-replay-as-a-service",
       "type": "Concept",
-      "name": "RaaS (Replay-as-a-Service)：存储计算分离数据库的 Tail Latency 消除方案",
-      "confidence": 0.7,
+      "name": "RaaS（Replay-as-a-Service）",
       "attributes": {
-        "description": "concept page: RaaS (Replay-as-a-Service)：存储计算分离数据库的 Tail Latency 消除方案",
+        "description": "RaaS（Replay-as-a-Service）",
         "created": "2026-06-14",
         "file": "RaaS-Replay-as-a-Service.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3318,13 +3516,13 @@
       "id": "raft-共识算法协议核心",
       "type": "Concept",
       "name": "Raft 共识算法协议核心",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: Raft 共识算法协议核心",
+        "description": "Raft 共识算法协议核心",
         "created": "2026-06-16",
         "file": "Raft-共识算法协议核心.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3362,14 +3560,14 @@
     {
       "id": "raft-客户端交互",
       "type": "Concept",
-      "name": "Raft 客户端交互 — 线性一致性与请求路由",
-      "confidence": 0.85,
+      "name": "Raft 客户端交互：去重、读屏障和会话",
       "attributes": {
-        "description": "concept page: Raft 客户端交互 — 线性一致性与请求路由",
+        "description": "Raft 客户端交互：去重、读屏障和会话",
         "created": "2026-06-16",
         "file": "Raft-客户端交互.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3393,13 +3591,13 @@
       "id": "raft-日志压缩",
       "type": "Concept",
       "name": "Raft 日志压缩",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Raft 日志压缩",
+        "description": "Raft 日志压缩",
         "created": "2026-06-16",
         "file": "Raft-日志压缩.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3409,6 +3607,11 @@
         },
         {
           "to": "raft-共识算法协议核心",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "raft-客户端交互",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3418,17 +3621,22 @@
       "id": "raft-集群成员变更",
       "type": "Concept",
       "name": "Raft 集群成员变更",
-      "confidence": 0.85,
       "attributes": {
-        "description": "concept page: Raft 集群成员变更",
+        "description": "Raft 集群成员变更",
         "created": "2026-06-16",
         "file": "Raft-集群成员变更.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
           "to": "raft-共识算法协议核心",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "raft-日志压缩",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3437,23 +3645,23 @@
     {
       "id": "rosé-coordinated-apply-协调应用",
       "type": "Concept",
-      "name": "Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制",
-      "confidence": 0.8,
+      "name": "Rosé Coordinated Apply：将不可用尾部留在 WAL",
       "attributes": {
-        "description": "concept page: Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制",
+        "description": "Rosé Coordinated Apply：将不可用尾部留在 WAL",
         "created": "2026-06-15",
         "file": "Rosé-Coordinated-Apply-协调应用.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
-          "to": "lsm-tree",
+          "to": "lsm-tree-合并优化",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-合并优化",
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3467,33 +3675,28 @@
     {
       "id": "rosé-异步复制协议设计",
       "type": "Concept",
-      "name": "Rosé — 分区数据库异步复制协议",
-      "confidence": 0.8,
+      "name": "Rosé：分区数据库的异步复制",
       "attributes": {
-        "description": "concept page: Rosé — 分区数据库异步复制协议",
+        "description": "Rosé：分区数据库的异步复制",
         "created": "2026-06-15",
         "file": "Rosé-异步复制协议设计.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "rosé-coordinated-apply-协调应用",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "分布式数据系统一致性体系",
+          "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3502,14 +3705,14 @@
     {
       "id": "silo-compaction-迁移协议",
       "type": "Concept",
-      "name": "Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计",
-      "confidence": 0.8,
+      "name": "HATS：副本选择与 Compaction 配额",
       "attributes": {
-        "description": "concept page: Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计",
+        "description": "HATS：副本选择与 Compaction 配额",
         "created": "2026-06-15",
         "file": "Silo-Compaction-迁移协议.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3527,23 +3730,28 @@
     {
       "id": "silo-分布式lsm-compaction调度",
       "type": "Concept",
-      "name": "Silo — 分布式 LSM-Tree Compaction 全局调度",
-      "confidence": 0.8,
+      "name": "HATS：分布式 LSM 的读请求与 Compaction 协同调度",
       "attributes": {
-        "description": "concept page: Silo — 分布式 LSM-Tree Compaction 全局调度",
+        "description": "HATS：分布式 LSM 的读请求与 Compaction 协同调度",
         "created": "2026-06-15",
         "file": "Silo-分布式LSM-Compaction调度.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
-          "to": "lsm-tree",
+          "to": "caas-lsm-compaction即服务",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
           "to": "lsm-tree-合并优化",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3558,13 +3766,13 @@
       "id": "stream-processing-system-generations",
       "type": "Concept",
       "name": "流处理系统代际演化",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: 流处理系统代际演化",
+        "description": "流处理系统代际演化",
         "created": "2026-06-15",
         "file": "Stream-Processing-System-Generations.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -3602,28 +3810,18 @@
     {
       "id": "glsm-gpu加速compaction",
       "type": "Concept",
-      "name": "gLSM — GPU 加速 LSM-Tree Compaction",
-      "confidence": 0.7,
+      "name": "gLSM：GPU 加速 Compaction 的证据边界",
       "attributes": {
-        "description": "concept page: gLSM — GPU 加速 LSM-Tree Compaction",
+        "description": "gLSM：GPU 加速 Compaction 的证据边界",
         "created": "2026-07-02",
         "file": "gLSM-GPU加速Compaction.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-kv-survey-综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
+          "to": "caas-lsm-compaction即服务",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3638,7 +3836,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-自动调参",
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -3647,11 +3850,12 @@
     {
       "id": "ai-infra-agent基础设施体系综述",
       "type": "Concept",
-      "name": "AI Infra Agent 基础设施体系综述",
+      "name": "Agent 基础设施：执行、状态、治理与证据",
       "attributes": {
         "file": "synthesis/AI-Infra-Agent基础设施体系综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "Agent 基础设施：执行、状态、治理与证据"
       },
       "relationships": [
         {
@@ -3666,6 +3870,11 @@
         },
         {
           "to": "agent-first-data-systems",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "agent-harness-engineering-survey综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3695,12 +3904,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "loop-engineering-多层agent循环架构",
+          "to": "hermes-agent-自进化agent框架",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
+          "to": "loop-engineering-多层agent循环架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3713,22 +3922,18 @@
           "to": "parallax-agent安全架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "流处理容错模型",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "apache-doris-olap-数据库体系综述",
       "type": "Concept",
-      "name": "Apache Doris OLAP 数据库体系综述",
+      "name": "Apache Doris 体系：模型、文件、执行与可见性",
       "attributes": {
         "file": "synthesis/Apache-Doris-OLAP-数据库体系综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "Apache Doris 体系：模型、文件、执行与可见性"
       },
       "relationships": [
         {
@@ -3772,27 +3977,17 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "event-horizon-非对称依赖",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "influxdb-时序数据库体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-rum猜想",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "lsm-tree-存储引擎体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3806,11 +4001,12 @@
     {
       "id": "fluss-流处理平台架构综述",
       "type": "Concept",
-      "name": "Fluss 流处理平台架构综述",
+      "name": "Fluss 整体架构与 Kafka 2.7.2 对照",
       "attributes": {
         "file": "synthesis/Fluss-流处理平台架构综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "Fluss 整体架构与 Kafka 2.7.2 对照"
       },
       "relationships": [
         {
@@ -3824,12 +4020,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "fluss-kafka兼容层",
+          "to": "fluss-kv存储-rocksdb",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "fluss-kv存储-rocksdb",
+          "to": "fluss-kafka兼容层",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -3888,18 +4084,14 @@
     {
       "id": "influxdb-时序数据库体系综述",
       "type": "Concept",
-      "name": "InfluxDB 时序数据库体系综述",
+      "name": "InfluxDB 体系：产品、引擎与数据生命周期",
       "attributes": {
         "file": "synthesis/InfluxDB-时序数据库体系综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "InfluxDB 体系：产品、引擎与数据生命周期"
       },
       "relationships": [
-        {
-          "to": "apache-doris-olap-数据库体系综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "influxdb-3-列存引擎",
           "type": "relatedTo",
@@ -3941,6 +4133,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "apache-doris-olap-数据库体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "lsm-tree-存储引擎体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -3949,24 +4146,25 @@
           "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "存储计算分离数据库的-tail-latency",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "lsm-tree-存储引擎体系综述",
       "type": "Concept",
-      "name": "技术综述：LSM-Tree 存储引擎体系综述",
+      "name": "LSM-Tree 存储引擎体系：成本模型到部署决策",
       "attributes": {
         "file": "synthesis/LSM-Tree-存储引擎体系综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "LSM-Tree 存储引擎体系：成本模型到部署决策"
       },
       "relationships": [
+        {
+          "to": "cxl-3.0-内存池化新范式",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "doris-compaction-策略",
           "type": "relatedTo",
@@ -3983,12 +4181,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "influxdb深度调研",
+          "to": "hailstorm-存算分离lsm数据库",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
+          "to": "influxdb深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4023,6 +4221,16 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-存储引擎新进展-2026综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4032,11 +4240,12 @@
     {
       "id": "lsm-tree-存储引擎新进展-2026综述",
       "type": "Concept",
-      "name": "LSM-Tree 存储引擎新进展 (2026)",
+      "name": "LSM 近期进展：调度、卸载和存储接口",
       "attributes": {
         "file": "synthesis/LSM-Tree-存储引擎新进展-2026综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "LSM 近期进展：调度、卸载和存储接口"
       },
       "relationships": [
         {
@@ -4070,27 +4279,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "glsm-gpu加速compaction",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "hailstorm-存算分离lsm数据库",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lethe-删除感知lsm引擎",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-kv-survey-综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4125,6 +4314,21 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "lsm-tree",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-kv-survey-综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lethe-删除感知lsm引擎",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "nova-lsm-分布式组件化lsm",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4153,17 +4357,28 @@
           "to": "silo-分布式lsm-compaction调度",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "glsm-gpu加速compaction",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "lsm-tree-存储引擎体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     },
     {
       "id": "olap与tsdb全景综述",
       "type": "Concept",
-      "name": "技术综述：OLAP 与时序数据库全景综述",
+      "name": "OLAP 与时序数据库：按工作负载阅读知识库",
       "attributes": {
         "file": "synthesis/OLAP与TSDB全景综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "OLAP 与时序数据库：按工作负载阅读知识库"
       },
       "relationships": [
         {
@@ -4247,6 +4462,21 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "apache-doris-olap-数据库体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "fluss-流处理平台架构综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-时序数据库体系综述",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "lsm-tree-存储引擎体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4261,11 +4491,12 @@
     {
       "id": "共识协议体系综述",
       "type": "Concept",
-      "name": "共识协议体系综述",
+      "name": "共识协议体系：安全条件、工程组件与使用边界",
       "attributes": {
         "file": "synthesis/共识协议体系综述.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "共识协议体系：安全条件、工程组件与使用边界"
       },
       "relationships": [
         {
@@ -4275,6 +4506,26 @@
         },
         {
           "to": "cockroachdb-leader-lease-整体设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "event-horizon-非对称依赖",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "paxos-epochs-revised",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "paxos-quorum-intersection-revised",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "paxos-value-selection-revised",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4304,7 +4555,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "rosé-异步复制协议设计",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4319,7 +4570,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "流处理系统演化综述",
+          "to": "事务模型深度调研",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "共识算法族系-从paxos到广义解",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -4328,13 +4584,24 @@
     {
       "id": "分布式数据系统一致性体系",
       "type": "Concept",
-      "name": "技术综述：分布式数据系统一致性体系",
+      "name": "分布式数据系统：一致性需要分层说明",
       "attributes": {
         "file": "synthesis/分布式数据系统一致性体系.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "分布式数据系统：一致性需要分层说明"
       },
       "relationships": [
+        {
+          "to": "chandy-lamport-分布式快照算法",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "cockroachdb-leader-lease-整体设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "doris-元数据与一致性复制",
           "type": "relatedTo",
@@ -4342,6 +4609,11 @@
         },
         {
           "to": "event-horizon-非对称依赖",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "influxdb-写入与查询路径",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4356,6 +4628,16 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "raas-replay-as-a-service",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "rosé-异步复制协议设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "lsm-tree-存储引擎体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4366,7 +4648,7 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "raas-replay-as-a-service",
+          "to": "共识协议体系综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4385,11 +4667,12 @@
     {
       "id": "分布式数据系统事务与一致性新进展-2026综述",
       "type": "Concept",
-      "name": "分布式数据系统事务与一致性新进展 (2026)",
+      "name": "分布式事务与复制：2026 论文的不同问题边界",
       "attributes": {
         "file": "synthesis/分布式数据系统事务与一致性新进展-2026综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "分布式事务与复制：2026 论文的不同问题边界"
       },
       "relationships": [
         {
@@ -4418,6 +4701,11 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
+          "to": "cxl-3.0-内存池化新范式",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
           "to": "cockroachdb-leader-fortification",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4438,16 +4726,6 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "cxl-3.0-内存池化新范式",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "fluss-流处理平台架构综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "rosé-coordinated-apply-协调应用",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
@@ -4458,12 +4736,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "事务模型深度调研",
+          "to": "分布式数据系统一致性体系",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "分布式数据系统一致性体系",
+          "to": "事务模型深度调研",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         }
@@ -4472,11 +4750,12 @@
     {
       "id": "流处理系统演化综述",
       "type": "Concept",
-      "name": "流处理系统演化综述",
+      "name": "流处理系统演化：时间、状态、恢复与外部结果",
       "attributes": {
         "file": "synthesis/流处理系统演化综述.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "description": "流处理系统演化：时间、状态、恢复与外部结果"
       },
       "relationships": [
         {
@@ -4495,7 +4774,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "fluss-流处理平台架构综述",
+          "to": "fluss-pr-3420-watermark-to-paimon",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "fluss-整体架构",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4505,17 +4789,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-写放大",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
-          "to": "lsm-tree-存储引擎体系综述",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
-        {
           "to": "stream-processing-system-generations",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "fluss-流处理平台架构综述",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4550,13 +4829,13 @@
       "id": "事务模型深度调研",
       "type": "Taxonomy",
       "name": "事务模型深度调研：从 ACID 到全球分布式事务",
-      "confidence": 0.7,
       "attributes": {
-        "description": "survey page: 事务模型深度调研：从 ACID 到全球分布式事务",
+        "description": "事务模型深度调研：从 ACID 到全球分布式事务",
         "created": "2026-06-14",
         "file": "事务模型深度调研.md",
         "source_status": "final",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -4579,16 +4858,21 @@
     {
       "id": "共识算法族系-从paxos到广义解",
       "type": "Concept",
-      "name": "共识算法族系：从 Paxos 到广义解",
-      "confidence": 0.7,
+      "name": "共识算法族系：从 Paxos 到可选择的安全条件",
       "attributes": {
-        "description": "concept page: 共识算法族系：从 Paxos 到广义解",
+        "description": "共识算法族系：从 Paxos 到可选择的安全条件",
         "created": "2026-06-16",
         "file": "共识算法族系-从Paxos到广义解.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
+        {
+          "to": "cockroachdb-leader-lease-整体设计",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
+        },
         {
           "to": "paxos-epochs-revised",
           "type": "relatedTo",
@@ -4624,21 +4908,16 @@
     {
       "id": "存储计算分离数据库的-tail-latency",
       "type": "Concept",
-      "name": "存储计算分离数据库的 Tail Latency 问题",
-      "confidence": 0.7,
+      "name": "存储计算分离数据库的尾延迟：日志链与后台竞争",
       "attributes": {
-        "description": "concept page: 存储计算分离数据库的 Tail Latency 问题",
+        "description": "存储计算分离数据库的尾延迟：日志链与后台竞争",
         "created": "2026-06-14",
         "file": "存储计算分离数据库的-Tail-Latency.md",
         "source_status": "draft",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
-        {
-          "to": "event-horizon-非对称依赖",
-          "type": "relatedTo",
-          "note": "Resolved note link; does not assert semantic equivalence."
-        },
         {
           "to": "log-as-the-database-模式",
           "type": "relatedTo",
@@ -4660,13 +4939,13 @@
       "id": "流处理乱序数据管理",
       "type": "Concept",
       "name": "流处理乱序数据管理",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: 流处理乱序数据管理",
+        "description": "流处理乱序数据管理",
         "created": "2026-06-15",
         "file": "流处理乱序数据管理.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -4695,13 +4974,13 @@
       "id": "流处理容错模型",
       "type": "Concept",
       "name": "流处理容错模型",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: 流处理容错模型",
+        "description": "流处理容错模型",
         "created": "2026-06-15",
         "file": "流处理容错模型.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -4725,13 +5004,13 @@
       "id": "流处理弹性与重配置",
       "type": "Concept",
       "name": "流处理弹性与重配置",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: 流处理弹性与重配置",
+        "description": "流处理弹性与重配置",
         "created": "2026-06-15",
         "file": "流处理弹性与重配置.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -4755,13 +5034,13 @@
       "id": "流处理状态管理",
       "type": "Concept",
       "name": "流处理状态管理",
-      "confidence": 0.7,
       "attributes": {
-        "description": "concept page: 流处理状态管理",
+        "description": "流处理状态管理",
         "created": "2026-06-15",
         "file": "流处理状态管理.md",
         "source_status": "stable",
-        "synced_at": "2026-10-05"
+        "synced_at": "2026-10-05",
+        "source_checked": "2026-10-05"
       },
       "relationships": [
         {
@@ -4770,12 +5049,12 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree",
+          "to": "lsm-tree-写放大",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
         {
-          "to": "lsm-tree-写放大",
+          "to": "lsm-tree",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
         },
@@ -4788,10 +5067,16 @@
           "to": "流处理容错模型",
           "type": "relatedTo",
           "note": "Resolved note link; does not assert semantic equivalence."
+        },
+        {
+          "to": "流处理弹性与重配置",
+          "type": "relatedTo",
+          "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
     }
   ],
   "lastUpdated": "2026-10-05",
-  "updatedBy": "Obsidian/blog reconciliation"
+  "updatedBy": "Obsidian/blog reconciliation",
+  "quality_reviewed": "2026-10-05"
 }

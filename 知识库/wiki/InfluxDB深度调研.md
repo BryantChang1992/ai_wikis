@@ -1,6 +1,6 @@
 ---
 type: survey
-title: InfluxDB 深度调研：从 TSM 到列存引擎
+title: InfluxDB 深度调研导航
 sources:
 - '[[技术文章/InfluxDB调研/01-概述与核心概念]]'
 - '[[技术文章/InfluxDB调研/02-存储引擎]]'
@@ -17,7 +17,7 @@ tags:
 - Parquet
 - 可观测性
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
@@ -30,83 +30,37 @@ related:
 - '[[知识库/wiki/InfluxDB-Catalog元数据]]'
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/事务模型深度调研]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.95
-confidence_rationale: 类型=survey; 来源×6; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB深度调研/
 blog_source: _posts/2026-06-14-knowledge-f024fb99f3.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
 
-# InfluxDB 深度调研：从 TSM 到列存引擎
+# InfluxDB 深度调研导航
 
-> **作者**: Stark (CTO, CHANG_AI_TEAM)
-> **日期**: 2026-06-14
-> **摘要**: 系统性研究 InfluxDB 的核心架构与演进。从 v1/v2 的 TSM 引擎到 v3.0 的 Columnar 引擎，涵盖数据模型、存储引擎、写入/查询路径、指标设计最佳实践、多副本复制与高可用、以及 Catalog 元数据架构。为可观测性平台技术选型提供决策依据。
+本领域最需要先纠正的是版本混用：v1/v2 TSM、InfluxDB 3 Core、Clustered 不能共享一张固定部署图。以下图是阅读路线。
 
----
+```mermaid
+flowchart TD
+  D[数据模型与查询需求] --> T[TSM：WAL、Cache、不可变文件]
+  D --> C[3 Core：对象存储 WAL 与 Parquet]
+  D --> K[Clustered：多 Ingester 与 Querier]
+  T --> M[基数、保留、降采样]
+  C --> M
+  K --> M
+  K --> G[Catalog 与数据联合恢复]
+```
 
-## 为何调研 InfluxDB
+从 [[InfluxDB-数据模型]] 理解 measurement、tags、fields 与时间戳，再用 [[InfluxDB-指标设计与基数管理]] 定义实际维度组合。基数相乘只是上界，不能把有关联的维度当作完全独立。
 
-CHANG_AI_TEAM 正在建设 Agent 基础设施可观测性平台，时序数据库（TSDB）是核心选型组件。InfluxDB 作为最成熟的时序数据库之一，经历了从 v1.x 到 v3.0 的架构革命——从自研 TSM 引擎到基于 Apache Parquet/Arrow/DataFusion 的列存引擎。理解这次架构跃迁的技术动因，对任何时序存储选型都有参考价值。
+[[InfluxDB-TSM存储引擎]] 与 [[InfluxDB-3-列存引擎]] 都涉及不可变文件及后台整理。Parquet 不意味着只写一次、没有 compaction；统计剪枝也不意味着所有查询不再需要索引或元信息。
 
-## 版本演进全景
+[[InfluxDB-写入与查询路径]] 区分成功应答、内存可查询与文件持久化；[[InfluxDB-多副本与高可用]] 区分本地 WAL、多 Ingester 和对象存储的故障边界；[[InfluxDB-Catalog元数据]] 解释 Clustered 的独立元数据服务及其恢复要求。最近数据尚未变成 Parquet 时，Querier 仍可能访问 Ingester。
 
-| 版本 | 状态 | 存储引擎 | 查询语言 | 关键特点 |
-|------|------|----------|----------|----------|
-| v1.x | 维护模式 | TSM + TSI | InfluxQL | 经典架构，生态成熟 |
-| v2.x | 维护模式 | TSM + TSI | InfluxQL + Flux | Flux 引入，新增 Tasks |
-| v3.0 Edge | 开源 (MIT) | Columnar (Parquet) | SQL + InfluxQL | Rust 重写，存算分离 |
-| v3.0 Clustered | 商业版 | Columnar (全功能) | SQL + InfluxQL | 分布式集群，水平扩展 |
+## 设计推论
 
-**核心转折点**：InfluxDB 3.0 用 Rust 重写了整个存储引擎，以 Apache Parquet 作为原生存储格式，基于 Apache Arrow 和 DataFusion 构建列式查询引擎，从架构层面解决了 v1/v2 的高基数性能瓶颈。
+开放列式格式有利于生态互操作，但读取所有对象文件不能代替系统 Catalog 的有效文件视图。高基数能力改善不等于零成本；冷数据扫描、短窗口最新查询和高并发写入应分别评价。
 
-## 关键差异速查
-
-| 维度 | InfluxDB v1/v2 (TSM) | InfluxDB 3.0 (Columnar) |
-|------|---------------------|------------------------|
-| 存储格式 | TSM (自研列式) | Apache Parquet (开放标准) |
-| 索引方式 | TSI 倒排索引 | Parquet Statistics 剪枝 |
-| 基数上限 | ≤ 百万级 | 理论上无上限 |
-| 查询引擎 | Iterator (Go) | DataFusion 向量化 (Rust) |
-| 压缩比 | ~5-10x | 10-100x |
-| 写放大 | 严重 (WAL+Flush+Compaction) | 低 (单次 Parquet 写入) |
-| 存储位置 | 本地磁盘 | Object Store (S3/MinIO) |
-| 扩展方式 | 手动分片 (Enterprise) | 原生水平扩展 |
-| 元数据 | BoltDB 嵌入式 KV | PostgreSQL 兼容 RDBMS |
-
-## 核心概念导图
-
-![[diagram/InfluxDB深度调研-fig.svg]]
-
-## 选型建议
-
-| 场景 | 推荐版本 | 原因 |
-|------|----------|------|
-| 新项目 · 中等规模 | InfluxDB 3 Edge (OSS) | 未来方向，Parquet 生态，低成本 |
-| 新项目 · 大规模/高基数 | InfluxDB 3 Clustered | 无基数限制，存算分离，弹性伸缩 |
-| 存量 v1/v2 · 稳定运行 | 暂不迁移 | v1/v2 维护模式，待 v3 Community 成熟 |
-| IoT 边缘计算 | InfluxDB 3 Edge | 单进程轻量，嵌入式 VM，离线运行 |
-| 数据分析 · 需要 SQL | InfluxDB 3 | 原生 SQL (FlightSQL)，与现有工具兼容 |
-
-### 对我们的建议
-
-对于可观测性平台项目：
-
-1. **先评估 v3 Edge** 作为单机方案的可行性
-2. **关键优势**：Parquet 格式可直接用 DuckDB/Polars 做离线分析，无需额外 ETL
-3. **劣势关注**：v3 生态系统仍在建设中，部分 v1/v2 功能（如 Flux Tasks）不可用
-4. **长期策略**：以 Parquet 为数据湖格式中心，选择支持 Parquet 原生的存储方案（InfluxDB 3 / ClickHouse / DuckDB）
-
----
-
-## 与其他调研的关系
-
-- [[LSM-Tree]] — TSM 引擎的核心设计理念源于 [[LSM-Tree]] 的写入优化和层级合并策略。特别是 Compaction 写放大问题，在两套系统中都是核心瓶颈。
-- [[事务模型深度调研]] — InfluxDB 写入路径中的 WAL 机制与事务数据库的持久性保障（WAL/Redo Log）同源。理解 WAL 的通用设计原则有助于评估时序数据库的数据可靠性。
-- [[LSM-Tree-写放大]] — v1/v2 的 TSM 引擎 Compaction 产生的写放大与 LSM-Tree 的 leveling 策略有相似的根因。
-- [[存储计算分离数据库的-Tail-Latency]] — InfluxDB 3.0 采用存算分离架构，其查询延迟优化策略与 RaaS 论文中讨论的 Tail Latency 问题有共同的架构关注点。
-
----
-
-*调研基于 InfluxData 官方文档及技术博客，2026-06-12 完成初稿。*
+选型先固定产品与版本，再记录实际 series 口径、数据分布、保留策略、窗口、并发、冷热缓存、故障恢复和总成本。旧稿固定十倍压缩成本收益、自动三 AZ 与统一 100 天保留不是跨产品保证。

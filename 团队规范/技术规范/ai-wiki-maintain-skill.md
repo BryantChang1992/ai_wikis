@@ -12,7 +12,7 @@ description: >-
 
 ## 前置
 
-1. 确认 `fireworks-tech-graph` skill 已安装
+1. 读取 `schema.md` 最新修订：Mermaid 为默认图示格式，SVG 仅在表达能力需要时回退。
 2. 知识库根路径：`work/ai_wikis/知识库/`
 3. 核心规则文件：`purpose.md`（方向）、`schema.md`（结构规则）、`README.md`（索引）、`log.md`（日志）
 
@@ -51,7 +51,7 @@ mkdir -p sources/papers/{论文简称}
 
 ### 1.3 如无精读分析，CTO 自产精读分析
 
-写入 `sources/papers/{论文简称}/精读分析.md`，要求含论文信息、核心贡献、章节拆解。
+写入或修订 `sources/papers/{论文简称}/精读分析.md`。原始 PDF 保持不变；分析稿可纠错。必须核对论文身份、问题/假设、机制步骤、不变量、走通示例、证据定位、评价条件、局限与关联卡片；详见 schema.md 的“精读质量门槛”。综述/理论/愿景论文使用对应评价方式，不编造实验。译述/选译不得命名为完整翻译。
 
 ---
 
@@ -65,9 +65,9 @@ mkdir -p sources/papers/{论文简称}
 | 3~6 | 每个独立概念 1 张卡片 |
 | > 6 | 拆最重要的 6 个，其余合并 |
 
-### 2.2 Spawn Worker
+### 2.2 逐篇审阅 Worker
 
-配置：`model=qwenProvider/qwen3-coder-plus`, `context=isolated`, `mode=run`, `timeout=10min`
+使用当前环境可用的审阅 Worker，逐篇记录来源、发现、修正和未核验范围；不依赖固定模型名。
 
 Worker 任务模板见 `reference/worker-task-template.md`。每个 Worker 处理 1 篇论文，产出 1~N 张卡片写入 `wiki/`。
 
@@ -96,31 +96,21 @@ Worker 必须先读 `purpose.md` + `schema.md`。
 
 ## 步骤 3：Diagram（技术图）
 
-### 3.1 工具
+### 3.1 默认 Mermaid
 
-`fireworks-tech-graph` skill。风格参数见 `reference/diagram-style.md`。
+架构、时序、流程、状态机直接写正文 `mermaid` 代码块，附图题与阅读说明。转换历史 SVG 前核验机制和版本，不照搬无依据的数字/协议标签。
 
-统一使用 **Style 1 (Flat Icon)**：浅色背景 `#ffffff`，tinted 组件框，蓝色系数据流箭头。
+### 3.2 SVG 回退
 
-### 3.2 产出
-
-```
-wiki/diagram/{主题-slug}.svg   ← 矢量源文件
-wiki/diagram/{主题-slug}.png   ← PNG @2x
-```
+精确实验曲线、原论文图形、复杂空间布局或 Mermaid 不能准确表示时保留 SVG，并记录 `diagram_fallback_reason` 或邻近说明。禁止为了统一格式而降低图意准确性。
 
 ### 3.3 验证
 
-```bash
-scripts/validate-diagram.sh {主题-slug}
-```
+Mermaid 做语法解析和浏览器渲染；SVG 做文件存在性与实际视觉检查。桌面、移动端都不能整页横向溢出。原制图脚本并非 Mermaid 的必要依赖。
 
-### 3.4 引用
+### 3.4 双端一致
 
-Wiki 卡片中用 Markdown 图片语法：
-```markdown
-![Architecture Diagram](../diagram/{主题-slug}.svg)
-```
+Obsidian 先改，博客后同步相同 Mermaid；博客 frontmatter 必须有 `mermaid: true`。更新对应清单并检查概念卡、综述和别名副本。
 
 ### 3.5 优先级
 
@@ -188,7 +178,7 @@ CTO Review 清单：
 | 新页面 1-2 张 | 增量追加 | CTO 追加子章节 |
 | 仅状态升级/连接变化 | 局部修订 | CTO 直接修改 |
 | Dangling 引用 | 快速修复 | CTO 删除失效引用 |
-| updated > 30 天 | 确认无变更 | CTO 更新时间戳 |
+| updated > 30 天 | 列入待审 | 实际核对后记录 source_checked，不虚改更新时间 |
 
 ---
 
@@ -228,7 +218,7 @@ scope：`wiki`, `sources`, `diagram`, `synthesis`, `lint`
 ### 5.3 Commit 后动作
 
 - [ ] 更新 `log.md`
-- [ ] 更新 `MEMORY.md`
+- [ ] 在知识库日志记录实改范围与核验依据；不要顺带改 Agent 核心文件
 - [ ] 更新 `HEARTBEAT.md`（如需调整定时规则）
 
 ---
@@ -279,3 +269,7 @@ ai-wiki-maintain/
     ├── worker-synthesis.md     ← [保留兼容] 旧模板
     └── ingest-example.md       ← [保留兼容] 旧示例
 ```
+
+## 2026-10-05 维护修订
+
+以证据筛选内容，不按字数或自动置信度衰减淘汰。原文错配为阻断项，不能仅给错误段落加免责声明。原有 Git 暂存内容、Obsidian 配置与用户个人文件要保留；只提交本次明确修改的文件，不机械执行 `git add -A`。不因维护规则中存在“定时”段落就新建或更改定时任务。

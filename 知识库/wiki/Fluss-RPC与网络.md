@@ -11,17 +11,20 @@ tags:
 - 网络
 - 源码分析
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-整体架构]]'
 - '[[知识库/wiki/Fluss-Kafka兼容层]]'
-confidence: 0.78
-confidence_rationale: 类型=analysis; 更新于21天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-RPC与网络/
 blog_source: _posts/2026-06-15-knowledge-70acc0a874.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss RPC 与网络层分析
 
@@ -60,13 +63,32 @@ ACL 4 个、配置 2 个、标签 2 个、重平衡 3 个、Producer offset 3 �
 
 Fluss 定义了三级 Gateway 接口，使用 JDK 动态代理实现 RPC 调用：
 
-![[diagram/Fluss-RPC与网络-fig1.svg]]
+
+```mermaid
+flowchart TD
+  C[客户端] --> T[TabletServer 数据接口]
+  C --> O[Coordinator 管理与元数据接口]
+  T --> L[日志读写 / KV 查询]
+  O --> M[库表、路由与集群管理]
+```
+
 
 
 
 ### GatewayClientProxy 核心机制
 
-![[diagram/Fluss-RPC与网络-fig2.svg]]
+
+```mermaid
+sequenceDiagram
+  participant P as 客户端代理
+  participant N as RPC 传输
+  participant S as 服务端
+  P->>N: 序列化请求及请求标识
+  N->>S: 异步发送
+  S-->>N: 响应或错误
+  N-->>P: 反序列化并完成 future
+```
+
 
 
 
@@ -76,7 +98,17 @@ Fluss 定义了三级 Gateway 接口，使用 JDK 动态代理实现 RPC 调用�
 
 Fluss 通过 `NetworkProtocolPlugin` 接口实现协议热插拔：
 
-![[diagram/Fluss-RPC与网络-fig3.svg]]
+
+```mermaid
+flowchart TD
+  B[网络字节] --> D[帧与协议解码]
+  D --> H[选择处理器]
+  H --> F[Fluss 原生 API]
+  H -. 取决于插件与版本 .-> K[Kafka API 适配]
+  F --> R[响应编码]
+  K --> R
+```
+
 
 协议检测：先检查 Fluss Magic Bytes，不匹配则 fallback 到 Kafka 协议解码器。
 

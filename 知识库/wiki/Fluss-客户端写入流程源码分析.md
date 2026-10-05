@@ -9,7 +9,7 @@ tags:
 - 源码分析
 - 客户端
 created: 2026-07-03
-updated: 2026-07-03
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-整体架构]]'
@@ -17,106 +17,103 @@ related:
 - '[[知识库/wiki/Fluss-RPC与网络]]'
 - '[[知识库/wiki/Fluss-存储引擎]]'
 - '[[知识库/wiki/Fluss-分布式协调]]'
-confidence: 0.83
-confidence_rationale: 类型=analysis; 来源×1; 3天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-客户端写入流程源码分析/
 blog_source: _posts/2026-07-03-knowledge-d51c42620c.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss 客户端写入流程 — 源码深度分析
 
 ## 一句话
 
-Fluss 客户端写入遵循 Connection（重量级全局单例）→ Table（轻量级 per-thread）→ AppendWriter（异步 flush）三层约定，配合 MetadataUpdater 后台拉取 schema/bucket/format，形成完整的写入链路。
+历史材料中的客户端链路是共享 `Connection` → 表级 `Table` / `AppendWriter` → `WriterClient` → 按 bucket 聚批的 `RecordAccumulator` → 后台 `Sender` → RPC。`append()` 返回 Future，显式 `flush()` 等待批次完成；两者不能统称为“异步 flush”。
 
 ## 产出概况
 
-- 497 行 Markdown 深度分析文档（a3a59fd ~ 53b4f65, 6/30-7/1）
-- 架构 SVG（3 轮迭代完善）
-- 标志 Fluss 源码分析 **8 个模块全部完成**
+- 长文见 [[项目文档/Fluss源码分析/05b-客户端写入流程深度分析|客户端写入流程深度分析]]，覆盖 API 示例、创建/运行/关闭、批缓冲、RPC 和异常处理。
+- 2026-10-05 已将架构与流程图转为 Mermaid，保留原 Java 示例和方法伪代码。
+- 原记录的 `a3a59fd ~ 53b4f65` 没有注明所属仓库，不能用作 Fluss 上游版本凭证。归档中的“8 模块完成”指已有历史文稿，不表示已重新核验全部源码。
 
 ## 三层架构约定
 
+下面按历史长文概括调用职责，不据此承诺当前 release 的线程安全性、配置默认值或类实现。
+
+```mermaid
+flowchart TD
+  C["ConnectionFactory.createConnection<br/>应用复用 Connection"] --> T["getTable：Table"]
+  T --> A["newAppend / createWriter<br/>AppendWriter：行编码为 WriteRecord"]
+  A --> W["WriterClient<br/>动态分区检查 / bucket 分配 / 写入协调"]
+  W --> B["RecordAccumulator<br/>每 bucket 的 WriteBatch 队列"]
+  B --> S["Sender<br/>ready → drain → send"]
+  S --> R["RpcClient / TabletServerGateway"]
+  R --> TS["TabletServer<br/>ProduceLog / PutKv"]
+  C -.-> M["MetadataUpdater<br/>集群、表和 bucket 路由元数据"]
+  M -.-> W
+  M -.-> S
+  TS -.->|响应分类 / callback| A
 ```
-Connection（重量级全局单例）
-  |  持有 RPC 客户端、配置、schema registry
-  |  生命周期 = 应用进程
-  -- Table（轻量级 per-thread）
-  |   表级别配置/schema 绑定
-  |   生命周期 = 线程
-  - AppendWriter（异步 flush）
-      本地缓冲 → batch → flush → RpcClient
-      生命周期 = 单 bucket
-```
 
-### Connection — 重量级全局单例
+### Connection — 共享连接入口
 
-- `ConnectionFactory.create(url, config)` 创建全局唯一 Connection
-- 管理到 Fluss 集群的长连接池
-- 持有 RPC 客户端、配置、schema registry
-- 生命周期与应用进程一致，销毁时才关闭
+- 历史示例使用 `ConnectionFactory.createConnection(conf)`。复用重量级连接是使用建议，不能写成 JVM 强制的全局单例。
+- 管理 RPC、元数据和写入引擎等资源；生命周期由应用显式管理。
+- `close()` 还涉及后台写入的排空、超时和资源释放，不能把它简化成仅关闭网络连接。
 
-### Table — 轻量级 per-thread
+### Table — 表级 API 句柄
 
-- 每个工作线程独立创建 Table 实例
-- 绑定特定表名和 schema
-- 创建成本极低，无状态依赖
-- 通过 Connection 复用的 RPC 连接进行通信
+- 通过 Connection 获取并绑定表信息；创建依赖元数据，不是“完全无状态”。
+- 通过 `newAppend().createWriter()` 等 API 创建写入器。
+- 原稿的 per-thread 使用方式不等同于已核验的线程安全契约，应在固定 release/commit 上复核。
 
-### AppendWriter — 异步批量 flush
+### AppendWriter — 异步提交与等待式 flush
 
-- 本地内存缓冲区，达到 batch size 或 timeout 时触发异步 flush
-- flush 通过 RpcClient 发送到 Fluss Server
-- 获得 ack 后标记写入完成
-- 支持自动 batch、重试、背压信号处理
+- 将行编码为 `WriteRecord`，经 `WriterClient` 进入批缓冲管线。
+- `append()` 的本地入队不等于服务端已确认；最终成功或异常通过 Future 表达。
+- 显式 `flush()` 等待相应批次完成。后台 Sender 的批量发送是另一层职责。
 
 ## 关键组件
 
 ### MetadataUpdater
 
-后台守护线程，定期从 Fluss Coordinator 拉取：
-- 最新 table schema → schema 变更时自动重新绑定
-- Bucket 分配信息 → 路由更新
-- 数据格式（Arrow/Row）→ 序列化路径选择
+提供集群快照、物理表/bucket 路由和 RPC gateway。历史长文记录了 leader 未知、metadata 失效后重新获取元数据的路径；不能推导出任何 schema/bucket 变更都透明且不阻塞写入。
 
-### WriterClient — 多 bucket 路由核心
+### WriterClient — 路由与写入协调
 
-- 根据 partition key 计算目标 bucket
-- 维护 `Map<bucketId, AppendWriter>` 映射
-- 处理重试逻辑：服务端 overload → exponential backoff，网络超时 → connection 重建
-- 背压信号传递：服务端 → WriterClient → AppendWriter throttle
+- 协调动态分区检查、BucketAssigner 和 `RecordAccumulator.append()`。
+- 原稿区分有 bucket key 时的 Hash 分配，以及无 key 时的 Sticky / RoundRobin；不是一律根据 partition key 路由。
+- 按 bucket 的批队列属于 `RecordAccumulator`。旧摘要的 `Map<bucketId, AppendWriter>` 没有长文依据，已删除。
 
-### AppendWriter — 单 bucket 缓冲器
+### RecordAccumulator 与 Sender — 缓冲、发送和完成
 
-- 内存缓冲区：`batchSize` 触发或 `flushIntervalMs` 超时
-- 异步 flush 到服务端：通过 RpcClient 发送
-- ack 确认：服务端写入完成 → 标记本地记录为已发送
-- 重试：服务端返回 transient error → 自动重试（幂等写入保障）
+- `RecordAccumulator` 管理按物理表/bucket 组织的批队列和内存资源；`AppendWriter` 不是“单 bucket 缓冲器”。
+- Sender 依据批大小、等待时间、内存压力等条件读取就绪批次，再按目标 TabletServer 组织请求。
+- Log 与 KV 写入分别走 `ProduceLog` / `PutKv`；响应处理按 bucket 区分成功、可重试和不可重试错误。
+- 重试受错误类型、次数和幂等 writer 状态约束。不能声称任意 transient error 均可无条件幂等重试；当前默认开关与错误码应在固定版本中核验。
 
 ### RpcClient — 底层通信
 
-基于 [[Fluss-RPC与网络]] 的自定义协议：
-- 连接复用、请求队列
-- 超时控制 + 心跳保持
-- 与 Fluss 分布式协调的交互（leader 发现、元数据查询）
+提供 [[Fluss-RPC与网络|RPC gateway 与连接资源]]，连接写入引擎、TabletServer 和协调服务。具体传输线程、超时、心跳及连接恢复策略不从本卡的职责图中推出。
 
 ## 与 Flink/Spark 集成
 
-Flink Sink Connector 的 `fluss-flink-common/sink/writer` 封装了相同的三层约定：
-- Flink checkpoint → Fluss flush 对齐
-- Checkpoint 成功后标记数据可见
-- Checkpoint 失败 → 回滚到上一个一致点
+历史归档提到 Flink Sink 在 `fluss-flink-common/sink/writer` 中封装客户端写入，并协调 checkpoint 与 flush。仅凭这条调用关系，不能推出“checkpoint 成功才使数据可见”或“失败会撤销服务端已写数据”。端到端 exactly-once、恢复和提交可见性，需要结合固定版本 connector 的提交协议独立核验；相关入口见 [[Fluss-客户端与计算集成]]。
 
 ## 架构洞察
 
-1. **三层分离**：重量级连接 / 轻量表 / 异步写入器，关注点分离清晰
-2. **元数据后台驱动**：Schema/Bucket/Format 变更不阻塞写入路径
-3. **Bucket-aware 路由**：WriterClient 的 bucket 路由支持弹性扩缩
-4. **异步 + 背压**：append-only 模型下缓冲和重试天然匹配
-5. **全局单例的 Connection**：保证了到 Fluss 集群的连接复用效率
+1. **对象职责不同**：Connection 管资源，Table / AppendWriter 提供 API，RecordAccumulator 管批队列。
+2. **路由需要恢复**：元数据失效和 leader 变化可能带来等待或重试。
+3. **聚批与发送层次不同**：按 bucket 聚批，再按目的节点组织 RPC。
+4. **异步提交仍有完成边界**：调用方通过 Future 和 flush 区分本地入队、最终确认与失败。
+5. **共享连接需要生命周期管理**：复用减少重复资源，关闭仍须处理未完成请求。
 
 ## 8 模块完成进度
+
+以下保留历史归档状态，不表示本轮重新核验了 8 个模块。
 
 | # | 模块 | Wiki 卡片 | 状态 |
 |---|------|----------|------|

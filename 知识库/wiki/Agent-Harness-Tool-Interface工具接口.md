@@ -11,19 +11,20 @@ tags:
 - A2A
 - 工具协议
 created: 2026-06-20
-updated: 2026-06-20
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
 - '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×2; 更新于16天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Tool-Interface工具接口/
 blog_source: _posts/2026-06-20-knowledge-4b6a473f56.md
+source_checked: '2026-10-05'
 ---
 
 # Agent Harness: Tool Interface & Protocol (T)
+
+> 来源边界：本页对照综述 2026-05-08 截止的项目快照及所列章节。该文采用文献/公开项目编码，没有统一 benchmark 重跑各系统；引用工作数字为综述的二手转述，未在本次独立复现。产品能力描述不等于当前版本保证。
 
 > ETCLOVG 第二层：Agent 如何发现、调用和管理外部工具——定义了 Agent 的"手"。
 
@@ -37,23 +38,23 @@ Tool Interface 定义了 Agent 与其行动能力之间的**契约**。这层不
 
 ---
 
-## 2. 两大协议竞赛
+## 2. 两种互补接口
 
 ### 2.1 MCP（Model Context Protocol）— Anthropic 2024
 
-MCP 是当前最接近**事实标准**的 Agent-工具协议。
+MCP 是综述重点讨论的 Agent-工具接口之一；这里保留论文快照，不作为当前协议版本参考。
 
 | 维度 | 详情 |
 |------|------|
 | 架构 | Client-Server，JSON-RPC 2.0 通信 |
-| 传输层 | stdio（本地）+ SSE/Streamable HTTP（远程） |
+| 传输层 | stdio 和 HTTP 系列传输；旧 SSE 与 Streamable HTTP 的版本差异需查对应规范 |
 | 核心原语 | `tools/list`（发现）、`tools/call`（执行）、`resources/read`（数据访问） |
 | 三种能力 | **Resources**（数据暴露）、**Prompts**（模板复用）、**Tools**（执行操作） |
 | 生态覆盖 | 文件系统、数据库（PostgreSQL/SQLite）、搜索引擎、浏览器（Playwright）、代码执行器、GitHub API、Slack、线性工具... |
-| 安全模型 | Server 端不暴露机制自动安全——需在 Client 侧做权限控制和工具白名单 |
-| 状态 | 已成为生态中最大共识的工具协议 |
+| 安全模型 | 客户端与服务端都需履行权限边界；工具暴露或传输规范本身不保证调用者已获授权 |
+| 状态 | 论文快照中广泛出现的互操作方案，不等于所有产品均采用 |
 
-MCP 的设计哲学是 **"给 Agent 能力而不给控制"**——Server 暴露能力，Client 控制访问。
+工具发现、用户授权、服务端访问控制与实际执行隔离是不同职责；不能把权限检查只放在模型提示或客户端工具列表中。
 
 ### 2.2 A2A（Agent-to-Agent）— Google 2025
 
@@ -67,7 +68,7 @@ A2A 是 Agent 间通信的协议规范，定位与 MCP **互补**而非竞争。
 | 身份模型 | Agent Card — 自描述的 Agent 能力清单 |
 | 与 MCP 关系 | MCP 连接 Agent ↔ Tool，A2A 连接 Agent ↔ Agent |
 
-**MCP + A2A 组合**：MCP 让 Agent 调用工具，A2A 让 Agent 互相委托任务——两协议覆盖了 Agent 的所有外部交互面。
+**MCP + A2A 组合**：MCP 让 Agent 调用工具，A2A 让 Agent 互相委托任务——它们可覆盖两类交互，但本地函数、HTTP API、文件/CLI 和人工交接等仍需各自契约。
 
 ---
 
@@ -78,7 +79,7 @@ A2A 是 Agent 间通信的协议规范，定位与 MCP **互补**而非竞争。
 | 描述风格 | 优点 | 风险 |
 |----------|------|------|
 | 过简（如 `execute(code: str)`） | 节省上下文预算 | 模型误解工具语义、参数格式错误 |
-| 过繁（JSON Schema + 示例 + 错误语义） | 模型理解更准确 | 每个工具几百 Token——50 个工具消耗数万 Token |
+| 过繁（JSON Schema + 示例 + 错误语义） | 模型理解更准确 | 每个工具几百 Token——工具数量较多时累计成本可观，具体依 schema 和模型 tokenizer 计算 |
 
 **最佳实践**：精确到参数级别的描述 + 包含错误反馈语义（成功/失败/部分结果的明确格式）。
 
@@ -126,7 +127,7 @@ A2A 是 Agent 间通信的协议规范，定位与 MCP **互补**而非竞争。
 
 ## 6. 对我们（CHANG_AI_TEAM）的启示
 
-1. **接入 MCP** 是当前最务实的工具策略——标准化程度最高
+1. **评估 MCP 接入**是否减少当前工具集成成本；简单固定工具也可使用直接 API，不以流行度替代需求分析
 2. **工具列表不应膨胀**：每个工具需经过威胁评估后才暴露给 Agent
 3. **A2A** 在需要多 Agent 协作的复杂场景（如代码审查 + 测试 + 部署流水线）中值得采用
 4. **工具响应应结构化**——错误码、部分成功、超时等状态需明确定义，让 Agent 能正确决策
@@ -134,3 +135,7 @@ A2A 是 Agent 间通信的协议规范，定位与 MCP **互补**而非竞争。
 ---
 
 > 返回父页：[[Agent-Harness-Engineering-Survey综述]] · 上一级：ETCLOVG 七层体系 · T 层（Tool Interface & Protocol）
+
+## 契约例子（工程建议）
+
+给“创建工单”工具定义请求幂等键、必填字段、权限主体和成功返回的工单 ID；超时要区分明确失败与结果未知。即使 schema 校验通过，服务端仍需检查用户是否有权创建该项目的工单。这个例子说明接口、治理和恢复必须一起设计。

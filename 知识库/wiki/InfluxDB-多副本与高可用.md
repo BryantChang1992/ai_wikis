@@ -1,6 +1,6 @@
 ---
 type: concept
-title: InfluxDB 多副本与高可用
+title: InfluxDB 耐久性与高可用：确认边界和故障边界
 sources:
 - '[[技术文章/InfluxDB调研/05-多副本复制与元数据存储]]'
 tags:
@@ -11,7 +11,7 @@ tags:
 - 故障恢复
 - 持久性
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
@@ -19,75 +19,53 @@ related:
 - '[[知识库/wiki/InfluxDB-Catalog元数据]]'
 - '[[知识库/wiki/事务模型深度调研]]'
 - '[[知识库/wiki/InfluxDB-写入与查询路径]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.88
-confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-多副本与高可用/
 blog_source: _posts/2026-06-14-knowledge-7bacfb6aa2.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb3/core/reference/internals/durability/
+- https://docs.influxdata.com/influxdb3/clustered/reference/internals/durability/
+- https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/
+diagram_format: mermaid
 ---
 
-# InfluxDB 多副本与高可用
+# InfluxDB 耐久性与高可用：确认边界和故障边界
 
-## 三层防护架构
+## 三条不同的持久化路径
 
-InfluxDB 3 的数据持久化通过**三层防护**确保数据不丢失：
+| 产品形态 | 确认写入依赖什么 | 查询最近数据 | 不应推断的保证 |
+|---|---|---|---|
+| v1/v2 TSM | 本地 WAL 持久化与 Cache 更新 | Cache 与 TSM 合并 | 单机 WAL 不等于跨节点容灾 |
+| 3 Core 默认同步模式 | WAL 刷到配置的对象存储 | 内存缓冲与 Parquet | 不意味着自带多个 Ingester 副本 |
+| Clustered | 多 Ingester 本地 WAL，默认复制配置见文档 | Querier 访问 Ingester 与 Parquet | 副本数不直接等于任意多故障容忍 |
 
-| 层级 | 机制 | 作用 |
-|------|------|------|
-| Layer 1 — Router | 双副本写入 (2+ Ingesters) | 写入即确认，单 Ingester 故障不影响持久化 |
-| Layer 2 — Ingester | WAL (EBS/Local SSD) | Crash Recovery，Graceful Shutdown 前 flush |
-| Layer 3 — Object Store | 3 AZ 冗余存储 | 跨可用区冗余，Parquet 不可变，延迟删除 |
-
-## Router 双副本写入
-
-![[diagram/InfluxDB-多副本与高可用-fig.svg]]
-
-**关键设计**：
-- Router 在**确认写入成功前**将数据复制到至少 2 个 Ingester
-- 如果某一 Ingester 宕机，另一副本的 WAL 保证数据不丢失
-- Consistent Hash 确保同一分区数据路由到同一组 Ingester
-
-## Ingester WAL 生命周期
-
-```
-接收 Line Protocol → 写入 WAL (fsync) → 写入确认 (Ack back to Router)
-→ 内存处理 (Sort/Dedup/Partition) → Persist Parquet (Object Store)
-→ 更新 Catalog → Truncate WAL (该段已安全持久化)
+```mermaid
+flowchart TD
+  A[收到成功响应] --> B{成功响应的持久化边界}
+  B --> L[本地 WAL：检查机器与磁盘故障域]
+  B --> O[对象存储 WAL：检查后端耐久性和配置]
+  B --> R[多 Ingester：检查副本放置与共同故障]
+  L --> T[故障注入与恢复验证]
+  O --> T
+  R --> T
 ```
 
-**WAL 语义**：InfluxDB 3 的 WAL 仅用于 crash recovery，**不参与查询路径**（查询由 Object Store 上的 Parquet 文件服务）。这与 [[事务模型深度调研]] 中的 WAL 机制原理相同，但用途更窄——不像传统数据库那样支持 Point-in-Time Recovery（PITR）。
+Core 开启 `no_sync` 时可能在 WAL 持久化前应答，必须单独评估丢失窗口。Clustered 的近期数据尚未写成 Parquet 时仍可查询，WAL 在持久化数据安全落地前承担恢复职责。
 
-**崩溃恢复流程**：
-- **Graceful Shutdown**：先 flush WAL → Parquet → 再停止
-- **Unexpected Crash**：新 Ingester 启动 → 重放 WAL → 恢复未持久化数据
+## 不可变文件仍需要元数据与备份
 
-## Object Store 3 AZ 冗余
+TSM 与 Parquet 都通过生成新文件进行合并，不可变不等于不会误删或无需备份。对象存储的故障域与冗余策略取决于所选后端；Catalog 的备份和文件回收策略也有独立边界。旧稿所写“所有 InfluxDB 3 自动三 AZ、固定 100 天、RPO 一律为 0”没有跨产品依据。
 
-- Parquet 文件写入 Object Store 后，云存储提供商（S3/GCS/Azure Blob）自动在 ≥3 个可用区冗余存储
-- Parquet 文件本身**不可变**（Immutable），写入后从不修改
-- 删除通过 Catalog 的 Soft Delete 标记，实际文件保留约 100 天后由 GC 物理删除
+测试至少覆盖：写入确认后进程终止、节点磁盘丢失、对象存储暂时不可用、Catalog 恢复，以及 compaction 期间故障。分别记录可用性、数据完整性和恢复耗时；不能只凭一次写入成功判断容灾达标。
 
-## 故障恢复能力
+关联：[[InfluxDB-Catalog元数据]]、[[InfluxDB-写入与查询路径]]。
 
-| 故障场景 | 恢复方式 | RPO |
-|----------|----------|-----|
-| Ingester 进程崩溃 | 新 Ingester 重放 WAL | 毫秒级 (WAL 最后 fsync) |
-| Ingester 节点宕机 | Router 路由到另一副本 Ingester | 0 (双副本已确认) |
-| Object Store 单 AZ 故障 | 自动切换到另一 AZ 副本 | 0 (多 AZ 冗余) |
-| Catalog 故障 | Daily Backup + Tx Log 重放 | <24h (取决于 backup 间隔) |
-| 全 Region 级灾难 | Catalog Backup + Object Store 跨 Region | 分钟～小时级 |
 
-## v1/v2 vs v3 高可用差异
+## 核验来源
 
-| 维度 | v1/v2 | v3 |
-|------|-------|-----|
-| 写入持久性 | 单 WAL (本地磁盘) | 双 Ingester WAL + Object Store |
-| 副本机制 | 无开箱副本 (Enterprise 版 hint-handoff) | 原生双副本写入 |
-| 崩溃恢复 | 重放全部 WAL (可能很慢) | WAL 截断后重放量小 |
-| 跨 AZ 冗余 | 手动备份 | 自动 3 AZ 冗余 |
-| 数据不变性 | TSM 文件可变 (Compaction) | Parquet 不可变 |
-
----
-
-*参考: InfluxData 官方文档 "InfluxDB 3.0 System Architecture"*
+- [Core 确认与 WAL](https://docs.influxdata.com/influxdb3/core/reference/internals/durability/)
+- [Clustered 副本与 WAL](https://docs.influxdata.com/influxdb3/clustered/reference/internals/durability/)
+- [TSM 引擎](https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/)

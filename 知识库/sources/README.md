@@ -1,9 +1,11 @@
 ---
 type: meta
-title: "源文件索引"
-tags: ["meta", "sources"]
+title: 源文件索引
+tags:
+- meta
+- sources
 created: 2026-06-14
-updated: 2026-06-20
+updated: '2026-10-05'
 ---
 
 # 源文件索引 (Raw Sources)
@@ -20,14 +22,14 @@ updated: 2026-06-20
 
 ## 论文目录结构
 
-每篇论文一个父目录，内含英文原文 PDF + 精读分析 + 全文翻译：
+每篇论文一个父目录；原文、精读分析和译文分别记录取得状态。文件名“全文翻译”可能为兼容旧链接保留，实际覆盖以正文声明为准：
 
 ```
 sources/papers/
 ├── Event-Horizon/
 │   ├── Event-Horizon-CIDR2026.pdf    ← 英文原文
 │   ├── 精读分析.md                    ← 精读分析
-│   └── 全文翻译.md                    ← 中文全文翻译
+│   └── 全文翻译.md                    ← 译文（明确全文/节译/译述范围）
 ├── LSM-Survey/
 │   ├── LSM-Survey-VLDBJ2019.pdf
 │   ├── 精读分析.md
@@ -73,7 +75,7 @@ sources/papers/
   - LSM-Scheduling-FAST2026.pdf（原文，3.2MB）
   - 精读分析.md / 全文翻译.md ✅
   - → wiki: Silo-分布式LSM-Compaction调度.md, Silo-Compaction-迁移协议.md
-- [LSM-Raft/](papers/LSM-Raft/) — SIGMOD 2026 Poster，Tsinghua，LSM-tree 与 Raft 协同优化（⚠️ 无法获取）
+- [LSM-Raft/](papers/LSM-Raft/) — ⚠️ 原文未取得；既有 PDF 是拦截页，题名与机制待核验
   - SIGMOD Poster 仅有摘要公开，ACM Cloudflare 封锁，ResearchGate IP 被封
   - 目录已预留，后续若能获取 PDF 再补充 Ingest
 - [ByteHouse/](papers/ByteHouse/) — SIGMOD 2026 Companion，ByteDance，云原生多模态数仓

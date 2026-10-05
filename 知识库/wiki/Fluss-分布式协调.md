@@ -11,17 +11,20 @@ tags:
 - 重平衡
 - 源码分析
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-整体架构]]'
 - '[[知识库/wiki/Fluss-RPC与网络]]'
-confidence: 0.78
-confidence_rationale: 类型=analysis; 更新于21天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-分布式协调/
 blog_source: _posts/2026-06-15-knowledge-9395c9385b.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss 分布式协调层分析
 
@@ -65,14 +68,33 @@ CoordinatorEventProcessor 是核心事件分发循环，处理 16 种事件类�
 
 ### ReplicaStateMachine（6 种状态）
 
-![[diagram/Fluss-分布式协调-fig1.svg]]
+
+```mermaid
+flowchart TD
+  A[创建副本任务] --> B[分配并初始化]
+  B --> C[在线服务]
+  C --> D[故障检测与恢复调度]
+  D --> B
+  C --> E[迁移或删除任务]
+  E --> F[确认完成后清理]
+```
+
 
 
 
 
 ### TableBucketStateMachine（5 种状态）
 
-![[diagram/Fluss-分布式协调-fig2.svg]]
+
+```mermaid
+flowchart TD
+  T[创建表 / 分区] --> A[分配 bucket 的 tablet]
+  A --> R[副本与 leader 元数据]
+  R --> S[TabletServer 服务数据]
+  S --> F[故障或重平衡]
+  F --> R
+```
+
 
 Leader 选举策略：`DefaultLeaderElection` 在 AR（Assigned Replicas）中选取第一个 ISR 内的副本。
 

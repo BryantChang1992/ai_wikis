@@ -11,7 +11,7 @@ tags:
 - 源码分析
 - 流存储
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-存储引擎]]'
@@ -19,95 +19,57 @@ related:
 - '[[知识库/wiki/Fluss-RPC与网络]]'
 - '[[知识库/wiki/Fluss-客户端与计算集成]]'
 - '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
-confidence: 0.78
-confidence_rationale: 类型=analysis; 来源×0; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-整体架构/
 blog_source: _posts/2026-06-15-knowledge-6dfd3be1c3.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://fluss.apache.org/docs/concepts/architecture/
+diagram_format: mermaid
 ---
 
 # Fluss 整体架构与 Kafka 2.7.2 对照
 
-![[diagram/fluss-vs-kafka-architecture.svg]]
-## 概述
+## 对照范围
 
-Apache Fluss (Incubating) 是新一代流存储系统，从 Kafka 生态演化而来但在架构上有根本性设计差异。核心发现：**Fluss 约 30% 代码复用 Kafka（Log Segment 管理 + Replica 复制框架），70% 自研（KV 存储、Arrow 列式、Lake 集成、RPC 框架）**。
+本笔记保留 Kafka 2.7.2 这一历史对照点，并以 Fluss 官方架构文档核对组件职责。旧源码笔记没有固定 Fluss commit，因此类数量与类名只能作为待复核的阅读线索，不能作为当前版本兼容矩阵。没有计数脚本和基准快照，也不能声称精确的 存在日志实现复用与独立设计；比例缺少固定 commit 和计数方法。
 
-Fluss 不是在 Kafka 上做增量改进，而是**重构了存储模型**——从 Topic（无 schema 字节流）升级为 Table（强 schema、支持 PK、支持 KV 索引），从单一本地 Log 扩展为三层存储（本地 Log + KV Store + Remote/Lake）。
+```mermaid
+flowchart TD
+  C[Fluss 客户端与计算连接器] --> CS[Coordinator：元数据与 tablet 分配]
+  C --> TS[TabletServer：数据读写]
+  CS --> Z[ZooKeeper：协调与元数据]
+  CS --> TS
+  TS --> L[Log Store：追加日志与复制]
+  TS --> K[KV Store：主键表状态]
+  L --> R[Remote Log]
+  K --> S[远端 KV 快照]
+  L --> LA[Lake 分层集成]
+```
 
-## 核心概念映射
+Log Table 使用 Log Store；Primary Key Table 同时使用 Log 与 KV。Tablet 是数据分片的服务单元，而非整张表的管理单元。日志承担 KV 恢复的 WAL 职责。官方架构说明 Log 数据有副本复制，KV 状态依靠快照和日志恢复；不能把 KV 也画成一套已实现的对等副本复制。
 
-| Fluss | Kafka 2.7.2 | 说明 |
-|-------|-------------|------|
-| **Database** | （无） | Fluss 引入 Database 作为 Table 的命名空间容器 |
-| **Table** | Topic | 基本数据组织单元 |
-| **Partition** | Partition | 逻辑分区（语义一致） |
-| **TableBucket** | Partition (Replica) | 物理存储单元，Fluss 的 bucket 即 Kafka 的 partition replica |
-| **Tablet** | Partition（逻辑） | Fluss 中 Tablet 是表级管理单元 |
-| **TabletServer** | Broker | 数据服务节点 |
-| **CoordinatorServer** | Controller | 集群管理节点，独立进程可独立高可用 |
-| **LogTablet** | Log (Partition Log) | 物理日志实体 |
-| **KV Store** | （无） | PK 表的 RocksDB 存储——**Fluss 最大差异化能力** |
-| **Lake Table** | （无） | 湖表，数据以 Parquet/Arrow 格式写入 Lakehouse |
-| **Row / InternalRow** | Record (Key+Value bytes) | Fluss 用 Arrow 列式（schema-aware），Kafka 用字节流 |
-
-## 八大核心差异
+## 需要保留的区别
 
 | 维度 | Fluss | Kafka 2.7.2 |
-|------|-------|-------------|
-| **架构** | 存算分离（TabletServer 专注存储，CoordinatorServer 独立） | 存算耦合（Broker 同时服务读写+复制） |
-| **数据模型** | Table（有 schema，支持 PK）+ Database 命名空间 | Topic（无 schema，key/value bytes） |
-| **存储层** | 三层：本地 Log + KV Store (RocksDB) + Remote/Lake Storage | 单层：本地 Log Segment 文件 |
-| **记录格式** | Arrow 列式（列裁剪 + 谓词下推 + 向量化） | 行式字节流（无 schema 感知） |
-| **一致性** | ISR 协议（同 Kafka） | ISR 协议 |
-| **协调** | CoordinatorServer（职责多于 Controller：重平衡/自动分区/Lake 分层） | Controller（仅管理分区/副本状态） |
-| **计算引擎** | 原生 Flink/Spark Source/Sink/Catalog/Lookup Join | Connect Framework + 外部连接器 |
-| **分层存储** | 原生 Remote Log + Lake Table（KIP-405 后才有的能力） | 无（KIP-405 在 2.8+ 引入） |
+|---|---|---|
+| 数据抽象 | Database、带 schema 的 Table、bucket | Topic、partition、字节记录 |
+| 主键状态 | PK 表 KV 状态及更新语义 | 日志压缩保留 key 的较新记录，不等于同样的查询接口 |
+| 控制面 | 独立 Coordinator 与 TabletServer | ZooKeeper 与 broker/controller 路径 |
+| 持久化 | 本地日志、远端日志、KV 快照及 Lake 集成按职责组合 | 本地 partition log；不含后续 KIP-405 分层能力 |
+| 客户端 | 原生 Fluss API 与计算连接器 | Kafka protocol 与客户端 |
 
-## 代码复用分析
+Kafka 2.7.2 不应被列成已采用 KRaft 的生产版本；也不能把后来 Kafka 引入的能力回填到这个对照版本。复用日志实现思路不等于线协议完全兼容，Kafka 插件应逐 API、版本和错误语义测试。
 
-### 已确认复用（标注 `This file is based on source code of Apache Kafka Project`）
+## 阅读路径与验证点
 
-| Fluss | Kafka 来源 | 复用程度 |
-|-------|-----------|---------|
-| `LocalLog.java` | `kafka.log.Log.scala` | 高度复用 Log Segment 管理逻辑 |
-| `LogTablet.java` | `kafka.log.Log.scala` | 复用追加、读取、分段逻辑 |
-| `LogManager.java` | `kafka.log.LogManager.scala` | 复用日志目录管理 |
-| `LogSegment.java` | `kafka.log.LogSegment.scala` | 高度复用 |
-| `ReplicaManager.java` | `kafka.server.ReplicaManager.scala` | 复用副本管理框架 |
-| `ReplicaFetcherThread.java` | `kafka.server.AbstractFetcherThread.scala` | 复用 Follower 拉取逻辑 |
-| `DelayedOperation.java` | `kafka.server.DelayedOperation.scala` | 复用延时操作框架 |
+从 [[Fluss-存储引擎]] 看 log/KV 分工，经 [[Fluss-分布式协调]] 看副本及故障，再读 [[Fluss-RPC与网络]] 和 [[Fluss-客户端与计算集成]]。[[Fluss-Tiering分层架构]] 与 [[Fluss-Lake层与湖仓融合]] 分别关注数据生命周期和表格式适配。
 
-### 完全自研的模块
+“控制面独立”本身不足以证明存算完全分离；应具体说明哪种状态由远端持久化、哪个计算引擎可独立扩缩、恢复需要哪些本地或远端状态。
 
-- **KV 子系统**（KvManager/KvTablet/RocksDBKv/RowMerger/Snapshot 全链路）：近 30 个类
-- **Arrow 列式记录**（ArrowLogWriteBatch/ArrowLogFetchCollector/ArrowWalBuilder）
-- **Lake 集成**（Iceberg/Paimon/Hudi/Lance 四种后端，各 7-35 个类）
-- **RPC 框架**（Netty + Protobuf + GatewayClientProxy 动态代理）
-- **Kafka 协议兼容层**（KafkaProtocolPlugin，骨架状态）
-- **Flink Connector**（215 个 Java 文件，Source/Sink/Catalog/Lookup/Tiering）
-- **Coordinator 增强**（AutoPartitionManager/RebalanceManager/LakeTableTieringManager）
 
-## Fluss 独有的 8 个核心能力（Kafka 2.7.2 无对应）
+## 核验来源
 
-1. **KV Store (RocksDB)**：PK 表提供点查/更新/删除，Kafka 本质是 append-only log
-2. **Arrow 列式记录**：列裁剪、谓词下推、向量化计算
-3. **Lake Table**：数据直接以 Parquet/Arrow 格式写入数据湖
-4. **Remote Log**：本地仅保留 N 个 segment，老数据自动 tier 到远程存储
-5. **Merge Engine**：行级聚合（SUM/MAX/MIN/COUNT）、部分更新、去重
-6. **Primary Key 表**：Upsert/Delete，自动生成 Changelog
-7. **Schema 管理**：内建 schema evolution（通过 schema id）
-8. **存算分离**：TabletServer 可独立扩缩，CoordinatorServer 可独立高可用
-
-## Kafka 2.7.2 独有（Fluss 无对应）
-
-1. **Connect Framework**：标准化数据源/目标连接器生态
-2. **Streams DSL**：内建流处理库（但可被 Flink/Spark 替代）
-3. **KRaft**：KIP-500 去 ZK 化
-4. **事务生产者**：完整的分布式事务语义（Fluss 当前无）
-5. **幂等生产者**：Producer ID + Sequence Number
-6. **Log Compaction**：基于 key 的日志压缩
-
----
-
-> **关键洞察**：Fluss 与 Kafka 的根本分歧在于**数据模型哲学**。Kafka 走"通用字节流"路线（最大兼容性），Fluss 走"结构化数据"路线（Table + Schema + PK + 类型安全），加上了原生 Lakehouse 集成。两者的竞争不是"谁更快"，而是"流处理平台应该对数据有多少理解"。
+- [Fluss 官方架构](https://fluss.apache.org/docs/concepts/architecture/)

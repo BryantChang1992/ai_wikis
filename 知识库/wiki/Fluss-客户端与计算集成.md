@@ -10,19 +10,22 @@ tags:
 - Connector
 - 源码分析
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-整体架构]]'
 - '[[知识库/wiki/Fluss-存储引擎]]'
 - '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
 - '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
-confidence: 0.78
-confidence_rationale: 类型=analysis; 来源×0; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-客户端与计算集成/
 blog_source: _posts/2026-06-15-knowledge-34666d8c17.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss 客户端与计算集成分析
 
@@ -90,7 +93,16 @@ Fluss 客户端 API 在 Kafka Producer/Consumer 范式上做了根本性的扩�
 
 ### 模块结构（215 个 Java 文件）
 
-![[diagram/fluss-flink-modules.svg]]
+
+```mermaid
+flowchart TD
+  F[Fluss Flink 连接器] --> C[共享实现]
+  F --> V[按 Flink 版本适配]
+  F --> T[Lake Tiering 入口]
+  C --> S[Source / Sink / Catalog]
+  V --> X[版本兼容测试]
+```
+
 
 ### 核心能力矩阵
 

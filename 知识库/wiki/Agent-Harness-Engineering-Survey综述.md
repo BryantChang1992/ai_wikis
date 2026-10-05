@@ -10,7 +10,7 @@ tags:
 - AI-Infra
 - Agent-First
 created: 2026-06-20
-updated: 2026-06-20
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
@@ -24,16 +24,29 @@ related:
 - '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
 - '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
 - '[[知识库/wiki/Model-Neutrality-模型中立与反锁定]]'
-confidence: 0.88
-confidence_rationale: 类型=survey; 来源×2; 16天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Engineering-Survey综述/
 blog_source: _posts/2026-06-20-knowledge-2486199170.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent Harness Engineering 综述
 
-![ETCLOVG七层体系全景](diagram/agent-harness-etclovg-7layer.svg)
+> 来源边界：本页对照综述 2026-05-08 截止的项目快照及所列章节。该文采用文献/公开项目编码，没有统一 benchmark 重跑各系统；引用工作数字为综述的二手转述，未在本次独立复现。产品能力描述不等于当前版本保证。
+
+```mermaid
+flowchart TD
+ H[Agent Harness] --> E[执行环境 E]
+ H --> T[工具接口 T]
+ H --> C[上下文与记忆 C]
+ H --> L[生命周期与编排 L]
+ O[可观测 O] -.-> H
+ V[验证与评估 V] -.-> H
+ G[治理 G] -.-> H
+```
+
+图按职责组织，不表示七层严格顺序调用。
 
 > 本页为 Li et al. (2026) "Agent Harness Engineering: A Survey" 的 Wiki 概念卡片，覆盖核心论点和生态全景。
 > 七层 ETCLOVG 的详细分析见各自独立卡片。
@@ -42,9 +55,9 @@ blog_source: _posts/2026-06-20-knowledge-2486199170.md
 
 ## 1. 论文定位
 
-**Agent Harness Engineering** 是 2026 年由 CMU/Yale/JHU/NEU/Tulane/UAB/OSU/Virginia Tech/Amazon 联合团队提交到 TMLR 的综述论文。它是迄今为止最全面的 Agent 基础设施生态快照，将 170+ 开源项目映射到统一的七层分类体系。
+**Agent Harness Engineering** 是 2026 年由 CMU/Yale/JHU/NEU/Tulane/UAB/OSU/Virginia Tech/Amazon 联合团队提交到 TMLR 的综述论文。本地 PDF 为 71 页，页眉标注 Under review as submission to TMLR；其贡献是把 170+ 项目映射到七层分类体系，而非证明覆盖所有项目。
 
-论文核心主张：**Agent 可靠性的天花板不是模型能力，而是基础设施质量（Harness Quality）。**
+论文核心主张：**模型与 Harness 共同决定可实现的可靠性；基础设施可能成为约束。** 这是综述的架构主张，不是通过统一因果实验证明模型永远不构成瓶颈。
 
 ---
 
@@ -54,25 +67,25 @@ blog_source: _posts/2026-06-20-knowledge-2486199170.md
 
 Agent 从工具进化为同事的关键一步，不在于更好的模型，而在于构建**可操作、可审计、可恢复**的 Agent 基础设施。模型能力在快速进步，但生产环境 Agent 的可靠性被 Harness 层限制——这就是"绑定约束"的含义。
 
-实证：Anthropic 发现基础设施配置偏移 Agent 编码评估分数 6 个百分点（p < 0.01）；LangChain 2026 调查显示 89% 团队使用可观测但仅 52.4% 运行评估。
+综述引用的证据：Anthropic 报告基础设施配置偏移 Agent 编码评估分数 6 个百分点（p < 0.01）；LangChain 2026 调查显示 89% 团队使用可观测但仅 52.4% 运行评估。
 
 ### Claim 2: ETCLOVG 七层分类法
 
-将现有框架的"Lifecycle Hooks"概念拆分为七个独立架构层，其中 **Observability** 和 **Verification** 从 Lifecycle 中提升为第一级层：
+将现有框架的"Lifecycle Hooks"概念拆分为七个职责层，其中 **Observability（O）** 被单独处理，**Governance（G）** 成为一级职责；各层相互耦合：
 
-```
-E → Execution Environment & Sandbox  (§3)
-T → Tool Interface                  (§4)
-C → Context Management & Memory     (§5)
-L → Lifecycle & Orchestration       (§6)
-O → Observability & Operations      (§7) ← 从 L 独立
-V → Verification & Evaluation       (§8) ← 从 L 独立
-G → Governance                      (§9)
-```
+| 层 | 内容 | 原文章节 |
+|---|---|---|
+| E | 执行环境与沙箱 | §3 |
+| T | 工具接口与协议 | §4 |
+| C | 上下文与记忆 | §5 |
+| L | 生命周期与编排 | §6 |
+| O | 可观测与运维 | §7 |
+| V | 验证与评估 | §8 |
+| G | 治理 | §9 |
 
 ### Claim 3: 170+ OSS 生态系统映射
 
-将 170+ 开源项目映射到 ETCLOVG 分类体系，形成迄今最完整的生态快照。从 Codex CLI (82k ⭐) 到 SafariFlow 等学术项目全部覆盖，揭示了采纳模式、覆盖缺口和新兴设计原则。
+将 170+ 开源项目映射到 ETCLOVG 分类体系，形成截至 2026-05-08 的生态快照。项目来自 GitHub、论文、注册目录与公司文档等渠道，由一名主要编码者分类、其他作者复查；未报告独立双人编码一致性。缺少公开证据不能自动解释为功能不存在。
 
 ---
 
@@ -107,12 +120,12 @@ G → Governance                      (§9)
 每层均有独立 Wiki 概念卡片，详细展开：
 
 - **E** — [[Agent-Harness-Execution-Environment执行环境]]：7 类沙箱架构、沙箱逃逸、规模化挑战
-- **T** — [[Agent-Harness-Tool-Interface工具接口]]：MCP vs A2A 协议竞赛、工具设计四原则、Prompt Injection
+- **T** — [[Agent-Harness-Tool-Interface工具接口]]：MCP 与 A2A 的互补接口、工具设计四原则、Prompt Injection
 - **C** — [[Agent-Harness-Context-Memory上下文管理]]：三层记忆架构、Context Drift 四大来源、幻觉沉淀
 - **L** — [[Agent-Harness-Lifecycle-Orchestration编排]]：三层编排、5 种编排模式、四大故障模式
 - **O** — [[Agent-Harness-Observability可观测性]]：四级可观测堆栈、成本优化、Anthropic Managed Agents
 - **V** — [[Agent-Harness-Verification-Evaluation评估]]：5 阶段评估生命周期、评估噪声归因
-- **G** — [[Agent-Harness-Governance治理]]：6 大治理机制、治理覆盖缺口分析
+- **G** — [[Agent-Harness-Governance治理]]：5 组机制与安全版图、治理覆盖缺口分析
 
 ---
 
@@ -154,7 +167,7 @@ Harness 层相互耦合：执行环境影响评估结果；工具描述消耗上
 ## 7. 对 CHANG_AI_TEAM 的指导意义
 
 ### 直接可用的设计原则
-1. **可靠性 = Harness × Model**——不能只关注模型选型
+1. **联合评估 Harness 与 Model**——不是可直接计算的乘法公式
 2. **沙箱选择遵循威胁模型驱动**——评估/训练/部署场景需要不同隔离策略
 3. **Tool 最小权限原则**——不暴露 Agent 不需要的工具
 4. **Context Drift 是长期 Agent 的顶级威胁**——需要不确定性感知状态管理
@@ -162,7 +175,7 @@ Harness 层相互耦合：执行环境影响评估结果；工具描述消耗上
 
 ### 可跟进的方向
 - **A2A / MCP 标准演进**：工具和 Agent 间协议持续演化
-- **Governance 缺口**：身份管理 + 信息流控制 + 形式化验证几乎在所有系统中缺失——差异化机会
+- **Governance 缺口**：按威胁模型核验身份、信息流与形式化约束的覆盖，不能将抽样审计外推为所有系统的状态
 - **Harness Simplification**：模型变强后有意识地移除不需要的脚手架
 
 ### 与现有知识库关联
@@ -183,7 +196,6 @@ Harness 层相互耦合：执行环境影响评估结果；工具描述消耗上
 | 沙箱类别 | 7 类 |
 | 编排模式 | 5 种 |
 | 评估阶段 | 5 阶段 (Task-to-Feedback Lifecycle) |
-| 治理机制 | 6 大类 |
+| 治理章节 | 5 组机制 + 安全版图讨论 |
 | 开放问题 | 5 个 |
 | 作者机构 | 9 所 (CMU, Yale, JHU, NEU, Tulane, UAB, OSU, Virginia Tech, Amazon) |
-| 最大项目关注度 | OpenCode 159k ⭐, Claude Code 123k ⭐ |

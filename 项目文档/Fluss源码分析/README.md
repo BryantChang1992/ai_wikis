@@ -1,14 +1,17 @@
 ---
 category: 项目文档
 tags:
-  - fluss
-  - kafka
-  - 源码分析
-  - 流存储
+- fluss
+- kafka
+- 源码分析
+- 流存储
 created: 2026-06-10
-updated: 2026-06-10
+updated: '2026-10-05'
 status: draft
+review_scope: 历史来源分层、已知版本错误和无依据比例纠正
 ---
+
+> 源码范围：这是历史阅读记录，原稿未固定 Fluss commit。本次只整理已知概念矛盾与表达，未逐类核对当前上游；下文数量、接口及插件状态不作为当前版本保证。架构职责以 [[知识库/wiki/Fluss-整体架构]] 为入口。
 
 # Fluss 源码分析
 
@@ -50,7 +53,7 @@ status: draft
 
 ## 关键发现
 
-1. **Fluss 约 30% 代码复用 Kafka**（Log Segment 管理 + Replica 复制框架），70% 自研
+代码复用存在于若干日志模块；精确比例缺少固定 commit 与计数方法，已撤回。
 2. **最大差异化**：KV 存储（RocksDB）、Arrow 列式记录、Lakehouse 集成
 3. **Kafka 兼容层处于骨架阶段**：协议栈就绪，绝大部分 API handler 为空方法
 4. **存算分离**：CoordinatorServer 独立进程 vs Kafka Controller 内嵌 Broker

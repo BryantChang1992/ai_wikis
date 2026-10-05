@@ -14,17 +14,17 @@ tags:
 - Runtime Filter
 - Colocate Join
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
 - '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
-diagram: diagram/doris-architecture.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-MPP-向量化查询引擎/
 blog_source: _posts/2026-06-14-knowledge-53b15271c1.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
 
 # Doris MPP 向量化查询引擎
@@ -35,7 +35,18 @@ Doris 查询引擎基于自研 C++ 向量化执行引擎，支持标准 SQL 和 
 
 ## 查询架构
 
-![[diagram/Doris-MPP-向量化查询引擎-fig1.svg]]
+
+```mermaid
+flowchart TD
+  C[SQL 请求] --> FE[FE：解析、分析、优化]
+  FE --> F[拆分和调度 Plan Fragments]
+  F --> B1[BE：批量算子执行]
+  F --> B2[BE：批量算子执行]
+  B1 --> E[Exchange 与结果归并]
+  B2 --> E
+  E --> R[返回结果]
+```
+
 
 
 
@@ -48,7 +59,16 @@ Doris 查询引擎基于自研 C++ 向量化执行引擎，支持标准 SQL 和 
 
 FE 将 SQL Plan 拆分为多个 Fragment，每个 Fragment 由 BE 上一个 Instance 执行：
 
-![[diagram/Doris-MPP-向量化查询引擎-fig2.svg]]
+
+```mermaid
+flowchart TD
+  S1[Scan / Local Aggregate 1] --> E[Exchange]
+  S2[Scan / Local Aggregate 2] --> E
+  E --> A[Final Aggregate]
+  A --> R[Result Sink]
+  R --> C[客户端]
+```
+
 
 
 
@@ -68,9 +88,18 @@ BE 间通过 BRPC 进行数据交换，四种策略：
 
 ### Phase 3: Vectorized Execution
 
-BE 内部以 **4096 行**为一个 Columnar Batch 流水线处理：
+BE 内部以 **一批行（大小依配置）**为一个 Columnar Batch 流水线处理：
 
-![[diagram/Doris-MPP-向量化查询引擎-fig3.svg]]
+
+```mermaid
+flowchart TD
+  S[Scan 输出列式批次] --> F[Filter]
+  F --> P[Project]
+  P --> J[Join / Aggregate 等算子]
+  J --> O[Sink]
+  V[向量化、内存复用与适用的 SIMD] -. 实现优化 .-> J
+```
+
 
 全程列式操作，利用 SIMD 指令集加速。
 
@@ -80,7 +109,7 @@ BE 内部以 **4096 行**为一个 Columnar Batch 流水线处理：
 
 | 设计元素 | 说明 |
 |----------|------|
-| Batch Size | 4096 行/Batch（平衡 CPU Cache 和函数调用开销） |
+| Batch Size | 可配置的批次大小（平衡 CPU Cache 和函数调用开销） |
 | SIMD | SSE/AVX2 指令集加速列运算 |
 | 内存池 | 预分配内存池，避免频繁 malloc/free |
 | Pipeline | 各算子间流水线执行，减少中间结果物化 |
@@ -129,3 +158,5 @@ SELECT d.user_id, i.item_name
 FROM doris_db.user_order_daily d
 JOIN iceberg_catalog.item_db.items i ON d.item_id = i.item_id;
 ```
+
+> 性能边界：向量化、Join Reorder、Runtime Filter 的收益依赖数据分布和计划；“小表”“左表”不固定等同于 build 侧。使用 EXPLAIN 与运行时 profile 验证实际计划。

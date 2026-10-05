@@ -13,7 +13,12 @@ blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
 blog_body_sha256: 48ea1650004e95233f752b3d81a16e8e53493e1c4383d5113353e29736695711
 synced_at: '2026-10-05'
 type: survey
+updated: '2026-10-05'
+review_scope: 历史来源分层、已知版本错误和无依据比例纠正
+diagram_format: mermaid
 ---
+
+> 源码范围：这是历史阅读记录，原稿未固定 Fluss commit。本次只整理已知概念矛盾与表达，未逐类核对当前上游；下文数量、接口及插件状态不作为当前版本保证。架构职责以 [[知识库/wiki/Fluss-整体架构]] 为入口。
 
 ## 6.1 概述
 

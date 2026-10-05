@@ -15,71 +15,49 @@ sources:
 - '[[知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
-updated: 2026-06-15
-diagram: diagram/agent-first-data-systems.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: '2026-10-05'
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-First-Branch-Transactions-分支事务/
 blog_source: _posts/2026-06-15-knowledge-b451f951f1.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Agent-First Branch Transactions — Agent 优先的分支事务
 
-## 一句话总结
+## 问题与概念（Agent-First Data Systems，§6）
 
-Agent 在探索数据时创建大量"what-if"分支——Neon 观察 agent 创建 20× 更多分支、50× 更多 rollback。分支事务需要支持 **Multi-World Isolation**（逻辑隔离 + 物理共享，即 "MVCC on steroids"），以实现上千近似快照的并行探索 + 超快速 rollback。
+当多个 Agent 从同一数据版本探索不同方案时，需要低成本创建、丢弃和比较分支。论文将需求称为 **Multi-World Isolation（MWI）**：逻辑上隔离各个“假设世界”，物理上尽量共享不变的数据。
 
-## 问题
+这不是 ACID 的替代定义，也不意味着传统 ACID 只能串行执行。事务隔离、分支生命周期和合并语义是不同问题。旧稿的“90% 相同数据”“传统只有个位数分支”均缺少测量依据，不能作为设计参数。
 
-传统事务模型假设：
-- 单个执行线程 → ACID 隔离
-- Rollback 是异常情况（罕见）
+## 机制设想与例子
 
-Agent 的现实：
-- **多分支并行探索**：同一个 "如果重组机组" 任务可能有数十个假设性事务流
-- **Rollback 是常态**：大部分分支最终被丢弃，只保留一个最优方案
-- **分支高度相似**：同一 schema，90% 相同数据
-- **分支需要互相 reconcile**：不仅是与 mainline，还包括 branch vs branch
+```mermaid
+flowchart TD
+ B[基线版本：排班表 v0] --> A[分支 A：修改周一排班]
+ B --> C[分支 B：修改周二排班]
+ A --> V[检查约束、比较成本]
+ C --> V
+ V -->|选定方案并检查基线变化| M[提交或合并]
+ V -->|不采用| D[丢弃分支]
+ B -.-> S[未修改数据可由存储层共享]
+ A -.-> S
+ C -.-> S
+```
 
-## 核心概念: Multi-World Isolation (MWI)
+图是解释性设计，并非论文给出的已实现协议。步骤为：固定基线版本；为每个假设建立独立变更集；在各自视图内执行约束检查；选择方案；在合并时检查主线自基线以来的变化。A、B 即使改不同记录，也可能一起违反“每班至少一名主管”的跨记录约束，因此**物理共享或 CoW 不自动解决合并冲突**。
 
-| | 传统 ACID | MWI (Agent-First) |
-|---|---|---|
-| 隔离模式 | 线性隔离 | 逻辑隔离 + 物理共享 |
-| Rollback 频率 | 罕见 | 常态（超轻量） |
-| 分支数量 | 个位数 | 成千上万 |
-| 分支相似度 | 各异 | 高度相似（90%+） |
-| Reconciliation | 与 mainline | 与 mainline + 其他分支 |
+论文讨论可借鉴 MVCC、数据版本管理与 copy-on-write，并引用 Bayou、TARDiS、ORPHEUSDB、Dynamo 等相关工作；这些系统具有不同一致性和冲突解决目标，不能视为同一种 MWI 实现。
 
-## 技术启发
+## 证据与尚未定义的部分
 
-### 学术先行者
-- **Bayou**：弱一致性下的分支操作，最终 reconciliation
-- **Tardis**：branch-and-merge 弱一致性模型
-- **ORPHEUSDB**：关系型数据库上的 bolt-on 版本管理
-- **Dynamo**：弱一致性版本解决
+论文引用 Neon 观察到 Agent 创建更多分支、更多回滚（20×、50×），但未给足比较群体、分母和统一工作负载。这是趋势性动机，不是分支事务 benchmark。论文没有提供 MWI 原型的性能、恢复实验或完整隔离/合并形式化语义。
 
-### 工业界
-- **Neon (Serverless Postgres)**：CoW 分支，agent 已在使用
-- **Aurora**：CoW 克隆
-- **Bauplan**：proof-carrying agent 分支
+待解决问题包括：读视图如何固定；分支间是否可读；主线变化如何检测；跨分支冲突、约束和失败合并如何处理；何时垃圾回收；共享缓存如何避免跨权限泄漏。分支丢弃也不能撤销已向外部系统发送的邮件、API 操作或数据。
 
-## 新挑战
+## 可执行的评估思路（本卡片建议）
 
-1. **"MVCC on steroids"**：MVCC 管理数百版本——分支事务需管理数千相似快照
-2. **Ultra-fast rollback**：不是偶尔回滚，而是绝大部分分支都需要快速 abort
-3. **相似分支间的计算共享**：两个分支修改不同列但基于同一快照 → 可以从同一物理页派生，但逻辑隔离不交叉污染
-4. **Agent 间分支 reconciliation**：两个 agent 在同一段时间做了不同探索，需要 merge 方案
+在固定数据集和并发分支数下，比较独立数据库副本、CoW 分支和候选共享实现；同时报告创建/丢弃延迟、增量存储、内存、查询延迟、合并冲突率及恢复正确性。不能只测分支创建速度就宣布事务语义成立。
 
-## 与知识库的关联
-
-- [[事务模型深度调研]] 中 MVCC/Snapshot Isolation 是 MWI 的基础
-- CockroachDB 的 [[CockroachDB-Leader-Lease-整体设计]] 中的 epoch 机制可以为分支事务提供 snapshot establishment
-- Rosé 的 [[Rosé-Coordinated-Apply-协调应用]] 中 WAL/KV 分离思想 → 分支事务可以将分支变更留在 WAL 中而不触及共享 KV store
-
-## 局限
-
-- 纯愿景，无实现
-- 多分支 reconcile 的语义未定义
-- 只说"借鉴 MVCC"但未给出设计细节
+[[事务模型深度调研]] 可用于理解 MVCC 与快照隔离；[[Agent-First-Data-Systems]] 给出任务级动机。旧稿把 CockroachDB lease epoch 当作分支快照机制、把 Rosé 的日志/存储分离直接当作分支实现依据，均跨越了原论文支持范围，已移除。

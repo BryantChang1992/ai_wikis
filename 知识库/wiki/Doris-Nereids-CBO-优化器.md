@@ -13,17 +13,17 @@ tags:
 - Runtime Filter
 - Join Reorder
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Doris-深度调研]]'
 - '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
-diagram: diagram/doris-architecture.svg
-confidence: 0.8
-confidence_rationale: 类型=concept; 来源×1; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-Nereids-CBO-优化器/
 blog_source: _posts/2026-06-14-knowledge-de8e7e8472.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
 
 # Doris Nereids CBO 优化器
@@ -71,7 +71,17 @@ SELECT * FROM user_stats WHERE cnt > 500;
 
 Join 的 Build 侧（小表）生成 Bloom Filter，**提前下推到 Scan 侧**过滤无效数据：
 
-![[diagram/Doris-Nereids-CBO-优化器-fig.svg]]
+
+```mermaid
+flowchart TD
+  B[Hash Join build 输入] --> H[构造哈希表]
+  B --> F[构造 Runtime Filter]
+  F --> S[下推至适用的 probe 扫描]
+  S --> P[减少候选行及后续交换]
+  H --> J[执行 Join]
+  P --> J
+```
+
 
 **效果**：大表 Join 小表场景，可过滤 50%~99% 的无效行。
 
@@ -115,3 +125,5 @@ Nereids CBO 依赖以下统计信息：
 - **Join 性能**：CBO Join Reorder 可将多表 Join 延迟降低 2-10x
 - **Runtime Filter 整合**：优化器自动识别适合 Runtime Filter 的 Join，无需人工 Hint
 - **生态兼容**：与 Lakehouse Catalog 联动，联邦查询也能利用 CBO 统计信息
+
+> 性能边界：向量化、Join Reorder、Runtime Filter 的收益依赖数据分布和计划；“小表”“左表”不固定等同于 build 侧。使用 EXPLAIN 与运行时 profile 验证实际计划。

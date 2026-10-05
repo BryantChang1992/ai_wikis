@@ -11,7 +11,7 @@ tags:
 - 倒排索引
 - Compaction
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
@@ -19,86 +19,44 @@ related:
 - '[[知识库/wiki/InfluxDB-3-列存引擎]]'
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/LSM-Tree-写放大]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.88
-confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-TSM存储引擎/
 blog_source: _posts/2026-06-14-knowledge-be7903ac91.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/
 ---
 
 # InfluxDB TSM 存储引擎
 
-## 定义
+TSM 是 v1/v2 时序存储路线中的不可变列式文件组织，与 WAL、Cache 和 TSI 索引共同工作。不能把 TSM 与所有 InfluxDB 产品的部署架构等同。
 
-TSM (Time-Structured Merge Tree) 是 InfluxDB v1/v2 自研的列式存储格式，设计理念源自 [[LSM-Tree]]。与 [[LSM-Tree]] 的 SSTable 类似，TSM 采用不可变文件 + 后台 Compaction 的架构，但针对时序数据做了专门优化。
-
-## 存储结构
-
-![[diagram/InfluxDB-TSM存储引擎-fig.svg]]
-
-**TSM 文件内部布局**：
-- **Header**: 文件魔数 + 版本
-- **Blocks**: 每个 Block 存储一个 Series 在一个时间段内的 Field 值
-- **Index**: Block 的偏移量和时间范围索引
-- **Footer**: 文件尾，指向 Index 起始位置
-
-## 关键特性
-
-### 列式存储
-同一 Series 同一 Field 的值连续存储，压缩效果极佳（Snappy 压缩，~5-10x 压缩比）。
-
-### 不可变文件
-TSM 文件一经写入不可修改——这是 LSM 类引擎的通用设计原则。写入只能通过 Compaction 合并，删除通过 Tombstone 标记。
-
-### 多级 Compaction
-```
-L0 (Cache Flush) → L1 → L2 → L3 → ...
-   小文件            中等文件         大文件
+```mermaid
+flowchart TD
+  W[写入] --> L[WAL 持久化]
+  L --> C[更新 Cache]
+  C --> A[确认写入]
+  C --> T[后台快照生成 TSM]
+  T --> N[Compaction 写新 TSM]
+  Q[查询] --> I[TSI 定位相关 series]
+  I --> C
+  I --> T
 ```
 
-类似 [[LSM-Tree]] 的 Leveling 策略，每级文件大小递增。L0 为 Cache Flush 产生的小文件，通过逐级合并提高查询效率。
+TSM 把相关 field 的值按时间组织为块，利用数据类型及分布选择编码压缩；不能把 WAL 使用的压缩方式推广为所有 TSM 列统一采用的编码，更不能给出无数据集条件的固定压缩倍数。
 
-**Compaction 的写放大**：同一条数据被反复读写多次——WAL (1x) → Cache → TSM L0 (flush) → L0→L1 (compact) → L1→L2 ... 这直接导致了 [[LSM-Tree-写放大]] 中描述的相同根因。
+Cache 支持读取最近数据，查询合并 Cache 与 TSM。重启使用未被安全淘汰的 WAL 恢复内存，而非无条件重放数据库全部历史。Compaction 通过新文件重组数据，旧文件按引用及删除规则回收；删除标记不等于直接原地覆盖文件中的值。
 
-## TSI (Time Series Index) 倒排索引
+## TSI 与过滤器不是同一种索引
 
-TSI 是基于倒排索引的元数据索引系统：
+TSI 支持从 measurement、tag 等条件定位 series；Bloom filter 回答的是一个候选文件中某键是否可能存在。两者不能作为一一对应组件交换。高基数会增加索引、内存和查询成本，但“百万即必然 OOM”不成立，应结合机器、版本、分布和查询测量。
 
-- **索引内容**：`Measurement → Tag Key → Tag Value → Series ID` 的映射关系
-- **存储形式**：内存中的 LogFile + 磁盘上的 IndexFile
-- **分层设计**：热数据在内存，冷数据在磁盘
+持久化和后台合并思想与 [[LSM-Tree]] 相近，具体文件层级和调度不可照搬 RocksDB 的任意层数模型。比较新引擎见 [[InfluxDB-3-列存引擎]]，数据设计见 [[InfluxDB-指标设计与基数管理]]。
 
-### TSI 的致命缺陷
 
-当 Series Cardinality > 百万时：
-1. 索引膨胀 → 内存炸裂
-2. TSI LogFile 急剧增长 → 写放大加剧
-3. 查询时遍历大量 Series ID → 延迟线性增长
-4. 最终 → OOM Kill 或查询超时
+## 核验来源
 
-这是 InfluxData 决定在 v3 放弃 TSI、转向 Parquet Statistics 的根本原因。
-
-## 引擎局限
-
-| 瓶颈 | 根因 | 后果 |
-|------|------|------|
-| 高基数性能退化 | TSI 索引膨胀 | 内存爆炸、OOM |
-| Compaction 写放大 | 多级合并反复 I/O | 写入吞吐被限制 |
-| 单机瓶颈 | 本地磁盘 + 单机 BoltDB | 无法水平扩展 |
-| WAL 重放慢 | 崩溃后需全量重放 | 启动时间长 |
-
-## 与 [[LSM-Tree]] 的关系
-
-TSM 引擎本质是 LSM-Tree 在时序场景的具体实现：
-- MemTable ↔ In-Memory Cache
-- SSTable ↔ TSM File
-- Compaction (Leveling) ↔ 多级 TSM Compaction
-- Bloom Filter ↔ TSI Index（但 TSI 是倒排索引，功能上更对标）
-- WAL ↔ WAL (Snappy compressed)
-
-**核心差异**：标准 LSM-Tree 面向通用 KV，而 TSM 针对时序数据做了列式 Block 组织、时间范围索引、和 Snappy 列压缩优化。
-
----
-
-*参考: InfluxData 官方文档 "InfluxDB Storage Engine Internals"*
+- [InfluxDB OSS v2 存储引擎](https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/)

@@ -1,6 +1,6 @@
 ---
 type: concept
-title: InfluxDB 数据模型与核心概念
+title: InfluxDB 数据模型与产品差异
 sources:
 - '[[技术文章/InfluxDB调研/01-概述与核心概念]]'
 tags:
@@ -9,88 +9,56 @@ tags:
 - 数据模型
 - 基数管理
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
 - '[[知识库/wiki/InfluxDB深度调研]]'
 - '[[知识库/wiki/InfluxDB-指标设计与基数管理]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.88
-confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-数据模型/
 blog_source: _posts/2026-06-14-knowledge-ef47114db5.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/
+- https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/
 ---
 
-# InfluxDB 数据模型与核心概念
+# InfluxDB 数据模型与产品差异
 
-## 数据模型
+Line Protocol 描述 measurement、可选 tags、fields 和可选 timestamp。时间戳精度由写入约定或 API 参数解释，不能把一个整数不加说明地都当作纳秒。
 
-InfluxDB 的数据模型围绕 **Point（数据点）** 构建，每个 Point 包含四个组件：
-
-![[diagram/InfluxDB-数据模型-fig.svg]]
-
-| 组件 | 说明 | 类型 | 是否索引 |
-|------|------|------|----------|
-| **Measurement** | 逻辑分组（类似表名） | String | 是 |
-| **Tag Set** | 元数据键值对 | `key=value` (String only) | 是 |
-| **Field Set** | 实际度量值 | String / Float / Integer / Boolean | 否 |
-| **Timestamp** | 纳秒级 Unix 时间戳 | int64 | 是 |
-
-## Series（系列）
-
-**Series** 是 InfluxDB 最核心的概念：
-
-```
-Series = Measurement + Tag Set + Field Key
+```text
+cpu,host=server-a,region=west usage_user=64.5,usage_sys=12.3 1718200000000000000
 ```
 
-一个 Series 是一组共享相同 Measurement、Tag Set 和 Field Key 的数据点的集合。
+此示例按纳秒解释时间戳。measurement 是 cpu；tags 为 host、region；两个 fields 保存度量值。转义、字段类型和重复点合并语义仍需按版本校验。
 
-**Series Cardinality（系列基数）** 是影响 InfluxDB 性能最关键的因素：
-
-```
-Series Cardinality = |tag₁| × |tag₂| × ... × |tagₙ| × |fields|
-```
-
-- **v1/v2 建议上限**：百万级 Series（超过此数 TSI 索引膨胀，性能退化）
-- **InfluxDB 3 理论上限**：无硬限制（Parquet Statistics 替代 TSI 索引）
-
-具体的基数计算示例和风险管理见 [[InfluxDB-指标设计与基数管理]]。
-
-## Bucket / Database / Retention Policy
-
-| 概念 | v1/v2 | v3 |
-|------|-------|-----|
-| 顶层容器 | Database + Retention Policy | Database (namespace) |
-| 数据组织 | Bucket (v2) | Table (自动发现) |
-| 保留策略 | RP (v1) / Bucket RP (v2) | GC Job 定期执行 |
-| 分片粒度 | Shard Group Duration | Partition (默认按天) |
-
-## Line Protocol — 统一写入格式
-
-InfluxDB 所有版本的写入 API 均使用 Line Protocol 格式：
-
-```
-<measurement>[,<tag_key>=<tag_value>...] <field_key>=<field_value>[,<field_key>=<field_value>] [<timestamp>]
+```mermaid
+flowchart TD
+  P[一个数据点] --> M[measurement]
+  P --> T[tag set]
+  P --> F[field set]
+  P --> D[timestamp 与精度]
 ```
 
-这是 InfluxDB 写入路径的统一入口，所有版本通用，是生态兼容性的基石。
+## Series 的统计口径
 
-## 版本演进
+逻辑上常按 measurement 与 tag-set 识别 series；TSM 存储键进一步包含 field key。报告基数时需注明统计工具和口径。维度取值数乘积是组合上界，只有实际全部出现且满足相应条件时才等于 distinct 数；fields 的内部序列数量应另列。
 
-```
-v1.x (2013~)        v2.x (2019~)         v3.0 (2023~)
-TSM + TSI            TSM + TSI            Columnar (Parquet)
-InfluxQL             InfluxQL + Flux       SQL + InfluxQL
-单机优先            单机 + Tasks         存算分离
-Go                   Go                   Rust (Arrow/DataFusion)
-```
+## 容器概念不能跨版本硬套
 
-**v1/v2 的设计制约**：TSI 索引在 Series Cardinality > 百万时索引膨胀→内存爆炸→全链路退化。
-**v3 的根本性突破**：以 Parquet 为"一等公民"格式，利用 Parquet Statistics 实现无索引剪枝，消除基数上限。
+v1 的 database / retention policy 与 v2 的 bucket 不是两个同层次必经目录；InfluxDB 3 又有自己的 database / table 与保留配置。Clustered 的按天分区、Catalog 与多 Ingester 也不能自动套到 Core。
 
----
+TSM 的 tag 索引特征需要和 3.x 列式读取分开描述：不能对全部版本统一打出“Tag 有索引、Field 没索引”的选型表，或宣称 3.x 任意基数免费。先列出真实过滤、分组、范围扫描需求，再设计表与字段。
 
-*参考: InfluxData 官方文档 "InfluxDB Internals 101" (Ryan Betts)*
+继续阅读：[[InfluxDB-指标设计与基数管理]]、[[InfluxDB-写入与查询路径]]、[[InfluxDB-Catalog元数据]]。
+
+
+## 核验来源
+
+- [TSM 数据与索引](https://docs.influxdata.com/influxdb/v2/reference/internals/storage-engine/)
+- [Clustered 产品架构](https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/)

@@ -2,9 +2,8 @@
 type: concept
 title: LSM-Tree 二级索引 (Secondary Indexing)
 sources:
-- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 - '[[知识库/sources/papers/LSM-Survey/精读分析]]'
-- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
 tags:
 - 存储引擎
 - LSM-Tree
@@ -12,18 +11,18 @@ tags:
 - 数据库
 - 索引维护
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/LSM-Tree]]'
 - '[[知识库/wiki/LSM-Tree-合并优化]]'
 - '[[知识库/wiki/事务模型深度调研]]'
-diagram: diagram/lsm-tree-architecture.svg
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-二级索引/
 blog_source: _posts/2026-06-14-knowledge-7b368591fb.md
+source_check_scope: 本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # LSM-Tree 二级索引 (Secondary Indexing)
@@ -80,14 +79,11 @@ LSM-tree 从 KV-store 走向完整数据库存储引擎，二级索引是必须�
 - 维护一个 **Primary Key Index**：只存 `key → timestamp`（而非全记录）
 - 验证和清理二级索引时，只需查询 primary key index（小），**避免访问全记录**（大）
 
-```
-传统方案:
-  验证二级索引 → 查询主记录（大 I/O） → 验证一致性
-
-Luo & Carey 方案:
-  验证二级索引 → 查询 Primary Key Index（小 I/O） → 验证一致性
-                          ↑
-              只存 key+timestamp，体积远小于主记录
+```mermaid
+flowchart LR
+  S[候选二级索引项] --> PK[Primary key索引：key与timestamp]
+  PK --> V[验证候选版本]
+  V --> Data[需要时读取完整主记录]
 ```
 
 **效果**：
@@ -134,3 +130,8 @@ Luo & Carey 方案:
 ---
 
 *参考论文: Luo & Carey, "LSM-based Storage Techniques: A Survey", VLDB Journal 2019*
+
+
+## 来源核验与边界
+
+2026-10-05核验本地[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf|2019综述]]相应章节；这是综述级证据，不等于每个被引方案已独立复现。基础成本模型参见§2.3/表1（页6–7），合并优化§3.3（页11–12），硬件§3.4（页12–14），二级索引§3.7（页17–19）。较新的调度、卸载和硬件方向见[[LSM-tree-KV-Survey-综述]]。

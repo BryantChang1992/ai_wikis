@@ -1,5 +1,5 @@
 ---
-title: 论文全文翻译：Event Horizon — 面向快速地理分布式操作的非对称依赖
+title: Event Horizon — 正文译文（含术语校核）
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/event-horizon-translation/
 blog_source: _posts/2026-06-11-event-horizon-translation.md
 blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
@@ -10,10 +10,20 @@ created: '2026-06-11'
 tags:
 - 论文精读
 - Event Horizon
-- 全文翻译
+- 正文译文
+updated: '2026-10-05'
+source_checked: '2026-10-05'
+source_check_basis: Event Horizon, CIDR2026，原始PDF §2.1–§5 pp.3–7、§6–7 pp.7–9；https://www.vldb.org/cidrdb/papers/2026/p20-arns.pdf
+translation_scope: 摘要与§1–8正文、Table1及参考文献；未完整复刻全部图形和图内标签
 ---
 
-[[论文精读/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations|先读论文解读]]
+# Event Horizon — 正文译文（含术语校核）
+
+> **覆盖范围**：保留并核对摘要、§1–8正文、Table1文字及参考文献列表；图形未逐像素重制，图中全部标签不承诺完整翻译。本稿是正文译文，不是带所有图形和排版的完整中文论文版本。原PDF为最终核对依据。下文作者论断保持译文语气；我们的批判性解释与实验适用边界见精读分析。
+>
+> **术语校核**：PoR=Partial Order-Restrictions（部分顺序约束）；stable/unstable译为稳定/不稳定状态；ordered与eventually ordered是两种不同的有向依赖。箭头方向表示读取依赖，不能直接当作时间先后。
+
+[[知识库/sources/papers/Event-Horizon/精读分析|先读论文解读]]
 
 
 > **原文标题**：Event Horizon: Asymmetric Dependencies for Fast Geo-Distributed Operations  
@@ -91,7 +101,7 @@ tags:
 
 **系统模型**：副本是状态机，在接收到操作 `v` 时，可以（a）直接将 `v` 应用到其状态，或（b）撤销前 `x` 个操作，应用 `v`，然后重新应用那 `x` 个操作。在这种情况下，`v` 现在被视为在这 `x` 个操作之前被应用。这种对 `x` 个操作的重排序是实现最终有序依赖（v → v'）所必需的。
 
-**半线性化顺序**：如图 3 所示，半线性化顺序表示一个全局全序日志，由严格有序的强操作和介于其间的可交换（w ↔ w'）弱操作的袋子（bags）组成。我们将半线性化顺序定义为所有强操作和所有弱操作的并集 `U = S ∪ W` 上的偏序 `O = (U, ≺o)`。
+**半线性化顺序**：如图 3 所示，半线性化顺序以日志表达：强操作和介于其间的袋子（bags）具有固定先后关系；袋子内部装可交换（w ↔ w'）弱操作，并不额外要求它们全序。我们将半线性化顺序定义为所有强操作和所有弱操作的并集 `U = S ∪ W` 上的偏序 `O = (U, ≺o)`。
 
 - 为表示严格有序依赖（s ↔ s'），`≺o` 根据所有强操作的线性化实时顺序对其排序。
 - 为表示有序依赖（s → w），`≺o` 将每个弱操作 `w` 排序到所有发生于 `w` 之前的强操作之后的某个袋子中。因此，相对于所有强操作，`w` 被排序在该袋子的位置上。
@@ -323,4 +333,4 @@ DeMon 使用共识协议（OmniPaxos [32]）复制一个定义强操作严格顺
 
 ---
 
-> **翻译说明**：本文基于 CIDR 2026 发表的论文 *Event Horizon: Asymmetric Dependencies for Fast Geo-Distributed Operations* 原文全文翻译。学术术语首次出现时保留英文原文，参考文献条目保留原文不翻译。图表标题已翻译，图表内的英文保留原文描述。
+> **核对说明**：本次按原始PDF核对§2.1四种依赖、§3偏序、§4 watermark与双状态、§5实验条件及§6–7限制。正文译文保留，参考文献为原语言列表；图形与所有图内标签未作为完整翻译交付。

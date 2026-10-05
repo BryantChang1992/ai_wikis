@@ -1,145 +1,47 @@
-# Fluss PR #3420: [lake/tiering] Support Reporting Watermark to Paimon Snapshot — 精读分析
-
-- **URL**: https://github.com/apache/fluss/pull/3420
-- **作者**: Shawn-Hx
-- **创建日期**: 2026-06 (约 2 周前)
-- **精读日期**: 2026-06-19
-
+---
+type: analysis
+status: draft
+created: '2026-06-19'
+title: 'Fluss PR #3420：Watermark 到 Paimon Snapshot'
+updated: '2026-10-05'
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://github.com/apache/fluss/pull/3420
+diagram_format: mermaid
 ---
 
-## 1. 核心变更
+# Fluss PR #3420：Watermark 到 Paimon Snapshot
 
-让 Fluss 在 Lake Tiering 时将 watermark 报告给 Paimon snapshot。
+**核验时点：2026-10-05。PR 仍为 open，未合并。** 本文检查 GitHub PR head `be7eeafc35dd2a62bd9b5ff222a666c2700631ed` 的补丁，不代表任何已发布版本的能力，也没有在本地执行该 PR 的 Java 测试。
 
-### 1.1 为什么需要这个？
+## 目标与数据路径
 
-批流一体架构中，watermark 是流处理的时间标尺——它告诉下游消费者"这个时间点之前的所有数据都已到达"。没有 watermark → 下游 Paimon reader 无法判断 snapshot 的时效性边界。
+该变更在 Lake Tiering 写入结果中携带可空 watermark，经提交器聚合后传入 Paimon 的 snapshot 提交元数据。它保存的是处理进度信息，不能证明任何时间戳之前的数据绝不会迟到。
 
----
-
-## 2. 架构变更路径
-
-PR 修改 **49 个文件**，分五层：
-
-### 2.1 接口层（fluss-common）
-
-```
-WatermarkExtractor         ← NEW: 从 rows 提取 watermark 的接口
-LakeWriteResult            ← NEW: 暴露可选 per-write watermark
-LakeWriter<T>              ← 泛型约束升级: T extends LakeWriteResult
-LakeTieringFactory<T>      ← 升级
-LakeCommitter<T>           ← 升级: toCommittable 增加 watermark 重载
-WriterInitContext           ← 升级: +watermarkExtractor()
+```mermaid
+flowchart TD
+  T[表属性中的 watermark 定义] --> E[SimpleWatermarkExtractor]
+  E --> W[各 bucket 的 write result]
+  W --> C[TieringCommitOperator]
+  C --> M[非空 watermark 取 min]
+  C --> N[存在未处理空结果时不更新 watermark]
+  M --> P[Paimon committable]
+  N --> P
+  P --> S[Snapshot 元数据]
 ```
 
-**设计判断**：通过 Java 泛型约束强制所有 write result 类型实现 LakeWriteResult——不是运行时检查，是编译时保证。
+当前补丁跨 bucket 取 **minimum**，旧稿写 max 是错的；单 writer 内的聚合与跨 bucket 聚合不能混为一谈。提交器注释将不回退约束交由 lake committer 处理，不能只凭泛型约束就断言时间语义端到端无遗漏。
 
-### 2.2 Paimon 实现层（fluss-lake-paimon）
+## 接口和兼容性
 
-```
-PaimonLakeWriter:
-  写入期间提取/聚合 per-writer 最大 watermark
+`LakeWriteResult` 暴露可空 watermark；`PaimonLakeCommitter` 将值放入 `ManifestCommittable`。`SimpleWatermarkExtractor` 只处理物理列的直接引用或减 interval 等有限表达式；不支持的定义返回 null，不能当作 Flink 任意 watermark 表达式求值器。
 
-PaimonLakeCommitter:
-  将聚合 watermark 传入 committable → 最终写入 Paimon snapshot 元数据
+`PaimonWriteResultSerializer` 的当前格式版本由 1 升为 **2**，并可读取旧 v1、补 watermark=null。旧稿“v1 兼容 v0”已修正。类型安全只能约束接口，序列化、空结果、负值及故障重试仍需测试。
 
-PaimonWriteResult:
-  实现 LakeWriteResult，携带 watermark
+补丁包含提取、序列化、聚合与 Paimon 集成测试；“存在测试”不等于完整覆盖全部生产风险。需另验证空闲分区、强制完成、重试提交、表删除重建及跨版本恢复。
 
-PaimonWriteResultSerializer:
-  v1+ 序列化: nullable watermark + commit message
-```
+相关：[[Fluss-Lake层与湖仓融合]]、[[Fluss-Tiering分层架构]]、[[流处理乱序数据管理]]。
 
-**关键**：watermark 沿 write→committable→snapshot 路径**流到底**，每步都携带、没有丢失点。
-
-### 2.3 其他 Lake 实现层（Iceberg / Lance / Values）
-
-```
-IcebergLakeCommitter   ← API 升级接受 watermark 参数，但默认 null
-LanceLakeCommitter     ← 同上
-ValuesLakeCommitter    ← 同上
-```
-
-**设计判断**：扩展接口的同时不强制所有实现支持 watermark。Iceberg/Lance 暂无实现但 API 已准备（默认 null）。
-
-### 2.4 Flink Tiering 管道（fluss-flink-common）
-
-这是 PR 的核心复杂性所在——watermark 必须**从 Flink 源头流到 Paimon committer 之间不丢失**：
-
-```
-TieringSourceReader → TieringSplitReader → SimpleWatermarkExtractor per table
-  → watermark 注入 Lake Write Result
-  → TableBucketWriteResultSerializer (版本升级，嵌入式状态兼容)
-  → TieringCommitOperator: 跨 buckets 聚合 watermark
-  → PaimonLakeCommitter: 写入 Paimon snapshot
-```
-
-**每个中间步骤的泛型约束都升级为 `LakeWriteResult`**——29 个文件的 `WriteResult` → `LakeWriteResult` 类型边界。
-
-### 2.5 测试层（完整覆盖）
-
-| 测试类别 | 文件数 | 覆盖 |
-|---------|--------|------|
-| SimpleWatermarkExtractor 单测 | 2 | watermark 解析/提取逻辑 |
-| PaimonWriteResultSerializer 序列化测试 | 1 | v1 + backward compat to v0 |
-| PaimonTiering 集成测试 | 1 | watermark 提取 + 成功报告到 Paimon snapshot |
-| TieringCommitOperator 聚合测试 | 1 | 跨分桶 watermark 聚合正确性 |
-| 其他 lake 模块兼容测试 | 3 | Iceberg/Lance/Values 模块确认 API 不破坏 |
-
----
-
-## 3. 架构判断
-
-### 3.1 类型驱动的重构
-
-PR 的核心模式是：**将 watermark 需求提升为类型级约束**。
-
-不是添加 optional String 参数、不加运行时检查——而是在编译时通过 `T extends LakeWriteResult` 确保整个 tiering 管道的类型安全。49 文件的修改量说明这是非侵入式升级——泛型约束在写时引入、读时合并。
-
-### 3.2 批流一体的架构意义
-
-watermark 到 Paimon snapshot 的连接是**批流一体缺的最后一块拼图**：
-
-```
-之前:
-  流: Fluss → Flink → 实时消费  (有 watermark)
-  批: Paimon snapshot → 离线分析 (无 watermark → 时间语义断裂)
-
-现在:
-  流: Fluss → Flink → 实时消费  (有 watermark)
-  批: Paimon snapshot (含 watermark) → 离线分析 (时间语义完整)
-```
-
-### 3.3 扩展性设计
-
-接口设计为其他 lake backend 预留了接入点：
-- LakeWriter/LakeCommitter 泛型升级后，Iceberg/Lance 默认实现 watermark=null
-- 各后端可独立实现自己的 watermark 逻辑，无需改接口
-
----
-
-## 4. 工程质量
-
-**优点**：
-- 完整测试覆盖（单元 + 序列化 backward compat + 集成 + 聚合）
-- 编译时类型安全（泛型约束而非运行时检查）
-- 接口兼容性（旧实现默认 null，不破坏）
-- 序列化版本升级充分测试（v1 读 v0 → 保证生产升级安全）
-
-**潜在风险**：
-- 29 个文件的泛型约束升级，合并冲突风险高
-- Watermark 聚合逻辑（TieringCommitOperator 跨 bucket max）在分布式故障场景下的一致性需进一步验证
-
----
-
-## 5. 与 Fresha EKS 部署的关联
-
-Fresha 文章重点讨论了 Fluss 的 tiering 在生产中的可靠性（emptyDir → PVC、GRACEFUL_SHUTDOWN flush）。PR #3420 解决的是 tiering 的质量问题——tier 的数据不仅可靠，还有完整的时间语义。两者组合才是生产级 lakehouse 的基础。
-
----
-
-## 6. 工程启示
-
-1. **泛型约束升级 > 运行时检查**：类型系统在编译时保证正确性，49 文件修改的代价换取零运行时风险
-2. **Backward compatible 序列化是好习惯**：生产升级中的 v1 格式需能读 v0，且充分测试
-3. **接口扩展应为未实现的后端预留默认行为**：null = 明确表示"未实现"而非"忘了"
+来源：[PR #3420 与当前改动](https://github.com/apache/fluss/pull/3420/files)。GitHub API 返回 45 个改动文件；这是本次读取的快照，后续提交可能变化。

@@ -12,115 +12,69 @@ tags:
 - Watermark
 - 窗口计算
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: stable
 related:
 - '[[知识库/wiki/流处理乱序数据管理]]'
 - '[[知识库/wiki/流处理状态管理]]'
 - '[[知识库/wiki/Stream-Processing-System-Generations]]'
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×2; status=stable; 更新于21天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Dataflow-Model/
 blog_source: _posts/2026-06-15-knowledge-3745cba2f3.md
+source_checked: '2026-10-05'
+diagram_format: mermaid
 ---
 
 # Dataflow 模型
 
-![[diagram/dataflow-model.svg]]
-## 定义
+Google Dataflow Model 将有界与无界、按序与乱序数据处理放进统一的编程模型。此卡依据流处理综述 §3.5.3（PDF p.9）与其引用的 Akidau et al. VLDB2015 论文；不把它称为“首个批流统一模型”，也不把各运行时的API语义完全等同。
 
-**Google Dataflow Model**（Akidau et al., VLDB 2015）是首个**批流统一处理模型**，将批处理定义为流处理的特殊情形（有界数据流）。它用四条核心抽象统一了过去分散在多个系统中的乱序处理、进度追踪、触发和修正机制。
+## 四问对应四个独立选择
 
-论文的评价：Dataflow Model 是**2nd Gen 流处理系统的里程碑**——它把 Punctuation、Low-Watermark、Revision Processing 等 1st Gen 的概念重新组合，形成通用框架。
+| 问题 | 抽象 | 例子 |
+|---|---|---|
+| What | 数据变换 | 按用户求金额总和 |
+| Where | 事件时间窗口 | 10分钟固定窗、滑动窗、会话窗 |
+| When | 触发 | 处理时间提前触发、watermark越窗、迟到数据触发 |
+| How | 多次输出的累积方式 | discarding、accumulating、accumulating-and-retracting |
 
-## 批流统一的基础
+```mermaid
+flowchart LR
+  E[带事件时间的数据] --> W[分配窗口]
+  W --> S[更新窗口状态]
+  T[处理时间、数据量或Watermark触发] --> P[物化一个Pane]
+  S --> P
+  P --> R[按累积策略发送下游]
+  L[迟到数据且状态仍保留] --> S
+```
 
+## 时间与进度不能混为一谈
 
+事件时间由数据提供，可能有时钟偏差或业务定义；处理时间是执行系统处理事件的时刻；ingestion time是入口记录的时刻，不能自动保证跨源事件顺序。Watermark表达相对于某个事件时间的进度：有的源可提供严格下界，有的只能估计。**并非所有watermark都不精确**。
 
-> 这直接催生了 Apache Beam 项目，并成为 Flink、Spark Structured Streaming 等系统的语义基础。
+Watermark越过窗口边界可以触发on-time输出；它不自动意味着永不迟到或删除状态。能否接受迟到事件还取决于watermark契约、allowed lateness及状态保留策略。Trigger控制何时输出，不能单独保证所有数据都已包含。
 
-## 四条核心抽象
+## 用同一笔迟到数据看三种累积策略
 
-### 1. 时间域的三维分离
+假设窗口先收到4、6，提前pane的和为10，后来又收到同窗口的3：
 
-| 时间域 | 定义 | 使用场景 |
-|--------|------|---------|
-| **Event Time** | 事件发生的真实时间（数据自带的元数据） | **正确性计算**：按事件真实时间聚合 |
-| **Processing Time** | 系统观察到事件的墙上时钟时间 | **低延迟近似**：不考虑乱序 |
-| **Ingestion Time** | 事件进入系统的时间 | 折中：保证同一批次的一致性 |
+| 策略 | 第二个pane | 下游应如何理解 |
+|---|---|---|
+| Discarding | 3 | 只含上次触发后的贡献，需按其契约合并 |
+| Accumulating | 13 | 含窗口截至目前全部贡献；sink需按窗口身份更新，不能直接追加求和 |
+| Accumulating and retracting | 撤回10，再给13 | 下游必须支持撤回/更新语义 |
 
-> 分离的意义：允许系统按 Event Time 做正确计算，同时按 Processing Time 做低延迟近似。这是 Watermark 机制成立的前提。
+这是机制演示，未指定某框架的API。若状态已经清理，这条迟到记录可能被丢弃或送侧输出，不能继续套用表中的更新过程。
 
-### 2. Watermark — 事件时间进度估计
+## 适用边界与验证
 
-- 系统声明："在时间戳 T 之前的所有事件，我相信都已收到"
-- **完美 Watermark 不存在** —— 它是启发式估计
-- Watermark 延迟 = **结果正确性 vs 结果延迟**的权衡：
-  - 激进 Watermark → 低延迟但可能缺少迟到数据
-  - 保守 Watermark → 高正确性但高延迟
+模型让开发者显式交换正确性、延迟与资源：更早输出需支持后续修正，更长迟到保留需更多状态。实现选型要测迟到分布、状态大小、早期/最终输出延迟和下游更新成本。批流统一不消除这组成本，也不自动带来端到端exactly-once。
 
-### 3. Trigger — 何时物化窗口结果
+Dataflow吸收了更早的punctuation、low-watermark与revision processing。Naiad并非第一代DSMS，不能把它机械放入“Dataflow的第一代前身”表。Beam、Flink、Spark等有相关抽象，运行时支持、默认值与sink契约需要分别核实。
 
-触发条件决定"何时将窗口的中间/最终结果发布出去"：
+## 关联与来源
 
-| 触发类型 | 条件 | 适用场景 |
-|----------|------|---------|
-| **Watermark 触发** | Watermark 越过窗口边界 | 期望完整结果的批处理 |
-| **Processing Time 触发** | 墙上时钟到达某时刻 | 低延迟仪表盘 |
-| **计数触发** | N 个元组到达 | 实时告警（每 X 个事件触发一次） |
-| **复合触发** | 上述的组合（AND/OR） | 复杂事件处理 |
-| **用户自定义** | 任意自定义逻辑 | 业务特定需求 |
-
-### 4. Refinement — 如何修正早期结果
-
-当迟到数据到达时，已发布的早期结果需要修正：
-
-| 策略 | 行为 | 适用场景 |
-|------|------|---------|
-| **Accumulating** | 新结果覆盖旧结果 | 最终一致性场景（如最终计数） |
-| **Discarding** | 新结果独立存在，不合并 | 仅关心增量（如增量异常检测） |
-| **Accumulating & Retracting** | 收回旧结果 + 发布新结果 | 严格正确性场景（如金融结算） |
-
-> StreamInsight 的**补偿（Compensation）**机制是最早的 Retraction 实现之一。
-
-## 与 1st Gen 概念的血缘关系
-
-Dataflow Model 并非凭空创造——它重新组合了 1st Gen 的多项技术：
-
-| Dataflow 概念 | 1st Gen 前身 | 前身系统 |
-|--------------|-------------|---------|
-| Watermark | Low-Watermark + Heartbeat | STREAMS, Naiad |
-| Watermark 传播 | Punctuation | Aurora, Naiad |
-| Trigger | Revision Processing (Store & Revise) | CEDR, Borealis |
-| Refinement (Retract) | Dynamic Revision (delta messages) | Borealis |
-| 事件/处理时间分离 | Slack（用户配置的延迟上界） | Aurora |
-
-## What / Where / When / How 四问
-
-Dataflow Model 的核心贡献是将所有窗口计算统一到四个问题：
-
-| 问题 | 含义 | Dataflow 抽象 |
-|------|------|-------------|
-| **What** | 做什么计算？ | ParDo, GroupByKey, Combine, Flatten 等 |
-| **Where** | 在哪个时间窗口？ | Fixed / Sliding / Session Windows |
-| **When** | 何时物化结果？ | Trigger（Watermark/P-Time/Count/Composite） |
-| **How** | 如何修正？ | Refinement（Accumulating/Discarding/Retracting） |
-
-## 影响与现状
-
-- 直接催生了 **Apache Beam** 项目（Google Dataflow SDK 开源版）
-- Flink 的 DataStream API 采用相同语义模型
-- Spark Structured Streaming 也与之对齐
-- 成为 2nd Gen 流处理系统的**事实标准语义层**
-
-## 相关
-
-- [[流处理乱序数据管理]] — Watermark/Punctuation 机制的完整分析
-- [[Stream-Processing-System-Generations]] — Dataflow Model 在代际演化中的位置
-- [[流处理状态管理]] — 批流统一对状态管理的影响
-
----
-
-*参考论文: Fragkoulis et al., "A Survey on the Evolution of Stream Processing Systems", arXiv:2008.00842v2, 2023*
-*核心参考: Akidau et al., "The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing", VLDB 2015*
+- [[流处理乱序数据管理]]：进度机制及循环数据流。
+- [[流处理状态管理]]：窗口状态何时持久化和回收。
+- [[流处理容错模型]]：多个pane与重复执行是不同问题。
+- [[知识库/sources/papers/SP-Survey/精读分析]]；[Google Research 原论文页](https://research.google/pubs/the-dataflow-model-a-practical-approach-to-balancing-correctness-latency-and-cost-in-massive-scale-unbounded-out-of-order-data-processing/)。

@@ -1,6 +1,6 @@
 ---
 type: concept
-title: InfluxDB Catalog 元数据存储
+title: InfluxDB Catalog：元数据边界取决于产品
 sources:
 - '[[技术文章/InfluxDB调研/05-多副本复制与元数据存储]]'
 tags:
@@ -11,7 +11,7 @@ tags:
 - BoltDB
 - 架构
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
@@ -19,72 +19,51 @@ related:
 - '[[知识库/wiki/InfluxDB-多副本与高可用]]'
 - '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
 - '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
-diagram: diagram/influxdb-architecture.svg
-confidence: 0.88
-confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-Catalog元数据/
 blog_source: _posts/2026-06-14-knowledge-7a56a405ad.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+source_checked: '2026-10-05'
+verified_sources:
+- https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/
+diagram_format: mermaid
 ---
 
-# InfluxDB Catalog 元数据存储
+# InfluxDB Catalog：元数据边界取决于产品
 
-## 定义
+这里的独立 Catalog 服务图专指 InfluxDB Clustered，不应推广为全部 InfluxDB 3 Core / Enterprise 部署的固定要求。
 
-InfluxDB 3 的 Catalog 是整个系统的**元数据中心**——唯一存储全局状态的组件。所有组件（Ingester、Querier、Compactor、GC）通过读取 Catalog 了解全局状态，组件间无需直接通信。
+Clustered 把 Catalog 分成缓存及访问管理服务和 PostgreSQL 兼容的 Catalog store。它描述 schema、分区及对象存储中文件的位置；实际时序列值仍位于 Ingester 的近期数据和持久化 Parquet 中。
 
-## Catalog 数据模型
+```mermaid
+flowchart TD
+  R[Router：检查 schema] --> C[Catalog service]
+  I[Ingester：登记持久化结果] --> C
+  Q[Querier：定位分区与文件] --> C
+  CP[Compactor：更新文件集合] --> C
+  C --> S[PostgreSQL 兼容 Catalog store]
+  Q --> I
+  Q --> O[对象存储：时序数据文件]
+```
 
-Catalog 使用 **PostgreSQL 兼容的关系数据库** 存储层级元数据：
+## 为什么不能只备份数据文件
 
-![[diagram/InfluxDB-Catalog元数据-fig1.svg]]
+文件存在和文件属于哪张表、哪个分区，是两个问题。恢复方案需要 Catalog 与对象数据的对应关系，必须按所用产品的备份恢复流程验证。上图也显示 Querier 与 Ingester 直接通信，因此 Catalog 不是“组件唯一的通信渠道”。
+
+Catalog 数据库的复制、备份周期、保留期和故障域配置依赖部署。旧稿把“固定 100 天备份、三可用区、自动 PostgreSQL 主从”写成产品普遍保证，没有足够依据，已移除。也不能把 v1/v2 的 BoltDB、旧集群元数据服务、etcd 与新产品 Catalog 简单合并为一条实现史。
+
+## 应验证的恢复不变量
+
+1. Catalog 引用的有效文件仍可读。
+2. Compaction 切换后的旧文件不会被新的读取计划当作额外有效数据重复统计。
+3. 备份恢复与写入恢复路径共同覆盖最近确认的数据。
+
+这些是审查设计的工程问题，不是本文声称已对所有产品做过的故障注入结果。
+
+关联：[[InfluxDB-多副本与高可用]]、[[InfluxDB-写入与查询路径]]。
 
 
+## 核验来源
 
-**核心设计原则**：
-1. Catalog 只存储**文件级别的指针信息**，不存储实际数据
-2. 不存储 Tag 值索引——该职责由 Parquet Statistics 替代
-3. 各组件通过读取 Catalog 了解全局状态，无需组件间直接通信（松耦合）
-
-## 各组件的 Catalog 交互
-
-| 组件 | 读操作 | 写操作 |
-|------|--------|--------|
-| **Ingester** | 查询 Schema（验证 Column 类型兼容性） | 写入新 Partition + Parquet File 元数据 |
-| **Querier** | 缓存同步（持续从 Catalog 拉取）、查询分区 | 无 |
-| **Compactor** | 读取待合并小文件列表 | 写入合并后新文件 → 标记旧文件 to_delete |
-| **Garbage Collector** | 查询过期/已删除文件 | 标记 to_delete → 物理删除 Catalog 记录 + Object Store 文件 |
-
-## Catalog 高可用
-
-依赖 PostgreSQL 生态的成熟能力：
-
-![[diagram/InfluxDB-Catalog元数据-fig2.svg]]
-
-**RPO 分析**：
-- 正常故障（Primary Crash）→ Auto Failover to Standby → **秒级 RPO**
-- 全集群故障 → Daily Backup + Tx Log 重放 → **<24h RPO**（取决于 backup 间隔）
-
-## v1/v2 vs v3 元数据存储对比
-
-| 维度 | InfluxDB v1/v2 | InfluxDB 3 |
-|------|---------------|------------|
-| 存储引擎 | BoltDB / etcd (嵌入式 KV) | PostgreSQL-Compatible RDBMS (独立服务) |
-| 元数据类型 | Database/RP/Shard 映射 + Series File | Namespace/Table/Column/Partition/File |
-| 索引 | TSI 倒排索引 (嵌入 Metastore) | Parquet Statistics (与元数据分离) |
-| 高可用 | etcd 集群 (Enterprise) 或单文件 (OSS) | PostgreSQL 原生 Streaming Replication |
-| 备份 | 手动 / Enterprise 工具 | Daily Auto Backup + Tx Log |
-| 耦合度 | 元数据 + 索引耦合在单文件中 | 存算分离，松耦合架构 |
-| 弹性 | 单机 BoltDB，线性扩展受限 | 独立 RDBMS 可按需伸缩 |
-
-## 架构意义
-
-Catalog 独立化为独立 PostgreSQL 服务是 InfluxDB 3 架构分离的关键一步：
-
-1. **元数据与索引解耦** — TSI 索引曾是 v1/v2 的致命瓶颈，v3 将其职责拆分给 Parquet Statistics（索引）+ Catalog（元数据）
-2. **存算分离的基础** — 所有组件通过 Catalog 知道数据在哪，无需 peer-to-peer 通信。这与 [[存储计算分离数据库的-Tail-Latency]] 中讨论的存算分离架构有相似的设计理念
-3. **运维可依赖** — 利用 PostgreSQL 几十年的运维工具链（备份、主从、监控），相比自研 BoltDB 运维成熟度大幅提升
-
----
-
-*参考: InfluxData 官方文档 "InfluxDB 3 Storage Engine Internals"*
+- [Clustered：Catalog store 与 service](https://docs.influxdata.com/influxdb3/clustered/reference/internals/storage-engine/)

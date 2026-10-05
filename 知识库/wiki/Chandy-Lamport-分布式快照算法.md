@@ -1,6 +1,6 @@
 ---
 type: concept
-title: Chandy-Lamport 分布式快照算法
+title: Chandy–Lamport 分布式快照算法
 sources:
 - '[[知识库/sources/papers/Chandy-Lamport-Snapshot/精读分析]]'
 tags:
@@ -11,205 +11,64 @@ tags:
 - 容错
 - Flink
 created: 2026-06-16
-updated: 2026-06-16
+updated: '2026-10-05'
 status: stable
 related:
 - '[[知识库/wiki/流处理容错模型]]'
 - '[[知识库/wiki/流处理状态管理]]'
 - '[[知识库/wiki/Dataflow-Model]]'
-confidence: 0.85
-confidence_rationale: 类型=concept; 来源×1; status=stable; 更新于20天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Chandy-Lamport-分布式快照算法/
 blog_source: _posts/2026-06-16-knowledge-fe826ef19a.md
+source_checked: '2026-10-05'
+source_check_basis: 原始 PDF §2–5，特别是 Figure 8、Theorem 1；PDF pp. 3–13
+diagram_format: mermaid
 ---
 
-# Chandy-Lamport 分布式快照算法
+# Chandy–Lamport 分布式快照算法
 
-![[diagram/chandy-lamport-marker.svg]]
+## 定义与适用条件
 
-## 定义
+在可靠 FIFO 有向通道、有限传输延迟与不考虑进程崩溃的模型下，进程继续运行时，协同记录进程状态和通道在途消息，形成一致的全局状态。原文见 §2–3（印刷 pp. 65–71；PDF pp. 3–9），完整推导见 [[知识库/sources/papers/Chandy-Lamport-Snapshot/精读分析]]。
 
-**Chandy-Lamport 算法**（1985）是分布式快照问题的开山之作——在无全局时钟的分布式系统中，通过进程状态 + 通道状态的协同记录，在不停止系统运行的情况下捕获一个**一致的全局状态**（consistent global state）。2013 年获 ACM SIGOPS Hall of Fame Award，被引用超过 5000 次，是 Flink Checkpoint 机制的理论基石。
+**关键纠错：快照可能没有在原执行的任何一个时刻出现过。** §4 的 Theorem 1 证明它出现在一个保持因果关系、重新排列独立事件的合法执行中，并可从快照开始状态到达、继续到达结束状态。不能把“可能发生”解释为“确实发生但墙钟时间未知”。
 
-## 问题背景
+## Marker 的发送与接收
 
-分布式系统面临一个根本性困难：**没有全局时钟**，各进程无法在同一个时间点"同时"记录自己的状态。朴素做法（各自同时拍照）产生的快照无法保证一致性。
-
-### 什么算"一致"的快照？
-
-> 快照对应一个**一致性切割**（Consistent Cut）：对于任意进程 p 和 q，如果 p 在快照中记录了收到来自 q 的消息 m，则 q 在快照中**也记录了发送 m 的事件**。
-
-通俗理解：快照不能出现"消息已收到但还没发出"的因果倒置——那对应一个实际不可能发生的系统状态。
-
-### 稳定属性检测
-
-论文的核心动机之一是**稳定属性**（Stable Property）检测——一旦为真就永远保持真的属性，例如：
-- 系统是否死锁？
-- 计算是否终止？
-- 是否存在资源泄漏？
-
-如果能捕获一个一致快照，就可以在快照上安全地检测这些属性：如果快照中某稳定属性为真，则分布式系统在某个历史时刻确实进入了该状态。
-
-## 算法模型
-
-### 系统形式化
-
-- 分布式系统建模为有向图 `G = (V, E)`
-- `V` = 进程集合，每个进程有自己的本地状态
-- `E` = 单向 FIFO 通道集合，每条通道上有一列正在传输的消息序列
-- **全局状态** = `Σ(所有进程状态)` + `Σ(所有通道状态)`
-
-### 关键假设
-
-| 假设 | 说明 |
-|------|------|
-| **FIFO 通道** | 消息在通道上按发送顺序到达（原始算法依赖此假设） |
-| **强连通** | 进程图是强连通的（任意两进程间存在有向路径） |
-| **通道无限缓冲** | 通道不会丢消息（传输可靠） |
-| **进程无故障** | 快照期间进程不会崩溃（后续工作扩展了容错支持） |
-
-## 算法步骤：Marker 传播机制
-
-算法的核心创新是 **marker（标记）消息**——它充当逻辑时钟，将全局状态切割点传播到所有进程。算法分两个阶段：
-
-### Phase 1：启动（Initiator）
-
-任意进程 p 启动快照：
-
-1. **记录本地状态**：p 立即记录自己的当前状态
-2. **发送 marker**：p 在记录完本地状态后，向每个**出边通道**发送一个 marker 消息
-3. **开始监听入边通道**：p 开始记录每个**入边通道**上到达的消息（作为通道状态）
-
-### Phase 2：传播（Non-Initiator）
-
-进程 q 的行为分为两种情况：
-
-**情况 A — 首次从通道 c 收到 marker（进入切割边界）：**
-
-1. **记录本地状态**：q 立即记录自己的当前状态
-2. **通道 c 的状态设为空**：因为 marker 是 c 上记录的第一条消息，说明 c 在 q 快照之前没有 in-flight 消息
-3. **传播 marker**：q 向每个**出边通道**发送 marker
-4. **开始监听其他入边通道**：q 开始记录所有**其他入边通道**上到达的消息（等待对应 marker 到来）
-
-**情况 B — 后续从通道 c' 收到 marker：**
-
-- **停止记录通道 c'**：q 停止记录 c'，将期间收到的消息序列作为 c' 的通道状态
-
-### 算法终止
-
-当所有进程都记录了本地状态，且所有通道的状态都已记录，快照完成。
-
-### 直观理解
-
-```
-时刻线：  进程A -------●--------------
-                      | (marker)
-进程B ---------------●--------------
-
-● = 快照切割点
-marker 将切割线"传染"到其他进程
-通道状态 = 切割点之间已经发出但尚未收到的 in-flight 消息
+```mermaid
+flowchart TD
+    M[收到某入通道的 marker] --> D{是否已经记录本地状态}
+    D -->|否| S[记录本地状态]
+    S --> E[该入通道记录为空]
+    E --> O[向出通道先发 marker，再发后续应用消息]
+    O --> R[记录其他入通道的后续消息]
+    D -->|是| C[结束该入通道记录]
+    R --> C
+    C --> A{所有入通道均收到 marker}
+    A -->|是| F[本进程快照记录完成]
+    A -->|否| W[继续记录尚未关闭的通道]
 ```
 
-## 核心定理
+发起者不必等待首个 marker：先记录自身，先发 marker，再发后续应用消息，并记录入通道直到对应 marker 到达。
 
-> "The global state recorded by the algorithm is a possible global state of the system during the computation."
-> — Chandy & Lamport, 1985
+首个 marker 所在通道为空是因为 FIFO，之前的消息已在本地状态记录前收到；**不是因为该通道从未发送消息**。后续 marker 封闭的记录，恰好是本地快照之后收到、发送方快照之前发送的消息。原算法不会要求收到 marker 后暂停所有应用处理。
 
-这一定理证明了两点：
+## 不变量与示例
 
-1. **存在性**：算法总能产出某个合法全局状态——不是虚构的
-2. **可达性**：存在某个合法的系统执行序列，使系统确实经过该状态
+一致切割不允许“接收已发生、发送却未发生”；跨越切割的消息必须存入通道状态，不能漏掉，也不能重复计入进程状态。
 
-换句话说，Chandy-Lamport 快照不是"近似"或"估计"，而是严格的**一致性切割**：快照所展示的全局状态，是系统在某个历史时刻的真实现照（虽然具体是哪个墙上时钟时刻我们无法定义）。
+自构转账例：发送方记录余额 90，接收方在转账到达前记录余额 100，通道中记录转账 10，总额仍为 200。若接收方在转账后才记录，则记录余额 110，通道为空，总额也为 200。两者都是合法一致切割。
 
-### 正确性直觉
+## 终止与稳定属性
 
-- Marker 沿通道传播时，将各进程的"快照时刻"串成一条因果一致的切割线
-- 任何越过切割线的消息（发送在切割前、接收在切割后）都会被捕获为**通道状态**
-- 任何在切割线内部的消息（发送和接收都在同侧）不会被重复或遗漏
+§3.3 的条件是每个进程自己启动，或可从某个启动进程沿有向路径到达，并且 marker 最终被接收。强连通只是一个充分条件。还要汇集各节点的记录，才得到可供查询或保存的完整全局快照。
 
-## 应用场景
+§5 的稳定属性一旦为真不会再变假。快照中为真，可以推出快照结束时为真；快照中为假，只能推出启动时为假，不能推出结束时为假。本文讨论的典型例子是终止、无外部恢复动作的死锁和令牌消失。等待图环是否足以说明死锁，仍取决于具体资源等待模型。
 
-### 1. 死锁检测（Deadlock Detection）
+## 对流处理的启发与边界
 
-- **动机**：死锁是稳定属性——一旦死锁，直到外部干预才会解除
-- **方法**：定期触发快照 → 在快照上构建等待图（Wait-For Graph）→ 检测环
-- **保证**：如果快照中存在环，则系统在某个时刻确实存在死锁；如果快照中无环，则系统在快照时刻无死锁
+[[流处理容错模型]]、[[流处理状态管理]] 借助 barrier 建立一致恢复点，但 aligned 与 unaligned checkpoint 的通道处理不同，不能直接用同一张“阻塞后保存全部通道”的图概括。这里保留原始算法流程图；Flink 的工程图由相应技术卡片维护。
 
-### 2. 终止检测（Termination Detection）
+论文证据是模型、例子和定理，**没有性能基准实验**。每条通道一个 marker 是算法级开销；状态持久化、崩溃恢复、非 FIFO 通道以及 sink 的 exactly-once 协议不由本文单独解决。
 
-- **动机**：分布式计算是否已全部完成？
-- **方法**：快照中所有进程状态均为 idle + 所有通道为空 → 计算已终止
-- **注意**：终止判定需要快照的全局一致视图，单独的进程无法判断
-
-### 3. Checkpoint（检查点 / 恢复点）
-
-- **动机**：故障后需要恢复到一致状态继续执行
-- **方法**：将 Chandy-Lamport 快照作为分布式 Checkpoint
-- **恢复**：所有进程回滚到快照状态，通道状态作为重放输入
-
-### 4. 分布式调试（Distributed Debugging）
-
-- 在一致快照上检查全局断言（global predicate）
-- 回溯历史状态，定位 bug 的根因状态
-
-### 5. 分布式垃圾回收（Distributed Garbage Collection）
-
-- 识别不再可达的分布式对象
-- 快照提供安全回收的全局视图
-
-## 与 Flink Checkpoint 的关联
-
-Flink 的 Checkpoint 机制本质上是 Chandy-Lamport 算法的**工程化实现**。概念映射如下：
-
-| Chandy-Lamport | Flink Checkpoint |
-|---|---|
-| Marker 消息 | **Checkpoint Barrier**（通过 JobGraph 注入） |
-| 进程状态快照 | **Task State Snapshot**（StateBackend：RocksDB/Heap） |
-| 通道状态 | **In-flight Records**（Channel 对齐后持久化到 Checkpoint） |
-| 稳定属性 | **Exactly-Once 语义**下的恢复点 |
-| 多快照并发 | 分布式快照 + **Checkpoint ID** 对齐 |
-| FIFO 通道假设 | Flink 默认保证通道内 Barrier 有序 |
-
-### Flink 的工程化增强
-
-| 维度 | 原始算法 | Flink 实现 |
-|------|---------|-----------|
-| **Barrier 对齐** | Marker 后停止接收 | Barrier 对齐（阻塞式/非阻塞式） |
-| **状态持久化** | 未定义 | StateBackend（RocksDB 增量快照） |
-| **故障恢复** | 不支持 | 进程崩溃后从最近 Checkpoint 恢复 |
-| **异步快照** | 同步阻塞 | 异步状态快照（Asynchronous Barrier Snapshotting） |
-| **Unaligned Checkpoint** | 不支持 | Flink 1.11+ 非对齐 Checkpoint，减少反压下的对齐延迟 |
-
-### Barrier 对齐的经典场景
-
-![[diagram/flink-barrier-alignment.svg]]
-
-B 的入边有两个通道：来自 A 的 barrier 先到 → B 阻塞该通道，
-等待另一个通道的 barrier 到达后，B 才执行快照。
-在此期间阻塞通道上的数据被记录为通道状态。
-
-## 局限性
-
-| 局限 | 说明 | 解决方案 |
-|------|------|---------|
-| **FIFO 依赖** | 原始算法要求通道 FIFO | Lai-Yang 算法通过消息染色/日志放宽此假设 |
-| **快照开销** | In-flight 消息量大时快照体积大 | 异步快照、增量快照 |
-| **Marker 开销** | 大规模系统中 Marker 传播延迟不可忽略 | 分层快照、部分快照 |
-| **无容错** | 不考虑进程崩溃 | "Distributed Snapshots in Spite of Failures" 扩展 |
-
-## 影响力时间线
-
-- **1985**：Chandy & Lamport 发表原论文（ACM TOCS Vol.3 No.1）
-- **~2008-2010**：MillWheel/Storm 等 1st Gen 流处理系统采用类快照的容错机制
-- **2013**：获 **ACM SIGOPS Hall of Fame Award**
-- **2015**：Flink 正式基于 Chandy-Lamport 实现分布式 Checkpoint
-- **2016-2020**：Flink 引入异步快照、增量快照、Unaligned Checkpoint 等工程改进
-- **至今**：被 Apache Flink、Google Dataflow、Spark Structured Streaming 等主流系统采纳为容错理论基础
-
----
-
-*核心论文: Chandy, K. M., & Lamport, L. (1985). Distributed snapshots: Determining global states of distributed systems. ACM TOCS, 3(1), 63-75.*
-*DOI: 10.1145/214451.214456*
+> 核对依据：原始 PDF §3.2–3.3、Figure 8、Theorem 1、§5；TOCS pp. 70–75 / PDF pp. 8–13。保留原审核状态，本次更新表示来源核对，不等于独立生产验证。

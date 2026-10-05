@@ -11,18 +11,21 @@ tags:
 - WAL
 - Snapshot
 created: 2026-06-15
-updated: 2026-06-15
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/Fluss-存储引擎]]'
 - '[[知识库/wiki/Fluss-整体架构]]'
 - '[[知识库/wiki/LSM-Tree]]'
-confidence: 0.75
-confidence_rationale: 类型=concept; 来源×0; 21天前更新
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-KV存储-RocksDB/
 blog_source: _posts/2026-06-15-knowledge-b217e320f7.md
+reviewed: '2026-10-05'
+review_scope: 关键机制、证据范围、图示与跨页一致性
+diagram_format: mermaid
 ---
+
+> 版本边界：本文源于未固定 commit 的历史源码阅读。组件职责已对照 [Fluss 架构文档](https://fluss.apache.org/docs/concepts/architecture/)；类名、数量、接口和兼容能力应在指定 release/commit 上复核，不能视为当前版本保证。图示为职责概括。
 
 # Fluss KV 存储（RocksDB）
 
@@ -32,7 +35,16 @@ Fluss KV 存储是为 **Primary Key 表** 提供类数据库 Upsert/Delete 语�
 
 ## 核心组件
 
-![[diagram/Fluss-KV存储-RocksDB-fig1.svg]]
+
+```mermaid
+flowchart TD
+  M[KV 管理] --> T[单 tablet 的 KV 状态]
+  T --> K[RocksDB]
+  T --> W[Log Store：恢复日志]
+  T --> S[快照管理]
+  T --> R[行合并与部分更新]
+```
+
 
 
 
@@ -46,7 +58,16 @@ Fluss KV 的最大设计创新。传统 RocksDB 有自己的 WAL 文件（`*.log
 
 恢复路径：**重放 changelog LogTablet** 来重建 RocksDB 状态（而非读 WAL 文件）
 
-![[diagram/Fluss-KV存储-RocksDB-fig2.svg]]
+
+```mermaid
+flowchart TD
+  W[主键表更新] --> L[Log Store 持久日志]
+  W --> K[KV 状态]
+  K --> S[KV 快照]
+  S --> R[恢复 KV]
+  L --> R
+```
+
 
 
 
@@ -62,7 +83,15 @@ Fluss KV 的最大设计创新。传统 RocksDB 有自己的 WAL 文件（`*.log
 
 ## Snapshot 全链路（近 30 个类）
 
-![[diagram/Fluss-KV存储-RocksDB-fig3.svg]]
+
+```mermaid
+flowchart TD
+  T[触发快照] --> C[生成一致性检查点]
+  C --> U[上传所需状态文件]
+  U --> M[提交完成快照元信息]
+  M --> R[恢复：快照与后续日志]
+```
+
 
 关键组件：
 - **SharedKvFileRegistry**：去重已存在于远程存储的 SST 文件，避免重复上传

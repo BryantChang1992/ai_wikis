@@ -1,6 +1,6 @@
 ---
 type: concept
-title: 'Event Horizon: 非对称依赖与跨地域操作'
+title: Event Horizon：非对称依赖与半线性化
 sources:
 - '[[知识库/sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf]]'
 - '[[知识库/sources/papers/Event-Horizon/精读分析]]'
@@ -15,211 +15,74 @@ tags:
 - 半线性化
 - 协调
 created: 2026-06-14
-updated: 2026-06-14
+updated: '2026-10-05'
 status: draft
 related:
 - '[[知识库/wiki/事务模型深度调研]]'
-diagram: diagram/event-horizon-asymmetric-dep.svg
-confidence: 0.9
-confidence_rationale: 类型=concept; 来源×3; 更新于22天前
 synced_at: '2026-10-05'
 blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Event-Horizon-非对称依赖/
 blog_source: _posts/2026-06-14-knowledge-ce5b79c44d.md
+source_checked: '2026-10-05'
+source_check_basis: Event Horizon, CIDR2026，原始PDF §2.1–§5 pp.3–7、§6–7 pp.7–9；https://www.vldb.org/cidrdb/papers/2026/p20-arns.pdf
+diagram_format: mermaid
 ---
 
 # Event Horizon：非对称依赖与半线性化
 
-> **论文**：*Event Horizon: Asymmetric Dependencies for Fast Geo-Distributed Operations*  
-> **作者**：Jonathan Arns, Harald Ng (KTH), Kyriakos Psarakis (Ververica/TU Delft), Asterios Katsifodimos (TU Delft), Paris Carbone (KTH)  
-> **会议**：CIDR 2026
+## 不变量与业务取舍
 
----
+拍卖close要在每个副本看见相同的前置bid集合，确定之后赢家不能改变；bid之间可交换，且业务允许与close并发的bid之后被拒绝。只有接受这项重排/撤销语义，快速本地bid才不必先参与跨区全序（原文§2.1、§6，PDF pp.3、7–8）。
 
-## 1. 核心问题
+SL不是所有请求的全球线性一致性。弱操作已回复可代表暂时本地状态，尚未跨过强操作的稳定边界；不能把它当作不可撤销的全球持久成功。
 
-地理分布式应用（XR、实时竞拍、沉浸式游戏）面临一个根本矛盾：
+## 四种依赖
 
-| 需求 | 方案 | 代价 |
-|------|------|------|
-| 低延迟 | CALM / CRDT 等弱一致性模型 | **无法保证常见不变量**（唯一性、拍卖最终结果确定性） |
-| 强一致 | [[事务模型深度调研]] / Paxos / [[事务模型深度调研]] 全序 | **延迟根本意义上无法突破**（跨地域 replica 通信） |
+| 类型 | 含义 | 例子 |
+|---|---|---|
+| Strictly ordered | 对称、实时线性化顺序 | close对close |
+| Commutative | 对称、可交换，仍保留需要的因果序 | bid对bid |
+| Ordered | v1在一处读到哪些v2，所有副本保持同一集合 | close对前置bid |
+| Eventually ordered | 可重排v1，最终保持相同依赖集合 | bid相对并发close，可能最终失效 |
 
-现有混合一致性模型（RedBlue、PoR、ECROs）按操作二分法划分：
-- **强操作**（red / conflict）→ 全序，需协调
-- **弱操作**（blue / commutative）→ 无协调，可并发
+非对称在于两个方向**强度不同**，不是bid完全不依赖close。PoR是Partial Order-Restrictions，与Proof of Replication无关。
 
-**但二分法假设冲突关系是对称的，忽略了大量真实语义中冲突是单向的。** 由此导致**过度协调**——对所有操作或对不必要的一组操作执行全序。
+```mermaid
+flowchart LR
+    B[bid] -->|可交换，保留所需因果序| B2[其他 bid]
+    C[close] -->|Ordered：读取相同前置集合| B
+    B -->|Eventually ordered：允许重排失效| C
+    C -->|Strictly ordered| C2[其他 close]
+```
 
----
+图中边表示语义依赖，不表示消息传输方向或所有事件的时间先后。
 
-## 2. 关键洞察：非对称依赖
+## DeMon 的实际路径
 
-### 2.1 拍卖案例揭示过度协调
+§4.1–4.2、Figure4（pp.5–6）：弱操作在unstable state本地执行后先回复，再可靠因果广播；副本交换接收进度，识别已quorum复制的弱前缀。强操作附该低水位watermark，与它一起通过OmniPaxos共识决定。
 
-| 操作 | 语义 | 关系 |
-|------|------|------|
-| `new_bid` | 插入新出价 | 与其他 `new_bid` 可交换（commutative） |
-| `close_auction` | 结束拍卖，确定赢家 | 必须**观察到**所有前置 `new_bid` |
+副本执行强操作前，须补齐watermark内的弱操作并应用至stable state，随后应用强操作。再用delta更新unstable state、重放被覆盖的近期弱操作。两份状态叫stable/unstable，不是Weak Guard/Strong Guard。只有本地看见数据不足以跳过quorum水位条件；缺失水位内数据时仍可能等待。
 
-**真实依赖方向**：`close_auction → new_bid`（单向）
-- `close_auction` 需要看到所有 bid 的历史
-- 但 `new_bid` 不需要关心 `close_auction` 何时发生
-- `close_auction` 执行后产生的新 `new_bid` 可以被拒绝——不违反正确性
+```mermaid
+flowchart LR
+    W[本地弱操作] --> U[unstable state，快速回复]
+    W --> C[因果广播及接收进度]
+    C --> M[已quorum复制的watermark]
+    M --> S[强操作和watermark共识决定]
+    S --> A[补齐前置弱操作并更新stable state]
+    A --> D[执行强操作，delta与近期弱操作重放]
+    D --> U
+```
 
-现有模型的问题：
+原文出价例：100和200已传播，300只在C本地出现，B提出close时水位`[a1,b1,c0]`排除300，赢家是200。300即使在某副本先出现，也可被重排到close之后失效。详见 [[知识库/sources/papers/Event-Horizon/精读分析]]。
 
-| 模型 | 对拍卖的建模 | 问题 |
-|------|-------------|------|
-| RedBlue | `new_bid ↔ new_bid`（强冲突）+ `close_auction ↔ new_bid`（强冲突） | **过度协调**：对所有操作执行全序 |
-| PoR | 同 RedBlue | **过度协调** |
-| ECROs | `close_auction ↔ new_bid`（冲突） | **违反不变量**：`close_auction` 可能遗漏并发 `new_bid` |
+## 实验证据与限制
 
-### 2.2 非对称依赖模型
+§5五地域GCE n2-standard-4，RTT73.7–387.6ms；客户端与副本同机。RUBiS更新混合中Bid占60%，Figure5显示DeMon超过75%操作亚毫秒，强操作中位约245ms；CloseAuction在Gemini+/UniStore为371/391ms。这些数字不能直接外推到远端客户，也不能把“亚毫秒”解释为跨WAN持久化完成。
 
-用**有向依赖图**替代无向冲突图：
+Figure6的非负计数器中，DeMon平均延迟随强操作比例增长，其他混合基线在50%之前或附近已超过OmniPaxos；不是50%以后所有协议收敛。吞吐优势受单主共识上限约束。摘要的四个数量级是作者针对实验整体的表述，不应凭“微秒vs毫秒”再生造精确对照倍数。
 
-![[diagram/Event-Horizon-非对称依赖-fig1.svg]]
+## 不应直接推出的工程改造
 
+弱操作必须满足本模型的可交换和重排条件；不是任意不相关操作都可标弱。强路径是共识，不是通用2PC替换器。Kafka offset commit包含代际、回退与事务约束，不能直接认定可交换；Flink checkpoint的一致切割也不是SL的同义词。跨领域使用需要单独证明业务不变量及故障语义。
 
-
-关键特征：
-- `close_auction` **不依赖**未来的 `new_bid`（消息方向 ≠ 依赖方向）
-- 这消除了 `close_auction` 与并发 `new_bid` 间的协调需求
-- 协调代价从"全序所有相关操作"降为"仅共识强操作本身"
-
----
-
-## 3. 半线性化（Semi-Linearizability, SL）
-
-### 3.1 直觉
-
-> **可交换（弱）操作可以相互并发执行，自由流动；直到一个更强的操作形成"事件视界"（Event Horizon），将之前所有松散的操作强制塌缩为一个全局一致的历史顺序。**
-
-类比天体物理学：事件视界是黑洞的边界——一切物质和信息一旦越过此边界就不可逆地内落。对应到分布式系统，大量并发事件可以随意发散，直到被一次"关键操作"收束。
-
-### 3.2 操作依赖的三个层次
-
-| 层级 | 符号 | 语义 | 协调代价 |
-|------|------|------|----------|
-| **strictly ordered**（严格有序） | `OP1 → OP2` | OP1 必须在 OP2 之前全局可见 | 最高（需共识） |
-| **commutative**（可交换） | `OP1 ∥ OP2` | 两个操作可以以任意顺序执行 | 无协调 |
-| **eventually ordered**（最终有序） | `OP1 ⇝ OP2` | OP2 最终需要"知道"OP1，但在 OP2 执行前可暂不建立全序 | **少量协调** |
-
-`⇝`（eventually ordered）是 SL 的关键创新——**比严格有序更轻量，但比完全无约束更有保证**。它在强操作执行时才"开袋查阅"所有因果相关的弱操作。
-
-### 3.3 SL vs 现有模型
-
-| 模型 | 依赖建模 | 弱操作延迟 | 强操作协调范围 |
-|------|---------|-----------|---------------|
-| [[事务模型深度调研]] / 严格可串行化 | 全序 | N/A（无弱操作概念） | 所有操作 |
-| RedBlue / PoR | 对称冲突 | 毫秒级 | 全序所有强操作 + 前序弱操作 must durable |
-| ECROs | 对称冲突（更精确） | 毫秒级 | 同上 |
-| **SL (DeMon)** | **非对称有向图** | **微秒级** | **仅共识强操作本身** |
-
----
-
-## 4. DeMon 系统实现
-
-DeMon 是 SL 的参考执行引擎，核心架构：
-
-### 4.1 双版本机制
-
-| 版本 | 语义 | 用途 |
-|------|------|------|
-| **Weak Guard** | 可交换的轻量执行 | 弱操作（如 `new_bid`）的快速路径 |
-| **Strong Guard** | 线性化执行 | 强操作的持久化保证 |
-
-### 4.2 执行流程
-
-1. **弱操作**通过**因果广播**（Causal Broadcast）快速传播，使用**袋子（Bag）**数据结构在全局日志中记录而不强制全序
-2. **强操作**向**主副本（Primary）**发送请求，由 Primary 执行并广播
-3. **强操作执行时**，从 bag 中收集所有因果相关的弱操作 → 本地重排序确定最终序列
-
-![[diagram/Event-Horizon-非对称依赖-fig2.svg]]
-
-### 4.3 与现有系统的关键差异
-
-- **Bag + Local Reordering** 替代全序广播：弱操作之间无协调需求，只记录因果关系
-- **非对称依赖图**替代冲突矩阵：`close_auction` 不需要等待并发 `new_bid` 的确认
-- 强操作不再需要等待前序弱操作**持久化到所有副本**——只需在本地 bag 中可见即可
-
----
-
-## 5. 实验评估
-
-### 5.1 设置
-
-- 基准：RUBiS（经典分布式拍卖/电商 benchmark）
-- 对比系统：OmniPaxos（全序）、Gemini+ / UniStore（RedBlue 类混合模型）、No Guarantees（下界）
-
-### 5.2 关键结果
-
-| 操作类型 | DeMon | Gemini+ | UniStore | OmniPaxos | No Guarantees |
-|----------|-------|---------|----------|-----------|---------------|
-| `Bid`（最常见操作） | **亚毫秒** | 毫秒级 | 毫秒级 | 245ms | 亚毫秒 |
-| `CloseAuction` | ~245ms | 371ms | 391ms | 245ms | N/A |
-
-**`Bid` 操作上 DeMon 比次优的 Gemini+ 快约 4 个数量级**（微秒 vs 毫秒）。原因：DeMon 弱操作只需 causal broadcast = 单跳通信 + 本地执行。
-
-### 5.3 强操作比例与收益
-
-| 强操作比例 | DeMon 表现 |
-|------------|-----------|
-| 0% | 与 No Guarantees 一致（亚毫秒） |
-| 10-50% | 延迟逐步接近 OmniPaxos 下界 |
-| 50%+ | 所有混合模型趋同 |
-
-**核心结论**：SL 的价值在强操作比例较低时最大化——这正是大多数交互式应用的典型模式。
-
----
-
-## 6. 与已有知识的关联
-
-### 6.1 与 [[事务模型深度调研|事务模型]] 的关系
-
-- **[[事务模型深度调研]] / [[事务模型深度调研]]**：SL 不是替代 2PC，而是让部分操作**绕过协调**。2PC 只在强操作上触发，弱操作走因果广播。相当于把 2PC 的适用范围收窄到真正需要全序的操作子集。
-- **[[事务模型深度调研]] / TrueTime**：Spanner 为所有事务强加全序（通过 TrueTime + Paxos），SL 则承认并非所有操作都需要全序。在跨地域场景中，SL 可以在 Spanner 的延迟墙上撕开一道口子。
-- **[[事务模型深度调研]]**：Calvin 通过确定性执行避免 2PC，但仍在每个 epoch 对事务全排序。SL 可以进一步降低 epoch 内"非关键事务"的排序代价。
-
-### 6.2 与一致性模型的关系
-
-- **线性化（Linearizability） vs SL**：线性化要求所有操作都有且仅有一个全序；SL 只要求"关键操作"所见的历史一致，弱操作之间可以以任意顺序出现。
-- **CRDT**：CRDT 通过数学性质（结合律、交换律、幂等律）保证最终一致，SL 不要求操作本身是可交换的——只要求它们在依赖图中**不互相依赖**。
-- **CALM 理论**：CALM 证明 monotonic → coordination-free。SL 将这一边界进一步细化：non-monotonic 不一定需要全序——只需在关键点（事件视界）建立偏序。
-
-### 6.3 与流系统的关联
-
-- **Kafka Consumer Group Offset**：日常 offset commit 是弱操作（可交换），只有 rebalance 时是强操作。SL 可将日常 commit 降为因果广播。
-- **Flink Checkpoint Barrier**：本质上是一个事件视界——barrier 之前所有算子状态必须塌缩为一致快照。SL 形式化可能为更轻量 checkpoint 变体提供理论基础。
-- **Kafka Tiered Storage Compaction**：`delete_records` / `truncate` 操作形成事件视界，与大多数 segment 对象间的无依赖关系形成鲜明对比。
-
----
-
-## 7. 实践启示
-
-### 7.1 对技术选型的指导
-
-1. **不要被强/弱二分法束缚**：真实依赖关系是**有向图**，识别操作间的非对称依赖可以大幅降低协调开销
-2. **事件视界思维**：设计系统时主动识别哪些操作是"收束点"——只有这些点需要全局协调
-3. **Bag + Reordering > 全序**：对于不需要全序的弱操作，bag 数据结构比全序日志更轻量且足够
-
-### 7.2 对 CHANG_AI_TEAM 内部系统的启示
-
-- **Agent 基础设施可观测性平台**中，大多数指标采集是弱操作（可交换），只有告警触发 / 状态变更才是事件视界——可以参考 SL 的分层设计
-- **状态机设计**应从"哪些操作冲突"升级为"哪些操作需要观察哪些操作"——方向性依赖建模
-
----
-
-## 8. 待深入
-
-- [ ] **SL 在复杂多步事务中的适用性**：RUBiS 是理想场景，带条件依赖的多步事务效果未知
-- [ ] **弱操作"惊喜"的 UI 层处理**：弱操作可能被重排（如 bid 被后到的 close 覆盖），论文承认这是工程挑战
-- [ ] **Byzantine 容错**：论文 §7 讨论了 BFT 方向但未实现，实际可行性待验证
-- [ ] **单主写入的扩展性瓶颈**：DeMon 强操作依赖单 Primary，高强操作比例场景下可能成为瓶颈
-- [ ] **与 TrueTime 类机制的结合**：SL + 时钟约束能否进一步降低强操作延迟？
-- [ ] **形式化验证**：SL 的形式化定义是否足够严格以保证工业级正确性？Coq / TLA+ 建模待做
-- [ ] **对流存储（Kafka / Fluss）的具体改造方案**：将 SL 应用到 Kafka 多 DC 复制的详细设计
-
----
-
-*精读分析：Stark (CTO) · 概念卡片生成：2026-06-14*
+§6的BFT、§7的自然语言到模型/代码生成属于研究方向。阅读正文与定义见 [[知识库/sources/papers/Event-Horizon/全文翻译]]，事务语义背景见 [[事务模型深度调研]]。

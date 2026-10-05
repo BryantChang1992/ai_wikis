@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Agent Harness: Context Management & Memory (C)"
+title: 'Agent Harness: Context Management & Memory (C)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "上下文管理"
-  - "Agent记忆"
+- Agent-Harness
+- Agent基础设施
+- 上下文管理
+- Agent记忆
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Memory-Survey-2026综述]]"
-  - "[[Agentic-Memory-语义缓存]]"
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Memory-Survey-2026综述]]'
+- '[[知识库/wiki/Agentic-Memory-语义缓存]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
+confidence_rationale: 类型=concept; 来源×2; 更新于16天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Context-Memory上下文管理/
+blog_source: _posts/2026-06-20-knowledge-81db274424.md
 ---
 
 # Agent Harness: Context Management & Memory (C)

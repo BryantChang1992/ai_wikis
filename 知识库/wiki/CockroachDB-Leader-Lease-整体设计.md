@@ -1,25 +1,28 @@
 ---
 type: concept
-title: "CockroachDB Leader-Lease — 可扩展多组租约方案"
+title: CockroachDB Leader-Lease — 可扩展多组租约方案
 tags:
-  - CockroachDB
-  - Raft
-  - Leader-Lease
-  - 分布式一致性
-  - 故障检测
-  - 大规模共识
+- CockroachDB
+- Raft
+- Leader-Lease
+- 分布式一致性
+- 故障检测
+- 大规模共识
 related:
-  - "[[事务模型深度调研]]"
-  - "[[分布式数据系统一致性体系]]"
-  - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
-  - "[[CockroachDB-Leader-Fortification]]"
+- '[[知识库/wiki/事务模型深度调研]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
+- '[[知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层]]'
+- '[[知识库/wiki/CockroachDB-Leader-Fortification]]'
 sources:
-  - "sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf"
+- '[[知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CockroachDB-Leader-Lease-整体设计/
+blog_source: _posts/2026-06-15-knowledge-3fe237cc58.md
 ---
 
 # CockroachDB Leader-Lease — 可扩展多组租约方案

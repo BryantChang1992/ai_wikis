@@ -1,27 +1,28 @@
 ---
 type: analysis
-title: "Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化"
+title: Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化
 sources:
-  - "sources/web/fluss/01-整体架构对比.md"
+- '[[知识库/sources/web/fluss/01-整体架构对比]]'
 tags:
-  - Fluss
-  - Lakehouse
-  - Iceberg
-  - Paimon
-  - 数据湖
-  - Lake Storage
+- Fluss
+- Lakehouse
+- Iceberg
+- Paimon
+- 数据湖
+- Lake Storage
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-客户端与计算集成]]"
-  - "[[Fluss-Tiering分层架构]]"
-
----
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
+- '[[知识库/wiki/Fluss-Tiering分层架构]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 21天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Lake层与湖仓融合/
+blog_source: _posts/2026-06-15-knowledge-de46d856c9.md
+---
 
 # Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化
 

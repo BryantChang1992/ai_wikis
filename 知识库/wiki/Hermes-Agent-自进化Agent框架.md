@@ -1,28 +1,30 @@
 ---
 type: concept
-title: "Hermes Agent — 自进化 Agent 框架"
+title: Hermes Agent — 自进化 Agent 框架
 sources:
-  - "sources/web/hermes-agent/精读分析.md"
-  - "https://github.com/NousResearch/hermes-agent"
+- '[[知识库/sources/web/hermes-agent/精读分析]]'
+- https://github.com/NousResearch/hermes-agent
 tags:
-  - "Agent-First"
-  - "Agent-Harness"
-  - "自进化"
-  - "Skill"
+- Agent-First
+- Agent-Harness
+- 自进化
+- Skill
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Harness-Execution-Environment执行环境]]"
-  - "[[Agent-Harness-Lifecycle-Orchestration编排]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Qwen-3.6-模型发布]]"
-  - "[[Agent-框架-2026-全景对比]]"
----
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
+- '[[知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Qwen-3.6-模型发布]]'
+- '[[知识库/wiki/Agent-框架-2026-全景对比]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 3天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 3天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Hermes-Agent-自进化Agent框架/
+blog_source: _posts/2026-07-03-knowledge-2ee422fc9d.md
+---
 
 # Hermes Agent — 自进化 Agent 框架
 

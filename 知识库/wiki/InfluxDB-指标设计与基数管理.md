@@ -1,28 +1,29 @@
 ---
 type: concept
-title: "InfluxDB 指标设计与基数管理"
+title: InfluxDB 指标设计与基数管理
 sources:
-  - "../技术文章/InfluxDB调研/04-指标设计最佳实践.md"
+- '[[技术文章/InfluxDB调研/04-指标设计最佳实践]]'
 tags:
-  - InfluxDB
-  - 指标设计
-  - 基数管理
-  - Schema 设计
-  - 下采样
-  - 反模式
+- InfluxDB
+- 指标设计
+- 基数管理
+- Schema 设计
+- 下采样
+- 反模式
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-数据模型]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-数据模型]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.88
-confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-指标设计与基数管理/
+blog_source: _posts/2026-06-14-knowledge-386895582f.md
+---
 
 # InfluxDB 指标设计与基数管理
 

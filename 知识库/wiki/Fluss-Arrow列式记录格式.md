@@ -1,26 +1,27 @@
 ---
 type: concept
-title: "Fluss Arrow 列式记录格式"
+title: Fluss Arrow 列式记录格式
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html
 tags:
-  - "Fluss"
-  - "Arrow"
-  - "列式存储"
-  - "记录格式"
-  - "谓词下推"
+- Fluss
+- Arrow
+- 列式存储
+- 记录格式
+- 谓词下推
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-客户端与计算集成]]"
-
----
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Arrow列式记录格式/
+blog_source: _posts/2026-06-15-knowledge-233ee84ac8.md
+---
 
 # Fluss Arrow 列式记录格式
 

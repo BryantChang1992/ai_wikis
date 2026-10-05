@@ -1,24 +1,26 @@
 ---
 type: concept
-title: "Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计"
+title: Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计
 tags:
-  - LSM-Tree
-  - Compaction
-  - 调度
-  - 迁移协议
-  - WAF
-  - FAST-2026
+- LSM-Tree
+- Compaction
+- 调度
+- 迁移协议
+- WAF
+- FAST-2026
 related:
-  - "[[Silo-分布式LSM-Compaction调度]]"
-  - "[[LSM-Tree-合并优化]]"
+- '[[知识库/wiki/Silo-分布式LSM-Compaction调度]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
 sources:
-  - "sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf"
+- '[[知识库/sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Silo-Compaction-迁移协议/
+blog_source: _posts/2026-06-15-knowledge-7f06276984.md
 ---
 
 # Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计

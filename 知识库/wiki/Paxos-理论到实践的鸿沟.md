@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Paxos-理论到实践的鸿沟"
+title: Paxos-理论到实践的鸿沟
 sources:
-  - "sources/papers/Raft-Dissertation/精读分析.md"
+- '[[知识库/sources/papers/Raft-Dissertation/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Paxos
-  - Multi-Paxos
-  - 理论
+- 分布式系统
+- 共识算法
+- Paxos
+- Multi-Paxos
+- 理论
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[Raft-共识算法协议核心]]"
-  - "[[分布式数据系统一致性体系]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
+confidence_rationale: 类型=concept; 来源×1; status=stable; 更新于20天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Paxos-理论到实践的鸿沟/
+blog_source: _posts/2026-06-16-knowledge-e5d7030cbd.md
 ---
 
 # Paxos-理论到实践的鸿沟

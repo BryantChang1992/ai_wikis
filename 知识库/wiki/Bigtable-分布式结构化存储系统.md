@@ -1,32 +1,36 @@
 ---
 type: concept
-title: "Bigtable：Google 分布式结构化存储系统"
+title: Bigtable：Google 分布式结构化存储系统
 sources:
-  - "sources/papers/Bigtable/Bigtable-OSDI-2006.pdf"
-  - "sources/papers/Bigtable/精读分析.md"
+- '[[知识库/sources/papers/Bigtable/Bigtable-OSDI-2006.pdf]]'
+- '[[知识库/sources/papers/Bigtable/精读分析]]'
 tags:
-  - 分布式存储
-  - NoSQL
-  - SSTable
-  - LSM-Tree
-  - Wide-Column
-  - Google基础设施
+- 分布式存储
+- NoSQL
+- SSTable
+- LSM-Tree
+- Wide-Column
+- Google基础设施
 created: 2026-07-11
 updated: 2026-07-11
 status: reviewed
 confidence: 0.95
-confidence_rationale: "来源×2（原论文+精读分析）；经典论文，被 HBase/Cassandra/LevelDB 等系统广泛验证；所有设计细节与 GFS/Chubby 论文交叉一致"
+confidence_rationale: 来源×2（原论文+精读分析）；经典论文，被 HBase/Cassandra/LevelDB 等系统广泛验证；所有设计细节与 GFS/Chubby 论文交叉一致
 related:
-  - "[[GFS-Google-File-System]]"
-  - "[[Chubby-分布式锁服务]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[SSTable-排序字符串表]]"
-  - "[[HBase-分布式数据库]]"
-  - "[[Cassandra-分布式数据库]]"
-  - "[[LevelDB-嵌入式KV存储]]"
-  - "[[Spanner-全球分布式数据库]]"
-  - "[[NoSQL-运动]]"
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+pending_concepts:
+- GFS-Google-File-System
+- Chubby-分布式锁服务
+- SSTable-排序字符串表
+- HBase-分布式数据库
+- Cassandra-分布式数据库
+- LevelDB-嵌入式KV存储
+- Spanner-全球分布式数据库
+- NoSQL-运动
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Bigtable-分布式结构化存储系统/
+blog_source: _posts/2026-07-11-knowledge-0bedd5ac64.md
 ---
 
 # Bigtable：Google 分布式结构化存储系统

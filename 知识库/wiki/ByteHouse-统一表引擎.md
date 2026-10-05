@@ -1,32 +1,34 @@
 ---
 type: concept
-title: "ByteHouse 统一表引擎 — 两阶段写入与多模态存储"
+title: ByteHouse 统一表引擎 — 两阶段写入与多模态存储
 sources:
-  - "sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf"
-  - "sources/papers/ByteHouse/精读分析.md"
+- '[[知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf]]'
+- '[[知识库/sources/papers/ByteHouse/精读分析]]'
 tags:
-  - ByteHouse
-  - 存储引擎
-  - 统一表引擎
-  - Sniffer
-  - CrossCache
-  - NexusFS
-  - MVCC
-  - Compaction
+- ByteHouse
+- 存储引擎
+- 统一表引擎
+- Sniffer
+- CrossCache
+- NexusFS
+- MVCC
+- Compaction
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[ByteHouse-架构与设计]]"
-  - "[[ByteHouse-多模态查询优化]]"
-  - "[[Log-as-the-Database-模式]]"
-  - "[[LSM-Tree]]"
-  - "[[Doris-Compaction-策略]]"
-diagram: "diagram/bytehouse-architecture.svg"
----
+- '[[知识库/wiki/ByteHouse-架构与设计]]'
+- '[[知识库/wiki/ByteHouse-多模态查询优化]]'
+- '[[知识库/wiki/Log-as-the-Database-模式]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/Doris-Compaction-策略]]'
+diagram: diagram/bytehouse-architecture.svg
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/ByteHouse-统一表引擎/
+blog_source: _posts/2026-06-15-knowledge-1fc9d20b5e.md
+---
 
 # ByteHouse 统一表引擎
 

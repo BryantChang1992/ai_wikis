@@ -1,27 +1,28 @@
 ---
 type: concept
-title: "Fluss KV 存储（RocksDB）"
+title: Fluss KV 存储（RocksDB）
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html
 tags:
-  - "Fluss"
-  - "RocksDB"
-  - "KV Store"
-  - "存储引擎"
-  - "WAL"
-  - "Snapshot"
+- Fluss
+- RocksDB
+- KV Store
+- 存储引擎
+- WAL
+- Snapshot
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-整体架构]]"
-  - "[[LSM-Tree]]"
-
----
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/LSM-Tree]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-KV存储-RocksDB/
+blog_source: _posts/2026-06-15-knowledge-b217e320f7.md
+---
 
 # Fluss KV 存储（RocksDB）
 

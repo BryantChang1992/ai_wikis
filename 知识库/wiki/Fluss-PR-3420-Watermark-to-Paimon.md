@@ -1,28 +1,30 @@
 ---
 type: analysis
-title: "Fluss PR #3420 — Watermark → Paimon Snapshot"
+title: 'Fluss PR #3420 — Watermark → Paimon Snapshot'
 sources:
-  - "sources/web/fluss/Fluss-PR-3420-Watermark-Paimon-精读.md"
-  - "https://github.com/apache/fluss/pull/3420"
+- '[[知识库/sources/web/fluss/Fluss-PR-3420-Watermark-Paimon-精读]]'
+- https://github.com/apache/fluss/pull/3420
 tags:
-  - "流处理"
-  - "fluss"
-  - "lake-tiering"
-  - "paimon"
-  - "watermark"
+- 流处理
+- fluss
+- lake-tiering
+- paimon
+- watermark
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Fluss-Lake层与湖仓融合]]"
-  - "[[Fluss-Tiering分层架构]]"
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-分布式协调]]"
-  - "[[流处理乱序数据管理]]"
----
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
+- '[[知识库/wiki/Fluss-Tiering分层架构]]'
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
+- '[[知识库/wiki/流处理乱序数据管理]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-PR-3420-Watermark-to-Paimon/
+blog_source: _posts/2026-06-19-knowledge-b1877f4253.md
+---
 
 # Fluss PR #3420 — Watermark → Paimon Snapshot
 

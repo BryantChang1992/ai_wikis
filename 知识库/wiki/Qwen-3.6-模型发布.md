@@ -1,22 +1,25 @@
 ---
 type: concept
-title: "Qwen 3.6 — 参数效率革命"
+title: Qwen 3.6 — 参数效率革命
 sources:
-  - "sources/web/qwen-3.6/精读分析.md"
-  - "https://qwen.ai/blog/"
+- '[[知识库/sources/web/qwen-3.6/精读分析]]'
+- https://qwen.ai/blog/
 tags:
-  - "AI-Infra"
-  - "LLM"
-  - "模型发布"
-  - "Agent运行底座"
+- AI-Infra
+- LLM
+- 模型发布
+- Agent运行底座
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[Hermes-Agent-自进化Agent框架]]"
-  - "[[Agent-Harness-Execution-Environment执行环境]]"
+- '[[知识库/wiki/Hermes-Agent-自进化Agent框架]]'
+- '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于3天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Qwen-3.6-模型发布/
+blog_source: _posts/2026-07-03-knowledge-5df6103d1f.md
 ---
 
 # Qwen 3.6 — 参数效率革命

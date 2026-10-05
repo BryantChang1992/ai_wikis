@@ -1,32 +1,35 @@
 ---
 type: synthesis
-title: "InfluxDB 时序数据库体系综述"
+title: InfluxDB 时序数据库体系综述
 sources:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-数据模型]]"
-  - "[[InfluxDB-TSM存储引擎]]"
-  - "[[InfluxDB-3-列存引擎]]"
-  - "[[InfluxDB-写入与查询路径]]"
-  - "[[InfluxDB-指标设计与基数管理]]"
-  - "[[InfluxDB-多副本与高可用]]"
-  - "[[InfluxDB-Catalog元数据]]"
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-数据模型]]'
+- '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
+- '[[知识库/wiki/InfluxDB-3-列存引擎]]'
+- '[[知识库/wiki/InfluxDB-写入与查询路径]]'
+- '[[知识库/wiki/InfluxDB-指标设计与基数管理]]'
+- '[[知识库/wiki/InfluxDB-多副本与高可用]]'
+- '[[知识库/wiki/InfluxDB-Catalog元数据]]'
 tags:
-  - InfluxDB
-  - 时序数据库
-  - TSDB
-  - 综述
-  - 存储引擎
-  - 列存
-  - Parquet
+- InfluxDB
+- 时序数据库
+- TSDB
+- 综述
+- 存储引擎
+- 列存
+- Parquet
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree-存储引擎体系综述]]"
-  - "[[Apache-Doris-OLAP-数据库体系综述]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述]]'
+- '[[知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 confidence: 0.8
-confidence_rationale: "类型=synthesis; 更新于22天前"
+confidence_rationale: 类型=synthesis; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-时序数据库体系综述/
+blog_source: _posts/2026-06-14-knowledge-d1abbb3a3d.md
 ---
 
 # InfluxDB 时序数据库体系综述

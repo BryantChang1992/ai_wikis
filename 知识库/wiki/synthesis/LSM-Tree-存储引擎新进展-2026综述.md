@@ -1,51 +1,55 @@
 ---
 type: synthesis
-title: "LSM-Tree 存储引擎新进展 (2026)"
+title: LSM-Tree 存储引擎新进展 (2026)
 created: 2026-06-16
 updated: 2026-06-19
 status: draft
 sources:
-  - "[[Silo-分布式LSM-Compaction调度]]"
-  - "[[Silo-Compaction-迁移协议]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-Tree-硬件适配]]"
+- '[[知识库/wiki/Silo-分布式LSM-Compaction调度]]'
+- '[[知识库/wiki/Silo-Compaction-迁移协议]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
 tags:
-  - LSM-Tree
-  - Compaction
-  - storage-engines
-  - scheduling
-  - distributed-storage
-  - synthesis
+- LSM-Tree
+- Compaction
+- storage-engines
+- scheduling
+- distributed-storage
+- synthesis
 related:
-  - "[[Silo-分布式LSM-Compaction调度]]"
-  - "[[Silo-Compaction-迁移协议]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-Tree-硬件适配]]"
-  - "[[LSM-Tree-二级索引]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-存储引擎]]"
-  - "[[PebblesDB-碎片化LSM-Tree]]"
-  - "[[Pacman-持久内存Compaction]]"
-  - "[[gLSM-GPU加速Compaction]]"
-  - "[[ElasticBF-弹性BloomFilter]]"
-  - "[[Lethe-删除感知LSM引擎]]"
-  - "[[Bourbon-Learned-Index-LSM]]"
-  - "[[REMIX-全局排序索引]]"
-  - "[[Nova-LSM-分布式组件化LSM]]"
-  - "[[CaaS-LSM-Compaction即服务]]"
----
+- '[[知识库/wiki/Silo-分布式LSM-Compaction调度]]'
+- '[[知识库/wiki/Silo-Compaction-迁移协议]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
+- '[[知识库/wiki/LSM-Tree-二级索引]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/PebblesDB-碎片化LSM-Tree]]'
+- '[[知识库/wiki/Pacman-持久内存Compaction]]'
+- '[[知识库/wiki/gLSM-GPU加速Compaction]]'
+- '[[知识库/wiki/ElasticBF-弹性BloomFilter]]'
+- '[[知识库/wiki/Lethe-删除感知LSM引擎]]'
+- '[[知识库/wiki/Bourbon-Learned-Index-LSM]]'
+- '[[知识库/wiki/REMIX-全局排序索引]]'
+- '[[知识库/wiki/Nova-LSM-分布式组件化LSM]]'
+- '[[知识库/wiki/CaaS-LSM-Compaction即服务]]'
+- '[[知识库/wiki/Hailstorm-存算分离LSM数据库]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
+- '[[知识库/wiki/Bigtable-分布式结构化存储系统]]'
 confidence: 0.8
-confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
-
-
+confidence_rationale: 类型=synthesis; 来源×0; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-存储引擎新进展-2026综述/
+blog_source: _posts/2026-06-16-knowledge-aa56613e6a.md
+---
 
 # LSM-Tree 存储引擎新进展：从单机到分布式 Compaction
 

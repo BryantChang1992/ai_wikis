@@ -1,32 +1,35 @@
 ---
 type: concept
 title: REMIX — 全局排序索引
-aliases: [Range-query-Efficient Multi-table IndeX, RemixDB]
+aliases:
+- Range-query-Efficient Multi-table IndeX
+- RemixDB
 sources:
-  - title: "REMIX: Efficient Range Query for LSM-trees"
-    authors: "Wenshao Zhong, Chen Chen, Xingbo Wu, Song Jiang"
-    venue: "FAST 2021 (19th USENIX Conference on File and Storage Technologies)"
-    arxiv: "2010.12734"
-    url: "https://arxiv.org/abs/2010.12734"
+- https://arxiv.org/abs/2010.12734
 tags:
-  - LSM-Tree
-  - range-query
-  - index
-  - SSTable
-  - compaction
-  - KV-store
+- LSM-Tree
+- range-query
+- index
+- SSTable
+- compaction
+- KV-store
 status: draft
-created: 2026-07-02
+created: &id001 2026-07-02
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
-
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 4天前更新
+updated: *id001
+source_citations:
+- 'title: REMIX: Efficient Range Query for LSM-trees; authors: Wenshao Zhong, Chen Chen, Xingbo Wu, Song Jiang;
+  venue: FAST 2021 (19th USENIX Conference on File and Storage Technologies); arxiv: 2010.12734; url: https://arxiv.org/abs/2010.12734'
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/REMIX-全局排序索引/
+blog_source: _posts/2026-07-02-knowledge-7b14a0cb55.md
+---
 
 # REMIX — 全局排序索引
 

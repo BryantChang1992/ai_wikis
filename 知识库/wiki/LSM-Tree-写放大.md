@@ -1,25 +1,28 @@
 ---
 type: concept
-title: "LSM-Tree 写放大 (Write Amplification)"
+title: LSM-Tree 写放大 (Write Amplification)
 sources:
-  - "sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf"
-  - "sources/papers/LSM-Survey/精读分析.md"
-  - "sources/papers/LSM-Survey/全文翻译.md"
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
+- '[[知识库/sources/papers/LSM-Survey/精读分析]]'
+- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 写放大
-  - 性能优化
-  - Tiering
+- 存储引擎
+- LSM-Tree
+- 写放大
+- 性能优化
+- Tiering
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-RUM猜想]]"
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
+confidence_rationale: 类型=concept; 来源×3; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-写放大/
+blog_source: _posts/2026-06-14-knowledge-f7207c03da.md
 ---
 
 # LSM-Tree 写放大 (Write Amplification)
@@ -96,7 +99,7 @@ WA_tiering = O(L / B)
 
 具体而言：
 - **Tiering** → 写 ↓，但点查 ↓、范围查询 ↓、空间 ↑
-- **KV 分离** ([[LSM-Tree-硬件适配#WiscKey]]) → 写 ↓↓，但范围查询 ↓↓↓、空间 ↓↓↓（GC 开销）
+- **KV 分离** ([[LSM-Tree-硬件适配#3.1 WiscKey — KV 分离 (Key-Value Separation)]]) → 写 ↓↓，但范围查询 ↓↓↓、空间 ↓↓↓（GC 开销）
 - **Merge Skipping** → 写 ↓，但实现复杂度 ↑
 
 ## 未来方向

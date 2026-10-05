@@ -1,24 +1,26 @@
 ---
 type: concept
-title: "Agentic Memory — Agent-First 语义缓存"
+title: Agentic Memory — Agent-First 语义缓存
 tags:
-  - LLM-Agent
-  - 语义缓存
-  - 向量索引
-  - 元数据管理
-  - CIDR-2026
+- LLM-Agent
+- 语义缓存
+- 向量索引
+- 元数据管理
+- CIDR-2026
 related:
-  - "[[Agent-First-Data-Systems]]"
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
 sources:
-  - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
+- '[[知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-diagram: "diagram/agent-first-data-systems.svg"
-
+diagram: diagram/agent-first-data-systems.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agentic-Memory-语义缓存/
+blog_source: _posts/2026-06-15-knowledge-706480bf87.md
 ---
 
 # Agentic Memory — Agent-First 语义缓存

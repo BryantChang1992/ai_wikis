@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Apache Flink 2.3.0 — SQL 层与存储层重大升级"
+title: Apache Flink 2.3.0 — SQL 层与存储层重大升级
 sources:
-  - "sources/web/flink-2.3.0/精读分析.md"
-  - "https://flink.apache.org/2026/06/25/apache-flink-2.3.0-release-announcement/"
+- '[[知识库/sources/web/flink-2.3.0/精读分析]]'
+- https://flink.apache.org/2026/06/25/apache-flink-2.3.0-release-announcement/
 tags:
-  - "流处理"
-  - "Flink"
-  - "SQL"
-  - "S3"
+- 流处理
+- Flink
+- SQL
+- S3
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[流处理系统演化综述]]"
-  - "[[Stream-Processing-System-Generations]]"
-  - "[[Fluss-整体架构]]"
+- '[[知识库/wiki/synthesis/流处理系统演化综述]]'
+- '[[知识库/wiki/Stream-Processing-System-Generations]]'
+- '[[知识库/wiki/Fluss-整体架构]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于3天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Apache-Flink-2.3.0-版本发布/
+blog_source: _posts/2026-07-03-knowledge-fa0e811bb3.md
 ---
 
 # Apache Flink 2.3.0 — SQL 层与存储层重大升级

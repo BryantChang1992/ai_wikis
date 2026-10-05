@@ -1,30 +1,32 @@
 ---
 type: concept
-title: "Bourbon: LSM-Tree 学习索引"
+title: 'Bourbon: LSM-Tree 学习索引'
 sources:
-  - "https://www.usenix.org/conference/osdi20/presentation/dai"
-  - "https://arxiv.org/abs/2005.14213"
-  - "sources/papers/LSM-tree-KV-Survey-2025/精读分析.md"
+- https://www.usenix.org/conference/osdi20/presentation/dai
+- https://arxiv.org/abs/2005.14213
+- '[[知识库/sources/papers/LSM-tree-KV-Survey-2025/精读分析]]'
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 学习索引
-  - Learned Index
-  - 点查优化
-  - WiscKey
-  - OSDI 2020
+- 存储引擎
+- LSM-Tree
+- 学习索引
+- Learned Index
+- 点查优化
+- WiscKey
+- OSDI 2020
 created: 2026-07-02
 updated: 2026-07-02
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
-  - "[[LSM-Tree-合并优化]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 4天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Bourbon-Learned-Index-LSM/
+blog_source: _posts/2026-07-02-knowledge-644c614109.md
+---
 
 # Bourbon: LSM-Tree 学习索引
 
@@ -164,7 +166,7 @@ Bourbon 和 Bloom Filter 优化的是 LSM-tree 点查路径上的**不同步骤*
 
 ```
 LSM 点查优化路线图：
-  
+
   bLSM (SIGMOD'12)       → 首次用 Bloom Filter 优化点查
   Monkey (SIGMOD'17)      → BF bits 非均匀分配，理论最优
   ElasticBF (ATC'19)      → 动态异构 BF，按热度激活

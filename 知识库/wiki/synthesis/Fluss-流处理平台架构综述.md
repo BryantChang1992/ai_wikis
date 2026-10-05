@@ -1,46 +1,47 @@
 ---
 type: synthesis
-title: "Fluss 流处理平台架构综述"
+title: Fluss 流处理平台架构综述
 created: 2026-06-17
 updated: 2026-06-19
 status: draft
 sources:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-分布式协调]]"
-  - "[[Fluss-RPC与网络]]"
-  - "[[Fluss-客户端与计算集成]]"
-  - "[[Fluss-Lake层与湖仓融合]]"
-  - "[[Fluss-Tiering分层架构]]"
-  - "[[Fluss-Kafka兼容层]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-Arrow列式记录格式]]"
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
+- '[[知识库/wiki/Fluss-RPC与网络]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
+- '[[知识库/wiki/Fluss-Tiering分层架构]]'
+- '[[知识库/wiki/Fluss-Kafka兼容层]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-Arrow列式记录格式]]'
 tags:
-  - Fluss
-  - streaming
-  - lakehouse
-  - messaging
-  - synthesis
+- Fluss
+- streaming
+- lakehouse
+- messaging
+- synthesis
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-分布式协调]]"
-  - "[[Fluss-RPC与网络]]"
-  - "[[Fluss-客户端与计算集成]]"
-  - "[[Fluss-Lake层与湖仓融合]]"
-  - "[[Fluss-Tiering分层架构]]"
-  - "[[Fluss-Kafka兼容层]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-Arrow列式记录格式]]"
-  - "[[Fluss-EKS-生产部署实践-Fresha]]"
-  - "[[Fluss-PR-3420-Watermark-to-Paimon]]"
-  - "[[Fluss-客户端写入流程源码分析]]"
-  - "[[LSM-Tree]]"
----
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
+- '[[知识库/wiki/Fluss-RPC与网络]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
+- '[[知识库/wiki/Fluss-Tiering分层架构]]'
+- '[[知识库/wiki/Fluss-Kafka兼容层]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-Arrow列式记录格式]]'
+- '[[知识库/wiki/Fluss-EKS-生产部署实践-Fresha]]'
+- '[[知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon]]'
+- '[[知识库/wiki/Fluss-客户端写入流程源码分析]]'
+- '[[知识库/wiki/LSM-Tree]]'
 confidence: 0.8
-confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
-
-
+confidence_rationale: 类型=synthesis; 来源×0; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-流处理平台架构综述/
+blog_source: _posts/2026-06-17-knowledge-805739658c.md
+---
 
 # Fluss 流处理平台架构综述
 

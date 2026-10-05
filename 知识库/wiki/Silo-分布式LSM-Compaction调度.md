@@ -1,26 +1,29 @@
 ---
 type: concept
-title: "Silo — 分布式 LSM-Tree Compaction 全局调度"
+title: Silo — 分布式 LSM-Tree Compaction 全局调度
 tags:
-  - LSM-Tree
-  - Compaction
-  - 调度
-  - WAF
-  - 写放大
-  - 分布式存储
-  - SLO
-  - FAST-2026
+- LSM-Tree
+- Compaction
+- 调度
+- WAF
+- 写放大
+- 分布式存储
+- SLO
+- FAST-2026
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[Silo-Compaction-迁移协议]]"
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/Silo-Compaction-迁移协议]]'
 sources:
-  - "sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf"
+- '[[知识库/sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Silo-分布式LSM-Compaction调度/
+blog_source: _posts/2026-06-15-knowledge-d1c798f4c9.md
 ---
 
 # Silo — 分布式 LSM-Tree Compaction 全局调度

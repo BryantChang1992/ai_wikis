@@ -1,28 +1,30 @@
 ---
 type: concept
-title: "Event Horizon: 非对称依赖与跨地域操作"
+title: 'Event Horizon: 非对称依赖与跨地域操作'
 sources:
-  - "sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf"
-  - "sources/papers/Event-Horizon/精读分析.md"
-  - "sources/papers/Event-Horizon/全文翻译.md"
+- '[[知识库/sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf]]'
+- '[[知识库/sources/papers/Event-Horizon/精读分析]]'
+- '[[知识库/sources/papers/Event-Horizon/全文翻译]]'
 tags:
-  - 分布式系统
-  - 一致性
-  - Geo-Distributed
-  - CIDR-2026
-  - 非对称依赖
-  - Event-Horizon
-  - 半线性化
-  - 协调
+- 分布式系统
+- 一致性
+- Geo-Distributed
+- CIDR-2026
+- 非对称依赖
+- Event-Horizon
+- 半线性化
+- 协调
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[事务模型深度调研]]"
-diagram: "diagram/event-horizon-asymmetric-dep.svg"
-
+- '[[知识库/wiki/事务模型深度调研]]'
+diagram: diagram/event-horizon-asymmetric-dep.svg
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
+confidence_rationale: 类型=concept; 来源×3; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Event-Horizon-非对称依赖/
+blog_source: _posts/2026-06-14-knowledge-ce5b79c44d.md
 ---
 
 # Event Horizon：非对称依赖与半线性化

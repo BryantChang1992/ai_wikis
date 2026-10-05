@@ -1,28 +1,30 @@
 ---
 type: concept
-title: "Paxos Quorum Intersection Revised"
+title: Paxos Quorum Intersection Revised
 sources:
-  - "sources/papers/Distributed-Consensus-Revised/精读分析.md"
+- '[[知识库/sources/papers/Distributed-Consensus-Revised/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Paxos
-  - Flexible-Paxos
-  - Quorum
+- 分布式系统
+- 共识算法
+- Paxos
+- Flexible-Paxos
+- Quorum
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[共识算法族系-从Paxos到广义解]]"
-  - "[[Raft-共识算法协议核心]]"
-  - "[[Paxos-理论到实践的鸿沟]]"
-  - "[[Paxos-Value-Selection-Revised]]"
-  - "[[Paxos-Epochs-Revised]]"
-  - "[[分布式数据系统一致性体系]]"
----
+- '[[知识库/wiki/共识算法族系-从Paxos到广义解]]'
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
+- '[[知识库/wiki/Paxos-理论到实践的鸿沟]]'
+- '[[知识库/wiki/Paxos-Value-Selection-Revised]]'
+- '[[知识库/wiki/Paxos-Epochs-Revised]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=stable; 20天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Paxos-Quorum-Intersection-Revised/
+blog_source: _posts/2026-06-16-knowledge-3c79060fab.md
+---
 
 # Paxos Quorum Intersection Revised
 
@@ -84,7 +86,7 @@ $$∀Q₁ ∈ \mathcal{Q}₁, ∀Q₂ ∈ \mathcal{Q}₂: Q₁ ∩ Q₂ ≠ ∅$
 
 ```
 Algorithm: Flexible Paxos — Proposer
-    
+
     /* Phase 1: Prepare */
     send ⟨Prepare, n⟩ to acceptors
     wait until promise from any Q₁ ∈ Q₁         ← 只需任意一个 Q₁
@@ -92,7 +94,7 @@ Algorithm: Flexible Paxos — Proposer
         v ← v'  /* must use highest-epoch committed value */
     else:
         v ← own_value  /* free to propose own value */
-    
+
     /* Phase 2: Propose */
     send ⟨Accept, n, v⟩ to acceptors
     wait until accept from any Q₂ ∈ Q₂           ← 只需任意一个 Q₂

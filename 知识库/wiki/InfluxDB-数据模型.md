@@ -1,26 +1,27 @@
 ---
 type: concept
-title: "InfluxDB 数据模型与核心概念"
+title: InfluxDB 数据模型与核心概念
 sources:
-  - "../技术文章/InfluxDB调研/01-概述与核心概念.md"
+- '[[技术文章/InfluxDB调研/01-概述与核心概念]]'
 tags:
-  - InfluxDB
-  - 时序数据库
-  - 数据模型
-  - 基数管理
+- InfluxDB
+- 时序数据库
+- 数据模型
+- 基数管理
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-指标设计与基数管理]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-指标设计与基数管理]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.88
-confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-数据模型/
+blog_source: _posts/2026-06-14-knowledge-ef47114db5.md
+---
 
 # InfluxDB 数据模型与核心概念
 

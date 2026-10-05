@@ -1,26 +1,28 @@
 ---
 type: concept
-title: "Agent Harness: Lifecycle & Orchestration (L)"
+title: 'Agent Harness: Lifecycle & Orchestration (L)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "Agent编排"
-  - "多Agent"
+- Agent-Harness
+- Agent基础设施
+- Agent编排
+- 多Agent
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-Fault-Tolerance-容错设计]]"
----
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-Fault-Tolerance-容错设计]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 16天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 16天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Lifecycle-Orchestration编排/
+blog_source: _posts/2026-06-20-knowledge-017695c8a4.md
+---
 
 # Agent Harness: Lifecycle & Orchestration (L)
 

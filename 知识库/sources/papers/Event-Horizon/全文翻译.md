@@ -1,4 +1,20 @@
-# Event Horizon：面向快速地理分布式操作的非对称依赖
+---
+title: 论文全文翻译：Event Horizon — 面向快速地理分布式操作的非对称依赖
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/event-horizon-translation/
+blog_source: _posts/2026-06-11-event-horizon-translation.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: 03c047ce6bbb90a4ef8b3fc97bd90696376c904d551501f944a828b2c6a18320
+synced_at: '2026-10-05'
+type: survey
+created: '2026-06-11'
+tags:
+- 论文精读
+- Event Horizon
+- 全文翻译
+---
+
+[[论文精读/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations|先读论文解读]]
+
 
 > **原文标题**：Event Horizon: Asymmetric Dependencies for Fast Geo-Distributed Operations  
 > **作者**：Jonathan Arns (KTH Royal Institute of Technology), Harald Ng (KTH Royal Institute of Technology), Kyriakos Psarakis* (Ververica GmbH / TU Delft), Asterios Katsifodimos (Delft University of Technology), Paris Carbone (KTH Royal Institute of Technology)  
@@ -14,7 +30,7 @@
 
 本文引入**半线性化（Semi-Linearizability，SL）**：一种一致性模型，仅在严格必要时才以保证线性化（linearizability）的方式执行应用操作，从而避免过度协调。具体而言，我们提出了新颖的操作语义，能够编码应用操作之间的排序关系，并将其映射到协调原语。我们提出的语义可用于推理不同操作之间潜在的、非对称的依赖关系，并优化它们的执行。我们展示了 SL 如何支持一类新的安全、无协调操作——这在以往的模型中本需以全局严格顺序执行——同时在不违反应用不变量的前提下提供显著的性能增益。为展示 SL 的优势，我们实现了 **DeMon**，一个在广泛使用的 RUBiS 基准测试中，相比最先进系统，将最常见操作的延迟降低了**四个数量级**的系统。
 
-![图1：桥接一致性极端。不同于线性化（Linearizability，左）和强最终一致性（Strong Eventual Consistency，中），半线性化（Semi-Linearizability，右）提供了一种混合方法，允许并发执行，直到一个关键操作形成**事件视界（event horizon）**，仅在必要时将发散的历史折叠为统一状态。](图1描述)
+> **图 1 说明**：桥接一致性极端。不同于线性化（Linearizability，左）和强最终一致性（Strong Eventual Consistency，中），半线性化（Semi-Linearizability，右）提供了一种混合方法，允许并发执行，直到一个关键操作形成**事件视界（event horizon）**，仅在必要时将发散的历史折叠为统一状态。
 
 ---
 

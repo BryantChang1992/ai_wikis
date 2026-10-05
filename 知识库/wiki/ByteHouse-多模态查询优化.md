@@ -1,31 +1,33 @@
 ---
 type: concept
-title: "ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引"
+title: ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引
 sources:
-  - "sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf"
-  - "sources/papers/ByteHouse/精读分析.md"
+- '[[知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf]]'
+- '[[知识库/sources/papers/ByteHouse/精读分析]]'
 tags:
-  - ByteHouse
-  - 查询优化
-  - HBO
-  - 向量检索
-  - RANK_FUSION
-  - 多模态
-  - AI-Assisted
-  - Runtime Filter
+- ByteHouse
+- 查询优化
+- HBO
+- 向量检索
+- RANK_FUSION
+- 多模态
+- AI-Assisted
+- Runtime Filter
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[ByteHouse-架构与设计]]"
-  - "[[ByteHouse-统一表引擎]]"
-  - "[[Doris-MPP-向量化查询引擎]]"
-  - "[[Doris-Nereids-CBO-优化器]]"
-diagram: "diagram/bytehouse-architecture.svg"
----
+- '[[知识库/wiki/ByteHouse-架构与设计]]'
+- '[[知识库/wiki/ByteHouse-统一表引擎]]'
+- '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
+- '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
+diagram: diagram/bytehouse-architecture.svg
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/ByteHouse-多模态查询优化/
+blog_source: _posts/2026-06-15-knowledge-5b9838a415.md
+---
 
 # ByteHouse 多模态查询优化
 

@@ -1,28 +1,30 @@
 ---
 type: concept
-title: "Agent Fault Tolerance — 容错设计"
+title: Agent Fault Tolerance — 容错设计
 sources:
-  - "sources/web/langchain/fault-tolerance-in-langgraph-精读.md"
-  - "https://www.langchain.com/blog/fault-tolerance-in-langgraph"
+- '[[知识库/sources/web/langchain/fault-tolerance-in-langgraph-精读]]'
+- https://www.langchain.com/blog/fault-tolerance-in-langgraph
 tags:
-  - "agent-infra"
-  - "agent-harness"
-  - "fault-tolerance"
-  - "langgraph"
+- agent-infra
+- agent-harness
+- fault-tolerance
+- langgraph
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[流处理容错模型]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/流处理容错模型]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Fault-Tolerance-容错设计/
+blog_source: _posts/2026-06-19-knowledge-ad2f89d41a.md
+---
 
 # Agent Fault Tolerance — 容错设计
 

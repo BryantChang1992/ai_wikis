@@ -1,29 +1,31 @@
 ---
 type: concept
-title: "共识算法族系：从 Paxos 到广义解"
+title: 共识算法族系：从 Paxos 到广义解
 sources:
-  - "sources/papers/Distributed-Consensus-Revised/精读分析.md"
+- '[[知识库/sources/papers/Distributed-Consensus-Revised/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Paxos
-  - Flexible-Paxos
-  - 泛化
-  - 理论
+- 分布式系统
+- 共识算法
+- Paxos
+- Flexible-Paxos
+- 泛化
+- 理论
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[Raft-共识算法协议核心]]"
-  - "[[Paxos-理论到实践的鸿沟]]"
-  - "[[Paxos-Quorum-Intersection-Revised]]"
-  - "[[Paxos-Value-Selection-Revised]]"
-  - "[[Paxos-Epochs-Revised]]"
-  - "[[分布式数据系统一致性体系]]"
----
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
+- '[[知识库/wiki/Paxos-理论到实践的鸿沟]]'
+- '[[知识库/wiki/Paxos-Quorum-Intersection-Revised]]'
+- '[[知识库/wiki/Paxos-Value-Selection-Revised]]'
+- '[[知识库/wiki/Paxos-Epochs-Revised]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=stable; 20天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/共识算法族系-从Paxos到广义解/
+blog_source: _posts/2026-06-16-knowledge-0ee1c91d5a.md
+---
 
 # 共识算法族系：从 Paxos 到广义解
 

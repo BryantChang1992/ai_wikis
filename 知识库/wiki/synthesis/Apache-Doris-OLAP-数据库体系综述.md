@@ -1,33 +1,36 @@
 ---
 type: synthesis
-title: "Apache Doris OLAP 数据库体系综述"
+title: Apache Doris OLAP 数据库体系综述
 sources:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-数据模型]]"
-  - "[[Doris-Segment-v2-存储格式]]"
-  - "[[Doris-Compaction-策略]]"
-  - "[[Doris-MPP-向量化查询引擎]]"
-  - "[[Doris-Nereids-CBO-优化器]]"
-  - "[[Doris-架构演进]]"
-  - "[[Doris-元数据与一致性复制]]"
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-数据模型]]'
+- '[[知识库/wiki/Doris-Segment-v2-存储格式]]'
+- '[[知识库/wiki/Doris-Compaction-策略]]'
+- '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
+- '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
+- '[[知识库/wiki/Doris-架构演进]]'
+- '[[知识库/wiki/Doris-元数据与一致性复制]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 综述
-  - MPP
-  - 列式存储
-  - 实时分析
-  - 存算分离
+- 数据库
+- OLAP
+- Doris
+- 综述
+- MPP
+- 列式存储
+- 实时分析
+- 存算分离
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree-存储引擎体系综述]]"
-  - "[[InfluxDB-时序数据库体系综述]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述]]'
+- '[[知识库/wiki/synthesis/InfluxDB-时序数据库体系综述]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 confidence: 0.8
-confidence_rationale: "类型=synthesis; 更新于22天前"
+confidence_rationale: 类型=synthesis; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Apache-Doris-OLAP-数据库体系综述/
+blog_source: _posts/2026-06-14-knowledge-0c44653305.md
 ---
 
 # Apache Doris OLAP 数据库体系综述

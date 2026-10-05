@@ -1,27 +1,29 @@
 ---
 type: concept
-title: "Loop Engineering — 多层 Agent 循环架构"
+title: Loop Engineering — 多层 Agent 循环架构
 sources:
-  - "sources/web/langchain/the-art-of-loop-engineering-精读.md"
-  - "https://www.langchain.com/blog/the-art-of-loop-engineering"
+- '[[知识库/sources/web/langchain/the-art-of-loop-engineering-精读]]'
+- https://www.langchain.com/blog/the-art-of-loop-engineering
 tags:
-  - "agent-infra"
-  - "agent-harness"
-  - "loop-engineering"
-  - "langchain"
+- agent-infra
+- agent-harness
+- loop-engineering
+- langchain
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-Fault-Tolerance-容错设计]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-Fault-Tolerance-容错设计]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Loop-Engineering-多层Agent循环架构/
+blog_source: _posts/2026-06-19-knowledge-94bcbdbdbc.md
+---
 
 # Loop Engineering — 多层 Agent 循环架构
 

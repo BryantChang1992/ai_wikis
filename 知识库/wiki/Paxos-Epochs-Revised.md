@@ -1,28 +1,30 @@
 ---
 type: concept
-title: "Paxos Epochs Revised"
+title: Paxos Epochs Revised
 sources:
-  - "sources/papers/Distributed-Consensus-Revised/精读分析.md"
+- '[[知识库/sources/papers/Distributed-Consensus-Revised/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Paxos
-  - Flexible-Paxos
-  - Epoch
-  - Fast-Paxos
+- 分布式系统
+- 共识算法
+- Paxos
+- Flexible-Paxos
+- Epoch
+- Fast-Paxos
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[共识算法族系-从Paxos到广义解]]"
-  - "[[Paxos-Quorum-Intersection-Revised]]"
-  - "[[Paxos-Value-Selection-Revised]]"
-  - "[[Raft-共识算法协议核心]]"
-  - "[[Raft-集群成员变更]]"
----
+- '[[知识库/wiki/共识算法族系-从Paxos到广义解]]'
+- '[[知识库/wiki/Paxos-Quorum-Intersection-Revised]]'
+- '[[知识库/wiki/Paxos-Value-Selection-Revised]]'
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
+- '[[知识库/wiki/Raft-集群成员变更]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=stable; 20天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Paxos-Epochs-Revised/
+blog_source: _posts/2026-06-16-knowledge-667e888da9.md
+---
 
 # Paxos Epochs Revised
 

@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "存储计算分离数据库的 Tail Latency 问题"
+title: 存储计算分离数据库的 Tail Latency 问题
 sources:
-  - "sources/papers/RaaS/RaaS-SIGMOD2026.pdf"
-  - "sources/papers/RaaS/精读分析.md"
-  - "sources/papers/RaaS/全文翻译.md"
+- '[[知识库/sources/papers/RaaS/RaaS-SIGMOD2026.pdf]]'
+- '[[知识库/sources/papers/RaaS/精读分析]]'
+- '[[知识库/sources/papers/RaaS/全文翻译]]'
 tags:
-  - Tail-Latency
-  - 存储计算分离
-  - 数据库
-  - 性能
-  - 云数据库
-  - Aurora
+- Tail-Latency
+- 存储计算分离
+- 数据库
+- 性能
+- 云数据库
+- Aurora
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[RaaS-Replay-as-a-Service]]"
-  - "[[Log-as-the-Database-模式]]"
-  - "[[事务模型深度调研]]"
-diagram: "diagram/raas-replay-tail-latency.svg"
-
----
+- '[[知识库/wiki/RaaS-Replay-as-a-Service]]'
+- '[[知识库/wiki/Log-as-the-Database-模式]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+diagram: diagram/raas-replay-tail-latency.svg
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×3; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/存储计算分离数据库的-Tail-Latency/
+blog_source: _posts/2026-06-14-knowledge-159e1f6d05.md
+---
 
 # 存储计算分离数据库的 Tail Latency 问题
 

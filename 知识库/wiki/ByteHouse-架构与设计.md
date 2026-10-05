@@ -1,30 +1,32 @@
 ---
 type: concept
-title: "ByteHouse 云原生多模态数仓—整体架构"
+title: ByteHouse 云原生多模态数仓—整体架构
 sources:
-  - "sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf"
-  - "sources/papers/ByteHouse/精读分析.md"
+- '[[知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf]]'
+- '[[知识库/sources/papers/ByteHouse/精读分析]]'
 tags:
-  - ByteHouse
-  - OLAP
-  - 云原生
-  - 存算分离
-  - Multi-modal
-  - SIGMOD-2026
-  - ByteDance
+- ByteHouse
+- OLAP
+- 云原生
+- 存算分离
+- Multi-modal
+- SIGMOD-2026
+- ByteDance
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[ByteHouse-统一表引擎]]"
-  - "[[ByteHouse-多模态查询优化]]"
-  - "[[Doris-深度调研]]"
-  - "[[事务模型深度调研]]"
-diagram: "diagram/bytehouse-architecture.svg"
----
+- '[[知识库/wiki/ByteHouse-统一表引擎]]'
+- '[[知识库/wiki/ByteHouse-多模态查询优化]]'
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+diagram: diagram/bytehouse-architecture.svg
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/ByteHouse-架构与设计/
+blog_source: _posts/2026-06-15-knowledge-8189f15178.md
+---
 
 # ByteHouse 整体架构 — 三层存算分离
 

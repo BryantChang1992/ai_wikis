@@ -1,32 +1,33 @@
 ---
 type: concept
-title: "Doris Segment v2 存储格式"
+title: Doris Segment v2 存储格式
 sources:
-  - "../技术文章/Doris调研/02-存储引擎.md"
+- '[[技术文章/Doris调研/02-存储引擎]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 存储引擎
-  - 列式存储
-  - Segment v2
-  - Parquet
-  - DELETE_BITMAP
+- 数据库
+- OLAP
+- Doris
+- 存储引擎
+- 列式存储
+- Segment v2
+- Parquet
+- DELETE_BITMAP
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-数据模型]]"
-  - "[[Doris-Compaction-策略]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-存储引擎体系综述]]"
-diagram: "diagram/doris-architecture.svg"
-
----
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-数据模型]]'
+- '[[知识库/wiki/Doris-Compaction-策略]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述]]'
+diagram: diagram/doris-architecture.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-Segment-v2-存储格式/
+blog_source: _posts/2026-06-14-knowledge-069ea9f938.md
+---
 
 # Doris Segment v2 存储格式
 

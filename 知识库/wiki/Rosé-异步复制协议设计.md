@@ -1,25 +1,27 @@
 ---
 type: concept
-title: "Rosé — 分区数据库异步复制协议"
+title: Rosé — 分区数据库异步复制协议
 tags:
-  - 异步复制
-  - 主备复制
-  - 单调前缀一致性
-  - 分区数据库
-  - 故障恢复
-  - CIDR-2026
+- 异步复制
+- 主备复制
+- 单调前缀一致性
+- 分区数据库
+- 故障恢复
+- CIDR-2026
 related:
-  - "[[Rosé-Coordinated-Apply-协调应用]]"
-  - "[[事务模型深度调研]]"
-  - "[[分布式数据系统一致性体系]]"
+- '[[知识库/wiki/Rosé-Coordinated-Apply-协调应用]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
 sources:
-  - "sources/papers/Rose/Rose-CIDR2026.pdf"
+- '[[知识库/sources/papers/Rose/Rose-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Rosé-异步复制协议设计/
+blog_source: _posts/2026-06-15-knowledge-8ab34eba05.md
 ---
 
 # Rosé — 分区数据库异步复制协议

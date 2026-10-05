@@ -4,20 +4,27 @@ title: ElasticBF（弹性 Bloom Filter）
 authors: Yongkun Li, Chengjin Tian, Fan Guo, Cheng Li, Yinlong Xu
 venue: USENIX ATC 2019, pp. 739–752
 tags:
-  - LSM-tree
-  - bloom-filter
-  - read-optimization
-  - false-positive
-  - hotness-awareness
-  - elastic-resource
+- LSM-tree
+- bloom-filter
+- read-optimization
+- false-positive
+- hotness-awareness
+- elastic-resource
 status: draft
-created: 2026-07-03
+created: &id001 2026-07-03
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept"
+confidence_rationale: 类型=concept
+updated: *id001
+sources:
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+source_note: 原笔记缺少独立来源；此处关联已有调参卡片，原论文尚待复核。
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/ElasticBF-弹性BloomFilter/
+blog_source: _posts/2026-07-03-knowledge-d179ba0fd9.md
 ---
 
 ## 一句话摘要

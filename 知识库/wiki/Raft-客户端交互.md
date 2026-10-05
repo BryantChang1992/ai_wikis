@@ -1,25 +1,28 @@
 ---
 type: concept
-title: "Raft 客户端交互 — 线性一致性与请求路由"
+title: Raft 客户端交互 — 线性一致性与请求路由
 tags:
-  - 分布式系统
-  - 共识算法
-  - Raft
-  - 线性一致性
-  - 客户端
-  - Read-Index
-  - Lease-Read
-  - 幂等
+- 分布式系统
+- 共识算法
+- Raft
+- 线性一致性
+- 客户端
+- Read-Index
+- Lease-Read
+- 幂等
 related:
-  - "[[Raft-共识算法协议核心]]"
-  - "[[分布式数据系统一致性体系]]"
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
+- '[[知识库/wiki/synthesis/分布式数据系统一致性体系]]'
 status: stable
 created: 2026-06-16
 updated: 2026-06-16
 sources:
-  - "sources/papers/Raft-Dissertation/精读分析.md"
+- '[[知识库/sources/papers/Raft-Dissertation/精读分析]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
+confidence_rationale: 类型=concept; 来源×1; status=stable; 更新于20天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Raft-客户端交互/
+blog_source: _posts/2026-06-16-knowledge-e66ebad5ba.md
 ---
 
 # Raft 客户端交互 — 线性一致性与请求路由

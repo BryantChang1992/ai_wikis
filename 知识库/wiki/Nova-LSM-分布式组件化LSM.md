@@ -1,32 +1,37 @@
 ---
 type: concept
 title: Nova-LSM (分布式组件化 LSM-tree KVS)
-aliases: [Nova-LSM, NovaLSM]
+aliases:
+- Nova-LSM
+- NovaLSM
 sources:
-  - title: "Nova-LSM: A Distributed, Component-based LSM-tree Key-value Store"
-    authors: "Haoyu Huang, Shahram Ghandeharizadeh"
-    venue: "SIGMOD 2021"
-    doi: "10.1145/3448016.3457297"
-    arxiv: "2104.01305"
-    code: "https://github.com/HaoyuHuang/NovaLSM"
+- https://doi.org/10.1145/3448016.3457297
+- https://arxiv.org/abs/2104.01305
+- https://github.com/HaoyuHuang/NovaLSM
 tags:
-  - LSM-tree
-  - 分布式存储
-  - RDMA
-  - 存算分离
-  - KV存储
-  - SIGMOD
+- LSM-tree
+- 分布式存储
+- RDMA
+- 存算分离
+- KV存储
+- SIGMOD
 status: draft
-created: 2026-07-02
+created: &id001 2026-07-02
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[Hailstorm-存算分离LSM数据库]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/Hailstorm-存算分离LSM数据库]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 4天前更新
+updated: *id001
+source_citations:
+- 'title: Nova-LSM: A Distributed, Component-based LSM-tree Key-value Store; authors: Haoyu Huang, Shahram Ghandeharizadeh;
+  venue: SIGMOD 2021; doi: 10.1145/3448016.3457297; arxiv: 2104.01305; code: https://github.com/HaoyuHuang/NovaLSM'
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Nova-LSM-分布式组件化LSM/
+blog_source: _posts/2026-07-02-knowledge-51f8aa1210.md
+---
 
 ## 一句话摘要
 

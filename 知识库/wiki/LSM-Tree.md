@@ -1,32 +1,34 @@
 ---
 type: concept
-title: "LSM-Tree (Log-Structured Merge-Tree)"
+title: LSM-Tree (Log-Structured Merge-Tree)
 sources:
-  - "sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf"
-  - "sources/papers/LSM-Survey/精读分析.md"
-  - "sources/papers/LSM-Survey/全文翻译.md"
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
+- '[[知识库/sources/papers/LSM-Survey/精读分析]]'
+- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 数据结构
-  - 数据库
-  - 写优化
+- 存储引擎
+- LSM-Tree
+- 数据结构
+- 数据库
+- 写优化
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-硬件适配]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-Tree-二级索引]]"
-  - "[[LSM-Tree-RUM猜想]]"
-diagram: "diagram/lsm-tree-full-overview.svg"
-
----
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-Tree-二级索引]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述]]'
+diagram: diagram/lsm-tree-full-overview.svg
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×3; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree/
+blog_source: _posts/2026-06-14-knowledge-f0ae968052.md
+---
 
 # LSM-Tree (Log-Structured Merge-Tree)
 
@@ -71,7 +73,7 @@ Compaction (Merge):
 
 ## 两种核心合并策略
 
-参见 [[LSM-Tree-写放大#Leveling-vs-Tiering]]
+参见 [[LSM-Tree-写放大#Leveling vs Tiering 写放大对比]]
 
 | 维度 | Leveling | Tiering |
 |------|----------|---------|
@@ -104,8 +106,8 @@ Compaction (Merge):
 
 1. 全面的性能评估（多数改进未与良好调参的基线对比）
 2. 分区 Tiering 结构对比（垂直分组 vs 水平分组）
-3. 混合合并策略（[[LSM-Tree-自动调参#Dostoevsky]] 的 lazy-leveling）
-4. 最小化性能波动（[[LSM-Tree-合并优化#bLSM]] 是唯一尝试但远不完善）
+3. 混合合并策略（[[LSM-Tree-自动调参#Dostoevsky — Lazy-Leveling]] 的 lazy-leveling）
+4. 最小化性能波动（[[LSM-Tree-合并优化#bLSM — Spring-and-Gear 调度器]] 是唯一尝试但远不完善）
 5. **走向数据库存储引擎**：从 KV-store 走向多索引 DB engine（参见 [[LSM-Tree-二级索引]]）
 
 ---

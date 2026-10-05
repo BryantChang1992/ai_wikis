@@ -1,27 +1,28 @@
 ---
 type: analysis
-title: "Fluss 存储引擎模块分析"
+title: Fluss 存储引擎模块分析
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/02-存储引擎模块.html
 tags:
-  - "Fluss"
-  - "存储引擎"
-  - "RocksDB"
-  - "Log Segment"
-  - "源码分析"
+- Fluss
+- 存储引擎
+- RocksDB
+- Log Segment
+- 源码分析
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-Arrow列式记录格式]]"
-  - "[[LSM-Tree]]"
-
----
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-Arrow列式记录格式]]'
+- '[[知识库/wiki/LSM-Tree]]'
 confidence: 0.78
-confidence_rationale: "类型=analysis; 来源×0; 21天前更新"
-
+confidence_rationale: 类型=analysis; 来源×0; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-存储引擎/
+blog_source: _posts/2026-06-15-knowledge-f85e907dcc.md
+---
 
 # Fluss 存储引擎模块分析
 

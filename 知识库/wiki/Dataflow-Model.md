@@ -1,25 +1,28 @@
 ---
 type: concept
-title: "Dataflow 模型"
+title: Dataflow 模型
 sources:
-  - "sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf"
-  - "sources/papers/SP-Survey/精读分析.md"
+- '[[知识库/sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf]]'
+- '[[知识库/sources/papers/SP-Survey/精读分析]]'
 tags:
-  - 流处理
-  - Dataflow
-  - Google
-  - 批流统一
-  - Watermark
-  - 窗口计算
+- 流处理
+- Dataflow
+- Google
+- 批流统一
+- Watermark
+- 窗口计算
 created: 2026-06-15
 updated: 2026-06-15
 status: stable
 related:
-  - "[[流处理乱序数据管理]]"
-  - "[[流处理状态管理]]"
-  - "[[Stream-Processing-System-Generations]]"
+- '[[知识库/wiki/流处理乱序数据管理]]'
+- '[[知识库/wiki/流处理状态管理]]'
+- '[[知识库/wiki/Stream-Processing-System-Generations]]'
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×2; status=stable; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×2; status=stable; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Dataflow-Model/
+blog_source: _posts/2026-06-15-knowledge-3745cba2f3.md
 ---
 
 # Dataflow 模型

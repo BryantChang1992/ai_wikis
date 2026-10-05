@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Agent Harness: Execution Environment & Sandbox (E)"
+title: 'Agent Harness: Execution Environment & Sandbox (E)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "沙箱"
-  - "AI-Infra"
+- Agent-Harness
+- Agent基础设施
+- 沙箱
+- AI-Infra
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Anthropic-Agent安全容器化实践]]"
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
+confidence_rationale: 类型=concept; 来源×2; 更新于16天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Execution-Environment执行环境/
+blog_source: _posts/2026-06-20-knowledge-93c9b5f5c6.md
 ---
 
 # Agent Harness: Execution Environment & Sandbox (E)

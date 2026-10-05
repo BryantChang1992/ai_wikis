@@ -24,6 +24,6 @@ updated: 2026-05-31
 
 项目文档的生命周期：
 
-1. 在 [[知识库]] 中探索和讨论思路
+1. 在 [[知识库/README|知识库]] 中探索和讨论思路
 2. 方案成熟后在项目文档中建立设计文档
-3. 完成后可选择性发布到 [[GitHub Pages 博客]]
+3. 完成后可选择性发布到 [GitPage 博客](https://bryantchang1992.github.io/ai_memory_chang_ai_team/)

@@ -1,31 +1,33 @@
 ---
 type: concept
-title: "Lethe: 删除感知 LSM 引擎"
+title: 'Lethe: 删除感知 LSM 引擎'
 sources:
-  - "https://arxiv.org/abs/2006.04777"
-  - "https://cs-people.bu.edu/mathan/publications/sigmod20-sarkar.pdf"
-  - "https://disc-projects.bu.edu/lethe/"
+- https://arxiv.org/abs/2006.04777
+- https://cs-people.bu.edu/mathan/publications/sigmod20-sarkar.pdf
+- https://disc-projects.bu.edu/lethe/
 tags:
-  - LSM-Tree
-  - 删除
-  - Tombstone
-  - Compaction
-  - 隐私
-  - 存储引擎
-  - KV-store
+- LSM-Tree
+- 删除
+- Tombstone
+- Compaction
+- 隐私
+- 存储引擎
+- KV-store
 created: 2026-07-02
 updated: 2026-07-02
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
-  - "[[LSM-Tree-RUM猜想]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 4天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Lethe-删除感知LSM引擎/
+blog_source: _posts/2026-07-02-knowledge-2ad49c5622.md
+---
 
 # Lethe：一种可调优的删除感知 LSM 引擎
 
@@ -110,7 +112,7 @@ Lethe 为每层计算 Level-TTL：
           阈值 Δ = 10min
           ----------------------------->
           L1 TTL=2min   L2 TTL=5min   Ln TTL=10min
-          
+
 Tombstone 年龄:
   t=0  →  写入 MemTable
   t=2  →  超过 L1-TTL，强制 Compaction 到 L2
@@ -130,7 +132,7 @@ KiWi 布局（S-D 编织排序）:
   文件 → Delete Tile → Page
           ↑ 新增层
   Tile 内部按 D 分区，Page 内部按 S 重排序：
-  
+
   ---------------------------------
   |  Delete Tile (D-range: 1-100)   |
   |  ---------- ----------      |
@@ -139,7 +141,7 @@ KiWi 布局（S-D 编织排序）:
   |  | [1,50]   | | [51,100] |      |
   |  ---------- ----------      |
   ---------------------------------
-  
+
   执行 DELETE WHERE D < 66：
   → 定位受影响 Tile → 整页丢弃 Page 1 → O(1) 完成
 ```

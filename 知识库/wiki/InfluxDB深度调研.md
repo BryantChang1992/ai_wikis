@@ -1,41 +1,42 @@
 ---
 type: survey
-title: "InfluxDB 深度调研：从 TSM 到列存引擎"
+title: InfluxDB 深度调研：从 TSM 到列存引擎
 sources:
-  - "../技术文章/InfluxDB调研/01-概述与核心概念.md"
-  - "../技术文章/InfluxDB调研/02-存储引擎.md"
-  - "../技术文章/InfluxDB调研/03-写入与查询路径.md"
-  - "../技术文章/InfluxDB调研/04-指标设计最佳实践.md"
-  - "../技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
-  - "../技术文章/InfluxDB调研.md"
+- '[[技术文章/InfluxDB调研/01-概述与核心概念]]'
+- '[[技术文章/InfluxDB调研/02-存储引擎]]'
+- '[[技术文章/InfluxDB调研/03-写入与查询路径]]'
+- '[[技术文章/InfluxDB调研/04-指标设计最佳实践]]'
+- '[[技术文章/InfluxDB调研/05-多副本复制与元数据存储]]'
+- '[[技术文章/InfluxDB调研]]'
 tags:
-  - InfluxDB
-  - 时序数据库
-  - TSDB
-  - 存储引擎
-  - 列存
-  - Parquet
-  - 可观测性
+- InfluxDB
+- 时序数据库
+- TSDB
+- 存储引擎
+- 列存
+- Parquet
+- 可观测性
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB-数据模型]]"
-  - "[[InfluxDB-TSM存储引擎]]"
-  - "[[InfluxDB-3-列存引擎]]"
-  - "[[InfluxDB-写入与查询路径]]"
-  - "[[InfluxDB-指标设计与基数管理]]"
-  - "[[InfluxDB-多副本与高可用]]"
-  - "[[InfluxDB-Catalog元数据]]"
-  - "[[LSM-Tree]]"
-  - "[[事务模型深度调研]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB-数据模型]]'
+- '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
+- '[[知识库/wiki/InfluxDB-3-列存引擎]]'
+- '[[知识库/wiki/InfluxDB-写入与查询路径]]'
+- '[[知识库/wiki/InfluxDB-指标设计与基数管理]]'
+- '[[知识库/wiki/InfluxDB-多副本与高可用]]'
+- '[[知识库/wiki/InfluxDB-Catalog元数据]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.95
-confidence_rationale: "类型=survey; 来源×6; status=final; 22天前更新"
-
+confidence_rationale: 类型=survey; 来源×6; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB深度调研/
+blog_source: _posts/2026-06-14-knowledge-f024fb99f3.md
+---
 
 # InfluxDB 深度调研：从 TSM 到列存引擎
 

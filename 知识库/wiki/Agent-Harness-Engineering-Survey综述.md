@@ -1,37 +1,39 @@
 ---
 type: survey
-title: "Agent Harness Engineering 综述"
+title: Agent Harness Engineering 综述
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "AI-Infra"
-  - "Agent-First"
+- Agent-Harness
+- Agent基础设施
+- AI-Infra
+- Agent-First
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Execution-Environment执行环境]]"
-  - "[[Agent-Harness-Tool-Interface工具接口]]"
-  - "[[Agent-Harness-Context-Memory上下文管理]]"
-  - "[[Agent-Harness-Lifecycle-Orchestration编排]]"
-  - "[[Agent-Harness-Observability可观测性]]"
-  - "[[Agent-Harness-Verification-Evaluation评估]]"
-  - "[[Agent-Harness-Governance治理]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Model-Neutrality-模型中立与反锁定]]"
----
+- '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
+- '[[知识库/wiki/Agent-Harness-Tool-Interface工具接口]]'
+- '[[知识库/wiki/Agent-Harness-Context-Memory上下文管理]]'
+- '[[知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排]]'
+- '[[知识库/wiki/Agent-Harness-Observability可观测性]]'
+- '[[知识库/wiki/Agent-Harness-Verification-Evaluation评估]]'
+- '[[知识库/wiki/Agent-Harness-Governance治理]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Model-Neutrality-模型中立与反锁定]]'
 confidence: 0.88
-confidence_rationale: "类型=survey; 来源×2; 16天前更新"
-
+confidence_rationale: 类型=survey; 来源×2; 16天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Engineering-Survey综述/
+blog_source: _posts/2026-06-20-knowledge-2486199170.md
+---
 
 # Agent Harness Engineering 综述
 
-![ETCLOVG七层体系全景](../diagram/agent-harness-etclovg-7layer.svg)
+![ETCLOVG七层体系全景](diagram/agent-harness-etclovg-7layer.svg)
 
 > 本页为 Li et al. (2026) "Agent Harness Engineering: A Survey" 的 Wiki 概念卡片，覆盖核心论点和生态全景。
 > 七层 ETCLOVG 的详细分析见各自独立卡片。

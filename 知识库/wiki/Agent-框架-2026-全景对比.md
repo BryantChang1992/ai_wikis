@@ -1,22 +1,25 @@
 ---
 type: concept
-title: "Agent 框架 2026 全景对比"
+title: Agent 框架 2026 全景对比
 sources:
-  - "sources/web/agent-frameworks-2026/精读分析.md"
+- '[[知识库/sources/web/agent-frameworks-2026/精读分析]]'
 tags:
-  - "Agent-First"
-  - "Agent-Harness"
-  - "框架对比"
-  - "技术选型"
+- Agent-First
+- Agent-Harness
+- 框架对比
+- 技术选型
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Hermes-Agent-自进化Agent框架]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Hermes-Agent-自进化Agent框架]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于3天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-框架-2026-全景对比/
+blog_source: _posts/2026-07-03-knowledge-e199a8fcf9.md
 ---
 
 # Agent 框架 2026 全景对比

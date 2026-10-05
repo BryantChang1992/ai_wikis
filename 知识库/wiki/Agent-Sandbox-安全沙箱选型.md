@@ -1,27 +1,29 @@
 ---
 type: concept
-title: "Agent Sandbox — 安全沙箱选型"
+title: Agent Sandbox — 安全沙箱选型
 sources:
-  - "sources/web/langchain/right-sandbox-agent-精读.md"
-  - "https://www.langchain.com/blog/how-to-choose-the-right-sandbox-for-your-agent"
+- '[[知识库/sources/web/langchain/right-sandbox-agent-精读]]'
+- https://www.langchain.com/blog/how-to-choose-the-right-sandbox-for-your-agent
 tags:
-  - "agent-infra"
-  - "agent-security"
-  - "sandbox"
-  - "prompt-injection"
+- agent-infra
+- agent-security
+- sandbox
+- prompt-injection
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Anthropic-Agent安全容器化实践]]"
-  - "[[Parallax-Agent安全架构]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
+- '[[知识库/wiki/Parallax-Agent安全架构]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Sandbox-安全沙箱选型/
+blog_source: _posts/2026-06-19-knowledge-f0ea4c5a45.md
+---
 
 # Agent Sandbox — 安全沙箱选型
 

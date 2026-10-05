@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Agent Harness: Tool Interface & Protocol (T)"
+title: 'Agent Harness: Tool Interface & Protocol (T)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "MCP"
-  - "A2A"
-  - "工具协议"
+- Agent-Harness
+- Agent基础设施
+- MCP
+- A2A
+- 工具协议
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Harness-Execution-Environment执行环境]]"
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
+confidence_rationale: 类型=concept; 来源×2; 更新于16天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Tool-Interface工具接口/
+blog_source: _posts/2026-06-20-knowledge-4b6a473f56.md
 ---
 
 # Agent Harness: Tool Interface & Protocol (T)

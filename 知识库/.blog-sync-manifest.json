@@ -1,0 +1,2759 @@
+{
+  "version": 1,
+  "date": "2026-10-05",
+  "blog_base_commit": "f83970fa7e6ad32d626cc6ca3ba7428c90a638a5",
+  "wiki_base_commit": "8a1563c138c830283b27e956e5b7b81999444ff8",
+  "scope": "technical knowledge only; excludes team rules, agent files, maintenance reports and production prompts",
+  "entries": [
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-26-ai-harness-week-01.md",
+      "vault_path": "技术文章/博客同步/ai-harness-week-01.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-01/ai-harness/",
+      "blog_body_sha256": "a00ca50620ed02f7282500ed3cd1411dcd181b9452524713473c1c0c4fcfdefd",
+      "vault_sha256": "06a68da981bde319d6e486dcb81fa64b3252dabd1b9ea54250c81818aebad8bd",
+      "blog_sha256": "023562f056bb7e0fabe9c5d919fac3f102058d27b2fdac153fbfc7a589800d76",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-26-data-for-ai-week-01.md",
+      "vault_path": "技术文章/博客同步/data-for-ai-week-01.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-01/data-for-ai/",
+      "blog_body_sha256": "c75f1fd4beceb8bb6cc018865abf33d4182f87d578f53e615499d976ab9fc014",
+      "vault_sha256": "4596ea050f9cab9068493bc6757c2d0a1600303314dd3809f4131d4854923417",
+      "blog_sha256": "c541d3401e39911f96c12f8dd250e623b0ef09010a21d63307ff98c05af46990",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-26-kafka-week-01.md",
+      "vault_path": "技术文章/博客同步/kafka-week-01.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-01/kafka/",
+      "blog_body_sha256": "342fe31e5b54a2e14d780af4bdad74dab4642044661b6902f4ec2934faaba1b1",
+      "vault_sha256": "8d9d59fff86335be87e5fbffc5f376ce869eb85317d91136f1b8508863f329d8",
+      "blog_sha256": "9f9104fba503a0130a2ae68712751e04ac048b987bd0b33b4541a7ccb127b620",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-26-tech-research-week-01.md",
+      "vault_path": "技术文章/技术调研周报/Week 01 - 2026-05-26.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-01/",
+      "blog_body_sha256": "acbe8522cd9f6f8f726e327431a64e7abf8a8906ebde44a36952c3e47234ce53",
+      "vault_sha256": "38e5fbe1b2d779183284767c5b0d9e685c51cbc04cdd3cb14729b8636cf7aa1b",
+      "blog_sha256": "a4827a909eecc2a534df10ac0c636ef01db1881a1e66ccf11ae04dba351c119b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-28-ai-harness-week-02.md",
+      "vault_path": "技术文章/博客同步/ai-harness-week-02.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-02/ai-harness/",
+      "blog_body_sha256": "bf55924a821dfbb87e6acd0d01938b2294cbee5d127ced8959f5fc41b5860c01",
+      "vault_sha256": "d6354a21a3b5ba467a28472089f8c2f236abe9237076fdb80d06bd71beff5acd",
+      "blog_sha256": "6ddc6753c1d43fb8aeedb9472989667f5f5402379a54a86ee6d1ddb85d563f58",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-28-data-for-ai-week-02.md",
+      "vault_path": "技术文章/博客同步/data-for-ai-week-02.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-02/data-for-ai/",
+      "blog_body_sha256": "a56faa85b51ef5c738abe33f6ce85c00f80a001e11617487c8e586a8333a0e8d",
+      "vault_sha256": "a6340aa39d43e0617b8e7c14d601f009ee0972d75fbd24900acd8e202fb5b807",
+      "blog_sha256": "2459a95e0318e429f7f80f6818029a919f01037a26818bb1b2a7370cebc6d3c9",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-28-kafka-week-02.md",
+      "vault_path": "技术文章/博客同步/kafka-week-02.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-02/kafka/",
+      "blog_body_sha256": "b503a4db4f742d955879e9e8a06fc869a5a463c8095546a4d525d2f632431d47",
+      "vault_sha256": "f1056fb342e04c718102f95e6932a602968bfd0df04f4bc24b733888a81ab384",
+      "blog_sha256": "5ec3338816b820162111b9274e208bdedb40141616dfd07ec668d5c731c9593c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-05-28-tech-research-week-02.md",
+      "vault_path": "技术文章/技术调研周报/Week 02 - 2026-05-28.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-02/",
+      "blog_body_sha256": "03cc608edcd8b7bfc31db54643b5af1c8330506a9478cfdb744802c2f5055d72",
+      "vault_sha256": "e9c289aab3c7f2bdf109c33751f9542fa0fc0f16883a9def6f80ca5e11185927",
+      "blog_sha256": "273839b38aa92d783b0b36b66564a44b43c9f844a11132c6e53b34b7e5d09c4b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-04-ai-harness-week-03.md",
+      "vault_path": "技术文章/博客同步/ai-harness-week-03.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-03/ai-harness/",
+      "blog_body_sha256": "549594a56970f32c8173a8767ddb4fd44542602952b02b2ec24bb46582f41d28",
+      "vault_sha256": "62e73a58358f28dcacbed47c8446f4e0f4df6f67872f436115b429eff2b0c2e9",
+      "blog_sha256": "f5f90518e773134ea6b8af64dea263a22b4e01d2ebfd28d270a8702c7bd9ef1c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-04-data-for-ai-week-03.md",
+      "vault_path": "技术文章/博客同步/data-for-ai-week-03.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-03/data-for-ai/",
+      "blog_body_sha256": "cb49da4aead6396671ccf173c8d5f186fa0a6c7593925d9d5a6add18129fae9e",
+      "vault_sha256": "5f2182b208db23802e212e088fa8fabbf211cd40b6bed81c5be162d1660744e9",
+      "blog_sha256": "c20850261b19c28c79dfa940e5b0bb6cf99e127c7a7a00fcd931ad74db8a3d1d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-04-kafka-week-03.md",
+      "vault_path": "技术文章/博客同步/kafka-week-03.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-03/kafka/",
+      "blog_body_sha256": "3fdd5be20fa619f1b42141f3ae7d5155c439943f5ff28ef0eca80d1fa065a4e3",
+      "vault_sha256": "5e14b753736e6778beed92fbd311ea0bb68de8d7615fa5473eed93b5fbd97223",
+      "blog_sha256": "b43ee0478b0ca999f146f6aef0411faafbc6af85226237381fe502703de85500",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-04-tech-research-week-03.md",
+      "vault_path": "技术文章/技术调研周报/Week 03 - 2026-06-04.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-03/",
+      "blog_body_sha256": "ac6b604ab6f4b3039c5395227647ec26c2da23406435da137da4f728ff7b1b35",
+      "vault_sha256": "ac8e4e812504c0ece7cacb45fb7fea8095be4fce87e59bdc7ebc979df70609f6",
+      "blog_sha256": "6bee10b2425f4be1d1d9ad1bcc6bf5f92df01a328ea8104b511d36ffec57cc32",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-ai-agent-papers-week-04.md",
+      "vault_path": "技术文章/技术调研周报/Week 04 - AI Agent 论文速览.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/ai-agent-papers/",
+      "blog_body_sha256": "b80b206715f5338d7a7fe9adf7596ea7d55b3c03b128c892f755e2f597b346ad",
+      "vault_sha256": "19a5dcf7f0da354a47ef7be2b1b224cda5b919f76888c2ea75d35e53918a1787",
+      "blog_sha256": "0549caa4950a192d914ce43d2f7c116df8222f0f3b4dadce4c0c8a1c3c238dc3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-ai-harness-week-04.md",
+      "vault_path": "技术文章/博客同步/ai-harness-week-04.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/ai-harness/",
+      "blog_body_sha256": "2131464e8e7fccc284f4fa06b48242ecb38223f6c43eae25a24af9d8fc8c1072",
+      "vault_sha256": "94c176d9d00332509fd95bce800119277d2b087f9f79fe01dbf73d7dde32c5f1",
+      "blog_sha256": "6d50e15ef7a66746f423fbc431f8a4d8c6cd164b33ea66ffec4a416e58260e5e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-data-for-ai-week-04.md",
+      "vault_path": "技术文章/博客同步/data-for-ai-week-04.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/data-for-ai/",
+      "blog_body_sha256": "acf1224c2bbaee44750b7aeb771ab977ee4baf440a3a48afd4c75272933d99e1",
+      "vault_sha256": "f178f2f075e5b702ba8ca2872a5225eb7d96ea9d51e88376ee494b256a889508",
+      "blog_sha256": "9ab0af6ff2185b87b37ecb566a03bf66e37d1182b2d90aefb561806b0804f769",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-event-horizon-paper.md",
+      "vault_path": "论文精读/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations.md",
+      "aliases": [
+        "知识库/sources/papers/Event-Horizon/精读分析.md"
+      ],
+      "url": "/posts/event-horizon-paper/",
+      "blog_body_sha256": "09d17feda383736b8dbd6f20198bedc47989dfca2a7673b6202588cc1720907e",
+      "vault_sha256": "0ed3a9ff13ced6931bd0cd35ef3b72299697c265db97448aa981294520159cef",
+      "blog_sha256": "63c7561ecbc27c23c499448b3cca3b25a43c6a6874874b2ff7a297fd6b86703c",
+      "alias_sha256": {
+        "知识库/sources/papers/Event-Horizon/精读分析.md": "0ed3a9ff13ced6931bd0cd35ef3b72299697c265db97448aa981294520159cef"
+      }
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-event-horizon-translation.md",
+      "vault_path": "论文精读/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译.md",
+      "aliases": [
+        "知识库/sources/papers/Event-Horizon/全文翻译.md"
+      ],
+      "url": "/posts/event-horizon-translation/",
+      "blog_body_sha256": "03c047ce6bbb90a4ef8b3fc97bd90696376c904d551501f944a828b2c6a18320",
+      "vault_sha256": "82e2ea642a8c27d5573c8795d27fa5ab0be93238963cf69cd0ac6534678b1926",
+      "blog_sha256": "2cb08f6008e6178b505f35a8e662d555ebc208322454735fbf20edaa1faa3ace",
+      "alias_sha256": {
+        "知识库/sources/papers/Event-Horizon/全文翻译.md": "82e2ea642a8c27d5573c8795d27fa5ab0be93238963cf69cd0ac6534678b1926"
+      }
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-kafka-week-04.md",
+      "vault_path": "技术文章/博客同步/kafka-week-04.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/kafka/",
+      "blog_body_sha256": "9a11c1fd0112e4ef41318b71ab36592a55f8ff061c4095bf9c677e41c17886ad",
+      "vault_sha256": "9c92126c34f1725823896c3b7d6244bc3426d941cc7db44289556ac964d0c872",
+      "blog_sha256": "b574564207b44e78c9dc51d14bcad70a36e522f6b26178f39493ba04c6a2e384",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-raas-paper.md",
+      "vault_path": "论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB.md",
+      "aliases": [
+        "知识库/sources/papers/RaaS/精读分析.md"
+      ],
+      "url": "/posts/raas-paper/",
+      "blog_body_sha256": "e225a3a61e279d599772df870d8d193961c98b9516fb81fda31fb16d3eb9f199",
+      "vault_sha256": "c95bf402acb863d488d5855b1e010e9f6fa57165710951f253d54ad4999b7411",
+      "blog_sha256": "051dd88c940677a96aefef9ef8afed608ba603015caac8ea255172566eecdd72",
+      "alias_sha256": {
+        "知识库/sources/papers/RaaS/精读分析.md": "c95bf402acb863d488d5855b1e010e9f6fa57165710951f253d54ad4999b7411"
+      }
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-raas-translation.md",
+      "vault_path": "论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB-全文翻译.md",
+      "aliases": [
+        "知识库/sources/papers/RaaS/全文翻译.md"
+      ],
+      "url": "/posts/raas-translation/",
+      "blog_body_sha256": "955684acf36fe9a8e4750a7c96a4b84588cf9e0098b366a0cd78194333be4da2",
+      "vault_sha256": "75314348e88992bcf21e774d2b9eaac4b37130e9dbb65a0efa44c16e6ed5df8a",
+      "blog_sha256": "bccdd2d1e83bb5fc1d4c10a7d3a76e651fcbbd670b2c723b7161ed0d8efa74e4",
+      "alias_sha256": {
+        "知识库/sources/papers/RaaS/全文翻译.md": "75314348e88992bcf21e774d2b9eaac4b37130e9dbb65a0efa44c16e6ed5df8a"
+      }
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-tech-research-week-04.md",
+      "vault_path": "技术文章/技术调研周报/Week 04 - 2026-06-11.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/",
+      "blog_body_sha256": "3f7c7348dcd7d4c734caf3492985701614a53b0a849b2b489c417c8ddcd5abc4",
+      "vault_sha256": "8358c1d5daa6d4881d7f8b6f4ee2d8c6087671dfe5ea4d73777df2f2a761ac78",
+      "blog_sha256": "df9c1efd0ba4b6c55c33c85c8d3377e7035750d3545b6424f7002bc0ccf79d12",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-11-top-conferences-week-04.md",
+      "vault_path": "技术文章/技术调研周报/Week 04 - 顶会趋势洞察.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-04/conferences/",
+      "blog_body_sha256": "b99483c745498774eee4b47192077dc50cc2182cbb6e6b0f56d3181c300de26e",
+      "vault_sha256": "21ba9062113df14df8acca713117ecfa1d7f1ec4b4e6cc754c7a6bee627e78db",
+      "blog_sha256": "bb014c9ba14fef7534d506467987fd4eeb794bf67456dfb4a5568405dccc752f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-ai-data-pipeline.md",
+      "vault_path": "技术文章/01-AI吃的不是数据是营养液.md",
+      "aliases": [],
+      "url": "/posts/ai-data-pipeline/",
+      "blog_body_sha256": "ddac0fd32dba2634abf22565a90d34579511491b127e2ecd943b2109568e911b",
+      "vault_sha256": "c2fefafedde814a76bdf21fb8eee34c8abc2182a6aeb12a3f45e2d46d97b6aba",
+      "blog_sha256": "c146b13ca0da0085f9d529e84fba0a214e4cd48c7969766de377a8a4517f3afa",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-doris-architecture-evolution.md",
+      "vault_path": "技术文章/Doris调研/04-架构演进.md",
+      "aliases": [],
+      "url": "/posts/doris-architecture-evolution/",
+      "blog_body_sha256": "30ecf6075fdc17ad9720f682618056620e143731496710add9b224c7ef2b0b54",
+      "vault_sha256": "08b3444872628e401bae42946b98312479bd00a6ebba9acecca51c77518c750d",
+      "blog_sha256": "da5c0b6f73572d317f42a8836d26a576c6696ee1c4dd52f193161908eba882f0",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-doris-metadata-replication.md",
+      "vault_path": "技术文章/Doris调研/05-元数据存储与一致性复制.md",
+      "aliases": [],
+      "url": "/posts/doris-metadata-replication/",
+      "blog_body_sha256": "08b7eadab80049a44329224db20ed9d8e6b4577fa18985e8e15d7efb04cb261c",
+      "vault_sha256": "71d02ae6f6632ce5223c298e35e77880d4a289ea771b30ecf00d69b7f55d2294",
+      "blog_sha256": "82ae24cc4a133d07945c2e39112691a78b32342bb74adf8eee1920f248124f05",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-doris-overview.md",
+      "vault_path": "技术文章/Doris调研/01-概述与核心概念.md",
+      "aliases": [],
+      "url": "/posts/doris-overview/",
+      "blog_body_sha256": "0d0c9d2c2895efdbf41e14447d95e6fe57d5cd1f6d9db6403bf0ed9b2a98df1b",
+      "vault_sha256": "56774011ee4858d51a32ee904367f16bac34bbd3df5bf95189eec463d16dd0d8",
+      "blog_sha256": "4ce27f38294fa27ccddbc96c734cdac6a9681f88c98ea591d0d1b2049931726b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-doris-query-engine.md",
+      "vault_path": "技术文章/Doris调研/03-查询流程.md",
+      "aliases": [],
+      "url": "/posts/doris-query-engine/",
+      "blog_body_sha256": "557ffcf44840712d7247f1361fa23c06af1effe95d8013d4b671a3fe18d0f498",
+      "vault_sha256": "15c20793828f7a1bd2e5a8598471f91f78d93f390dc505c58dcb7f8a63bc4ba1",
+      "blog_sha256": "0f8300c9a331bc1f68d07b1157e65bbd4a6a2f75241e1d42789ab34ebead1ce1",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-doris-storage-engine.md",
+      "vault_path": "技术文章/Doris调研/02-存储引擎.md",
+      "aliases": [],
+      "url": "/posts/doris-storage-engine/",
+      "blog_body_sha256": "842d5764500373d4f6e8df15b992f18fed60eec167f175cea84aef8d1255d7ca",
+      "vault_sha256": "68227711ddf1cf65b0a30a75987f4d20bce221caef24a3db34f4f4d686ce7f9a",
+      "blog_sha256": "7d822a88776a3fc4fd3e255df8434f245f656018eee16800e926e692abc0518c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-architecture-comparison.md",
+      "vault_path": "项目文档/Fluss源码分析/01-整体架构对比.md",
+      "aliases": [
+        "知识库/sources/web/fluss/01-整体架构对比.md"
+      ],
+      "url": "/posts/fluss-architecture-comparison/",
+      "blog_body_sha256": "848f897b71b84120a299bd106f96792c53912e9b8dc10cb83362d6b5930a972e",
+      "vault_sha256": "4835f20aee112ddcedb58e3d9441c9751b0bcc4c0c8e79544f2525c681794683",
+      "blog_sha256": "54952fae5df1e0bb72e30d309d1d0c275dec2da61656c8eac707c6d268781ae5",
+      "alias_sha256": {
+        "知识库/sources/web/fluss/01-整体架构对比.md": "4835f20aee112ddcedb58e3d9441c9751b0bcc4c0c8e79544f2525c681794683"
+      }
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-client-integration.md",
+      "vault_path": "项目文档/Fluss源码分析/05-客户端与计算集成.md",
+      "aliases": [],
+      "url": "/posts/fluss-client-integration/",
+      "blog_body_sha256": "7b24d6ff4b71a1a54529f59298e57d30fc981a1a00fa302282f4ec19ed5af0d5",
+      "vault_sha256": "a42e5358e01ecc7f731311d371f59b3ebcf080ad1a572ffeca4ff8e449a5cdfd",
+      "blog_sha256": "e7add455234339bb380b2330d04a7277054d9a31b93ebabeb744666bdbfd4936",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-coordination.md",
+      "vault_path": "项目文档/Fluss源码分析/03-分布式协调.md",
+      "aliases": [],
+      "url": "/posts/fluss-coordination/",
+      "blog_body_sha256": "73ef5a7b7d734cc56ed7f316c955d7d4e900bdd4d52478e244c29f8ca421c7ed",
+      "vault_sha256": "608084b634c9a669064a5d1042c160ca196e8fb7d0adc2adcff7d309d02831a7",
+      "blog_sha256": "54488382d2d63b9e7535166023e723dcd5645777eae2810dcb905ba4fca5ffd6",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-lake-tiering.md",
+      "vault_path": "项目文档/Fluss源码分析/06-Lake层与湖仓融合.md",
+      "aliases": [],
+      "url": "/posts/fluss-lake-tiering/",
+      "blog_body_sha256": "48ea1650004e95233f752b3d81a16e8e53493e1c4383d5113353e29736695711",
+      "vault_sha256": "8e85ebc9f3b0eb7b4af5f56660cff4205736ed1a7e9a918af7eb1bdafa8cbbd4",
+      "blog_sha256": "412555df0d6559888a102d9479c6da1bab66eaf3c9891a0934bafe83cbb449e8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-module-mapping.md",
+      "vault_path": "项目文档/Fluss源码分析/07-模块对应关系总表.md",
+      "aliases": [],
+      "url": "/posts/fluss-module-mapping/",
+      "blog_body_sha256": "0c89e70f90439ff85284a38c490630016e344eea8dff8f5feed9055d874b563e",
+      "vault_sha256": "f5024aba5f8595c886c53ed9b22ff12aebd710128d025882ed75084df9ff11e9",
+      "blog_sha256": "6f8b12b744b51a84054c8761d9ad794aaf851a4ffbe043ae11db682b666f0064",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-rpc-network.md",
+      "vault_path": "项目文档/Fluss源码分析/04-数据面-网络与RPC.md",
+      "aliases": [],
+      "url": "/posts/fluss-rpc-network/",
+      "blog_body_sha256": "d2d175caecd9de9e26131a1a4ec083487ce4ebb1a31a283e08ec8681583ae33c",
+      "vault_sha256": "acac9ac775b57058869dff86991090820df8d0a4e7c52ef7cc3b4240c63047fe",
+      "blog_sha256": "4d3410c58885236b1a88271bb2f0ffa28113a1e9f846144e202b86ba2d035e4b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-fluss-storage-engine.md",
+      "vault_path": "项目文档/Fluss源码分析/02-存储引擎模块.md",
+      "aliases": [],
+      "url": "/posts/fluss-storage-engine/",
+      "blog_body_sha256": "669cd2fa0e2383dcf87a64f0fbafd2cd98ec788dfafec674ef1af068941de963",
+      "vault_sha256": "234842198a4c8d2f666a55b4b457b8ce0efe64c66a328b7187fb17774ac08fa4",
+      "blog_sha256": "a239635b6ca4f16b9f1a5d26cced91dd822aed302a74941af4bc3eae9a3e0483",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-tech-research-week-05.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-05.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-05/",
+      "blog_body_sha256": "f574d0f3c395b91a6607f06d8c292211db46943992dd4c5b06ed1093d1ec31c2",
+      "vault_sha256": "6fd487a48c6dd8d4ec0b3e3eecc3797af41e14fc0891ce2c6fc4fe345886dd7e",
+      "blog_sha256": "342c53b98a9e8085d31065f53eb823f05778b2d91637512c0e587c68c57a2cd7",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-transaction-model-survey.md",
+      "vault_path": "知识库/wiki/事务模型深度调研.md",
+      "aliases": [],
+      "url": "/posts/transaction-model-survey/",
+      "blog_body_sha256": "6ae275eb7984c1c036fb5f511605e2ac9cf57683961621150b2c2ae6a3d87a4e",
+      "vault_sha256": "30212c2be361af66c2d0e11392be40a94d91b249670c9d798559170d14531d2b",
+      "blog_sha256": "3068b7d9700b2013cd9f8ea7cb209a3098259e3211d9378641627bd632e13ac1",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-wiki-synthesis-consistency.md",
+      "vault_path": "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+      "aliases": [],
+      "url": "/posts/wiki-synthesis-consistency/",
+      "blog_body_sha256": "bc60f76cbf446ad2781d1c287a2a67b745e1c98be708206a52626b0b2207435d",
+      "vault_sha256": "797cfddc9621919a68ba0d5243244743d8ab353d96c35c2108ab9190cd492a21",
+      "blog_sha256": "670370be104673beb5a3d3e3acfadf0b2d0143e574eae0d0610c1bb0ad3581d1",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-wiki-synthesis-lsm-tree.md",
+      "vault_path": "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+      "aliases": [],
+      "url": "/posts/wiki-synthesis-lsm-tree/",
+      "blog_body_sha256": "e2b10a04ada5e463d7c7a218994a9f41ba8e702f0cc24e920f501f6eeead83fb",
+      "vault_sha256": "c9a020eb7a40e52a1c87004aa5845f2f9084b6a797502fe72b01c0256e94c935",
+      "blog_sha256": "0fc6ad4ec7e4d42eba36f5f36df08172be013015328babd3f6623cefbdefec3c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-14-wiki-synthesis-olap-tsdb.md",
+      "vault_path": "知识库/wiki/synthesis/OLAP与TSDB全景综述.md",
+      "aliases": [],
+      "url": "/posts/wiki-synthesis-olap-tsdb/",
+      "blog_body_sha256": "f73ddb7ee71de83e29e9413c87ff98010ca18f5a7ec5d2577cceb70474e9fad0",
+      "vault_sha256": "5ba275aad6b5468b68af0d40a33eb796a367e201ebe9a4d20d1a6c4c6e7a7e11",
+      "blog_sha256": "73d12cf090c1ccc5253a81077e0ea864984e254345ca2804645a6c0f7b367818",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-agent-papers-week-06.md",
+      "vault_path": "技术文章/博客同步/agent-papers-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/ai-agent-papers/",
+      "blog_body_sha256": "d3ff41225c205188896948691a50220ba2e7bb7d07dfc66550894a926c69aef8",
+      "vault_sha256": "5f8dd4668efb0b4a69d892219af2a59947caf577fba7ccc1b8ca51a1b3d9fa81",
+      "blog_sha256": "156c36af831ce8ac598120ffdaf35a1f41e52b6c7ccec68bc0f78623f7053e8f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-ai-harness-week-06.md",
+      "vault_path": "技术文章/博客同步/ai-harness-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/ai-harness/",
+      "blog_body_sha256": "a6805895c28f149558d60f71c1a4a5c412f4eaf259dd60191d33764768c91a3b",
+      "vault_sha256": "b0621918e8c64df963783fc53f9f023d3050611997f4a6fccc1115f80e4e3a5f",
+      "blog_sha256": "98430a9249a799fedb42eed41e59c58ea46c43a1d994995e740f7cc46f5e5d4a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-conferences-week-06.md",
+      "vault_path": "技术文章/博客同步/conferences-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/conferences/",
+      "blog_body_sha256": "9a65fb77033abe0e5c2b380422a89accf36d9898b1bd265b7a89551dae49bcb7",
+      "vault_sha256": "9d1f16675a1a1154a13ca8803f66b98ffefef71af3ce033ce953ece96f6202a3",
+      "blog_sha256": "27200d174eb1ee5f9249f3c630f5c9334f0158f345c3b424af3b94be7b24a77b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-data-for-ai-week-06.md",
+      "vault_path": "技术文章/博客同步/data-for-ai-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/data-for-ai/",
+      "blog_body_sha256": "096c5b2c59f7ed0980e335ed7ce5ec2caaf656f1b5c8b37227f0f7eb4435e7f0",
+      "vault_sha256": "ac02d791299f2a14cdc0441323f34b5f7f8e3f0f67e19b5b235b518a03bd5a69",
+      "blog_sha256": "67a8a8148191d971e0542655a1a922a7ddd017465b9231faf128f1518a1aa768",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-doris-tsdb-week-06.md",
+      "vault_path": "技术文章/博客同步/doris-tsdb-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/doris-tsdb/",
+      "blog_body_sha256": "f74b8f8c85e70a52c00f44a80ceabe91e24d3b19e1625142847f24c4b068c295",
+      "vault_sha256": "b0f4918fbcd5bc5cf3353c93881772b41b8cb2bed089193f56ef210dd43338f9",
+      "blog_sha256": "040bbc496a1745942a1e87699274e776526ef71e6b0a78411de730d1848051a0",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-kafka-fluss-week-06.md",
+      "vault_path": "技术文章/博客同步/kafka-fluss-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/kafka-fluss/",
+      "blog_body_sha256": "f63875530481af6367b4107e306a3a3b68e2950f6c83cb327dc71f151e98d791",
+      "vault_sha256": "824ed639b4c2c13b2c00d5835ba80622904e0d125470a9f902994dc217a53452",
+      "blog_sha256": "ca5d9710bd90d3b80edd994a45d755c7f2a29b798dde65cee740722e479eb03b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-18-tech-research-week-06.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-06.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-06/",
+      "blog_body_sha256": "1d97fe64d1de563f20f4ba662696a93c358a362c6344a1bd16bd40f36278629d",
+      "vault_sha256": "7ab425467c2aa5165abfa5c3ec4d966e832555498a46e658d70e3879b71a1d71",
+      "blog_sha256": "0ea88657b6bd42c91d6a09b2556825ff7cd14c4468327aca00d991011b9fac8a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-06-25-tech-research-week-08.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-08.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-08/",
+      "blog_body_sha256": "52c0531a710e18d2041ffe1ea46db5b1ace266e5e6556c56a819f4e83c5150c4",
+      "vault_sha256": "407214ffa6a8507b2b071c958f0c68f3c09a9826010ff2280df3906f186458ad",
+      "blog_sha256": "4a42080bf4a4dd17add4d2d1795fdd1a094a20cc24f3ad15124fd6c271f10fa6",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-07-02-tech-research-week-09.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-09.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-09/",
+      "blog_body_sha256": "11c90501cabd729d7a1083c57632aa2f1f51c56e7bb842fa9e635eb108f894f3",
+      "vault_sha256": "55bb279f02635f228e2141c46aa6ac0b683b1067506c74d7f83976da947a1541",
+      "blog_sha256": "af2f9a6b3189c714de4ff559ce458ce091b707759e799f68f44b46434afb5026",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-07-09-tech-research-week-10.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-10.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-10/",
+      "blog_body_sha256": "f64d11b867345d78b7ab0c447c8a22a92200800b6e22b1ef578ecffadcbd9c2e",
+      "vault_sha256": "63ad1db1d501367bf166fa40d484138cdeeaec47c6fa931643575b54714417d5",
+      "blog_sha256": "81733d292a31a34e601e26fe78715ca317303955f15964b3e863c8b8b44a8178",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-09-11-tech-research-week-11-ai-infra.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-11-ai-infra.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-11/ai-infra/",
+      "blog_body_sha256": "353d8a1c533989d476203414a22ed8c7b781a1a1ff426179b050d734cde6eeed",
+      "vault_sha256": "219fc35ff8e23ef2a558ead817b114fc309ffe7abb673eb889609f13f476f13b",
+      "blog_sha256": "53a0ccf82fcebd3aa6a948be8769249452d3ab77b72a8fe8640fba3ba47acca3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-09-11-tech-research-week-11-distributed-storage.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-11-distributed-storage.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-11/distributed-storage/",
+      "blog_body_sha256": "ad093d0a40ab3e8bf0a22ade6a5a926e8c59a161eed73e16295e721947d5007d",
+      "vault_sha256": "db9332ee11593ccc25e00d6d49bc9e42e74a18ab1f14198f633f0320ccd65417",
+      "blog_sha256": "8fdbdd9115f8d49959cb62eed58e0d63bbc15b4718ddbe632923964b07ac54ce",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-09-11-tech-research-week-11-lakehouse.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-11-lakehouse.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-11/lakehouse/",
+      "blog_body_sha256": "bd009c5245ed72fba1df81e19db9ade65d3290bfbf69746213a0dfce37e67443",
+      "vault_sha256": "c75f69f2019537ae2146818d3aa609b7213ad989fadbca09f5cd48b3fa399949",
+      "blog_sha256": "da216cb2d9e5f3faab1e6b6073d6a88ea32abc5d430492397cc9147b723103a3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-09-11-tech-research-week-11-streaming.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-11-streaming.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-11/streaming/",
+      "blog_body_sha256": "dce2a1716b50945c7c715c4344fea429ed8faf5141c179113b1e1070faa4dfad",
+      "vault_sha256": "173f0856bfcc0fa50b6ef5e53c00a7bc2c0d3a7019a96a6563822d183e01eb9c",
+      "blog_sha256": "b0809417839c19e7263897324a945383c2246dc1735ee4345fe264411ce6f1dd",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-09-11-tech-research-week-11.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-11.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-11/",
+      "blog_body_sha256": "d8532b594b0daa23f50d4f851a0b6a849ca67e59110ad4431d507c8eac7138b2",
+      "vault_sha256": "15b5a03699f97035886811f3be8145236008ecbe184d1f6eb38396293dc86fd7",
+      "blog_sha256": "1667ba4782e7225eae8b1a1b80c151e4bd4c3ba7709e4428075bddf72e36734f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-10-04-tech-research-week-12-13.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-12-13.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-12-13/",
+      "blog_body_sha256": "7882c73222d8b7fbff472ab933a3e7fa9cc54ae1d745263b3070d5e6e5d7fb2e",
+      "vault_sha256": "fddadd109a81f5ecd7d9c883e92ea322479c2e80deeaac0947b1a88ee7554644",
+      "blog_sha256": "9f9ef662359bfbf0ea499581edb22b8455a42c7a42efd67cdeaca78e2b323b72",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-11fd643c27.md",
+      "vault_path": "技术文章/Doris调研.md",
+      "aliases": [],
+      "url": "/knowledge/Doris调研/",
+      "vault_sha256": "b11729c07a599df1e7489eb2f0aaf42dd952629beaf75886d6459850f467e812",
+      "blog_sha256": "73e1a1e5e9bccf09df6e43faa73b554bf6d277d7475f9b0c38362e5e15643111",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-66fb91574a.md",
+      "vault_path": "技术文章/InfluxDB调研.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研/",
+      "vault_sha256": "f514627f7b0b7b3c17d9408cbaf5a7d0ad30dd54dcf6fe4d7c8e1593c9ac5f92",
+      "blog_sha256": "fe1ca858130edab8ed6ebd90b036e5d6d0f80ff1ed586234b5b515a9d7191882",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-29d9234e7e.md",
+      "vault_path": "技术文章/InfluxDB调研/01-概述与核心概念.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研-01-概述与核心概念/",
+      "vault_sha256": "e591d7d266b151913ffca26df08515f6607fc805ee942a7caf8108b66df5eeab",
+      "blog_sha256": "d5c7071af2cf0e6fd4cea3ff93c228e7cca64290c93761211d874a68d54869d5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-c60f58e074.md",
+      "vault_path": "技术文章/InfluxDB调研/02-存储引擎.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研-02-存储引擎/",
+      "vault_sha256": "db7d6157545a507507b951d06600c04dbc95b4be7101071527509c173440190e",
+      "blog_sha256": "a8bec6504466af23cdbcb753fb9fd844b2c1a6fab6fe0394eaafafc3740a7548",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-84b9c16b27.md",
+      "vault_path": "技术文章/InfluxDB调研/03-写入与查询路径.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研-03-写入与查询路径/",
+      "vault_sha256": "4225eca311c1e66a6bde7c3b85c080674cdf99beeeadbd032b307c8a8960fa4c",
+      "blog_sha256": "974b074dcc467f7749b3d897c698daedf405ec0b110b0dbb863b0e99f8313b61",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-00d9857a2e.md",
+      "vault_path": "技术文章/InfluxDB调研/04-指标设计最佳实践.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研-04-指标设计最佳实践/",
+      "vault_sha256": "cd4344489632a6bc8e9ebc9181d2299fa19c476a9678d3f36b811da303a36d79",
+      "blog_sha256": "8dc6b1ef1977a79ec5293018697e5104a17cc6b837df1f6f558e636c2c7b6045",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-cb8995a010.md",
+      "vault_path": "技术文章/InfluxDB调研/05-多副本复制与元数据存储.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB调研-05-多副本复制与元数据存储/",
+      "vault_sha256": "65d0919b0f56fdd81afc4bfbc12ea49b96000e654482b281a8e5211d2e775437",
+      "blog_sha256": "1589ec851ddadde97c31b0af7557807d7c197825c48420cb2a6931dc00609338",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-7c92e3089a.md",
+      "vault_path": "知识库/sources/papers/Agent-First-Data/全文翻译.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-First-Data-全文翻译/",
+      "vault_sha256": "03054333bf6972aed9007c85f96d93bb8ebf76932f8d97bb11978a1998638df5",
+      "blog_sha256": "c1c0f650a0f4beb09cac82bd694dc1e034a8c320417e064ddf4c8c15505d7140",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-15a3c49119.md",
+      "vault_path": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-First-Data-精读分析/",
+      "vault_sha256": "6f2573d8063038db046dbe6e4f7ab05122b34f7448393bf99d7ae9d8eec93c1e",
+      "blog_sha256": "16a05afc43300fd566ab15cf2408a9eda1f0b4db7d38965eee893754723d9844",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-d3d6d00daf.md",
+      "vault_path": "知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Engineering-Survey-精读分析/",
+      "vault_sha256": "f2026b6193595c4497d7ef231c4df8b74729eb74bff2e9921bff1af9f53a47b6",
+      "blog_sha256": "76112a13b4180baead3c76bc4165ea819a91d799d0fb4aca8faa48f80e6e6814",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-582009389f.md",
+      "vault_path": "知识库/sources/papers/Agent-Memory-Survey/arxiv-2603.07670-精读.md",
+      "aliases": [],
+      "url": "/knowledge/arxiv-2603.07670-精读/",
+      "vault_sha256": "2e631490c81f68378b09bcd69ded79f79b30713e6aa18cb1ca15b1663c273b9c",
+      "blog_sha256": "7af95584d7952df9873f1e9e9db47323a99feea5d193d58afc1b3553b4916804",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-93c660eb17.md",
+      "vault_path": "知识库/sources/papers/Aurora-Limitless/全文翻译.md",
+      "aliases": [],
+      "url": "/knowledge/Aurora-Limitless-全文翻译/",
+      "vault_sha256": "c53759c22c506283a9699407e083209d8495df1d37b05cd01128e321bac88785",
+      "blog_sha256": "ad65fdd1d0bcab37727b254c5298be99b10e231c7090fa54384f1b83d344fbdf",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-c5b62fefcb.md",
+      "vault_path": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Aurora-Limitless-精读分析/",
+      "vault_sha256": "05cf61887f08cb32d83f230823b8749a38254f95c0fc2d31d6c62084d20e3c86",
+      "blog_sha256": "9da8e85a706cf4c5d68e293cf059c4bd8ff0749887ee51b873e526f22442e44a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-11-knowledge-f4cb2060b0.md",
+      "vault_path": "知识库/sources/papers/Bigtable/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Bigtable-精读分析/",
+      "vault_sha256": "81485c55305d8b663b9ab63a041247ad499b255d76b022669e7fc40a3008f04b",
+      "blog_sha256": "ee89db137db0da66179251e60bb50c1297fe479c481c3860bab7542a1b963a95",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-59d6f86fba.md",
+      "vault_path": "知识库/sources/papers/ByteHouse/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/ByteHouse-精读分析/",
+      "vault_sha256": "8193e7a2b7c591c0da573e4bdb83c8bc1e2b99500d902cfc2643852316385eb3",
+      "blog_sha256": "8bcfd3c89c0462b0cafd920a1d48ec9d77ce4da74d54686216233c3add729e24",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-d36572538d.md",
+      "vault_path": "知识库/sources/papers/Chandy-Lamport-Snapshot/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Chandy-Lamport-Snapshot-精读分析/",
+      "vault_sha256": "9736e108c2de7692ceac9357589663188884b763882f574d9b31bec7334df2df",
+      "blog_sha256": "94499571d3eb28df1bc34c521231508a6f97d706cf8df2103ba8699ae467ec9f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-2ee4765b45.md",
+      "vault_path": "知识库/sources/papers/CockroachDB-Leader-Leases/全文翻译.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-Leader-Leases-全文翻译/",
+      "vault_sha256": "00830ff843ed4eb849978ab41d115b7a2855f11e5366548898b5ab38ad2a471d",
+      "blog_sha256": "47b503a370f8ff125f9de886ea0a9e9b49c58092a169b15a860f1cb699887089",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-43884d5b20.md",
+      "vault_path": "知识库/sources/papers/CockroachDB-Leader-Leases/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-Leader-Leases-精读分析/",
+      "vault_sha256": "b81ee688f999948b765d7c35b6d03d5769d4bbbd84ea6d2904e00d8b9769611d",
+      "blog_sha256": "0d06333ba1ee76860e7a73022bbce714e93f4ef4ddc0104b09e65822067747f2",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-6ec575a2ce.md",
+      "vault_path": "知识库/sources/papers/Distributed-Consensus-Revised/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Distributed-Consensus-Revised-精读分析/",
+      "vault_sha256": "6a08f5d5eb6e097d7b350df7178bde2dbcbc4d3a989c1940fd000697107d5876",
+      "blog_sha256": "b25d9191ebfc25eeda007d153f0d9c96ac61788afac7e26f736b045c6f9f1573",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-2c8ddef7be.md",
+      "vault_path": "知识库/sources/papers/LSM-Scheduling/全文翻译.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Scheduling-全文翻译/",
+      "vault_sha256": "7633827ad674ef3d9d90c77790491c1037474f370aeb5ad0076210460dc628aa",
+      "blog_sha256": "3e9d7181cf30da0428019ca547974b871ce70840d7510ef75b5a2ab39c7b7376",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-b9e535ab1b.md",
+      "vault_path": "知识库/sources/papers/LSM-Scheduling/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Scheduling-精读分析/",
+      "vault_sha256": "8977b1c3e072a6f9dbe59fd3c2066efd547e90116db7a33ffa113045e7ed2785",
+      "blog_sha256": "51f8a0440de01823ba2531422ca9061dcf65a3d7579c195d4197341c702558ef",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-95ae12d175.md",
+      "vault_path": "知识库/sources/papers/LSM-Survey/全文翻译.md",
+      "aliases": [
+        "论文精读/LSM-based-Storage-Techniques-A-Survey-全文翻译.md"
+      ],
+      "url": "/knowledge/LSM-Survey-全文翻译/",
+      "vault_sha256": "f2c5a243fb3a3e3b3ca812d225bda93f769e066991d9f45f978baeed6a652401",
+      "blog_sha256": "f856590c2e983687a132ba18fda9614eae66ce3a76567904cfa2d097f0ebb8c0",
+      "alias_sha256": {
+        "论文精读/LSM-based-Storage-Techniques-A-Survey-全文翻译.md": "f2c5a243fb3a3e3b3ca812d225bda93f769e066991d9f45f978baeed6a652401"
+      }
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-12-knowledge-a0db58f650.md",
+      "vault_path": "知识库/sources/papers/LSM-Survey/精读分析.md",
+      "aliases": [
+        "论文精读/LSM-based-Storage-Techniques-A-Survey.md"
+      ],
+      "url": "/knowledge/LSM-Survey-精读分析/",
+      "vault_sha256": "32a453858b0f40d9cd4bf4336a7f9b6be3603ad668d581b0a7ce6b779e221ccc",
+      "blog_sha256": "292fa83b7c056f625688d60e64fdf452f9ee2bb4d0bb8339c4ab2fe9d54110ab",
+      "alias_sha256": {
+        "论文精读/LSM-based-Storage-Techniques-A-Survey.md": "32a453858b0f40d9cd4bf4336a7f9b6be3603ad668d581b0a7ce6b779e221ccc"
+      }
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-41f7fa5a68.md",
+      "vault_path": "知识库/sources/papers/LSM-tree-KV-Survey-2025/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-tree-KV-Survey-2025-精读分析/",
+      "vault_sha256": "87f77af35299408d3c758bdc59157892cbb8c7ca824f727039b81a946c9b859a",
+      "blog_sha256": "e271cba0e0a1aea0a579bd8e94a76a7ac434df213955dad3609820952c792769",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-892fe18b46.md",
+      "vault_path": "知识库/sources/papers/Parallax/arxiv-2604.12986-精读.md",
+      "aliases": [],
+      "url": "/knowledge/arxiv-2604.12986-精读/",
+      "vault_sha256": "0cc3fc3eed3896c9113f2dd3c4c0f4b21a0ee8a7e7998f244b3610c8ffe6f974",
+      "blog_sha256": "be99b702879647320fff5d23763e2935e0c7e6e574b511abf470388e5e600c31",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-95c6ea3486.md",
+      "vault_path": "知识库/sources/papers/Raft-Dissertation/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Raft-Dissertation-精读分析/",
+      "vault_sha256": "e52275efaddd5837d6816349e54934e775d745051f6bd38f01ce66d2d68cb82b",
+      "blog_sha256": "273325357276f04ab364ab69f75e39317ae48dcce192003ac1111b4849cf7c3e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-73b210a4eb.md",
+      "vault_path": "知识库/sources/papers/Rose/全文翻译.md",
+      "aliases": [],
+      "url": "/knowledge/Rose-全文翻译/",
+      "vault_sha256": "a8a1ca31243e609d3f46c0f4df5305db402e75dd1d80b503c84a7ab128d19c28",
+      "blog_sha256": "1179db28cc0b674ef282bfbaf93d56ee81d3dc4fbf56b0e7cd4b4ef34af97ebe",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-8ae2aa2a0e.md",
+      "vault_path": "知识库/sources/papers/Rose/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/Rose-精读分析/",
+      "vault_sha256": "7ac9e5a16a22029b7c40e8a61dcf37273360995a09b60831ce7c932f9c272942",
+      "blog_sha256": "f25939f3c047c0637e5c3349a145a23a7892a41600697a0a1ff809c791d6c393",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-f0a282716d.md",
+      "vault_path": "知识库/sources/papers/SP-Survey/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/SP-Survey-精读分析/",
+      "vault_sha256": "3914212b8f97b0ba10f03ff6c52b1286cdd73e590872e07211ebbb0f11ac6745",
+      "blog_sha256": "96295e5649ce80f357482572306c06daf2fd36b64ece52e947d64efa0a606017",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-acaed5f5f8.md",
+      "vault_path": "知识库/sources/web/agent-frameworks-2026/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/agent-frameworks-2026-精读分析/",
+      "vault_sha256": "7273ee89b97cf844d3cd6f86bd10dca25ce6abe3cbf9b0c18da4d582a23a5a20",
+      "blog_sha256": "40dc2ce0be9ecbc8f4b4ef1a38b92187eaaccb999e6692083b220a4eabccdcc5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-5850799458.md",
+      "vault_path": "知识库/sources/web/anthropic/how-we-contain-claude-精读.md",
+      "aliases": [],
+      "url": "/knowledge/how-we-contain-claude-精读/",
+      "vault_sha256": "311864bed972ecdc9d5e5a163fae811296fdd7ceef3fb67a70ff6d6d9daf27f8",
+      "blog_sha256": "6916906eaf03654bd352cfc21e9f49c6ff0be4e8a3b464253edbc5552c0d61c4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-f28a865b56.md",
+      "vault_path": "知识库/sources/web/cockroachdb-vs-tidb/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/cockroachdb-vs-tidb-精读分析/",
+      "vault_sha256": "b45ab2f7efdc5a38376d1e2b9dcb224c3006538ead1986d6de6cf0659e8346fe",
+      "blog_sha256": "fbd38b45f0ea2477da3837d2410a1a878ff76835993bb3cee525a4a0a55fb04c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-08b33d5161.md",
+      "vault_path": "知识库/sources/web/cxl-3.0/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/cxl-3.0-精读分析/",
+      "vault_sha256": "6c87ca33c2a74e4a42ae9d72be03e0c77ecd86db71300dc3930dcff16c7eec59",
+      "blog_sha256": "a882260b25185ccc0f7c7ae11ee6f5e27f38fc674e6a7d8eadf9b0cf4ce7789e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-32ac5f81bb.md",
+      "vault_path": "知识库/sources/web/flink-2.3.0/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/flink-2.3.0-精读分析/",
+      "vault_sha256": "74ff9278219a3c77b18a0fbe2106dd144c1460645a1b6c827276aa3a78bf17fb",
+      "blog_sha256": "f9e3457dd27e8cc157885ff3565de3974b95cd645baf8df2fcec6b8800a4e42f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-e4d368112e.md",
+      "vault_path": "知识库/sources/web/fluss-client-write/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/fluss-client-write-精读分析/",
+      "vault_sha256": "e859b3b90e8d3b44f5a8af55a0d958646c12e24e7e8e47d225cceec4ebc3a4b0",
+      "blog_sha256": "235ae63718bc0ba65018cd887fef0ecae638aec1366b8b95d6333dbd13e6382f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-030623996b.md",
+      "vault_path": "知识库/sources/web/fluss/Fluss-PR-3420-Watermark-Paimon-精读.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-PR-3420-Watermark-Paimon-精读/",
+      "vault_sha256": "50ac1a39375234e489c1c52979127db77476abe621a4222ca682f377d8076eb0",
+      "blog_sha256": "231fe748f76e48a4ce778c44e2a1d3fc2f535972e0421c692219af0e43f7da99",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-ccfe500a28.md",
+      "vault_path": "知识库/sources/web/fresha/bottling-the-river-fluss-eks-精读.md",
+      "aliases": [],
+      "url": "/knowledge/bottling-the-river-fluss-eks-精读/",
+      "vault_sha256": "367fc53ced2500aa3a87a92cfcf367a57f7ea0105ae6aa33f4e551464ce4b626",
+      "blog_sha256": "befe0926efcd89e2385596d3cbb197026e3f7c759d56188e0ced612f9681b947",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-f783355176.md",
+      "vault_path": "知识库/sources/web/hermes-agent/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/hermes-agent-精读分析/",
+      "vault_sha256": "78bab18c7ccfd57ba469076f06547eb265983e134be0f2813389fabfe83921f7",
+      "blog_sha256": "0443d5dd34a91b17fe71cade99dff8dd76a4543fca64fb865bcd2107cc2d9fe9",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-b6dfc66b1d.md",
+      "vault_path": "知识库/sources/web/langchain/coding-agent-spend-精读.md",
+      "aliases": [],
+      "url": "/knowledge/coding-agent-spend-精读/",
+      "vault_sha256": "3c97e895c91e856a3d1494280646d604f58e756f2ca5ca0a61bbcdb9782b2040",
+      "blog_sha256": "72048d22ced9597d94eb2d9b52e693c979870e0edb1e94c0477d5c428138eaaf",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-b6555883bc.md",
+      "vault_path": "知识库/sources/web/langchain/custom-agent-harness-精读.md",
+      "aliases": [],
+      "url": "/knowledge/custom-agent-harness-精读/",
+      "vault_sha256": "11c8fa0d4611c2802edc5b63d510899aa2be7c4deb0395861af0a97e3ccea0a8",
+      "blog_sha256": "7e49f4410f10f8d87f603ae7bf55e3f07bcdf64b9acd556dd616b7809bcf607a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-489c670898.md",
+      "vault_path": "知识库/sources/web/langchain/fault-tolerance-in-langgraph-精读.md",
+      "aliases": [],
+      "url": "/knowledge/fault-tolerance-in-langgraph-精读/",
+      "vault_sha256": "103c5e133e312f2ee34d242b19884f70f6a68e63b0a5da2188e3b7cd8d4bbabb",
+      "blog_sha256": "1dc3a17d4eda8200440621badf509cae135d23cbd85818fb3b17db00b748943a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-07a4aa1c8d.md",
+      "vault_path": "知识库/sources/web/langchain/model-neutrality-精读.md",
+      "aliases": [],
+      "url": "/knowledge/model-neutrality-精读/",
+      "vault_sha256": "c26b77fa943f3b75a94c37c0a517f051ab3e23fccbd569a7f6fcb25bac95e787",
+      "blog_sha256": "82297179962793aae7bf8203ae3a3194e61ff578d809ce2160ba75d949b68835",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-0f5ea0c232.md",
+      "vault_path": "知识库/sources/web/langchain/right-sandbox-agent-精读.md",
+      "aliases": [],
+      "url": "/knowledge/right-sandbox-agent-精读/",
+      "vault_sha256": "dc14c8e59cc2bcc76a75fc54ab1d65291d33945269cd36368f1ae9b3097e51bc",
+      "blog_sha256": "b2914a10eb2178ed5530f1a988ffa1d7966931cbd9ff138bdf148d8b29271079",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-71f7f89fa5.md",
+      "vault_path": "知识库/sources/web/langchain/the-art-of-loop-engineering-精读.md",
+      "aliases": [],
+      "url": "/knowledge/the-art-of-loop-engineering-精读/",
+      "vault_sha256": "12e0e807851466154af89b1134cbfb15a9fc900fcf51999d3f955b6da522f4ca",
+      "blog_sha256": "918962023e8f2619f7571e6d66a93234323236620826ef25d159e2df2bd04133",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-ae87f2a2cc.md",
+      "vault_path": "知识库/sources/web/qwen-3.6/精读分析.md",
+      "aliases": [],
+      "url": "/knowledge/qwen-3.6-精读分析/",
+      "vault_sha256": "a12db9bce0304a86ebc57fcf7cbd9e63e33822f5528df9908d3e44b8019d733e",
+      "blog_sha256": "38a3ece8da300c87fa3f351b41d81ce40d6655fe497c4cdd9a09c492688bc639",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-73a7b4fedf.md",
+      "vault_path": "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Cost-Control-Gateway成本控制/",
+      "vault_sha256": "04875155d1bbb67aefb8c0c4e99d55190c95bba0bfdcd84f2aa42e1d8c503437",
+      "blog_sha256": "29382a402785c05230e064ff3d8e663c6a49e676eb81416cebd1681df20e8eb3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-ad2f89d41a.md",
+      "vault_path": "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Fault-Tolerance-容错设计/",
+      "vault_sha256": "ee310aa9ee38250db97d9b865052a7ccf64a2fd4ceb4b9eb7ea74e3f6c806d4e",
+      "blog_sha256": "3eb186c40b97129caf95f8b553830a7c163a9b643be5dad6508ad86b96c7f98d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-b451f951f1.md",
+      "vault_path": "知识库/wiki/Agent-First-Branch-Transactions-分支事务.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-First-Branch-Transactions-分支事务/",
+      "vault_sha256": "e57831b2844a74e91961b825a36f69a1a042b069de2127bc3a30f65272e27b4c",
+      "blog_sha256": "0dd3194af4fc009a324b7ffe470c259b542fccfdd2dc2733c68ec559dcec2da5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-2d9a8f2373.md",
+      "vault_path": "知识库/wiki/Agent-First-Data-Systems.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-First-Data-Systems/",
+      "vault_sha256": "03fa3b7cc086bc4bbfc0991ff0e96615ba64e59ba76fe4078961ba5c0a253355",
+      "blog_sha256": "d43b83757980b4598a9a66b106672561382270a100f665ab74bc4c59ea757b6f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-81db274424.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Context-Memory上下文管理/",
+      "vault_sha256": "90e4d947b5f5cdfeafcb3ef0587ae1b77794ae5e478b27f50dfedfebf94f2434",
+      "blog_sha256": "e8401dc2c92b0ebc729fd355b2ab1f44584b17d02fb1ccb77d32b830931f0ff2",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-2486199170.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Engineering-Survey综述/",
+      "vault_sha256": "9f54ce6ab4d880267df33a47e336257efb141af9579af91de03fb2d6381cc821",
+      "blog_sha256": "088020513d694a1ad5caa3153df06f96fbafe23a2e12ed5af5ef7fb8466ee71c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-93c9b5f5c6.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Execution-Environment执行环境/",
+      "vault_sha256": "553421b08114301e6f5536c72f9f2194b5dab06ee1f59dd01b3a46dc3b63e573",
+      "blog_sha256": "8aa30fd9512a994fcc2b3ee8590322e9b944bd37066521eb2b48c9a3560bc8b1",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-9021b686d1.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Governance治理.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Governance治理/",
+      "vault_sha256": "027dac2c5f38600db3a471e7228a15a3d8b4c8ca0b380685df1060b45e3e7f05",
+      "blog_sha256": "4fc5c167b00aa6295ddbb22d44307a0c8c4e8f1fd5237c7f30e9b842f29c2a76",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-017695c8a4.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Lifecycle-Orchestration编排/",
+      "vault_sha256": "153258765e52af31edebb0a4b1cecbc30e2eb52244068fa39eb07f69edd7b2eb",
+      "blog_sha256": "7b0f84ff6a8ee8c4fb7f878b417505c1ac6ef0fa39976d3707e86e32e5f10ab0",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-168f036a8e.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Observability可观测性.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Observability可观测性/",
+      "vault_sha256": "f5a11e61a2ce4145713a37ec3c06707543e0fe37d5c80bda1025cc586d771ed4",
+      "blog_sha256": "4f5fa3edea3ce704f893256fba097a662df4a03b819b2acecf692ee151faf2b2",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-4b6a473f56.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Tool-Interface工具接口.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Tool-Interface工具接口/",
+      "vault_sha256": "4b7bf752b5f1dfcdafccd1f794db42d179e70ed7527408d9e2bb858a2ee2e1f7",
+      "blog_sha256": "97eaaa0836b1e47a9f23a2586ee2bc8f427fc9d5a7d7d330da022ea41f342df8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-20-knowledge-396925dbf9.md",
+      "vault_path": "知识库/wiki/Agent-Harness-Verification-Evaluation评估.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Harness-Verification-Evaluation评估/",
+      "vault_sha256": "206409dc49c44985a6015ce545baf4f6c88fcf7ebefd50a8053d5701f815c862",
+      "blog_sha256": "4e99be0ff15b93b5723f6270e7fc66636f8740a4750f96797958e43b41f1e6bd",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-f6fa4d9fd1.md",
+      "vault_path": "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Memory-Survey-2026综述/",
+      "vault_sha256": "de65182317c2d4dbda33f2ab78ec54e1e3fe0a622dbf6a96582ae9b4ad1f8dca",
+      "blog_sha256": "e5648ff53ca0029f17bb31469537cd20c9ed75e9cb466aa0c869ce42c4c6d863",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-f0ea4c5a45.md",
+      "vault_path": "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-Sandbox-安全沙箱选型/",
+      "vault_sha256": "737a4b09b0fe9b8e3240b942fa997ec8d39b72afe60bc0e37c5a2ffc270255d8",
+      "blog_sha256": "c2a0b11082a55fab68e13cacb5977ea1720117fe4e0c6e7074abce7beecc5ff3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-e199a8fcf9.md",
+      "vault_path": "知识库/wiki/Agent-框架-2026-全景对比.md",
+      "aliases": [],
+      "url": "/knowledge/Agent-框架-2026-全景对比/",
+      "vault_sha256": "6a8ab700a0ecbfe03e0673aa2f842e7443f334a4c5640c50e142a569c872341a",
+      "blog_sha256": "11db56f98a80dc926380a674c2d5012e19ca10d067f24d9a04cdbf609df85f5a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-706480bf87.md",
+      "vault_path": "知识库/wiki/Agentic-Memory-语义缓存.md",
+      "aliases": [],
+      "url": "/knowledge/Agentic-Memory-语义缓存/",
+      "vault_sha256": "aa129efc3e0e7aa97d48a129127375de0419cca06fd3e088f01208379fd83851",
+      "blog_sha256": "0466677c8d9f15a067079a4b01ca947703195d8ba646444ec93ce2318445cb5f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-dacc7f8a0f.md",
+      "vault_path": "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+      "aliases": [],
+      "url": "/knowledge/Anthropic-Agent安全容器化实践/",
+      "vault_sha256": "22272374b83eda49970c6dd7fc8f29969e23071251e653c01a73781ba51db82b",
+      "blog_sha256": "e33bebfaf06ee9d045a3c6ff34e434c5ad63b80dd186f3d5cd030e8bf54c043a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-fa0e811bb3.md",
+      "vault_path": "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+      "aliases": [],
+      "url": "/knowledge/Apache-Flink-2.3.0-版本发布/",
+      "vault_sha256": "812addb0cc1f749d51958f2e4b9f62198f71cd999e9380761cf34c2e5e3cf8dc",
+      "blog_sha256": "ddc5f75c751349adaf17f9291686c94fa24df4d1b1b2852328516dddfef75345",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-f9bd87f7d9.md",
+      "vault_path": "知识库/wiki/Aurora-Limitless-分布式架构.md",
+      "aliases": [],
+      "url": "/knowledge/Aurora-Limitless-分布式架构/",
+      "vault_sha256": "0a039ae991f4958efc2f10854401f5ff8581b7974b51069c2c2af40ff1903a9d",
+      "blog_sha256": "500682545e8060939aa9d874fc4235e326f55c066a8d9b6f72164be6cbe166c6",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-3fdb01da57.md",
+      "vault_path": "知识库/wiki/Aurora-Limitless-时间戳事务.md",
+      "aliases": [],
+      "url": "/knowledge/Aurora-Limitless-时间戳事务/",
+      "vault_sha256": "12250dfa6607d2283be401d1bea000857968f3bc77f6548a6664dc7793d5f2c1",
+      "blog_sha256": "39502b8f509d97a72f49c1a9b30ef3b6f4533bce73cd2cec724e43a4ef415973",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-eda3e82471.md",
+      "vault_path": "知识库/wiki/Aurora-Limitless-自适应扩缩容.md",
+      "aliases": [],
+      "url": "/knowledge/Aurora-Limitless-自适应扩缩容/",
+      "vault_sha256": "b08becd3c045083682d221e4a803f8477bff33951bac0b622119b7dbad779eed",
+      "blog_sha256": "4622a7c54e1d06b07fbe88e8375720eaebb670596fff8a32a581387763c3aa0a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-11-knowledge-0bedd5ac64.md",
+      "vault_path": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "aliases": [],
+      "url": "/knowledge/Bigtable-分布式结构化存储系统/",
+      "vault_sha256": "e6c0a74fe17b4bab7e9b095ca2a471f230983ffc7412cca6650fccc0cfcd4bfc",
+      "blog_sha256": "f49916b5efa7fc644234a49989e204bcba9f828f4083a5e4c8dc40dc4101972e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-644c614109.md",
+      "vault_path": "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+      "aliases": [],
+      "url": "/knowledge/Bourbon-Learned-Index-LSM/",
+      "vault_sha256": "595d1d32922f41c9392feb1268a0c23e14367ab8acf2fb02fc74c8bdf457065c",
+      "blog_sha256": "170b56aeba9f68680aec8e00ba521ecf471c091473ab09baaf96260dd8d2364c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-5b9838a415.md",
+      "vault_path": "知识库/wiki/ByteHouse-多模态查询优化.md",
+      "aliases": [],
+      "url": "/knowledge/ByteHouse-多模态查询优化/",
+      "vault_sha256": "44c2ab3a07c55fa6a91a31f816e72220c10618bc5342dece2fd88175e6ba035d",
+      "blog_sha256": "a7c258e70b35bdbb23c706f7d64ec718fe0a47ee701a77f31802b6b43e2fc8f8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-8189f15178.md",
+      "vault_path": "知识库/wiki/ByteHouse-架构与设计.md",
+      "aliases": [],
+      "url": "/knowledge/ByteHouse-架构与设计/",
+      "vault_sha256": "4a39c829f894ac1bee86ebec65c7bd39d5232a4208e1bdfd3821266b8f4a2159",
+      "blog_sha256": "a2f869e1d734d7c4f8b2569972ec73430117ec5a1253c9a854425bef5664dd10",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-1fc9d20b5e.md",
+      "vault_path": "知识库/wiki/ByteHouse-统一表引擎.md",
+      "aliases": [],
+      "url": "/knowledge/ByteHouse-统一表引擎/",
+      "vault_sha256": "0c7e7083000b43891addc19fb0f1219e681468eb2921a9f86ccbd3bb1a426e42",
+      "blog_sha256": "5616d93b1778dbd586913d66d7b4bebe7b435d756eb593074c1dd2f68519d893",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-38b518b30c.md",
+      "vault_path": "知识库/wiki/CXL-3.0-内存池化新范式.md",
+      "aliases": [],
+      "url": "/knowledge/CXL-3.0-内存池化新范式/",
+      "vault_sha256": "e3531389cb6eb32d65dab166a02ce4595356cb4d2a40a19fdd326e064af62789",
+      "blog_sha256": "a23642d3aa80b5ad457ca32440c67cf72ef50558b1a6a960ff41f974c8246c3d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-935f738bf5.md",
+      "vault_path": "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+      "aliases": [],
+      "url": "/knowledge/CaaS-LSM-Compaction即服务/",
+      "vault_sha256": "32d8d2cfbaded603f5c5f9c5277c3aa949514dca15715d27c2144ca61a8f7b36",
+      "blog_sha256": "537a7d6aa3d9601f9fff0d1b1c884fde3fa4945174a6406fb3c6a9ae8a75dd35",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-fe826ef19a.md",
+      "vault_path": "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+      "aliases": [],
+      "url": "/knowledge/Chandy-Lamport-分布式快照算法/",
+      "vault_sha256": "9c66cdff39663b59c836b1c2e7d6e0b97ca09ee69b8e0c3203ce516a194b6b64",
+      "blog_sha256": "d2e8b620bb9571b32c6c77691df28cc636499e51e1452869f10262c24dc25cc8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-7723389f4a.md",
+      "vault_path": "知识库/wiki/CockroachDB-Leader-Fortification.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-Leader-Fortification/",
+      "vault_sha256": "540eb2bbcb1bc8639e473718098c7e01c2d5ef5e112615e31c176cc6ed52bd78",
+      "blog_sha256": "6f7f9ab046f69b9d3a0470af79a3961f669bd01911acb050b79d6909af7b18d4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-3fe237cc58.md",
+      "vault_path": "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-Leader-Lease-整体设计/",
+      "vault_sha256": "768902a249902547ef93639cb72debb47361621f8ea80818c01328371884f67a",
+      "blog_sha256": "1b941ad84308fe5cee4882290cbeffd92db0ab278b3fb61f7e7e73a9555d9591",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-3f200abac6.md",
+      "vault_path": "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-Liveness-Fabric-故障检测层/",
+      "vault_sha256": "12ce4c9e18c78e8cbcb774df9e769a8613ad3ebc0bf616bee47afa406d43f433",
+      "blog_sha256": "614f3016cda0bea874bb9339e1179040b68bd64fc7bb44c645570652cd8d25ed",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-dec25a48e3.md",
+      "vault_path": "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+      "aliases": [],
+      "url": "/knowledge/CockroachDB-vs-TiDB-2026-对比/",
+      "vault_sha256": "bdbf6b247336e7d6cb1501019383bb83e074aa2acbf8e04268ed981c8c851db5",
+      "blog_sha256": "7beecdf73e41aeb4f6b2e1f6a0807daf6a2ce434f92ddb2be5bf3954697207b3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-10bab1d45f.md",
+      "vault_path": "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+      "aliases": [],
+      "url": "/knowledge/Custom-Agent-Harness-Middleware架构/",
+      "vault_sha256": "f8dac8e175a696ac2ea0bd11fb3bef71ea27bf66a2e7c45f877bd4bd0b4540bc",
+      "blog_sha256": "2259080317d15acecd18a29f89b62145288097e720997d4cf9b7425f54199824",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-3745cba2f3.md",
+      "vault_path": "知识库/wiki/Dataflow-Model.md",
+      "aliases": [],
+      "url": "/knowledge/Dataflow-Model/",
+      "vault_sha256": "51379b5bb5be07964c45ff14066fc0790a78befe3417fe7685122f6e06137fa3",
+      "blog_sha256": "6fc899fd91d8c2a5b0cb62b853be6d5ea36a8f4aafe2b623a1bd4ddab18fbd39",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-1cd9b2bb17.md",
+      "vault_path": "知识库/wiki/Doris-Compaction-策略.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-Compaction-策略/",
+      "vault_sha256": "09f18099acdf2d5714842453d07f0690fd456a577e3cc75dfad14e74abfab70c",
+      "blog_sha256": "ffe5d95a027a3cb3d57cf4849ea2ef072cbae3b8c56ce2e80a5a3c316ba86af3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-53b15271c1.md",
+      "vault_path": "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-MPP-向量化查询引擎/",
+      "vault_sha256": "e552755fdc7ddd52b112e807ae97f5b7734eb0a06e011ee3554594b929bc9d65",
+      "blog_sha256": "1f6f499c40f29fc59f6dd308096dbbdeee300f9974cde73b11a1fd2c7d592cdc",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-de8e7e8472.md",
+      "vault_path": "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-Nereids-CBO-优化器/",
+      "vault_sha256": "9b869d1c20abb8f7f43b24aff9443b12a1b477b92270c82d53f334059d655cfe",
+      "blog_sha256": "d3e2a75e4858a6777ac87411dbccd820ace6d9fd037fdbcec27f5c0cf00fca1c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-069ea9f938.md",
+      "vault_path": "知识库/wiki/Doris-Segment-v2-存储格式.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-Segment-v2-存储格式/",
+      "vault_sha256": "d9805e627bb44beed8493f010759a0f07c94a452227a0e8d0e1f27ede0f8e16b",
+      "blog_sha256": "5fc44fa06e9fd9cd1f7d6330891fde30d26b32fceef8d96f3a4fcd6fc3dd035e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-3825d0c77d.md",
+      "vault_path": "知识库/wiki/Doris-元数据与一致性复制.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-元数据与一致性复制/",
+      "vault_sha256": "11b44338a3e917c053bd158a97567bd6b27c5750c9354c67601168057303141f",
+      "blog_sha256": "655919a2d475637226e9666eab52a6a6d705499b2ac4c8abc2387e71019fab88",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-1063bdf2b0.md",
+      "vault_path": "知识库/wiki/Doris-数据模型.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-数据模型/",
+      "vault_sha256": "5d5868631f0037e61fe9f38a3ba843122bd67e2757ed2bab66b5ba1bbaeca30e",
+      "blog_sha256": "c8da5082e8c79ae720db7f5b5d572b5ef5d01939513d7d6a51702837ae1c1c71",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-397c3019fa.md",
+      "vault_path": "知识库/wiki/Doris-架构演进.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-架构演进/",
+      "vault_sha256": "cad3a5a6d3d49814cc20b361cb594d96cb0699fa380b1d981dd7178d6c41e822",
+      "blog_sha256": "7ffa9725ee393d40696d327dadc62b336060ebd48b7e9c513a8f4116763b4e10",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-56a29b5841.md",
+      "vault_path": "知识库/wiki/Doris-深度调研.md",
+      "aliases": [],
+      "url": "/knowledge/Doris-深度调研/",
+      "vault_sha256": "2637a4027db37476b5b91c86df2167be268f43c3fbf03ec7900276aabc04714c",
+      "blog_sha256": "eff62c6f0eb367d29f2f5173ebd71e9a31d75eeb8787c517b07e9ffde9b9f7b2",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-d179ba0fd9.md",
+      "vault_path": "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+      "aliases": [],
+      "url": "/knowledge/ElasticBF-弹性BloomFilter/",
+      "vault_sha256": "6a83349e6a5c01d2da3ad514fa743c70bb12d3743f47f97bedf0711de11911b8",
+      "blog_sha256": "3c4b989b91a02deda2bfba63e9902e19ceb8ed5dff6d26627378dcf9e1c8ac4d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-ce5b79c44d.md",
+      "vault_path": "知识库/wiki/Event-Horizon-非对称依赖.md",
+      "aliases": [],
+      "url": "/knowledge/Event-Horizon-非对称依赖/",
+      "vault_sha256": "2ddaf1b4766a1af9e91a2b0ce4c5dbc1c7f702c2c6312a77a21d3c028a829c0c",
+      "blog_sha256": "00d834fe1645def8fd0a8921e4d2f50914588297a72b9a4ca5e0bd16873b84ea",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-233ee84ac8.md",
+      "vault_path": "知识库/wiki/Fluss-Arrow列式记录格式.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-Arrow列式记录格式/",
+      "vault_sha256": "206ecf39fdfcf833543abed3e1177cbbd7e9d8051fb1013d9b6011ffa22fc72b",
+      "blog_sha256": "466bc2f4516285996a9a06031c04d4c2358cd5c8e50831c037b0fd2b34ea2d03",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-cb2921c0ec.md",
+      "vault_path": "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-EKS-生产部署实践-Fresha/",
+      "vault_sha256": "77f9aa74947cc54a2a2d85070ef743b776c871f07c7d44482d6ad7687ac42e4d",
+      "blog_sha256": "9d3ef51f264a779db68304024ac229d1fc6754f98e7ac7c7ec15837437e10275",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-b217e320f7.md",
+      "vault_path": "知识库/wiki/Fluss-KV存储-RocksDB.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-KV存储-RocksDB/",
+      "vault_sha256": "07efad8790e7db2145b156aa9df63761c6fd0ce4d63422fa5460af84c65cae11",
+      "blog_sha256": "01b72953dd09ddf499def5af3dbca18587efa39374847246023a981d39b2c531",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-6c1d48fed4.md",
+      "vault_path": "知识库/wiki/Fluss-Kafka兼容层.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-Kafka兼容层/",
+      "vault_sha256": "b24a5bd025eeee83306a4116e5ea3ddb87e9cbbb2ef0faa613c58b4d68c4d023",
+      "blog_sha256": "f5f4261dd08adab480c5ccf13e0b39731ed783e7da418f793accc2afbe4a80b7",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-de46d856c9.md",
+      "vault_path": "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-Lake层与湖仓融合/",
+      "vault_sha256": "be8c1dc168d98e9b6eb5d7efb46bd7ad3060b8d9e7613b2fecea7351460dd1ce",
+      "blog_sha256": "5444d746bcaad9d987ecb6ed4fb1a3c731dac20685514113ba4024e06f13b989",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-b1877f4253.md",
+      "vault_path": "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-PR-3420-Watermark-to-Paimon/",
+      "vault_sha256": "888f164603c634a7173ac850fbc86149b6022e0f33e0b22d9e0e9e9cc2a0dd26",
+      "blog_sha256": "773b9a9253760e11f8a6e72f2eeb5c36aa23d13f3fec228640ccb92f8f5ff58e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-70acc0a874.md",
+      "vault_path": "知识库/wiki/Fluss-RPC与网络.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-RPC与网络/",
+      "vault_sha256": "17a22749d832251c6b44f40bc288f6dbd0cc75b27b14b0281659f11cfe1ffac4",
+      "blog_sha256": "103ce7c52fa1cf39347a8ab76d0fb652b8340f5cdbcad64b35481ef21800274a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-5188b34b3d.md",
+      "vault_path": "知识库/wiki/Fluss-Tiering分层架构.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-Tiering分层架构/",
+      "vault_sha256": "952b1639d944dad3cd0a3580f4e723275190fd16257f25c146612c48a7840683",
+      "blog_sha256": "51b5e1521c90064184132cba6ab981d75c387a0c2a557fb18e33020b252234f1",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-9395c9385b.md",
+      "vault_path": "知识库/wiki/Fluss-分布式协调.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-分布式协调/",
+      "vault_sha256": "a7376d44ed15ebc22732aba8f8e0e94ba6907943276e67a008d4fce5ebf1e728",
+      "blog_sha256": "dc45811385815c24fe4640c283815a4c1b594e2fbeeda3c0c6febc1aa7f29a98",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-f85e907dcc.md",
+      "vault_path": "知识库/wiki/Fluss-存储引擎.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-存储引擎/",
+      "vault_sha256": "8da882b5abe4700ce6938edf3878962b9915539b4cc60fc4f8980d6f38017f41",
+      "blog_sha256": "36bc8a6a6d8d98e53cc89d2e29548634837aa8424bda25d129f7f98533167abe",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-34666d8c17.md",
+      "vault_path": "知识库/wiki/Fluss-客户端与计算集成.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-客户端与计算集成/",
+      "vault_sha256": "3d28ca3d3711da829c2c69b701ee2e88909157f024c8e0d5fd6c3f183e5fc53f",
+      "blog_sha256": "c46b970a4743fda9c07cafc29b684f74557303d3945d591fb936a79846045bd4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-d51c42620c.md",
+      "vault_path": "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-客户端写入流程源码分析/",
+      "vault_sha256": "1901a7cbe3bedd395dc7f968960740fddd77a1d6040de8929e9609bf30852183",
+      "blog_sha256": "a2674e70aff3884285a43b8d085ed83b61a2a50ab57872458dd90a1b175d4b23",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-6dfd3be1c3.md",
+      "vault_path": "知识库/wiki/Fluss-整体架构.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-整体架构/",
+      "vault_sha256": "d1c589d34e4235b26457c2beb37601d9d8a37c86583884aea0f4ed8a54a13b97",
+      "blog_sha256": "50c905dab97bbd2807de375e03132941292170bbd050d51b1d41281559f6db6c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-7d4e38d112.md",
+      "vault_path": "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+      "aliases": [],
+      "url": "/knowledge/Hailstorm-存算分离LSM数据库/",
+      "vault_sha256": "2dc5ab5e466096e494447d76bb6f2102fbf342efa3cb1de61ef7d7b47e9533f6",
+      "blog_sha256": "5368ae2892dbacd9d4ab6929cf1317cf6af00542e8e383ccb38a201ec578a9eb",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-2ee422fc9d.md",
+      "vault_path": "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+      "aliases": [],
+      "url": "/knowledge/Hermes-Agent-自进化Agent框架/",
+      "vault_sha256": "54d0a14da245f1dfabc3ba935e5fd702828c367cbc2d4f3e9e0617196b63f57c",
+      "blog_sha256": "2d5ca5a44f63af3c3f10b63396b234a054f2557de6e4532ca049da3d8b93eedf",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-4e34cc44e7.md",
+      "vault_path": "知识库/wiki/InfluxDB-3-列存引擎.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-3-列存引擎/",
+      "vault_sha256": "750b19a0e66a74800007dfc15388ad663869feb4f60535b8f5b94b9751fe3257",
+      "blog_sha256": "227e28b8e84e2afcf4a2e3eae4939775a7f979c527ca4457362659da1d268598",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-7a56a405ad.md",
+      "vault_path": "知识库/wiki/InfluxDB-Catalog元数据.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-Catalog元数据/",
+      "vault_sha256": "79d466b903079e5f140581457cf6a59ae121c563566752fea5a1e54fee4a26cb",
+      "blog_sha256": "1d2637e331265b851123f33a2d854dfc742aa090c1b18c55ef282be8520fff05",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-be7903ac91.md",
+      "vault_path": "知识库/wiki/InfluxDB-TSM存储引擎.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-TSM存储引擎/",
+      "vault_sha256": "9b2303db9b4b9c0f69f515614e14a32f9c424095a42e0d9f7ce1c58c0212ea7b",
+      "blog_sha256": "9458063eb7ca612b305764483f87b6916cea4b01b292c06b9e4e4c5b4687bd56",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-4b2a44fcac.md",
+      "vault_path": "知识库/wiki/InfluxDB-写入与查询路径.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-写入与查询路径/",
+      "vault_sha256": "bc56525807b1d1c4be1bc55feaad4df5b496fe9e8f546375e62fadfc2b83fbba",
+      "blog_sha256": "1ca49d47b4534381263d7544027937dddcc34e3c3c85d9f7e1ed5da95db4c0ab",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-7bacfb6aa2.md",
+      "vault_path": "知识库/wiki/InfluxDB-多副本与高可用.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-多副本与高可用/",
+      "vault_sha256": "94d9991b5e3190f2be76b354dc994f526a8e93f652234ef9ebb831f2f96618ef",
+      "blog_sha256": "dddfd0328df5e39454eabe7c394840b983add46e8a4d1bf7433868a3f852c228",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-386895582f.md",
+      "vault_path": "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-指标设计与基数管理/",
+      "vault_sha256": "1f05f1e34af77514ad1a1e1a928b7a4164a92eaae042b07beaffb485b8ada894",
+      "blog_sha256": "d42c86cbcb41070ea2314ab6798d0250e3fd9c2cea87b2167cc05b87ee04deb8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-ef47114db5.md",
+      "vault_path": "知识库/wiki/InfluxDB-数据模型.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-数据模型/",
+      "vault_sha256": "816642f5e7396afbca3ebeb48315820c14ec2e8a6f2911b729ff466e587ebd87",
+      "blog_sha256": "647c9e0618e785414d51d35da18adf7a02e5c43cbf6f5c02193ca16c7193e6c6",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-f024fb99f3.md",
+      "vault_path": "知识库/wiki/InfluxDB深度调研.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB深度调研/",
+      "vault_sha256": "bce210cd73cebe339ee736e6c1311914268c74bfe7305a3c1da82ad2b7820b8e",
+      "blog_sha256": "e7cd3cc3ebde5d0987735b525f4c7f4ad3e44f94a82357465f5c7b4b4528a631",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-d4a7ab4699.md",
+      "vault_path": "知识库/wiki/LSM-Tree-RUM猜想.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-RUM猜想/",
+      "vault_sha256": "d872f54ae97deb4dd0ebd94b4f529feb8399a59ecdda8fcf19b70ff51dee6ebf",
+      "blog_sha256": "94ebfdc727279078da5bc48284b3e35f16797138eea143a759364d71a61c7b0d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-7b368591fb.md",
+      "vault_path": "知识库/wiki/LSM-Tree-二级索引.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-二级索引/",
+      "vault_sha256": "6fcbda237ce561058349cebf3dcb8d52f635a41a39df6946265ebc220621cd7a",
+      "blog_sha256": "bf20f4b79cd4b90513aba590e2ee245b13802fb6db1e7fe4fc27659b15ddb5aa",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-f7207c03da.md",
+      "vault_path": "知识库/wiki/LSM-Tree-写放大.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-写放大/",
+      "vault_sha256": "63f8fbd09243a58cacd0687c0b092cc5ecf06cc5e92c4afa08e159bc25c1f289",
+      "blog_sha256": "4cebf136d326bb8155c84596e034971c3c716b90aac07a73649ee7a1175d8e71",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-f455d0b201.md",
+      "vault_path": "知识库/wiki/LSM-Tree-合并优化.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-合并优化/",
+      "vault_sha256": "b7ee768d06ec93d809fb99d589e255e9baa172ce5a035b9820ef53b55915d654",
+      "blog_sha256": "d3b929e5dc4776cc51ebf6c232a4899cb71d1dfcf814d5df343ea0ab3250f0fe",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-d10ec966b9.md",
+      "vault_path": "知识库/wiki/LSM-Tree-硬件适配.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-硬件适配/",
+      "vault_sha256": "3a7029e5386d98ccfe4caae259717df2b8aae7f150c5969cb8a6bd89ceb2ca68",
+      "blog_sha256": "7da2860cde418905d5d36a3f11754ddb4cd38d4b4b8fa885b6bb8f6743d8f1a4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-cb777b6702.md",
+      "vault_path": "知识库/wiki/LSM-Tree-自动调参.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-自动调参/",
+      "vault_sha256": "7a270f5d6bd3005f938bdee79ab853ce5073e6f5c044999aac4c30a503a64903",
+      "blog_sha256": "11658127525e912bd3496569cfdedf18b1e3f22c0d8795dc23de43cc6f4864c5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-f0ae968052.md",
+      "vault_path": "知识库/wiki/LSM-Tree.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree/",
+      "vault_sha256": "e9286bf1a002fb2b959af1904abd53ca66ba8e63c195798b6a7d64d860b2562f",
+      "blog_sha256": "fbf00f506af97792b2c65140692f79add77322345503cdcabcc77aa547a2aac2",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-d9fe95d27b.md",
+      "vault_path": "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-tree-KV-Survey-综述/",
+      "vault_sha256": "ec7ec89b7b57d947f8cfe2bfd44153eb8fec8aa12fc9d14ad904787767faa5a7",
+      "blog_sha256": "576b00ea19fe15ae054df4444982fa3869b6d4cd0b2e81bb9710fe1d5a58e327",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-2ad49c5622.md",
+      "vault_path": "知识库/wiki/Lethe-删除感知LSM引擎.md",
+      "aliases": [],
+      "url": "/knowledge/Lethe-删除感知LSM引擎/",
+      "vault_sha256": "4f1ec95d17f2c19c4926fbe20a64b5433413a1668e6766aed7711fa0da5b1540",
+      "blog_sha256": "6651a090cfcb1e9819fc8a762e83f865a64481e24640a8a03bcf732e99c7f1c9",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-bdb517df9b.md",
+      "vault_path": "知识库/wiki/Log-as-the-Database-模式.md",
+      "aliases": [],
+      "url": "/knowledge/Log-as-the-Database-模式/",
+      "vault_sha256": "4c7c6b069a8dfded40e6e96879c6abe532859073c661ea5e14b1896338ed1fc7",
+      "blog_sha256": "088a22d290a1e3b7bf0a58f640293b0025771b1ef689623c796048f9e95f17a5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-94bcbdbdbc.md",
+      "vault_path": "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+      "aliases": [],
+      "url": "/knowledge/Loop-Engineering-多层Agent循环架构/",
+      "vault_sha256": "87334d03c61a64fc7c3bf4573c42b952caa4e400839f9561206a2041bd702056",
+      "blog_sha256": "49919c3de48b3cadb379f6c4c62a59a24eb6e65b3c37f9927bb2ca311eda5ec8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-b6b8824af0.md",
+      "vault_path": "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+      "aliases": [],
+      "url": "/knowledge/Model-Neutrality-模型中立与反锁定/",
+      "vault_sha256": "fdbf8410cf40e37590a11273f05981f88d30ba4af277b9cec182f4190888b59b",
+      "blog_sha256": "1a7a4c3006f3b43d6d48e677cde276c3ad632948d25689d8084e82791b21a58e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-51f8aa1210.md",
+      "vault_path": "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+      "aliases": [],
+      "url": "/knowledge/Nova-LSM-分布式组件化LSM/",
+      "vault_sha256": "edbfac3a565a0c0afdf51f99c250293dd61d4cdae72b061428fa6462e5b6a9a0",
+      "blog_sha256": "85ed0fe91b6934a024dd9e3b4b7b53842464f19ec2a33f1353953fd15ea58270",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-6ac609ee71.md",
+      "vault_path": "知识库/wiki/Pacman-持久内存Compaction.md",
+      "aliases": [],
+      "url": "/knowledge/Pacman-持久内存Compaction/",
+      "vault_sha256": "b45724e8c7d898064b2b3dcd764acd1e5a1771a76c19386c6abf597218a32da9",
+      "blog_sha256": "7075b2939c0dadf61a5484b5a55ef12614b797be2b39749cc480f73781ff9fb7",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-0b11ef3ad0.md",
+      "vault_path": "知识库/wiki/Parallax-Agent安全架构.md",
+      "aliases": [],
+      "url": "/knowledge/Parallax-Agent安全架构/",
+      "vault_sha256": "9fa32383cb6e8a4ffdad6e77c4091c269dac2c042b8982d6d2a9c23664d1277d",
+      "blog_sha256": "152fce9c95a8bd428d7063628ffdd83df3e67cb4573735a98c18f2a7cddbe49f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-667e888da9.md",
+      "vault_path": "知识库/wiki/Paxos-Epochs-Revised.md",
+      "aliases": [],
+      "url": "/knowledge/Paxos-Epochs-Revised/",
+      "vault_sha256": "657d7d6743dad5d02728be319efa321593f0ffb93cf30c4f937a301c62c53d01",
+      "blog_sha256": "40fdd70948ea6ff8dddd629f293d2a083ef84d8340cc71c573c88eca936c9c37",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-3c79060fab.md",
+      "vault_path": "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+      "aliases": [],
+      "url": "/knowledge/Paxos-Quorum-Intersection-Revised/",
+      "vault_sha256": "0b2208675e99df389306511c66104445c8769b67c9c8a1e5b257c7b3a8a48e3f",
+      "blog_sha256": "db3e06cea5596b0ecc5fe19a9aaa68e6209fcf8c742052fc7825ddcbbec8d9b6",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-d3ee87a0cf.md",
+      "vault_path": "知识库/wiki/Paxos-Value-Selection-Revised.md",
+      "aliases": [],
+      "url": "/knowledge/Paxos-Value-Selection-Revised/",
+      "vault_sha256": "0cfb47209e2d6b93f94da1144fc5316d1345fbd0fd021806de16f2549a6640be",
+      "blog_sha256": "208c69124da87f301d746124bf50a53ec2bf4af057d34460b186ba8b372f5333",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-e5d7030cbd.md",
+      "vault_path": "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+      "aliases": [],
+      "url": "/knowledge/Paxos-理论到实践的鸿沟/",
+      "vault_sha256": "786a7a2be8bc55bedfaa29c277e9114a03bfb97392f0b15f64588ffa6856f6b2",
+      "blog_sha256": "228f2fd1e9fde0019e4f240e652717aad6a4a19321ec0dc82b0ac4e17e278bb8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-c4e701a6b7.md",
+      "vault_path": "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+      "aliases": [],
+      "url": "/knowledge/PebblesDB-碎片化LSM-Tree/",
+      "vault_sha256": "b47425946ccdb01dc522ab8191ee74d1a9ed7ca308ce4f19446fba5bf4a48ff8",
+      "blog_sha256": "5862163eecce2aefa693c58cd44925929dfc6c33c1476145601ea2d5b22f9318",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-03-knowledge-5df6103d1f.md",
+      "vault_path": "知识库/wiki/Qwen-3.6-模型发布.md",
+      "aliases": [],
+      "url": "/knowledge/Qwen-3.6-模型发布/",
+      "vault_sha256": "2c40ecce81f5006ee1899467ec94269877c230dd0360dd5c8acadc3484d2297e",
+      "blog_sha256": "3ec55e20b3468582c1d6a41a25cf70c32280126741a237451f81445ec7c1fcd3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-7b14a0cb55.md",
+      "vault_path": "知识库/wiki/REMIX-全局排序索引.md",
+      "aliases": [],
+      "url": "/knowledge/REMIX-全局排序索引/",
+      "vault_sha256": "a8506bb9954481c1b55a0453fc0d640977c06479cf870bfd3b36dad9d9a4d20e",
+      "blog_sha256": "121d8149d8634148e12c69c6e2983e1ab8d1605f4b33d8dc9938fe6a4fc7ef5e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-3f8ca83757.md",
+      "vault_path": "知识库/wiki/RaaS-Replay-as-a-Service.md",
+      "aliases": [],
+      "url": "/knowledge/RaaS-Replay-as-a-Service/",
+      "vault_sha256": "88f08aad2bd59e48acc637d28f70662635924c693cd1f4589ad6f2a3d6580b8c",
+      "blog_sha256": "1839fa9d87cdf1d06a5a2a9629cf9ba40c479b6c07fc8fb8c4464498435ce449",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-05808bedab.md",
+      "vault_path": "知识库/wiki/Raft-共识算法协议核心.md",
+      "aliases": [],
+      "url": "/knowledge/Raft-共识算法协议核心/",
+      "vault_sha256": "cbf6e7ec368b64ffc09679cb935bcbd5ebc8b776dfca60eb6baaa7543f6bb6d9",
+      "blog_sha256": "a244463cb336d5d5ad19d8ff28ee8d0b9d8970ace6c455ab4f705bc6e82c308b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-e66ebad5ba.md",
+      "vault_path": "知识库/wiki/Raft-客户端交互.md",
+      "aliases": [],
+      "url": "/knowledge/Raft-客户端交互/",
+      "vault_sha256": "057da978e6c8b0a7fb90d3d9ca1e13d46a1b2c7f2b11074079b84c705c05aff9",
+      "blog_sha256": "774936b5fb2e7fa1ad490045be2c25cccb42ded78fa69cfacf1dd1e4b7612cd8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-192aae8f87.md",
+      "vault_path": "知识库/wiki/Raft-日志压缩.md",
+      "aliases": [],
+      "url": "/knowledge/Raft-日志压缩/",
+      "vault_sha256": "768006a1323a8eb56fc75b52ae101896d8534cede5809a5079a3c4eaa6e26fd3",
+      "blog_sha256": "78e94ee064049fbae6a9e7cf86d4942bd1c107322bf6d90fe2abfbfd239e42d5",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-d8a650049d.md",
+      "vault_path": "知识库/wiki/Raft-集群成员变更.md",
+      "aliases": [],
+      "url": "/knowledge/Raft-集群成员变更/",
+      "vault_sha256": "a9c2ec1f9f18e42df184b17e75f47fbc27ffedae8dce24921b185a228b3e821e",
+      "blog_sha256": "b0ad35f4655c34912a87d7f8490ee8673535420c2c0e5827de39589cced94324",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-db635cab52.md",
+      "vault_path": "知识库/wiki/Rosé-Coordinated-Apply-协调应用.md",
+      "aliases": [],
+      "url": "/knowledge/Rosé-Coordinated-Apply-协调应用/",
+      "vault_sha256": "f30057c491c351a4b0b4c363cc837c1b613bc54590320f4a98e8c7c4c26482f4",
+      "blog_sha256": "ce529ff97a7d66a15d11c0699c4269aa2f0af228a9a9f5aab1614c0edde887d8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-8ab34eba05.md",
+      "vault_path": "知识库/wiki/Rosé-异步复制协议设计.md",
+      "aliases": [],
+      "url": "/knowledge/Rosé-异步复制协议设计/",
+      "vault_sha256": "96ecb53b1b36e677b12daa0a8b796278ac75ce7ae17282cb3346003805f7f3c6",
+      "blog_sha256": "a789dec72275a1e1b6851421506b1efbd95af5d62a010d779526a1639da8a189",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-7f06276984.md",
+      "vault_path": "知识库/wiki/Silo-Compaction-迁移协议.md",
+      "aliases": [],
+      "url": "/knowledge/Silo-Compaction-迁移协议/",
+      "vault_sha256": "5a2db6253aa3cd86b4372650d5fc38bdaa3dc60b130a5e7a2d4dc61498aa4ec9",
+      "blog_sha256": "a7b0061b771cf4a9f9619c101f34e86e7134bfe7bb2a9fd5fa705afc4aac8ef3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-d1c798f4c9.md",
+      "vault_path": "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+      "aliases": [],
+      "url": "/knowledge/Silo-分布式LSM-Compaction调度/",
+      "vault_sha256": "bd53a8f2d9bd93f04aa67d4d3433153bda795e92ec7f9569185543f223363161",
+      "blog_sha256": "379ae600757a0286847974d607f1186cf95ff8ede2fd807aa6f860d4683f3cff",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-dd412cbe1e.md",
+      "vault_path": "知识库/wiki/Stream-Processing-System-Generations.md",
+      "aliases": [],
+      "url": "/knowledge/Stream-Processing-System-Generations/",
+      "vault_sha256": "3ce1c08722b0d0077109a648e30c114acb5a7caf4dabb5db302f559dfb1fdbdd",
+      "blog_sha256": "ecbd5fe60cfe52e07e9bf5181f2ba43cf8116eb307b6728075a996771a6c90f4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-07-02-knowledge-a0826cae53.md",
+      "vault_path": "知识库/wiki/gLSM-GPU加速Compaction.md",
+      "aliases": [],
+      "url": "/knowledge/gLSM-GPU加速Compaction/",
+      "vault_sha256": "8dccb69a408ba66fcb2343c4d3a04f566ab3863e22c441751a419f65d9135b0d",
+      "blog_sha256": "c147b642c014fffbc8c7a7b6e6c56f383a1c5bf3ed76644cdb0989fe3e4fb1e7",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-19-knowledge-35c81d5e03.md",
+      "vault_path": "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md",
+      "aliases": [],
+      "url": "/knowledge/AI-Infra-Agent基础设施体系综述/",
+      "vault_sha256": "aa1d524f62cac8b1dc10a943e7d2fe77d728a506762778ce5ff65d7621b7f2b1",
+      "blog_sha256": "b097362e75c8d7377edc7b46a545f47c15678d31b5df229df982140aa7ae2559",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-0c44653305.md",
+      "vault_path": "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+      "aliases": [],
+      "url": "/knowledge/Apache-Doris-OLAP-数据库体系综述/",
+      "vault_sha256": "66289e2cc696cded28db005309e1f7b2c343eb1ec5dbb3c18e2e32078ce7a849",
+      "blog_sha256": "e0a8e645d498af8ad5d0c615a012448d1a5832a4265f030712020be429092a67",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-17-knowledge-805739658c.md",
+      "vault_path": "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+      "aliases": [],
+      "url": "/knowledge/Fluss-流处理平台架构综述/",
+      "vault_sha256": "468fb4c567d7ececb0146a3b04b58ffc5fcf38de1ba5e9dfaed7335030e67943",
+      "blog_sha256": "586e97a807f2f88ef2c56d14d3a546b68017589ec6c84f8dc490664557619446",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-d1abbb3a3d.md",
+      "vault_path": "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+      "aliases": [],
+      "url": "/knowledge/InfluxDB-时序数据库体系综述/",
+      "vault_sha256": "aa3467e18b695fa618f6bdb66bd13fc2594f65017a1ffd9ccf8adf8841802f52",
+      "blog_sha256": "d98154ca9362d14cdb62f897d65222f882d6995db1ceacfd60efcb4836c12710",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-aa56613e6a.md",
+      "vault_path": "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md",
+      "aliases": [],
+      "url": "/knowledge/LSM-Tree-存储引擎新进展-2026综述/",
+      "vault_sha256": "449ad381887452af48a221c82de4cfec8ea1e3fe0acbb113734d4c455cf8dc6d",
+      "blog_sha256": "9f999449bcab724cd4d76b8a7d565ad593312848e89d98d2f02c1e925375f03b",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-c4efc7303c.md",
+      "vault_path": "知识库/wiki/synthesis/共识协议体系综述.md",
+      "aliases": [],
+      "url": "/knowledge/共识协议体系综述/",
+      "vault_sha256": "56ce54111ad89ceefa66371f6edee61b3c8322ba530c1220f874a0dd335c2e74",
+      "blog_sha256": "f14d3bd4fc7c4e3a39402d5b46fc45873ecef1acec4e2d3e4188985aa6b098cd",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-a5bdcaaf59.md",
+      "vault_path": "知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述.md",
+      "aliases": [],
+      "url": "/knowledge/分布式数据系统事务与一致性新进展-2026综述/",
+      "vault_sha256": "7f5a0ae501554c89e57fced8118be97e2cb82aedb779d1a67dfdc241294fb9e0",
+      "blog_sha256": "ff0a97433a63be202347190fd13fbc23cee22238f5c0a396f0c6f6d8bd631f08",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-17-knowledge-e8c4b95653.md",
+      "vault_path": "知识库/wiki/synthesis/流处理系统演化综述.md",
+      "aliases": [],
+      "url": "/knowledge/流处理系统演化综述/",
+      "vault_sha256": "90cd50939d04c362d59608c2dbd75b1177f357273955cc527b09f5931770d9db",
+      "blog_sha256": "8cb1ba135a58ba209a9d084f5ae04942feaeb2be8e5eb7d5fd9db7e408ea9b5c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-16-knowledge-0ee1c91d5a.md",
+      "vault_path": "知识库/wiki/共识算法族系-从Paxos到广义解.md",
+      "aliases": [],
+      "url": "/knowledge/共识算法族系-从Paxos到广义解/",
+      "vault_sha256": "c9ec00ef01040c021d3e8dde01c4b158d76134e8816c768afa84d956f9e16798",
+      "blog_sha256": "5a7b6c44e2d1594dba60e10a98e8aa879d89a81d624b779eb8291aa84a9532f3",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-14-knowledge-159e1f6d05.md",
+      "vault_path": "知识库/wiki/存储计算分离数据库的-Tail-Latency.md",
+      "aliases": [],
+      "url": "/knowledge/存储计算分离数据库的-Tail-Latency/",
+      "vault_sha256": "59478ed8b799eb1bd7aafc4cde43369b948353ec5cce35a7316d323f1aa44cf2",
+      "blog_sha256": "da94496d3c66e522b87e4e3f3216d983a9e2e993f57b040a5a51cf8cbfced12e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-10a0096719.md",
+      "vault_path": "知识库/wiki/流处理乱序数据管理.md",
+      "aliases": [],
+      "url": "/knowledge/流处理乱序数据管理/",
+      "vault_sha256": "dd269a55025ad8cad07d8ffc5fd8c452724bd43b77ad5f73b5e794723fc20766",
+      "blog_sha256": "48a7528224d6fd7cbd346418b7016d0dcd124e47088175f865411acf3abb2724",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-a555838b92.md",
+      "vault_path": "知识库/wiki/流处理容错模型.md",
+      "aliases": [],
+      "url": "/knowledge/流处理容错模型/",
+      "vault_sha256": "e1916bce522993d230811f99aba0bb82f904851f40ad210e7ba34c01d5bd2665",
+      "blog_sha256": "5be5e04176d00beea7de16f82eaeb71d34e6036eae0d416b0e20cd01e15622dd",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-ca69a096a8.md",
+      "vault_path": "知识库/wiki/流处理弹性与重配置.md",
+      "aliases": [],
+      "url": "/knowledge/流处理弹性与重配置/",
+      "vault_sha256": "4dd4c0f26c042e8b63303eb7593f1ca19c0188127f81bc50d4f4fd4ff3bf3b78",
+      "blog_sha256": "dcdc33575fbb90f2b16ba8b48e575ff35ca8acc6d2204d09a66472170509b1b7",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-15-knowledge-c0547b780d.md",
+      "vault_path": "知识库/wiki/流处理状态管理.md",
+      "aliases": [],
+      "url": "/knowledge/流处理状态管理/",
+      "vault_sha256": "541a6346b61b719ba75d9783574bab2b466cbcc7dc14f6292c35aebaf12e6381",
+      "blog_sha256": "ca9d936b314deb0190fef70cbe748848728a09308a611de45caaeecbb4d5c621",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-06-30-knowledge-c3a8eb3801.md",
+      "vault_path": "项目文档/Fluss源码分析/05b-客户端写入流程深度分析.md",
+      "aliases": [],
+      "url": "/knowledge/05b-客户端写入流程深度分析/",
+      "vault_sha256": "b7125d038823cd5623c75adf74d4002b196530d50112e198b915095ec6a0d39c",
+      "blog_sha256": "65f9b27dc697850731d59c5abd09e8b79d431f0a93150dfd1e0633cbe7699a72",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-05-31-knowledge-79858ab674.md",
+      "vault_path": "项目文档/agent基础设施可观测性平台/关于agent基建的一些思考.md",
+      "aliases": [],
+      "url": "/knowledge/关于agent基建的一些思考/",
+      "vault_sha256": "c15954384bdc900d2a1991411d0af1c44ef706c4f4d9b3fde0f21a083ee9cc67",
+      "blog_sha256": "6a20468188f984b4c7a4afc5e57ca0a8a361acc5a87e812fa2f9a78cef32cad4",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/ai_harness/week_08_2026-06-25.html",
+      "vault_path": "技术文章/博客同步/html-ai_harness-week_08_2026-06-25.md",
+      "aliases": [],
+      "url": "/tech_research/ai_harness/week_08_2026-06-25.html",
+      "vault_sha256": "442fdbd7a6164daadf812572ae57120e89c4dbf66786ac43d19ab57543a94420",
+      "blog_sha256": "9d297b1d174171563f3a2f85279432d7dd6da17b9b7753692bad6575c1f67060",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/ai_harness/week_09_2026-07-02.html",
+      "vault_path": "技术文章/博客同步/html-ai_harness-week_09_2026-07-02.md",
+      "aliases": [],
+      "url": "/tech_research/ai_harness/week_09_2026-07-02.html",
+      "vault_sha256": "7c8bef7a31c88b396b5294bccac74b111760e0ed594204be793ee440d050d019",
+      "blog_sha256": "836d220aef34afcc55a23271443c1424dc293ab6cd16c3162f21a208fc119c9f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/ai_harness/week_10_2026-07-09.html",
+      "vault_path": "技术文章/博客同步/html-ai_harness-week_10_2026-07-09.md",
+      "aliases": [],
+      "url": "/tech_research/ai_harness/week_10_2026-07-09.html",
+      "vault_sha256": "bd36cfffc2206960f21401199ae8ea782895bd9727e7102edc35bd495aa8814e",
+      "blog_sha256": "c117fb649fd6d13ccc2fcd51bb700cc0d7ee81b032cb0a2aae8a5a3f382d591c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/data_for_ai/week_08_2026-06-25.html",
+      "vault_path": "技术文章/博客同步/html-data_for_ai-week_08_2026-06-25.md",
+      "aliases": [],
+      "url": "/tech_research/data_for_ai/week_08_2026-06-25.html",
+      "vault_sha256": "0fa142a0e4c8bb0a402c74406b75b2028985e0d162178ed0e004cef4d6b1f1a6",
+      "blog_sha256": "228b72316a94b8b5d44af37b2bef9221c02aa20fb35c8e477a2a62a9bab96156",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/data_for_ai/week_09_2026-07-02.html",
+      "vault_path": "技术文章/博客同步/html-data_for_ai-week_09_2026-07-02.md",
+      "aliases": [],
+      "url": "/tech_research/data_for_ai/week_09_2026-07-02.html",
+      "vault_sha256": "1f05e636991bc3877dee190ec7290c851307e2ec6c30eae86a6e83d5069cef56",
+      "blog_sha256": "356a87939bb39404c4564ee1e5e488b8574f81f7dc350945c5937b6d059fc495",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/doris/week_08_2026-06-25.html",
+      "vault_path": "技术文章/博客同步/html-doris-week_08_2026-06-25.md",
+      "aliases": [],
+      "url": "/tech_research/doris/week_08_2026-06-25.html",
+      "vault_sha256": "6a165b01ce8f22fb3ac3effb29354e966bae9382397d0b61efae9c7b987f84cd",
+      "blog_sha256": "53c881f7637c07d988d8673f284673f87029836119a9d65759b37d38e780c21d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/doris/week_09_2026-07-02.html",
+      "vault_path": "技术文章/博客同步/html-doris-week_09_2026-07-02.md",
+      "aliases": [],
+      "url": "/tech_research/doris/week_09_2026-07-02.html",
+      "vault_sha256": "c214b95affe9ad6e92ddbaa65a9b601f75a39f0eb3b507afb73b61d3f552c8c4",
+      "blog_sha256": "2a19e84009df5751bc45f412a11f120c5f5539d51e5c6b83c29dafa55baab53d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/doris/week_10_2026-07-09.html",
+      "vault_path": "技术文章/博客同步/html-doris-week_10_2026-07-09.md",
+      "aliases": [],
+      "url": "/tech_research/doris/week_10_2026-07-09.html",
+      "vault_sha256": "d6bb6378f267c59c4a7b00e0ac2067d1867324c40f426cf55579352fb73e61ee",
+      "blog_sha256": "571acc7cc9f059ccf874576de5c340677d717b64c2c6254b26552abf0122e71d",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/kafka_research/week_08_2026-06-25.html",
+      "vault_path": "技术文章/博客同步/html-kafka_research-week_08_2026-06-25.md",
+      "aliases": [],
+      "url": "/tech_research/kafka_research/week_08_2026-06-25.html",
+      "vault_sha256": "033814be9d637e49788b816e57c590c995919c755e24a8cb79433ae6a1e9e9b2",
+      "blog_sha256": "e275b19f3a0cc052f75050d65b4d107eae711f31d9b290b44cf5dc5885ad558e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_research/kafka_research/week_09_2026-07-02.html",
+      "vault_path": "技术文章/博客同步/html-kafka_research-week_09_2026-07-02.md",
+      "aliases": [],
+      "url": "/tech_research/kafka_research/week_09_2026-07-02.html",
+      "vault_sha256": "a95cf3cf9a73af6cc5faf75f0e560bbb6ad563453977b6ec66abbfb6c629f520",
+      "blog_sha256": "0ea5788a51c1c0866e87499dce3556f8ac03687eaf126742b4b34f899768d408",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_designs/agent-infra/observability-dashboard.html",
+      "vault_path": "技术文章/博客同步/html-agent-infra-observability-dashboard.md",
+      "aliases": [],
+      "url": "/tech_designs/agent-infra/observability-dashboard.html",
+      "vault_sha256": "df2af09e1b1ff0e30cdc690212d25bfed14100e28f29efcd62f2f23aeb1ca3fc",
+      "blog_sha256": "cf3a458b7b33567044af8bde6b3a279663022b058ad8cfbd5092ce61b0a7a124",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "format": "legacy_html",
+      "blog_path": "tech_designs/zk-kafka-jbod-failure-handling.html",
+      "vault_path": "技术文章/博客同步/html-tech_designs-zk-kafka-jbod-failure-handling.md",
+      "aliases": [],
+      "url": "/tech_designs/zk-kafka-jbod-failure-handling.html",
+      "vault_sha256": "91aa0995c5561267aade9f3c6402ce04cd3ad63f18e5d4cd6da7921cc9240996",
+      "blog_sha256": "ab13ad73ec252a0150637c8c21a6934782aae00190f73d8f921c81942e2b6872",
+      "alias_sha256": {}
+    }
+  ],
+  "assets": {
+    "知识库/attachments/blog/media/diagrams/01-architecture-overview.svg": "/media/knowledge/9c834aeef522-01-architecture-overview.svg",
+    "知识库/attachments/blog/media/diagrams/02-storage-engine.svg": "/media/knowledge/3d87bb93b374-02-storage-engine.svg",
+    "知识库/attachments/blog/media/diagrams/04-query-execution.svg": "/media/knowledge/cf93abcacb1f-04-query-execution.svg",
+    "知识库/attachments/blog/media/diagrams/05-architecture-evolution.svg": "/media/knowledge/ea39f9496b15-05-architecture-evolution.svg",
+    "知识库/attachments/blog/media/diagrams/06-metadata-store.svg": "/media/knowledge/6dc8473328fc-06-metadata-store.svg",
+    "知识库/attachments/blog/media/diagrams/07-write-consistency.svg": "/media/knowledge/4551ca35e0ae-07-write-consistency.svg",
+    "技术文章/InfluxDB调研/diagram/01-architecture-overview.svg": "/media/knowledge/fdad200a08d2-01-architecture-overview.svg",
+    "技术文章/InfluxDB调研/diagram/02-storage-engine.svg": "/media/knowledge/bd42e476db23-02-storage-engine.svg",
+    "技术文章/InfluxDB调研/diagram/03-write-path.svg": "/media/knowledge/b9d2ddc64270-03-write-path.svg",
+    "技术文章/InfluxDB调研/diagram/04-query-path.svg": "/media/knowledge/c0773f5a1fd5-04-query-path.svg",
+    "技术文章/InfluxDB调研/diagram/05-schema-best-practices.svg": "/media/knowledge/f6a25ec69205-05-schema-best-practices.svg",
+    "技术文章/InfluxDB调研/diagram/06-replication-ha.svg": "/media/knowledge/411784b8fc9a-06-replication-ha.svg",
+    "技术文章/InfluxDB调研/diagram/07-catalog-metadata.svg": "/media/knowledge/9b76f38c49fd-07-catalog-metadata.svg",
+    "知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf": "/media/knowledge/ae4c5f942128-Agent-Harness-Engineering-Survey-OpenReview2026.pdf",
+    "知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf": "/media/knowledge/53835cce7452-Agent-First-Data-CIDR2026.pdf",
+    "知识库/wiki/diagram/agent-first-data-systems.svg": "/media/knowledge/915ed18eadf2-agent-first-data-systems.svg",
+    "知识库/wiki/diagram/agent-harness-etclovg-7layer.svg": "/media/knowledge/d36a20ee1d70-agent-harness-etclovg-7layer.svg",
+    "知识库/wiki/diagram/aurora-limitless-architecture.svg": "/media/knowledge/2d34781bb500-aurora-limitless-architecture.svg",
+    "知识库/sources/papers/Bigtable/Bigtable-OSDI-2006.pdf": "/media/knowledge/9126cf3b930f-Bigtable-OSDI-2006.pdf",
+    "知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf": "/media/knowledge/3dcf012f0842-ByteHouse-SIGMOD2026.pdf",
+    "知识库/wiki/diagram/bytehouse-doc-chunk.svg": "/media/knowledge/30d36fdd3c2f-bytehouse-doc-chunk.svg",
+    "知识库/wiki/diagram/chandy-lamport-marker.svg": "/media/knowledge/ba4161451782-chandy-lamport-marker.svg",
+    "知识库/wiki/diagram/flink-barrier-alignment.svg": "/media/knowledge/f4335e5495c6-flink-barrier-alignment.svg",
+    "知识库/wiki/diagram/cockroachdb-leader-lease-3-layer.svg": "/media/knowledge/89b3da069bd8-cockroachdb-leader-lease-3-layer.svg",
+    "知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf": "/media/knowledge/b427fd037a22-Scalable-Leader-Leases-SIGMOD2026.pdf",
+    "知识库/wiki/diagram/agent-harness-5layer.svg": "/media/knowledge/5ab4cf789da9-agent-harness-5layer.svg",
+    "知识库/wiki/diagram/dataflow-model.svg": "/media/knowledge/604b89c43e64-dataflow-model.svg",
+    "知识库/sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf": "/media/knowledge/b23d78756595-SP-Survey-arXiv2020.pdf",
+    "知识库/wiki/diagram/Doris-MPP-向量化查询引擎-fig1.svg": "/media/knowledge/22ea3c1fe5a6-Doris-MPP-向量化查询引擎-fig1.svg",
+    "知识库/wiki/diagram/Doris-MPP-向量化查询引擎-fig2.svg": "/media/knowledge/2ecfcf04961a-Doris-MPP-向量化查询引擎-fig2.svg",
+    "知识库/wiki/diagram/Doris-MPP-向量化查询引擎-fig3.svg": "/media/knowledge/0643fe3a0398-Doris-MPP-向量化查询引擎-fig3.svg",
+    "知识库/wiki/diagram/Doris-Nereids-CBO-优化器-fig.svg": "/media/knowledge/98fa3d3ac204-Doris-Nereids-CBO-优化器-fig.svg",
+    "知识库/wiki/diagram/Doris-Segment-v2-存储格式-fig.svg": "/media/knowledge/cb183265f759-Doris-Segment-v2-存储格式-fig.svg",
+    "知识库/wiki/diagram/Doris-元数据与一致性复制-fig1.svg": "/media/knowledge/a12b74be7b16-Doris-元数据与一致性复制-fig1.svg",
+    "知识库/wiki/diagram/Doris-元数据与一致性复制-fig2.svg": "/media/knowledge/badb25e89823-Doris-元数据与一致性复制-fig2.svg",
+    "知识库/wiki/diagram/Doris-元数据与一致性复制-fig3.svg": "/media/knowledge/8a71b503ca76-Doris-元数据与一致性复制-fig3.svg",
+    "知识库/wiki/diagram/Doris-数据模型-fig1.svg": "/media/knowledge/514c5324287c-Doris-数据模型-fig1.svg",
+    "知识库/wiki/diagram/Doris-数据模型-fig2.svg": "/media/knowledge/dade136728e9-Doris-数据模型-fig2.svg",
+    "知识库/wiki/diagram/Doris-数据模型-fig3.svg": "/media/knowledge/6fd92be4617c-Doris-数据模型-fig3.svg",
+    "知识库/wiki/diagram/Doris-数据模型-fig4.svg": "/media/knowledge/51c4a28edbd9-Doris-数据模型-fig4.svg",
+    "知识库/wiki/diagram/Doris-数据模型-fig5.svg": "/media/knowledge/308abdca0d06-Doris-数据模型-fig5.svg",
+    "知识库/wiki/diagram/doris-architecture-evolution.svg": "/media/knowledge/1bd6881badef-doris-architecture-evolution.svg",
+    "知识库/wiki/diagram/Event-Horizon-非对称依赖-fig1.svg": "/media/knowledge/4ae33cbfb013-Event-Horizon-非对称依赖-fig1.svg",
+    "知识库/wiki/diagram/Event-Horizon-非对称依赖-fig2.svg": "/media/knowledge/f3c9e2ed14dc-Event-Horizon-非对称依赖-fig2.svg",
+    "知识库/sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf": "/media/knowledge/053349a5c7d0-Event-Horizon-CIDR2026.pdf",
+    "知识库/wiki/diagram/Fluss-KV存储-RocksDB-fig1.svg": "/media/knowledge/63efabe6ea66-Fluss-KV存储-RocksDB-fig1.svg",
+    "知识库/wiki/diagram/Fluss-KV存储-RocksDB-fig2.svg": "/media/knowledge/3644d6d3541a-Fluss-KV存储-RocksDB-fig2.svg",
+    "知识库/wiki/diagram/Fluss-KV存储-RocksDB-fig3.svg": "/media/knowledge/4b81939dae23-Fluss-KV存储-RocksDB-fig3.svg",
+    "知识库/wiki/diagram/Fluss-Kafka兼容层-fig2.svg": "/media/knowledge/30fce154cc72-Fluss-Kafka兼容层-fig2.svg",
+    "知识库/wiki/diagram/Fluss-Lake层与湖仓融合-fig1.svg": "/media/knowledge/634061d7b550-Fluss-Lake层与湖仓融合-fig1.svg",
+    "知识库/wiki/diagram/Fluss-Lake层与湖仓融合-fig2.svg": "/media/knowledge/69e76fbe482e-Fluss-Lake层与湖仓融合-fig2.svg",
+    "知识库/wiki/diagram/Fluss-Lake层与湖仓融合-fig3.svg": "/media/knowledge/2af554087474-Fluss-Lake层与湖仓融合-fig3.svg",
+    "知识库/wiki/diagram/Fluss-Lake层与湖仓融合-fig4.svg": "/media/knowledge/7114a2bb01bb-Fluss-Lake层与湖仓融合-fig4.svg",
+    "知识库/wiki/diagram/Fluss-RPC与网络-fig1.svg": "/media/knowledge/0bbdd18422e0-Fluss-RPC与网络-fig1.svg",
+    "知识库/wiki/diagram/Fluss-RPC与网络-fig2.svg": "/media/knowledge/409c00f3faca-Fluss-RPC与网络-fig2.svg",
+    "知识库/wiki/diagram/Fluss-RPC与网络-fig3.svg": "/media/knowledge/0d11473cae22-Fluss-RPC与网络-fig3.svg",
+    "知识库/wiki/diagram/Fluss-Tiering分层架构-fig1.svg": "/media/knowledge/3ea8e8b695df-Fluss-Tiering分层架构-fig1.svg",
+    "知识库/wiki/diagram/Fluss-Tiering分层架构-fig2.svg": "/media/knowledge/b54a21218fbe-Fluss-Tiering分层架构-fig2.svg",
+    "知识库/wiki/diagram/Fluss-Tiering分层架构-fig3.svg": "/media/knowledge/85ff72ba863b-Fluss-Tiering分层架构-fig3.svg",
+    "知识库/wiki/diagram/Fluss-分布式协调-fig1.svg": "/media/knowledge/9f729d9584c7-Fluss-分布式协调-fig1.svg",
+    "知识库/wiki/diagram/Fluss-分布式协调-fig2.svg": "/media/knowledge/1f250505bb7a-Fluss-分布式协调-fig2.svg",
+    "知识库/wiki/diagram/fluss-flink-modules.svg": "/media/knowledge/cfc71cc76963-fluss-flink-modules.svg",
+    "知识库/wiki/diagram/fluss-vs-kafka-architecture.svg": "/media/knowledge/640b0cd5a589-fluss-vs-kafka-architecture.svg",
+    "知识库/wiki/diagram/InfluxDB-Catalog元数据-fig1.svg": "/media/knowledge/77b03d20cdd3-InfluxDB-Catalog元数据-fig1.svg",
+    "知识库/wiki/diagram/InfluxDB-Catalog元数据-fig2.svg": "/media/knowledge/934e39befee0-InfluxDB-Catalog元数据-fig2.svg",
+    "知识库/wiki/diagram/InfluxDB-TSM存储引擎-fig.svg": "/media/knowledge/a99fa4b16319-InfluxDB-TSM存储引擎-fig.svg",
+    "知识库/wiki/diagram/influxdb-read-write-path.svg": "/media/knowledge/3f27ed3298af-influxdb-read-write-path.svg",
+    "知识库/wiki/diagram/InfluxDB-多副本与高可用-fig.svg": "/media/knowledge/4ae9ae31e877-InfluxDB-多副本与高可用-fig.svg",
+    "知识库/wiki/diagram/InfluxDB-指标设计与基数管理-fig1.svg": "/media/knowledge/55c252d26636-InfluxDB-指标设计与基数管理-fig1.svg",
+    "知识库/wiki/diagram/InfluxDB-指标设计与基数管理-fig2.svg": "/media/knowledge/4dc6110c8a4a-InfluxDB-指标设计与基数管理-fig2.svg",
+    "知识库/wiki/diagram/InfluxDB-数据模型-fig.svg": "/media/knowledge/68f3eef25ac6-InfluxDB-数据模型-fig.svg",
+    "知识库/wiki/diagram/InfluxDB深度调研-fig.svg": "/media/knowledge/4d58b66d8d33-InfluxDB深度调研-fig.svg",
+    "知识库/wiki/diagram/rum-conjecture.svg": "/media/knowledge/28d75b32b943-rum-conjecture.svg",
+    "知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf": "/media/knowledge/4698c9c3eedd-LSM-Survey-VLDBJ2019.pdf",
+    "知识库/wiki/diagram/lsm-write-amplification.svg": "/media/knowledge/5ca909c240db-lsm-write-amplification.svg",
+    "知识库/sources/papers/LSM-tree-KV-Survey-2025/LSM-tree-KV-Survey-2025.pdf": "/media/knowledge/f758a8f69db0-LSM-tree-KV-Survey-2025.pdf",
+    "知识库/wiki/diagram/log-as-the-database.svg": "/media/knowledge/30801f281d1b-log-as-the-database.svg",
+    "知识库/wiki/diagram/Log-as-the-Database-模式-fig.svg": "/media/knowledge/7eac95745d6c-Log-as-the-Database-模式-fig.svg",
+    "知识库/sources/papers/RaaS/RaaS-SIGMOD2026.pdf": "/media/knowledge/7b761d5ad70a-RaaS-SIGMOD2026.pdf",
+    "知识库/wiki/diagram/paxos-epochs-revised.svg": "/media/knowledge/e0709d8265e7-paxos-epochs-revised.svg",
+    "知识库/wiki/diagram/epochs-by-allocator-sequence.svg": "/media/knowledge/dfe2cf5b26da-epochs-by-allocator-sequence.svg",
+    "知识库/wiki/diagram/epochs-recovery-vs-fast-paxos.svg": "/media/knowledge/c38925a2dbda-epochs-recovery-vs-fast-paxos.svg",
+    "知识库/wiki/diagram/paxos-quorum-intersection.svg": "/media/knowledge/6cbe4867d484-paxos-quorum-intersection.svg",
+    "知识库/wiki/diagram/paxos-value-selection.svg": "/media/knowledge/dd1513905ce6-paxos-value-selection.svg",
+    "知识库/wiki/diagram/paxos-vs-raft-decomposition.svg": "/media/knowledge/e85c89e34260-paxos-vs-raft-decomposition.svg",
+    "知识库/wiki/diagram/RaaS-Replay-as-a-Service-fig.svg": "/media/knowledge/6d3a7d01e801-RaaS-Replay-as-a-Service-fig.svg",
+    "知识库/wiki/diagram/raft-three-states.svg": "/media/knowledge/09a5e6399ae4-raft-three-states.svg",
+    "知识库/wiki/diagram/raft-joint-consensus.svg": "/media/knowledge/af75cd49403f-raft-joint-consensus.svg",
+    "知识库/sources/papers/Rose/Rose-CIDR2026.pdf": "/media/knowledge/f97412009672-Rose-CIDR2026.pdf",
+    "知识库/wiki/diagram/rose-async-replication.svg": "/media/knowledge/512a31b139e2-rose-async-replication.svg",
+    "知识库/wiki/diagram/silo-compaction-scheduling.svg": "/media/knowledge/24d0ffaced3a-silo-compaction-scheduling.svg",
+    "知识库/wiki/diagram/Silo-Compaction-迁移协议-fig.svg": "/media/knowledge/b4b165be165f-Silo-Compaction-迁移协议-fig.svg",
+    "知识库/sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf": "/media/knowledge/d6286796a9b2-LSM-Scheduling-FAST2026.pdf",
+    "知识库/wiki/diagram/Stream-Processing-System-Generations-fig.svg": "/media/knowledge/10342357e55c-Stream-Processing-System-Generations-fig.svg",
+    "知识库/wiki/diagram/stream-processing-generations.svg": "/media/knowledge/496ce7ddf267-stream-processing-generations.svg",
+    "知识库/wiki/diagram/ai-infra-4layer-arch.svg": "/media/knowledge/e7c30309a2f9-ai-infra-4layer-arch.svg",
+    "知识库/wiki/diagram/doris-architecture.svg": "/media/knowledge/a10e6f173b27-doris-architecture.svg",
+    "知识库/wiki/diagram/fluss-architecture.svg": "/media/knowledge/9ea4107ba4e2-fluss-architecture.svg",
+    "知识库/wiki/diagram/influxdb-architecture.svg": "/media/knowledge/044c90fb5481-influxdb-architecture.svg",
+    "知识库/wiki/diagram/lsm-tree-2026-progress.svg": "/media/knowledge/d631bb2f482e-lsm-tree-2026-progress.svg",
+    "知识库/wiki/diagram/consensus-generalised-family.svg": "/media/knowledge/f995a1506882-consensus-generalised-family.svg",
+    "知识库/wiki/diagram/tx-consistency-2026-progress.svg": "/media/knowledge/a52979f68680-tx-consistency-2026-progress.svg",
+    "知识库/wiki/diagram/stream-processing-evolution.svg": "/media/knowledge/c1e71061ba48-stream-processing-evolution.svg",
+    "知识库/wiki/diagram/stream-exactly-once-levels.svg": "/media/knowledge/b833518a4334-stream-exactly-once-levels.svg",
+    "知识库/wiki/diagram/流处理弹性与重配置-fig1.svg": "/media/knowledge/bd916dc2d1e7-流处理弹性与重配置-fig1.svg",
+    "知识库/wiki/diagram/流处理弹性与重配置-fig2.svg": "/media/knowledge/d9dd1c31179b-流处理弹性与重配置-fig2.svg",
+    "知识库/wiki/diagram/流处理状态管理-fig1.svg": "/media/knowledge/b86b5858d17b-流处理状态管理-fig1.svg",
+    "知识库/wiki/diagram/流处理状态管理-fig2.svg": "/media/knowledge/cd34f0e62ba2-流处理状态管理-fig2.svg",
+    "知识库/wiki/diagram/流处理状态管理-fig3.svg": "/media/knowledge/8b897d352b0d-流处理状态管理-fig3.svg",
+    "项目文档/Fluss源码分析/fluss-client-write-architecture.svg": "/media/knowledge/478c9e7db9db-fluss-client-write-architecture.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/five-dimensions-framework.svg": "/media/knowledge/701d6fc04156-five-dimensions-framework.svg",
+    "项目文档/agent基础设施可观测性平台/diagram/memory-three-tier.svg": "/media/knowledge/eab140d4f366-memory-three-tier.svg"
+  },
+  "unresolved_source_mentions": [
+    {
+      "file": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "target": "LLM-数据库接口"
+    },
+    {
+      "file": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "target": "向量数据库与语义搜索"
+    },
+    {
+      "file": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "target": "向量数据库与语义搜索"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-Snapshot-Isolation"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "Aurora-存储计算分离"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-两阶段提交"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-MVCC"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-Snapshot-Isolation"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-两阶段提交"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "概念-MVCC"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "target": "Aurora-存储计算分离"
+    },
+    {
+      "file": "知识库/sources/papers/LSM-tree-KV-Survey-2025/精读分析.md",
+      "target": "LevelDB-RocksDB"
+    }
+  ],
+  "pending_concepts": [
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "GFS-Google-File-System"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "Chubby-分布式锁服务"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "SSTable-排序字符串表"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "HBase-分布式数据库"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "Cassandra-分布式数据库"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "LevelDB-嵌入式KV存储"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "Spanner-全球分布式数据库"
+    },
+    {
+      "file": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "concept": "NoSQL-运动"
+    },
+    {
+      "file": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "concept": "LLM-数据库接口"
+    },
+    {
+      "file": "知识库/sources/papers/Agent-First-Data/精读分析.md",
+      "concept": "向量数据库与语义搜索"
+    },
+    {
+      "file": "知识库/sources/papers/LSM-tree-KV-Survey-2025/精读分析.md",
+      "concept": "LevelDB-RocksDB"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "concept": "概念-Snapshot-Isolation"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "concept": "概念-两阶段提交"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "concept": "概念-MVCC"
+    },
+    {
+      "file": "知识库/sources/papers/Aurora-Limitless/精读分析.md",
+      "concept": "Aurora-存储计算分离"
+    }
+  ],
+  "excluded_mixed_documents": [
+    {
+      "vault_path": "项目文档/agent基础设施可观测性平台/observability-deep-design.md",
+      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
+    },
+    {
+      "vault_path": "项目文档/agent基础设施可观测性平台/phase3-knowledge-management.md",
+      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
+    },
+    {
+      "vault_path": "项目文档/agent基础设施可观测性平台/设计文档.md",
+      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
+    }
+  ],
+  "asset_sha256": {
+    "/media/knowledge/9c834aeef522-01-architecture-overview.svg": "9c834aeef5226219058779b600e7bbcf2252f571b1569f979c1d77f5bd11a710",
+    "/media/knowledge/3d87bb93b374-02-storage-engine.svg": "3d87bb93b374c03dc40af206865c84ebeb588d94e99857e29793c87e317c58e2",
+    "/media/knowledge/cf93abcacb1f-04-query-execution.svg": "cf93abcacb1f7ad5d62313bf12e4d01a6bd478b53b4e0ae8695e0b691afc0d3a",
+    "/media/knowledge/ea39f9496b15-05-architecture-evolution.svg": "ea39f9496b1560fcc3d00928faa02cfe943945a61daf82ac86411b9d48b5c863",
+    "/media/knowledge/6dc8473328fc-06-metadata-store.svg": "6dc8473328fc888ec6ac4d710ffa0bdc1715df6b0caaf6dbc4f27ab9e7b5d2e4",
+    "/media/knowledge/4551ca35e0ae-07-write-consistency.svg": "4551ca35e0ae6d2e88080e1c30a2e1faef3de4a97d41d7d89fc374dc7829cd39",
+    "/media/knowledge/fdad200a08d2-01-architecture-overview.svg": "fdad200a08d24f6b8ad4e3e97c050f3c873cb0bbeb1903da706daf536e45a078",
+    "/media/knowledge/bd42e476db23-02-storage-engine.svg": "bd42e476db2356e9f8711fa640809dd3659d068cfba4b3ad17836f0f0db53437",
+    "/media/knowledge/b9d2ddc64270-03-write-path.svg": "b9d2ddc64270f5eee833d14cd9c1f1731d1a4a4a913c8def9e3fbbf9a2aa955e",
+    "/media/knowledge/c0773f5a1fd5-04-query-path.svg": "c0773f5a1fd56d05dc3fce1acfdb1ab381ead76ce354a270d3e0466398419aaf",
+    "/media/knowledge/f6a25ec69205-05-schema-best-practices.svg": "f6a25ec692052e709ca53a31bb6778d6728978a20e61a5722125aa64b8beb942",
+    "/media/knowledge/411784b8fc9a-06-replication-ha.svg": "411784b8fc9a9e9a95fba12eeeb57174343764e21376424e3da089d2c1146e9c",
+    "/media/knowledge/9b76f38c49fd-07-catalog-metadata.svg": "9b76f38c49fda59521940debd2d24d572d2dbdc7a3837ed6cd317ee053c55851",
+    "/media/knowledge/ae4c5f942128-Agent-Harness-Engineering-Survey-OpenReview2026.pdf": "ae4c5f942128df4103b3108e02fa933e4ab5d7f101fd10c2ff5c9ae7efc388dc",
+    "/media/knowledge/53835cce7452-Agent-First-Data-CIDR2026.pdf": "53835cce74520c682ae4182afb354839683c49bc90e3176be095cad7b7a1dbf6",
+    "/media/knowledge/915ed18eadf2-agent-first-data-systems.svg": "915ed18eadf230c8f2888a1acdf3897aacc6841e5dfe417572a1c1e465dc0789",
+    "/media/knowledge/d36a20ee1d70-agent-harness-etclovg-7layer.svg": "d36a20ee1d7030a38c78fcabb7079beeed0852f09c7617442486324941a9e8ee",
+    "/media/knowledge/2d34781bb500-aurora-limitless-architecture.svg": "2d34781bb5006cbf4729bdaed33360cd2c0f267f347b51884cbe5d02e197ed05",
+    "/media/knowledge/9126cf3b930f-Bigtable-OSDI-2006.pdf": "9126cf3b930fd7be2de6248f82565c9b970482eb063bdc30be8c1b29c86b2167",
+    "/media/knowledge/3dcf012f0842-ByteHouse-SIGMOD2026.pdf": "3dcf012f0842f2591d1f5fd9f41437ee17bf9634e1e561fb6a897415371631ca",
+    "/media/knowledge/30d36fdd3c2f-bytehouse-doc-chunk.svg": "30d36fdd3c2fa55a40d024e0dc9639f1862f8ceae88c3dcdb7465303014adb72",
+    "/media/knowledge/ba4161451782-chandy-lamport-marker.svg": "ba41614517824dedb644a6d1fda6060111fd34a68e9670ac945fcf4b6bf17601",
+    "/media/knowledge/f4335e5495c6-flink-barrier-alignment.svg": "f4335e5495c6efb640f56a0c2c79da71bc8384899fc9a95a553022eb12df829d",
+    "/media/knowledge/89b3da069bd8-cockroachdb-leader-lease-3-layer.svg": "89b3da069bd847501c5fe69882cc900993d6caddb5771795d57b6ea20760e50a",
+    "/media/knowledge/b427fd037a22-Scalable-Leader-Leases-SIGMOD2026.pdf": "b427fd037a22ee325ab0185a548873c3cc88afa8051921ac082710787b550816",
+    "/media/knowledge/5ab4cf789da9-agent-harness-5layer.svg": "5ab4cf789da93e3e0be67753de5643e8b16cc0ad0e3cae1f4ae83137b0da06f2",
+    "/media/knowledge/604b89c43e64-dataflow-model.svg": "604b89c43e6426ab5fcfe1a8708ddece50e353c3924e27c680f51db8ccd27508",
+    "/media/knowledge/b23d78756595-SP-Survey-arXiv2020.pdf": "b23d78756595714360549c25068c53b5795c76119ee2a5d3167cc772cf46da21",
+    "/media/knowledge/22ea3c1fe5a6-Doris-MPP-向量化查询引擎-fig1.svg": "22ea3c1fe5a6718f2bc96b066ad401b93a2426049a4247d368b5559e3960c256",
+    "/media/knowledge/2ecfcf04961a-Doris-MPP-向量化查询引擎-fig2.svg": "2ecfcf04961a25e62692ec9087ba2c699a8a6f237261690c69f8b5b8d98b3e12",
+    "/media/knowledge/0643fe3a0398-Doris-MPP-向量化查询引擎-fig3.svg": "0643fe3a03986dfe46422a035740b415def6529568525a04082c1b3193a15242",
+    "/media/knowledge/98fa3d3ac204-Doris-Nereids-CBO-优化器-fig.svg": "98fa3d3ac204bf59f1c57b91fee107eebafe443d252e221990dce6b733a7e19f",
+    "/media/knowledge/cb183265f759-Doris-Segment-v2-存储格式-fig.svg": "cb183265f759e2dfede2f0cde11dcf45170c8f939b4d3be6ceb412b7363d7ea7",
+    "/media/knowledge/a12b74be7b16-Doris-元数据与一致性复制-fig1.svg": "a12b74be7b169096f8dc48899c37a52a0fe966446bd0e284919663d50e55f3d6",
+    "/media/knowledge/badb25e89823-Doris-元数据与一致性复制-fig2.svg": "badb25e898230720b683d3a51ae79e1dd2bae49a43fb9d4f64c417e801826a6a",
+    "/media/knowledge/8a71b503ca76-Doris-元数据与一致性复制-fig3.svg": "8a71b503ca76c8b4aeeb45933827bfc9cf2e71bd1678816124fb7d9999b667af",
+    "/media/knowledge/514c5324287c-Doris-数据模型-fig1.svg": "514c5324287cafbe3b890207f33e88c1fa83fba36a739daf10adc728242cf61d",
+    "/media/knowledge/dade136728e9-Doris-数据模型-fig2.svg": "dade136728e98245ba23ce09203a45a232e98a167a3bd4b867f422efa0dcc46a",
+    "/media/knowledge/6fd92be4617c-Doris-数据模型-fig3.svg": "6fd92be4617cbaad4dd52ebaecb69b49ca262678bf6bac25b61560dc415125b5",
+    "/media/knowledge/51c4a28edbd9-Doris-数据模型-fig4.svg": "51c4a28edbd9dd97d78951c0d2a7e93d199daf85910b834d1c7d65a7fbe88590",
+    "/media/knowledge/308abdca0d06-Doris-数据模型-fig5.svg": "308abdca0d0673f268824ab70cfa286026f3c9d4ed52f73b395504f50ae131f0",
+    "/media/knowledge/1bd6881badef-doris-architecture-evolution.svg": "1bd6881badef8540d63d7f05f0bae8987bec824b81f3e777684b5110d7d6cbd9",
+    "/media/knowledge/4ae33cbfb013-Event-Horizon-非对称依赖-fig1.svg": "4ae33cbfb0136f9528831b59161280d654f2bcefd2ded92df9aaa1e059b73798",
+    "/media/knowledge/f3c9e2ed14dc-Event-Horizon-非对称依赖-fig2.svg": "f3c9e2ed14dc651010e2a6a20030472a192b8300cb71c8ff1fadcb22f7b524d1",
+    "/media/knowledge/053349a5c7d0-Event-Horizon-CIDR2026.pdf": "053349a5c7d0fc959bf68d8736546cfe250a865a999090cfc681037482f60aa5",
+    "/media/knowledge/63efabe6ea66-Fluss-KV存储-RocksDB-fig1.svg": "63efabe6ea66285b7a749d51b25c5a8516db31867de08b33ea1229b19287bcf5",
+    "/media/knowledge/3644d6d3541a-Fluss-KV存储-RocksDB-fig2.svg": "3644d6d3541ad7e71a5e99355ea059ae9f805c56a18acb258d6f43a001d041ab",
+    "/media/knowledge/4b81939dae23-Fluss-KV存储-RocksDB-fig3.svg": "4b81939dae237abaa052351ff8a6e29fcd803110ff7e95aa9aba5d0b1aa53f10",
+    "/media/knowledge/30fce154cc72-Fluss-Kafka兼容层-fig2.svg": "30fce154cc725a051fc42399d8ca07052a3baef0dab829d453186311acc91155",
+    "/media/knowledge/634061d7b550-Fluss-Lake层与湖仓融合-fig1.svg": "634061d7b55086a8a3051c294d4f479465afc3a70ea0d6235fe024b739da7d52",
+    "/media/knowledge/69e76fbe482e-Fluss-Lake层与湖仓融合-fig2.svg": "69e76fbe482eeada721628e3eafc2d84d8a82f55d44a7785f4c24883195020ac",
+    "/media/knowledge/2af554087474-Fluss-Lake层与湖仓融合-fig3.svg": "2af55408747431a453bd20a0ef1122dce87efff52318a83e203b113262a220ac",
+    "/media/knowledge/7114a2bb01bb-Fluss-Lake层与湖仓融合-fig4.svg": "7114a2bb01bb1574b81be7ba69a7bd87951d06103b3bb70c6148ff5691666b64",
+    "/media/knowledge/0bbdd18422e0-Fluss-RPC与网络-fig1.svg": "0bbdd18422e0a7d5e430b75eb97659c18a482b56cc1dded350f9677ea8a9a3b0",
+    "/media/knowledge/409c00f3faca-Fluss-RPC与网络-fig2.svg": "409c00f3facafb9ce3179211083ab3c43a7019bd842f01adb90a532913bfeb08",
+    "/media/knowledge/0d11473cae22-Fluss-RPC与网络-fig3.svg": "0d11473cae22d6f79c848ea6b78f09e7a9dd9f6647169a81def0f982bdaf56e9",
+    "/media/knowledge/3ea8e8b695df-Fluss-Tiering分层架构-fig1.svg": "3ea8e8b695df9c282d332310e3a2dab393fc3bf3fc3e94916fb28be8461796cd",
+    "/media/knowledge/b54a21218fbe-Fluss-Tiering分层架构-fig2.svg": "b54a21218fbeb3dcd5a09400ea43ed9dfb1fc4c6844b6b7e6bb1f1a5aad7cc4c",
+    "/media/knowledge/85ff72ba863b-Fluss-Tiering分层架构-fig3.svg": "85ff72ba863be5bebef3871642f8c3bd4cc30192dfa05845e382c973edf409a2",
+    "/media/knowledge/9f729d9584c7-Fluss-分布式协调-fig1.svg": "9f729d9584c7b0823bbbf1684a757ee1153d8a213cb84d67353a6437608606da",
+    "/media/knowledge/1f250505bb7a-Fluss-分布式协调-fig2.svg": "1f250505bb7a17ab643bacc97243c8ccc6c249949125a51fb6bec079f8eed19e",
+    "/media/knowledge/cfc71cc76963-fluss-flink-modules.svg": "cfc71cc76963ecc10ac44ba86fa9d55b57aee9cdc05bda37cd9342479cd2eaf5",
+    "/media/knowledge/640b0cd5a589-fluss-vs-kafka-architecture.svg": "640b0cd5a58988436f1fe8c10ff42241cf7c136d6da0a7be34ecbc8b460d443a",
+    "/media/knowledge/77b03d20cdd3-InfluxDB-Catalog元数据-fig1.svg": "77b03d20cdd32adbb909f67df55b7dbb071f665fa5135f2a413d79c1eadbfa30",
+    "/media/knowledge/934e39befee0-InfluxDB-Catalog元数据-fig2.svg": "934e39befee0435c338f2062a36a2b38776e73cc1c0313242ca572ebdeacf896",
+    "/media/knowledge/a99fa4b16319-InfluxDB-TSM存储引擎-fig.svg": "a99fa4b163190afa472a4cf2994c4d370602a93b7b7afb5cef6456b30ab19a2b",
+    "/media/knowledge/3f27ed3298af-influxdb-read-write-path.svg": "3f27ed3298af9dbf0376b85e13083917dbcb08fccb3d117df2e1aae7bfe05479",
+    "/media/knowledge/4ae9ae31e877-InfluxDB-多副本与高可用-fig.svg": "4ae9ae31e877e96ded20a7826fd7e9da49ceafcd58132e478a012a0f42a3fb9d",
+    "/media/knowledge/55c252d26636-InfluxDB-指标设计与基数管理-fig1.svg": "55c252d2663665043a37f841f67bcb2e2031351d5caaf53fdff89f269a712172",
+    "/media/knowledge/4dc6110c8a4a-InfluxDB-指标设计与基数管理-fig2.svg": "4dc6110c8a4a3b0a331c82a920054422d417c47bb7f2c83eab337c58df8538f1",
+    "/media/knowledge/68f3eef25ac6-InfluxDB-数据模型-fig.svg": "68f3eef25ac62a3be1775abb2d417ca71bb27cbef69c5fb0105a44ca77a01e9d",
+    "/media/knowledge/4d58b66d8d33-InfluxDB深度调研-fig.svg": "4d58b66d8d33495d1a83b7621e02250f2a61480e56d90677ec5bb4cef2ff3f75",
+    "/media/knowledge/28d75b32b943-rum-conjecture.svg": "28d75b32b943ac003caa5d2d748d2a17e0798fbaf6836828e1320cb13e948bb5",
+    "/media/knowledge/4698c9c3eedd-LSM-Survey-VLDBJ2019.pdf": "4698c9c3eedde896379f53576733cbce9ad9a88f9af21972f608f957af90c574",
+    "/media/knowledge/5ca909c240db-lsm-write-amplification.svg": "5ca909c240db58ac60ab180fef19957e901a761e7ade1e7985be5ecc43529529",
+    "/media/knowledge/f758a8f69db0-LSM-tree-KV-Survey-2025.pdf": "f758a8f69db0fb43a88fa3b8d88bf8e49bad2d8565f45bbf92f5669afd7cefd3",
+    "/media/knowledge/30801f281d1b-log-as-the-database.svg": "30801f281d1bd1a1b3c9d8abe5e661c6eaf51182cd386f2ea16965fff3d1740f",
+    "/media/knowledge/7eac95745d6c-Log-as-the-Database-模式-fig.svg": "7eac95745d6c75a85a37e030edf743f66fd138ee4eac501af95729c8729b9e0f",
+    "/media/knowledge/7b761d5ad70a-RaaS-SIGMOD2026.pdf": "7b761d5ad70aa6d0ee3532a69fcc63950cca9c7dc17b172c2aaad0b7572dfa07",
+    "/media/knowledge/e0709d8265e7-paxos-epochs-revised.svg": "e0709d8265e7a168d74ed41ef4b8fb7c60feb48d3a8e5c946581c9be98c9755e",
+    "/media/knowledge/dfe2cf5b26da-epochs-by-allocator-sequence.svg": "dfe2cf5b26daf48551254b6c2b356f2064ee30c504b06ead50647f727db18b96",
+    "/media/knowledge/c38925a2dbda-epochs-recovery-vs-fast-paxos.svg": "c38925a2dbdad330c55cc7dae4a3130db75dc1e5c0fd950601d339ad3ccc938e",
+    "/media/knowledge/6cbe4867d484-paxos-quorum-intersection.svg": "6cbe4867d484dceb7ef93105f19fc7bf91d2e1c466a358038d1d88115f7ae466",
+    "/media/knowledge/dd1513905ce6-paxos-value-selection.svg": "dd1513905ce6f14f6e174d51c3df63cb3a4f00119e7cc25eb4b7d1b6c52e6651",
+    "/media/knowledge/e85c89e34260-paxos-vs-raft-decomposition.svg": "e85c89e342602c6215fa62a146b19020d459698d181839fac675fdd6f3ff0c02",
+    "/media/knowledge/6d3a7d01e801-RaaS-Replay-as-a-Service-fig.svg": "6d3a7d01e8013141e19c9af61fa05c95a433c1b3dde9cdd7e4dbcc77b22450d3",
+    "/media/knowledge/09a5e6399ae4-raft-three-states.svg": "09a5e6399ae42f3efa84d5ebe09178406ce24642fafc44f0fa729576d23d1448",
+    "/media/knowledge/af75cd49403f-raft-joint-consensus.svg": "af75cd49403f09c99b3b8a964b07022806cb3e26119df1fde6ba075c42b1c02d",
+    "/media/knowledge/f97412009672-Rose-CIDR2026.pdf": "f97412009672e4d6b5d5570e7bcd888d93d72b95a4ccaea6a6a6b5ea716c5cb5",
+    "/media/knowledge/512a31b139e2-rose-async-replication.svg": "512a31b139e2a6c29944abc0dfd96452f79ae5409a55517b64df55831dea2262",
+    "/media/knowledge/24d0ffaced3a-silo-compaction-scheduling.svg": "24d0ffaced3a987276b5c441d5e9f74369f44e4f390681fe87ad62efe668d689",
+    "/media/knowledge/b4b165be165f-Silo-Compaction-迁移协议-fig.svg": "b4b165be165f9dda9bb5c60225d003a3a1f3993a4e795dddf02e8f8359a0a361",
+    "/media/knowledge/d6286796a9b2-LSM-Scheduling-FAST2026.pdf": "d6286796a9b266eca41f77ac3db1d241dd32ac531a12ffcb753181040c86d762",
+    "/media/knowledge/10342357e55c-Stream-Processing-System-Generations-fig.svg": "10342357e55c67eaf58dcc79739cbedc5b918c0c921d43ed0fc6e06012c6472b",
+    "/media/knowledge/496ce7ddf267-stream-processing-generations.svg": "496ce7ddf267ecad2f5eedaf875a50e2b43fffdf2baf202c37021eabce9f9d54",
+    "/media/knowledge/e7c30309a2f9-ai-infra-4layer-arch.svg": "e7c30309a2f9659025694ed6a0909a387099b9da9b738a751a3858b4a10da09c",
+    "/media/knowledge/a10e6f173b27-doris-architecture.svg": "a10e6f173b2715639b8f660fb36a309b1093ec8bb3e7cf230d0b04068cffd0d1",
+    "/media/knowledge/9ea4107ba4e2-fluss-architecture.svg": "9ea4107ba4e26495fde6c604b2b5af0fb68e589dadb929d848c27adbfe7b837a",
+    "/media/knowledge/044c90fb5481-influxdb-architecture.svg": "044c90fb54814d8c020d802a2292e88ea6036ac1e26afda95ea501d3219f3fef",
+    "/media/knowledge/d631bb2f482e-lsm-tree-2026-progress.svg": "d631bb2f482e9de04834cccb977e554c93eac870767a55a3c6d7dedf50d48497",
+    "/media/knowledge/f995a1506882-consensus-generalised-family.svg": "f995a150688264b6bb8be846df39195092c0b62ba70ba998d60c097228d1bc28",
+    "/media/knowledge/a52979f68680-tx-consistency-2026-progress.svg": "a52979f68680d3ee802ce95d16bb3d54c7f9fd94217f39aec92a7e7ad1e6285c",
+    "/media/knowledge/c1e71061ba48-stream-processing-evolution.svg": "c1e71061ba48aee84e7a6e75e262d36a480042c0fa09dce12e5896164a7c9108",
+    "/media/knowledge/b833518a4334-stream-exactly-once-levels.svg": "b833518a433495dba57e58990060775d11520437663b3414b9118ec6f17d11ea",
+    "/media/knowledge/bd916dc2d1e7-流处理弹性与重配置-fig1.svg": "bd916dc2d1e78a1e6af2810e9266b54cb059afbefb629415fef8f0b1e304b4d6",
+    "/media/knowledge/d9dd1c31179b-流处理弹性与重配置-fig2.svg": "d9dd1c31179b1b0b6f74c70b8d829730a17cf39624ef415fdd6131cff2323ed5",
+    "/media/knowledge/b86b5858d17b-流处理状态管理-fig1.svg": "b86b5858d17bb61552308b3bc68c17a8c475234ec7e7894097d2c01f8dc107fb",
+    "/media/knowledge/cd34f0e62ba2-流处理状态管理-fig2.svg": "cd34f0e62ba20c81e2631ed40db2fd9ee339a19b7f2fc34091f54a3e128cc7df",
+    "/media/knowledge/8b897d352b0d-流处理状态管理-fig3.svg": "8b897d352b0d7ce1a51a678c62dca783b20cad7534d1f920d21ef05e01327f61",
+    "/media/knowledge/478c9e7db9db-fluss-client-write-architecture.svg": "478c9e7db9db39b24d72e70a3123c6126dc80479fab64c0c4676c09c60c46f36",
+    "/media/knowledge/701d6fc04156-five-dimensions-framework.svg": "701d6fc041567126c2bd7b805dcf5be3068a5d279791b14012af940554bf54ee",
+    "/media/knowledge/eab140d4f366-memory-three-tier.svg": "eab140d4f366d48f348b858fd9d6e152004d79e00f23c7f6be50aff88b23d6e4"
+  }
+}

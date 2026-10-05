@@ -1,28 +1,30 @@
 ---
 type: lesson
-title: "Fluss EKS 生产部署实践 — Fresha"
+title: Fluss EKS 生产部署实践 — Fresha
 sources:
-  - "sources/web/fresha/bottling-the-river-fluss-eks-精读.md"
-  - "https://medium.com/fresha-data-engineering/bottling-the-river-apache-fluss-on-eks-6aa63c00d9e9"
+- '[[知识库/sources/web/fresha/bottling-the-river-fluss-eks-精读]]'
+- https://medium.com/fresha-data-engineering/bottling-the-river-apache-fluss-on-eks-6aa63c00d9e9
 tags:
-  - "流处理"
-  - "fluss"
-  - "kubernetes"
-  - "flink"
+- 流处理
+- fluss
+- kubernetes
+- flink
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-  - "[[Fluss-Lake层与湖仓融合]]"
-  - "[[Fluss-Tiering分层架构]]"
-  - "[[Fluss-分布式协调]]"
-  - "[[流处理弹性与重配置]]"
----
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
+- '[[知识库/wiki/Fluss-Tiering分层架构]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
+- '[[知识库/wiki/流处理弹性与重配置]]'
 confidence: 0.73
-confidence_rationale: "类型=lesson; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=lesson; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-EKS-生产部署实践-Fresha/
+blog_source: _posts/2026-06-19-knowledge-cb2921c0ec.md
+---
 
 # Fluss EKS 生产部署实践 — Fresha
 

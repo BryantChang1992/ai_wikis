@@ -1,27 +1,29 @@
 ---
 type: concept
-title: "Model Neutrality — 模型中立与反锁定"
+title: Model Neutrality — 模型中立与反锁定
 sources:
-  - "sources/web/langchain/model-neutrality-精读.md"
-  - "https://www.langchain.com/blog/model-neutrality"
+- '[[知识库/sources/web/langchain/model-neutrality-精读]]'
+- https://www.langchain.com/blog/model-neutrality
 tags:
-  - "agent-infra"
-  - "agent-harness"
-  - "model-neutrality"
-  - "vendor-lockin"
+- agent-infra
+- agent-harness
+- model-neutrality
+- vendor-lockin
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Model-Neutrality-模型中立与反锁定/
+blog_source: _posts/2026-06-19-knowledge-b6b8824af0.md
+---
 
 # Model Neutrality — 模型中立与反锁定
 

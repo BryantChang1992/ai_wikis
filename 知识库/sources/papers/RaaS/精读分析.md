@@ -1,12 +1,29 @@
-# RaaS：存储计算分离数据库的 Tail Latency 消除
+---
+title: 论文精读：RaaS — 存储计算分离数据库的 Tail Latency 消除
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/raas-paper/
+blog_source: _posts/2026-06-11-raas-paper.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: e225a3a61e279d599772df870d8d193961c98b9516fb81fda31fb16d3eb9f199
+synced_at: '2026-10-05'
+type: survey
+created: '2026-06-11'
+tags:
+- 论文精读
+- RaaS
+- SIGMOD 2026
+---
 
 > **论文**：Reducing Tail Latency in Storage-Disaggregated Database Systems  
 > **作者**：Xi Pang, Jianguo Wang (Purdue University)  
 > **会议**：SIGMOD 2026 · Proc. ACM Manag. Data, Vol. 4, No. 1, Article 74  
 > **代码**：https://github.com/purduedb/OpenAurora/tree/RaaS  
-> **联盟**：NSF 2337806
+> **资助**：NSF 2337806
 
 ---
+
+**论文 PDF：** [Reducing Tail Latency in Storage-Disaggregated Database Systems（26 pages）](https://cs.purdue.edu/homes/csjgwang/pubs/SIGMOD26_RaaS.pdf)
+
+补充阅读：[[论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB-全文翻译|论文全文翻译]]
 
 ## 一、问题背景
 

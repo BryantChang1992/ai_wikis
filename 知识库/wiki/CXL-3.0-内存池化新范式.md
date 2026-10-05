@@ -1,22 +1,25 @@
 ---
 type: concept
-title: "CXL 3.0 — 内存数据库的 Scale-up 新范式"
+title: CXL 3.0 — 内存数据库的 Scale-up 新范式
 sources:
-  - "sources/web/cxl-3.0/精读分析.md"
+- '[[知识库/sources/web/cxl-3.0/精读分析]]'
 tags:
-  - "存储引擎"
-  - "硬件"
-  - "内存数据库"
-  - "CXL"
+- 存储引擎
+- 硬件
+- 内存数据库
+- CXL
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[LSM-tree-KV-Survey-综述]]"
-  - "[[分布式数据系统事务与一致性新进展-2026综述]]"
-  - "[[存储计算分离数据库的-Tail-Latency]]"
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
+- '[[知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述]]'
+- '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于3天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于3天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CXL-3.0-内存池化新范式/
+blog_source: _posts/2026-07-03-knowledge-38b518b30c.md
 ---
 
 # CXL 3.0 — 内存数据库的 Scale-up 新范式

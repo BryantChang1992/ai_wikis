@@ -1,35 +1,37 @@
 ---
 type: concept
-title: "Pacman: 持久内存加速 LSM-tree Compaction"
+title: 'Pacman: 持久内存加速 LSM-tree Compaction'
 aliases:
-  - Pacman Compaction
-  - Pacman (ATC 2022)
-  - PM-Accelerated LSM Compaction
+- Pacman Compaction
+- Pacman (ATC 2022)
+- PM-Accelerated LSM Compaction
 sources:
-  - title: "Pacman: An Efficient Compaction Approach for Log-Structured Merge-Tree on Persistent Memory"
-    venue: USENIX ATC 2022
-    url: https://www.usenix.org/conference/atc22/presentation/mamandipoor
-    year: 2022
+- https://www.usenix.org/conference/atc22/presentation/mamandipoor
 tags:
-  - storage
-  - LSM-tree
-  - persistent-memory
-  - compaction
-  - kv-store
-  - NVM
-  - write-amplification
+- storage
+- LSM-tree
+- persistent-memory
+- compaction
+- kv-store
+- NVM
+- write-amplification
 status: draft
-created: 2026-07-02
+created: &id001 2026-07-02
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-硬件适配]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
-
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 4天前更新
+updated: *id001
+source_citations:
+- 'title: Pacman: An Efficient Compaction Approach for Log-Structured Merge-Tree on Persistent Memory; venue: USENIX
+  ATC 2022; url: https://www.usenix.org/conference/atc22/presentation/mamandipoor; year: 2022'
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Pacman-持久内存Compaction/
+blog_source: _posts/2026-07-02-knowledge-6ac609ee71.md
+---
 
 # Pacman: 持久内存加速 LSM-tree Compaction
 

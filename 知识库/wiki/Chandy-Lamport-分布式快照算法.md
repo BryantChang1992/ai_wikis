@@ -1,24 +1,27 @@
 ---
 type: concept
-title: "Chandy-Lamport 分布式快照算法"
+title: Chandy-Lamport 分布式快照算法
 sources:
-  - "sources/papers/Chandy-Lamport-Snapshot/精读分析.md"
+- '[[知识库/sources/papers/Chandy-Lamport-Snapshot/精读分析]]'
 tags:
-  - 流处理
-  - 分布式系统
-  - 快照
-  - 一致性
-  - 容错
-  - Flink
+- 流处理
+- 分布式系统
+- 快照
+- 一致性
+- 容错
+- Flink
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[流处理容错模型]]"
-  - "[[流处理状态管理]]"
-  - "[[Dataflow-Model]]"
+- '[[知识库/wiki/流处理容错模型]]'
+- '[[知识库/wiki/流处理状态管理]]'
+- '[[知识库/wiki/Dataflow-Model]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
+confidence_rationale: 类型=concept; 来源×1; status=stable; 更新于20天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Chandy-Lamport-分布式快照算法/
+blog_source: _posts/2026-06-16-knowledge-fe826ef19a.md
 ---
 
 # Chandy-Lamport 分布式快照算法

@@ -1,27 +1,29 @@
 ---
 type: survey
-title: "Agent Memory 综述 2026"
+title: Agent Memory 综述 2026
 sources:
-  - "sources/papers/Agent-Memory-Survey/arxiv-2603.07670-精读.md"
-  - "https://arxiv.org/abs/2603.07670"
+- '[[知识库/sources/papers/Agent-Memory-Survey/arxiv-2603.07670-精读]]'
+- https://arxiv.org/abs/2603.07670
 tags:
-  - "agent-infra"
-  - "agent-memory"
-  - "survey"
-  - "llm-agents"
+- agent-infra
+- agent-memory
+- survey
+- llm-agents
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Agentic-Memory-语义缓存]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[LSM-Tree]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Agentic-Memory-语义缓存]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.83
-confidence_rationale: "类型=survey; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=survey; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Memory-Survey-2026综述/
+blog_source: _posts/2026-06-19-knowledge-f6fa4d9fd1.md
+---
 
 # Agent Memory 综述 2026
 

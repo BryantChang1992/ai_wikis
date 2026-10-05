@@ -1,24 +1,26 @@
 ---
 type: analysis
-title: "Fluss 分布式协调层分析"
+title: Fluss 分布式协调层分析
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/03-分布式协调.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/03-分布式协调.html
 tags:
-  - "Fluss"
-  - "分布式协调"
-  - "Coordinator"
-  - "状态机"
-  - "重平衡"
-  - "源码分析"
+- Fluss
+- 分布式协调
+- Coordinator
+- 状态机
+- 重平衡
+- 源码分析
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-RPC与网络]]"
-
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-RPC与网络]]'
 confidence: 0.78
-confidence_rationale: "类型=analysis; 更新于21天前"
+confidence_rationale: 类型=analysis; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-分布式协调/
+blog_source: _posts/2026-06-15-knowledge-9395c9385b.md
 ---
 
 # Fluss 分布式协调层分析

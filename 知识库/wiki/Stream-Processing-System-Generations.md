@@ -1,28 +1,29 @@
 ---
 type: concept
-title: "流处理系统代际演化"
+title: 流处理系统代际演化
 sources:
-  - "sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf"
-  - "sources/papers/SP-Survey/精读分析.md"
+- '[[知识库/sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf]]'
+- '[[知识库/sources/papers/SP-Survey/精读分析]]'
 tags:
-  - 流处理
-  - 架构演化
-  - 分布式系统
-  - 综述
+- 流处理
+- 架构演化
+- 分布式系统
+- 综述
 created: 2026-06-15
 updated: 2026-06-15
 status: stable
 related:
-  - "[[Dataflow-Model]]"
-  - "[[流处理状态管理]]"
-  - "[[流处理容错模型]]"
-  - "[[流处理乱序数据管理]]"
-  - "[[流处理弹性与重配置]]"
-
----
+- '[[知识库/wiki/Dataflow-Model]]'
+- '[[知识库/wiki/流处理状态管理]]'
+- '[[知识库/wiki/流处理容错模型]]'
+- '[[知识库/wiki/流处理乱序数据管理]]'
+- '[[知识库/wiki/流处理弹性与重配置]]'
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×2; status=stable; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; status=stable; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Stream-Processing-System-Generations/
+blog_source: _posts/2026-06-15-knowledge-dd412cbe1e.md
+---
 
 # 流处理系统代际演化
 

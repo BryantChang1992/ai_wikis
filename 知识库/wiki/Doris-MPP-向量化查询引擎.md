@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "Doris MPP 向量化查询引擎"
+title: Doris MPP 向量化查询引擎
 sources:
-  - "../技术文章/Doris调研/03-查询流程.md"
+- '[[技术文章/Doris调研/03-查询流程]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 查询引擎
-  - MPP
-  - 向量化
-  - SIMD
-  - Runtime Filter
-  - Colocate Join
+- 数据库
+- OLAP
+- Doris
+- 查询引擎
+- MPP
+- 向量化
+- SIMD
+- Runtime Filter
+- Colocate Join
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-Nereids-CBO-优化器]]"
-diagram: "diagram/doris-architecture.svg"
-
----
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
+diagram: diagram/doris-architecture.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-MPP-向量化查询引擎/
+blog_source: _posts/2026-06-14-knowledge-53b15271c1.md
+---
 
 # Doris MPP 向量化查询引擎
 

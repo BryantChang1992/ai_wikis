@@ -1,9 +1,19 @@
 ---
-tags: [fluss, kafka, lake, tiering, source-code]
+tags:
+- fluss
+- kafka
+- lake
+- tiering
+- source-code
 created: 2026-06-10
+title: Fluss 源码分析：Lake 层与湖仓融合
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/fluss-lake-tiering/
+blog_source: _posts/2026-06-14-fluss-lake-tiering.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: 48ea1650004e95233f752b3d81a16e8e53493e1c4383d5113353e29736695711
+synced_at: '2026-10-05'
+type: survey
 ---
-
-# 06 - Lake 层与湖仓融合
 
 ## 6.1 概述
 
@@ -16,32 +26,32 @@ graph TB
         SC[Scanner]
         LK[Lookuper]
     end
-    
+
     subgraph Server["Fluss Server"]
         TS[TabletServer]
         CO[CoordinatorServer]
-        
+
         subgraph Local["本地存储"]
             LOG[LogTablet]
             KV[KvTablet]
         end
-        
+
         RL[RemoteLogManager]
     end
-    
+
     subgraph Lakehouse["Lakehouse 数据湖"]
         ICE[(Apache Iceberg)]
         PAI[(Apache Paimon)]
         HUD[(Apache Hudi)]
         LAN[(Lance)]
     end
-    
+
     subgraph Tiering["分层写入 (Tiering)"]
         TJ[Flink Tiering Job]
         TW[LakeWriter]
         TC[LakeCommitter]
     end
-    
+
     WT --> TS
     SC --> TS
     TS --> LOG
@@ -111,31 +121,32 @@ interface LakeTable {
 
 ### 6.3.1 IcebergLakeStorage 结构
 
-```
-IcebergLakeStorage (impl LakeStorage)
-├── IcebergLakeCatalog
-│   ├── 创建 Iceberg Table（复用 TableDescriptor → Iceberg Schema）
-│   ├── 管理 Iceberg Namespace/TableProperties
-│   └── 支持 HadoopCatalog / HiveCatalog
-├── IcebergLakeSource (impl LakeTableRead)
-│   ├── IcebergSplitPlanner（分区规划）
-│   ├── IcebergSplit（单个 split）
-│   ├── IcebergRecordReader → 读取 DataFile
-│   ├── 谓词下推（File format filter + Row group filter）
-│   └── FlussToIcebergPredicateConverter（谓词转换）
-├── IcebergLakeWriter (impl LakeTableAppend / LakeTableDelta)
-│   ├── AppendOnlyTaskWriter（普通表：无 PK）
-│   │   └── 每 batch → DataFile (.parquet)
-│   └── DeltaTaskWriter（PK 表：支持 delete/update）
-│       └── 支持 Position Delete / Equality Delete
-├── IcebergLakeCommitter (impl LakeTableCommit)
-│   ├── 收集每个 task 的 WriteResult
-│   ├── 提交 Iceberg Snapshot
-│   └── 过期 Snapshot 清理
-└── IcebergRewriteDataFiles（compaction）
-    ├── 合并小 DataFile
-    ├── 清理 Delete Files
-    └── 支持 Z-ordering / Sorting
+```mermaid
+flowchart TD
+    ILS["IcebergLakeStorage (impl LakeStorage)"]
+    ILS --> ILC["IcebergLakeCatalog"]
+    ILC --> ILC1["Create Iceberg Table (TableDescriptor -> Iceberg Schema)"]
+    ILC --> ILC2["Manage Iceberg Namespace/TableProperties"]
+    ILC --> ILC3["Support HadoopCatalog / HiveCatalog"]
+    ILS --> ILS2["IcebergLakeSource (impl LakeTableRead)"]
+    ILS2 --> ISP["IcebergSplitPlanner (partition planning)"]
+    ILS2 --> IS["IcebergSplit (single split)"]
+    ILS2 --> IRR["IcebergRecordReader -> read DataFile"]
+    ILS2 --> PD["Predicate pushdown (File filter + Row group filter)"]
+    ILS2 --> FIPC["FlussToIcebergPredicateConverter"]
+    ILS --> ILW["IcebergLakeWriter (impl LakeTableAppend/Delta)"]
+    ILW --> AOTW["AppendOnlyTaskWriter (non-PK: pure append)"]
+    AOTW --> AB["per batch -> DataFile (.parquet)"]
+    ILW --> DTW["DeltaTaskWriter (PK table: delete/update)"]
+    DTW --> PDEL["supports Position Delete / Equality Delete"]
+    ILS --> ILCM["IcebergLakeCommitter (impl LakeTableCommit)"]
+    ILCM --> WR["Collect WriteResult per task"]
+    ILCM --> ICS["Commit Iceberg Snapshot"]
+    ILCM --> SNC["Expired Snapshot cleanup"]
+    ILS --> IRDF["IcebergRewriteDataFiles (compaction)"]
+    IRDF --> MDF["Merge small DataFiles"]
+    IRDF --> CDF["Clean up Delete Files"]
+    IRDF --> ZORD["Z-ordering / Sorting"]
 ```
 
 ### 6.3.2 写入模式
@@ -148,16 +159,16 @@ IcebergLakeStorage (impl LakeStorage)
 
 ### 6.3.3 读取模式
 
-```
-IcebergLakeSource → Fluss Source:
-  1. IcebergSplitPlanner: 根据 filter + snapshot 规划 split
-  2. 每个 split → IcebergSplit (filePath, offset, length)
-  3. IcebergRecordReader: 读取 Parquet → InternalRow
-  4. 可选谓词下推：
-     - Partition filter (目录级)
-     - Row group filter (Parquet 统计信息级)
-     - Arrow 统计信息 filter (列 min/max/null-count)
-  5. InternalRow → Fluss Row (Arrow 格式)
+```mermaid
+flowchart TD
+    S1["1. IcebergSplitPlanner: plan splits by filter + snapshot"]
+    S1 --> S2["2. Each split -> IcebergSplit (filePath, offset, length)"]
+    S2 --> S3["3. IcebergRecordReader: read Parquet -> InternalRow"]
+    S3 --> S4["4. Optional predicate pushdown:"]
+    S4 --> S4a["Partition filter (directory level)"]
+    S4 --> S4b["Row group filter (Parquet stats level)"]
+    S4 --> S4c["Arrow stats filter (column min/max/null-count)"]
+    S3 --> S5["5. InternalRow -> Fluss Row (Arrow format)"]
 ```
 
 ---
@@ -166,24 +177,25 @@ IcebergLakeSource → Fluss Source:
 
 ### 6.4.1 PaimonLakeStorage 结构
 
-```
-PaimonLakeStorage (impl LakeStorage)
-├── PaimonLakeCatalog
-│   ├── 创建 Paimon Table
-│   └── 管理 Paimon Schema / Options
-├── PaimonLakeSource
-│   ├── PaimonSplitPlanner
-│   ├── PaimonRecordReader
-│   └── PaimonSortedRecordReader（有序读取）
-├── PaimonLakeWriter
-│   ├── AppendOnlyWriter（普通表）
-│   │   └── Arrow → Paimon Arrow Vector Column
-│   ├── MergeTreeWriter（PK 表 + Merge Engine）
-│   └── AppendOnlyArrowBatchHelper
-├── PaimonLakeCommitter
-├── DV Table 支持
-│   ├── DvTableReadableSnapshotRetriever
-│   └── PaimonDvTableUtils
+```mermaid
+flowchart TD
+    PLS["PaimonLakeStorage (impl LakeStorage)"]
+    PLS --> PLC["PaimonLakeCatalog"]
+    PLC --> PLC1["Create Paimon Table"]
+    PLC --> PLC2["Manage Paimon Schema / Options"]
+    PLS --> PLS2["PaimonLakeSource"]
+    PLS2 --> PSP["PaimonSplitPlanner"]
+    PLS2 --> PRR["PaimonRecordReader"]
+    PLS2 --> PSR["PaimonSortedRecordReader (ordered read)"]
+    PLS --> PLW["PaimonLakeWriter"]
+    PLW --> AOW["AppendOnlyWriter (non-PK table)"]
+    AOW --> ARROW["Arrow -> Paimon Arrow Vector Column"]
+    PLW --> MTW["MergeTreeWriter (PK table + Merge Engine)"]
+    PLW --> AABH["AppendOnlyArrowBatchHelper"]
+    PLS --> PLCM["PaimonLakeCommitter"]
+    PLS --> DVT["DV Table support"]
+    DVT --> DV1["DvTableReadableSnapshotRetriever"]
+    DVT --> DV2["PaimonDvTableUtils"]
 ```
 
 ### 6.4.2 Paimon 特有功能
@@ -208,22 +220,22 @@ sequenceDiagram
     participant LW as LakeWriter
     participant LC as LakeCommitter
     participant LH as Lakehouse
-    
+
     TS->>CO: lakeTieringHeartbeat(bucket)
     CO->>CO: 判断是否需要 Tiering
-    
+
     TJ->>CO: 轮询 tiering tasks
     CO-->>TJ: TableBucket + offsetRange
-    
+
     TJ->>TS: FetchLog / GetBucketLog → 读取本地日志
     TS-->>TJ: records
-    
+
     TJ->>LW: write(records)
     LW->>LH: write Parquet/Arrow files
-    
+
     TJ->>LC: commit(snapshot)
     LC->>LH: commit snapshot
-    
+
     TJ->>CO: commitLakeTableSnapshot(bucket, offset)
     CO->>TS: notifyLakeTableOffset(bucket, offset)
     TS->>TS: 更新 local lake log start offset
@@ -258,19 +270,20 @@ sequenceDiagram
 
 Lance 是新兴的 Arrow-native 列式存储格式，Fluss 支持作为 Lake 后端：
 
+```mermaid
+flowchart TD
+    LLS["LanceLakeStorage"]
+    LLS --> LLC["LanceLakeCatalog"]
+    LLS --> LLW["LanceLakeWriter"]
+    LLW --> SABW["ShadedArrowBatchWriter (direct Arrow IPC, zero-copy)"]
+    LLS --> LLCM["LanceLakeCommitter"]
+    LLS --> LWR["LanceWriteResult"]
 ```
-LanceLakeStorage
-├── LanceLakeCatalog
-├── LanceLakeWriter
-│   └── ShadedArrowBatchWriter（直接写 Arrow IPC，零拷贝）
-├── LanceLakeCommitter
-└── LanceWriteResult
 
 特点：
 - Arrow-native：无需序列化/反序列化转换，直接操作 Arrow Vector
 - 零拷贝路径：Fluss Arrow batch → Lance write（同一格式）
 - 列裁剪 + 谓词下推完全复用 Arrow 能力
-```
 
 ---
 
@@ -294,21 +307,17 @@ LanceLakeStorage
 
 ### Fluss Lake 层的设计哲学
 
-```
-Fluss = Streaming Storage + Lakehouse Integration
-
-        实时写入 (ms 级)
-              ↓
-    ┌─────────────────────┐
-    │   Fluss Tablet      │  ← 本地 Log + KV，毫秒级读写
-    │  (oltp level)       │
-    └────────┬────────────┘
-             │ async tiering (minute-level)
-             ↓
-    ┌─────────────────────┐
-    │   Lakehouse         │  ← Parquet/Arrow，分钟级物化
-    │  (olap level)       │     支持批量查询 + 数据分析
-    └─────────────────────┘
+```mermaid
+flowchart TB
+    WRITE["实时写入 (ms 级)"]
+    WRITE --> FT
+    subgraph FT["Fluss Tablet (oltp level)"]
+        LOG["本地 Log + KV<br/>毫秒级读写"]
+    end
+    FT -->|"async tiering (minute-level)"| LH
+    subgraph LH["Lakehouse (olap level)"]
+        PQT["Parquet/Arrow<br/>分钟级物化<br/>支持批量查询 + 数据分析"]
+    end
 ```
 
 这不是简单的"存储分层"，而是 **"实时存储 + 数据湖"的融合架构**——与 Kafka 的"消息队列 + 外部 ETL" 是完全不同的范式。
@@ -327,4 +336,4 @@ Fluss = Streaming Storage + Lakehouse Integration
 
 ---
 
-> **下一篇（最终）**：[[07-模块对应关系总表|07 - 模块对应关系总表]]
+> **下一篇（最终）**：[[项目文档/Fluss源码分析/07-模块对应关系总表|07 - 模块对应关系总表]]

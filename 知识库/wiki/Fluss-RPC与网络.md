@@ -1,24 +1,26 @@
 ---
 type: analysis
-title: "Fluss RPC 与网络层分析"
+title: Fluss RPC 与网络层分析
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/04-数据面-网络与RPC.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/04-数据面-网络与RPC.html
 tags:
-  - "Fluss"
-  - "RPC"
-  - "Netty"
-  - "Protobuf"
-  - "网络"
-  - "源码分析"
+- Fluss
+- RPC
+- Netty
+- Protobuf
+- 网络
+- 源码分析
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-Kafka兼容层]]"
-
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-Kafka兼容层]]'
 confidence: 0.78
-confidence_rationale: "类型=analysis; 更新于21天前"
+confidence_rationale: 类型=analysis; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-RPC与网络/
+blog_source: _posts/2026-06-15-knowledge-70acc0a874.md
 ---
 
 # Fluss RPC 与网络层分析

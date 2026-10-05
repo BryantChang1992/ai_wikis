@@ -1,25 +1,27 @@
 ---
 type: concept
-title: "Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制"
+title: Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制
 tags:
-  - 异步复制
-  - WAL
-  - KV存储
-  - 故障恢复
-  - Rosé
+- 异步复制
+- WAL
+- KV存储
+- 故障恢复
+- Rosé
 related:
-  - "[[Rosé-异步复制协议设计]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
+- '[[知识库/wiki/Rosé-异步复制协议设计]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
 sources:
-  - "sources/papers/Rose/Rose-CIDR2026.pdf"
+- '[[知识库/sources/papers/Rose/Rose-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-diagram: "diagram/rose-async-replication.svg"
-
+diagram: diagram/rose-async-replication.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Rosé-Coordinated-Apply-协调应用/
+blog_source: _posts/2026-06-15-knowledge-db635cab52.md
 ---
 
 # Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制

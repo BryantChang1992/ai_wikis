@@ -1,25 +1,27 @@
 ---
 type: concept
-title: "CockroachDB vs TiDB 2026 架构对比"
+title: CockroachDB vs TiDB 2026 架构对比
 sources:
-  - "sources/web/cockroachdb-vs-tidb/精读分析.md"
+- '[[知识库/sources/web/cockroachdb-vs-tidb/精读分析]]'
 tags:
-  - "分布式数据库"
-  - "CockroachDB"
-  - "TiDB"
-  - "架构对比"
+- 分布式数据库
+- CockroachDB
+- TiDB
+- 架构对比
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[分布式数据系统事务与一致性新进展-2026综述]]"
-  - "[[CockroachDB-Leader-Lease-整体设计]]"
-  - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
-  - "[[事务模型深度调研]]"
----
+- '[[知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述]]'
+- '[[知识库/wiki/CockroachDB-Leader-Lease-整体设计]]'
+- '[[知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 3天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 3天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CockroachDB-vs-TiDB-2026-对比/
+blog_source: _posts/2026-07-03-knowledge-dec25a48e3.md
+---
 
 # CockroachDB vs TiDB 2026 架构对比
 

@@ -1,26 +1,29 @@
 ---
 type: concept
-title: "Log-as-the-Database 模式"
+title: Log-as-the-Database 模式
 sources:
-  - "sources/papers/RaaS/RaaS-SIGMOD2026.pdf"
-  - "sources/papers/RaaS/精读分析.md"
-  - "sources/papers/RaaS/全文翻译.md"
+- '[[知识库/sources/papers/RaaS/RaaS-SIGMOD2026.pdf]]'
+- '[[知识库/sources/papers/RaaS/精读分析]]'
+- '[[知识库/sources/papers/RaaS/全文翻译]]'
 tags:
-  - Log-as-the-Database
-  - 存储计算分离
-  - redo-log
-  - WAL
-  - 数据库架构
-  - LSN
+- Log-as-the-Database
+- 存储计算分离
+- redo-log
+- WAL
+- 数据库架构
+- LSN
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[存储计算分离数据库的-Tail-Latency]]"
-  - "[[RaaS-Replay-as-a-Service]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
+- '[[知识库/wiki/RaaS-Replay-as-a-Service]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 更新于22天前"
+confidence_rationale: 类型=concept; 来源×3; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Log-as-the-Database-模式/
+blog_source: _posts/2026-06-14-knowledge-bdb517df9b.md
 ---
 
 # Log-as-the-Database 模式

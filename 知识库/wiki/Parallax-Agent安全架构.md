@@ -1,27 +1,29 @@
 ---
 type: analysis
-title: "Parallax — Agent 安全架构"
+title: Parallax — Agent 安全架构
 sources:
-  - "sources/papers/Parallax/arxiv-2604.12986-精读.md"
-  - "https://arxiv.org/abs/2604.12986"
+- '[[知识库/sources/papers/Parallax/arxiv-2604.12986-精读]]'
+- https://arxiv.org/abs/2604.12986
 tags:
-  - "agent-infra"
-  - "agent-security"
-  - "prompt-injection"
-  - "sandbox"
+- agent-infra
+- agent-security
+- prompt-injection
+- sandbox
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Anthropic-Agent安全容器化实践]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Parallax-Agent安全架构/
+blog_source: _posts/2026-06-19-knowledge-0b11ef3ad0.md
+---
 
 # Parallax — Agent 安全架构
 

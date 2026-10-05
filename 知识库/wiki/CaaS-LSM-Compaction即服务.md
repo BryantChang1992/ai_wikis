@@ -1,32 +1,37 @@
 ---
 type: concept
-title: "CaaS-LSM: Compaction-as-a-Service"
-aliases: ["CaaS-LSM", "Compaction即服务"]
+title: 'CaaS-LSM: Compaction-as-a-Service'
+aliases:
+- CaaS-LSM
+- Compaction即服务
 sources:
-  - title: "CaaS-LSM: Compaction-as-a-Service for LSM-based Key-Value Stores in Storage Disaggregated Infrastructure"
-    authors: ["Qiaolin Yu", "Chang Guo", "Jay Zhuang", "Viraj Thakkar", "Jianguo Wang", "Zhichao Cao"]
-    venue: "SIGMOD 2024 (Proc. ACM Manag. Data, Vol. 2, No. 3)"
-    doi: "10.1145/3654927"
-    year: 2024
+- https://doi.org/10.1145/3654927
 tags:
-  - LSM-Tree
-  - compaction
-  - disaggregated-storage
-  - FaaS
-  - serverless
-  - KV-store
-  - storage-disaggregation
-  - RocksDB
+- LSM-Tree
+- compaction
+- disaggregated-storage
+- FaaS
+- serverless
+- KV-store
+- storage-disaggregation
+- RocksDB
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[Silo-Compaction-迁移协议]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
-
-created: 2026-07-02
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/Silo-Compaction-迁移协议]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
+created: &id001 2026-07-02
 confidence: 0.75
-confidence_rationale: "类型=concept; 更新于4天前"
+confidence_rationale: 类型=concept; 更新于4天前
+updated: *id001
+source_citations:
+- 'title: CaaS-LSM: Compaction-as-a-Service for LSM-based Key-Value Stores in Storage Disaggregated Infrastructure;
+  authors: [''Qiaolin Yu'', ''Chang Guo'', ''Jay Zhuang'', ''Viraj Thakkar'', ''Jianguo Wang'', ''Zhichao Cao''];
+  venue: SIGMOD 2024 (Proc. ACM Manag. Data, Vol. 2, No. 3); doi: 10.1145/3654927; year: 2024'
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CaaS-LSM-Compaction即服务/
+blog_source: _posts/2026-07-02-knowledge-935f738bf5.md
 ---
 
 # CaaS-LSM: Compaction-as-a-Service
@@ -174,6 +179,6 @@ CaaS-LSM 开启了"数据库内核组件 FaaS 化"的方向，后续工作包括
 - [[LSM-Tree-合并优化]] — Compaction 策略优化综述（tiered vs. leveled、Write Amplification 等）
 - [[Silo-Compaction-迁移协议]] — Silo 系统中 Compaction 的零停机迁移协议
 - [[LSM-tree-KV-Survey-综述]] — LSM-KV 存储引擎全面综述
-- [[Disaggregated-RocksDB]] — Meta 的存算分离 RocksDB
-- [[Nova-LSM]] — 基于 RDMA 的存算分离 LSM-KVS
-- [[O3-LSM]] — 三层卸载的存算分离 LSM-KVS（SIGMOD 2026）
+- Disaggregated-RocksDB（待补充专页） — Meta 的存算分离 RocksDB
+- [[Nova-LSM-分布式组件化LSM]] — 基于 RDMA 的存算分离 LSM-KVS
+- O3-LSM（待补充专页） — 三层卸载的存算分离 LSM-KVS（SIGMOD 2026）

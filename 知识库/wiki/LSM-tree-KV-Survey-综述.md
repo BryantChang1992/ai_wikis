@@ -1,29 +1,32 @@
 ---
 type: concept
-title: "LSM-tree KV Store 综述（2020-2025）"
+title: LSM-tree KV Store 综述（2020-2025）
 sources:
-  - "sources/papers/LSM-tree-KV-Survey-2025/LSM-tree-KV-Survey-2025.pdf"
-  - "sources/papers/LSM-tree-KV-Survey-2025/精读分析.md"
+- '[[知识库/sources/papers/LSM-tree-KV-Survey-2025/LSM-tree-KV-Survey-2025.pdf]]'
+- '[[知识库/sources/papers/LSM-tree-KV-Survey-2025/精读分析]]'
 tags:
-  - LSM-tree
-  - KV-store
-  - survey
-  - compaction
-  - multi-tenant
-  - storage-engine
-created: 2026-07-02
+- LSM-tree
+- KV-store
+- survey
+- compaction
+- multi-tenant
+- storage-engine
+created: &id001 2026-07-02
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[Silo-Compaction-迁移协议]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/Silo-Compaction-迁移协议]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 4天前更新
+updated: *id001
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-tree-KV-Survey-综述/
+blog_source: _posts/2026-07-02-knowledge-d9fe95d27b.md
+---
 
 ## 一句话摘要
 

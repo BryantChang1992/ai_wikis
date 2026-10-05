@@ -1,4 +1,20 @@
-# 降低存储计算分离数据库系统中的尾延迟
+---
+title: 论文全文翻译：RaaS — 降低存储计算分离数据库系统中的尾延迟
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/raas-translation/
+blog_source: _posts/2026-06-11-raas-translation.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: 955684acf36fe9a8e4750a7c96a4b84588cf9e0098b366a0cd78194333be4da2
+synced_at: '2026-10-05'
+type: survey
+created: '2026-06-11'
+tags:
+- 论文精读
+- RaaS
+- 全文翻译
+---
+
+[[论文精读/RaaS-Reducing-Tail-Latency-Storage-Disaggregated-DB|先读论文解读]]
+
 
 **XI PANG**, Purdue University, USA
 **JIANGUO WANG**, Purdue University, USA

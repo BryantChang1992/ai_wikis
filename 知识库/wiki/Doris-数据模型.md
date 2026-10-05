@@ -1,31 +1,32 @@
 ---
 type: concept
-title: "Doris 数据模型：Duplicate / Aggregate / Unique"
+title: Doris 数据模型：Duplicate / Aggregate / Unique
 sources:
-  - "../技术文章/Doris调研/01-概述与核心概念.md"
-  - "../技术文章/Doris调研/02-存储引擎.md"
+- '[[技术文章/Doris调研/01-概述与核心概念]]'
+- '[[技术文章/Doris调研/02-存储引擎]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 数据模型
-  - Unique Key
-  - Merge-on-Write
-  - UPSERT
+- 数据库
+- OLAP
+- Doris
+- 数据模型
+- Unique Key
+- Merge-on-Write
+- UPSERT
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-Segment-v2-存储格式]]"
-  - "[[Doris-Compaction-策略]]"
-  - "[[LSM-Tree-RUM猜想]]"
-diagram: "diagram/doris-architecture.svg"
-
----
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-Segment-v2-存储格式]]'
+- '[[知识库/wiki/Doris-Compaction-策略]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+diagram: diagram/doris-architecture.svg
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-数据模型/
+blog_source: _posts/2026-06-14-knowledge-1063bdf2b0.md
+---
 
 # Doris 数据模型：Duplicate / Aggregate / Unique
 

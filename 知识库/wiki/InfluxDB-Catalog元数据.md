@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "InfluxDB Catalog 元数据存储"
+title: InfluxDB Catalog 元数据存储
 sources:
-  - "../技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
+- '[[技术文章/InfluxDB调研/05-多副本复制与元数据存储]]'
 tags:
-  - InfluxDB
-  - 元数据
-  - Catalog
-  - PostgreSQL
-  - BoltDB
-  - 架构
+- InfluxDB
+- 元数据
+- Catalog
+- PostgreSQL
+- BoltDB
+- 架构
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-多副本与高可用]]"
-  - "[[InfluxDB-TSM存储引擎]]"
-  - "[[存储计算分离数据库的-Tail-Latency]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-多副本与高可用]]'
+- '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
+- '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.88
-confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-Catalog元数据/
+blog_source: _posts/2026-06-14-knowledge-7a56a405ad.md
+---
 
 # InfluxDB Catalog 元数据存储
 

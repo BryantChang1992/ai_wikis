@@ -1,24 +1,26 @@
 ---
 type: concept
-title: "Liveness Fabric — 去中心化集群故障检测层"
+title: Liveness Fabric — 去中心化集群故障检测层
 tags:
-  - CockroachDB
-  - 故障检测
-  - 心跳机制
-  - 大规模共识
-  - Liveness-Fabric
+- CockroachDB
+- 故障检测
+- 心跳机制
+- 大规模共识
+- Liveness-Fabric
 related:
-  - "[[CockroachDB-Leader-Lease-整体设计]]"
-  - "[[CockroachDB-Leader-Fortification]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/CockroachDB-Leader-Lease-整体设计]]'
+- '[[知识库/wiki/CockroachDB-Leader-Fortification]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 sources:
-  - "sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf"
+- '[[知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CockroachDB-Liveness-Fabric-故障检测层/
+blog_source: _posts/2026-06-15-knowledge-3f200abac6.md
 ---
 
 # Liveness Fabric — 去中心化集群故障检测层

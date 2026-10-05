@@ -1,26 +1,29 @@
 ---
 type: concept
-title: "Doris 架构演进：Palo → 3.0 存算分离"
+title: Doris 架构演进：Palo → 3.0 存算分离
 sources:
-  - "../技术文章/Doris调研/04-架构演进.md"
+- '[[技术文章/Doris调研/04-架构演进]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 架构演进
-  - 存算分离
-  - Shared-Nothing
-  - MPP
-  - 技术决策
+- 数据库
+- OLAP
+- Doris
+- 架构演进
+- 存算分离
+- Shared-Nothing
+- MPP
+- 技术决策
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-MPP-向量化查询引擎]]"
-  - "[[Doris-元数据与一致性复制]]"
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
+- '[[知识库/wiki/Doris-元数据与一致性复制]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于22天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于22天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-架构演进/
+blog_source: _posts/2026-06-14-knowledge-397c3019fa.md
 ---
 
 # Doris 架构演进：Palo → 3.0 存算分离

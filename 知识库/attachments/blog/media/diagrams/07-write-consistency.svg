@@ -1,0 +1,339 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" font-family="monospace, 'Courier New', 'Noto Sans SC'">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+    <pattern id="grid-large" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.3"/>
+    </pattern>
+
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Arrow marker -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="title-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="680" fill="#0f172a"/>
+  <rect width="1000" height="680" fill="url(#grid)"/>
+  <rect width="1000" height="680" fill="url(#grid-large)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- TITLE BAR -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="0" width="1000" height="30" fill="#1e293b" opacity="0.8"/>
+  <line x1="0" y1="30" x2="1000" y2="30" stroke="url(#title-grad)" stroke-width="1.5"/>
+  <circle cx="18" cy="15" r="4" fill="#22d3ee"/>
+  <text x="30" y="20" fill="#e2e8f0" font-size="12" font-weight="bold">Apache Doris — 写入路径一致性与故障恢复</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: FE Transaction Coordinator — 2PC 写入流程 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="10" y="38" width="980" height="138" rx="6" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1"/>
+  <text x="20" y="55" fill="#22d3ee" font-size="11" font-weight="bold">FE Transaction Coordinator: 2PC 写入流程</text>
+
+  <!-- Step 1: BEGIN Txn -->
+  <rect x="18" y="67" width="138" height="98" rx="5" fill="#0c2233" stroke="#22d3ee" stroke-width="1.2"/>
+  <rect x="18" y="67" width="138" height="24" rx="5" fill="#164e63" opacity="0.6"/>
+  <text x="87" y="83" fill="#22d3ee" font-size="9" font-weight="bold" text-anchor="middle">1. BEGIN Txn</text>
+  <text x="87" y="105" fill="#94a3b8" font-size="8.5" text-anchor="middle">生成事务ID</text>
+  <text x="87" y="120" fill="#64748b" font-size="7.5" text-anchor="middle">(单调递增)</text>
+  <line x1="40" y1="130" x2="134" y2="130" stroke="#164e63" stroke-width="0.5"/>
+  <text x="87" y="145" fill="#64748b" font-size="7.5" text-anchor="middle">FE内存+WAL持久化</text>
+  <text x="87" y="158" fill="#64748b" font-size="7.5" text-anchor="middle">事务状态</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="156" y1="116" x2="175" y2="116" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 2: PREPARE -->
+  <rect x="182" y="67" width="220" height="98" rx="5" fill="#0c2233" stroke="#22d3ee" stroke-width="1.2"/>
+  <rect x="182" y="67" width="220" height="24" rx="5" fill="#164e63" opacity="0.6"/>
+  <text x="292" y="83" fill="#22d3ee" font-size="9" font-weight="bold" text-anchor="middle">2. PREPARE</text>
+  <text x="292" y="98" fill="#94a3b8" font-size="7.5" text-anchor="middle">所有BE并行写WAL &amp; MemTable</text>
+
+  <!-- BE 1 (green) -->
+  <rect x="196" y="107" width="56" height="28" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+  <text x="224" y="123" fill="#34d399" font-size="7.5" text-anchor="middle">BE-1</text>
+  <text x="224" y="133" fill="#34d399" font-size="7" text-anchor="middle">✓</text>
+
+  <!-- BE 2 (green) -->
+  <rect x="260" y="107" width="56" height="28" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+  <text x="288" y="123" fill="#34d399" font-size="7.5" text-anchor="middle">BE-2</text>
+  <text x="288" y="133" fill="#34d399" font-size="7" text-anchor="middle">✓</text>
+
+  <!-- BE 3 (red) -->
+  <rect x="324" y="107" width="56" height="28" rx="4" fill="#4c0519" stroke="#fb7185" stroke-width="1"/>
+  <text x="352" y="123" fill="#fb7185" font-size="7.5" text-anchor="middle">BE-3</text>
+  <text x="352" y="133" fill="#fb7185" font-size="7" text-anchor="middle">✗</text>
+
+  <!-- Parallel hint -->
+  <text x="292" y="158" fill="#64748b" font-size="7" text-anchor="middle">并行执行 · 需等所有副本响应</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="402" y1="116" x2="421" y2="116" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- Step 3: COMMIT (decision node with diamond accent) -->
+  <rect x="428" y="67" width="148" height="98" rx="5" fill="#1a1a0a" stroke="#fbbf24" stroke-width="1.2"/>
+  <rect x="428" y="67" width="148" height="24" rx="5" fill="#713f12" opacity="0.5"/>
+  <text x="502" y="83" fill="#fbbf24" font-size="9" font-weight="bold" text-anchor="middle">3. COMMIT</text>
+  <!-- Diamond -->
+  <polygon points="502,92 512,100 502,108 492,100" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity="0.7"/>
+  <text x="502" y="120" fill="#34d399" font-size="7.5" text-anchor="middle">全部成功 → 提交</text>
+  <text x="502" y="134" fill="#fb7185" font-size="7.5" text-anchor="middle">任一失败 → ABORT</text>
+  <line x1="450" y1="142" x2="554" y2="142" stroke="#713f12" stroke-width="0.5"/>
+  <text x="502" y="156" fill="#64748b" font-size="7.5" text-anchor="middle">写入Commit Log</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="576" y1="116" x2="595" y2="116" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 4: PUBLISH -->
+  <rect x="602" y="67" width="138" height="98" rx="5" fill="#0c2233" stroke="#34d399" stroke-width="1.2"/>
+  <rect x="602" y="67" width="138" height="24" rx="5" fill="#064e3b" opacity="0.6"/>
+  <text x="671" y="83" fill="#34d399" font-size="9" font-weight="bold" text-anchor="middle">4. PUBLISH</text>
+  <text x="671" y="105" fill="#94a3b8" font-size="8" text-anchor="middle">Publish Version</text>
+  <text x="671" y="120" fill="#94a3b8" font-size="8" text-anchor="middle">Txn → Visible</text>
+  <line x1="624" y1="130" x2="718" y2="130" stroke="#064e3b" stroke-width="0.5"/>
+  <text x="671" y="145" fill="#64748b" font-size="7.5" text-anchor="middle">FE通知所有BE</text>
+  <text x="671" y="158" fill="#64748b" font-size="7.5" text-anchor="middle">版本递增+数据可见</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="740" y1="116" x2="759" y2="116" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 5: TabletScheduler -->
+  <rect x="766" y="67" width="210" height="98" rx="5" fill="#0c2233" stroke="#a78bfa" stroke-width="1.2"/>
+  <rect x="766" y="67" width="210" height="24" rx="5" fill="#4c1d95" opacity="0.5"/>
+  <text x="871" y="83" fill="#a78bfa" font-size="9" font-weight="bold" text-anchor="middle">5. TabletScheduler</text>
+  <text x="871" y="105" fill="#94a3b8" font-size="7.5" text-anchor="middle">异步修复失败副本</text>
+  <text x="871" y="120" fill="#94a3b8" font-size="7.5" text-anchor="middle">生成 Clone Task</text>
+  <line x1="784" y1="130" x2="958" y2="130" stroke="#4c1d95" stroke-width="0.5"/>
+  <text x="871" y="145" fill="#64748b" font-size="7.5" text-anchor="middle">从健康副本拷贝数据</text>
+  <text x="871" y="158" fill="#64748b" font-size="7.5" text-anchor="middle">自动达到一致性</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: 2PC 分布式事务 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="10" y="184" width="980" height="100" rx="6" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1"/>
+  <text x="20" y="201" fill="#60a5fa" font-size="11" font-weight="bold">2PC 分布式事务 (Broker Load / INSERT INTO SELECT)</text>
+
+  <!-- Phase 1: PREPARE -->
+  <rect x="30" y="212" width="270" height="62" rx="5" fill="#0c2233" stroke="#60a5fa" stroke-width="1.2"/>
+  <rect x="30" y="212" width="270" height="22" rx="5" fill="#1e3a5f" opacity="0.5"/>
+  <text x="165" y="227" fill="#60a5fa" font-size="9" font-weight="bold" text-anchor="middle">Phase 1: PREPARE</text>
+  <text x="165" y="245" fill="#94a3b8" font-size="7.5" text-anchor="middle">FE → 所有参与BE</text>
+  <text x="165" y="258" fill="#94a3b8" font-size="7.5" text-anchor="middle">BE写入WAL + MemTable (不发布)</text>
+  <text x="165" y="271" fill="#64748b" font-size="7" text-anchor="middle">返回成功可提交 / 失败不可提交</text>
+
+  <!-- Arrow P1→P2 -->
+  <line x1="300" y1="243" x2="325" y2="243" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Phase 2: COMMIT / ABORT -->
+  <rect x="332" y="212" width="270" height="62" rx="5" fill="#1a1a0a" stroke="#fbbf24" stroke-width="1.2"/>
+  <rect x="332" y="212" width="270" height="22" rx="5" fill="#713f12" opacity="0.4"/>
+  <text x="467" y="227" fill="#fbbf24" font-size="9" font-weight="bold" text-anchor="middle">Phase 2: COMMIT / ABORT</text>
+  <!-- Decision diamond -->
+  <polygon points="467,237 475,245 467,253 459,245" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.6"/>
+  <text x="467" y="258" fill="#94a3b8" font-size="7.5" text-anchor="middle">全部PREPARE成功 → 写Commit Log</text>
+  <text x="467" y="271" fill="#fb7185" font-size="7" text-anchor="middle">任一失败 → ABORT + 清理WAL</text>
+
+  <!-- Arrow P2→P3 -->
+  <line x1="602" y1="243" x2="627" y2="243" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <!-- Phase 3: PUBLISH -->
+  <rect x="634" y="212" width="270" height="62" rx="5" fill="#0c2233" stroke="#34d399" stroke-width="1.2"/>
+  <rect x="634" y="212" width="270" height="22" rx="5" fill="#064e3b" opacity="0.5"/>
+  <text x="769" y="227" fill="#34d399" font-size="9" font-weight="bold" text-anchor="middle">Phase 3: PUBLISH</text>
+  <text x="769" y="245" fill="#94a3b8" font-size="7.5" text-anchor="middle">FE广播Publish Version</text>
+  <text x="769" y="258" fill="#94a3b8" font-size="7.5" text-anchor="middle">BE标记数据可见(Apply Txn)</text>
+  <text x="769" y="271" fill="#64748b" font-size="7" text-anchor="middle">查询VS≥PublishVS即可返回</text>
+
+  <!-- BE concurrency hint -->
+  <rect x="395" y="283" width="145" height="1" fill="#334155"/>
+  <text x="467" y="283" fill="#64748b" font-size="6.5" text-anchor="middle">BE并行</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3 (LEFT): 失败处理矩阵 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="10" y="292" width="530" height="185" rx="6" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1"/>
+  <text x="22" y="310" fill="#fb923c" font-size="11" font-weight="bold">失败处理矩阵</text>
+
+  <!-- Row 1: PREPARE部分成功 -->
+  <rect x="18" y="320" width="160" height="50" rx="4" fill="#4c0519" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="98" y="337" fill="#fb7185" font-size="8" font-weight="bold" text-anchor="middle">PREPARE部分成功</text>
+  <text x="98" y="352" fill="#fca5a5" font-size="7" text-anchor="middle">少数副本写WAL失败</text>
+  <text x="98" y="365" fill="#fca5a5" font-size="7" text-anchor="middle">多数成功即算成功</text>
+
+  <line x1="180" y1="345" x2="195" y2="345" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="200" y="320" width="325" height="50" rx="4" fill="#0c2233" stroke="#34d399" stroke-width="0.8"/>
+  <text x="210" y="336" fill="#34d399" font-size="7.5">→ 如果多数派成功：继续 COMMIT</text>
+  <text x="210" y="351" fill="#94a3b8" font-size="7.5">→ 少数失败副本：TabletScheduler Clone修复</text>
+  <text x="210" y="366" fill="#94a3b8" font-size="7.5">→ 全部失败：ABORT + 清理WAL</text>
+
+  <!-- Row 2: COMMIT部分到达 -->
+  <rect x="18" y="378" width="160" height="50" rx="4" fill="#1a1a0a" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="98" y="395" fill="#fbbf24" font-size="8" font-weight="bold" text-anchor="middle">COMMIT部分到达</text>
+  <text x="98" y="410" fill="#fcd34d" font-size="7" text-anchor="middle">部分BE未收到</text>
+  <text x="98" y="423" fill="#fcd34d" font-size="7" text-anchor="middle">Commit消息</text>
+
+  <line x1="180" y1="403" x2="195" y2="403" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+
+  <rect x="200" y="378" width="325" height="50" rx="4" fill="#0c2233" stroke="#60a5fa" stroke-width="0.8"/>
+  <text x="210" y="394" fill="#60a5fa" font-size="7.5">→ FE通过Gossip日志同步 Commit 信息</text>
+  <text x="210" y="409" fill="#94a3b8" font-size="7.5">→ TabletScheduler从已提交副本克隆</text>
+  <text x="210" y="424" fill="#94a3b8" font-size="7.5">→ Gossip完成前查询走已提交副本</text>
+
+  <!-- Row 3: PUBLISH后部分不可见 -->
+  <rect x="18" y="436" width="160" height="50" rx="4" fill="#1a1a0a" stroke="#fb923c" stroke-width="0.8"/>
+  <text x="98" y="453" fill="#fb923c" font-size="8" font-weight="bold" text-anchor="middle">PUBLISH后部分不可见</text>
+  <text x="98" y="468" fill="#fdba74" font-size="7" text-anchor="middle">部分BE未同步</text>
+  <text x="98" y="481" fill="#fdba74" font-size="7" text-anchor="middle">Publish版本</text>
+
+  <line x1="180" y1="461" x2="195" y2="461" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="200" y="436" width="325" height="50" rx="4" fill="#0c2233" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="210" y="452" fill="#a78bfa" font-size="7.5">→ Read Version Check 跳过缺失版本</text>
+  <text x="210" y="467" fill="#94a3b8" font-size="7.5">→ 优先读取已完成副本的数据</text>
+  <text x="210" y="482" fill="#94a3b8" font-size="7.5">→ TabletScheduler补齐恢复</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4 (RIGHT): Label 幂等性 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="550" y="292" width="440" height="185" rx="6" fill="#0c1722" stroke="#22d3ee" stroke-width="1.5" stroke-opacity="0.6"/>
+  <rect x="550" y="292" width="440" height="28" rx="6" fill="#164e63" fill-opacity="0.4"/>
+  <text x="770" y="310" fill="#22d3ee" font-size="11" font-weight="bold" text-anchor="middle">★ Label 幂等性 (Exactly-Once Write)</text>
+
+  <!-- Bullet 1 -->
+  <circle cx="575" cy="338" r="3.5" fill="#22d3ee"/>
+  <text x="588" y="340" fill="#e2e8f0" font-size="8.5" font-weight="bold">Load Label → FE 持久化映射</text>
+  <text x="598" y="354" fill="#94a3b8" font-size="7.5">每个导入任务携带唯一 Label</text>
+  <text x="598" y="368" fill="#64748b" font-size="7.5">FE 维护 Label → TxnId 映射表 (持久化到磁盘)</text>
+
+  <!-- Bullet 2 -->
+  <circle cx="575" cy="386" r="3.5" fill="#22d3ee"/>
+  <text x="588" y="388" fill="#e2e8f0" font-size="8.5" font-weight="bold">重试 → 返回已存在 TxnId</text>
+  <text x="598" y="402" fill="#94a3b8" font-size="7.5">客户端重试相同 Label → FE查表匹配</text>
+  <text x="598" y="416" fill="#34d399" font-size="7.5">→ 返回原有TxnId → Exactly-Once 保障</text>
+
+  <!-- Bullet 3 -->
+  <circle cx="575" cy="434" r="3.5" fill="#22d3ee"/>
+  <text x="588" y="436" fill="#e2e8f0" font-size="8.5" font-weight="bold">超时清理 (Label Clean Policy)</text>
+  <text x="598" y="450" fill="#94a3b8" font-size="7.5">Label 映射记录 3天 后自动过期清理</text>
+  <text x="598" y="464" fill="#64748b" font-size="7.5">避免 Label 字典无限膨胀</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5: 故障恢复 RTO 矩阵 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="10" y="485" width="980" height="118" rx="6" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1"/>
+  <text x="22" y="503" fill="#fb923c" font-size="11" font-weight="bold">故障恢复 RTO 矩阵</text>
+
+  <!-- Table Header -->
+  <rect x="18" y="512" width="310" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="173" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">故障类型</text>
+  <rect x="332" y="512" width="155" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="409" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">RTO (恢复时间)</text>
+  <rect x="491" y="512" width="155" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="568" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">恢复机制</text>
+
+  <!-- Right-side table columns -->
+  <rect x="650" y="512" width="150" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="725" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">故障类型</text>
+  <rect x="804" y="512" width="70" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="839" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">RTO</text>
+  <rect x="878" y="512" width="97" height="22" rx="3" fill="#1e3a5f" opacity="0.7"/>
+  <text x="926" y="527" fill="#60a5fa" font-size="8" font-weight="bold" text-anchor="middle">恢复机制</text>
+
+  <!-- Rows -->
+  <!-- Row 1 -->
+  <rect x="18" y="537" width="310" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="173" y="551" fill="#e2e8f0" font-size="7.5" text-anchor="middle">FE Master 宕机</text>
+  <rect x="332" y="537" width="155" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="409" y="551" fill="#22d3ee" font-size="7.5" text-anchor="middle">~10–30s</text>
+  <rect x="491" y="537" width="155" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="568" y="551" fill="#94a3b8" font-size="7" text-anchor="middle">BDBJE选主+Follower接替</text>
+
+  <rect x="650" y="537" width="150" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="725" y="551" fill="#e2e8f0" font-size="7.5" text-anchor="middle">BE 宕机 (单副本)</text>
+  <rect x="804" y="537" width="70" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="839" y="551" fill="#34d399" font-size="7.5" font-weight="bold" text-anchor="middle">秒级</text>
+  <rect x="878" y="537" width="97" height="20" fill="#1e293b" opacity="0.6"/>
+  <text x="926" y="551" fill="#94a3b8" font-size="6.5" text-anchor="middle">路由其他副本</text>
+
+  <!-- Row 2 -->
+  <rect x="18" y="560" width="310" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="173" y="574" fill="#e2e8f0" font-size="7.5" text-anchor="middle">FE Follower 宕机</text>
+  <rect x="332" y="560" width="155" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="409" y="574" fill="#34d399" font-size="7.5" text-anchor="middle">0 (无影响)</text>
+  <rect x="491" y="560" width="155" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="568" y="574" fill="#94a3b8" font-size="7" text-anchor="middle">读请求→剩余Follower</text>
+
+  <rect x="650" y="560" width="150" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="725" y="574" fill="#e2e8f0" font-size="7.5" text-anchor="middle">磁盘故障</text>
+  <rect x="804" y="560" width="70" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="839" y="574" fill="#fbbf24" font-size="7.5" font-weight="bold" text-anchor="middle">分钟级</text>
+  <rect x="878" y="560" width="97" height="20" fill="#0c1722" opacity="0.6"/>
+  <text x="926" y="574" fill="#94a3b8" font-size="6.5" text-anchor="middle">Clone修复</text>
+
+  <!-- Row 3 -->
+  <rect x="18" y="583" width="310" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="173" y="595" fill="#e2e8f0" font-size="7.5" text-anchor="middle">BE 宕机 (多副本SN)</text>
+  <rect x="332" y="583" width="155" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="409" y="595" fill="#fbbf24" font-size="7.5" text-anchor="middle">分钟级</text>
+  <rect x="491" y="583" width="155" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="568" y="595" fill="#94a3b8" font-size="7" text-anchor="middle">TabletScheduler Clone修复</text>
+
+  <rect x="650" y="583" width="150" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="725" y="595" fill="#e2e8f0" font-size="7.5" text-anchor="middle">Meta Service</text>
+  <rect x="804" y="583" width="70" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="839" y="595" fill="#34d399" font-size="7.5" font-weight="bold" text-anchor="middle">秒级</text>
+  <rect x="878" y="583" width="97" height="18" fill="#1e293b" opacity="0.6"/>
+  <text x="926" y="595" fill="#94a3b8" font-size="6.5" text-anchor="middle">Failover</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- LEGEND -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <rect x="740" y="608" width="248" height="65" rx="5" fill="#0c1722" stroke="#334155" stroke-width="0.8"/>
+
+  <text x="755" y="622" fill="#94a3b8" font-size="7.5" font-weight="bold">图例</text>
+
+  <rect x="755" y="628" width="16" height="10" rx="2" fill="#164e63" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="776" y="636" fill="#64748b" font-size="7">Coordinator</text>
+
+  <rect x="845" y="628" width="16" height="10" rx="2" fill="#064e3b" stroke="#34d399" stroke-width="0.8"/>
+  <text x="866" y="636" fill="#64748b" font-size="7">Success</text>
+
+  <rect x="930" y="628" width="16" height="10" rx="2" fill="#4c0519" stroke="#fb7185" stroke-width="0.8"/>
+  <text x="951" y="636" fill="#64748b" font-size="7">Fail</text>
+
+  <rect x="755" y="642" width="16" height="10" rx="2" fill="#1a1a0a" stroke="#fbbf24" stroke-width="0.8"/>
+  <text x="776" y="650" fill="#64748b" font-size="7">Decision</text>
+
+  <rect x="845" y="642" width="16" height="10" rx="2" fill="#0c2233" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="866" y="650" fill="#64748b" font-size="7">Recovery</text>
+
+  <rect x="930" y="642" width="16" height="10" rx="2" fill="#0c2233" stroke="#60a5fa" stroke-width="0.8"/>
+  <text x="951" y="650" fill="#64748b" font-size="7">2PC</text>
+
+</svg>

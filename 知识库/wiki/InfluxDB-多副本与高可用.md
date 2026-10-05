@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "InfluxDB 多副本与高可用"
+title: InfluxDB 多副本与高可用
 sources:
-  - "../技术文章/InfluxDB调研/05-多副本复制与元数据存储.md"
+- '[[技术文章/InfluxDB调研/05-多副本复制与元数据存储]]'
 tags:
-  - InfluxDB
-  - 高可用
-  - 副本
-  - WAL
-  - 故障恢复
-  - 持久性
+- InfluxDB
+- 高可用
+- 副本
+- WAL
+- 故障恢复
+- 持久性
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-Catalog元数据]]"
-  - "[[事务模型深度调研]]"
-  - "[[InfluxDB-写入与查询路径]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-Catalog元数据]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+- '[[知识库/wiki/InfluxDB-写入与查询路径]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.88
-confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-多副本与高可用/
+blog_source: _posts/2026-06-14-knowledge-7bacfb6aa2.md
+---
 
 # InfluxDB 多副本与高可用
 

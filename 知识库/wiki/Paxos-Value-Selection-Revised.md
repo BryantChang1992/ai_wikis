@@ -1,27 +1,29 @@
 ---
 type: concept
-title: "Paxos Value Selection Revised"
+title: Paxos Value Selection Revised
 sources:
-  - "sources/papers/Distributed-Consensus-Revised/精读分析.md"
+- '[[知识库/sources/papers/Distributed-Consensus-Revised/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Paxos
-  - Flexible-Paxos
-  - Quorum
-  - Value-Selection
+- 分布式系统
+- 共识算法
+- Paxos
+- Flexible-Paxos
+- Quorum
+- Value-Selection
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[共识算法族系-从Paxos到广义解]]"
-  - "[[Paxos-Quorum-Intersection-Revised]]"
-  - "[[Paxos-Epochs-Revised]]"
-  - "[[Raft-共识算法协议核心]]"
----
+- '[[知识库/wiki/共识算法族系-从Paxos到广义解]]'
+- '[[知识库/wiki/Paxos-Quorum-Intersection-Revised]]'
+- '[[知识库/wiki/Paxos-Epochs-Revised]]'
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 20天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=stable; 20天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Paxos-Value-Selection-Revised/
+blog_source: _posts/2026-06-16-knowledge-d3ee87a0cf.md
+---
 
 # Paxos Value Selection Revised
 
@@ -244,14 +246,14 @@ function selectValue(g, R, Q₂):
   // g: 当前 proposer 的 epoch
   // R: Phase-1 promise 响应集合 { (acceptor, epoch, value) | nil }
   // Q₂: Phase-2 quorum 集合
-  
+
   committed ← ∅  // 已知一定被 commit 的 values
-  
+
   for each quorum Q ∈ Q₂:
     decision ← decideQuorum(Q, R)
     if decision.type == "committed":
       committed = committed ∪ {decision.value}
-  
+
   if |committed| == 1:
     return committed[0]  // 必须 propose 这个 value
   else:
@@ -260,7 +262,7 @@ function selectValue(g, R, Q₂):
 function decideQuorum(Q, R):
   values ← {}
   all_nil ← true
-  
+
   for each acceptor a ∈ Q:
     if a ∉ R:  // 未收到 a 的 promise
       return {type: "unknown"}  // Q 状态未知
@@ -268,13 +270,13 @@ function decideQuorum(Q, R):
     if resp ≠ nil:
       all_nil ← false
       values = values ∪ {resp.value}
-  
+
   if all_nil:
     return {type: "not_committed"}  // Lemma 19
-  
+
   if len(values) > 1:
     return {type: "not_committed"}  // Lemma 20: 不同 value
-  
+
   return {type: "committed", value: values.only()}  // 可能已 commit
 ```
 
@@ -285,7 +287,7 @@ function selectValueEpochAware(g, R, Q₂_history):
   // g: 当前 proposer 的 epoch
   // R: Phase-1 promise 响应
   // Q₂_history: Q₂[f] for each f < g
-  
+
   for each epoch f < g:
     for each quorum Q ∈ Q₂[f]:
       decision ← decideQuorumEpoch(Q, R, f)

@@ -1,29 +1,30 @@
 ---
 type: concept
-title: "Doris Nereids CBO 优化器"
+title: Doris Nereids CBO 优化器
 sources:
-  - "../技术文章/Doris调研/03-查询流程.md"
+- '[[技术文章/Doris调研/03-查询流程]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 查询优化
-  - CBO
-  - Nereids
-  - Runtime Filter
-  - Join Reorder
+- 数据库
+- OLAP
+- Doris
+- 查询优化
+- CBO
+- Nereids
+- Runtime Filter
+- Join Reorder
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-MPP-向量化查询引擎]]"
-diagram: "diagram/doris-architecture.svg"
-
----
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
+diagram: diagram/doris-architecture.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-Nereids-CBO-优化器/
+blog_source: _posts/2026-06-14-knowledge-de8e7e8472.md
+---
 
 # Doris Nereids CBO 优化器
 

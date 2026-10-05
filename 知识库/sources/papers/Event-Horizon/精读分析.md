@@ -1,4 +1,20 @@
-# Event Horizon：非对称依赖与半线性化——面向快速地理分布式操作的弱协调模型
+---
+title: 论文精读：Event Horizon — 非对称依赖与半线性化
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/event-horizon-paper/
+blog_source: _posts/2026-06-11-event-horizon-paper.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: 09d17feda383736b8dbd6f20198bedc47989dfca2a7673b6202588cc1720907e
+synced_at: '2026-10-05'
+type: survey
+created: '2026-06-11'
+tags:
+- 论文精读
+- Event Horizon
+- CIDR 2026
+---
+
+补充阅读：[[论文精读/Event-Horizon-Asymmetric-Dependencies-Geo-Distributed-Operations-全文翻译|论文全文翻译]]
+
 
 > **论文**：Event Horizon: Asymmetric Dependencies for Fast Geo-Distributed Operations  
 > **作者**：Jonathan Arns (KTH), Harald Ng (KTH), Kyriakos Psarakis (Ververica / TU Delft), Asterios Katsifodimos (TU Delft), Paris Carbone (KTH)  
@@ -105,15 +121,21 @@ DeMon 是 SL 的执行引擎，为每个操作维护两个"版本"：
 
 ### 3.2 执行流程（以拍卖为例）
 
-```
-1. Client A: new_bid("item1", 100) ──causal broadcast──► 各副本本地执行
-2. Client B: new_bid("item1", 150) ──causal broadcast──► 各副本本地执行
-3. Client A: close_auction("item1") 
-   ├── 发送给 Primary
-   ├── Primary 从 bag 中收集所有相关 new_bid
-   ├── 本地重排序确定最终 bid 序列
-   ├── 广播结果
-   └── 所有副本执行 close → 确定赢家 = Client B
+```mermaid
+sequenceDiagram
+    participant A as Client A
+    participant B as Client B
+    participant Rep as Replicas
+    participant Pri as Primary
+
+    A->>Rep: 1. new_bid(item1, 100) via causal broadcast
+    B->>Rep: 2. new_bid(item1, 150) via causal broadcast
+
+    A->>Pri: 3. close_auction(item1)
+    Pri->>Pri: Collect all related new_bids from bag
+    Pri->>Pri: Local reorder to determine final bid sequence
+    Pri->>Rep: Broadcast result
+    Rep->>Rep: Execute close -> winner = Client B
 ```
 
 关键：步骤 1 和 2 的 `new_bid` 之间无协调，它们之间的顺序由 `close_auction` 执行时的 local reordering 确定。

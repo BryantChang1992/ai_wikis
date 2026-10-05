@@ -1,26 +1,28 @@
 ---
 type: concept
-title: "gLSM — GPU 加速 LSM-Tree Compaction"
+title: gLSM — GPU 加速 LSM-Tree Compaction
 sources: []
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - Compaction
-  - GPU
-  - 硬件加速
-  - 归并排序
+- 存储引擎
+- LSM-Tree
+- Compaction
+- GPU
+- 硬件加速
+- 归并排序
 created: 2026-07-02
 updated: 2026-07-02
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-硬件适配]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 4天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/gLSM-GPU加速Compaction/
+blog_source: _posts/2026-07-02-knowledge-a0826cae53.md
+---
 
 # gLSM — GPU 加速 LSM-Tree Compaction
 
@@ -66,7 +68,7 @@ Compaction 过程:
 ```
 传统 CPU Merge:
   k 个 SSTable → CPU 堆归并（O(N·log k) 比较） → 输出 SSTable
-  
+
 gLSM GPU Merge:
   k 个 SSTable → PCIe 传输 → GPU 显存 → GPU 并行归并 → PCIe 回传 → 写 SSTable
 ```

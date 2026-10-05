@@ -1,25 +1,32 @@
 ---
 type: concept
-title: "Hailstorm: 存算分离 LSM-tree KV 数据库"
-aliases: ["Hailstorm", "存算分离LSM"]
-sources:
-  - "ASPLOS 2020"
-  - "Hailstorm: Disaggregated Compute and Storage for LSM-tree Stores"
+title: 'Hailstorm: 存算分离 LSM-tree KV 数据库'
+aliases:
+- Hailstorm
+- 存算分离LSM
+sources: []
 tags:
-  - lsm-tree
-  - disaggregated-storage
-  - compaction
-  - kv-store
-  - cloud-native
-  - architecture
+- lsm-tree
+- disaggregated-storage
+- compaction
+- kv-store
+- cloud-native
+- architecture
 status: draft
-created: 2026-07-02
+created: &id001 2026-07-02
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 更新于4天前"
+confidence_rationale: 类型=concept; 更新于4天前
+updated: *id001
+source_citations:
+- ASPLOS 2020
+- 'Hailstorm: Disaggregated Compute and Storage for LSM-tree Stores'
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Hailstorm-存算分离LSM数据库/
+blog_source: _posts/2026-07-02-knowledge-7d4e38d112.md
 ---
 
 ## 一句话摘要

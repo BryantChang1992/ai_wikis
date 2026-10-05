@@ -1,29 +1,31 @@
 ---
 type: concept
-title: "LSM-Tree RUM 猜想 (RUM Conjecture)"
+title: LSM-Tree RUM 猜想 (RUM Conjecture)
 sources:
-  - "sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf"
-  - "sources/papers/LSM-Survey/精读分析.md"
-  - "sources/papers/LSM-Survey/全文翻译.md"
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
+- '[[知识库/sources/papers/LSM-Survey/精读分析]]'
+- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 理论
-  - Trade-off
-  - RUM
+- 存储引擎
+- LSM-Tree
+- 理论
+- Trade-off
+- RUM
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-Tree-硬件适配]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-Tree-硬件适配]]'
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×3; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-RUM猜想/
+blog_source: _posts/2026-06-14-knowledge-d4a7ab4699.md
+---
 
 # LSM-Tree RUM 猜想 (RUM Conjecture)
 

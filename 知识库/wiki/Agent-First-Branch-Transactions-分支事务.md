@@ -1,25 +1,27 @@
 ---
 type: concept
-title: "Agent-First Branch Transactions — Agent 优先的分支事务"
+title: Agent-First Branch Transactions — Agent 优先的分支事务
 tags:
-  - LLM-Agent
-  - 事务处理
-  - MVCC
-  - 分支
-  - CIDR-2026
-  - 快照隔离
+- LLM-Agent
+- 事务处理
+- MVCC
+- 分支
+- CIDR-2026
+- 快照隔离
 related:
-  - "[[Agent-First-Data-Systems]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 sources:
-  - "sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf"
+- '[[知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-diagram: "diagram/agent-first-data-systems.svg"
-
+diagram: diagram/agent-first-data-systems.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-First-Branch-Transactions-分支事务/
+blog_source: _posts/2026-06-15-knowledge-b451f951f1.md
 ---
 
 # Agent-First Branch Transactions — Agent 优先的分支事务

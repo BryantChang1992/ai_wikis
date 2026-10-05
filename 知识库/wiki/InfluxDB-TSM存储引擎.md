@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "InfluxDB TSM 存储引擎"
+title: InfluxDB TSM 存储引擎
 sources:
-  - "../技术文章/InfluxDB调研/02-存储引擎.md"
+- '[[技术文章/InfluxDB调研/02-存储引擎]]'
 tags:
-  - InfluxDB
-  - 存储引擎
-  - TSM
-  - TSI
-  - 倒排索引
-  - Compaction
+- InfluxDB
+- 存储引擎
+- TSM
+- TSI
+- 倒排索引
+- Compaction
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-3-列存引擎]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-3-列存引擎]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.88
-confidence_rationale: "类型=concept; 来源×1; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-TSM存储引擎/
+blog_source: _posts/2026-06-14-knowledge-be7903ac91.md
+---
 
 # InfluxDB TSM 存储引擎
 

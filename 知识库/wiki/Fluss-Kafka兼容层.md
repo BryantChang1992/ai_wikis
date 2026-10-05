@@ -1,22 +1,24 @@
 ---
 type: concept
-title: "Fluss Kafka 兼容层"
+title: Fluss Kafka 兼容层
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/04-数据面-网络与RPC.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/04-数据面-网络与RPC.html
 tags:
-  - "Fluss"
-  - "Kafka"
-  - "协议兼容"
-  - "迁移"
+- Fluss
+- Kafka
+- 协议兼容
+- 迁移
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-RPC与网络]]"
-  - "[[Fluss-整体架构]]"
-
+- '[[知识库/wiki/Fluss-RPC与网络]]'
+- '[[知识库/wiki/Fluss-整体架构]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 更新于21天前"
+confidence_rationale: 类型=concept; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Kafka兼容层/
+blog_source: _posts/2026-06-15-knowledge-6c1d48fed4.md
 ---
 
 # Fluss Kafka 兼容层

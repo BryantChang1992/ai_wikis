@@ -1,22 +1,25 @@
 ---
 type: concept
-title: "Agent Harness: Observability & Operations (O)"
+title: 'Agent Harness: Observability & Operations (O)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "可观测性"
-  - "Agent运维"
+- Agent-Harness
+- Agent基础设施
+- 可观测性
+- Agent运维
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 更新于16天前"
+confidence_rationale: 类型=concept; 来源×2; 更新于16天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Observability可观测性/
+blog_source: _posts/2026-06-20-knowledge-168f036a8e.md
 ---
 
 # Agent Harness: Observability & Operations (O)

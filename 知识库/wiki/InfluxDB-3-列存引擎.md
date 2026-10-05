@@ -1,32 +1,33 @@
 ---
 type: concept
-title: "InfluxDB 3 列存存储引擎"
+title: InfluxDB 3 列存存储引擎
 sources:
-  - "../技术文章/InfluxDB调研/02-存储引擎.md"
-  - "../技术文章/InfluxDB调研/03-写入与查询路径.md"
+- '[[技术文章/InfluxDB调研/02-存储引擎]]'
+- '[[技术文章/InfluxDB调研/03-写入与查询路径]]'
 tags:
-  - InfluxDB
-  - 列存
-  - Parquet
-  - Arrow
-  - DataFusion
-  - 存储引擎
-  - 存算分离
+- InfluxDB
+- 列存
+- Parquet
+- Arrow
+- DataFusion
+- 存储引擎
+- 存算分离
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[InfluxDB深度调研]]"
-  - "[[InfluxDB-TSM存储引擎]]"
-  - "[[InfluxDB-写入与查询路径]]"
-  - "[[存储计算分离数据库的-Tail-Latency]]"
-diagram: "diagram/influxdb-architecture.svg"
-
----
+- '[[知识库/wiki/InfluxDB深度调研]]'
+- '[[知识库/wiki/InfluxDB-TSM存储引擎]]'
+- '[[知识库/wiki/InfluxDB-写入与查询路径]]'
+- '[[知识库/wiki/存储计算分离数据库的-Tail-Latency]]'
+diagram: diagram/influxdb-architecture.svg
 confidence: 0.93
-confidence_rationale: "类型=concept; 来源×2; status=final; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/InfluxDB-3-列存引擎/
+blog_source: _posts/2026-06-14-knowledge-4e34cc44e7.md
+---
 
 # InfluxDB 3 列存存储引擎
 

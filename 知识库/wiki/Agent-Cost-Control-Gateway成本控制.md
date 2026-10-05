@@ -1,26 +1,28 @@
 ---
 type: analysis
-title: "Agent Cost Control — Gateway 成本控制"
+title: Agent Cost Control — Gateway 成本控制
 sources:
-  - "sources/web/langchain/coding-agent-spend-精读.md"
-  - "https://www.langchain.com/blog/how-we-made-coding-agent-spend-predictable"
+- '[[知识库/sources/web/langchain/coding-agent-spend-精读]]'
+- https://www.langchain.com/blog/how-we-made-coding-agent-spend-predictable
 tags:
-  - "agent-infra"
-  - "cost-control"
-  - "llm-gateway"
-  - "observability"
+- agent-infra
+- cost-control
+- llm-gateway
+- observability
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Agent-First-Data-Systems]]"
-  - "[[Model-Neutrality-模型中立与反锁定]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/Model-Neutrality-模型中立与反锁定]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Cost-Control-Gateway成本控制/
+blog_source: _posts/2026-06-19-knowledge-73a7b4fedf.md
+---
 
 # Agent Cost Control — Gateway 成本控制
 

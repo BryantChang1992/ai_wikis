@@ -1,27 +1,29 @@
 ---
 type: concept
-title: "Agent Harness: Governance (G)"
+title: 'Agent Harness: Governance (G)'
 sources:
-  - "sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf"
-  - "sources/papers/Agent-Harness-Engineering-Survey/精读分析.md"
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf]]'
+- '[[知识库/sources/papers/Agent-Harness-Engineering-Survey/精读分析]]'
 tags:
-  - "Agent-Harness"
-  - "Agent基础设施"
-  - "Agent安全"
-  - "AI治理"
+- Agent-Harness
+- Agent基础设施
+- Agent安全
+- AI治理
 created: 2026-06-20
 updated: 2026-06-20
 status: draft
 related:
-  - "[[Agent-Harness-Engineering-Survey综述]]"
-  - "[[Agent-Harness-Execution-Environment执行环境]]"
-  - "[[Agent-Harness-Tool-Interface工具接口]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Anthropic-Agent安全容器化实践]]"
----
+- '[[知识库/wiki/Agent-Harness-Engineering-Survey综述]]'
+- '[[知识库/wiki/Agent-Harness-Execution-Environment执行环境]]'
+- '[[知识库/wiki/Agent-Harness-Tool-Interface工具接口]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×2; 16天前更新"
-
+confidence_rationale: 类型=concept; 来源×2; 16天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Agent-Harness-Governance治理/
+blog_source: _posts/2026-06-20-knowledge-9021b686d1.md
+---
 
 # Agent Harness: Governance (G)
 

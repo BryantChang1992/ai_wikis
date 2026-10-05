@@ -1,23 +1,26 @@
 ---
 type: concept
-title: "Aurora Limitless 时间戳事务"
+title: Aurora Limitless 时间戳事务
 tags:
-  - distributed-database
-  - aurora
-  - transactions
-  - snapshot-isolation
-  - timestamp
-  - concurrency-control
+- distributed-database
+- aurora
+- transactions
+- snapshot-isolation
+- timestamp
+- concurrency-control
 related:
-  - "[[事务模型深度调研]]"
-  - "[[CockroachDB-Leader-Lease-整体设计]]"
+- '[[知识库/wiki/事务模型深度调研]]'
+- '[[知识库/wiki/CockroachDB-Leader-Lease-整体设计]]'
 status: draft
 sources:
-  - "sources/papers/Aurora-Limitless/精读分析.md"
-created: 2026-06-15
-
+- '[[知识库/sources/papers/Aurora-Limitless/精读分析]]'
+created: &id001 2026-06-15
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+updated: *id001
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Aurora-Limitless-时间戳事务/
+blog_source: _posts/2026-06-15-knowledge-3fdb01da57.md
 ---
 
 ![[diagram/aurora-limitless-architecture.svg]]

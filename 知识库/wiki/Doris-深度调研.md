@@ -1,43 +1,44 @@
 ---
 type: survey
-title: "Apache Doris 实时分析数据库深度调研"
+title: Apache Doris 实时分析数据库深度调研
 sources:
-  - "../技术文章/Doris调研.md"
-  - "../技术文章/Doris调研/01-概述与核心概念.md"
-  - "../技术文章/Doris调研/02-存储引擎.md"
-  - "../技术文章/Doris调研/03-查询流程.md"
-  - "../技术文章/Doris调研/04-架构演进.md"
-  - "../技术文章/Doris调研/05-元数据存储与一致性复制.md"
+- '[[技术文章/Doris调研]]'
+- '[[技术文章/Doris调研/01-概述与核心概念]]'
+- '[[技术文章/Doris调研/02-存储引擎]]'
+- '[[技术文章/Doris调研/03-查询流程]]'
+- '[[技术文章/Doris调研/04-架构演进]]'
+- '[[技术文章/Doris调研/05-元数据存储与一致性复制]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - MPP
-  - 实时分析
-  - 列式存储
-  - 存算分离
-  - 调研报告
+- 数据库
+- OLAP
+- Doris
+- MPP
+- 实时分析
+- 列式存储
+- 存算分离
+- 调研报告
 created: 2026-06-14
 updated: 2026-06-14
 status: final
 author: Stark (CTO, CHANG_AI_TEAM)
 related:
-  - "[[Doris-数据模型]]"
-  - "[[Doris-Segment-v2-存储格式]]"
-  - "[[Doris-Compaction-策略]]"
-  - "[[Doris-MPP-向量化查询引擎]]"
-  - "[[Doris-Nereids-CBO-优化器]]"
-  - "[[Doris-架构演进]]"
-  - "[[Doris-元数据与一致性复制]]"
-  - "[[事务模型深度调研]]"
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-RUM猜想]]"
-diagram: "diagram/doris-architecture-evolution.svg"
-
----
+- '[[知识库/wiki/Doris-数据模型]]'
+- '[[知识库/wiki/Doris-Segment-v2-存储格式]]'
+- '[[知识库/wiki/Doris-Compaction-策略]]'
+- '[[知识库/wiki/Doris-MPP-向量化查询引擎]]'
+- '[[知识库/wiki/Doris-Nereids-CBO-优化器]]'
+- '[[知识库/wiki/Doris-架构演进]]'
+- '[[知识库/wiki/Doris-元数据与一致性复制]]'
+- '[[知识库/wiki/事务模型深度调研]]'
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+diagram: diagram/doris-architecture-evolution.svg
 confidence: 0.95
-confidence_rationale: "类型=survey; 来源×6; status=final; 22天前更新"
-
+confidence_rationale: 类型=survey; 来源×6; status=final; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-深度调研/
+blog_source: _posts/2026-06-14-knowledge-56a29b5841.md
+---
 
 # Apache Doris 实时分析数据库深度调研
 

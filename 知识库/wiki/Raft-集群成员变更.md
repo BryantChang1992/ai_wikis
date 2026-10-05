@@ -1,21 +1,24 @@
 ---
 type: concept
-title: "Raft 集群成员变更"
+title: Raft 集群成员变更
 sources:
-  - "sources/papers/Raft-Dissertation/精读分析.md"
+- '[[知识库/sources/papers/Raft-Dissertation/精读分析]]'
 tags:
-  - 分布式系统
-  - 共识算法
-  - Raft
-  - 集群管理
-  - 动态配置
+- 分布式系统
+- 共识算法
+- Raft
+- 集群管理
+- 动态配置
 created: 2026-06-16
 updated: 2026-06-16
 status: stable
 related:
-  - "[[Raft-共识算法协议核心]]"
+- '[[知识库/wiki/Raft-共识算法协议核心]]'
 confidence: 0.85
-confidence_rationale: "类型=concept; 来源×1; status=stable; 更新于20天前"
+confidence_rationale: 类型=concept; 来源×1; status=stable; 更新于20天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Raft-集群成员变更/
+blog_source: _posts/2026-06-16-knowledge-d8a650049d.md
 ---
 
 # Raft 集群成员变更

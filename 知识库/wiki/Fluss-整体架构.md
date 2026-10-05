@@ -1,28 +1,30 @@
 ---
 type: analysis
-title: "Fluss 整体架构与 Kafka 2.7.2 对照"
+title: Fluss 整体架构与 Kafka 2.7.2 对照
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/01-整体架构对比.html"
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/07-模块对应关系总表.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/01-整体架构对比.html
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/07-模块对应关系总表.html
 tags:
-  - "Fluss"
-  - "Kafka"
-  - "架构"
-  - "源码分析"
-  - "流存储"
+- Fluss
+- Kafka
+- 架构
+- 源码分析
+- 流存储
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-分布式协调]]"
-  - "[[Fluss-RPC与网络]]"
-  - "[[Fluss-客户端与计算集成]]"
-  - "[[Fluss-Lake层与湖仓融合]]"
----
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
+- '[[知识库/wiki/Fluss-RPC与网络]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
 confidence: 0.78
-confidence_rationale: "类型=analysis; 来源×0; 21天前更新"
-
+confidence_rationale: 类型=analysis; 来源×0; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-整体架构/
+blog_source: _posts/2026-06-15-knowledge-6dfd3be1c3.md
+---
 
 # Fluss 整体架构与 Kafka 2.7.2 对照
 

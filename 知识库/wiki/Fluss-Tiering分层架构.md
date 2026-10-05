@@ -1,27 +1,28 @@
 ---
 type: concept
-title: "Fluss Tiering 分层架构"
+title: Fluss Tiering 分层架构
 sources:
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/06-Lake层与湖仓融合.html"
-  - "https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/05-客户端与计算集成.html"
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/06-Lake层与湖仓融合.html
+- https://github.com/BryantChang1992/ai_memory_chang_ai_team/blob/master/tech_research/fluss/05-客户端与计算集成.html
 tags:
-  - "Fluss"
-  - "Tiering"
-  - "Lakehouse"
-  - "数据湖"
-  - "Flink"
+- Fluss
+- Tiering
+- Lakehouse
+- 数据湖
+- Flink
 created: 2026-06-15
 updated: 2026-06-15
 status: draft
 related:
-  - "[[Fluss-Lake层与湖仓融合]]"
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-KV存储-RocksDB]]"
-
----
+- '[[知识库/wiki/Fluss-Lake层与湖仓融合]]'
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-KV存储-RocksDB]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 21天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 21天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-Tiering分层架构/
+blog_source: _posts/2026-06-15-knowledge-5188b34b3d.md
+---
 
 # Fluss Tiering 分层架构
 

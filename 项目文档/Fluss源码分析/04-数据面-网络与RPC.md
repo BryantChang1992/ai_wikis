@@ -1,9 +1,19 @@
 ---
-tags: [fluss, kafka, rpc, network, source-code]
+tags:
+- fluss
+- kafka
+- rpc
+- network
+- source-code
 created: 2026-06-10
+title: Fluss 源码分析：数据面 — 网络与 RPC
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/posts/fluss-rpc-network/
+blog_source: _posts/2026-06-14-fluss-rpc-network.md
+blog_source_commit: f83970fa7e6ad32d626cc6ca3ba7428c90a638a5
+blog_body_sha256: d2d175caecd9de9e26131a1a4ec083487ce4ebb1a31a283e08ec8681583ae33c
+synced_at: '2026-10-05'
+type: survey
 ---
-
-# 04 - 数据面：网络与 RPC
 
 ## 4.1 整体架构概览
 
@@ -16,7 +26,7 @@ graph TB
             SC[ServerConnection]
             CC[ClientChannelInitializer]
         end
-        
+
         subgraph Server["服务端"]
             NS[NettyServer]
             SC2[ServerChannelInitializer]
@@ -25,13 +35,13 @@ graph TB
             FH[FlussRequestHandler]
             KH[KafkaRequestHandler]
         end
-        
+
         subgraph Protocol["协议层"]
             AM[ApiManager<br/>管理 ApiKeys + method dispatch]
             MC[MessageCodec<br/>Protobuf 编解码]
             NP[NetworkProtocolPlugin<br/>多协议支持]
         end
-        
+
         GC --> NC
         NC --> SC
         NS --> SC2
@@ -154,7 +164,7 @@ graph LR
         HC --> FH[FlussRequestHandler]
         HC --> KH[KafkaRequestHandler]
     end
-    
+
     subgraph "协议检测"
         Magic[Fluss Magic Bytes 检测]
         KafkaDecoder[Kafka Protocol Decoder]
@@ -229,7 +239,7 @@ classDiagram
         +getClusterConfigs()
         ...
     }
-    
+
     RpcGatewayService <|-- RpcGateway
     RpcGateway <|-- TabletServerGateway
     RpcGateway <|-- CoordinatorGateway
@@ -251,6 +261,7 @@ invoke(proxy, method, args):
 ```
 
 **与 Kafka 的对比**：
+
 | 维度 | Fluss GatewayClientProxy | Kafka NetworkClient |
 |------|-------------------------|-------------------|
 | **调用方式** | JDK Dynamic Proxy (反射 methodName) | 显式调用 `send()` + `poll()` |
@@ -322,22 +333,23 @@ RpcRequest {
 
 `fluss-protogen` 模块负责 Protobuf → Java 代码生成：
 
-```
-fluss-protogen/src/main/proto/
-├── common.proto             (RpcResult, TableBucket, Schema)
-├── api_versions.proto       (ApiVersions request/response)
-├── database.proto           (Database CRUD request/response)
-├── table.proto              (Table CRUD request/response)
-├── produce_log.proto        (ProduceLog request/response)
-├── fetch_log.proto          (FetchLog request/response)
-├── put_kv.proto             (PutKv request/response)
-├── lookup.proto             (Lookup request/response)
-├── limit_scan.proto         (LimitScan request/response)
-├── list_offsets.proto       (ListOffsets request/response)
-├── coordinator.proto        (Coordinator 类请求)
-├── metadata.proto           (Metadata request/response)
-├── server.proto             (Server 类请求)
-└── ...
+```mermaid
+flowchart TD
+    root["fluss-protogen/src/main/proto/"]
+    root --> f1["common.proto (RpcResult, TableBucket, Schema)"]
+    root --> f2["api_versions.proto (ApiVersions req/resp)"]
+    root --> f3["database.proto (Database CRUD req/resp)"]
+    root --> f4["table.proto (Table CRUD req/resp)"]
+    root --> f5["produce_log.proto (ProduceLog req/resp)"]
+    root --> f6["fetch_log.proto (FetchLog req/resp)"]
+    root --> f7["put_kv.proto (PutKv req/resp)"]
+    root --> f8["lookup.proto (Lookup req/resp)"]
+    root --> f9["limit_scan.proto (LimitScan req/resp)"]
+    root --> f10["list_offsets.proto (ListOffsets req/resp)"]
+    root --> f11["coordinator.proto (Coordinator reqs)"]
+    root --> f12["metadata.proto (Metadata req/resp)"]
+    root --> f13["server.proto (Server reqs)"]
+    root --> f14["..."]
 ```
 
 ### 4.4.3 与 Kafka 请求模型对照
@@ -444,4 +456,4 @@ short v = apiKey.latestVersion() > 12 ? 12; // latest > 12 ? 12
 
 ---
 
-> **下一篇**：[[05-客户端与计算集成|05 - 客户端与计算集成]]
+> **下一篇**：[[项目文档/Fluss源码分析/05-客户端与计算集成|05 - 客户端与计算集成]]

@@ -1,27 +1,29 @@
 ---
 type: analysis
-title: "Anthropic Agent 安全容器化实践"
+title: Anthropic Agent 安全容器化实践
 sources:
-  - "sources/web/anthropic/how-we-contain-claude-精读.md"
-  - "https://www.anthropic.com/engineering/how-we-contain-claude"
+- '[[知识库/sources/web/anthropic/how-we-contain-claude-精读]]'
+- https://www.anthropic.com/engineering/how-we-contain-claude
 tags:
-  - "agent-infra"
-  - "agent-security"
-  - "sandbox"
-  - "containment"
+- agent-infra
+- agent-security
+- sandbox
+- containment
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 related:
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Parallax-Agent安全架构]]"
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Agent-First-Data-Systems]]"
-  - "[[AI-Infra-Agent基础设施体系综述]]"
----
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Parallax-Agent安全架构]]'
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
+- '[[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 17天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Anthropic-Agent安全容器化实践/
+blog_source: _posts/2026-06-19-knowledge-dacc7f8a0f.md
+---
 
 # Anthropic Agent 安全容器化实践
 

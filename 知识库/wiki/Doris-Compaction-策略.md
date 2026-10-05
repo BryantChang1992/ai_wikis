@@ -1,32 +1,33 @@
 ---
 type: concept
-title: "Doris Compaction 策略"
+title: Doris Compaction 策略
 sources:
-  - "../技术文章/Doris调研/02-存储引擎.md"
+- '[[技术文章/Doris调研/02-存储引擎]]'
 tags:
-  - 数据库
-  - OLAP
-  - Doris
-  - 存储引擎
-  - Compaction
-  - LSM-Tree
-  - Merge-on-Write
+- 数据库
+- OLAP
+- Doris
+- 存储引擎
+- Compaction
+- LSM-Tree
+- Merge-on-Write
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[Doris-深度调研]]"
-  - "[[Doris-Segment-v2-存储格式]]"
-  - "[[Doris-数据模型]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-Tree-存储引擎体系综述]]"
-diagram: "diagram/doris-architecture.svg"
-
----
+- '[[知识库/wiki/Doris-深度调研]]'
+- '[[知识库/wiki/Doris-Segment-v2-存储格式]]'
+- '[[知识库/wiki/Doris-数据模型]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述]]'
+diagram: diagram/doris-architecture.svg
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×1; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Doris-Compaction-策略/
+blog_source: _posts/2026-06-14-knowledge-1cd9b2bb17.md
+---
 
 # Doris Compaction 策略
 

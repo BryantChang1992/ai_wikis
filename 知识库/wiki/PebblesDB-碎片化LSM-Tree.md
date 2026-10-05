@@ -1,33 +1,35 @@
 ---
 type: concept
-title: "PebblesDB: 碎片化 LSM-Tree (FLSM)"
+title: 'PebblesDB: 碎片化 LSM-Tree (FLSM)'
 sources:
-  - "http://www.cs.utexas.edu/~vijay/papers/sosp17-pebblesdb.pdf"
-  - "https://github.com/utsaslab/pebblesdb"
-  - "https://github.com/utsaslab/pebblesdb/blob/master/benchmark.md"
+- http://www.cs.utexas.edu/~vijay/papers/sosp17-pebblesdb.pdf
+- https://github.com/utsaslab/pebblesdb
+- https://github.com/utsaslab/pebblesdb/blob/master/benchmark.md
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 写放大
-  - 碎片化
-  - Guards
-  - FLSM
-  - 合并优化
-  - Tiering
-  - SOSP2017
+- 存储引擎
+- LSM-Tree
+- 写放大
+- 碎片化
+- Guards
+- FLSM
+- 合并优化
+- Tiering
+- SOSP2017
 created: 2026-07-02
 updated: 2026-07-02
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-合并优化]]"
-  - "[[LSM-Tree-RUM猜想]]"
-  - "[[LSM-tree-KV-Survey-综述]]"
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-合并优化]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+- '[[知识库/wiki/LSM-tree-KV-Survey-综述]]'
 confidence: 0.75
-confidence_rationale: "类型=concept; 来源×0; 4天前更新"
-
+confidence_rationale: 类型=concept; 来源×0; 4天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/PebblesDB-碎片化LSM-Tree/
+blog_source: _posts/2026-07-02-knowledge-c4e701a6b7.md
+---
 
 # PebblesDB: 碎片化 LSM-Tree (FLSM)
 

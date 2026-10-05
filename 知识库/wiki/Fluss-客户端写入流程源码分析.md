@@ -1,26 +1,28 @@
 ---
 type: analysis
-title: "Fluss 客户端写入流程 — 源码深度分析"
+title: Fluss 客户端写入流程 — 源码深度分析
 sources:
-  - "sources/web/fluss-client-write/精读分析.md"
+- '[[知识库/sources/web/fluss-client-write/精读分析]]'
 tags:
-  - "流处理"
-  - "Fluss"
-  - "源码分析"
-  - "客户端"
+- 流处理
+- Fluss
+- 源码分析
+- 客户端
 created: 2026-07-03
 updated: 2026-07-03
 status: draft
 related:
-  - "[[Fluss-整体架构]]"
-  - "[[Fluss-客户端与计算集成]]"
-  - "[[Fluss-RPC与网络]]"
-  - "[[Fluss-存储引擎]]"
-  - "[[Fluss-分布式协调]]"
----
+- '[[知识库/wiki/Fluss-整体架构]]'
+- '[[知识库/wiki/Fluss-客户端与计算集成]]'
+- '[[知识库/wiki/Fluss-RPC与网络]]'
+- '[[知识库/wiki/Fluss-存储引擎]]'
+- '[[知识库/wiki/Fluss-分布式协调]]'
 confidence: 0.83
-confidence_rationale: "类型=analysis; 来源×1; 3天前更新"
-
+confidence_rationale: 类型=analysis; 来源×1; 3天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/Fluss-客户端写入流程源码分析/
+blog_source: _posts/2026-07-03-knowledge-d51c42620c.md
+---
 
 # Fluss 客户端写入流程 — 源码深度分析
 

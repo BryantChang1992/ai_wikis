@@ -1,216 +1,145 @@
 ---
 type: meta
-title: "CHANG_AI_TEAM 知识库"
-tags: ["meta", "知识库"]
-created: 2026-06-14
-updated: 2026-06-20
+title: 知识库总索引
+updated: '2026-10-05'
 ---
 
-# CHANG_AI_TEAM 知识库
+# 知识库总索引
 
-这是 CHANG_AI_TEAM 的核心知识底座。基于 Karpathy LLM Wiki 三层架构：
+本库按博客与知识卡片双向维护。博客已有文章的正文以博客仓库为准；知识库独有技术材料同步至博客。
 
-```
-sources/  →  wiki/  →  Schema
- (只读)      (AI维护)   (规则)
-```
+- [[知识库/博客索引|博客文章索引]]
+- [[知识库/purpose|知识库目的]]
+- [[知识库/schema|维护规则]]
 
-## 目录
+## 领域综述
 
-- [[purpose]] — 为什么存在、研究什么
-- [[schema]] — 怎么组织、怎么写
-- [[log]] — 谁做了什么
+- [[知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述|AI Infra Agent 基础设施体系综述]]
+- [[知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述|Apache Doris OLAP 数据库体系综述]]
+- [[知识库/wiki/synthesis/Fluss-流处理平台架构综述|Fluss 流处理平台架构综述]]
+- [[知识库/wiki/synthesis/InfluxDB-时序数据库体系综述|InfluxDB 时序数据库体系综述]]
+- [[知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述|技术综述：LSM-Tree 存储引擎体系综述]]
+- [[知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述|LSM-Tree 存储引擎新进展 (2026)]]
+- [[知识库/wiki/synthesis/OLAP与TSDB全景综述|技术综述：OLAP 与时序数据库全景综述]]
+- [[知识库/wiki/synthesis/共识协议体系综述|共识协议体系综述]]
+- [[知识库/wiki/synthesis/分布式数据系统一致性体系|技术综述：分布式数据系统一致性体系]]
+- [[知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述|分布式数据系统事务与一致性新进展 (2026)]]
+- [[知识库/wiki/synthesis/流处理系统演化综述|流处理系统演化综述]]
 
----
+## 技术知识卡片
 
-## 第1层: Raw Sources (`sources/`)
+- [[知识库/wiki/Agent-Cost-Control-Gateway成本控制|Agent Cost Control — Gateway 成本控制]]
+- [[知识库/wiki/Agent-Fault-Tolerance-容错设计|Agent Fault Tolerance — 容错设计]]
+- [[知识库/wiki/Agent-First-Branch-Transactions-分支事务|Agent-First Branch Transactions — Agent 优先的分支事务]]
+- [[知识库/wiki/Agent-First-Data-Systems|Agent-First Data Systems — Agent 优先的数据系统架构]]
+- [[知识库/wiki/Agent-Harness-Context-Memory上下文管理|Agent Harness: Context Management & Memory (C)]]
+- [[知识库/wiki/Agent-Harness-Engineering-Survey综述|Agent Harness Engineering 综述]]
+- [[知识库/wiki/Agent-Harness-Execution-Environment执行环境|Agent Harness: Execution Environment & Sandbox (E)]]
+- [[知识库/wiki/Agent-Harness-Governance治理|Agent Harness: Governance (G)]]
+- [[知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排|Agent Harness: Lifecycle & Orchestration (L)]]
+- [[知识库/wiki/Agent-Harness-Observability可观测性|Agent Harness: Observability & Operations (O)]]
+- [[知识库/wiki/Agent-Harness-Tool-Interface工具接口|Agent Harness: Tool Interface & Protocol (T)]]
+- [[知识库/wiki/Agent-Harness-Verification-Evaluation评估|Agent Harness: Verification & Evaluation (V)]]
+- [[知识库/wiki/Agent-Memory-Survey-2026综述|Agent Memory 综述 2026]]
+- [[知识库/wiki/Agent-Sandbox-安全沙箱选型|Agent Sandbox — 安全沙箱选型]]
+- [[知识库/wiki/Agent-框架-2026-全景对比|Agent 框架 2026 全景对比]]
+- [[知识库/wiki/Agentic-Memory-语义缓存|Agentic Memory — Agent-First 语义缓存]]
+- [[知识库/wiki/Anthropic-Agent安全容器化实践|Anthropic Agent 安全容器化实践]]
+- [[知识库/wiki/Apache-Flink-2.3.0-版本发布|Apache Flink 2.3.0 — SQL 层与存储层重大升级]]
+- [[知识库/wiki/Aurora-Limitless-分布式架构|Aurora Limitless 分布式架构]]
+- [[知识库/wiki/Aurora-Limitless-时间戳事务|Aurora Limitless 时间戳事务]]
+- [[知识库/wiki/Aurora-Limitless-自适应扩缩容|Aurora Limitless 自适应扩缩容]]
+- [[知识库/wiki/Bigtable-分布式结构化存储系统|Bigtable：Google 分布式结构化存储系统]]
+- [[知识库/wiki/Bourbon-Learned-Index-LSM|Bourbon: LSM-Tree 学习索引]]
+- [[知识库/wiki/ByteHouse-多模态查询优化|ByteHouse 多模态查询优化 — HBO + RANK_FUSION + 分级向量索引]]
+- [[知识库/wiki/ByteHouse-架构与设计|ByteHouse 云原生多模态数仓—整体架构]]
+- [[知识库/wiki/ByteHouse-统一表引擎|ByteHouse 统一表引擎 — 两阶段写入与多模态存储]]
+- [[知识库/wiki/CXL-3.0-内存池化新范式|CXL 3.0 — 内存数据库的 Scale-up 新范式]]
+- [[知识库/wiki/CaaS-LSM-Compaction即服务|CaaS-LSM: Compaction-as-a-Service]]
+- [[知识库/wiki/Chandy-Lamport-分布式快照算法|Chandy-Lamport 分布式快照算法]]
+- [[知识库/wiki/CockroachDB-Leader-Fortification|Leader Fortification — Raft 增强领导保证协议]]
+- [[知识库/wiki/CockroachDB-Leader-Lease-整体设计|CockroachDB Leader-Lease — 可扩展多组租约方案]]
+- [[知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层|Liveness Fabric — 去中心化集群故障检测层]]
+- [[知识库/wiki/CockroachDB-vs-TiDB-2026-对比|CockroachDB vs TiDB 2026 架构对比]]
+- [[知识库/wiki/Custom-Agent-Harness-Middleware架构|Custom Agent Harness — Middleware 架构]]
+- [[知识库/wiki/Dataflow-Model|Dataflow 模型]]
+- [[知识库/wiki/Doris-Compaction-策略|Doris Compaction 策略]]
+- [[知识库/wiki/Doris-MPP-向量化查询引擎|Doris MPP 向量化查询引擎]]
+- [[知识库/wiki/Doris-Nereids-CBO-优化器|Doris Nereids CBO 优化器]]
+- [[知识库/wiki/Doris-Segment-v2-存储格式|Doris Segment v2 存储格式]]
+- [[知识库/wiki/Doris-元数据与一致性复制|Doris 元数据存储与一致性复制]]
+- [[知识库/wiki/Doris-数据模型|Doris 数据模型：Duplicate / Aggregate / Unique]]
+- [[知识库/wiki/Doris-架构演进|Doris 架构演进：Palo → 3.0 存算分离]]
+- [[知识库/wiki/Doris-深度调研|Apache Doris 实时分析数据库深度调研]]
+- [[知识库/wiki/ElasticBF-弹性BloomFilter|ElasticBF（弹性 Bloom Filter）]]
+- [[知识库/wiki/Event-Horizon-非对称依赖|Event Horizon: 非对称依赖与跨地域操作]]
+- [[知识库/wiki/Fluss-Arrow列式记录格式|Fluss Arrow 列式记录格式]]
+- [[知识库/wiki/Fluss-EKS-生产部署实践-Fresha|Fluss EKS 生产部署实践 — Fresha]]
+- [[知识库/wiki/Fluss-KV存储-RocksDB|Fluss KV 存储（RocksDB）]]
+- [[知识库/wiki/Fluss-Kafka兼容层|Fluss Kafka 兼容层]]
+- [[知识库/wiki/Fluss-Lake层与湖仓融合|Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化]]
+- [[知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon|Fluss PR #3420 — Watermark → Paimon Snapshot]]
+- [[知识库/wiki/Fluss-RPC与网络|Fluss RPC 与网络层分析]]
+- [[知识库/wiki/Fluss-Tiering分层架构|Fluss Tiering 分层架构]]
+- [[知识库/wiki/Fluss-分布式协调|Fluss 分布式协调层分析]]
+- [[知识库/wiki/Fluss-存储引擎|Fluss 存储引擎模块分析]]
+- [[知识库/wiki/Fluss-客户端与计算集成|Fluss 客户端与计算集成分析]]
+- [[知识库/wiki/Fluss-客户端写入流程源码分析|Fluss 客户端写入流程 — 源码深度分析]]
+- [[知识库/wiki/Fluss-整体架构|Fluss 整体架构与 Kafka 2.7.2 对照]]
+- [[知识库/wiki/Hailstorm-存算分离LSM数据库|Hailstorm: 存算分离 LSM-tree KV 数据库]]
+- [[知识库/wiki/Hermes-Agent-自进化Agent框架|Hermes Agent — 自进化 Agent 框架]]
+- [[知识库/wiki/InfluxDB-3-列存引擎|InfluxDB 3 列存存储引擎]]
+- [[知识库/wiki/InfluxDB-Catalog元数据|InfluxDB Catalog 元数据存储]]
+- [[知识库/wiki/InfluxDB-TSM存储引擎|InfluxDB TSM 存储引擎]]
+- [[知识库/wiki/InfluxDB-写入与查询路径|InfluxDB 写入与查询路径]]
+- [[知识库/wiki/InfluxDB-多副本与高可用|InfluxDB 多副本与高可用]]
+- [[知识库/wiki/InfluxDB-指标设计与基数管理|InfluxDB 指标设计与基数管理]]
+- [[知识库/wiki/InfluxDB-数据模型|InfluxDB 数据模型与核心概念]]
+- [[知识库/wiki/InfluxDB深度调研|InfluxDB 深度调研：从 TSM 到列存引擎]]
+- [[知识库/wiki/LSM-Tree-RUM猜想|LSM-Tree RUM 猜想 (RUM Conjecture)]]
+- [[知识库/wiki/LSM-Tree-二级索引|LSM-Tree 二级索引 (Secondary Indexing)]]
+- [[知识库/wiki/LSM-Tree-写放大|LSM-Tree 写放大 (Write Amplification)]]
+- [[知识库/wiki/LSM-Tree-合并优化|LSM-Tree 合并优化 (Merge Optimization)]]
+- [[知识库/wiki/LSM-Tree-硬件适配|LSM-Tree 硬件适配 (Hardware Adaptation)]]
+- [[知识库/wiki/LSM-Tree-自动调参|LSM-Tree 自动调参 (Auto-Tuning)]]
+- [[知识库/wiki/LSM-Tree|LSM-Tree (Log-Structured Merge-Tree)]]
+- [[知识库/wiki/LSM-tree-KV-Survey-综述|LSM-tree KV Store 综述（2020-2025）]]
+- [[知识库/wiki/Lethe-删除感知LSM引擎|Lethe: 删除感知 LSM 引擎]]
+- [[知识库/wiki/Log-as-the-Database-模式|Log-as-the-Database 模式]]
+- [[知识库/wiki/Loop-Engineering-多层Agent循环架构|Loop Engineering — 多层 Agent 循环架构]]
+- [[知识库/wiki/Model-Neutrality-模型中立与反锁定|Model Neutrality — 模型中立与反锁定]]
+- [[知识库/wiki/Nova-LSM-分布式组件化LSM|Nova-LSM (分布式组件化 LSM-tree KVS)]]
+- [[知识库/wiki/Pacman-持久内存Compaction|Pacman: 持久内存加速 LSM-tree Compaction]]
+- [[知识库/wiki/Parallax-Agent安全架构|Parallax — Agent 安全架构]]
+- [[知识库/wiki/Paxos-Epochs-Revised|Paxos Epochs Revised]]
+- [[知识库/wiki/Paxos-Quorum-Intersection-Revised|Paxos Quorum Intersection Revised]]
+- [[知识库/wiki/Paxos-Value-Selection-Revised|Paxos Value Selection Revised]]
+- [[知识库/wiki/Paxos-理论到实践的鸿沟|Paxos-理论到实践的鸿沟]]
+- [[知识库/wiki/PebblesDB-碎片化LSM-Tree|PebblesDB: 碎片化 LSM-Tree (FLSM)]]
+- [[知识库/wiki/Qwen-3.6-模型发布|Qwen 3.6 — 参数效率革命]]
+- [[知识库/wiki/REMIX-全局排序索引|REMIX — 全局排序索引]]
+- [[知识库/wiki/RaaS-Replay-as-a-Service|RaaS (Replay-as-a-Service)：存储计算分离数据库的 Tail Latency 消除方案]]
+- [[知识库/wiki/Raft-共识算法协议核心|Raft 共识算法协议核心]]
+- [[知识库/wiki/Raft-客户端交互|Raft 客户端交互 — 线性一致性与请求路由]]
+- [[知识库/wiki/Raft-日志压缩|Raft 日志压缩]]
+- [[知识库/wiki/Raft-集群成员变更|Raft 集群成员变更]]
+- [[知识库/wiki/Rosé-Coordinated-Apply-协调应用|Rosé Coordinated Apply — WAL/KV 解耦的协调应用机制]]
+- [[知识库/wiki/Rosé-异步复制协议设计|Rosé — 分区数据库异步复制协议]]
+- [[知识库/wiki/Silo-Compaction-迁移协议|Silo Compaction 迁移协议 — Anti-hog 与 Pro-hog 设计]]
+- [[知识库/wiki/Silo-分布式LSM-Compaction调度|Silo — 分布式 LSM-Tree Compaction 全局调度]]
+- [[知识库/wiki/Stream-Processing-System-Generations|流处理系统代际演化]]
+- [[知识库/wiki/gLSM-GPU加速Compaction|gLSM — GPU 加速 LSM-Tree Compaction]]
+- [[知识库/wiki/事务模型深度调研|事务模型深度调研：从 ACID 到全球分布式事务]]
+- [[知识库/wiki/共识算法族系-从Paxos到广义解|共识算法族系：从 Paxos 到广义解]]
+- [[知识库/wiki/存储计算分离数据库的-Tail-Latency|存储计算分离数据库的 Tail Latency 问题]]
+- [[知识库/wiki/流处理乱序数据管理|流处理乱序数据管理]]
+- [[知识库/wiki/流处理容错模型|流处理容错模型]]
+- [[知识库/wiki/流处理弹性与重配置|流处理弹性与重配置]]
+- [[知识库/wiki/流处理状态管理|流处理状态管理]]
 
-> 原始资料，只读。Agent 从这里读取，但绝不修改。
 
-参见 [[sources/README]]
+## 维护记录
 
----
-
-## 第2层: Wiki (`wiki/`)
-
-> LLM 生成的结构化知识，是知识库的核心产出。
-
-### 领域综述（`wiki/synthesis/`）
-- [[wiki/synthesis/LSM-Tree-存储引擎体系综述]] — 从 7 张 LSM 卡片提炼：三条主线（写放大/合并优化/硬件适配）+ RUM 猜想框架
-- [[wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述]] — 🆕 Silo 分布式 Compaction 调度 + Fluss LSM 实践
-- [[wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述]] — 🆕 CockroachDB + Aurora + Rosé + Agent-First 四系统事务设计横向对比
-- [[wiki/synthesis/Fluss-流处理平台架构综述]] — 🆕 Fluss 五大模块综述：Kafka 兼容 + LSM 存储 + Arrow 列式 + Lake 湖仓
-- [[wiki/synthesis/OLAP与TSDB全景综述]] — Doris 与 InfluxDB 横向对比：存储引擎/查询模式/架构趋同趋势
-- [[wiki/synthesis/分布式数据系统一致性体系]] — 元层次提炼：事务层/副本层/会话层 + 协调代价统一框架
-- [[wiki/synthesis/Apache-Doris-OLAP-数据库体系综述]] — Doris 体系综述
-- [[wiki/synthesis/InfluxDB-时序数据库体系综述]] — InfluxDB 体系综述
-- [[wiki/synthesis/流处理系统演化综述]] — 🆕 SP-Survey 论文驱动：三代演化、乱序/状态/容错/弹性/Dataflow 五大域、与 LSM-Tree/Fluss/事务 交叉关联
-- [[wiki/synthesis/共识协议体系综述]] — 🆕 Ongaro (Stanford 2014) + Howard (Cambridge 2019) 双博士论文驱动：Raft 工程简化 + Howard 理论泛化双线并进
-- [[wiki/synthesis/AI-Infra-Agent基础设施体系综述]] — 🆕 Agent Infra 四层体系（Harness/Security/Control/Memory）：10 张卡片跨层整合 + 成熟度评估
-- [[wiki/synthesis/知识库优化方案-2026-06-15]] — 知识库 frontmatter/索引/tags 优化清单
-
-### 健康检查
-- [[wiki/synthesis/Lint-2026-06-14]] — 首轮 Lint 报告：3 孤儿页、4 概念缺口、3 缺失跨引用
-- [[wiki/synthesis/Lint-2026-06-19]] — Week 07 维护日 Lint：0 dangling、1 孤儿页（Chandy-Lamport）、修复 13 处 synthesis/ 前缀引用
-
-### Apache Fluss 调研（新增）
-
-#### 架构分析
-- [[wiki/Fluss-整体架构]] — Fluss 整体架构与 Kafka 2.7.2 对照：8 大核心差异、30% 代码复用分析、8 个独有能力
-- [[wiki/Fluss-存储引擎]] — 三层存储模型（LocalLog/KvTablet/RemoteLog）、Log 子系统 10 项差异、Tablet vs Partition 对比
-- [[wiki/Fluss-分布式协调]] — CoordinatorServer 事件驱动、双状态机、16 种事件类型、重平衡 Goal 优化器
-- [[wiki/Fluss-RPC与网络]] — Netty + Protobuf 全自研、61 API Key 清单、双协议引擎、GatewayClientProxy 动态代理
-- [[wiki/Fluss-客户端与计算集成]] — Writer/Scanner/Lookuper 三合一 API、Flink Connector 全链路、Lake Storage 插件架构
-- [[wiki/Fluss-Lake层与湖仓融合]] — Iceberg/Paimon/Hudi/Lance 四种后端、Tiering 架构、与 Kafka KIP-405 的本质区别
-
-#### 概念卡片
-- [[wiki/Fluss-KV存储-RocksDB]] — KV 子系统全貌：WAL 复用 changelog LogTablet（Write-Once Read-Multiple）、Snapshot 全链路、RowMerger 四种实现
-- [[wiki/Fluss-Tiering分层架构]] — 独立 Flink 作业的 Tiering 工作流、LakeTableTieringManager 协调
-- [[wiki/Fluss-Kafka兼容层]] — Kafka 协议兼容链路（仅 API_VERSIONS 完整，其余骨架）、双协议 RequestType FLUSS/KAFKA
-- [[wiki/Fluss-Arrow列式记录格式]] — 三种 LogFormat、Arrow vs Kafka Record 对比、列裁剪/谓词下推/零拷贝路径
-
-### 调研报告
-- [[wiki/事务模型深度调研]] — 从 ACID 到全球分布式事务（MVCC/2PC/3PC/TCC/SAGA/Percolator/Spanner/Calvin）
-- [[wiki/InfluxDB深度调研]] — InfluxDB 时序数据库全面调研：从 TSM 到 InfluxDB 3.0 列存引擎的演进（5 模块）
-  - [[wiki/InfluxDB-数据模型]] — Measurement / Tag / Field 三元组 + Line Protocol 与基数问题
-  - [[wiki/InfluxDB-TSM存储引擎]] — TSM 四层架构：WAL → MemTable → TSM → TSI + 写入与压缩链路
-  - [[wiki/InfluxDB-Catalog元数据]] — 元数据管理架构：Shard / Continuous Query / Subscription 三类
-  - [[wiki/InfluxDB-写入与查询路径]] — 写入路径全链路 + 查询路径下推优化
-  - [[wiki/InfluxDB-多副本与高可用]] — Hinted Handoff + Anti-Entropy + Raft 共识副本
-  - [[wiki/InfluxDB-指标设计与基数管理]] — 基数爆炸根因与 Tag 设计原则 + Series Cardinality
-  - [[wiki/InfluxDB-3-列存引擎]] — InfluxDB 3.0 Project Rampen：原生列存 + 统一 SQL + 无基数上限
-- [[wiki/Doris-深度调研]] — Apache Doris 实时分析数据库全面调研：5 大模块（核心概念/存储引擎/查询流程/架构演进/元数据与一致性）
-  - [[wiki/Doris-数据模型]] — Aggregate/Unique/Duplicate 三种模型 + Merge-on-Read/Write 策略
-  - [[wiki/Doris-Segment-v2-存储格式]] — Segment v2 列存格式：Short Key Index + Bloom Filter + Zone Map
-  - [[wiki/Doris-Compaction-策略]] — Cumulative → Base Compaction 两阶段 + 自动调参
-  - [[wiki/Doris-MPP-向量化查询引擎]] — Pipeline 并行 + 向量化算子 + Runtime Filter 优化
-  - [[wiki/Doris-Nereids-CBO-优化器]] — Nereids 新优化器：Cascades 框架 + 规则/成本双引擎
-  - [[wiki/Doris-元数据与一致性复制]] — FE 三节点 Pacifca + BE 去中心化 + Memory Checkpoint
-  - [[wiki/Doris-架构演进]] — 从 Palo 到 Doris 2.x：存算一体 → 存算分离 + Lakehouse 方向
-
-### ByteHouse 调研
-- [[wiki/ByteHouse-架构与设计]] — ByteDance 自研 OLAP 引擎：存算分离 + 统一表引擎
-- [[wiki/ByteHouse-统一表引擎]] — UniTable：一种表引擎覆盖全场景（主键更新/聚合/点查）
-- [[wiki/ByteHouse-多模态查询优化]] — 多模态（结构化/半结构化/向量）查询优化策略
-
-### 概念卡片
-
-#### 流处理 🆕
-- [[wiki/Stream-Processing-System-Generations]] — 流处理三代演化（DSMS → Dataflow → Emerging）：Table 1 七大维度、Figure 1 时间线
-- [[wiki/流处理乱序数据管理]] — 五种进度追踪机制（Slack/Heartbeat/LWM/Punctuation/Pointstamp）+ 三种修正策略
-- [[wiki/流处理状态管理]] — Synopsis → App-Managed → System-Managed 三阶段 + In-Memory/Out-of-Core/External 架构
-- [[wiki/流处理容错模型]] — Exactly-Once 四级分类 + Output Commit Problem + Table 4 四维度 18 系统对比
-- [[wiki/流处理弹性与重配置]] — SEEP/Chi/Megaphone 三种重配置方案 + Buffer vs Credit 流控
-- [[wiki/Dataflow-Model]] — Google Dataflow 批流统一四抽象 + What/Where/When/How 四问
-
-#### 存储引擎
-- [[wiki/Bigtable-分布式结构化存储系统]] — 🆕 Bigtable (OSDI 2006, Google): PB级分布式结构化存储、SSTable/MemTable/Compaction、LSM-Tree 经典工程实现、NoSQL 运动基石
-- [[wiki/LSM-Tree]] — LSM-Tree 总览：定义、历史、架构、Leveling/Tiering、经典优化、代表系统
-- [[wiki/LSM-Tree-写放大]] — 写放大根因、Leveling vs Tiering 对比、Tiering 变体、Merge Skipping、TRIAD
-- [[wiki/LSM-Tree-合并优化]] — VT-tree stitching、LSbM-tree、bLSM 写停顿调度
-- [[wiki/LSM-Tree-硬件适配]] — 大内存/多核/NVMe SSD/NVM 下的 LSM-tree 优化
-- [[wiki/LSM-Tree-自动调参]] — Monkey/Dostoevsky/ElasticBF 的自动调参策略
-- [[wiki/LSM-Tree-二级索引]] — Diff-Index 体系、主键索引方案
-- [[wiki/LSM-Tree-RUM猜想]] — 读-写-空间三选二理论框架及 RUM 定位
-- [[wiki/RaaS-Replay-as-a-Service]] — RaaS (SIGMOD 2026): Replay-as-a-Service 消除存储计算分离 Tail Latency
-- [[wiki/存储计算分离数据库的-Tail-Latency]] — 问题根因(日志链长度差异+CPU争抢)、传统解法为何无效
-- [[wiki/Log-as-the-Database-模式]] — Log-as-Database 设计原理、结构性代价、Kafka 类比
-- [[wiki/Event-Horizon-非对称依赖]] — Event Horizon (CIDR 2026): 半线性化与非对称依赖，降低跨地域协调延迟
-
-### 2026 顶会论文概念卡片 🆕
-
-#### CockroachDB Leader Leases (SIGMOD 2026)
-- [[wiki/CockroachDB-Leader-Lease-整体设计]] — Leader Leases 三层解耦：Lease ← Fortification ← Liveness Fabric，CPU 节省 85%+
-- [[wiki/CockroachDB-Liveness-Fabric-故障检测层]] — 去中心化集群故障检测：有向 support 关系 (epoch, expiration)，O(N_nodes²)
-- [[wiki/CockroachDB-Leader-Fortification]] — Raft 增强领导保证：MsgFortifyLeader 确定性承诺替代心跳超时
-
-#### Aurora PostgreSQL Limitless (SIGMOD 2026 Industry)
-- [[wiki/Aurora-Limitless-分布式架构]] — Router/Shard 解耦架构、三种表类型、co-location、查询 pushdown 优化
-- [[wiki/Aurora-Limitless-时间戳事务]] — Clock-SI + HLC 混合方案、Lead Shard 2PC、外部一致性实现
-- [[wiki/Aurora-Limitless-自适应扩缩容]] — ACU 垂直扩缩 + Table Slice 水平 shard split 二维扩缩
-
-#### Rosé (CIDR 2026)
-- [[wiki/Rosé-异步复制协议设计]] — 主备异步复制：单调前缀一致性、分区灵活配置
-- [[wiki/Rosé-Coordinated-Apply-协调应用]] — WAL/KV 持久化解耦的协调应用机制
-
-#### Silo (FAST 2026)
-- [[wiki/Silo-分布式LSM-Compaction调度]] — 全局 compaction 调度：Anti-hog / Pro-hog 策略、跨节点 compaction 迁移
-- [[wiki/Silo-Compaction-迁移协议]] — Compaction 迁移协议设计：数据一致性、WAL 协调、网络开销
-
-#### Agent-First Data (CIDR 2026)
-- [[wiki/Agent-First-Data-Systems]] — Agent 优先的数据系统架构：分支事务、语义缓存、Agentic Speculation
-- [[wiki/Agent-First-Branch-Transactions-分支事务]] — MVCC 快照 fork + 分支合并策略的 Agent 事务模型
-- [[wiki/Agentic-Memory-语义缓存]] — 基于语义相似度而非精确 key match 的缓存层
-
-#### 共识协议 🆕
-- [[wiki/Raft-共识算法协议核心]] — Leader Election (Term 逻辑时钟) + Log Replication + Safety 三维分解
-- [[wiki/Paxos-理论到实践的鸿沟]] — Single-decree Paxos 的四大缺失 + Multi-Paxos 实现者魔改问题
-- [[wiki/Raft-集群成员变更]] — Joint Consensus (Cold ∪ Cnew) 消除配置变更脑裂风险
-- [[wiki/Raft-日志压缩]] — Snapshot 机制替代前缀日志 + InstallSnapshot RPC 分块传输
-- [[wiki/Raft-客户端交互]] — Linearizability 保证 / Read Index-Lease Read / 幂等操作去重
-- [[wiki/Chandy-Lamport-分布式快照算法]] — 🆕 分布式快照开山论文 (TOCS 1985)：Marker 传播 + Flink Checkpoint 映射
-- [[wiki/共识算法族系-从Paxos到广义解]] — 🆕 Heidi Howard 2019 博士论文全景：4 层递进泛化 → 共识算法族
-- [[wiki/Paxos-Quorum-Intersection-Revised]] — 🆕 Flexible Paxos: Phase-1/Phase-2 quorum 仅跨 phase 相交
-- [[wiki/Paxos-Value-Selection-Revised]] — 🆕 Quorum-based 选值：不被"最高 epoch"规则过度限制
-- [[wiki/Paxos-Epochs-Revised]] — 🆕 Epochs by Recovery：去中心化 1 RTT 决策 + Multi-path Paxos
-### AI Infra — Agent 基础设施 🆕
-
-#### Agent Harness Engineering 综述 🆕🆕
-- [[wiki/Agent-Harness-Engineering-Survey综述]] — TMLR 2026 综述：170+ OSS 项目 ETCLOVG 七层分类 + 三个核心主张 + 三阶段演化
-- [[wiki/Agent-Harness-Execution-Environment执行环境]] — E 层：7 类沙箱（Computer-Use/Code/Browser/OS/Managed/Abstraction）+ 沙箱逃逸 & 规模化挑战
-- [[wiki/Agent-Harness-Tool-Interface工具接口]] — T 层：MCP vs A2A 协议竞赛 + 工具设计四原则 + Schema 粒度 & Prompt Injection 面
-- [[wiki/Agent-Harness-Context-Memory上下文管理]] — C 层：三层记忆架构 + Context Drift 四大来源 & 幻觉沉淀（QSAF）+ MemBench/MemoryArena
-- [[wiki/Agent-Harness-Lifecycle-Orchestration编排]] — L 层：三层编排（Inner Loop → Multi-Agent → Full Lifecycle）+ 5 种编排模式 + 四大故障模式
-- [[wiki/Agent-Harness-Observability可观测性]] — O 层：可观测堆栈（Tracing→Agent-Specific→Cognitive→System-Level）+ 成本优化 + Anthropic Managed Agents 架构
-- [[wiki/Agent-Harness-Verification-Evaluation评估]] — V 层：5 阶段 Task-to-Feedback Lifecycle + 评估噪声归因 + LLM-as-Judge
-- [[wiki/Agent-Harness-Governance治理]] — G 层：6 大治理机制（Identity→Guardrails→Hooks→Constitutions→Audit→Security） + 治理覆盖缺口分析
-
-#### Agent Memory & Security
-- [[wiki/Agent-Memory-Survey-2026综述]] — ArXiv 2026-03：Agent Memory 系统化综述（write→manage→read 循环 + 五大机制家族）
-- [[wiki/Parallax-Agent安全架构]] — ArXiv 2026-04：四原则架构（Cognitive-Executive Separation）+ 98.9% 攻击阻断率
-- [[wiki/Anthropic-Agent安全容器化实践]] — Anthropic Engineering Blog：三产品容器化实践（三类风险 × 三类防御 × 三种隔离模式）
-- [[wiki/Agent-Sandbox-安全沙箱选型]] — LangChain Blog：Lethal Trifecta + Sandbox 五要素 + microVM 内核隔离
-
-#### Agent Harness & 工程实践
-- [[wiki/Custom-Agent-Harness-Middleware架构]] — LangChain Blog：agent = model + harness + Middleware 四杠杆 + 能力映射表
-- [[wiki/Loop-Engineering-多层Agent循环架构]] — LangChain Blog：四层循环架构（Agent→Verification→Event-Driven→Hill Climbing）
-- [[wiki/Model-Neutrality-模型中立与反锁定]] — LangChain Blog：云→模型 锁定模式重演 + 中立 Harness 三要素
-- [[wiki/Agent-Fault-Tolerance-容错设计]] — LangChain Blog：RetryPolicy/TimeoutPolicy/error_handler + SAGA 补偿模式
-- [[wiki/Agent-Cost-Control-Gateway成本控制]] — LangChain Blog：LLM Gateway 四维预算 + 分钟级成本可观测性
-
-### Fluss 实践 🆕
-- [[wiki/Fluss-EKS-生产部署实践-Fresha]] — Fresha Data Engineering Blog：EKS 部署四限制修复 + Flink Connector 踩坑
-- [[wiki/Fluss-PR-3420-Watermark-to-Paimon]] — GitHub apache/fluss #3420：Watermark → Paimon Snapshot 全链路（49 文件变更）
-
-### Week 09 入库 — 2026-07-03 🆕
-
-#### AI Infra · Agent 基础设施
-- [[wiki/Hermes-Agent-自进化Agent框架]] — Nous Research 自进化 Agent 框架：内建学习循环 + 隔离子 Agent + OpenRouter #1（140k⭐）
-- [[wiki/Qwen-3.6-模型发布]] — Alibaba Qwen 3.6 参数效率革命：27B（匹配 400B）+ 35B（超越 120B）
-- [[wiki/Agent-框架-2026-全景对比]] — LangGraph/CrewAI/AutoGen/Semantic Kernel/Hermes 五大框架横向对比
-
-#### 流处理
-- [[wiki/Apache-Flink-2.3.0-版本发布]] — Flink 2.3.0：FROM_CHANGELOG/TO_CHANGELOG + Materialized Table DDL + Native S3 FS
-- [[wiki/Fluss-客户端写入流程源码分析]] — Connection/Table/AppendWriter 三层约定 + 8 模块源码分析全完成
-
-#### 分布式数据库
-- [[wiki/CockroachDB-vs-TiDB-2026-对比]] — 紧耦合 vs 存算分离两大路线 2026 横评：事务/弹性/混合负载/生态
-
-#### 存储引擎
-- [[wiki/CXL-3.0-内存池化新范式]] — CXL 3.0（PCIe 6.0）内存池化 + 对 LSM-tree/内存数据库/存算分离的影响
-
----
-
-## 第3层: Schema
-
-> 规则与配置，定义知识库如何运作。
-
-| 文件 | 说明 |
-|------|------|
-| [[purpose]] | 知识库的目标、研究方向 |
-| [[schema]] | 分类体系、模板、[[wikilink]] 规范 |
-| [[log]] | 操作日志 |
-
----
-
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-03*
+- [[知识库/wiki/synthesis/Lint-2026-06-14]]
+- [[知识库/wiki/synthesis/Lint-2026-06-19]]
+- [[知识库/wiki/synthesis/知识库优化方案-2026-06-15]]

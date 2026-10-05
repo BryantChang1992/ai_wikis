@@ -1,43 +1,45 @@
 ---
 type: synthesis
-title: "AI Infra Agent 基础设施体系综述"
+title: AI Infra Agent 基础设施体系综述
 created: 2026-06-19
 updated: 2026-06-19
 status: draft
 sources:
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
-  - "[[Agent-Fault-Tolerance-容错设计]]"
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Anthropic-Agent安全容器化实践]]"
-  - "[[Parallax-Agent安全架构]]"
-  - "[[Agent-Memory-Survey-2026综述]]"
-  - "[[Agentic-Memory-语义缓存]]"
-  - "[[Model-Neutrality-模型中立与反锁定]]"
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
+- '[[知识库/wiki/Agent-Fault-Tolerance-容错设计]]'
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
+- '[[知识库/wiki/Parallax-Agent安全架构]]'
+- '[[知识库/wiki/Agent-Memory-Survey-2026综述]]'
+- '[[知识库/wiki/Agentic-Memory-语义缓存]]'
+- '[[知识库/wiki/Model-Neutrality-模型中立与反锁定]]'
 tags:
-  - agent-infra
-  - agent-harness
-  - agent-security
-  - agent-memory
-  - loop-engineering
-  - synthesis
+- agent-infra
+- agent-harness
+- agent-security
+- agent-memory
+- loop-engineering
+- synthesis
 related:
-  - "[[Custom-Agent-Harness-Middleware架构]]"
-  - "[[Loop-Engineering-多层Agent循环架构]]"
-  - "[[Agent-Cost-Control-Gateway成本控制]]"
-  - "[[Model-Neutrality-模型中立与反锁定]]"
-  - "[[Agent-Fault-Tolerance-容错设计]]"
-  - "[[Agent-Sandbox-安全沙箱选型]]"
-  - "[[Anthropic-Agent安全容器化实践]]"
-  - "[[Parallax-Agent安全架构]]"
-  - "[[Agent-Memory-Survey-2026综述]]"
-  - "[[Agentic-Memory-语义缓存]]"
-  - "[[Agent-First-Data-Systems]]"
----
+- '[[知识库/wiki/Custom-Agent-Harness-Middleware架构]]'
+- '[[知识库/wiki/Loop-Engineering-多层Agent循环架构]]'
+- '[[知识库/wiki/Agent-Cost-Control-Gateway成本控制]]'
+- '[[知识库/wiki/Model-Neutrality-模型中立与反锁定]]'
+- '[[知识库/wiki/Agent-Fault-Tolerance-容错设计]]'
+- '[[知识库/wiki/Agent-Sandbox-安全沙箱选型]]'
+- '[[知识库/wiki/Anthropic-Agent安全容器化实践]]'
+- '[[知识库/wiki/Parallax-Agent安全架构]]'
+- '[[知识库/wiki/Agent-Memory-Survey-2026综述]]'
+- '[[知识库/wiki/Agentic-Memory-语义缓存]]'
+- '[[知识库/wiki/Agent-First-Data-Systems]]'
 confidence: 0.8
-confidence_rationale: "类型=synthesis; 来源×0; 17天前更新"
-
+confidence_rationale: 类型=synthesis; 来源×0; 17天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/AI-Infra-Agent基础设施体系综述/
+blog_source: _posts/2026-06-19-knowledge-35c81d5e03.md
+---
 
 # AI Infra — Agent 基础设施体系综述
 

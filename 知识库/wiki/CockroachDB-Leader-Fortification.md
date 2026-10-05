@@ -1,23 +1,25 @@
 ---
 type: concept
-title: "Leader Fortification — Raft 增强领导保证协议"
+title: Leader Fortification — Raft 增强领导保证协议
 tags:
-  - Raft
-  - CockroachDB
-  - 共识协议
-  - Leader-Fortification
+- Raft
+- CockroachDB
+- 共识协议
+- Leader-Fortification
 related:
-  - "[[CockroachDB-Leader-Lease-整体设计]]"
-  - "[[CockroachDB-Liveness-Fabric-故障检测层]]"
-  - "[[事务模型深度调研]]"
+- '[[知识库/wiki/CockroachDB-Leader-Lease-整体设计]]'
+- '[[知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层]]'
+- '[[知识库/wiki/事务模型深度调研]]'
 sources:
-  - "sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf"
+- '[[知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf]]'
 status: draft
 created: 2026-06-15
 updated: 2026-06-15
-
 confidence: 0.8
-confidence_rationale: "类型=concept; 来源×1; 更新于21天前"
+confidence_rationale: 类型=concept; 来源×1; 更新于21天前
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/CockroachDB-Leader-Fortification/
+blog_source: _posts/2026-06-15-knowledge-7723389f4a.md
 ---
 
 # Leader Fortification — Raft 增强领导保证协议

@@ -1,30 +1,31 @@
 ---
 type: concept
-title: "LSM-Tree 合并优化 (Merge Optimization)"
+title: LSM-Tree 合并优化 (Merge Optimization)
 sources:
-  - "sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf"
-  - "sources/papers/LSM-Survey/精读分析.md"
-  - "sources/papers/LSM-Survey/全文翻译.md"
+- '[[知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf]]'
+- '[[知识库/sources/papers/LSM-Survey/精读分析]]'
+- '[[知识库/sources/papers/LSM-Survey/全文翻译]]'
 tags:
-  - 存储引擎
-  - LSM-Tree
-  - 合并
-  - Compaction
-  - 性能优化
+- 存储引擎
+- LSM-Tree
+- 合并
+- Compaction
+- 性能优化
 created: 2026-06-14
 updated: 2026-06-14
 status: draft
 related:
-  - "[[LSM-Tree]]"
-  - "[[LSM-Tree-写放大]]"
-  - "[[LSM-Tree-自动调参]]"
-  - "[[LSM-Tree-RUM猜想]]"
-diagram: "diagram/lsm-tree-full-overview.svg"
-
----
+- '[[知识库/wiki/LSM-Tree]]'
+- '[[知识库/wiki/LSM-Tree-写放大]]'
+- '[[知识库/wiki/LSM-Tree-自动调参]]'
+- '[[知识库/wiki/LSM-Tree-RUM猜想]]'
+diagram: diagram/lsm-tree-full-overview.svg
 confidence: 0.9
-confidence_rationale: "类型=concept; 来源×3; 22天前更新"
-
+confidence_rationale: 类型=concept; 来源×3; 22天前更新
+synced_at: '2026-10-05'
+blog_url: https://bryantchang1992.github.io/ai_memory_chang_ai_team/knowledge/LSM-Tree-合并优化/
+blog_source: _posts/2026-06-14-knowledge-f455d0b201.md
+---
 
 # LSM-Tree 合并优化 (Merge Optimization)
 

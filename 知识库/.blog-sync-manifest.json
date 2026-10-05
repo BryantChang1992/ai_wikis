@@ -178,9 +178,9 @@
         "知识库/sources/papers/Event-Horizon/精读分析.md"
       ],
       "url": "/posts/event-horizon-paper/",
-      "blog_body_sha256": "c031034d1987548dbb68a09e133ddb6d65ee6fea34e6ff7c9a31f58d48c124a7",
+      "blog_body_sha256": "a57407eec1dd0c65be83fa091bab1243e64f736462009a1e331e48de74316aa5",
       "vault_sha256": "d5af822e1813c5f802dfdba07f24d76601d69f53bc6fb475557d9d8a040e9316",
-      "blog_sha256": "71d2bfc9934d56bd02c4205dcd9f28abeb602e84319767862d52b78df1ddda93",
+      "blog_sha256": "6d8174da61db42d7e123267544ddee7223818a00f3fa89e0abd36b506fedcdd9",
       "alias_sha256": {
         "知识库/sources/papers/Event-Horizon/精读分析.md": "d5af822e1813c5f802dfdba07f24d76601d69f53bc6fb475557d9d8a040e9316"
       },
@@ -195,9 +195,9 @@
         "知识库/sources/papers/Event-Horizon/全文翻译.md"
       ],
       "url": "/posts/event-horizon-translation/",
-      "blog_body_sha256": "e7cd46612bfc50c62b1a7a046ada97780ccc260bb0a6b60f055f0fe04951f1d7",
+      "blog_body_sha256": "c45b7e5ebf9693f1f71d779b16efb2ca3ad7c3946159cecedad0b51f9a8f7e81",
       "vault_sha256": "08ac3edc207a21578334e99fa79c329b30b9220080b7cc12ddf780eafd73e781",
-      "blog_sha256": "3689f080a5fc7726866c20117a7a9fce4379ceabe0910dd1f6f8b5da803a4792",
+      "blog_sha256": "31030eaa69abd00d7a5a17a7d0c170d703398a3b6705976ad53394194ec7b8ef",
       "alias_sha256": {
         "知识库/sources/papers/Event-Horizon/全文翻译.md": "08ac3edc207a21578334e99fa79c329b30b9220080b7cc12ddf780eafd73e781"
       },
@@ -225,7 +225,7 @@
       "url": "/posts/raas-paper/",
       "blog_body_sha256": "1f1a91d09f0c898b5924b364ae169bf99be9bb43d9feab0a12a69e9d70d7fcc6",
       "vault_sha256": "fd2863ece2a4d8874a1f6364c84f8f9959674f62abb978dd8df181ba53136bb5",
-      "blog_sha256": "f91f74034c922e4319d4d6cff93f7de2fd363c9734dcfc45aa604a6efc50342f",
+      "blog_sha256": "01e66f7190976ec1d32ae3990b43072190926fbf668af4fc9d294ec70c230e92",
       "alias_sha256": {
         "知识库/sources/papers/RaaS/精读分析.md": "fd2863ece2a4d8874a1f6364c84f8f9959674f62abb978dd8df181ba53136bb5"
       },
@@ -242,7 +242,7 @@
       "url": "/posts/raas-translation/",
       "blog_body_sha256": "336077f109e206f6452d9d354a43dca40735c07eb57c13013e65059145992e8b",
       "vault_sha256": "84142d04fc3831133b976b254bf7204857099dbc1d0e0701a1ce2b4117c79bf5",
-      "blog_sha256": "f4a7f975a4bee27600830893c081ef8b203589ecc81be5653c50ca27d2c9c891",
+      "blog_sha256": "f35da05cdcc88fa7c22893f8ffddcb2027650a6a1f826d4eef1d921c57488b2d",
       "alias_sha256": {
         "知识库/sources/papers/RaaS/全文翻译.md": "84142d04fc3831133b976b254bf7204857099dbc1d0e0701a1ce2b4117c79bf5"
       },
@@ -268,7 +268,7 @@
       "url": "/posts/tech-research/week-04/conferences/",
       "blog_body_sha256": "6080c2109aa11230142bb5f7bfaf1823a060e279358f1c4cf9d7760b1e5653d4",
       "vault_sha256": "d25f48ef197e4012a645c2f7f1336c1c8aa0ec3bcdf8091ca6f38f84d3f9cdd0",
-      "blog_sha256": "ae788fa0c3244fa2d9bfc710e07660d4920f477758dea648c122bf08b045af8b",
+      "blog_sha256": "e8c6a66fa4a9b55a9fe96807eda99fd5fa2fe3d678bb0d4b0120ad82f57987dc",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -290,9 +290,9 @@
       "vault_path": "技术文章/Doris调研/04-架构演进.md",
       "aliases": [],
       "url": "/posts/doris-architecture-evolution/",
-      "blog_body_sha256": "96febdc9db789a5d8703b526790e16280bdcfb5f536cfae101e613291bd741a8",
+      "blog_body_sha256": "1be88e293a24d2ce30b4e266a671aeea645ce5723bda6d2ff3c2a0558f93d01b",
       "vault_sha256": "a2556ea0012f400a7412ee13406309c94da2fe24c9c335f823a2d08ad0d72d43",
-      "blog_sha256": "15a01a54b4e033e9343c296eec7dedd756d5116e669d84c158fc6194d96fac12",
+      "blog_sha256": "360bb09304b1badd7a388a451e812d05b261420bf685e2e0113c1fd8badb6d35",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -303,9 +303,9 @@
       "vault_path": "技术文章/Doris调研/05-元数据存储与一致性复制.md",
       "aliases": [],
       "url": "/posts/doris-metadata-replication/",
-      "blog_body_sha256": "6106034cce511bae43d32b18817070508bfff2232b1d07cb90d2d4e97a7a74c0",
+      "blog_body_sha256": "da8ea0092881a220ba9732e51cd63a50508aa7fefdd12433b7f0bd7ac9603728",
       "vault_sha256": "c9b7e2dc54abe66876c44fc567bf5a3b5dc15d6b10104226fc6983764acf730c",
-      "blog_sha256": "688928b7608caff3deb764e35225cc0ef809a24be2e21201ae102c49052e3e8c",
+      "blog_sha256": "5f59865ad585c7ed6724480688502795a2e9fb4283e5c0d94464eb4a86ee7571",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -316,9 +316,9 @@
       "vault_path": "技术文章/Doris调研/01-概述与核心概念.md",
       "aliases": [],
       "url": "/posts/doris-overview/",
-      "blog_body_sha256": "0d86e0102926749b2f21e727a982f59b936ace29076d9590ea193fec58f6b85b",
+      "blog_body_sha256": "1164ad3fafcf72de1ebf9232cfc7d2175bd9befa70a2e8832aab10b2993f0097",
       "vault_sha256": "a6f5df094ffd2393ce39edb7cf3629ab9ecbdf975ad52f4b243929998feb5227",
-      "blog_sha256": "e669fc9047cb0bdefdbe0229c922a51ba60e08c7e32c5b32a48dbcf42838b800",
+      "blog_sha256": "9f62d83cfe0f4eef74b2ff87d97cbe759f10ab46179b3560e402c91588a99bf9",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -329,9 +329,9 @@
       "vault_path": "技术文章/Doris调研/03-查询流程.md",
       "aliases": [],
       "url": "/posts/doris-query-engine/",
-      "blog_body_sha256": "091050d4e67c46b9084ab5006fbdaac9b00bec7b6bd2751294bb67b1f4c900dc",
+      "blog_body_sha256": "ed1bf8a73c8b91376d9f370a048ba91294767d1e9d08e928ffbca4ce684c03bf",
       "vault_sha256": "81ae15c486d6c4970a10bfb37f31c8301f5f43c9e1555e538a0b3487d7e3e853",
-      "blog_sha256": "d6eb317cbe6293a473e524372ca941059411f59cb6b86ffa55333c33295f59ff",
+      "blog_sha256": "74672fccad4cfb2df5a22bb3f941e06be8d99fd03c555504629bb5955af23cde",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -342,9 +342,9 @@
       "vault_path": "技术文章/Doris调研/02-存储引擎.md",
       "aliases": [],
       "url": "/posts/doris-storage-engine/",
-      "blog_body_sha256": "bf47b0bf1fb503163a85fa7d42d3ccecb944f85b3d422e27eb2c2d18a798b24f",
+      "blog_body_sha256": "bedb574db0a78052379e792e35ec2de601a10a227c69834ed619ec22f3752ae6",
       "vault_sha256": "4bec301e9b0dfda607846564ca2764e7b7ecb1baf62bf6444eed2859a2555c99",
-      "blog_sha256": "e2e0591dd41d8bbb48c4f0863518ccf08acb40ca5a02f1b3e6c9e3b93afc5ccb",
+      "blog_sha256": "04305290116ed89446baf30d1f973b726a70a5723bca57a236a980551e3017eb",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -357,9 +357,9 @@
         "知识库/sources/web/fluss/01-整体架构对比.md"
       ],
       "url": "/posts/fluss-architecture-comparison/",
-      "blog_body_sha256": "432c3c5a8000d92e2234136dbce58014b4eb12dfc443c09d762c247fe9d6c3ff",
+      "blog_body_sha256": "3046927e97b790d2a18c933abdc44e7aac7fc6559abb22d1206bd029d0c71a83",
       "vault_sha256": "cf251831ba78d5862624fa6259d1df67cd78adf57e22481606534dda4bf41c85",
-      "blog_sha256": "f3fb5c224cf6d2c02f70ac9bacf146402d91a815470d5b24dbbc890f89a7f7b5",
+      "blog_sha256": "ed7f69d0f03c8f0e30c736904c7158876260bc902a23bcbed7b181cfa4a84680",
       "alias_sha256": {
         "知识库/sources/web/fluss/01-整体架构对比.md": "cf251831ba78d5862624fa6259d1df67cd78adf57e22481606534dda4bf41c85"
       },
@@ -374,7 +374,7 @@
       "url": "/posts/fluss-client-integration/",
       "blog_body_sha256": "4bab0c5e39d3e39d8b822247d2ef7c33a06e9f8e3b460ada8e6d628d012b376c",
       "vault_sha256": "ce7e2275b698da002c66087126ad2dffaf5ec14ecdf35e36abacbb089b6a591c",
-      "blog_sha256": "b9fa737217fe324a9c86d42fae136e9138cdd77374c6c984a78bb62d91c8c3d7",
+      "blog_sha256": "bb791e2f3ca5aa707b7620ed038fc155c535206ffe63301337b15383fcd17724",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -387,7 +387,7 @@
       "url": "/posts/fluss-coordination/",
       "blog_body_sha256": "7f0d049b7d1a5cfa3b5b49dc3d5c1d247f3f970dc8236a7568a8893690220866",
       "vault_sha256": "8a967734f5f569106b7c87b396cf1a74416d5a4c970c894851d2697e98050a4d",
-      "blog_sha256": "c99dbe01576c2c3f7e4bcbf1f290390b18d180d639ee5b0afe297ebf36ed825a",
+      "blog_sha256": "11fa5970df73e289192161b5b511e8e4b127b916c62774876007af95e34c93a4",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -400,7 +400,7 @@
       "url": "/posts/fluss-lake-tiering/",
       "blog_body_sha256": "cc53ed575d10a3363e8c8f79f4992989d445e4c082a416cc72de5016f2bc7bcc",
       "vault_sha256": "a5eccb0359d56f07bcbcbd00145f0c4481981fa175b56466766d189779ec53f2",
-      "blog_sha256": "0d8a1840021a0e4349dce0c12b37abd9fbc0e432dfb9fa6e4ea5db8a83209ab0",
+      "blog_sha256": "369a7ea102d87ef7d8e3c51f78e4248f7eb0e82627de8d8bbe3e3332965af252",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -413,7 +413,7 @@
       "url": "/posts/fluss-module-mapping/",
       "blog_body_sha256": "21a913452b86ff319da6b992af8ebf64251cf6ef5b132a3dea77f7020715d56c",
       "vault_sha256": "803af7f5e2598ff819d450846d254cb48e8402ce446544f0a39c11bc2cd6ce1a",
-      "blog_sha256": "d9a86b36a0826f619fb0e68aa8aa9e7949662182b3f78b289a3bc67b014bdbe8",
+      "blog_sha256": "db7ea537cb70a6ddbd7020534b9fdbb23ab1a1de8be34617be0460e2f41ee3b8",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -426,7 +426,7 @@
       "url": "/posts/fluss-rpc-network/",
       "blog_body_sha256": "773ffd90d438cccb77cefe423376fc61c249aa2af5a460d65a8ae849495a564c",
       "vault_sha256": "e19359ee103860577fe5ccb9201c0f8924547cd3f09bfcff6cca924ab68269b8",
-      "blog_sha256": "44efff2cf12317b2f36bd5f5fc953f182850b16fbb9f2a7eede486a2a5a3b82d",
+      "blog_sha256": "1d59bed8ea4fdd4fa6266fe704d763edf77382a0344a3e263cc714e063268a9e",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -439,7 +439,7 @@
       "url": "/posts/fluss-storage-engine/",
       "blog_body_sha256": "1d210c22be3f521b33ae129646e338fcb5bf85013d88d825e6d963ee7240a82d",
       "vault_sha256": "67e5691553d15ae81a1cefe467be8a67c3be0601cc050e5620bbf3d35482ba70",
-      "blog_sha256": "d417b17b9dc04015a220b253c1a764c9b8f062981f666fffc33f4ae92274a207",
+      "blog_sha256": "8b39c70c6f3d2cbafa3365217df45899c9673a952b45f08d6d4b6f4468554d37",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -463,7 +463,7 @@
       "url": "/posts/transaction-model-survey/",
       "blog_body_sha256": "4b92a3c4bbb2584781f7ec11cbe2f7ac5d4e9dcea78f8f2ae3248eb36408faf5",
       "vault_sha256": "2f0ef3b086d7dcfbdf2b2e222c8af8765e9d7cf2d36b751f1f641711bb59ddd2",
-      "blog_sha256": "102587841c1480aad5ce13c8b082e3ab4e688cb92c0529e0317b897f6bde897e",
+      "blog_sha256": "8445571904900b85b4206499356df29b31f62779ac9a60960206a740825bc60e",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -474,9 +474,9 @@
       "vault_path": "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
       "aliases": [],
       "url": "/posts/wiki-synthesis-consistency/",
-      "blog_body_sha256": "057bf985fc3008e9b9a39872228cb2e292b7cf1a90cc4037e2f5418e59085d9d",
+      "blog_body_sha256": "0e2d6b07f82277b29cad6d7cbb412d10e941ca7aa29a6bf0c4231f0bc1199870",
       "vault_sha256": "edbe19c5280c404e1acdccb69d766160b186d34466f7219a8528562667d8d954",
-      "blog_sha256": "dd46a8578ea155b20cd789b1ef8329025535f554a5afb2d8cc83a5e6b0dbc84b",
+      "blog_sha256": "ae48b1f5da18a521faa84d826c20d85f38328d31c04574fedc2b4c924cc21fcb",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -487,9 +487,9 @@
       "vault_path": "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
       "aliases": [],
       "url": "/posts/wiki-synthesis-lsm-tree/",
-      "blog_body_sha256": "d085189e7c2c61443ca22b930bcaa3d1eb5c774f4a65ca467cab89333e3561e8",
+      "blog_body_sha256": "cdf2586919010ce2832d144f7490dd772f945d1f50e97f9e47882c7372b47e66",
       "vault_sha256": "66e235f88a90da4bc3addfb8fdf201d4be09e83c69b10394a6255feff67b0310",
-      "blog_sha256": "d5c386b6833352dc16db89a4bb4cda3e61ec6314f8a52abf2ed552783db61008",
+      "blog_sha256": "6ce7ab3727c9f988f1f286ce6a785cce56b557260a958713ebd89a61417862d9",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -500,9 +500,9 @@
       "vault_path": "知识库/wiki/synthesis/OLAP与TSDB全景综述.md",
       "aliases": [],
       "url": "/posts/wiki-synthesis-olap-tsdb/",
-      "blog_body_sha256": "d08b66f040116dbffa5eb33c713d4dac9b8a736786b84cc67fe10a5a12115876",
+      "blog_body_sha256": "e66da8c1e37c5d6c8ab50e3b2bdea7abd78de65d86975bc6c1d73ec382b664b6",
       "vault_sha256": "2bb470e3734f5103bb0729441ad6b51e8b546b2843c3e3fdd7479cb6ca74c146",
-      "blog_sha256": "58de9b29e08c57407e559726579182e0472ff7ac03eaff11b9ba329217095823",
+      "blog_sha256": "3f15d627fc09bf11476aa8ba50a8fff40e341ba4a389eb4951c93b9e9ea3e2ee",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05"
@@ -690,7 +690,7 @@
       "aliases": [],
       "url": "/knowledge/Doris调研/",
       "vault_sha256": "b11729c07a599df1e7489eb2f0aaf42dd952629beaf75886d6459850f467e812",
-      "blog_sha256": "e84a601fb8a01ba175a2b2fdfec77af09fdbbc47ba90e4eac8bbfecfce6fb032",
+      "blog_sha256": "bcae7c358a5ebf023a10116cb68297a7e9eb4479ce3f7666c71d6656cd80a117",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -703,7 +703,7 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研/",
       "vault_sha256": "f514627f7b0b7b3c17d9408cbaf5a7d0ad30dd54dcf6fe4d7c8e1593c9ac5f92",
-      "blog_sha256": "c989c173a5dd794b60e540bac12d02829eb68385746d6934235dd30302742b60",
+      "blog_sha256": "c1a2443939f23236ff8ee73e51492c07347cc759b13b1e8604c1d1b37118e645",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -716,11 +716,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研-01-概述与核心概念/",
       "vault_sha256": "1ff8be105e8fed25278bd746622c7152ccae770404e8c437cdc6a7008d103dd5",
-      "blog_sha256": "aacff692093caf3119c7f12f6c3e13e0db7f4a369ae00e3fb0ec01dd1c7ba290",
+      "blog_sha256": "332e9e01988a68c8b51335fd7eb01cb64b8aa173153ec5ad752914b8bee7a6f9",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "5067afc4cdea0fc4459675ecbaf935f9a28eab43dfc58fcadd0753efa58b6ac6"
+      "blog_body_sha256": "e6e700652b9c81f7899a5c9c4a28e4d5bed37b89a1825684800b5447123a5f6c"
     },
     {
       "direction": "obsidian_to_blog",
@@ -729,11 +729,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研-02-存储引擎/",
       "vault_sha256": "dd081fc5a5d84f4694a78bcbc254bfb980f8cb47ac0dc93683919be6f58376bd",
-      "blog_sha256": "1c37e5bbfe865e014a26ff9c4832a5473a0b37f898d1cf3b9e80d0940a7faea4",
+      "blog_sha256": "a00cf8c85a27b8baf06ec40af995ac02dfc9b4efa928e303d4af65369a78b706",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b336ee742898cc80db98843ecd94ec4baa0e657f744fc8e22ceab9bf53cd2394"
+      "blog_body_sha256": "de8f167c9a0ceb38fb606f89143b2d2f1cd129bd07ed9cd9a7753d324213a72a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -742,11 +742,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研-03-写入与查询路径/",
       "vault_sha256": "c7758376da902c7cb79f7c23ec3aa2bac42ff44bc0a8f9b1e4a1b7736ceb013f",
-      "blog_sha256": "c24ab91b4f9c7ee5ca46be1fdefbe5c88c1ef1a6a870b7309132fccca4391327",
+      "blog_sha256": "974373cc4af351dc552fd18c453c8ce3b961089ea23fceb41b7665c311c24a62",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "fe25a220fe287687d82b5a571dfc33fd2c254ac6bdf2bf67151c8acc7fd55e31"
+      "blog_body_sha256": "2381fd738dee5b263bb06a9c979828ffee1e8d3b3e1e17056d32c8ba5a1504e0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -755,11 +755,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研-04-指标设计最佳实践/",
       "vault_sha256": "e06f7255f6d47078106db54d137a12b8899da43cf27b2698b0006894074ec902",
-      "blog_sha256": "ac50f2eaaac3242a1ef384788eea6ad9629049cf5e99efd6c565fe1b8b19341e",
+      "blog_sha256": "f054053756ad36dd99717a2bcfe1b31f89cb2238ed30ada76579a36158fcb7f5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "43b907cd1972053b6cd474a4dcb799d3a40ee8595775af29e618d3f598def070"
+      "blog_body_sha256": "9ac47dbbac45f03718ece90d640d1fc83817c34dbb1a7cb52d120eda7de68cc0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -768,11 +768,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB调研-05-多副本复制与元数据存储/",
       "vault_sha256": "9df79ada27158c62f4b64b8d1ce0ca8ed5a44b8378fc271077d25b1bf9af34eb",
-      "blog_sha256": "9245ecdb88be3cfebba27b029195542916f6f53758417ca57fcc191bc727c2ed",
+      "blog_sha256": "86f792c906cb79b32cddbfdcf06f65deda6b484194aed69ed0187bfd2436d61f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c754524b1e7c86885acfd265c7f81865e114c6c4e8d5c2ebbf11f2d501051945"
+      "blog_body_sha256": "2acffc85aab625355559fa2bba44941bb153c75fae10d854e5ab4326a70a91d2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -781,11 +781,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-First-Data-全文翻译/",
       "vault_sha256": "4aa4c3c40846a83a904a961e43e31b350af5e4f485e61be259be9e507977cb40",
-      "blog_sha256": "2ee472a0c22722e97629f65988c7463edd5d24c80ff5c853266aa81016621673",
+      "blog_sha256": "eb204f59815db9cd943f0785fad8cba57dcc3092e1fb9825a0080f3fbd052b0d",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9efef4df352add9cac9c7df59d5e462deadcdf43f780431a510721dbe4985a34"
+      "blog_body_sha256": "b04cbce5420ea82587ff64b2350725b304969e1ffd17d36026ea76aef5fa9f2b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -794,11 +794,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-First-Data-精读分析/",
       "vault_sha256": "ac58f44920531cc99cfe5e70da9976d95e921f57b825113d7e9b099203dc6775",
-      "blog_sha256": "dbf60dd5116cbc3ec122a36383bf665e51a241bbd86430691217a5d4723ce79a",
+      "blog_sha256": "42ef12f740eef4f5142095f5ec48f3ad93fbe63d2f78a5e24453bf427dd248f0",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "40b612bcdf200ffa25e706e25ad584ef95e4bfeae22e79712b71d39719e3db9c"
+      "blog_body_sha256": "3d9772b1f320103cfaa6b4e72446c95521f9a4a0ae4b0c6f2b23b8de51b0a7e7"
     },
     {
       "direction": "obsidian_to_blog",
@@ -807,11 +807,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Engineering-Survey-精读分析/",
       "vault_sha256": "9b0d87b5792ae477a77127f4fefa9555b3791702969f729393e2212e8d903916",
-      "blog_sha256": "5ebbc6365ffe4c56876bd99f7ba6c4e6673f6788881eadbddf8f40b4deb5b74a",
+      "blog_sha256": "aa7a88c8a78beafb1f9be20e336ba7eb74be4d394c3b66e434b95e9489fe2715",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "115c83dfc16856d4b45f7ff8635bfb8641549f95d0959b18cb805abc38640a7d"
+      "blog_body_sha256": "e4efa249bd6a132657389674e521c49664c1101a803163bf7c18e774d435a646"
     },
     {
       "direction": "obsidian_to_blog",
@@ -820,11 +820,11 @@
       "aliases": [],
       "url": "/knowledge/arxiv-2603.07670-精读/",
       "vault_sha256": "878acae0f2b36f9c760afa88713a7a5c256bb41c376bdce9eefbb7c2869318c5",
-      "blog_sha256": "b95ae86236562400d36270fad09fee5f92988862ffdfdee064d2e6e456d97bf3",
+      "blog_sha256": "fcc709656a1e3e03f8cf65a09b99eea60b9094e32379c255a548c2eee856be56",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "a80e4816c17823a476466237b4c2beb1ec0adc19eeb892eaf12b4326216267dc"
+      "blog_body_sha256": "e7565371f834f7d076535deb6f6851f19721cc5a1aed0b8e7437b9a4726a938a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -833,7 +833,7 @@
       "aliases": [],
       "url": "/knowledge/Aurora-Limitless-全文翻译/",
       "vault_sha256": "d79be468e15b879d7ef9a7e347adce8bf437e6edeb9a7f2c1dbbec6348da2c39",
-      "blog_sha256": "e1acc470b12a96dc35424b8ea8b5decb8704ded7fbb4c1ace0002db9596d3630",
+      "blog_sha256": "347075ede4c746f8555d372f3e98b9169cef8f87525a5f280599ccde0eb44b0a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -846,11 +846,11 @@
       "aliases": [],
       "url": "/knowledge/Aurora-Limitless-精读分析/",
       "vault_sha256": "94a89d4ae2f6f89661463e6c9d0c2f54cf1b2c42cce84c26e90a7cb59e1d5731",
-      "blog_sha256": "7503d275db5bc6834a85e8f9463ee692fd820305a8fe1ed573ca06974a45f442",
+      "blog_sha256": "353cfe9f4ac893ee18f2354491eb64ab985883a72f752db6d8a0658bb54fc6cc",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b688fca1f9749a50fe788779f4d21eb15aec6a16dfcac5cd71407e4ed779616f"
+      "blog_body_sha256": "7de23b73201232521390cd18d3b2bdfd265d876733db2cfc2b438b5abdebfb02"
     },
     {
       "direction": "obsidian_to_blog",
@@ -859,11 +859,11 @@
       "aliases": [],
       "url": "/knowledge/Bigtable-精读分析/",
       "vault_sha256": "257a1f72a8dda52637079933ea9d03f6230bcfb9335aa7aabb61188fa89746d4",
-      "blog_sha256": "5b250097270e848afef001132abba06eb5932169ea04a6e016b87ea5316c77ee",
+      "blog_sha256": "9c91360717b17e00118e8865da57f111b8be4ece811eb9444e31a9f01c46f679",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "1641ec0707c85788345c2838e2e890cd642ac42c2fc4bc5243c50fd458edae89"
+      "blog_body_sha256": "e9b0342ed45780caf042196fa2c3a8791fc068a164945c92dd5b989a66347248"
     },
     {
       "direction": "obsidian_to_blog",
@@ -872,11 +872,11 @@
       "aliases": [],
       "url": "/knowledge/ByteHouse-精读分析/",
       "vault_sha256": "e860429838ff177773f80ac5af052ba96f19c46b15900f03edf7d59103ee92b2",
-      "blog_sha256": "38ca4bfbe9a14d66d23c2bd626950a68fe36fd4cf16d3bc0dba32d86ee6b3336",
+      "blog_sha256": "b0f4df868b1477ad36aeed762982ed35aa313147c2e581be8e4ddd6772b33948",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "acd734652162cc8f1f26ae5bd1df7b4bb3ef9a0541fb723574ac4bfca0ecdd5e"
+      "blog_body_sha256": "0ce32b2581e2f0c5392679f61c31f47be7e056c6a95b22914c55ed7408a810b4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -885,11 +885,11 @@
       "aliases": [],
       "url": "/knowledge/Chandy-Lamport-Snapshot-精读分析/",
       "vault_sha256": "10e0875f1e47900e6aadc149fcbb1511af60fe8fa1b50cad3208c9a3461a92b0",
-      "blog_sha256": "fe67c0e908061efcb0f9f999b48a89cba1655a95f5f112c2e28dd68f3f362053",
+      "blog_sha256": "aa9e5d1a1564f2a51725d8eab585a447153834abb88b6175343045544811bce7",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "592881e4b4de24f04cf268aa1c91cac215fba67f6812b13e063904eaf396120e"
+      "blog_body_sha256": "89bdb9fc9530aa007d259f46bd51d9fe326458d9e85c9777fa6f642a05a8e8f9"
     },
     {
       "direction": "obsidian_to_blog",
@@ -898,11 +898,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-Leader-Leases-全文翻译/",
       "vault_sha256": "25e756cc401b21a8699d2e342259c522a369f582d81cce9e1d559066c882c411",
-      "blog_sha256": "45c5dd3ffdcad6b1037e8a72657227898264ea21f7c6ff0a70dc9a724bd68670",
+      "blog_sha256": "9ed39216db56fd45a17c6a600d1abfa6a0dae1fc8a04a45a37f1539477a1b0c5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "59e54673f9344f88550e81cd5893aa0300e6bbf90d5ac04a9398f5c2c33b596f"
+      "blog_body_sha256": "945635196db574791aeb0c301c96869c43a9034a56bc1ec0a6640153e31a1d4e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -911,11 +911,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-Leader-Leases-精读分析/",
       "vault_sha256": "43752381a505088aa9411b729c9d46193241106af6e6bfcd29494d20fa8facd8",
-      "blog_sha256": "ebf42c083750912b524650c394f07e2d933df4d024e4f5682c514556a318691e",
+      "blog_sha256": "8c35a596ace8fb124c7b49c6192cb756a4ff4730e625aacbd21d47ef93d93cb9",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "6ae6ea116bcd72b50a42d8d3dc4616d7efbb8df241d23bfd53cb25d5b0b37b65"
+      "blog_body_sha256": "2b34cead903493a9e63a9111ad7bb8ffc1a68cda7608912a574f8249cc2098ee"
     },
     {
       "direction": "obsidian_to_blog",
@@ -924,11 +924,11 @@
       "aliases": [],
       "url": "/knowledge/Distributed-Consensus-Revised-精读分析/",
       "vault_sha256": "a77ebb817311bb6fe2a2650c54d1e6c63e21000d76acf3b2d23562b4358cc35a",
-      "blog_sha256": "a292fd3c1ea9faefa64b76b333664d58ac619a60551ef7f2da4a136e2b4000d9",
+      "blog_sha256": "cff19d1e84427e2ad8558cd5f23d4b8e16f767defa9198377f137fc2714d07bb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9c058f7dffbd340b6ca5adc1834e42040830836feb5a23f4aa64829b81948566"
+      "blog_body_sha256": "8e136e65ac40dd50cdd828b9f234f475e2ddb2e848d3bd4782f77347093fb6b1"
     },
     {
       "direction": "obsidian_to_blog",
@@ -937,11 +937,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Scheduling-全文翻译/",
       "vault_sha256": "44e04db582badde0e3d4d3015441a6785a7dbd5d61240decbcb9eeb82cc3e150",
-      "blog_sha256": "3bf3dff2939385f3ca421aa2767dcd47bbbb7be8c4998b2486a817f7240919fe",
+      "blog_sha256": "0eb4e1cd9c6f89c19044a4806618ba976bdd85e9e540836e9bbcb714c58bd8de",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f5f8feb7631e77cf2b5f3617a88869b20736128e786a2728f92ca9363bb1a429"
+      "blog_body_sha256": "5b3c4b1c45e829cab6d89bd68ca2f4c2769b00491b6d40be4ab68fb5b5fdfbb7"
     },
     {
       "direction": "obsidian_to_blog",
@@ -950,11 +950,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Scheduling-精读分析/",
       "vault_sha256": "5381ae7f22e1a01faf99c7d4c0adcdc576140de210dc0286d91faf90c8befdb3",
-      "blog_sha256": "342590fc899e06f99accf4bdaf725128782e08f1bcde67121137680550c98139",
+      "blog_sha256": "29f5cd8ba2deb90186226b5b9ed82f239a31f2f2bd9c453229968eaf321bf561",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ff6ca441308af1fd1701169c996c9a65ced8e5ba1096b38c8ba54031fbf35704"
+      "blog_body_sha256": "0092fa8f14297b5723cff745254f115ec01d00e6e14c54a4370490cfabda57a2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -965,7 +965,7 @@
       ],
       "url": "/knowledge/LSM-Survey-全文翻译/",
       "vault_sha256": "e74ddd5bd2df3885ddf23c12d3e0cb2668b1ff248eed466f69f0f78eb481cd9f",
-      "blog_sha256": "052c8d9238162bc3c8f5e894693f52ce4f6050da3f89081851bc05d0d77df033",
+      "blog_sha256": "1c25cf68d04cd97435e2bb8847615c23cb00f91fcc8647617697a3c6dc367e8f",
       "alias_sha256": {
         "论文精读/LSM-based-Storage-Techniques-A-Survey-全文翻译.md": "e74ddd5bd2df3885ddf23c12d3e0cb2668b1ff248eed466f69f0f78eb481cd9f"
       },
@@ -982,13 +982,13 @@
       ],
       "url": "/knowledge/LSM-Survey-精读分析/",
       "vault_sha256": "eba2459174b61a424cbefba9d66d4441d025d1ddf669195ea1199bc11e3df3a1",
-      "blog_sha256": "8ad050cbe35bfc3e0a38c45282e5dafd5d8316c19afc5586adac0d6d02b2ef8c",
+      "blog_sha256": "ee2e95f8b66ebe6d2c80f08d4a08e9209410b854609379ae15085be0cdb9593c",
       "alias_sha256": {
         "论文精读/LSM-based-Storage-Techniques-A-Survey.md": "eba2459174b61a424cbefba9d66d4441d025d1ddf669195ea1199bc11e3df3a1"
       },
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "3fd188b0de098301c837d0b101311bcd141d068f73edc3abae8d8391a2ee8960"
+      "blog_body_sha256": "209148704b8aadff532ca3bac127c8afe710627ccf0605edb784d7e3ace5c65d"
     },
     {
       "direction": "obsidian_to_blog",
@@ -997,11 +997,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-tree-KV-Survey-2025-精读分析/",
       "vault_sha256": "4835707ce1c03fa25a77979d570322ce643447c2ec3f49b88137fee658cc1e98",
-      "blog_sha256": "359fb6f6246474a8a6d9e9e372a1bf73f33ef5a0a4093e413bc302ee84d52e09",
+      "blog_sha256": "d7ea2af5fa967c811ec36add19f008452af65756118db1b7f36ddbf0b05fd409",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "e649d0bb5bf52e942cef691d98fbcad0454168fb7d61735e6b7417dcbc6cae18"
+      "blog_body_sha256": "64136d5a960909f9eefd664552ba3f54ae873d8757c0378466b9d8892a15637e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1010,11 +1010,11 @@
       "aliases": [],
       "url": "/knowledge/arxiv-2604.12986-精读/",
       "vault_sha256": "b9c2c4f938764f0cd767ec702af05313923f60be6c15332741437430204c73c4",
-      "blog_sha256": "5bd08353338861e63237a9017cf407b747e8cc6ac4e7a686cdbf9e559e7a55c4",
+      "blog_sha256": "56a91c116bb620e6c35ffeda17480676eaa2d4903eb077749b7ff1e06812740c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ac52babb35ccb32be7d68dbda5bb7808689bffc03203072920cf834d4aede252"
+      "blog_body_sha256": "ca053b278bb475305004c665fb1c95fb6c3fa53b8e9988e41347c7effd94ba03"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1023,11 +1023,11 @@
       "aliases": [],
       "url": "/knowledge/Raft-Dissertation-精读分析/",
       "vault_sha256": "66b712893e1d519a331f4e45128f6fef2c6a88ba8a93b47c81d4bfb577a395ba",
-      "blog_sha256": "f4eba6a6c619bef5e0ed787a4561513eeecf6ad4130e3f47a3123ece8fc56242",
+      "blog_sha256": "ec0c586b4d9edfb33ec43be0075e121a948aa7137e85b8bb64e18067812aec07",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "038911e943e82ed4feb29ad5a24d75d40158721fc0e9412cd0aa64b849be73d0"
+      "blog_body_sha256": "49d1d603ad85d8d586a678002959d5c0e010598e81a02cfa0c9d0e67e019dbe4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1036,11 +1036,11 @@
       "aliases": [],
       "url": "/knowledge/Rose-全文翻译/",
       "vault_sha256": "959aa238b2644cbcd47cd4e7cd4edb9e85207043e0f5d779f017463102f610c4",
-      "blog_sha256": "50dbe70d6b15cd7737436bf974be756c2d29099d95ac5b4468671f1530c4fd34",
+      "blog_sha256": "78aec1413f84005dee76f1a49e05153187a1e7ef9d7d1d7aa1e38c6222d815d6",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "73316264d7734bccedc99e49b9cd4f44417e0e8d8ad96587fca4e49c961a8793"
+      "blog_body_sha256": "1b51f37207b56510cad7444e42c27604fc7ff02cc68d7f8498bbc013be0de065"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1049,11 +1049,11 @@
       "aliases": [],
       "url": "/knowledge/Rose-精读分析/",
       "vault_sha256": "15d03a0c558595ebb7458597e29a0d2e53dd8761d15774bb3338f641ded9a87e",
-      "blog_sha256": "3ca1ecde236e4a7af2a668d2e4703dcbc3dd33706900d14d13567b7137297901",
+      "blog_sha256": "407a97a80ac1dc3aad51c8c628fba52aeaac7e5dd9335a84d09b59083af2cc1e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "225ea8cafb0c4a933f3d4cd99e249e44c1679037c499f01816b60795678af4c9"
+      "blog_body_sha256": "332f392ed85b3151829017a137eeeec8197406fbeb0160adec970b7935b85abf"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1062,11 +1062,11 @@
       "aliases": [],
       "url": "/knowledge/SP-Survey-精读分析/",
       "vault_sha256": "ae1bb2fc6a53fcf1d00d73c0384bc332f137e418e68ac5c21f7ac4445470a27f",
-      "blog_sha256": "771fdabc3a94a6e67036fd3fb9569afa8980b520740bd8833b8761aadc43c7ae",
+      "blog_sha256": "2de3d4de97e5958ca6151f688ab145a65db4e806a6f4fedbca0c541709636b7c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ca7da31c5acf487101caec693fe4dc19a70f987d6e1e24d089aeb4ef74c06c02"
+      "blog_body_sha256": "cf74430c3125f87a4faa064798b6cf5363a039747603a889a30275c22329ba05"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1075,11 +1075,11 @@
       "aliases": [],
       "url": "/knowledge/agent-frameworks-2026-精读分析/",
       "vault_sha256": "f3349fcb7284998c40061e0837d990787361153ed8833240263c383116302ec0",
-      "blog_sha256": "822ad5e589badad627cb622fa4361e46ed02c8eb0dd0078e08b469508e48e9db",
+      "blog_sha256": "ea9c1247c8348e188c5f776ab3e9a68d0cfb90f74b8a8b24b2f7cb6a10290414",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b3d0ba102a6f358a0faa29dd2da04a0ee0b3fb8856515a897dcf26b8cd190c9d"
+      "blog_body_sha256": "64d5a9861fe030d2cc5232f4ef78d49a14705d02f6a2efe761042a78c886b3c2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1088,11 +1088,11 @@
       "aliases": [],
       "url": "/knowledge/how-we-contain-claude-精读/",
       "vault_sha256": "d1e5081f757c152c6717f4602510c80d80577b68f61150f82197ac2c1a110747",
-      "blog_sha256": "da0eecf2b0ddde8a987033f4fffd0d7bb4d12178e05f58575a7cea00225bbf4e",
+      "blog_sha256": "cff77d3cb592760ee73a0d525531cfd119a6c430acf75d198db1c573a2e1104a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d7a54371681c7f43cd6cad1a0654b7144366aae37b3933bdaeb4bcb38510d0d1"
+      "blog_body_sha256": "060704d9c102650a56631e1d84ee6962696665f79784b1144ce9210074d66610"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1101,11 +1101,11 @@
       "aliases": [],
       "url": "/knowledge/cockroachdb-vs-tidb-精读分析/",
       "vault_sha256": "246d12803d5daf0977abdee0c2a7a685996430828fb55408b98f9a8fb13f4b76",
-      "blog_sha256": "a122651d44353d7235ff47b0304921dc9d71f6d754652d291ed9468cd3e77947",
+      "blog_sha256": "6511915be46d98c51e7d740b2485b9e2df3e60bb4232029aac6be76fd0d6a056",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d12eb626dd0b2ac555ffd2a4197cc9415e7bdfb1ba287738b04fda55470d6b0b"
+      "blog_body_sha256": "b1ba05464d5b416873db11d38a9baf926ecd2726ab1abf8f4ca5c178ae44faa2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1114,11 +1114,11 @@
       "aliases": [],
       "url": "/knowledge/cxl-3.0-精读分析/",
       "vault_sha256": "0dc8bbdd5995eaef78d243afec6dbf990ca13155842e89de97a9cc691ef80c3f",
-      "blog_sha256": "3665edf6a3b3b48ef31421a55eb74a73271a290b3b7979596a7bf338841dfc3b",
+      "blog_sha256": "52461512b7d73da2514d0ccb5f850d258dbd9a7979343ad376f899ffd2877f1f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "a7c9dbd58f81db3c3a838eec590d14f0d826fa999e9edad2dea079d19f6d766a"
+      "blog_body_sha256": "a731bebc0c20851bb5ddfae4c8fe6724dfa3a4261c5d99d4cd184a02ea38e55b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1127,11 +1127,11 @@
       "aliases": [],
       "url": "/knowledge/flink-2.3.0-精读分析/",
       "vault_sha256": "7b3c43da7db2caa24149bd1390970f361c460c6988a1e84e7994791b9d40d9f0",
-      "blog_sha256": "007935babdb84d04dfe28950075f4cc5d2cb00610372eb6e8f9abb0e9331ec65",
+      "blog_sha256": "17d1dcacb5ea92d7c7462faa7d5efa485277de646fca47975bbf137d275b9422",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d15440d5535b4db6c6282c64a295e6a0d805cbfdd034f3a7301e23d78768a83f"
+      "blog_body_sha256": "c5d2479eba20c49522a17856db2a1f2dd82fe6042baae4b11df5a80d89c7a950"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1140,11 +1140,11 @@
       "aliases": [],
       "url": "/knowledge/fluss-client-write-精读分析/",
       "vault_sha256": "aaa9149cdce5e2de1ee9bd38eac7fb4331c3106ec6e0c0c63ab5699b46940cc7",
-      "blog_sha256": "af8601714fc4827def27253d0ec2d02cdf1bdc27f0f74e9687866538d3a572e0",
+      "blog_sha256": "8df5b71fc550f72178fd97b5d598268abfb3bcf2993a39f76e0cac3cfc5f7609",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "3bdfcd4ebc05943649ed840436c559dbdb0070111b39cb6ff5034802cb9cc170"
+      "blog_body_sha256": "5a37631de41046d93939e79c4deadb601c6d6f36b7942ff19ff995efc68c3580"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1153,11 +1153,11 @@
       "aliases": [],
       "url": "/knowledge/Fluss-PR-3420-Watermark-Paimon-精读/",
       "vault_sha256": "fbb96d40287e47efff3a6e978a65005db8ac458b5f73eed1789ce85c72bd09d2",
-      "blog_sha256": "e058211496997652f53e306274519549ef3e3d7bd7a6727a4f2f49c8e1ba1d49",
+      "blog_sha256": "44c28ba4fa485a7879b7636bbd84f1a195a3807a2885ce9f521f4188013f4cc5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "13d19ab93be2a2d84bfdb16c7814d636c79fc1109e16f3c8d950f27dc297aadc"
+      "blog_body_sha256": "7dbc7d94e398b060142977c51e1cc534d7cfe205ebea161240bcce6e3663b282"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1166,11 +1166,11 @@
       "aliases": [],
       "url": "/knowledge/bottling-the-river-fluss-eks-精读/",
       "vault_sha256": "ec61a17a0fde2b917d76b8b0db80843e4c222a7b5dfa87186ced7c69ad1c8cb0",
-      "blog_sha256": "1d06fa49494d6d2a40852d7b70fba763363808086b28994b6fc6f052a8ff25b5",
+      "blog_sha256": "cc0f680e9837267130cfced97de8d5f9cbcdb4400dc0becc9015166e72e546eb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c643da5acf0ad32721e926748c511ba2e3462568888d9dd4a673474c102aa869"
+      "blog_body_sha256": "dc4b02c32ce7fdd83e96b87130c6d8e1eb4320c3ad472d230c550c855e4b3449"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1179,11 +1179,11 @@
       "aliases": [],
       "url": "/knowledge/hermes-agent-精读分析/",
       "vault_sha256": "111c3079ed5e5118254b187a08d55c6abd5d20aa4f44c688bfc8ddbfd8f7638a",
-      "blog_sha256": "130f89f8fca6beddf731b7db40fdc8c73220c906c3b5b519445129d279b820d8",
+      "blog_sha256": "5e80b56fd75d6c28755afd3af2074d778fc64ebb00f0d03bb4e9eedcb0589c4d",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b3ea97ffefa893f04913d59478fce55874915cdfc94ba79a6189fbcf4583bd3b"
+      "blog_body_sha256": "776011996e23f651fc5fce44b0b1e62a057c59e566b813383f849a449e5301bf"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1192,11 +1192,11 @@
       "aliases": [],
       "url": "/knowledge/coding-agent-spend-精读/",
       "vault_sha256": "543a045a49ccd353e7395a5724f741c04ce5e77ee08dacca0a5ba581af38b1d7",
-      "blog_sha256": "42aa554aa8370b2dc1773ab0032ce9e75874ba021a4edb5cbdd3c7aa3c187e1e",
+      "blog_sha256": "f2849013bfc991185e1f67fda576dbcf7a1e7e9e145a7db40830f260930ea419",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "6db909fbb34c5369cee47105f8e9a758bf4b2f52ee1e7dc0aca18bbe18045888"
+      "blog_body_sha256": "84f4928b08552aca71a7099b2d93fc24ff005b01ea6d3c435cc04e42e84a6197"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1205,11 +1205,11 @@
       "aliases": [],
       "url": "/knowledge/custom-agent-harness-精读/",
       "vault_sha256": "961d138649b0abf8ae760e98b0dfd5a7fd45dc4258d66a9c8526c8dab42cb442",
-      "blog_sha256": "e04a75c855f61028984f479fa5e715800b9177e623e853bd7e05766531caf330",
+      "blog_sha256": "8e9695ff21658a445830f0d21c162e219f3ffd1f48e483e58ea5e537434392cb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "7fbd441c5c3310aee8a011181e175f2fdcae239ce5e1ce53fc7e7922d6294941"
+      "blog_body_sha256": "cf4234706b87a0d7d4d6f1fa385e5e5b4637e2923e90aaa75d68f2c41bdc04ae"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1218,11 +1218,11 @@
       "aliases": [],
       "url": "/knowledge/fault-tolerance-in-langgraph-精读/",
       "vault_sha256": "dc70b8fb19ecd5257fcaf9ad82af7c9735e875451955b3a43e381af28ee8c549",
-      "blog_sha256": "36cc3f985d54633e8fc4e1cf07eb0d913e5067926af4769bd1cb4c7ef10a590f",
+      "blog_sha256": "da884d5f24bed65a02154ad2c9471b3c8cd3c2d48699391d96f7409030b7a1bd",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "28d3cceadadb10679d66c9c25ed1c643c115ee723cdb5600a79e35c1d97727ca"
+      "blog_body_sha256": "1b8a847526f72035864f07718d8affc21813a72a4636531727bfb89ecce516ed"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1231,11 +1231,11 @@
       "aliases": [],
       "url": "/knowledge/model-neutrality-精读/",
       "vault_sha256": "2213e0c64e7ce64e78585cfddff77ada5bd30b40a60d6ba2311f7eabb8b5e0a9",
-      "blog_sha256": "b31fcc3bd164d772c602b6a45582b6637a4d8ce5c387b926a0c9a8d2f28496bc",
+      "blog_sha256": "56de53b0ff4efc33cb5ca9727cb79f01ab8d0a6c39079e6376db62d10dc28732",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "efa1a8ef482d3cd61a6db0e7ee694f21584f60503c731bcf830010b73b8f2721"
+      "blog_body_sha256": "ea65daa33a8122b9257d87240986f75c8276e31f66e268da571c7eae4dfce296"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1244,11 +1244,11 @@
       "aliases": [],
       "url": "/knowledge/right-sandbox-agent-精读/",
       "vault_sha256": "871c05edbd1f1aeb9f8e174d1a00a6c4e1da8f40d3cb8897ccddd1d8c5b0a92f",
-      "blog_sha256": "8cea348156c5c484e7184e9acc9d76a35995290d13d1f9169802ac7e82187412",
+      "blog_sha256": "b1b85e2b4870e0325c276e85f49766299d040e69497d7474e3988ef57934c40f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "21ec24cba97f9d9cb5687577c5821403b2da07ad6328fed6cf27b64b5d4f4c5d"
+      "blog_body_sha256": "1e3ba841f353f733c2bf42f195db63764138a3f7d85c9e92bb697857c859c289"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1257,11 +1257,11 @@
       "aliases": [],
       "url": "/knowledge/the-art-of-loop-engineering-精读/",
       "vault_sha256": "898a575fabd09bf834a34d2d47aaea9e51a2eba8d73c8f4336747e0133b690b0",
-      "blog_sha256": "fa199145452f4d72d2f02a90eed3b9c045f96b9898fd909f49afa39169adfffe",
+      "blog_sha256": "e7afd82a278c56725869e1b67d7d4c5f774800e7135d710f26a21df676c225fe",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "778f9e9198383998118839d4ff95ac8a5bf22e440b09880ae496b50acc00a5b1"
+      "blog_body_sha256": "4eeb6b56e766c2d863761a39106fcb3514d8cd7eea7c6627f64a772874efe85e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1270,11 +1270,11 @@
       "aliases": [],
       "url": "/knowledge/qwen-3.6-精读分析/",
       "vault_sha256": "3d63fab31b910cfa84443b148eb9b338f152cf262f5cc31312ccbc3d5c22f152",
-      "blog_sha256": "fe8733aa6a11a8197dfe6be225be92c23f27bdc091fdfab43b8c838036ae03c1",
+      "blog_sha256": "35d6446915776d8f3fd2472e6c1da0af09de7b958a6531572043f785908b700c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "74c791b0f00c7962ebab5641f2f4bf1939a772d0303f0419d38f5d174c61b0fa"
+      "blog_body_sha256": "e4733f340deea90884c64be54d3f627a99755394d9b895a295d9e2b4d20a22c6"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1283,11 +1283,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Cost-Control-Gateway成本控制/",
       "vault_sha256": "64d1a06ec10a8265e3cc02a90a08aebab367e7e4abb45594da4d31a485fa1d90",
-      "blog_sha256": "10dff05ab3beb8a6a1e33b573e8fc6a7878e04c522d725fe60cfb1c3fb97aefe",
+      "blog_sha256": "2a0463136b55f74c63c5ad21e97276b60a8018f517048f5e53ebecda47e9a053",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ae7d10a624d5d6de5db60b20e6457da216fd3b46b2181b94b4c8d18fc44ededf"
+      "blog_body_sha256": "7fb1015cee5b1db22623fdcfd56d503f01dd1edb8b82bdfef5412823c7806b6b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1296,11 +1296,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Fault-Tolerance-容错设计/",
       "vault_sha256": "76d956b49d6b05cc5105ea282f6dc30d195cf648ccb4f923ff89c274eaf3bb28",
-      "blog_sha256": "7645120579d4fb1aa1c266f3a60b24dcd955fc0ed7d7f57a9b083961020decdf",
+      "blog_sha256": "7ad21edb39ca79faa3ba9cb39718661359788946c90f1d5cc552e111c02138b2",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d0b7dc84e44c6dcbd24d6fe7a512cc91a8c089cf43cc356cbb46a2a0f3c8f04c"
+      "blog_body_sha256": "8d9a8d900f986fffa63e97251f5df364c3e938c09471bfdb01e89a6b66cc22f6"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1309,11 +1309,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-First-Branch-Transactions-分支事务/",
       "vault_sha256": "585fa5f50b1c360a6b21ad0022f1419261cc7eecab0091b0c01bacab350f3cdc",
-      "blog_sha256": "3d5d47b2c317254a45c531fdaa3f1890fa50d46ffaefd4de7bfc553c952b94d8",
+      "blog_sha256": "065c7ceb90a93cf12fc552832af1949d29b324d5330c5610a7bf64d996b0ae84",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "5af8518329fe4d09109a6bc39db98bdd66dab52a46e1db09f1d05ffea0e84798"
+      "blog_body_sha256": "aab1173c00355c4b50ceee2f1faba29b9871327d9dc28061f4e4fdd15fae2467"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1322,11 +1322,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-First-Data-Systems/",
       "vault_sha256": "104411d588b78183c4bab6c389d9506f9a4a21234647924ecfacd68c2ab54e11",
-      "blog_sha256": "9824f996b3cbe884c6a47e2e4ad12e1277c20e5af93313795bff60e8367322da",
+      "blog_sha256": "5fcc789a14624c5d90e019b706f0abd5c1ebb23bdca526c4f8e84091075b8c3c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "12515c7e7ad4f4d246e10d8d27d4f57ec299c39c6c13064defb594927f37198f"
+      "blog_body_sha256": "0e72effac969336469913d4635371a9431727678f3ac9a3e834a8c3d0fa22936"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1335,11 +1335,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Context-Memory上下文管理/",
       "vault_sha256": "e4e4beaf0e6ef695205a57d42dac8a7e1c1353e73cda4ef1b73d39cb1ff77bda",
-      "blog_sha256": "130696958d1c34d984e115b5c8612b192a10a286312daa40e545eef6b66c1f81",
+      "blog_sha256": "f9b6c6a1b2716d5044e52f148c538ccfe26bf44e14f3617453954bbf9dd3b22f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "5a56cd2626aeb984fbaebb271e4398f95faf9a5c089b220a97489db05ad49e6a"
+      "blog_body_sha256": "cedbf3139514c2f9a7a91550906004fe74b4a235265410163fe1a5b8eaf4abb4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1348,11 +1348,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Engineering-Survey综述/",
       "vault_sha256": "b56c169cb13dc75192eceb9c9bda569ce3815ae44367154704ed9ff9d11dd303",
-      "blog_sha256": "2f67e5d1ef6c639662e5f72fd47e5a64617e7220d5aff98682da39ff438f949e",
+      "blog_sha256": "ee7c8c5120243e03a01320d1087ab2e823c837852f8f5232d5df67ff61838a82",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "7ebb3fca11aba23233530ab55df9d5828b1988090cb5cf16e692b1137a4843f2"
+      "blog_body_sha256": "4c5a55a224210a22c7c644ce82961e33a4343732d88249208252de422f06ee19"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1361,11 +1361,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Execution-Environment执行环境/",
       "vault_sha256": "3b2d2e69c47f5abb31fedaeb9b74071215fe9382c7d18258a6a333f65711bdb6",
-      "blog_sha256": "39b4b575cfec1a35dcdcc0e6c9ce3f3057afd7630e8f6a4aa1ef139caff0fbbd",
+      "blog_sha256": "3f65235eba2abd0b5e6fdf7d52d25a33d73e02ebc2cb219ab950c1463ed71eae",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "14f729c39855009bf1cccc84e6f22eedaed0aba27712358d80db42bc23a78a8c"
+      "blog_body_sha256": "105c0742463c95aee93e07f7632f8287d8dd6aa69179ec0a0fcc07a1e3b2b919"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1374,11 +1374,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Governance治理/",
       "vault_sha256": "7a825c9efd995c65ecf45cdb49c4cef8cb2dd2c4603ce5e96c15efd1c79d6d01",
-      "blog_sha256": "befeaac5422ee9adc540b1a93c920aee1b63f354febc6dba8ec36b4469cbb165",
+      "blog_sha256": "d4ace27157f2f112c3ccaf7a4dd46a00230e78759e5a4387611c73e125422b7a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "2ab8706eb83f4725bb8caf9fdcf9a04a673ab04d675b8d31b301b186729b7e6a"
+      "blog_body_sha256": "c38a3994d2fd1fce49d37e37140c09a1f4e89d2bd942feb78ed23db485c6301c"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1387,11 +1387,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Lifecycle-Orchestration编排/",
       "vault_sha256": "13a7828ceab8c9a0f0da3ebe742be2db024c2d60b1ea28a844a4926a8f507bb9",
-      "blog_sha256": "08cc08f5784a76f0ae7bea2b6c8685a036682a278021c19b21e56143f2593d79",
+      "blog_sha256": "d8d971b3b90bfca4f1cc60c17c92595b34a6e47c6ebaac470494038a37196a21",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "31f375cc861ea24ad9b28c877804f649c5674c3176a1b3a2989aa88984cb3b89"
+      "blog_body_sha256": "0ecdd640f6fed1af0e72a28e9bdbefcfee0b36beebe6befbbdc030b6da6a7013"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1400,11 +1400,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Observability可观测性/",
       "vault_sha256": "d34009bb5376b99c0c5af52d727a0440e605f70d60bb054bf900283d171ec61d",
-      "blog_sha256": "45a3434b435e6d0f422285d5a86ee49c9e2907b3d0f2216e39bd9da76dae497e",
+      "blog_sha256": "9d4a234ca691e90c2c65a46004b90e186c9d8bc7525b2feae4a264314a25e75d",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "a6294f2e35c52679dcf65431951e846677de46bd0c9255c649d9812077ac68f6"
+      "blog_body_sha256": "af015f255fa89f52440ee437b8a67f381b970a2d706afc535f31db21804c921e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1413,11 +1413,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Tool-Interface工具接口/",
       "vault_sha256": "900cce852b549a452494110cd81f8603afbd44adeff0fc3ca67835798508c24e",
-      "blog_sha256": "29e82f2e10cfa47042a831018627276f43e3dacb55bf810c0dd6fb59d0d698a2",
+      "blog_sha256": "95f9d1308f2fe45adfa8187b620db51d281e3dad7a46f12529f0703497cf17c2",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "5dba0cd7a620397aec0b0b8fcca25e3afb325910e1c8dcf80a00a335d273e722"
+      "blog_body_sha256": "be99d8527f649f48f5374e118a578f2d02a92e254ecb835a533f316702dacd9b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1426,11 +1426,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Harness-Verification-Evaluation评估/",
       "vault_sha256": "b070a1afc61b09a6a5c0563fc8726f2ef7b2b3f795855818b31894843cc6b381",
-      "blog_sha256": "834978216265959dff21e1716f3c921eed911ae502b950608e0f9681d4ccfbcb",
+      "blog_sha256": "47dfba3a459ec6ce1a439272e1363224f4b7b9153c846b781bbfcc35c942441a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "0bb3eaf28d83788ef16de5a8affd02b4c46db0459032c81f6cc6c2fa0b956176"
+      "blog_body_sha256": "be362b1e24757b559a74846fed9ca5d854e42307833ee82cd4473a38d22c4e56"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1439,11 +1439,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Memory-Survey-2026综述/",
       "vault_sha256": "f81d56b5c5a650b728b54d638a2420341c38ee9fd7a11d125a11657cb331222c",
-      "blog_sha256": "e3dddb25326d8b82ab385d1c457fcc3b22e3557f8dff26d264c81f5c63395f5d",
+      "blog_sha256": "75b3e52f90a4f72ab1747eeef09f6cd7d0669ee1d5a784e8d6400e198a50c268",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "7988fa8f50ee9af3145326de7ba5135266d7d5c33326d98d6eca1bb3eab6cde7"
+      "blog_body_sha256": "96b006382385013672098b52acc7e5d30bdb2c821858f57b7fdd572577e77655"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1452,11 +1452,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-Sandbox-安全沙箱选型/",
       "vault_sha256": "de9d93d8cd57446230ae9fdbf5affd2fcf60cb81b6e1ef7e36dcb8b553057a4e",
-      "blog_sha256": "2bf4bda5c57fbdeba85b3887ef90b63a51c2d0b928d364039fe7cdfe65e36c38",
+      "blog_sha256": "a153dd827643164c3e38f7f39de0f03c7f7b06df104b367ad027f2cdc904182e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8bdfd76914ec21dbec9e9f9bf82df5cfff6e1d33c3b482d24c5c53de6a37cd24"
+      "blog_body_sha256": "61a0316d1354aacb10fdf71ca00f5b1e68e48ae967e2fd44307b577251975bda"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1465,11 +1465,11 @@
       "aliases": [],
       "url": "/knowledge/Agent-框架-2026-全景对比/",
       "vault_sha256": "c78707283be5a2ac1a7e96e9cd27bb14cb28269c6fb6ddcd965aaee8b7a7cdc3",
-      "blog_sha256": "eba2322bf1984ac68baba416a5987f2b7c523ed9be35e71cefb452898aaf8a22",
+      "blog_sha256": "2e0f713d519b4782df9f92b27317673919e900d03e620ad9af3e173079105397",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "db94ea1f28ed7cf4cd56d67292cc92a8cd328915d9f429f97f84bb06a7339031"
+      "blog_body_sha256": "5997d08a471c571f0bd0d3811cdb1028b46ef43a40cb8f49aea36cb097475bae"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1478,11 +1478,11 @@
       "aliases": [],
       "url": "/knowledge/Agentic-Memory-语义缓存/",
       "vault_sha256": "f404354b35a80b3e1043c8a18f59d89c8ab2792c70a3f96d14047c780c01a954",
-      "blog_sha256": "1399f9a9c68e456ec196d05f0299a5db8963a6cf46150a04490ba8f4a511999c",
+      "blog_sha256": "f2410bfd3d03804dbb355db30e7b7dfc46357d3f6fc157af0291618fe8d56801",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "13c22eff4bf45db335e698ea1427ee4b20ecdc63d6c7dfbac6dad9f163b605e9"
+      "blog_body_sha256": "68090b3e4e4a188518a700d49cfa533fbeafbcc8e560fd71e812df169f0f17a4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1491,11 +1491,11 @@
       "aliases": [],
       "url": "/knowledge/Anthropic-Agent安全容器化实践/",
       "vault_sha256": "80db03f7aaf0549f9d79eb17a1573af0baff409d38508821341a4bfeaeeb8e5b",
-      "blog_sha256": "94ec748e81018fef8328d5bcdeb672b05123d790c7bb0438a58465013b070bab",
+      "blog_sha256": "186f34df63a566ce9ad287657a154b25dbef4847eaa1faf16c2d79afe64cd483",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "bbe8a3659a66730d0c495b089bf1c52213095317a7cfb2faf780a7d8ad2091f3"
+      "blog_body_sha256": "2c181de4078a32ddc43a88276df7c53f04daf162bfa9de05535fa3c024372fa9"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1504,11 +1504,11 @@
       "aliases": [],
       "url": "/knowledge/Apache-Flink-2.3.0-版本发布/",
       "vault_sha256": "03b903227e7c132aae1b1f52de2f3cdad356b876663311885bce5f12e485a8d6",
-      "blog_sha256": "91f0432021f1c199f8997d61aa0c3098f780901888e962ee18e4b389847b8d08",
+      "blog_sha256": "470c3f045705ac8a143c28998f5771f873f22c82f4c9484c1ba69147362c19aa",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "4a68ed2faf27a42a5fa955180d38427f79e3366983f894156e47c7034e4ee736"
+      "blog_body_sha256": "20336e94fde75e7d49093deb899d7f61cd8a4c4537da5f62f2b24760860f9cd0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1517,11 +1517,11 @@
       "aliases": [],
       "url": "/knowledge/Aurora-Limitless-分布式架构/",
       "vault_sha256": "7d135b3b9d924360aadf2c8798c7589f76529da170bc1453daba9d117e219d84",
-      "blog_sha256": "02549fab856886f1707ce6c0f41fe9c439d094583d9fa66f855bdb7b1f02f111",
+      "blog_sha256": "a883dbcd8bccb5d89eb0c4fdcf37bd4218bea116071e0df7e78a175ab8a0e546",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "4c4c971277f10b17781b2a392ffaa27cd36b2992c9405a4e9b942fd300cbe0e2"
+      "blog_body_sha256": "22eb817bbe1594ca333f2da14aa58624cae43df7937a59113fea891f1e41efd2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1530,11 +1530,11 @@
       "aliases": [],
       "url": "/knowledge/Aurora-Limitless-时间戳事务/",
       "vault_sha256": "a0dadc3904fda9ef20bef43a686802f1f0f87477698c40d0e8a0eaa281a46d03",
-      "blog_sha256": "f63501fd4cd2844ee0d4797a1cf74071649164273dc5e4be637d8b14048669cd",
+      "blog_sha256": "4470eb7e8bc119b8cdb01b72dc617eea167f86548d58c0283b0d837bf43d3fdc",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "1fd043fbbce6c1b47ef60bc96dd317ac049b3810b3b9279553e81e67771ceef4"
+      "blog_body_sha256": "b675a5b71bbd0194c680a71d1edf3a7eca28aab3ab2ee24c0840f04861fffb4a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1543,11 +1543,11 @@
       "aliases": [],
       "url": "/knowledge/Aurora-Limitless-自适应扩缩容/",
       "vault_sha256": "a445bb4b0f5bb81ffd426cbe090f929b0065735c9ea3fd3d179cc88a4c4cf2d0",
-      "blog_sha256": "fa9c24237b81c7afe76334bb8e2b49323d4de5fdd1993620dcd3950547d13596",
+      "blog_sha256": "367b4ccc388a9c447e23afd41c9ef4d3c4107ef3d0f33cc289d6f2655dcdd363",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "0c276648a2350b4f20053036aa9ee4696f76c486291862d6e9a5660988ad4d13"
+      "blog_body_sha256": "b2f583aa4d58a1300af10dbe1c83236be8e5c81b3aed0d8593142e1e4124d3ed"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1556,11 +1556,11 @@
       "aliases": [],
       "url": "/knowledge/Bigtable-分布式结构化存储系统/",
       "vault_sha256": "b061da49c598b42609dd3054ad9e11de2d449b752bdc3de9e39b2395c8f5e2f8",
-      "blog_sha256": "098cd6b67ac6c8cec28a2216f61097b1481a8f61585d68cb33bead4d15b01dd3",
+      "blog_sha256": "14071d36eef8ac02bf705744aaac58c24bb95b5ad8f4b2f28fce9c982a5fc64e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b6abeb54f8e8cff4bf64196d188578c0aee9e55af4eb362990da9800aa2c97eb"
+      "blog_body_sha256": "f8347992bb6b15cca8b23efdf4352ada071a9bdf600566885d56b28145820950"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1569,11 +1569,11 @@
       "aliases": [],
       "url": "/knowledge/Bourbon-Learned-Index-LSM/",
       "vault_sha256": "34ddf33f3f6a1202bb337dc42163a976bc283c63f0dec74cc94a4be254a74603",
-      "blog_sha256": "e98074af8cc1ec0b53764c12e22a74a1e2a0d48aa6e57795eb2417ee7b9176bd",
+      "blog_sha256": "c433f93c8dd77e7b5fc88b871f86365db59c8ccab55e4c65caf1f77e3ff2ba06",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "bbaf768d4f902676abe8b7d0242ea940893e4548e5c84f1c875ff85fab247dc1"
+      "blog_body_sha256": "eb162d566d6fbda2e994e86eeac84eae47de29262754e5e0624cd8734951a06d"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1582,11 +1582,11 @@
       "aliases": [],
       "url": "/knowledge/ByteHouse-多模态查询优化/",
       "vault_sha256": "5bd070ec84cc967d76d9abc8716b3614bad6e2a1c79a78f6dd5bdf34724c0d19",
-      "blog_sha256": "5d57046bfeac3e764128b008d9a365df8e6f141495bb0e3313f58a00bfa156b2",
+      "blog_sha256": "5801ff69a3453704fd8b20acbf816416dc1f97c07c42e784424a753ccb5efeee",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c7ae4c89b94e436cfbfb5ea2854a09b674d03f681c9a97e8a9a5514810bd7178"
+      "blog_body_sha256": "be96761be27f727ad60feda38bf5848b8aaff2687d93295d64af23bdd77b10f0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1595,11 +1595,11 @@
       "aliases": [],
       "url": "/knowledge/ByteHouse-架构与设计/",
       "vault_sha256": "e87200d1f242f42b9854e7961ce66b32d6571aa35045fb092383d83e716f0680",
-      "blog_sha256": "6d795b2ab91fe4a0b5932c9b3dc982ef1201d5514d070b2e63d4a1b368d3dbd8",
+      "blog_sha256": "a4baba8b5be20819b308b79c1ec3abedc5b0bd146036658a900d8c9f3fc9240f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8c54c682891e946b0aa12b7084131f738c4f1d0c3fa93d9f262bb8764d708f49"
+      "blog_body_sha256": "a4f54b011eaebc39e8ddac6d34e5f7fd53300009d48f8172799b24208fb93e3e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1608,11 +1608,11 @@
       "aliases": [],
       "url": "/knowledge/ByteHouse-统一表引擎/",
       "vault_sha256": "3f61395cf5f6be7f4c4afa0f45f61d1b8939fb0c3adecf537a707589121c03c6",
-      "blog_sha256": "9769c9376f462aa48caaec1bdb0d0e98d35e9b92f9c546f7ddcb2fd9d93f1e34",
+      "blog_sha256": "78f9fcb73cbbb2b5244b4ca596373809e8c60173c5580bad4b729c8091f0aac3",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8b29e461b5626be837bf1c61cf33b449350559f70bd928743dce0ab5cccdcc5f"
+      "blog_body_sha256": "f444b279063b3fd48207f68639e52f73eaf806bb352080378550a79bf81c18ea"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1621,11 +1621,11 @@
       "aliases": [],
       "url": "/knowledge/CXL-3.0-内存池化新范式/",
       "vault_sha256": "a88c43a633eeee935314d8309b0455559fe8324ed604fcc6fbef24d230f71f14",
-      "blog_sha256": "27dfd3663a5237aa243a4649e98dc7b8aeb42154e37f4e6b1b0a86acaab42d05",
+      "blog_sha256": "2922a8e581896cd9b5838803d911a2e199ce6606abab2847882e90a3796dd4a3",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "91f4967aaf325457432e67eb2be862338c221c6fc120f3fe53be5f1d413a4575"
+      "blog_body_sha256": "14223d4917072fcf10fa780afd0a1f6e02e0499eb1972bfe5ab5eb37b42a02db"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1634,11 +1634,11 @@
       "aliases": [],
       "url": "/knowledge/CaaS-LSM-Compaction即服务/",
       "vault_sha256": "9d5aced2b4e70af5ec9fb7426dfaeba3a7edb178d95c9749acd4db43628f9797",
-      "blog_sha256": "3c2a830968a3eef6f15fedafba4808aa927134cc75ab2098cb8bc7c7d367420b",
+      "blog_sha256": "cd9e3bc1dc44470e3fb29650a703341d180cecda6bc5b755bed5840761211ff0",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9c8ac25ca12657ec3eb2e433488ce028f14db0bc1898bc97f57d7dabaa3d9f01"
+      "blog_body_sha256": "0e7958352326e1b6447acf9d80a42821ac28a3f1a0cb5cdc0dbba94454b2be8e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1647,11 +1647,11 @@
       "aliases": [],
       "url": "/knowledge/Chandy-Lamport-分布式快照算法/",
       "vault_sha256": "75f0354e53efdb2ae1c5f1aaac603313b905a709b21a3f0162825a4a6235add8",
-      "blog_sha256": "420340d29662ac9d8c263f684fb50fc0eb17cf8c97d7ae82d89eaffe3e4d930e",
+      "blog_sha256": "7191e3a3dd9a7bdeb889c96938f18e9d36fd27c5ccd76fb31698f591a2f75ea1",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8dbf3f64e3ace735f19522870ac6b3136600a3312a79651e729015a646e97887"
+      "blog_body_sha256": "103c4209c8cf9ce53a53ac7c238aa277bd1bd8a0b1b8fa9871230c233c8a70bc"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1660,11 +1660,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-Leader-Fortification/",
       "vault_sha256": "e533970f1c7ca8fa473f476eeeab21bf5ec88e48af9521bfdb03f7f1e1a59755",
-      "blog_sha256": "f5eb9d00daa9735c336c5cff12ac8cc973ca620624d915d133f43a06ae77fb66",
+      "blog_sha256": "d2a5db8e7009a673ee8557c285e9049c3151c46d026775034a0129e9df2903d9",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "064f20e8de2607b751d2de03d1803b45c39cc909352be12d3efaac7f9c2e6002"
+      "blog_body_sha256": "519dae37cc05870a540dae2e39b0c475097628346ed9a28cb15966dee554d93b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1673,11 +1673,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-Leader-Lease-整体设计/",
       "vault_sha256": "2150df5c1f9e46601b80ecb49ef314c2081b84de14647dd048356a941b611886",
-      "blog_sha256": "2f599c9614387a522326c9f5a0b0df8eb911fc6fde202ba0ae089ce73d54ab59",
+      "blog_sha256": "4dd289cd9fda3129c3fb2455225be102c243f0c355038214c433765b4de4396f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "fd2fe6c44867c595cdd67a6f7b7cb48f599cd27573eecf86bdd1469a52f1bb96"
+      "blog_body_sha256": "8fb10e3c3b8627ff4d88ddd93fc4485a5e1ad984a36cbfbc2db53817cb6826d6"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1686,11 +1686,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-Liveness-Fabric-故障检测层/",
       "vault_sha256": "187f319aa56f76322364dcaf2b42c47dcb72e7091db6a142421dbbe27d8b0d99",
-      "blog_sha256": "b8e386849fb4fa194368d72681988c14670cb24ea8b838fd84aa0a20b70fc3e5",
+      "blog_sha256": "b295f2dd378551190c85d052597e144579d1ac2d63df65a528abb4c0017cad03",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "0a68e9d904da940a26bb1e846167dbcb11c41093083660a1c17adb9db098074f"
+      "blog_body_sha256": "930f18fd396bc3d77df2ca3aed6f48913f3fb164afa2629a3341831139675ef9"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1699,11 +1699,11 @@
       "aliases": [],
       "url": "/knowledge/CockroachDB-vs-TiDB-2026-对比/",
       "vault_sha256": "cbed3071b21ebbab1bca24a84684b4e578f42d286fccae293ff73db2f871461b",
-      "blog_sha256": "a56a9a2a089baa14594ba8d0e883db40083507d4e0bb0a353f08f147e9cedaa8",
+      "blog_sha256": "b6e18d85ab14ad4c0b0198c481a3c1fd361a42ba75bf6f74a25230ed6258324c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f278b17a04c6e7412ce2f42e10e3e8ae9190d63a53f21d2dd486ae3eb4115594"
+      "blog_body_sha256": "617424999a206eda2288d937eb5aeed383e770a28e78e928877d99dc184f6577"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1712,11 +1712,11 @@
       "aliases": [],
       "url": "/knowledge/Custom-Agent-Harness-Middleware架构/",
       "vault_sha256": "c4c49ac27e13af0395cea3ee3fc0966fcbe7270a1059c158781d4468446e92ed",
-      "blog_sha256": "14bbc56d300aad9d4a94b84f21a76ab9324d2df4317ebdc86ab58a8b76057ea7",
+      "blog_sha256": "be6e7aac1179238182cfa5972c07f9fb358289c88c16261bfd0e73669c2dd595",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "252db4b75a4b5fc6047c0a81a782679571d2e18f917da38a780ac97bd7f38e33"
+      "blog_body_sha256": "10709b7bb306dbd108c66521f582a63f13b083c11580f246a9905ead6ee4553d"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1725,11 +1725,11 @@
       "aliases": [],
       "url": "/knowledge/Dataflow-Model/",
       "vault_sha256": "57e0c1c0e873eef9dc1bf227dea37cefbb5b8d007660474d5711999379142118",
-      "blog_sha256": "b9c4a9046067ec2888eda69490e464b822d10be14ec2f1bbc590119002db8111",
+      "blog_sha256": "9e7e5120079571f456cf2bafb523086f84f1479553049dbcd04f2c7a8763a4d1",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9aff2a0ece31b8bb7510c51bcc3d3833862ba2a57fc8d137742a7688fee66930"
+      "blog_body_sha256": "f7a9f35642bdcac9e02fac526860889391afc17203138c4668cc8ddcf91b41aa"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1738,11 +1738,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-Compaction-策略/",
       "vault_sha256": "3bd26d0ced270ed7f752bbd41d34de5812de6e24f5c3eb9eb6c227c66a6f0239",
-      "blog_sha256": "f1ffbb66ac7f7b9fbeb92d1f40cad6ddfc8e6f9cfb135c0a2549cffd2a243833",
+      "blog_sha256": "6292abadc77cc797c5b894e6d36afc65bda65cd51e32041d0d34a9fd14dba4c0",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "2c9856dc6d0eab72271a590955dddd824aab7fad00a3b8844f05c546461154dd"
+      "blog_body_sha256": "71be03684475a99538f546633e039dd138f6045b85af56daf50715ab63f8452b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1751,11 +1751,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-MPP-向量化查询引擎/",
       "vault_sha256": "fd0157b9c82ef447ecd910e11b19fe13b421d43fcd3f2717fb167bb090f7badf",
-      "blog_sha256": "7d7e275cd795a601f2f05637b6a737c06b6533941d1fb8100115612473dc1b96",
+      "blog_sha256": "3148b36191ffb1b546a2a34e341b1fc28665185f8a5ab4932e97cf5391495754",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "fa865222a06a3c6c4ad4a33880069bddfbe9852207c139170333262497f93a7a"
+      "blog_body_sha256": "b63aa940f5ba8b2fbe6ba5e9e6ea5306846522575f98ff18ba8f3997ebf897a6"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1764,11 +1764,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-Nereids-CBO-优化器/",
       "vault_sha256": "a35e042b39a29011ffe709ad412376d9cc2235b0a4571f1d701b8495e389c980",
-      "blog_sha256": "7e1364b253e576a9bce0ed06330cbe00a133e64c0647029dfde464041a97298b",
+      "blog_sha256": "6235d4d39daafb2fb736ac0bab0da6706f00e1da19a6ad315937878931323923",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "0645405a9aaeef67982914af4c361d4b3e8016386ec4383ac431d9c2c3a916cc"
+      "blog_body_sha256": "9b5f027c668c2c918087967f7880bd462f46a90945a416314d4a201dc2334272"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1777,11 +1777,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-Segment-v2-存储格式/",
       "vault_sha256": "da563dd6565e684f4e0568048ad386f05be7e76ef57257a50555ce56e62a6a7d",
-      "blog_sha256": "fe43424384e63a585a74e169a014d6f6866d9a778a592f1a74c24c863516eb2e",
+      "blog_sha256": "6fc1b5ccd0b894d6bc6936bfea622c6023e52b4debcae4d7307ca5f99a5c59a9",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c230e2940241b9bab67bd78d75da0ece4d2b747aed96d3ab73aa447b657f9c6a"
+      "blog_body_sha256": "952835852672c8c4851e873816e691721df87ea98be35b2d1f0297f3a42b9294"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1790,11 +1790,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-元数据与一致性复制/",
       "vault_sha256": "3d5f4e23d0ec5ccae8fd016cd4ca579581f797cbf881a92e0d0f77c62d927c09",
-      "blog_sha256": "63206d6b2dec62d8275ce2bc7482c5047f858cee881ba9e176e654bde9e36176",
+      "blog_sha256": "43396e17d67039e061ebda9b6940811dce8b1f6e98ef90c7e720cc92102c4933",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8dbebfa5abb9c2d747a5bb2007a69b0d6ea2395e93f01885b09d09dfb97ee614"
+      "blog_body_sha256": "126e031e4f315eafdf5cfe4701c6aca16e743460eda8cbe7588337c36809cab7"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1803,11 +1803,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-数据模型/",
       "vault_sha256": "e378ef043f1eb52c6878ab7d49f029490b0b6b4278b9aa438d03265b09b9432a",
-      "blog_sha256": "fa655db397b93a4dd60b3c00b03e8168a1a19b08f72775ea59e7438031664cb2",
+      "blog_sha256": "a01b7156fe4c254fac0c501f73e7d29f40232b1ff6eb6dcf980e8cb2ed83777e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "028421e3917d2c806f82f42f7d691b00d8cf1fbc674a53f9f2618c5e968d1c10"
+      "blog_body_sha256": "61eb4c736e1dfb1c4a9600705eaa97cbb27fa7d750e1430f116788fe2b653505"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1816,11 +1816,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-架构演进/",
       "vault_sha256": "0bc3823cf17d437c58a82bae6b3838b8d60fe0ebe5b0db78d5c0a9a128f3f5e4",
-      "blog_sha256": "df9f653f5864004045c9c8fe1fb6ca08db94b5be63bdd95f600343879204d78f",
+      "blog_sha256": "78eed69e6f58645c4b28f960ef6bae080370e990c6b0253a0b3a10c600a29c2e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d3bae20485ab29b57e4e9fcd849412e74f32f43fad37484f8b7c5a547299f6fe"
+      "blog_body_sha256": "f5181e9e58d67664400aa43454291682068e1a2990415b5086182637c9f83108"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1829,11 +1829,11 @@
       "aliases": [],
       "url": "/knowledge/Doris-深度调研/",
       "vault_sha256": "f6894a13a146acb300b1625927633d0065d55062c8a87c2952e24db599c23ee4",
-      "blog_sha256": "d41e383205c8f6d23342162bd08ee3afae8e14045ff50e0619f9b4592d60e0fa",
+      "blog_sha256": "0ea15920c916bfe35ad9c38d2903d48e9ccc9b99c0d9cc32b5ef0d37b2c6dffb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ad53cf6952f2955559f932a5826581ee5a70b19c4ce995c1b94452d4323f0a57"
+      "blog_body_sha256": "3c24ea694b3ef8edbfadf8fd16bb7deed324f8f57e7e5e02bf2809cbad49705a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1842,11 +1842,11 @@
       "aliases": [],
       "url": "/knowledge/ElasticBF-弹性BloomFilter/",
       "vault_sha256": "99faafec4502433f6c0b351fe9663010e269a620a85b76a179826d6afd5f0cf0",
-      "blog_sha256": "4e27c99e29925cf23f9e49ba7d7b5f8fba1c5c35ef25ca439440f411ba8ec6a7",
+      "blog_sha256": "463f40c0d5c58b7c2ffa442633709d0e3001fb6cbca8ef7f759bf1a4451a4d12",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d9bd88d8c6df497302827b879b08edc4723cf3f8260170c2c7197646595b02d6"
+      "blog_body_sha256": "69b68391ca5085d9d508302b977ad1551c439676d165db61904c6dffd531fde5"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1855,11 +1855,11 @@
       "aliases": [],
       "url": "/knowledge/Event-Horizon-非对称依赖/",
       "vault_sha256": "72f12d5a123027a7a1f9b19d6b10e2e3f3000e2baab5c54455072c378b327e69",
-      "blog_sha256": "334747ece53bd7227dc2329f892532d3de0f29a0543e1365cbf4e37b4dd122c5",
+      "blog_sha256": "4d77df851b1711bfb2c54ac76fdc3e4454fed9b7a551e419b1816487f25362cf",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b1281acf8cfd78d870b264f896e2244ed35cfeae2a2a48041945214b3272aaa1"
+      "blog_body_sha256": "9c5455ff4c46d5652c5e7b0230320738ed0ba7bac1d0348dd526d9e0109122d2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1868,7 +1868,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-Arrow列式记录格式/",
       "vault_sha256": "e9947ce28f1c3cfb1810c7f2ef3bd90ce1facdee5d24ebc9883dde0057e79581",
-      "blog_sha256": "421e62f3f1277ace0303499575ef72016a0f1b2bb1e8231776dd0cb7ecfeb4d9",
+      "blog_sha256": "cfd119d9d8a2b8c9f4f1fcbe298db8bb3cc52c26f6a296c3cbc5ef7d56a79e51",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1881,11 +1881,11 @@
       "aliases": [],
       "url": "/knowledge/Fluss-EKS-生产部署实践-Fresha/",
       "vault_sha256": "b46f5902db1d62e2fd16be8c0504bd82c55dfac0df8faf4ae97d728976d2c299",
-      "blog_sha256": "7ee42f7f986a8fd662ed0aa5456d257a668153cb965192db60e5889ad7766c0e",
+      "blog_sha256": "8e07777312e68f12486459e95f0350233ca50f5906924213a3fbb51a769d6313",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "72f04c6ceae56a321e71b4b9526fed3213ae49d08d96b5ed463233de9b18cb23"
+      "blog_body_sha256": "48161237f7ef2bd2df298a03ed8972eeb419bd6699e35d01fe520f43d7d39684"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1894,7 +1894,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-KV存储-RocksDB/",
       "vault_sha256": "ed6cc661aba06138f991149a4a7d4273cc8586f1e9223141b3dedc82d05e1529",
-      "blog_sha256": "b77ada6854a90464945499329034a7331bdf4537492b75b8f60add9f1071ecef",
+      "blog_sha256": "f0f0bf8022f6bd4145ffa8b6e53ac8425228c4e93ba88cc7a647648854c1d57f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1907,7 +1907,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-Kafka兼容层/",
       "vault_sha256": "a960dd05c040968d5138cec9a3d06ab4703951dd42286548fc6bd048dd124e3f",
-      "blog_sha256": "4a20dcfc1cab1271fed3042b53363071e17878244d96bd37162f393e4eccaf27",
+      "blog_sha256": "bd69b91b50eee8fd5bc977828f7a607c022c030bae75fbe364c950f11b6de586",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1920,7 +1920,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-Lake层与湖仓融合/",
       "vault_sha256": "8620766533cab3ad560026c4c190cb41e67df26449157bc2768b4cab2f315d58",
-      "blog_sha256": "2b09b69efed0a77fcba3c4bd94fbd03cff3de4db0b2d371213d8f37cc87041b2",
+      "blog_sha256": "101e53daf858c7a465a0cd8ed747f57e4fbf6c6b4731eb30da49493437d56635",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1933,11 +1933,11 @@
       "aliases": [],
       "url": "/knowledge/Fluss-PR-3420-Watermark-to-Paimon/",
       "vault_sha256": "b261e9ebed8de89723d1bd4d0290fc0cffeb36a830f9d0077ab47b119be7067b",
-      "blog_sha256": "5764861d55ac03402df212a36546c64c64cfab2923a4e9145d4649c579c4ae27",
+      "blog_sha256": "749200039dba2f72a31104755ee5abd72beb4ba735cbcdaffe651d7c2bb57a67",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9131c18d6aade5c2b7762fb9eef506eb47ecf2b32ee6be0d9be9ae1a2909e17b"
+      "blog_body_sha256": "0e7208167bd3901462361855e9d9cadf6905646a33b3836d5f3608d21effb915"
     },
     {
       "direction": "obsidian_to_blog",
@@ -1946,7 +1946,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-RPC与网络/",
       "vault_sha256": "4b365777542dab08fab56eae4812ec637092efbc8996db6b5b99d2e39b5bff96",
-      "blog_sha256": "e4bfbdc49bea10487f73405dd7fd1d84ce7684bb7ee42150b86ebfaca860279d",
+      "blog_sha256": "14f65340cdd66921eb9fe9cfcca8ef45d7b35776f656453d9afc0bd7990ecdab",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1959,7 +1959,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-Tiering分层架构/",
       "vault_sha256": "c54065db6c9974a8b09b031f1cea66c37fab3f8239527bf7335085ab4d4126ec",
-      "blog_sha256": "238ff479b21e769d0cb71421503e210c9afc2032bdc2d6ee38715dd9de23b73f",
+      "blog_sha256": "a923675e1ec1a04b03de911b1703fef310453b0e2199ed2ead661978431e8afa",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1972,7 +1972,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-分布式协调/",
       "vault_sha256": "74715fb7e390bbacd2cf6bfc32beac058843caac124698d6ac11b3d818d55833",
-      "blog_sha256": "19803d357b9d9109f0235de0800a5b79822ffd66eb09dc46a84da5295dfa00f5",
+      "blog_sha256": "234e74e4fbf6ebf2e007e14e40d48f6bd1a09b4e6b90f195e639bf21b4075980",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1985,7 +1985,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-存储引擎/",
       "vault_sha256": "766d56c5020d174c0da224f602380c7d192156edb895c422e3b77c34df5ad245",
-      "blog_sha256": "961c2e85633282b777cef033878417297ee2ca3a666b0b173f80ceaf6944d3ef",
+      "blog_sha256": "699335c8bb79313b009c66a2c74f8a2976388935cd84bd6f50720e5321c1e1be",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -1998,7 +1998,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-客户端与计算集成/",
       "vault_sha256": "3ef21b9756e96d01977e01a946b14077e4fd451f29f244a5f29caa16f528b183",
-      "blog_sha256": "ce09c9ef65635aa4528f968024ea380e2400d84e75c110738362fd76e470a423",
+      "blog_sha256": "98708fd1694d2851fe4fa44d119f91eeb209358d82d8eab14f17e3381661f319",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -2011,7 +2011,7 @@
       "aliases": [],
       "url": "/knowledge/Fluss-客户端写入流程源码分析/",
       "vault_sha256": "967b9c64b827fe695a5fd18c3580c0ec1fd1b969a34ba8c2905f7de4653bb2f5",
-      "blog_sha256": "b6f3ff83e38b5f42a5c0f9c984d2d5bd1397b635bab61ef878ec6fa2dc1d22b1",
+      "blog_sha256": "b3ff027a7bc7b1065ae73fb7ccaa2934f82c0db9aff943f2e1df9c24696140db",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -2024,11 +2024,11 @@
       "aliases": [],
       "url": "/knowledge/Fluss-整体架构/",
       "vault_sha256": "bc51fe84812cce7e768625c3235ce73aacb5c34f38f3a1db049270621018c34e",
-      "blog_sha256": "a51e2e3dc291f1708742c85c11f60ce80c871bdc69735ddb2cad0b0aef66df9f",
+      "blog_sha256": "19ccd7971d95a24663811456ed870f623e70843722adec3e2b1431096c1debcb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "1ebdc457f65549f41acef87a43c3b84b0e4bcfd48ff10c55afc234da5ca4f0a2"
+      "blog_body_sha256": "d89a47eb5fb51656208d5462d2ca04abd014d3e2850ae05537cb26db4b61f70f"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2037,11 +2037,11 @@
       "aliases": [],
       "url": "/knowledge/Hailstorm-存算分离LSM数据库/",
       "vault_sha256": "0bc9d4e9c697ba832f76570f96d61d37b587e5543ba68235050d1dd2a25e8618",
-      "blog_sha256": "d1ff07be9e3d736055a66bba0c91ef0b063fb238a81584fabf9385fa455177cf",
+      "blog_sha256": "4d49157489f28b29e8c3deffe4ddc011ce266f503e565d1754f390c424ec3682",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "aec97dc3d299d6340fbc49c054f313542ddf0d09d94c1af938f8da7561f0339a"
+      "blog_body_sha256": "a9a65db03b2c5caf5ee17d0e5647934d59336f507dad812be3681a90a0acdf6a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2050,11 +2050,11 @@
       "aliases": [],
       "url": "/knowledge/Hermes-Agent-自进化Agent框架/",
       "vault_sha256": "80fc7cae32490e4ea891e894ad9990223f4918a996a3048b09671e34e8f5fec6",
-      "blog_sha256": "444193e699c3ea1889589bb56f41fc92a2fcde184f3c3b0bc71885c6bcfa0c23",
+      "blog_sha256": "29f7d35685541087a13b13ca2b5895cae42b3a89f64701ea0c1bd5d9c3694ea4",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "323c5b800fc328a9173e9cbc77cad781769bad50fc2fb3e78fea63000e5134b7"
+      "blog_body_sha256": "d4ae21f520b1e5132b78edf2d5fc6826ff8dee4f799664f5a6a10d3fe37e02b2"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2063,11 +2063,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-3-列存引擎/",
       "vault_sha256": "ddb963f8ebad882fc6d1c5571fb9447974eda488ea17b89af1a84127b0cb3a21",
-      "blog_sha256": "c80925a906d39be4c4e5e78d6110870a25ce37a8995c9779e1e044a6648e4b51",
+      "blog_sha256": "50e4d9be8f8f98203880afd56f432a7bb216e987e3e6abc084f28ef0d23248e8",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "bbf0c275aa1af55eb264593528186455a007c625c7faeefc8113d222555b850e"
+      "blog_body_sha256": "12dbbe7a7deaf7dea90c8726f340922dec39421dde8c20eb67a89fa68270e37f"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2076,11 +2076,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-Catalog元数据/",
       "vault_sha256": "d8fb876aa8da086029756964c2b112d5cad6b721a5afb5ddfee07243356bd50f",
-      "blog_sha256": "5e11ab2254c0d9a7e7cfb90c0dc65baca9c2818f11c61c7178aa9b2ed4a7a293",
+      "blog_sha256": "cfa6d9ae2dfa1455a4f77d762a606c26ea61b3bca2f198bc568bcc9dce1355a3",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c49bf0e7876d11c2c2fb610a1bc2b44e5f89e3e69fcc123409ae5ffee82a25d1"
+      "blog_body_sha256": "88b8763101fe1139b063e5f6caa4ff2f80f850ff89dfc2bf0facbb9107ba7bc7"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2089,11 +2089,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-TSM存储引擎/",
       "vault_sha256": "d7b8b62b7a8978fea307e06d94b4b7f8cbbbc17ff300f8442030b91586e557e5",
-      "blog_sha256": "01d1291aed1e6593e8db83ca0f7677aa8247b255230391db833e06ceb93d7d5e",
+      "blog_sha256": "bc3d39c1295a98f2a6c9d7321af938b1ea1b3d2a44475a31d748d182338cbd92",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "920d7e235d27160705c302b2ac1519207e32cb73b293382777cc881cd4ed5236"
+      "blog_body_sha256": "a21c2639c15f27fbbcd0fd6824fafe394f0172033d2714f8c2bad1ac1306de7d"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2102,11 +2102,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-写入与查询路径/",
       "vault_sha256": "0dc70d1057b717a94b0d7df4dceddd77be5e76c68f9c902371cd28def3b1d964",
-      "blog_sha256": "91dfa541c3758f88f715012ad17bfb509b2ef4921b8fc17a07b527357ad3d40e",
+      "blog_sha256": "01df50e76514198523a723ddf42b497d5c3e53c23a19600cca544e5668725526",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "e553dbcf526ff76dc1b8cf62f47339aa19b593cddcff21359de0f89ab6775f9a"
+      "blog_body_sha256": "54a02866e3e282c1d46b55dcc6aff0a1ec778b23d1d5b96f9b51288fdab88ce7"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2115,11 +2115,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-多副本与高可用/",
       "vault_sha256": "05253b1d9bedc5b7a24f68dbae26c317d48fe97fcf853e111e3da22c869fcc26",
-      "blog_sha256": "7802df3a104bf62e273f9b0fd26c243624409d307b9433b54135f6074e3afcfe",
+      "blog_sha256": "1afc13e2a34e23619d19d309116eb1c5a1ea682ee095adef5caa0806539a8084",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d3a4f7ddf12db8675478fb0916949f65ae692fc75dad794f994b261b0b5dde43"
+      "blog_body_sha256": "c9844118e0b00b7132b41c40ff15c9079d35c5ade41874765b6da2671efdbb31"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2128,11 +2128,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-指标设计与基数管理/",
       "vault_sha256": "809f461d955f8f9fe01119743ba5fa69cdc6b0638e269bbc9ab3a517a49804b5",
-      "blog_sha256": "74b779eee98876cd473ce5eb112762b99d54b03f4bbbe56f9c9d737e5d3b1e90",
+      "blog_sha256": "47dd9ca1137900051d62f41a0e7b62db616517ea3ab91044406dba154122e66f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "e7b48ab9e361fb1231b7545bc02af9408248371c05a2776954550843b9a17798"
+      "blog_body_sha256": "3718b4deade90b79fcdf6f4c972e14254559bd9b67c5faf8335a4ddc1471adc1"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2141,11 +2141,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-数据模型/",
       "vault_sha256": "da8f782eebb3b9f4973dffb0e2be6a553ebc47d7a1af223ee00b3e90b358f2ce",
-      "blog_sha256": "d3c41ffb9e40f1df07d2e06039bf26f488886ecfe70a0c1f7a2595db4a0ab2a3",
+      "blog_sha256": "d42735634342d8ccda5f1ada0a62ac7f00a75c54214e2a475322b8ee3c8e5afb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "77a2e2dc732188c289f87365b73b6f4d1e64155753c7dd588ce5aea7e78d5a03"
+      "blog_body_sha256": "292966110bc3f85f0be6cd446b7e6b80f2c695de96da2b807dabaca9418827f5"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2154,11 +2154,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB深度调研/",
       "vault_sha256": "86cfd56a63c0e7edbb6d3c37347532dd9e2274eae82d879ef23207d77d2ae648",
-      "blog_sha256": "0e2054339b349cc2059efdf4eaafbfac582e93102df2f1882dbc65b0ca3e2de1",
+      "blog_sha256": "afed75faaebd5a401f7918a6c7d05e8ac914fa9fb13aaa845e7168d8c6241a8a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "0fe97e18cf0fd4808485273875aae31319e24d63cf7df70a5520e03ce46989f1"
+      "blog_body_sha256": "76bd8dea10448a697850af5d65c5652a63a0880b774d5f9f623b8e85992046e1"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2167,11 +2167,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-RUM猜想/",
       "vault_sha256": "bf96056941ab090737acdabc6d0ab54e79b6c9997689d2688f6ff30c61bd826f",
-      "blog_sha256": "bff5430964e39fbf2e19fe6e029255cb2b1c063a1ce2c5476ec54e14a6b18363",
+      "blog_sha256": "de2aa76ae7215731b6f81dbb084cb7171f00543b019c3f174442cecdfa185679",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "961f3d89c8e7ddd29c42d82b97dc0567f4c60c50051b119ee916e58c29267fa3"
+      "blog_body_sha256": "28af14a12f507c0be8ef958aeeaa1561e96815124ba679c0e4b31a920d340df9"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2180,11 +2180,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-二级索引/",
       "vault_sha256": "14ff303a5553a93201298a91853e14b355e3853bbe6eb2ac33af613af9387f6a",
-      "blog_sha256": "2e313b2c22449a06f96f85ee6146fa1a9b572cc9979d7b6be0d675967fadb53e",
+      "blog_sha256": "db34e7ca868d6acae566420f4cadea98a8789a9ae7facf6f45eabf707e651214",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "25c102dde916a0c0cbdbb699c2d1f8f57add6872f65c43df5fd39985c085423f"
+      "blog_body_sha256": "030c0c8a0895b421ee38c00d119181d535c3acdad9f463ffbc2cd10daa0a3fa1"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2193,11 +2193,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-写放大/",
       "vault_sha256": "4c689a30f65745c711028be26beb7f0ea32bf7f5452aef21da033f9035f8b0b5",
-      "blog_sha256": "01cbed8ba14533c62ae1a821a25b48ea27611212beb953ab98604d4a45a3af5a",
+      "blog_sha256": "a973718bd7f287451154607ef2f0b4d2063df783192652fcfc56b2d751f4b0f0",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "a1c6d5f9af62902f99d765ccf534ee7da048a4ed672125393ad3322006e33d39"
+      "blog_body_sha256": "d5dbc200e531a7caaa1bc614ea7172bff66339d58d7306658380489b38bea461"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2206,11 +2206,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-合并优化/",
       "vault_sha256": "bd605d864178a0ea92bff1b575cb4b7d9a456fc305fd7e4054669236c58cf80f",
-      "blog_sha256": "4bfc8a24f671f4888cf2f411a61b7d4168c84f2f66faf2330cf5a68f280afe58",
+      "blog_sha256": "1292a14ae646f6e91b510a6e5960b693ad2b9dd8a6d07c050a2009c2571c1912",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "eb62e5938371cae3d81be31e0851b260ed05d8864b62d8715235e96fda54cf3f"
+      "blog_body_sha256": "da61bfa28d56d3811d3a8881b51a021df2b1a212521312075148717ab77ea990"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2219,11 +2219,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-硬件适配/",
       "vault_sha256": "e0e83f7b40455ec9ba3bb739a9e64e2c1f14b53aa545d784ca04d398151624a1",
-      "blog_sha256": "9b574d2376952e29a2f97a0d32412aaafe07e37f0fab6132fde32dfecfc5197e",
+      "blog_sha256": "8014f0a3883602cbed073f1e0f2a71011f147c58139bf16f8053f15275d7d3fd",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "eaf094c59cbdf5310bc304c0d036eb1e5df14b24bbd2a8d9e522a2ade09e9ab8"
+      "blog_body_sha256": "661e4cc8c6b3b24c23527aaa19fefbe85d274496310745c431d3573af39e0cdc"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2232,11 +2232,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-自动调参/",
       "vault_sha256": "b8951be39395f9137af3bb8551260542745e33540311ae85530cf10754f2556a",
-      "blog_sha256": "101320b8380868d4a55596687b9e2362a5bfee18597aab17512918e2925a2e2e",
+      "blog_sha256": "ea30eaaa5dad5da5cd970693e30f5d0cc5aaf38d5f6beee17a931674658d0922",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "8356f645e287abf9ed53c7cc2887349c5acbaa8824c7729c1a2b12d04667ce2c"
+      "blog_body_sha256": "066406c4f2d280435373105587fdde7aceffb7669542b22b2f32d033f264b440"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2245,11 +2245,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree/",
       "vault_sha256": "f5e01552f77ea12613cff0a4187a3e646182a4fbd4ce99bc9908ba0ebe9e5355",
-      "blog_sha256": "4147a83393005b21a7bb00033eb41ac9f10f7509f9355c5eb4e5f4ec460d2ff7",
+      "blog_sha256": "c4feb09fae3e745504fc4c9934113203d9336648df8ce38ce40412c246866017",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b1fcd883f950fd75f577104d8fd60d726da693de0994fb105e12516e076f11ea"
+      "blog_body_sha256": "d3fe073f873fac1dd317bc7c8d9d6ca7860428b7bec91c8be4010a731ecaf5a8"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2258,7 +2258,7 @@
       "aliases": [],
       "url": "/knowledge/LSM-tree-KV-Survey-综述/",
       "vault_sha256": "bdf4824d3adabb8b5412152fd125774c41374ff62e0431145b41c761bd62733c",
-      "blog_sha256": "62da267ce8e07d42448036bb379a3e47deb266f3f1ba93dcd691e2655692b6ea",
+      "blog_sha256": "1292693da7c5c79a8aeb54cf3b37c984bfdcf71b37d88e31d7d8c0dfeed59227",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
@@ -2271,11 +2271,11 @@
       "aliases": [],
       "url": "/knowledge/Lethe-删除感知LSM引擎/",
       "vault_sha256": "dbc17f77520501977ce8acfd6bc033ac88c9084d1ed9032c2b9acd12fde70fbe",
-      "blog_sha256": "018b400e0e20dd26a1d626ef5d594e1cc76e10903d614a287c28e79d9481414c",
+      "blog_sha256": "a65f45f3a6cc7aac67793eb6b54295cce47e69a5ac25d52e3e0521f282df785e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d08e3b50cde9b0a63dbff92fec75ea665012e4ee39ac9a9deb2ffe091f0896cc"
+      "blog_body_sha256": "0d1dcddd79005c16b30dd8787d5521a45cb837ec5ede398520891ef3c0e71a30"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2284,11 +2284,11 @@
       "aliases": [],
       "url": "/knowledge/Log-as-the-Database-模式/",
       "vault_sha256": "5d07ccadfeec1ee0dfc340fb71edd2ae860e287ae0a6fb8be4f20b06a2ae3582",
-      "blog_sha256": "4de622eb8f2c829143e443a5dec142804c203203aa7183efe35c4fd039b57cbd",
+      "blog_sha256": "34f73aea919d9e4b41d4d8ed27002606d45e41124635e3272c959730c83aaa72",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "fded43c5a295fd4f9b1a6956c6cfe8f45996feb72a9671d66d26a5b1d8b893fc"
+      "blog_body_sha256": "ef2c07acb9ca25f05e596caa13cb9320993545df25940a5a24103044f87fea76"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2297,11 +2297,11 @@
       "aliases": [],
       "url": "/knowledge/Loop-Engineering-多层Agent循环架构/",
       "vault_sha256": "2691237d4777475d86457b449b64d99e3a4bac4cf6b001bd815e478a4416a49a",
-      "blog_sha256": "ab34b3f302878ab5a6139512f39491146110b63040b8ab5a6b09725b2eec6ff2",
+      "blog_sha256": "f2502872286df8f3902c8f2884e8753bebbb60090e6a8418af5b10e334d10da2",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "449823172f6afedec29294ea3c3275151cac52c02f36bf10488b3ceffdf9715c"
+      "blog_body_sha256": "6453fd92774e79d3dae32041a668ef0820fa18ca674b18995e1275dd20c46c2b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2310,11 +2310,11 @@
       "aliases": [],
       "url": "/knowledge/Model-Neutrality-模型中立与反锁定/",
       "vault_sha256": "4c36f683625a1dc1458c45dee964c87ab08c250e6a29a0524099a68956c7cf38",
-      "blog_sha256": "53ed8f2bbc43a7f501725f82644a0db5731aefed10e7e84ee388555f4021da60",
+      "blog_sha256": "0473ae8620ec1a66bfe999a056d0694fad3a16023a5c56320678a817518d1b40",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ba63ce7203f10896ad7a6ee5215da825f984390fc8e82d2f4f79f63e7632323b"
+      "blog_body_sha256": "5e05ce53c40ab33411d0b2304994a3c0f8fb51c6f31afb97c4410821cae84805"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2323,11 +2323,11 @@
       "aliases": [],
       "url": "/knowledge/Nova-LSM-分布式组件化LSM/",
       "vault_sha256": "72020a03fce9c92e671d45512bb6803a4a6068a0457cc1438769f326d5b6f3b3",
-      "blog_sha256": "8a989ef95033de7ae070054500295d78ae3decedb1439ee824db48174623ace7",
+      "blog_sha256": "bfce59bc06944620a7412cdc2a4b05745d35842f07e3f49e833b627f2d1d39de",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "e1e3e6abb8ab58d954bf351d985cea39bd407d438627659e3adeedb93786119e"
+      "blog_body_sha256": "029a03151e5ba7defc92c7cbcfd3268279b788daf40f32fbc5e490119cb67827"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2336,11 +2336,11 @@
       "aliases": [],
       "url": "/knowledge/Pacman-持久内存Compaction/",
       "vault_sha256": "36e8e317f76c79218c2638b6d77f615010aa1fdf4814b9b3e50fe6c327410f21",
-      "blog_sha256": "e8adaa80a263f4e8efa617996dba3492445a9225ca9a9fef70e3161882718780",
+      "blog_sha256": "ed3a7718ddab048f70ff16ac152e6ee27a52ba9333e94cd76290180775ffe5b3",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "367ce3bc1b91a65a06a44e391714a361c709d83110ec006cc551e6ecb3afbab9"
+      "blog_body_sha256": "1c138ff344ab98628b21cd4b2ebfbec33e73b65e9eae34117fae57ac2ae29f07"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2349,11 +2349,11 @@
       "aliases": [],
       "url": "/knowledge/Parallax-Agent安全架构/",
       "vault_sha256": "1d0b9048cff862dd4df0cf6756686139bc0e22a4714d12172a9f909846070408",
-      "blog_sha256": "1dc3e51fd97ccf73569ecaaf2fc243945ccb2d35ba0ec55da375baabfedfcb72",
+      "blog_sha256": "dc9d9e8298f6e06bd6fb19554fed94b9110fae13a78caab8fc9b3babdd50b4c5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "18c903203d9bcef98db989306b0cbdcc9ee1001fc23043cd81dc37a38a91a304"
+      "blog_body_sha256": "f9ee9ca3f39a4694650376dc35ea97549b7887fec3aa97258836f9574e863362"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2362,11 +2362,11 @@
       "aliases": [],
       "url": "/knowledge/Paxos-Epochs-Revised/",
       "vault_sha256": "00d2b147c4a78bb78eddf4107180c99f416cb4067a02bd757e9a03091d86ad12",
-      "blog_sha256": "88059b2821b8ee1dfc25054081cebaf3a9ea90160fa5cd69d43f299a698a57bf",
+      "blog_sha256": "5d5bbcf090a2cb11b5f0f2ed3e61b5aa70cc7146d403e1283117bbde586f2825",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "07e32f079904ee87a76618e1d3a7d1f26d89c75aaf25289d5342af2174de2377"
+      "blog_body_sha256": "6c6ab976eb7cd9a46d8f93ab3226c338ee2ba0c4c63791bf283986d1ced85ff0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2375,11 +2375,11 @@
       "aliases": [],
       "url": "/knowledge/Paxos-Quorum-Intersection-Revised/",
       "vault_sha256": "98dabf8acaa692d488c4469889f1ab4c925329956253086b078bf994e327ebb0",
-      "blog_sha256": "716cf3e6f33d8c7e77f2d715e23c30df83f319fe0b3b31b00b90d35eeead2b1a",
+      "blog_sha256": "f119a0e5974e11f59a86c699c3ed604015555c8be42aba17dfae05a31eece621",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f6d3adb621b8769aa0dcdf2f67a5e5cb24cc41fd9deeb6bf61aaf51827f2066e"
+      "blog_body_sha256": "d3a13941b42ade1e70a3c9160bcaa2d1a68f1b0167a4e0a2ecd7d40877f9ba47"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2388,11 +2388,11 @@
       "aliases": [],
       "url": "/knowledge/Paxos-Value-Selection-Revised/",
       "vault_sha256": "5d7293e6c804b26bc0566f170ed0090c974df7e0d64422a4f4e93d1a415636e3",
-      "blog_sha256": "5705523152f477c174366f85067ca40c179a92db451fa5b57bedd3aba772b0d0",
+      "blog_sha256": "79280d82fc78ef259e0c2bd50ccad67e2055ebcaffafd3c4a3d8ab48e6203aa4",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "1230e314c341482f8a1f4b07f5ee67cf77bddb8ed43ea47688b4957acfb2d1de"
+      "blog_body_sha256": "38fd74a7d84edb397bd9bead15a386bacad240271e5c147930de672dcdf0d0a4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2401,11 +2401,11 @@
       "aliases": [],
       "url": "/knowledge/Paxos-理论到实践的鸿沟/",
       "vault_sha256": "b4d6c9eb42b2015109b1ddf61d012c9c5885db344fb1ec8de5c452149abba2c7",
-      "blog_sha256": "a89c043628c7ffae05478e8e159f2d5caa06fcdd8ed595d296653ab7dc4284c5",
+      "blog_sha256": "ba48158a2a92f3f63d37957d275f147efcd01f90ca76f1b269467e9f8920437b",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "fc9e992f5ceb2bd1d27615c10ea885b6ae2baed9b67a601f785b955d4aafed7a"
+      "blog_body_sha256": "1fd2e1b1aaf7d12b15fd2290fd053cb38362df78ff18f5ed2d3beffadf1eb62a"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2414,11 +2414,11 @@
       "aliases": [],
       "url": "/knowledge/PebblesDB-碎片化LSM-Tree/",
       "vault_sha256": "424061c70d50da8248f0af50d321bbcaf4b2c12cbf1cbae11c2835634d7fe1e6",
-      "blog_sha256": "ccc5812adcbd21001349422a47c73446180aa921413fdaba6624199e0a44c58f",
+      "blog_sha256": "3e6d227a1010af70647a44ae378d26314409687e7cdf319dbf3e9f374cf30af5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "d2f8856b18af2ef63ca46d87da4177fb8bdd2ac5d60dc5ca87e02232ea66f596"
+      "blog_body_sha256": "faff2d132c5bf3bef47c27db7cb44defe4e2932350e81c79f54a5d7cfd1353c1"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2427,11 +2427,11 @@
       "aliases": [],
       "url": "/knowledge/Qwen-3.6-模型发布/",
       "vault_sha256": "8afc9a76a1f6ff93b556eebd2daf451c8b3af39ba9f996ce56ccd6375876518a",
-      "blog_sha256": "117a71f72df74d4aac8a0c423c0e1a59eaba31d1bc1883cf962c698a4c468717",
+      "blog_sha256": "d99b9c97aafce03006c6983e5c285f4826217066b513b97bcb25eb0bb43fb0ce",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "dd61a9a16d3e8d9827dd080f7993d8e77360828fe6858067cc330632e8663e1d"
+      "blog_body_sha256": "7296a178e40291b92d30318ef0b4c04d9f72d0efb58a3d1c1abd7b0123a50809"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2440,11 +2440,11 @@
       "aliases": [],
       "url": "/knowledge/REMIX-全局排序索引/",
       "vault_sha256": "cb1629f525805e9012445fc7d5145dc528e2751985adda80772f861563ece8a1",
-      "blog_sha256": "6b1c5d0dac82f8bdcc372fa7eb97abe7e6bd826490c910b83f0140db64e3569a",
+      "blog_sha256": "db1a0a2438b6ea096d03378b5769f70c9e5b6291fcf68a47ee05cf74d3d9e629",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ef17b55e1b14f996c1bb6cf8022d84ea4704335b043166a362eeb64bff816210"
+      "blog_body_sha256": "780dbf31e9c5e2862f8471ec86d35f867d2919d9407f41b0b780905d7a719597"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2453,11 +2453,11 @@
       "aliases": [],
       "url": "/knowledge/RaaS-Replay-as-a-Service/",
       "vault_sha256": "4a424f5ce2439b16f1ee2641aadb52422d914381b0cd22fcf811d0406cfb17bb",
-      "blog_sha256": "6fafcf8c226ef6dada427e5da6948bb5c387f1e8bbea7754bcfdfbfe12ecd2c7",
+      "blog_sha256": "6d755677236b4612611114018b7060e8bf0cf3dccda01bbeb4c3339204d7dcdf",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "5434afadc1aad43f79968a0ec025066d9340244e2eff967b4b75519c487501f8"
+      "blog_body_sha256": "b1c6db99ebee12c61790355046710ce585ad0c0f5887cb0f38f2372998acc5b9"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2466,11 +2466,11 @@
       "aliases": [],
       "url": "/knowledge/Raft-共识算法协议核心/",
       "vault_sha256": "253a346a94cec58a66d1311dc2e1b0b113ad961bd86d1834794ca3a122916c98",
-      "blog_sha256": "2f555cefd29c11a1a16f440a3183495a54ac9366faa8ebd89080aae24957a85a",
+      "blog_sha256": "b828169b70af29d923b28bc8dbf543225c03a4e990bd062601b04e5428864073",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "313780e0e0f3b08565fb460cdf8cc1291787d2dc61513b9e0cb1edfd5fc16dd2"
+      "blog_body_sha256": "b363b8aa388dc7ce8ca1f29f8a69242a2c254efb866e9bc0f16cc1fa8f90b1f0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2479,11 +2479,11 @@
       "aliases": [],
       "url": "/knowledge/Raft-客户端交互/",
       "vault_sha256": "8d91b181743a0d36facf5eede8a10b5e32dff60e3062fb82affdb2becb8691ea",
-      "blog_sha256": "9c80c812d5d568f4283401b9aa52c573a5939de1ffccb1162e7c5ed6ddc97be2",
+      "blog_sha256": "e3ef2168f2552000b06a557f05455e4ce59f3f6535521c4463d667545583f29a",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "2ef1e9b91713e4b6895410af7da94cd50838c214991aad125f62ed00ab8f456a"
+      "blog_body_sha256": "67623cc9b89e6962294537e5b2708bc2c44397c5dfe528310fcc11237eeaa6fa"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2492,11 +2492,11 @@
       "aliases": [],
       "url": "/knowledge/Raft-日志压缩/",
       "vault_sha256": "9a9b5348bf10c30ec81b3fa1629068c678539386110fbd4e72f0e752e6e89457",
-      "blog_sha256": "a886be3d48f8996269cfaf31195473c9ec393e6d38e3002aef475ff5d87fe585",
+      "blog_sha256": "5e62f844861efec7f05774deefea42db9925a18416969e31dab2d6e45ec7f27f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f8684482382815a81cbd2cf65acf6ec4ffac8a0a7e872749cc07e2cba4af38e3"
+      "blog_body_sha256": "8f35dca7e44e1fa6fc7b0860f06c75063ba84bfbf60092f102dcdb6adecf8b93"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2505,11 +2505,11 @@
       "aliases": [],
       "url": "/knowledge/Raft-集群成员变更/",
       "vault_sha256": "4cad40594364fd5d6bdce7526cf0589fe03de2546448e2def746993bfb8e0366",
-      "blog_sha256": "b5e009ddd9e09cd2125c3269cbe8e7804366c3572c98fcf703a536034092d6ce",
+      "blog_sha256": "651302e3a9fca1db944c3f36c650fe064dc5d2e501645b9f342e2ad844167eb5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "b606fbbf148c159d6c523b4085140ac4ed2df1a3b90e32347d43e96cd04662f9"
+      "blog_body_sha256": "5a2d6de3168a217d2d638e7b481c3cf182da66420257716490266c7c3aef2464"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2518,11 +2518,11 @@
       "aliases": [],
       "url": "/knowledge/Rosé-Coordinated-Apply-协调应用/",
       "vault_sha256": "91f7d589a734b0f8d7a7cb21e4be28e7cea11d6a47c1cbf786ab4228642792ce",
-      "blog_sha256": "9a7e365a31f4ec875ab93cbfa25111a957ae7bd0293e1f79a958ea15bbeb6367",
+      "blog_sha256": "c32e2ddb1d05121a39a9ec8921c468359470e532678cc2bc30a1c32987af4675",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "44f6030cf7cf175da0730125cb79559a3f3d767386991c9c125e3e8c3d8c3063"
+      "blog_body_sha256": "8c18de899a04eb70d65c1f89bf2bfff08a2f74a29551716d417263a3fb0e89e4"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2531,11 +2531,11 @@
       "aliases": [],
       "url": "/knowledge/Rosé-异步复制协议设计/",
       "vault_sha256": "9346fcc02a50d85bcbae53e3fe17396e3fc99967b4b76f91c19fb17a1dda3d48",
-      "blog_sha256": "163cc5ce1461e1ab12147c280076ef26b1b88ed1afbc05049a4f3ff348c78100",
+      "blog_sha256": "1744c9e32efc3d50a1dd1533d4f99314daf27f8685dcd089446d0a5b1f39d10e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "38d5170c3a138402d5de6f18ebc8727f935a62ca5277eb1f2c8e2f5d11e4410c"
+      "blog_body_sha256": "d840ed15a51a72d11d20cc268826c3c2b763ce30cea16bd2ea79910d166a8509"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2544,11 +2544,11 @@
       "aliases": [],
       "url": "/knowledge/Silo-Compaction-迁移协议/",
       "vault_sha256": "32a04c5e72a817aa015f23cb685b755df7662b6f73d655f6d76b8a6caa5234aa",
-      "blog_sha256": "15f5be9c65971f87b1939358133ef4a5c72186d4e877c7ace70a5a9eb2e3df9c",
+      "blog_sha256": "f98d77d3e83088bd6d435867c2f3aaa94d1d8567bc173499272f646f4933ef27",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "344e5d4ccb239ebcef2b719f3ccaf68ae19b08d86891ce8a7e4146b005616076"
+      "blog_body_sha256": "3a84901623502f7bbf743280a702d294ec7bf608b058732451affa6c90677132"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2557,11 +2557,11 @@
       "aliases": [],
       "url": "/knowledge/Silo-分布式LSM-Compaction调度/",
       "vault_sha256": "4be6dc8ff55a6b475c3e9dd3572a518b86e7da0ac22dd9c16993e0002d228f6a",
-      "blog_sha256": "2688b31399b90ed382cead5f975e4a1de524824c76b24b12056963b052685bba",
+      "blog_sha256": "bf24ff183bfde5ca7d9c63beacd90df84f0bd95f8505f9815b45ac1cc2a5dfbe",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "66d7e5d6874227a00c29aaee063fa111edad64b704f9f95d9d9bea815cc2e946"
+      "blog_body_sha256": "4fc5dae388d3bc82d14125818af28ad8e9cd4af5f7d3f8f7daa1189e3cf84898"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2570,11 +2570,11 @@
       "aliases": [],
       "url": "/knowledge/Stream-Processing-System-Generations/",
       "vault_sha256": "7b23535dfbe6e314838df0da49787f08db8e843191a3236e7ad2fb5f96e4a217",
-      "blog_sha256": "0e8378c7d6188f427f18344740eb0252301afe3e9d7ea3649c698ed630888886",
+      "blog_sha256": "4f93551d0c4eb7422170e66ed489c8755b4cd8f682759bdafc0bac9e6471656c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "170ff63eaaf8a9c1293056e8d333695cdd053eef4d937c20cea7c388d0c1a535"
+      "blog_body_sha256": "6858a2589f334b714ee9f2ed5cec41149f6b8a80c73ec56c1934204694df272b"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2583,11 +2583,11 @@
       "aliases": [],
       "url": "/knowledge/gLSM-GPU加速Compaction/",
       "vault_sha256": "246c6a9768f2e6eb0632daea5695c975f239b974127271d003bd6115fc760600",
-      "blog_sha256": "2c1b09f10e666f58164217c52ef52cd4689ccefa2ffe03dc34be503b128f46e2",
+      "blog_sha256": "7fdf33e294caa6b8deb5e73f2359cb366a7fa4198d98fcac24f1fd279634db5d",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "255ad1a99370186cb0a9e091c982fddcdecf263d394ff35660b0c2b72c1c9256"
+      "blog_body_sha256": "3f90da17149c142e307761a33aae2f78a5cba361a97724d1d800ed32c3280966"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2596,11 +2596,11 @@
       "aliases": [],
       "url": "/knowledge/AI-Infra-Agent基础设施体系综述/",
       "vault_sha256": "99948bbe7f1f087f531a3e4d757e9f44b47b44ce0afe0413d3406b23871a3bbb",
-      "blog_sha256": "6d347f9e5d795fd2b10421ece351e25e696828780ad09b27a0ac28fcb8d809ca",
+      "blog_sha256": "72c27b266d42b2620ba9fd33a75cd0c230aea8cb3f6ffa497f1453936bfb7807",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "a38b859ab0eecd1d13d9dcc921a8a6cb2ebfd56f250961593825552b561c0d73"
+      "blog_body_sha256": "1a8070578eec76873b06ff5a17f911b254ef1eb8095707152ca62d85949be12e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2609,11 +2609,11 @@
       "aliases": [],
       "url": "/knowledge/Apache-Doris-OLAP-数据库体系综述/",
       "vault_sha256": "8ba026549599b78af47769dfbdcc1c716738b4e15bf3f75e3ebebfcdee98fa46",
-      "blog_sha256": "684b14626b535be136117579bf7c6463f0d71c1ed45e66b4d7d1e0bfcaf4069a",
+      "blog_sha256": "a0e1b344c837754718e90428b73906e053a77ab6370aa5ef7f500d054026cfda",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "9475f254bd2e508d2e55f579e1868476529e5944cbadeea4b5f8a4b3a390df99"
+      "blog_body_sha256": "db9460efe83631a9c9f9f2e1ff44f5c805c8d1a730c5d77aabf426fe9481d799"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2622,11 +2622,11 @@
       "aliases": [],
       "url": "/knowledge/Fluss-流处理平台架构综述/",
       "vault_sha256": "3e32245f64fdb1c6490bddb4a963d73a60e0ec5c72ff7fde53a9bd5ba3d49ac7",
-      "blog_sha256": "35473cfeaee5e7f5a116c62b46d42486bed865d8a5f63d91f0ca897cbced7a26",
+      "blog_sha256": "8b6048a67ef55fbe98e4bf9853e210231394928cbfdc0e5863abb95c497c03fb",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "32b2a657893c97803f5d7a948ebe29e8a509f9f17a17b45009d4259b730054fa"
+      "blog_body_sha256": "a6ce54b7d06e79e9e02876391e070d94ade3c10ef27635cc5b0dd33bec5423b6"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2635,11 +2635,11 @@
       "aliases": [],
       "url": "/knowledge/InfluxDB-时序数据库体系综述/",
       "vault_sha256": "4114b004aede0f88cd765d2a63314118953e1366901be9e3c0f89ec3dab031ec",
-      "blog_sha256": "278173d58dce84eb365fb5fe1ef2c446497bf5dfd413f7e549b41c9531c28e1b",
+      "blog_sha256": "1d54fc1a544b1b12fc887b51032e1f29cf45ba6c15caf70cd38a683d2721a205",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ca58749584c115055aeba4a1d7e9b71f91bce2436d387a60a45b250ad1cd98a0"
+      "blog_body_sha256": "c5fec6aae7cc75ba04e8b315ec4000751f4df4ac2be0be01f05f6d14e2a5ed51"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2648,11 +2648,11 @@
       "aliases": [],
       "url": "/knowledge/LSM-Tree-存储引擎新进展-2026综述/",
       "vault_sha256": "9c7759e460ae62f5c4d4b15f1f8d9584a94aa58d507aeab41eb611dd1943f222",
-      "blog_sha256": "c85a75ee732d15bcdaa4f3966b5def85c22378d63453b190b3d1c00343b1648c",
+      "blog_sha256": "ed3c17f1c951f494eb2a9bfe3209b5f0df70289772d8c84dcfa22aaad44e0e97",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "247038484eed594d097ce4ad91995d8322763fa56ed549590c11454e9f33d608"
+      "blog_body_sha256": "d2829656fdb66b308616fcf4e2f3f0e4c2584b97ac7d8765be3429ba2d6fb1ce"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2661,11 +2661,11 @@
       "aliases": [],
       "url": "/knowledge/共识协议体系综述/",
       "vault_sha256": "df4074a7fa5f74b2ee2bf53cf72f328f243b47d57cda3bc64f54a64fc3ace07f",
-      "blog_sha256": "01b0ba61a59e93f4647f4c30069a4445e77e4d964761855f0ca70e4aadcd9a40",
+      "blog_sha256": "48b12a479798218c6888ec554d7d20a9f8a102345a2d2f3d822bb17df8e47d7c",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "c4493e154dc8f9c83a1fa47568a66d1ca6a78be540848f02710feab31eaa525d"
+      "blog_body_sha256": "8e5b682c83b3ab5b2c7da709394248fa913444ab120b1033ddf9978cbe4720aa"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2674,11 +2674,11 @@
       "aliases": [],
       "url": "/knowledge/分布式数据系统事务与一致性新进展-2026综述/",
       "vault_sha256": "b8ea365aea6c5150439d68a74e1d9f63efaca59b2635654388fcc110a1534898",
-      "blog_sha256": "584b2e2753aeacd454ae43c112ee8a3d29ca9cc40665a12ff82ef9872886c0aa",
+      "blog_sha256": "46a205873e6d191aa4353d57ab78504f98a203fd4dd6df78262d98a831bc31b3",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "4339cc8b54b45122c914c3140495acdee1eea6875bdec19008e62dde23bcd970"
+      "blog_body_sha256": "1ffaa67dd268ecf87f4d2b64898056f1ba3418a1eecfe15d282c7d9d13651468"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2687,11 +2687,11 @@
       "aliases": [],
       "url": "/knowledge/流处理系统演化综述/",
       "vault_sha256": "56a7bb8dbaf37abacd533720d87f1653772a38feaf94b328adee1f8698d0148d",
-      "blog_sha256": "fad4d0b44c7bbd675391c65285dd3c173848ed2b270d8ce8a9f98a789baa4446",
+      "blog_sha256": "1b790ac361d9f903ebc5f5969251288d7dd400315fa21d189052c34334769f5e",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "aa9986815c7a0970605f61f30d77ee556a82b7f2ac93a598b465510c885d8f86"
+      "blog_body_sha256": "b2c4b178e8f71b14086f4aed9b89a454703631c886fa6e60f4b4ac0ceb59d47e"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2700,11 +2700,11 @@
       "aliases": [],
       "url": "/knowledge/共识算法族系-从Paxos到广义解/",
       "vault_sha256": "308cdd8f7c86c76fb78c7270b8fc9d75244c0f53a98b5ccc91df3191a08a55c9",
-      "blog_sha256": "98df9815144d53400465840636035dc978968baff9796a356c253bdc9bee81d7",
+      "blog_sha256": "2a97d7f2b00f265b1627cc4b81d5541b1475d15053698da73641d89b76c74261",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ad863d3c1835e9f9fcb100519322162db913f526b57364d1940711fd5a499268"
+      "blog_body_sha256": "821416428c2cc5d6eb3f5f7f75dfce20e17b3d40ac7f2c1c450f7bc955293afb"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2713,11 +2713,11 @@
       "aliases": [],
       "url": "/knowledge/存储计算分离数据库的-Tail-Latency/",
       "vault_sha256": "ff348e52e6643235c83f2b0be2d002e2c4e92f3f2b3eb7d0a42789a7ef8cd396",
-      "blog_sha256": "3975ee71fb86bc2ffcae793e6fa7bfd21eb7a1242a9cbd8262bf8a52114834c2",
+      "blog_sha256": "a5248f7e660b8286a11294e71965ea921269aa487bf7cd98a23fb309654ec7ab",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ddabf53360495a3a67802a9736507941bd9d20dffad40b4d1f1ffb1d0788a735"
+      "blog_body_sha256": "fb9231e7ee3f7a6aa110e8396cd3f317f5b96cc08fbce1463d239ffd7fe1633d"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2726,11 +2726,11 @@
       "aliases": [],
       "url": "/knowledge/流处理乱序数据管理/",
       "vault_sha256": "654779888dd5d67675bcf5270a702ed61161e01ad7a7bdc6482c811a6b80a49f",
-      "blog_sha256": "c9a7a79f0c8c88a3ab293065ab0d2b4bc290d472d5f4f6bbf40a33e7d2c73c5a",
+      "blog_sha256": "ae11aa8eb1b829a5c09b588b0a186684104e475affe23e94b4a0b36c67b07c90",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "ddcb79f62f0680ec3525bcc93b784ca5b47621fdfdb4fce96ffa9f0ecec1042b"
+      "blog_body_sha256": "6a929bae2559cb0010382fdb72335861d0027c506356ccb3603cfd3076cd4185"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2739,11 +2739,11 @@
       "aliases": [],
       "url": "/knowledge/流处理容错模型/",
       "vault_sha256": "ba4c8b9950787cc30cee24d08938b957c673def7b4a942b922a6d4bef26b4fc8",
-      "blog_sha256": "2c1a8bc2c5bf47a26592799f76c1a6d98e2563e6b622b07070916782ee706d2a",
+      "blog_sha256": "7f11fa71434fc42c6fcaef553b26af8deffadc236aa8ecdc49456ba869f211a5",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "bc026e6fae32a6a49bfa6cafd10b00b158d22d98ce0b60f86c47ac83cfd5d28a"
+      "blog_body_sha256": "cd0f8f26b445ffb39cdc0c3573564bc2f61c8963da244497555ba691d98c5349"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2752,11 +2752,11 @@
       "aliases": [],
       "url": "/knowledge/流处理弹性与重配置/",
       "vault_sha256": "53429b9a761fe7ad6d4ed84b38ad39fee0594ac36a530ff68501a6d2e1bbe274",
-      "blog_sha256": "9aff855d78e15de6b22885ea2fb5e19e22f7b65ca6d73a679c76527bab8a33c1",
+      "blog_sha256": "9d5736b336c6443d80858fb8654f071d89d3c4dbdaf22e581b6a6b7d2e564254",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f189a17af3d75d749fe7e26db65904689a3e846b21187a7a723ff55d1f0add01"
+      "blog_body_sha256": "06f2492d4e9e80472365ead8631870f18e4ccd5ed61a8ca7106ab3c1257ead23"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2765,11 +2765,11 @@
       "aliases": [],
       "url": "/knowledge/流处理状态管理/",
       "vault_sha256": "bca792bde52c80d92adaf27682a8e71461ac81d8839b3dfee3e4224f7c5abc6a",
-      "blog_sha256": "75e5e92374d7160e4862f1137c55023676a4a200c02e7ee7c9e5dbac43fe00e5",
+      "blog_sha256": "9b2c20c71e1212bf7ad195e6198244037588b7946aaf49f1897dad2f6dcde8ac",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "faa7fa55ab2110fd6df52be3b9c464690f5a4c9b11b8ffbc3deae4173780df4f"
+      "blog_body_sha256": "94b42791a39e1ee6ce9b040b6148d30ad6e38c9e747318fe03601ae99e403fe0"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2778,11 +2778,11 @@
       "aliases": [],
       "url": "/knowledge/05b-客户端写入流程深度分析/",
       "vault_sha256": "897ed58274652239ba8ff89955115a0695c6547dbe2ebc9e657be3790c68beb2",
-      "blog_sha256": "7b47c8ca026f61e6a24133abe78a2c40f9b07d256bf425c807a3d9807e111dcc",
+      "blog_sha256": "1c7104bd350fe212f48bb4da7bb8d217e56b54f47c19f34e0ecdb23960a98b5f",
       "alias_sha256": {},
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
-      "blog_body_sha256": "f5d0bfaa04d325ddbd5dcdee2ec1fdfa5f15f7b6e8ddddb414d27eda52bac126"
+      "blog_body_sha256": "9a40ae91b14caac4f21195e73f795e692a6927fdcdc3b6c64411d8592c455c09"
     },
     {
       "direction": "obsidian_to_blog",
@@ -2912,7 +2912,7 @@
       "aliases": [],
       "url": "/tech_designs/agent-infra/observability-dashboard.html",
       "vault_sha256": "86ad86cfd49a71e2fa1fedcc0bd3eb9406430a926833619bd3af70f8554fd7d1",
-      "blog_sha256": "b94e740a812eb2ace38e5bb589df182f6c963ba92ac2c753ef878e60b18c6782",
+      "blog_sha256": "baee7332e08baaac2797003bd462a59fa2f5792e175265353e11b056782d728b",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05",
@@ -2926,7 +2926,7 @@
       "aliases": [],
       "url": "/tech_designs/zk-kafka-jbod-failure-handling.html",
       "vault_sha256": "31cef6dab4232c118447be1b85c18fa8e7a718a6131538c6c4b0b929bd572eef",
-      "blog_sha256": "f429c4d2fb3db75546741fe784cedf02c70be7f4d6547f474d5baab63541f65f",
+      "blog_sha256": "fdb43df24567047618321c46404ade33437cf8bda4c453f4ccdc4036ba87f37a",
       "alias_sha256": {},
       "initial_direction": "blog_to_obsidian",
       "review_authority": "Obsidian review 2026-10-05",
@@ -2941,8 +2941,8 @@
       "initial_direction": "obsidian_to_blog",
       "review_authority": "Obsidian review 2026-10-05",
       "vault_sha256": "aa25590d9cd56d9e72dd960f5e98e086316079a081fc73182d5fe44ef8f53841",
-      "blog_sha256": "f7686aa6345b11341831690c0a7822250112d7fb66e385d440efcca390178cc2",
-      "blog_body_sha256": "3322892c48a66fcf058e6ba66a0d2adbe9bac7e876d4c8fae5b0e5aafe0e33e1",
+      "blog_sha256": "cfe9576d856abec412c9150f5bd610905d8077ab3ee7018969039efac8b8dbd3",
+      "blog_body_sha256": "6267c816a3e0f03101546deca2ab13043d4fc45b71b7b959d239a8500be507c8",
       "alias_sha256": {}
     }
   ],

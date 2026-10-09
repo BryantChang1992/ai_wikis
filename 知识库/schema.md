@@ -1,326 +1,79 @@
 ---
 type: meta
 title: 知识库的结构规则
-tags:
-- meta
-- schema
+tags: [meta, schema]
 created: 2026-06-14
-updated: '2026-10-05'
+updated: '2026-10-09'
 ---
 
 # 知识库的结构规则
 
-> **v2 升级 (2026-07-05)**：基于 [CentiMatrix/karpathy-llm-wiki-v2](https://github.com/CentiMatrix/karpathy-llm-wiki-v2) 引入置信度评分、实体提取 (.entities.json)、迭代覆盖 (Supersession)、遗忘机制 (Forgetting)。详细操作流程见 `ai-wiki-maintain` skill v2。
-
-## 四层架构（v2 升级）
-
-基于 Karpathy LLM Wiki 方法论，知识库分为四层：
-
-```
-知识库/
-├── sources/              ← 第1层: 原始资料 + 可修订分析（权限见下表）
-│   ├── README.md         ← 源文件索引
-│   ├── papers/           ← 论文（每篇一个父目录）
-│   │   ├── Event-Horizon/
-│   │   │   ├── Event-Horizon-CIDR2026.pdf   ← 英文原文
-│   │   │   ├── 精读分析.md                  ← 精读分析
-│   │   │   └── 全文翻译.md                  ← 译文（标明覆盖范围）
-│   │   └── ...
-│   ├── web/              ← 网页存档
-│   └── notes/            ← 原始笔记
-│
-├── wiki/                 ← 第2层: Wiki（LLM 生成的知识，持续更新）
-│   ├── .entities.json         ← v2 新增：结构化实体图谱（实体+关系）
-│   ├── 事务模型深度调研.md
-│   ├── LSM-Tree.md
-│   ├── synthesis/             ← 子目录：领域综述 + Lint 报告
-│   │   ├── LSM-Tree-存储引擎体系综述.md
-│   │   ├── OLAP与TSDB全景综述.md
-│   │   ├── Lint-2026-06-14.md
-│   │   └── ...
-│   └── ...
-│
-├── purpose.md            ← 第3层: Schema（规则与配置）
-├── schema.md             ← 本文件
-├── log.md                ← 操作日志
-└── README.md             ← 知识库总索引
-```
-
-### 各层角色
-
-| 层 | 目录 | 谁读写 | 说明 |
-|----|------|--------|------|
-| 原始资料 | `sources/` 中的原文 PDF、网页存档 | 保留原件 | 不把精读稿的结论反写成原文；错配/拦截页必须标识，正确原件另行核验 |
-| 派生分析 | `sources/**/精读*.md`、译文与技术摘录 | 可修订，保留 Git 历史 | 可纠错与补深度；译述、选译和全文翻译必须区分 |
-| Wiki | `wiki/` | Agent 全权维护 | LLM 生成的结构化知识，survey/concept/analysis/decision/lesson 等页面 |
-| Wiki → Entities | `wiki/.entities.json` | Agent 全权维护 | **v2 新增**：结构化实体图谱，存储概念/项目/机制及其关系 |
-| Wiki → Synthesis | `wiki/synthesis/` | Agent 全权维护 | 领域综述 + Lint 报告，从 wiki 网状结构提炼的元层次知识 |
-| Schema | 根目录 `.md` 文件 | 人类定义，Agent 遵守 | 规则、目的、日志，定义知识库如何运作 |
-
-### 数据流（v2）
-
-```
-sources/papers/论文名/（原文PDF+精读分析+翻译）
-    ↓ Agent 读取精读分析.md 作为输入
-wiki/（LLM 生成知识 + 置信度标注）
-    ↓ Agent 提取实体
-wiki/.entities.json（结构化实体 + 关系图谱）
-    ↓ 遵循
-Schema（purpose.md + schema.md）
-    ↓ 记录
-log.md（操作日志）
-    ↓ 定期检查
-Confidence Decay + Supersession Detection（每周五维护日）
-```
-
-## Wiki 页面分类
-
-| 类型 | 说明 | 示例 |
-|------|------|------|
-| `survey` | 调研报告 — 对技术主题的系统性研究 | 事务模型深度调研 |
-| `decision` | 技术决策 — 选型理由、架构变更记录 | 为什么选择 X 而不是 Y |
-| `analysis` | 架构分析 — 源码阅读、系统设计拆解 | Fluss 存储引擎设计 |
-| `lesson` | 踩坑记录 — 故障复盘、教训总结 | Week 04 调研踩坑 |
-| `concept` | 概念卡片 — 单一技术概念的深度解释 | MVCC、LSM-Tree |
-| `meta` | 元信息 — 知识库自身的说明文件 | purpose、schema、log |
-
-### 标签体系指导
-
-领域标签（建议每张卡至少 1 个），Agent 写入时参考此表，新领域出现后自动加入：
-
-| 领域 tag | 适用卡片举例 |
-|----------|-------------|
-| `存储引擎` | LSM-Tree 系、Doris 存储层、InfluxDB TSM |
-| `流处理` | 流处理系、Dataflow、Fluss |
-| `OLAP` | Doris 系 |
-| `时序数据库` | InfluxDB 系 |
-| `事务` | 事务模型调研、CockroachDB 系、Aurora 系、Rosé 系 |
-| `分布式协调` | CockroachDB Leader Lease、HATS、Fluss 分布式协调 |
-| `消息系统` | Fluss 系 |
-| `Agent-First` | Agent-First 系列 |
-
-> 非强制，指导性。标签粒度建议：领域标签 + 核心技术名 + 关注点。
-
-## Frontmatter 模板（v2 扩展）
-
-```yaml
----
-type: survey | decision | analysis | lesson | concept | meta
-title: "标题"
-sources:
-  - "sources/papers/论文名/论文名-会议年份.pdf"
-  - "sources/papers/论文名/精读分析.md"
-  - "sources/papers/论文名/全文翻译.md"
-tags:
-  - "标签1"
-  - "标签2"
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-status: draft | reviewed | final | deprecated
-confidence: 0.85              # v2 新增：必填，0-1 置信度分值
-confidence_rationale: >-      # v2 新增：可选，评分理由简述
-related:
-  - "[[相关页面1]]"
-  - "[[相关页面2]]"
----
-```
-
-### 字段说明
-- **type**：必填
-- **title**：必填
-- **sources**：强烈建议，指回 sources/ 下的原文 PDF + 精读分析 + 翻译
-- **tags**：必填，至少 1 个标签
-- **status**：`draft` → `reviewed` → `final` → `deprecated`
-- **confidence**：**v2 新增必填**，0-1 置信度分值，见下方评分规则
-- **confidence_rationale**：**v2 新增可选**，评分理由简述
-- **related**：建议，[[wikilink]] 链接到相关知识页面
-
----
-
-## 置信度评分（v2 新增）
-
-### 评分等级
-
-| 分值 | 含义 | 判定标准 |
-|------|------|----------|
-| 0.90+ | 高度可信 | 多源确认（≥3），近期验证（<30天），无矛盾 |
-| 0.75-0.89 | 可信 | 单源但逻辑自洽，或多源但时效差（30-90天） |
-| 0.60-0.74 | 待验证 | 单源，或新信息与旧信息矛盾中 |
-| 0.40-0.59 | 低置信 | 推测/噪音/单一blog来源 |
-| <0.40 | 不可信 | 标记 deprecated 或 archived |
-
-### 证据更新规则（2026-10-05 修订）
-
-- `updated` 表示内容修改时间；`source_checked` 表示实际核对原文的时间，两者不能互相替代。
-- 同一原文的翻译、卡片、博客副本只算一个证据来源，不能按链接数量增加置信度。
-- `confidence` 是维护者的粗粒度判断，不是概率证明。记录依据和未核验部分，不能通过统一加减分制造精确感。
-- 只因日期较旧、未访问或调整图表，不自动降低置信度、改成 deprecated 或升级为 reviewed。
-- 新证据推翻旧断言时，直接修正正文并记录出处；重大替代关系再标记 superseded。
-- 经典算法仍有效但软件版本过时的页面，分别标注适用假设与版本范围，不整页判为过时。
-
-### 内联置信度标注
-
-关键断言段落之后使用标准格式：
-
-```markdown
-> **Confidence: 0.85** | 来源×2 | 3周前确认 | 无矛盾
-```
-
-### 过时与筛选
-
-30 天未复核仅进入待审清单。不得以“遗忘”为由自动删除正文或仅留标题。归档/合并必须给出内容依据、保留历史和可追溯的替代入口。综述不能靠引用卡片 confidence 的均值自动取得新的可信度。
-
----
-
-## Supersession 机制（v2 新增）
-
-旧断言标记 `>[!SUPERSEDED by 页面名#章节]` 并链接新版本。
-
-entities.json 中记录 `{type: "supersededBy", to: "new-entity-id"}`。
-
----
-
-## 知识图谱层（v2 新增 — .entities.json）
-
-### 文件位置：`wiki/.entities.json`
-
-### 实体类型
-
-| 类型 | 适用 |
-|------|------|
-| `Concept` | 技术概念（LSM-Tree、MVCC） |
-| `Project` | 系统/项目（Fluss、Doris） |
-| `Person` | 关键人物 |
-| `Paper` | 论文 |
-| `Mechanism` | 具体机制/算法 |
-| `Taxonomy` | 分类体系 |
-| `Tool` | 工具/框架 |
-
-### 关系类型
-
-`extends` | `contrastsWith` | `implements` | `uses` | `basedOn` | `competitorOf` | `inspiredBy` | `supersededBy`
-
-### 实体格式
-
-```json
-{
-  "entities": [
-    {
-      "id": "kebab-case-id",
-      "type": "Concept",
-      "name": "人类可读名称",
-      "confidence": 0.85,
-      "attributes": {
-        "description": "...",
-        "created": "YYYY-MM-DD"
-      },
-      "relationships": [
-        {"to": "other-id", "type": "extends", "confidence": 0.90, "note": "关系说明"}
-      ]
-    }
-  ],
-  "lastUpdated": "YYYY-MM-DD",
-  "updatedBy": "CTO Agent"
-}
-```
-
----
-
-## [[wikilink]] 规范
-
-### Lint 检查维度
-
-| 问题类型 | 严重度 | 处理 |
-|----------|--------|------|
-| Dangling 引用 | 🔴 阻断 | 删除或补建页面 |
-| 重复引用 | 🟡 警告 | 去重 |
-| 循环自引 | 🔴 阻断 | 删除 |
-| 来源引用缺失 | 🟡 警告 | 删除或补源 |
-| Synthesis 隔离 | 🟡 警告 | 确认意图 |
-| **跨卡片矛盾（v2）** | 🔴 阻断 | 触发 Supersession |
-| **低置信度（v2）** | 🟡 警告 | 标记需审阅 |
-| **长衰减（v2）** | 🟡 警告 | 标记需审阅 |
-| **孤立实体（v2）** | 🟡 警告 | 补关系或标记 [ORPHAN] |
-| **Supersession 悬空（v2）** | 🔴 阻断 | 修复或删除标记 |
-
-### GitPage 转义规则
-
-| Obsidian 引用 | GitPage 应转成 |
-|--------------|---------------|
-| `[[wiki/页面名]]` | 按 `.blog-sync-manifest.json` 转为公开文章 URL |
-| `[[页面名\|别名]]` | 同上，保留显示别名 |
-| `[[页面名#章节]]` | 同上 + `#章节锚点` |
-| `sources/papers/...` | 已发布精读文章或经过核验的原文附件；无公开对应时保留来源说明 |
-
-## Agent 写入规则
-
-### 写前自检清单（v2 强制）
-
-- [ ] frontmatter 含 `type`/`sources`/`tags`/`status`/`created`/`related`/**`confidence`（v2 新增）**
-- [ ] `sources` 指向实际文件
-- [ ] `related` [[wikilink]] 指向实际 .md
-- [ ] **`confidence` 分值合理（新卡起步 0.70）（v2 新增）**
-- [ ] **关键断言内联置信度标注（v2 新增）**
-- [ ] 含深度信息（论文章节号、对比数据、架构图）
-
-### 写入流程（v2 扩展）
-
-1. 读 `purpose` + 本文档
-2. 完整 frontmatter（含 confidence）
-3. 更新 README.md
-4. **更新 `wiki/.entities.json`（v2 新增）**
-5. 追加 log.md
-6. 检查相关页面 + [[wikilink]]
-7. **检查矛盾 → 触发 Supersession（v2 新增）**
-8. git add -A && git commit && git push
-
----
-
-## Ingest 规则
-
-### 执行流程（v2 扩展）
-
-```
-Step 1: 源文件入库 → sources/
-Step 2: 更新 sources/README.md
-Step 3: spawn Worker 生成卡片（含 confidence）
-Step 4: CTO 提取实体 → wiki/.entities.json（v2 新增）
-Step 5: 涟漪更新 — 同领域卡片矛盾检测 + Supersession（v2 新增）
-Step 6: 更新索引 + 日志 + commit
-```
-
----
-
-## Synthesize 规则
-
-### 临界质量：集群 ≥ 5 页 或 含 ≥ 2 个 type
-
-### Synthesize 的置信度：按综合证据及冲突评估，不取卡片分数的机械均值
-
-### 定时：每周五 10:00 CST + Confidence Decay + Supersession Detection
-
----
-
-## Synthesis Refresh（增量更新）
-
-| 信号 | 阈值 | 动作 |
-|------|------|------|
-| 新页面 ≥ 3 且含新 type | 重写 | CTO |
-| 新页面 1-2 张 | 增量追加 | CTO |
-| 状态升级/连接变化 | 局部修订 | CTO |
-| Dangling 引用 | 快速修复 | CTO |
-| updated > 30 天 | 确认无变更 | CTO |
-| **confidence < 0.60（v2）** | **重新评估** | **CTO** |
-
-## 知识网络分层与 Lint 范围
-
-| 分类 | 目录 | Lint 规则 |
-|------|------|-----------|
-| A 类 | `wiki/`、`wiki/synthesis/`、`wiki/.entities.json` | 全量 Lint |
-| B 类 | README, sources/README, log, purpose, schema | 不参与 Lint |
-| C 类 | sources/papers/**, sources/web/** | 原件做格式/来源检查；精读和译文检查证据、覆盖范围、链接与图表 |
-
----
+## 方法来源与适用范围
+
+本库按 [Karpathy 的 LLM Wiki 原文](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) 的持久化知识编译模式维护：原始资料、可演进的 Wiki、维护规则分工，摄取时更新关联页，回答时引用证据并沉淀有价值的结果，定期检查知识缺口与矛盾，维护索引及追加日志。原文是可组合的模式，未规定统一目录名、数值评分或自动遗忘。
+
+2026-10-09 核验：原始 gist 创建于 2026-04-04，修订页显示一个 revision，固定版本 `ac46de1ad27f92b28ac95459c782c07f6b8c964a`。这表示本轮找到并核验的作者版本，不声称穷尽所有公开发言。此前采用的 [CentiMatrix/karpathy-llm-wiki-v2](https://github.com/CentiMatrix/karpathy-llm-wiki-v2) 属社区实现，不能称为 Karpathy 官方 v2。
+
+下文是本仓库针对公开技术研究的执行约定；详细差异与核验边界见 [[知识库/维护记录/2026-10-09-LLM-Wiki方法审计]]。历史日志、旧 Lint 和方案保留为历史证据，不作为当前操作规范。当前优先级：用户本次范围 → 根目录 AGENTS.md → 本文件 → 调研与精读流程 → 历史材料。
+
+## 保持稳定路径的三层映射
+
+| 角色 | 现有位置 | 规则 |
+|---|---|---|
+| 原始资料 | sources 中已核验原文 PDF、实际网页快照、原始笔记 | 原件不可改写；错误下载隔离标识，不当有效证据；更正另存新版本 |
+| 派生知识 | wiki、wiki/synthesis、专题跟踪；sources 内历史精读分析和译述 | 可以基于证据修订，保留 Git 历史和用户编辑；目录位置不改变其派生性质 |
+| 规则与导航 | AGENTS.md、purpose.md、schema.md、README.md、log.md、维护记录 | 约束工作流，明确操作范围和未完成事项 |
+
+`技术文章/博客同步/` 是已发布报告的镜像，不是独立的一手证据。`sources/web/` 目前主要是阅读分析，不得统称完整网页原始存档。不为外观统一批量搬家；旧文件名、Obsidian 链接、GitPage URL 与同步清单继续有效。
+
+## 页面契约
+
+- 类型按用途选择：concept、analysis、survey、synthesis、decision、lesson、meta；不因数量配额机械拆卡。
+- 技术页至少有标题、问题/范围、机制或结论、适用条件、证据和相关页。数值必须附条件，未测量不得填造。
+- 新建/实改知识页使用 `type`、`title`、`sources`、`tags`、`created`、`updated`、`status`、`related`。历史缺字段按实际核验逐项补，不伪造日期。
+- `sources` 可以是已存在的 vault 路径、完整 wikilink、固定版本源码或公开原文 URL。聚合页可引用派生页，但必须能继续追到一手出处；不同副本只算一条证据链。
+- `created` 保留首次入库日期；`updated` 只标内容修改；`source_checked` 只标真正核读日期，并用 `source_check_scope` 说明范围。同步、排版或运行 lint 不代表事实复核。
+- `status: draft` 是允许状态。reviewed/final 需内容审阅依据；deprecated/superseded 需实际被替代的理由和目标。
+- 旧 `confidence` 与 `.entities.json` 保留兼容，但为可选历史辅助信息，不强制新卡 0.70，不按年龄衰减、不以分数自动删除、不把模型评分当概率。不再要求段落内反复写数值置信度。
+- `.entities.json` 是派生导航缓存；正文、来源和真实链接优先。`relatedTo` 仅表示关联，不代表等价或因果；本轮未重新抽取语义关系时不声称已刷新整个图谱。
+
+## Ingest：按来源形成可追溯更新
+
+1. 读 purpose、本文和总索引，按标题、原始 URL、DOI/版本、文件哈希查重；先找现有页。
+2. 核对来源身份与时间/版本，记录已读、仅摘要、链接待获取或错误下载。原文可公开访问不代表可公开转载；无许可只保留引用和阅读笔记。
+3. 保留合法取得的原件；派生分析另写并明确性质。事实回到原文核对，不把旧摘要当原始证据。
+4. 优先修改现有概念、实体或综述；仅真正独立的新问题建卡。逐项检查受影响的相关页及主题综述；无实质变化时记录检查结论，不凑修改数量。
+5. 冲突先比较版本、假设、观测窗口；无法判定时并列保留双方证据，加入 [[知识库/维护记录/待核验与知识缺口]]。不能删除断链来掩盖知识缺口，也不能自动把较新说法判胜。
+6. 更新来源索引、内容索引、有意义的双向引用，运行检查；在同一提交中追加日志。
+
+## Query：让研究结果继续积累
+
+1. 从总索引和相关综述定位，再读具体页与证据；不要把全库反复塞进上下文。
+2. 回答区分已证实、原作者主张、工程推论和未知，注明有效版本及引用定位。
+3. 用户要求入库或当前知识维护范围内，对可复用的比较、纠错或新连接优先回写原页面；只有独立主题才新建。临时聊天、私人信息与没有证据的新猜测不自动公开。
+4. 有价值但证据不足的线索进入缺口表，写清下一步需要什么证据；不创建空壳卡满足链接。
+5. 记录改动与未解决问题。没有可复用增量时明确无需新页。
+
+## Lint：结构检查加语义审阅
+
+在仓库根运行 `python3 scripts/lint_wiki.py`；可运行 `python3 -m unittest discover -s scripts -p 'test_lint_wiki.py'` 验证检查器。机器报告不能证明事实正确。
+
+- 结构：重复 frontmatter key、目标是否存在、歧义链接、sources 路径、索引可达性、重复标题线索。索引和规则也检查真实引用；代码例子不当链接。
+- 语义：新旧断言是否同版本同条件、关键来源是否实际可取得、重要主题是否遗漏、综述是否吸收新知识、是否把转载当独立证据。记录审阅范围，禁止宣称全库事实已验证。
+- 真错误修正正文并保留变更依据；不确定项进入缺口表。历史快照和旧报告保留观察日期，不强行改成当前事实。
+- 维护记录放 `维护记录/`。历史 `wiki/synthesis/Lint-*.md` 保留链接，不把新 Lint 当技术综述。
+
+## Synthesize：按问题更新，而非阈值生成
+
+有值得比较的机制、证据冲突或共同问题时才综合；不按“5 页/2 类型”强制新建。每次新来源都检查现有综述是否受影响，更新联系、取舍、边界和未解问题。综述不是卡片串联或分数均值；有适合图示的机制才画图，不为每页配额造图。遵循下方既有 Mermaid 规则。
+
+## 索引、日志和提交
+
+- README 是内容入口，分类链接附足够描述；大型章节按领域下钻，不需要额外向量系统才能维护。
+- log.md 只追加。新记录统一 `## [YYYY-MM-DD] ingest|query|lint|synthesize|maintenance | 主题`，记来源、影响页、核验和遗留项；历史错误追加更正，不洗掉历史。
+- 所有用户编辑、暂存区、Obsidian 配置要保留；只暂存本次明确文件。日志先写入同一次提交；提交前检查 diff 和远端最新 head，禁止 force push。
+- 桌面 Obsidian 和 GitHub 是否一致必须独立验证，见 [[知识库/维护记录/Obsidian与GitHub同步操作]]。远端提交成功不代表桌面已拉取。
+- 维护文档不自行启用定时任务、后台同步或安装插件。已有研究流程按当次授权运行；专题仅入 vault 的范围不能被博客同步规则扩大。
 
 ## 精读质量门槛（2026-10-05）
 
@@ -345,8 +98,3 @@ Step 6: 更新索引 + 日志 + commit
 - Obsidian 与博客使用相同 Mermaid 源码；Jekyll 对应文章设置 `mermaid: true`。清单与附件引用同步更新。
 - 必须进行语法检查和实际页面渲染检查，桌面/手机无整页横向溢出。构建成功不能代替图表渲染验证。
 
-## 本轮同步约定
-
-本轮由 Obsidian 完成质量修订，再更新对应 GitPage；沿用稳定 URL、来源映射和技术知识公开范围。维护规则、团队运行信息不发布到博客。只有完成原文核验的条目才写 `source_checked`，筛查记录与深读记录分开保存。
-
-*2026-10-05：按用户最新要求补充精读质量门槛，修正资料权限、证据与日期语义，并改为 Mermaid 优先。*

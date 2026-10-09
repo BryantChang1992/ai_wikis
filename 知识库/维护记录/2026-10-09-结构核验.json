@@ -1,0 +1,152 @@
+{
+  "baseline_commit": "31556789a70fecf2c2cd950e02084b38db7ce07d",
+  "date": "2026-10-09",
+  "tests": {
+    "command": "python3 -m unittest discover -s scripts -p 'test_lint_wiki.py'",
+    "passed": 17
+  },
+  "before": {
+    "scope": {
+      "inventory_used": true,
+      "inventory_blob_count": 623,
+      "known_file_count": 623,
+      "markdown_content_checked": 194,
+      "inventory_only_markdown": 128,
+      "limitations": [
+        "No external URL fetches",
+        "Inventory assumes absent local paths are unmaterialized, not deletions",
+        "No heading/block anchor validation",
+        "No PDF identity, licensing or semantic fact verification",
+        "No diagram parsing/rendering",
+        "Conservative top-level scalar/list frontmatter reader; not full YAML"
+      ]
+    },
+    "counts": {
+      "wiki_resolved": 1647,
+      "wiki_placeholder": 15,
+      "wiki_missing": 1,
+      "markdown_external": 412,
+      "markdown_resolved": 37
+    },
+    "issue_counts": {
+      "documentation_placeholder": 15,
+      "wiki_missing": 1,
+      "unsupported_frontmatter": 4,
+      "missing_sources": 1,
+      "duplicate_title_review": 1
+    },
+    "wiki": {
+      "pages": 130,
+      "types": {
+        "analysis": 11,
+        "concept": 99,
+        "survey": 5,
+        "lesson": 1,
+        "synthesis": 11,
+        "meta": 3
+      },
+      "statuses": {
+        "draft": 101,
+        "reviewed": 2,
+        "stable": 17,
+        "final": 10
+      },
+      "frontmatter_field_coverage": {
+        "sources": 127,
+        "confidence": 11,
+        "source_checked": 92,
+        "related": 130,
+        "updated": 129
+      },
+      "readme_entry": "知识库/README.md",
+      "readme_unreachable": [],
+      "zero_wiki_inbound": [
+        "知识库/wiki/AutoMQ-有界投机重试与资源生命周期.md",
+        "知识库/wiki/Fluss-分区桶数路由契约.md",
+        "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+        "知识库/wiki/KV缓存-路由索引缺口与有限重放.md",
+        "知识库/wiki/synthesis/Lint-2026-06-14.md",
+        "知识库/wiki/synthesis/Lint-2026-06-19.md",
+        "知识库/wiki/synthesis/知识库优化方案-2026-06-15.md",
+        "知识库/wiki/数据湖-提交结果不确定性与有界重试.md",
+        "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md",
+        "知识库/wiki/配置演进-新写入校验与历史回放分离.md"
+      ],
+      "duplicate_titles": [
+        [
+          "知识库/wiki/Fluss-整体架构.md",
+          "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+        ]
+      ],
+      "identical_normalized_bodies": []
+    }
+  },
+  "after": {
+    "scope": {
+      "inventory_used": true,
+      "inventory_blob_count": 623,
+      "known_file_count": 633,
+      "markdown_content_checked": 201,
+      "inventory_only_markdown": 126,
+      "limitations": [
+        "No external URL fetches",
+        "Inventory assumes absent local paths are unmaterialized, not deletions",
+        "No heading/block anchor validation",
+        "No PDF identity, licensing or semantic fact verification",
+        "No diagram parsing/rendering",
+        "Conservative top-level scalar/list frontmatter reader; not full YAML"
+      ]
+    },
+    "counts": {
+      "wiki_resolved": 1707,
+      "markdown_external": 421,
+      "wiki_placeholder": 6,
+      "markdown_resolved": 36
+    },
+    "issue_counts": {
+      "documentation_placeholder": 6,
+      "unsupported_frontmatter": 4,
+      "missing_sources": 1,
+      "duplicate_title_review": 1
+    },
+    "wiki": {
+      "pages": 131,
+      "types": {
+        "analysis": 11,
+        "concept": 99,
+        "survey": 5,
+        "lesson": 1,
+        "synthesis": 12,
+        "meta": 3
+      },
+      "statuses": {
+        "draft": 102,
+        "reviewed": 2,
+        "stable": 17,
+        "final": 10
+      },
+      "frontmatter_field_coverage": {
+        "sources": 128,
+        "confidence": 11,
+        "source_checked": 92,
+        "related": 131,
+        "updated": 130
+      },
+      "readme_entry": "知识库/README.md",
+      "readme_unreachable": [],
+      "zero_wiki_inbound": [
+        "知识库/wiki/synthesis/Lint-2026-06-14.md",
+        "知识库/wiki/synthesis/Lint-2026-06-19.md",
+        "知识库/wiki/synthesis/知识库优化方案-2026-06-15.md"
+      ],
+      "duplicate_titles": [
+        [
+          "知识库/wiki/Fluss-整体架构.md",
+          "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+        ]
+      ],
+      "identical_normalized_bodies": []
+    }
+  },
+  "interpretation": "Baseline wiki_missing is an instructional page-name placeholder, not a knowledge-link defect. Existing files not materialized were checked only for path existence from complete tree. Warnings do not imply invalid YAML or unsupported technical conclusions. Raw files and blog-mapped content unchanged."
+}

@@ -10,7 +10,7 @@ updated: '2026-10-09'
 
 # 源文件索引 (Raw Sources)
 
-> `sources/` 是三层架构中的 **Raw Sources 层**。这里的文件是只读的原始资料——Agent 读取但绝不修改。
+> 本目录同时保留原始资料和历史派生阅读材料。已取得的原始 PDF、真实网页快照及原始笔记不可改写；精读分析、译述和来源索引允许基于证据纠错并保留 Git 历史。`web/` 当前主要是阅读分析，不能冒称完整网页存档。详见 [[知识库/schema]]。
 
 ## 子目录
 
@@ -43,8 +43,8 @@ sources/papers/
 ## 入库规则
 
 1. 每篇论文建一个以论文简称命名的父目录
-2. 父目录下放：英文原文 PDF、精读分析.md、全文翻译.md
-3. Agent 读取时优先用精读分析作为 ingest 源材料，PDF 作为溯源
+2. 按实际取得与授权情况放原文、精读分析和明确覆盖范围的译文；不强制 PDF 或全文翻译齐备。
+3. 先用精读分析定位，再回到原文核对关键断言；分析稿不是独立的一手来源。
 4. 源文件 SHA256 去重——相同内容不重复处理
 
 ## 当前源文件列表
@@ -71,7 +71,7 @@ sources/papers/
   - Agent-First-Data-CIDR2026.pdf（原文，849KB）
   - 精读分析.md / 全文翻译.md ✅
   - → wiki: Agent-First-Data-Systems.md, Agentic-Memory-语义缓存.md, Agent-First-Branch-Transactions-分支事务.md
-- [LSM-Scheduling/](papers/LSM-Scheduling/) — FAST 2026，UC Riverside，分布式 LSM Compaction 全局调度
+- [LSM-Scheduling/](papers/LSM-Scheduling/) — FAST 2026，HATS：分布式 LSM 读流量与本地 Compaction 配额协同调度（旧目录名保留兼容）
   - LSM-Scheduling-FAST2026.pdf（原文，3.2MB）
   - 精读分析.md / 全文翻译.md ✅
   - → wiki: Silo-分布式LSM-Compaction调度.md, Silo-Compaction-迁移协议.md
@@ -96,18 +96,13 @@ sources/papers/
   - → wiki: Raft-共识算法协议核心.md, Raft-集群成员变更.md, Raft-日志压缩.md, Raft-客户端交互.md, Paxos-理论到实践的鸿沟.md
   - → synthesis: 共识协议体系综述.md
 - [Distributed-Consensus-Revised/](papers/Distributed-Consensus-Revised/) — Cambridge 2019，Heidi Howard，分布式共识博士论文
-  - UCAM-CL-TR-935.pdf（原文，1.2MB）+ arxiv-1902.06776.pdf
+  - [Cambridge 官方原文](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-935.pdf)；当前仓库只有精读分析，没有本地 PDF。arXiv:1902.06776 是另一篇相关论文，不是该学位论文编号。
   - 精读分析.md ✅
   - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
-- [Distributed-Consensus-Revised/](papers/Distributed-Consensus-Revised/) — Cambridge 2019，Heidi Howard，分布式共识博士论文（Cited 100+）
-  - UCAM-CL-TR-935.pdf（原文，1.2MB）+ arxiv-1902.06776.pdf
-  - 精读分析.md ✅
-  - → wiki: 共识算法族系-从Paxos到广义解.md, Paxos-Quorum-Intersection-Revised.md, Paxos-Value-Selection-Revised.md, Paxos-Epochs-Revised.md
-  - → synthesis: 将整合入共识协议体系综述（待更新）
 - [LSM-tree-KV-Survey-2025/](papers/LSM-tree-KV-Survey-2025/) — ArXiv 2025-07，MBZUAI + OceanBase + 厦门大学，LSM-tree KV Store 综述（2020-2025）
   - LSM-tree-KV-Survey-2025.pdf（原文，1.6MB）
   - 精读分析.md ✅
-  - → wiki: LSM-tree-KV-Survey-综述.md（生成中）
+  - → wiki: LSM-tree-KV-Survey-综述.md（已有页面）
 - [Agent-Memory-Survey/](papers/Agent-Memory-Survey/) — ArXiv 2026-03，Agent Memory 综述
   - 精读分析.md
   - → wiki: Agent-Memory-Survey-2026综述.md
@@ -137,7 +132,7 @@ sources/papers/
 ### web/
 - [Fluss 源码分析](web/fluss/) — Fluss trunk vs Kafka 2.7.2 源码级对比分析（2026-06-10）
   - 01-整体架构对比.md（已入库）
-  - 02~07 待补（原文件: tech_research/fluss/*.html，需从 HTML 转换为 md）
+  - 完整模块分析已有 [[项目文档/Fluss源码分析/README|项目文档入口]]；不因本目录只保留部分摘录而重复转换/入库。
 - [Anthropic — How We Contain Claude](web/anthropic/how-we-contain-claude-精读.md) — Anthropic Engineering Blog 2026
   - 精读分析.md
   - → wiki: Anthropic-Agent安全容器化实践.md
@@ -171,7 +166,7 @@ sources/papers/
 
 ---
 
-*由 CHANG_AI_TEAM Agent 维护，最后更新: 2026-07-11*
+*由 CHANG_AI_TEAM Agent 维护；来源索引于 2026-10-09 按当前文件树复核，非所有原文重新精读。*
 
 ## 2026-06-16 新增
 
@@ -183,12 +178,7 @@ sources/papers/
 | `papers/Raft-Dissertation/` | 博士论文 + 精读分析 | Stanford University 2014 |
 | `papers/Raft-Dissertation/Ongaro-Raft-Dissertation-Stanford2014.pdf` | PDF 原文 | GitHub ongardie/dissertation |
 | `papers/Raft-Dissertation/精读分析.md` | 精读分析 | CTO 自产 |
-| `papers/Distributed-Consensus-Revised/` | 博士论文 + 精读分析 | Cambridge 2019 |
-| `papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` | PDF 原文 | cl.cam.ac.uk |
-| `papers/Distributed-Consensus-Revised/精读分析.md` | 精读分析 | CTO 自产 |
-| `papers/Distributed-Consensus-Revised/` | 博士论文 + 精读分析 | Cambridge 2019 |
-| `papers/Distributed-Consensus-Revised/UCAM-CL-TR-935.pdf` | PDF 原文 | cl.cam.ac.uk |
-| `papers/Distributed-Consensus-Revised/arxiv-1902.06776.pdf` | ArXiv 版本 | arxiv.org |
+| `papers/Distributed-Consensus-Revised/` | 精读分析，原文仅外部链接 | Cambridge 2019，UCAM-CL-TR-935；未保存本地 PDF |
 | `papers/Distributed-Consensus-Revised/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-07-02 新增
@@ -204,7 +194,7 @@ sources/papers/
 | 文件 | 类型 | 来源 |
 |------|------|------|
 | `papers/SP-Survey/` | Survey 论文 + 精读分析 | arXiv:2008.00842 |
-| `papers/SP-Survey/SP-Survey.pdf` | PDF 原文 | arXiv |
+| `papers/SP-Survey/SP-Survey-arXiv2020.pdf` | PDF 原文 | arXiv |
 | `papers/SP-Survey/精读分析.md` | 精读分析 | CTO 自产 |
 
 ## 2026-10-09 已发布报告来源入口
@@ -212,3 +202,8 @@ sources/papers/
 - [[技术文章/博客同步/tech-research-week-12-13|Week 12–13 合刊]]：已有完整正文及原始论文/PR链接；本轮校验正文与清单一致，不声称再次独立精读所有引用论文。
 - [[技术文章/博客同步/stream-storage-observer-2026-10-09|流存储技术观察 2026-10-09]]：公开报告完整 Markdown，原始 Issue/PR/邮件/FIP/KIP 链接随正文保存。
 - [[知识库/调研与精读流程|后续原文、详细笔记、精简卡片与双端更新流程]]。本轮未新下载论文或自动翻译。
+
+## 维护与缺口
+
+- [[知识库/维护记录/待核验与知识缺口]]：原文未取得、来源身份纠正和待研究概念。
+- [[知识库/维护记录/原始资料基线.json]]：本轮记录的原件 Git blob 标识；文件存在不等于内容有效，基线不替代原文或版权核验。

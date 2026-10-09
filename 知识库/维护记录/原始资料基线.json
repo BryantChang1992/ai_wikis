@@ -1,0 +1,115 @@
+{
+  "baseline_commit": "31556789a70fecf2c2cd950e02084b38db7ce07d",
+  "checked_date": "2026-10-09",
+  "scope": "Only the 18 tracked PDF objects under 知识库/sources/papers/. Other repository PDFs, including 项目文档/LSM-based-Storage-Techniques-Survey/paper.pdf, are outside this inventory. Git blob identity is not a SHA256, semantic verification, license grant, or claim that a .pdf is valid. Derived notes are excluded. Known invalid LSM-Raft status comes from existing 2026-10-05 review.",
+  "files": [
+    {
+      "path": "知识库/sources/papers/Agent-First-Data/Agent-First-Data-CIDR2026.pdf",
+      "git_blob_sha1": "f12f2b402096cf4730aa51bc7ee7475bd8326082",
+      "bytes": 868406,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Agent-Harness-Engineering-Survey/Agent-Harness-Engineering-Survey-OpenReview2026.pdf",
+      "git_blob_sha1": "7121e6115158f349d8c60a2f5806bf6c61d942d2",
+      "bytes": 3414331,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Agent-Memory-Survey/arxiv-2603.07670.pdf",
+      "git_blob_sha1": "7fdfdd9f60f53080b95a0cace66a34f6867bd774",
+      "bytes": 313563,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Aurora-Limitless/Aurora-Limitless-SIGMOD2026.pdf",
+      "git_blob_sha1": "a1f432189cee4f2e28760bd67ed12932bce171c1",
+      "bytes": 1724568,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Bigtable/Bigtable-OSDI-2006.pdf",
+      "git_blob_sha1": "0a7cfd7764a8c75dd9708bc9e7547f1971892aab",
+      "bytes": 221214,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/ByteHouse/ByteHouse-SIGMOD2026.pdf",
+      "git_blob_sha1": "3a6d57f36faeb9bf521ae4d0fbd6d798c7756bf6",
+      "bytes": 2857495,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Chandy-Lamport-Snapshot/Chandy-Lamport-Snapshot-TOCS1985.pdf",
+      "git_blob_sha1": "1498b8c32b118846b356fbd03e00a60bc334827c",
+      "bytes": 992098,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/CockroachDB-Leader-Leases/Scalable-Leader-Leases-SIGMOD2026.pdf",
+      "git_blob_sha1": "19dd30a6793dd08b6673051691884cd9f9127808",
+      "bytes": 1166721,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Event-Horizon/Event-Horizon-CIDR2026.pdf",
+      "git_blob_sha1": "f0a6a35396cb1b9c9e65b50cd2485d21fa3a1aa5",
+      "bytes": 1627506,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/LSM-Raft/LSM-Raft-SIGMOD2026.pdf",
+      "git_blob_sha1": "bd108d845c45548a19a6e86b511e9ad380cef9d9",
+      "bytes": 5619,
+      "availability": "known_invalid_download"
+    },
+    {
+      "path": "知识库/sources/papers/LSM-Scheduling/LSM-Scheduling-FAST2026.pdf",
+      "git_blob_sha1": "68210c1e91b5ba01e7328403d04b946244b0316a",
+      "bytes": 3308870,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/LSM-Survey/LSM-Survey-VLDBJ2019.pdf",
+      "git_blob_sha1": "1583cd205efec4d6b7f9fdd942418bbcd08c7d91",
+      "bytes": 879338,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/LSM-tree-KV-Survey-2025/LSM-tree-KV-Survey-2025.pdf",
+      "git_blob_sha1": "7d4570c8b4df1b961a3ddf8d403dfa3b58c2afcb",
+      "bytes": 1651353,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Parallax/arxiv-2604.12986.pdf",
+      "git_blob_sha1": "a596c30d568b28a10850293819a0644eda79f1d1",
+      "bytes": 649676,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/RaaS/RaaS-SIGMOD2026.pdf",
+      "git_blob_sha1": "1e85f17a8c23dfaf2aefab7f8806cfa3c105cabe",
+      "bytes": 3177459,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Raft-Dissertation/Ongaro-Raft-Dissertation-Stanford2014.pdf",
+      "git_blob_sha1": "d27d91e77bb35398df783d61ee53292a2763c56f",
+      "bytes": 5286592,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/Rose/Rose-CIDR2026.pdf",
+      "git_blob_sha1": "f17cb0da3d016a7d86072923f04b84c8c8e63ea1",
+      "bytes": 548233,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    },
+    {
+      "path": "知识库/sources/papers/SP-Survey/SP-Survey-arXiv2020.pdf",
+      "git_blob_sha1": "38b75a7793aa74a99174b76af00eac22188e7e25",
+      "bytes": 1428047,
+      "availability": "tracked_file_not_reverified_in_this_audit"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-10-05",
+  "date": "2026-10-09",
   "blog_base_commit": "f83970fa7e6ad32d626cc6ca3ba7428c90a638a5",
   "wiki_base_commit": "8a1563c138c830283b27e956e5b7b81999444ff8",
   "scope": "technical knowledge only; excludes team rules, agent files, maintenance reports and production prompts",
@@ -2943,6 +2943,17 @@
       "vault_sha256": "aa25590d9cd56d9e72dd960f5e98e086316079a081fc73182d5fe44ef8f53841",
       "blog_sha256": "cfe9576d856abec412c9150f5bd610905d8077ab3ee7018969039efac8b8dbd3",
       "blog_body_sha256": "6267c816a3e0f03101546deca2ab13043d4fc45b71b7b959d239a8500be507c8",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "stream-storage-observer/2026-10-09.md",
+      "vault_path": "技术文章/博客同步/stream-storage-observer-2026-10-09.md",
+      "aliases": [],
+      "url": "/stream-storage-observer/2026-10-09/",
+      "blog_body_sha256": "3c1a6b187fa0c159fe9277456458d3f7857a15da1dce55f2703322673f2ef000",
+      "vault_sha256": "456cf3b3b7372caa2a7df60452ef5b135584b07518c510b85c01c95203e8cb5b",
+      "blog_sha256": "8544579ddf6a4ded334a89e67cc7b4682fe8468fd5d3632229f77b71d7e6caeb",
       "alias_sha256": {}
     }
   ],

@@ -5,7 +5,7 @@ tags:
 - meta
 - sources
 created: 2026-06-14
-updated: '2026-10-05'
+updated: '2026-10-09'
 ---
 
 # 源文件索引 (Raw Sources)
@@ -206,3 +206,9 @@ sources/papers/
 | `papers/SP-Survey/` | Survey 论文 + 精读分析 | arXiv:2008.00842 |
 | `papers/SP-Survey/SP-Survey.pdf` | PDF 原文 | arXiv |
 | `papers/SP-Survey/精读分析.md` | 精读分析 | CTO 自产 |
+
+## 2026-10-09 已发布报告来源入口
+
+- [[技术文章/博客同步/tech-research-week-12-13|Week 12–13 合刊]]：已有完整正文及原始论文/PR链接；本轮校验正文与清单一致，不声称再次独立精读所有引用论文。
+- [[技术文章/博客同步/stream-storage-observer-2026-10-09|流存储技术观察 2026-10-09]]：公开报告完整 Markdown，原始 Issue/PR/邮件/FIP/KIP 链接随正文保存。
+- [[知识库/调研与精读流程|后续原文、详细笔记、精简卡片与双端更新流程]]。本轮未新下载论文或自动翻译。

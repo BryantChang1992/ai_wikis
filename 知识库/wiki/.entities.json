@@ -5074,9 +5074,184 @@
           "note": "Resolved note link; does not assert semantic equivalence."
         }
       ]
+    },
+    {
+      "id": "数据湖-提交结果不确定性与有界重试",
+      "type": "Concept",
+      "name": "数据湖提交：结果不确定性与有界重试",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "响应丢失后，客户端看到失败，但服务端可能已经提交；无条件再发可能制造第二次操作。",
+        "created": "2026-10-09",
+        "file": "数据湖-提交结果不确定性与有界重试.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-04"
+      },
+      "relationships": [
+        {
+          "to": "事务模型深度调研",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "日志回收-最慢进度与完整恢复前缀",
+      "type": "Concept",
+      "name": "日志回收：最慢进度与完整恢复前缀",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "数据写入远端后，索引、生产者状态或快照可能尚未覆盖相同范围；提前回收 WAL 会留下不可恢复的缺口。",
+        "created": "2026-10-09",
+        "file": "日志回收-最慢进度与完整恢复前缀.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "log-as-the-database-模式",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        },
+        {
+          "to": "流处理容错模型",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "kv缓存-路由索引缺口与有限重放",
+      "type": "Concept",
+      "name": "KV 缓存：路由索引缺口与有限重放",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "缓存删除事件丢失后，路由器可能持续相信已淘汰的缓存仍可命中；预测归属也可能被误当成实际复用。",
+        "created": "2026-10-09",
+        "file": "KV缓存-路由索引缺口与有限重放.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-04"
+      },
+      "relationships": [
+        {
+          "to": "agent-harness-context-memory上下文管理",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "kafka-后台分配与代际隔离",
+      "type": "Concept",
+      "name": "Kafka 后台分配：日志回滚后的代际隔离",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "把 assignor 计算移出 heartbeat 前台后，日志写入失败可能回滚 group epoch，而旧后台结果仍会迟到；数值相同的 epoch 可能属于不同运行。",
+        "created": "2026-10-09",
+        "file": "Kafka-后台分配与代际隔离.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "流处理弹性与重配置",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "fluss-分区桶数路由契约",
+      "type": "Concept",
+      "name": "Fluss 分区桶数：路由与旧批次的契约",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "修改表级 bucket.num 后，历史分区与新分区桶数不同。拿表的最新值统一路由，会把 key 发到错误位置。",
+        "created": "2026-10-09",
+        "file": "Fluss-分区桶数路由契约.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "fluss-客户端与计算集成",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        },
+        {
+          "to": "fluss-客户端写入流程源码分析",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "fluss-灾难恢复的三种保证",
+      "type": "Concept",
+      "name": "Fluss 灾难恢复：KV 一致性、确认写入与日志连续性",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "全部本地副本磁盘同时丢失时，远端 KV 快照和 WAL 不一定覆盖全部已确认写入，也可能无法提供连续 changelog。",
+        "created": "2026-10-09",
+        "file": "Fluss-灾难恢复的三种保证.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "流处理容错模型",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        },
+        {
+          "to": "fluss-分布式协调",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "automq-有界投机重试与资源生命周期",
+      "type": "Concept",
+      "name": "AutoMQ：有界投机重试与资源生命周期",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "对象存储长尾请求需要额外尝试，但先抢占重试名额会让真正长尾失去机会；获胜 future 完成也不代表原请求资源已经结束。",
+        "created": "2026-10-09",
+        "file": "AutoMQ-有界投机重试与资源生命周期.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "存储计算分离数据库的-tail-latency",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
+    },
+    {
+      "id": "配置演进-新写入校验与历史回放分离",
+      "type": "Concept",
+      "name": "配置演进：新写入校验与历史回放分离",
+      "confidence": 0.7,
+      "attributes": {
+        "description": "给配置验证器统一加严格模式，可能让旧状态回放失败；统一宽容又会让新的非法配置持续写入。",
+        "created": "2026-10-09",
+        "file": "配置演进-新写入校验与历史回放分离.md",
+        "source_status": "report-derived; upstream not re-audited",
+        "report_as_of": "2026-10-09"
+      },
+      "relationships": [
+        {
+          "to": "kafka-后台分配与代际隔离",
+          "type": "relatedTo",
+          "note": "Related mechanism; not an assertion of identical guarantees."
+        }
+      ]
     }
   ],
-  "lastUpdated": "2026-10-05",
+  "lastUpdated": "2026-10-09",
   "updatedBy": "Obsidian/blog reconciliation",
   "quality_reviewed": "2026-10-05"
 }

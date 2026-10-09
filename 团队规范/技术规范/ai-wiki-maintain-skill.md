@@ -26,9 +26,12 @@ description: 公开技术知识库的摄取、查询沉淀、综述更新、结�
 仓库根运行：
 
 ```sh
-python3 -m unittest discover -s scripts -p 'test_lint_wiki.py'
-python3 scripts/lint_wiki.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/maintain_wiki.py --root .
+python3 scripts/maintain_wiki.py --root . --check
 ```
+
+公开产物真实复用既有页时先按 [[知识库/动态管理规则]] 记录 use；审阅通过的 lifecycle 变化用 decision，撤销用 restore。上面的维护入口会实际重建重要性排序与候选，追加变化记录，保留正文和原始资料。它不依赖后台调度。
 
 另外人工/LLM 审阅证据、矛盾、版本和知识缺口。结构通过不能表示语义全部正确。新报告写入 `知识库/维护记录/`，保留历史报告。只在实际核读后更新 source_checked；不统一更新旧页日期或 confidence。
 

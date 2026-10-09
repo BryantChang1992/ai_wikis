@@ -1,0 +1,38 @@
+{
+  "automatic_actions": [
+    "rebuild_generated_views"
+  ],
+  "candidates": [],
+  "input_sha256": "626f04c3d69e984dcb45764e5273281e6de6e58c23964fc11603a0dd1f1821ee",
+  "resolved_duplicates": [
+    {
+      "automatic_action": null,
+      "body_sha256": "2363ad66a4c2fa2362e40b4ec0d12f0a9d0548c52a6668e2e3f71603b5507275",
+      "decision_events": [
+        "decision-fec51a723ef3b53f2a3855f4eef29c2539330a98d0e7c892dae246ce0975ee7d"
+      ],
+      "kind": "duplicate_body",
+      "notes": [
+        "知识库/wiki/Doris-深度调研.md",
+        "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md"
+      ],
+      "reason": "Explicit lifecycle decisions select one main entry; physical bodies and paths intentionally preserved.",
+      "resolution": "canonicalized_main_view"
+    },
+    {
+      "automatic_action": null,
+      "body_sha256": "62be49d2bae5058d2b28ddac77d78180f6e4e0e561e4cba43a6128fcb3dcabf4",
+      "decision_events": [
+        "decision-0f99fc7e1dc41ff86e10de17a7ab6399e13ce0d4383f23856ee46ff1f277236d"
+      ],
+      "kind": "duplicate_body",
+      "notes": [
+        "知识库/wiki/InfluxDB深度调研.md",
+        "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md"
+      ],
+      "reason": "Explicit lifecycle decisions select one main entry; physical bodies and paths intentionally preserved.",
+      "resolution": "canonicalized_main_view"
+    }
+  ],
+  "schema_version": 1
+}

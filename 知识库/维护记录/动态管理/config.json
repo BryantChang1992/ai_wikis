@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "note_roots": [
+    "知识库/wiki"
+  ],
+  "public_evidence_roots": [
+    "知识库/wiki",
+    "知识库/专题跟踪",
+    "知识库/维护记录",
+    "技术文章"
+  ],
+  "research_tags": [
+    "分布式系统",
+    "存储引擎",
+    "分布式存储",
+    "事务",
+    "一致性",
+    "共识算法",
+    "流处理",
+    "消息系统",
+    "OLAP",
+    "数据湖",
+    "Agent基础设施",
+    "agent-infra",
+    "AI-Infra",
+    "Kafka",
+    "Fluss",
+    "AutoMQ",
+    "AI Infra"
+  ],
+  "domain_groups": [
+    {
+      "id": "agent",
+      "tags": [
+        "Agent基础设施",
+        "agent-infra",
+        "AI-Infra",
+        "Agent-Harness",
+        "agent-harness",
+        "LLM-Agent",
+        "Agent-First",
+        "AI Infra",
+        "KV Cache"
+      ]
+    },
+    {
+      "id": "streaming",
+      "tags": [
+        "流处理",
+        "消息系统",
+        "Fluss",
+        "Flink",
+        "Kafka",
+        "AutoMQ",
+        "Dataflow"
+      ]
+    },
+    {
+      "id": "database_analytics",
+      "tags": [
+        "OLAP",
+        "Doris",
+        "InfluxDB",
+        "时序数据库",
+        "数据湖",
+        "Parquet",
+        "Lakehouse"
+      ]
+    },
+    {
+      "id": "transactions_consensus",
+      "tags": [
+        "事务",
+        "一致性",
+        "共识算法",
+        "Raft",
+        "Paxos",
+        "MVCC",
+        "CockroachDB"
+      ]
+    },
+    {
+      "id": "storage",
+      "tags": [
+        "存储引擎",
+        "分布式存储",
+        "LSM-Tree",
+        "LSM-tree",
+        "Compaction",
+        "compaction",
+        "存算分离",
+        "存储计算分离",
+        "KV-store",
+        "RocksDB"
+      ]
+    }
+  ],
+  "canonical_aliases": {},
+  "review_findings": []
+}

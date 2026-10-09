@@ -1,0 +1,4973 @@
+{
+  "alternate": [
+    {
+      "canonical": "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/ByteHouse-架构与设计.md",
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+            "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/Doris-元数据与一致性复制.md",
+            "知识库/wiki/Doris-数据模型.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": "decision-fec51a723ef3b53f2a3855f4eef29c2539330a98d0e7c892dae246ce0975ee7d",
+        "pending_review": false,
+        "replacement": "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+        "state": "reference"
+      },
+      "path": "知识库/wiki/Doris-深度调研.md",
+      "title": "Apache Doris 深度调研导航"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-KV存储-RocksDB.md",
+            "知识库/wiki/Fluss-Kafka兼容层.md",
+            "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/Fluss-RPC与网络.md",
+            "知识库/wiki/Fluss-分布式协调.md",
+            "知识库/wiki/Fluss-存储引擎.md",
+            "知识库/wiki/Fluss-客户端与计算集成.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "Kafka"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": "decision-12fa271ce6c7066d5ce41bb6345b4626c00b5cc6ddcabb4486244118fb107dd6",
+        "pending_review": false,
+        "replacement": "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+        "state": "reference"
+      },
+      "path": "知识库/wiki/Fluss-整体架构.md",
+      "title": "Fluss 整体架构与 Kafka 2.7.2 对照"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-Catalog元数据.md",
+            "知识库/wiki/InfluxDB-TSM存储引擎.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/InfluxDB-多副本与高可用.md",
+            "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+            "知识库/wiki/InfluxDB-数据模型.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": "decision-0f99fc7e1dc41ff86e10de17a7ab6399e13ce0d4383f23856ee46ff1f277236d",
+        "pending_review": false,
+        "replacement": "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+        "state": "reference"
+      },
+      "path": "知识库/wiki/InfluxDB深度调研.md",
+      "title": "InfluxDB 深度调研导航"
+    }
+  ],
+  "input_sha256": "626f04c3d69e984dcb45764e5273281e6de6e58c23964fc11603a0dd1f1821ee",
+  "main": [
+    {
+      "canonical": "知识库/wiki/AutoMQ-有界投机重试与资源生命周期.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AutoMQ",
+          "消息系统"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-2f92d3618a587353718aad039f1a3cf382b47ea6b00952b9631fd06da9a85724"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/AutoMQ-有界投机重试与资源生命周期.md",
+      "rank": 1,
+      "title": "AutoMQ：有界投机重试与资源生命周期"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-分区桶数路由契约.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "流处理"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-78b1b9508dbdeda8df31d49ce7ef38566735191cbca67148acf2708991ad62c3"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-分区桶数路由契约.md",
+      "rank": 2,
+      "title": "Fluss 分区桶数：路由与旧批次的契约"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "流处理"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-3336a85eecda878888b6e5db1c4ad14c24f90b83684131aa008a4cb4123cff51"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+      "rank": 3,
+      "title": "Fluss 灾难恢复：KV 一致性、确认写入与日志连续性"
+    },
+    {
+      "canonical": "知识库/wiki/KV缓存-路由索引缺口与有限重放.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AI Infra"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-946b6ed382265d424b4aa9b1a4ee344493a0724c2b9b2e89b4422096a2f2102a"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/KV缓存-路由索引缺口与有限重放.md",
+      "rank": 4,
+      "title": "KV 缓存：路由索引缺口与有限重放"
+    },
+    {
+      "canonical": "知识库/wiki/Kafka-后台分配与代际隔离.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+            "知识库/wiki/配置演进-新写入校验与历史回放分离.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Kafka",
+          "消息系统"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-c511d38ebff3e2ab80488c15f7de7b95dd00b4846b35dbf2058ddf7a84a5fb7c"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Kafka-后台分配与代际隔离.md",
+      "rank": 5,
+      "title": "Kafka 后台分配：日志回滚后的代际隔离"
+    },
+    {
+      "canonical": "知识库/wiki/数据湖-提交结果不确定性与有界重试.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "事务",
+          "数据湖"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-36887bfd634cb86c4daf99a2d637c5e92d40b74adbb88d5e7f5e99de4651db1d"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/数据湖-提交结果不确定性与有界重试.md",
+      "rank": 6,
+      "title": "数据湖提交：结果不确定性与有界重试"
+    },
+    {
+      "canonical": "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式存储",
+          "消息系统"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-705c7f58c2dcd3da526f6fa4cd2860c01164abdc0815b4e9024839811011194f"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md",
+      "rank": 7,
+      "title": "日志回收：最慢进度与完整恢复前缀"
+    },
+    {
+      "canonical": "知识库/wiki/配置演进-新写入校验与历史回放分离.md",
+      "credibility": {
+        "confidence": "0.7",
+        "confidence_rationale": "从已发布调研报告提炼；本轮未重新审读全部上游原文或独立复现实验，报告与卡片不算独立证据。",
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/异步存储任务的安全边界.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AutoMQ"
+        ],
+        "observed_uses": 1,
+        "research_match": true,
+        "use_events": [
+          "use-29210186fe900df246b6479940a8df151899b952df4ebbc7e7ed190c99b413b2"
+        ]
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/配置演进-新写入校验与历史回放分离.md",
+      "rank": 8,
+      "title": "配置演进：新写入校验与历史回放分离"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 5,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md"
+          ],
+          "database_analytics": [
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/InfluxDB-TSM存储引擎.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+            "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+            "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+            "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+            "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+            "知识库/wiki/LSM-Tree-RUM猜想.md",
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-写放大.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+            "知识库/wiki/Pacman-持久内存Compaction.md",
+            "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+            "知识库/wiki/REMIX-全局排序索引.md",
+            "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+            "知识库/wiki/gLSM-GPU加速Compaction.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Fluss-KV存储-RocksDB.md",
+            "知识库/wiki/Fluss-存储引擎.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理状态管理.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/ByteHouse-统一表引擎.md",
+            "知识库/wiki/事务模型深度调研.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree.md",
+      "rank": 9,
+      "title": "LSM-Tree (Log-Structured Merge-Tree)"
+    },
+    {
+      "canonical": "知识库/wiki/事务模型深度调研.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 4,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-First-Branch-Transactions-分支事务.md"
+          ],
+          "database_analytics": [
+            "知识库/wiki/ByteHouse-架构与设计.md",
+            "知识库/wiki/Doris-元数据与一致性复制.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/InfluxDB-多副本与高可用.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md",
+            "知识库/wiki/数据湖-提交结果不确定性与有界重试.md"
+          ],
+          "storage": [
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/Log-as-the-Database-模式.md",
+            "知识库/wiki/RaaS-Replay-as-a-Service.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/存储计算分离数据库的-Tail-Latency.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Fortification.md",
+            "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+            "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+            "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+            "知识库/wiki/Event-Horizon-非对称依赖.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "事务",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/事务模型深度调研.md",
+      "rank": 10,
+      "title": "事务模型深度调研：从 ACID 到全球分布式事务"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-Compaction-策略.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/Doris-数据模型.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/ByteHouse-统一表引擎.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP",
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-Compaction-策略.md",
+      "rank": 11,
+      "title": "Doris Compaction：选哪些文件与怎样合并"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-写放大.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF§2.3、§3.1，页6–10；明确模型与实测统计口径。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-TSM存储引擎.md"
+          ],
+          "storage": [
+            "知识库/wiki/LSM-Tree-RUM猜想.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/流处理状态管理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-写放大.md",
+      "rank": 12,
+      "title": "LSM-Tree 写放大 (Write Amplification)"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-合并优化.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Compaction-策略.md"
+          ],
+          "storage": [
+            "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+            "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+            "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+            "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+            "知识库/wiki/LSM-Tree-RUM猜想.md",
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-写放大.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+            "知识库/wiki/Pacman-持久内存Compaction.md",
+            "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+            "知识库/wiki/REMIX-全局排序索引.md",
+            "知识库/wiki/Silo-Compaction-迁移协议.md",
+            "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+            "知识库/wiki/gLSM-GPU加速Compaction.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/Raft-日志压缩.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-合并优化.md",
+      "rank": 13,
+      "title": "LSM-Tree 合并优化 (Merge Optimization)"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+      "rank": 14,
+      "title": "LSM-Tree 存储引擎体系：成本模型到部署决策"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/KV缓存-路由索引缺口与有限重放.md"
+          ],
+          "database_analytics": [
+            "知识库/wiki/数据湖-提交结果不确定性与有界重试.md"
+          ],
+          "streaming": [
+            "知识库/wiki/AutoMQ-有界投机重试与资源生命周期.md",
+            "知识库/wiki/Fluss-分区桶数路由契约.md",
+            "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+            "知识库/wiki/Kafka-后台分配与代际隔离.md",
+            "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md",
+            "知识库/wiki/配置演进-新写入校验与历史回放分离.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式存储",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+      "rank": 15,
+      "title": "异步存储任务的安全边界：代际、重试与恢复进度"
+    },
+    {
+      "canonical": "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "分布式系统",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+      "rank": 16,
+      "title": "Chandy–Lamport 分布式快照算法"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-Segment-v2-存储格式.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-数据模型.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP",
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-Segment-v2-存储格式.md",
+      "rank": 17,
+      "title": "Doris Segment v2：文件布局与表级语义"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-元数据与一致性复制.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP",
+          "一致性",
+          "事务"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-元数据与一致性复制.md",
+      "rank": 18,
+      "title": "Doris 元数据、复制与导入可见性"
+    },
+    {
+      "canonical": "知识库/wiki/Event-Horizon-非对称依赖.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-元数据与一致性复制.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+            "知识库/wiki/事务模型深度调研.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Event-Horizon-非对称依赖.md",
+      "rank": 19,
+      "title": "Event Horizon：非对称依赖与半线性化"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-KV存储-RocksDB.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Fluss-Arrow列式记录格式.md",
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-Tiering分层架构.md",
+            "知识库/wiki/Fluss-存储引擎.md",
+            "知识库/wiki/Fluss-客户端与计算集成.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-KV存储-RocksDB.md",
+      "rank": 20,
+      "title": "Fluss KV 存储（RocksDB）"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-存储引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Fluss-Arrow列式记录格式.md",
+            "知识库/wiki/Fluss-KV存储-RocksDB.md",
+            "知识库/wiki/Fluss-Tiering分层架构.md",
+            "知识库/wiki/Fluss-客户端与计算集成.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-存储引擎.md",
+      "rank": 21,
+      "title": "Fluss 存储引擎模块分析"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-RUM猜想.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF§2.3、§3与表3，页6–8、20；未独立核验RUM原作，不称严格三选二定理。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-数据模型.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+            "知识库/wiki/LSM-Tree-写放大.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-RUM猜想.md",
+      "rank": 22,
+      "title": "LSM-Tree 与 RUM 猜想"
+    },
+    {
+      "canonical": "知识库/wiki/Raft-共识算法协议核心.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-元数据与一致性复制.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+            "知识库/wiki/Paxos-Epochs-Revised.md",
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/Paxos-Value-Selection-Revised.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-客户端交互.md",
+            "知识库/wiki/Raft-日志压缩.md",
+            "知识库/wiki/Raft-集群成员变更.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Raft-共识算法协议核心.md",
+      "rank": 23,
+      "title": "Raft 共识算法协议核心"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/ByteHouse-架构与设计.md",
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+            "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/Doris-元数据与一致性复制.md",
+            "知识库/wiki/Doris-数据模型.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+      "rank": 24,
+      "title": "Apache Doris 体系：模型、文件、执行与可见性"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-KV存储-RocksDB.md",
+            "知识库/wiki/Fluss-Kafka兼容层.md",
+            "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/Fluss-RPC与网络.md",
+            "知识库/wiki/Fluss-分布式协调.md",
+            "知识库/wiki/Fluss-存储引擎.md",
+            "知识库/wiki/Fluss-客户端与计算集成.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+      "rank": 25,
+      "title": "Fluss 整体架构与 Kafka 2.7.2 对照"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-Catalog元数据.md",
+            "知识库/wiki/InfluxDB-TSM存储引擎.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/InfluxDB-多副本与高可用.md",
+            "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+            "知识库/wiki/InfluxDB-数据模型.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+      "rank": 26,
+      "title": "InfluxDB 体系：产品、引擎与数据生命周期"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/Raft-客户端交互.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "事务",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+      "rank": 27,
+      "title": "分布式数据系统：一致性需要分层说明"
+    },
+    {
+      "canonical": "知识库/wiki/流处理容错模型.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md"
+          ],
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+            "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+            "知识库/wiki/Dataflow-Model.md",
+            "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md",
+            "知识库/wiki/流处理弹性与重配置.md",
+            "知识库/wiki/流处理状态管理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "事务",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/流处理容错模型.md",
+      "rank": 28,
+      "title": "流处理容错模型"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+            "知识库/wiki/Agent-Harness-Observability可观测性.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+      "rank": 29,
+      "title": "Agent Cost Control — Gateway 成本控制"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+      "rank": 30,
+      "title": "Agent Fault Tolerance — 容错设计"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+            "知识库/wiki/KV缓存-路由索引缺口与有限重放.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+      "rank": 31,
+      "title": "Agent Harness: Context Management & Memory (C)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+            "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+            "知识库/wiki/Agent-Harness-Governance治理.md",
+            "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+            "知识库/wiki/Agent-Harness-Observability可观测性.md",
+            "知识库/wiki/Agent-Harness-Tool-Interface工具接口.md",
+            "知识库/wiki/Agent-Harness-Verification-Evaluation评估.md",
+            "知识库/wiki/Agent-框架-2026-全景对比.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+            "知识库/wiki/Qwen-3.6-模型发布.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AI-Infra",
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+      "rank": 32,
+      "title": "Agent Harness Engineering 综述"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Governance治理.md",
+            "知识库/wiki/Agent-Harness-Tool-Interface工具接口.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+            "知识库/wiki/Qwen-3.6-模型发布.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AI-Infra",
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+      "rank": 33,
+      "title": "Agent Harness: Execution Environment & Sandbox (E)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Governance治理.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+            "知识库/wiki/Parallax-Agent安全架构.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Governance治理.md",
+      "rank": 34,
+      "title": "Agent Harness: Governance（G）"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+      "rank": 35,
+      "title": "Agent Harness: Lifecycle & Orchestration (L)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Observability可观测性.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Verification-Evaluation评估.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Observability可观测性.md",
+      "rank": 36,
+      "title": "Agent Harness: Observability & Operations (O)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Tool-Interface工具接口.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Governance治理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Tool-Interface工具接口.md",
+      "rank": 37,
+      "title": "Agent Harness: Tool Interface & Protocol (T)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Harness-Verification-Evaluation评估.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Agent基础设施"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Harness-Verification-Evaluation评估.md",
+      "rank": 38,
+      "title": "Agent Harness: Verification & Evaluation (V)"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-First-Data-Systems.md",
+            "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agentic-Memory-语义缓存.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+      "rank": 39,
+      "title": "Agent Memory Survey 2026 — 机制、评估与边界"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+            "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Parallax-Agent安全架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+      "rank": 40,
+      "title": "Agent Sandbox — 安全沙箱选型"
+    },
+    {
+      "canonical": "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Execution-Environment执行环境.md",
+            "知识库/wiki/Agent-Harness-Governance治理.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Parallax-Agent安全架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+      "rank": 41,
+      "title": "Anthropic Agent 安全容器化实践"
+    },
+    {
+      "canonical": "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+      "rank": 42,
+      "title": "Apache Flink 2.3.0：功能与采用边界"
+    },
+    {
+      "canonical": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–7，第1–10页，图4–6。",
+        "source_checked": "2026-10-05",
+        "status": "reviewed"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式存储"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Bigtable-分布式结构化存储系统.md",
+      "rank": 43,
+      "title": "Bigtable：分布式结构化存储系统"
+    },
+    {
+      "canonical": "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页19的点查优化段、参考文献[32]（页30）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+      "rank": 44,
+      "title": "Bourbon：LSM 学习索引的证据与选型"
+    },
+    {
+      "canonical": "知识库/wiki/ByteHouse-架构与设计.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–7，页2–12，图2–10；修正索引媒介、实验条件与跨产品断言。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/ByteHouse-统一表引擎.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/ByteHouse-架构与设计.md",
+      "rank": 45,
+      "title": "ByteHouse 整体架构 — 三层存算分离"
+    },
+    {
+      "canonical": "知识库/wiki/ByteHouse-统一表引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–7，页2–12，图2–10；修正索引媒介、实验条件与跨产品断言。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/ByteHouse-架构与设计.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/ByteHouse-统一表引擎.md",
+      "rank": 46,
+      "title": "ByteHouse 统一表引擎"
+    },
+    {
+      "canonical": "知识库/wiki/CXL-3.0-内存池化新范式.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CXL-3.0-内存池化新范式.md",
+      "rank": 47,
+      "title": "CXL 3.0：内存池化与共享的区别"
+    },
+    {
+      "canonical": "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Governance治理.md",
+            "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Agent-框架-2026-全景对比.md",
+            "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/Parallax-Agent安全架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+      "rank": 48,
+      "title": "Custom Agent Harness — Middleware 架构"
+    },
+    {
+      "canonical": "知识库/wiki/Dataflow-Model.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理乱序数据管理.md",
+            "知识库/wiki/流处理状态管理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Dataflow-Model.md",
+      "rank": 49,
+      "title": "Dataflow 模型"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+      "rank": 50,
+      "title": "Doris MPP 向量化查询引擎"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-MPP-向量化查询引擎.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-Nereids-CBO-优化器.md",
+      "rank": 51,
+      "title": "Doris Nereids CBO 优化器"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-数据模型.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-Compaction-策略.md",
+            "知识库/wiki/Doris-Segment-v2-存储格式.md",
+            "知识库/wiki/Doris-架构演进.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-数据模型.md",
+      "rank": 52,
+      "title": "Doris 数据模型：三种模型与 Unique 的两种实现"
+    },
+    {
+      "canonical": "知识库/wiki/Doris-架构演进.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/Doris-元数据与一致性复制.md",
+            "知识库/wiki/synthesis/Apache-Doris-OLAP-数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Doris-架构演进.md",
+      "rank": 53,
+      "title": "Doris 架构演进：共同的查询入口与两种存储部署"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-Arrow列式记录格式.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-存储引擎.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-Arrow列式记录格式.md",
+      "rank": 54,
+      "title": "Fluss Arrow 列式记录格式"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+      "rank": 55,
+      "title": "Fresha 的 Fluss / EKS 部署案例"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-Kafka兼容层.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-RPC与网络.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "Kafka"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-Kafka兼容层.md",
+      "rank": 56,
+      "title": "Fluss Kafka 兼容层"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-Arrow列式记录格式.md",
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/Fluss-Tiering分层架构.md",
+            "知识库/wiki/Fluss-客户端与计算集成.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "数据湖"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+      "rank": 57,
+      "title": "Fluss Lake 层与湖仓融合 — 实时存储 + 数据湖一体化"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+      "rank": 58,
+      "title": "Fluss PR #3420：Watermark 到 Paimon Snapshot"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-RPC与网络.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-Kafka兼容层.md",
+            "知识库/wiki/Fluss-分布式协调.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-RPC与网络.md",
+      "rank": 59,
+      "title": "Fluss RPC 与网络层分析"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-Tiering分层架构.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "数据湖"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-Tiering分层架构.md",
+      "rank": 60,
+      "title": "Fluss Tiering 分层架构"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-分布式协调.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/Fluss-灾难恢复的三种保证.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-分布式协调.md",
+      "rank": 61,
+      "title": "Fluss 分布式协调层分析"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-客户端与计算集成.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-Arrow列式记录格式.md",
+            "知识库/wiki/Fluss-Lake层与湖仓融合.md",
+            "知识库/wiki/Fluss-分区桶数路由契约.md",
+            "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-客户端与计算集成.md",
+      "rank": 62,
+      "title": "Fluss 客户端与计算集成分析"
+    },
+    {
+      "canonical": "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-分区桶数路由契约.md",
+            "知识库/wiki/synthesis/Fluss-流处理平台架构综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "Fluss",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Fluss-客户端写入流程源码分析.md",
+      "rank": 63,
+      "title": "Fluss 客户端写入流程 — 源码深度分析"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-3-列存引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-TSM存储引擎.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-3-列存引擎.md",
+      "rank": 64,
+      "title": "InfluxDB 3 的列式引擎：格式、执行与部署"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-TSM存储引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-Catalog元数据.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-TSM存储引擎.md",
+      "rank": 65,
+      "title": "InfluxDB TSM 存储引擎"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-二级索引.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-二级索引.md",
+      "rank": 66,
+      "title": "LSM-Tree 二级索引 (Secondary Indexing)"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-硬件适配.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地2019综述§2.3及对应§3.3/3.4/3.7；未独立复现每个被引方案。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/CXL-3.0-内存池化新范式.md",
+            "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+            "知识库/wiki/LSM-Tree-RUM猜想.md",
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-写放大.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/Pacman-持久内存Compaction.md",
+            "知识库/wiki/gLSM-GPU加速Compaction.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-硬件适配.md",
+      "rank": 67,
+      "title": "LSM-Tree 硬件适配 (Hardware Adaptation)"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-Tree-自动调参.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §3.6，第15–17页；Monkey方向、Lim更新分布、Dostoevsky与ElasticBF范围。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+            "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+            "知识库/wiki/LSM-Tree-RUM猜想.md",
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/REMIX-全局排序索引.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-Tree-自动调参.md",
+      "rank": 68,
+      "title": "LSM-Tree 自动调参：模型、过滤器与合并策略"
+    },
+    {
+      "canonical": "知识库/wiki/Lethe-删除感知LSM引擎.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页21删除操作段、参考文献[94]（页34）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Lethe-删除感知LSM引擎.md",
+      "rank": 69,
+      "title": "Lethe：删除持久化也是 LSM 设计目标"
+    },
+    {
+      "canonical": "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Agent-Harness-Lifecycle-Orchestration编排.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+      "rank": 70,
+      "title": "Loop Engineering — 多层 Agent 循环架构"
+    },
+    {
+      "canonical": "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Harness-Engineering-Survey综述.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Qwen-3.6-模型发布.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+      "rank": 71,
+      "title": "Model Neutrality — 模型中立与反锁定"
+    },
+    {
+      "canonical": "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页15分布式架构段、参考文献[50]（页31）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式存储"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+      "rank": 72,
+      "title": "Nova-LSM：基于 RDMA 的组件化 LSM"
+    },
+    {
+      "canonical": "知识库/wiki/Parallax-Agent安全架构.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Harness-Governance治理.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Parallax-Agent安全架构.md",
+      "rank": 73,
+      "title": "Parallax — Agent 安全架构"
+    },
+    {
+      "canonical": "知识库/wiki/Paxos-Epochs-Revised.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/Paxos-Value-Selection-Revised.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Paxos-Epochs-Revised.md",
+      "rank": 74,
+      "title": "Paxos Epochs Revised：共享 epoch 与恢复"
+    },
+    {
+      "canonical": "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Epochs-Revised.md",
+            "知识库/wiki/Paxos-Value-Selection-Revised.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+      "rank": 75,
+      "title": "Paxos Quorum Intersection Revised"
+    },
+    {
+      "canonical": "知识库/wiki/Paxos-Value-Selection-Revised.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Epochs-Revised.md",
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Paxos-Value-Selection-Revised.md",
+      "rank": 76,
+      "title": "Paxos Value Selection Revised"
+    },
+    {
+      "canonical": "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+      "rank": 77,
+      "title": "Paxos：从单值共识到可运行系统"
+    },
+    {
+      "canonical": "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF第8页§3.1.1；保留综述支持机制，撤除未核验独立原作性能表。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+      "rank": 78,
+      "title": "PebblesDB：通过 Guard 组织分区 Tiering"
+    },
+    {
+      "canonical": "知识库/wiki/Qwen-3.6-模型发布.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md"
+          ]
+        },
+        "matched_research_tags": [
+          "AI-Infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Qwen-3.6-模型发布.md",
+      "rank": 79,
+      "title": "Qwen 3.6：27B Dense 与 35B-A3B MoE"
+    },
+    {
+      "canonical": "知识库/wiki/Raft-客户端交互.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Fortification.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/Raft-日志压缩.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Raft-客户端交互.md",
+      "rank": 80,
+      "title": "Raft 客户端交互：去重、读屏障和会话"
+    },
+    {
+      "canonical": "知识库/wiki/Raft-日志压缩.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/Raft-集群成员变更.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Raft-日志压缩.md",
+      "rank": 81,
+      "title": "Raft 日志压缩"
+    },
+    {
+      "canonical": "知识库/wiki/Raft-集群成员变更.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Epochs-Revised.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Raft-集群成员变更.md",
+      "rank": 82,
+      "title": "Raft 集群成员变更"
+    },
+    {
+      "canonical": "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地HATS PDF §3–6，页4–14；图5–15、表1–2。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Silo-Compaction-迁移协议.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式存储"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+      "rank": 83,
+      "title": "HATS：分布式 LSM 的读请求与 Compaction 协同调度"
+    },
+    {
+      "canonical": "知识库/wiki/Stream-Processing-System-Generations.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+            "知识库/wiki/Dataflow-Model.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理乱序数据管理.md",
+            "知识库/wiki/流处理弹性与重配置.md",
+            "知识库/wiki/流处理状态管理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "分布式系统",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Stream-Processing-System-Generations.md",
+      "rank": 84,
+      "title": "流处理系统代际演化"
+    },
+    {
+      "canonical": "知识库/wiki/gLSM-GPU加速Compaction.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页16硬件卸载段、参考文献[101]（页34）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "存储引擎"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/gLSM-GPU加速Compaction.md",
+      "rank": 85,
+      "title": "gLSM：GPU 加速 Compaction 的证据边界"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Agentic-Memory-语义缓存.md",
+            "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/Parallax-Agent安全架构.md"
+          ]
+        },
+        "matched_research_tags": [
+          "agent-infra"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md",
+      "rank": 86,
+      "title": "Agent 基础设施：执行、状态、治理与证据"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/OLAP与TSDB全景综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [
+          "OLAP"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/OLAP与TSDB全景综述.md",
+      "rank": 87,
+      "title": "OLAP 与时序数据库：按工作负载阅读知识库"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/共识协议体系综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+            "知识库/wiki/事务模型深度调研.md"
+          ]
+        },
+        "matched_research_tags": [
+          "一致性",
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/共识协议体系综述.md",
+      "rank": 88,
+      "title": "共识协议体系：安全条件、工程组件与使用边界"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/流处理系统演化综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/流处理系统演化综述.md",
+      "rank": 89,
+      "title": "流处理系统演化：时间、状态、恢复与外部结果"
+    },
+    {
+      "canonical": "知识库/wiki/共识算法族系-从Paxos到广义解.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/Paxos-Epochs-Revised.md",
+            "知识库/wiki/Paxos-Quorum-Intersection-Revised.md",
+            "知识库/wiki/Paxos-Value-Selection-Revised.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "共识算法",
+          "分布式系统"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/共识算法族系-从Paxos到广义解.md",
+      "rank": 90,
+      "title": "共识算法族系：从 Paxos 到可选择的安全条件"
+    },
+    {
+      "canonical": "知识库/wiki/流处理乱序数据管理.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Apache-Flink-2.3.0-版本发布.md",
+            "知识库/wiki/Dataflow-Model.md",
+            "知识库/wiki/Fluss-PR-3420-Watermark-to-Paimon.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/流处理乱序数据管理.md",
+      "rank": 91,
+      "title": "流处理乱序数据管理"
+    },
+    {
+      "canonical": "知识库/wiki/流处理弹性与重配置.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Fluss-EKS-生产部署实践-Fresha.md",
+            "知识库/wiki/Kafka-后台分配与代际隔离.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理乱序数据管理.md",
+            "知识库/wiki/流处理容错模型.md",
+            "知识库/wiki/流处理状态管理.md"
+          ]
+        },
+        "matched_research_tags": [
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/流处理弹性与重配置.md",
+      "rank": 92,
+      "title": "流处理弹性与重配置"
+    },
+    {
+      "canonical": "知识库/wiki/流处理状态管理.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "stable"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "streaming": [
+            "知识库/wiki/Chandy-Lamport-分布式快照算法.md",
+            "知识库/wiki/Dataflow-Model.md",
+            "知识库/wiki/Stream-Processing-System-Generations.md",
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理乱序数据管理.md",
+            "知识库/wiki/流处理容错模型.md",
+            "知识库/wiki/流处理弹性与重配置.md"
+          ]
+        },
+        "matched_research_tags": [
+          "事务",
+          "流处理"
+        ],
+        "observed_uses": 0,
+        "research_match": true,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/流处理状态管理.md",
+      "rank": 93,
+      "title": "流处理状态管理"
+    },
+    {
+      "canonical": "知识库/wiki/存储计算分离数据库的-Tail-Latency.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §1、§3、§5、§7，页2、6–9、11–23；区分Aurora观测、OpenAurora根因与主实验。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 4,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-Catalog元数据.md"
+          ],
+          "storage": [
+            "知识库/wiki/CXL-3.0-内存池化新范式.md",
+            "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+            "知识库/wiki/Log-as-the-Database-模式.md",
+            "知识库/wiki/RaaS-Replay-as-a-Service.md"
+          ],
+          "streaming": [
+            "知识库/wiki/AutoMQ-有界投机重试与资源生命周期.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/存储计算分离数据库的-Tail-Latency.md",
+      "rank": 94,
+      "title": "存储计算分离数据库的尾延迟：日志链与后台竞争"
+    },
+    {
+      "canonical": "知识库/wiki/Log-as-the-Database-模式.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/RaaS-Replay-as-a-Service.md",
+            "知识库/wiki/存储计算分离数据库的-Tail-Latency.md"
+          ],
+          "streaming": [
+            "知识库/wiki/日志回收-最慢进度与完整恢复前缀.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/ByteHouse-统一表引擎.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Log-as-the-Database-模式.md",
+      "rank": 95,
+      "title": "Log-as-the-Database 模式"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 3,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/CXL-3.0-内存池化新范式.md"
+          ],
+          "streaming": [
+            "知识库/wiki/synthesis/流处理系统演化综述.md",
+            "知识库/wiki/流处理容错模型.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/分布式数据系统事务与一致性新进展-2026综述.md",
+      "rank": 96,
+      "title": "分布式事务与复制：2026 论文的不同问题边界"
+    },
+    {
+      "canonical": "知识库/wiki/ByteHouse-多模态查询优化.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–7，页2–12，图2–10；修正索引媒介、实验条件与跨产品断言。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/ByteHouse-架构与设计.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/ByteHouse-统一表引擎.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/ByteHouse-多模态查询优化.md",
+      "rank": 97,
+      "title": "ByteHouse 多模态查询优化"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-写入与查询路径.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-Catalog元数据.md",
+            "知识库/wiki/InfluxDB-多副本与高可用.md",
+            "知识库/wiki/InfluxDB-数据模型.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-写入与查询路径.md",
+      "rank": 98,
+      "title": "InfluxDB 写入与查询：先区分产品形态"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-多副本与高可用.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-Catalog元数据.md",
+            "知识库/wiki/InfluxDB-写入与查询路径.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-多副本与高可用.md",
+      "rank": 99,
+      "title": "InfluxDB 耐久性与高可用：确认边界和故障边界"
+    },
+    {
+      "canonical": "知识库/wiki/RaaS-Replay-as-a-Service.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地RaaS PDF §3、§5、§7；核对定量结果、实验错峰设置和故障范围。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 2,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Log-as-the-Database-模式.md",
+            "知识库/wiki/存储计算分离数据库的-Tail-Latency.md"
+          ],
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/RaaS-Replay-as-a-Service.md",
+      "rank": 100,
+      "title": "RaaS（Replay-as-a-Service）"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-First-Branch-Transactions-分支事务.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-First-Data-Systems.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-First-Branch-Transactions-分支事务.md",
+      "rank": 101,
+      "title": "Agent-First Branch Transactions — Agent 优先的分支事务"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-First-Data-Systems.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-Cost-Control-Gateway成本控制.md",
+            "知识库/wiki/Agent-Fault-Tolerance-容错设计.md",
+            "知识库/wiki/Agent-First-Branch-Transactions-分支事务.md",
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+            "知识库/wiki/Agent-Sandbox-安全沙箱选型.md",
+            "知识库/wiki/Agentic-Memory-语义缓存.md",
+            "知识库/wiki/Anthropic-Agent安全容器化实践.md",
+            "知识库/wiki/Loop-Engineering-多层Agent循环架构.md",
+            "知识库/wiki/Model-Neutrality-模型中立与反锁定.md",
+            "知识库/wiki/Parallax-Agent安全架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-First-Data-Systems.md",
+      "rank": 102,
+      "title": "Agent-First Data Systems — Agent 优先的数据系统架构"
+    },
+    {
+      "canonical": "知识库/wiki/Agent-框架-2026-全景对比.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Hermes-Agent-自进化Agent框架.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agent-框架-2026-全景对比.md",
+      "rank": 103,
+      "title": "Agent 框架 2026 — 能力与选型对照"
+    },
+    {
+      "canonical": "知识库/wiki/Agentic-Memory-语义缓存.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-First-Data-Systems.md",
+            "知识库/wiki/Agent-Harness-Context-Memory上下文管理.md",
+            "知识库/wiki/Agent-Memory-Survey-2026综述.md",
+            "知识库/wiki/Custom-Agent-Harness-Middleware架构.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Agentic-Memory-语义缓存.md",
+      "rank": 104,
+      "title": "Agentic Memory — Agent-First 语义缓存"
+    },
+    {
+      "canonical": "知识库/wiki/Aurora-Limitless-分布式架构.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–5、§7–8，页2–11；图3、表2与图4–7。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/CXL-3.0-内存池化新范式.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Aurora-Limitless-分布式架构.md",
+      "rank": 105,
+      "title": "Aurora Limitless 分布式架构"
+    },
+    {
+      "canonical": "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页16的分布式架构与卸载段、参考文献[140]（页37）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+            "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+            "知识库/wiki/gLSM-GPU加速Compaction.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+      "rank": 106,
+      "title": "CaaS-LSM：独立 Compaction 服务"
+    },
+    {
+      "canonical": "知识库/wiki/CockroachDB-Leader-Fortification.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+            "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+            "知识库/wiki/Raft-客户端交互.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CockroachDB-Leader-Fortification.md",
+      "rank": 107,
+      "title": "Leader Fortification：强化 Raft 领导权"
+    },
+    {
+      "canonical": "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Fortification.md",
+            "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+            "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+            "知识库/wiki/Paxos-理论到实践的鸿沟.md",
+            "知识库/wiki/Raft-共识算法协议核心.md",
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md",
+            "知识库/wiki/共识算法族系-从Paxos到广义解.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+      "rank": 108,
+      "title": "CockroachDB Leader Lease：共享维护与安全读授权"
+    },
+    {
+      "canonical": "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/CockroachDB-Leader-Fortification.md",
+            "知识库/wiki/CockroachDB-Leader-Lease-整体设计.md",
+            "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CockroachDB-Liveness-Fabric-故障检测层.md",
+      "rank": 109,
+      "title": "Liveness Fabric：有向支持关系"
+    },
+    {
+      "canonical": "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF第16页§3.6.3；明确为综述级证据，无独立ElasticBF性能核验。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+      "rank": 110,
+      "title": "ElasticBF：按热度激活 Bloom Filter 预算"
+    },
+    {
+      "canonical": "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+      "rank": 111,
+      "title": "Hailstorm：存算分离 LSM 的综述证据卡"
+    },
+    {
+      "canonical": "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "agent": [
+            "知识库/wiki/Agent-框架-2026-全景对比.md",
+            "知识库/wiki/Qwen-3.6-模型发布.md",
+            "知识库/wiki/synthesis/AI-Infra-Agent基础设施体系综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Hermes-Agent-自进化Agent框架.md",
+      "rank": 112,
+      "title": "Hermes Agent：持久记忆、技能与执行循环"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-Catalog元数据.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-多副本与高可用.md",
+            "知识库/wiki/InfluxDB-数据模型.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-Catalog元数据.md",
+      "rank": 113,
+      "title": "InfluxDB Catalog：元数据边界取决于产品"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-3-列存引擎.md",
+            "知识库/wiki/InfluxDB-TSM存储引擎.md",
+            "知识库/wiki/InfluxDB-数据模型.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+      "rank": 114,
+      "title": "InfluxDB 指标设计与基数管理"
+    },
+    {
+      "canonical": "知识库/wiki/InfluxDB-数据模型.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "final"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "database_analytics": [
+            "知识库/wiki/InfluxDB-指标设计与基数管理.md",
+            "知识库/wiki/synthesis/InfluxDB-时序数据库体系综述.md",
+            "知识库/wiki/synthesis/OLAP与TSDB全景综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/InfluxDB-数据模型.md",
+      "rank": 115,
+      "title": "InfluxDB 数据模型与产品差异"
+    },
+    {
+      "canonical": "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF§3–6，页7–28；限定分类与二级来源用途。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/Bourbon-Learned-Index-LSM.md",
+            "知识库/wiki/CXL-3.0-内存池化新范式.md",
+            "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+            "知识库/wiki/ElasticBF-弹性BloomFilter.md",
+            "知识库/wiki/Hailstorm-存算分离LSM数据库.md",
+            "知识库/wiki/LSM-Tree-二级索引.md",
+            "知识库/wiki/LSM-Tree-合并优化.md",
+            "知识库/wiki/LSM-Tree-硬件适配.md",
+            "知识库/wiki/LSM-Tree-自动调参.md",
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/Lethe-删除感知LSM引擎.md",
+            "知识库/wiki/Nova-LSM-分布式组件化LSM.md",
+            "知识库/wiki/Pacman-持久内存Compaction.md",
+            "知识库/wiki/PebblesDB-碎片化LSM-Tree.md",
+            "知识库/wiki/REMIX-全局排序索引.md",
+            "知识库/wiki/gLSM-GPU加速Compaction.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+      "rank": 116,
+      "title": "LSM-tree KV Store 综述（2020-2025）"
+    },
+    {
+      "canonical": "知识库/wiki/Pacman-持久内存Compaction.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页18持久内存段、参考文献[114]（页35）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Pacman-持久内存Compaction.md",
+      "rank": 117,
+      "title": "Pacman：持久内存中的 Compaction 路线"
+    },
+    {
+      "canonical": "知识库/wiki/REMIX-全局排序索引.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "综述级核验：页20范围查询段、参考文献[151]（页37）；未取得/核验独立原文，撤除未确认量化与协议细节。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/REMIX-全局排序索引.md",
+      "rank": 118,
+      "title": "REMIX：跨文件全局有序视图"
+    },
+    {
+      "canonical": "知识库/wiki/Rosé-异步复制协议设计.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "transactions_consensus": [
+            "知识库/wiki/synthesis/共识协议体系综述.md",
+            "知识库/wiki/synthesis/分布式数据系统一致性体系.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Rosé-异步复制协议设计.md",
+      "rank": 119,
+      "title": "Rosé：分区数据库的异步复制"
+    },
+    {
+      "canonical": "知识库/wiki/Silo-Compaction-迁移协议.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地HATS PDF 第6–8页，§4.2–5、算法1。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/CaaS-LSM-Compaction即服务.md",
+            "知识库/wiki/LSM-tree-KV-Survey-综述.md",
+            "知识库/wiki/Silo-分布式LSM-Compaction调度.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Silo-Compaction-迁移协议.md",
+      "rank": 120,
+      "title": "HATS：副本选择与 Compaction 配额"
+    },
+    {
+      "canonical": "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": null,
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 1,
+        "inbound_domains": {
+          "storage": [
+            "知识库/wiki/LSM-Tree.md",
+            "知识库/wiki/synthesis/LSM-Tree-存储引擎体系综述.md"
+          ]
+        },
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/synthesis/LSM-Tree-存储引擎新进展-2026综述.md",
+      "rank": 121,
+      "title": "LSM 近期进展：调度、卸载和存储接口"
+    },
+    {
+      "canonical": "知识库/wiki/Aurora-Limitless-时间戳事务.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–5、§7–8，页2–11；图3、表2与图4–7。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 0,
+        "inbound_domains": {},
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Aurora-Limitless-时间戳事务.md",
+      "rank": 122,
+      "title": "Aurora Limitless 时间戳事务"
+    },
+    {
+      "canonical": "知识库/wiki/Aurora-Limitless-自适应扩缩容.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": "本地PDF §2–5、§7–8，页2–11；图3、表2与图4–7。",
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 0,
+        "inbound_domains": {},
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Aurora-Limitless-自适应扩缩容.md",
+      "rank": 123,
+      "title": "Aurora Limitless 自适应扩缩容"
+    },
+    {
+      "canonical": "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 0,
+        "inbound_domains": {},
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/CockroachDB-vs-TiDB-2026-对比.md",
+      "rank": 124,
+      "title": "CockroachDB 与 TiDB：事务和存储职责对照"
+    },
+    {
+      "canonical": "知识库/wiki/Rosé-Coordinated-Apply-协调应用.md",
+      "credibility": {
+        "confidence": null,
+        "confidence_rationale": null,
+        "independently_verified_by_manager": false,
+        "source_check_scope": null,
+        "source_checked": "2026-10-05",
+        "status": "draft"
+      },
+      "importance": {
+        "inbound_domain_count": 0,
+        "inbound_domains": {},
+        "matched_research_tags": [],
+        "observed_uses": 0,
+        "research_match": false,
+        "use_events": []
+      },
+      "lifecycle": {
+        "event": null,
+        "pending_review": false,
+        "replacement": null,
+        "state": "active"
+      },
+      "path": "知识库/wiki/Rosé-Coordinated-Apply-协调应用.md",
+      "rank": 125,
+      "title": "Rosé Coordinated Apply：将不可用尾部留在 WAL"
+    }
+  ],
+  "method": {
+    "access_telemetry": "Not collected. Zero means no verified recorded public reuse.",
+    "credibility": "Reported metadata only; citations, use, age and importance never establish truth.",
+    "domain_assignment": "First matching configured domain group of canonical source.",
+    "lifecycle": "Explicit reversible events only; source text and paths unchanged.",
+    "order": [
+      "research_match descending",
+      "observed_uses descending",
+      "inbound_domain_count descending",
+      "path ascending"
+    ],
+    "use_deduplication": "One verified public artifact per canonical note; canonical paths and exact-content mirrors collapse; revisions do not add uses."
+  },
+  "schema_version": 1
+}

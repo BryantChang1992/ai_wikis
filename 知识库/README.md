@@ -163,3 +163,6 @@ updated: '2026-10-09'
 ## 专题跟踪
 
 - [[知识库/专题跟踪/KIP-1150/README|KIP-1150 Diskless Topics 专题跟踪]]（仅 Obsidian，每周更新，不纳入博客同步）
+
+
+- [[知识库/专题跟踪/KIP-405/README|KIP-405 Tiered Storage：从提案到生产落地]]（完整落地复盘，含源码与关键交互流程，仅 Obsidian）

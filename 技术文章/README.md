@@ -22,3 +22,8 @@ created: 2026-05-31
 ## 相关
 
 - [GitPage 博客](https://bryantchang1992.github.io/ai_memory_chang_ai_team/) — 对外博客 / GitHub Pages
+
+## 周报同步
+
+- [[技术文章/博客同步/tech-research-week-14|技术调研 Week 14：兼容读路径、流湖交接与数据搬运成本]]
+- [[知识库/博客索引|完整博客同步索引]]

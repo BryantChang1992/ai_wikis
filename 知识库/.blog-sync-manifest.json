@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-10-09",
+  "date": "2026-10-11",
   "blog_base_commit": "f83970fa7e6ad32d626cc6ca3ba7428c90a638a5",
   "wiki_base_commit": "8a1563c138c830283b27e956e5b7b81999444ff8",
   "scope": "technical knowledge only; excludes team rules, agent files, maintenance reports and production prompts",
@@ -2954,6 +2954,17 @@
       "blog_body_sha256": "3c1a6b187fa0c159fe9277456458d3f7857a15da1dce55f2703322673f2ef000",
       "vault_sha256": "456cf3b3b7372caa2a7df60452ef5b135584b07518c510b85c01c95203e8cb5b",
       "blog_sha256": "8544579ddf6a4ded334a89e67cc7b4682fe8468fd5d3632229f77b71d7e6caeb",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-10-11-tech-research-week-14.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-14.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-14/",
+      "blog_body_sha256": "adfdc64e1b8eccfb08d60f2235783d731bd8f78afd76377b52b4f82b1fea69d0",
+      "vault_sha256": "645dbd4d9592990aecd61d76b6d0fd28f412b2084e9f560bb9e8081afea7543d",
+      "blog_sha256": "8ebe65d40b0e0a4faef596fd1ddc3a0dca056e94332e342fc42f7302fe040eed",
       "alias_sha256": {}
     }
   ],

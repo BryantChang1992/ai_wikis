@@ -2,8 +2,105 @@
   "automatic_actions": [
     "rebuild_generated_views"
   ],
-  "candidates": [],
-  "input_sha256": "72cd34fe8f58b76ae89ca1c2e36a7a97877766a1be49fd528d85b0c5abf97161",
+  "candidates": [
+    {
+      "automatic_action": null,
+      "event": "use-c511d38ebff3e2ab80488c15f7de7b95dd00b4846b35dbf2058ddf7a84a5fb7c",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-2f92d3618a587353718aad039f1a3cf382b47ea6b00952b9631fd06da9a85724",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-36887bfd634cb86c4daf99a2d637c5e92d40b74adbb88d5e7f5e99de4651db1d",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-705c7f58c2dcd3da526f6fa4cd2860c01164abdc0815b4e9024839811011194f",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-946b6ed382265d424b4aa9b1a4ee344493a0724c2b9b2e89b4422096a2f2102a",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-78b1b9508dbdeda8df31d49ce7ef38566735191cbca67148acf2708991ad62c3",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-3336a85eecda878888b6e5db1c4ad14c24f90b83684131aa008a4cb4123cff51",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    },
+    {
+      "automatic_action": null,
+      "event": "use-29210186fe900df246b6479940a8df151899b952df4ebbc7e7ed190c99b413b2",
+      "event_type": "use",
+      "evidence": {
+        "path": "知识库/wiki/synthesis/异步存储任务的安全边界.md",
+        "sha256": "04b387c2516d0022a7344cd5ddf2587b9c3e4693b8ad2eb9d9f039a53b5062d9"
+      },
+      "evidence_status": "changed",
+      "kind": "evidence_review",
+      "reason": "Historical evidence requires review; use is excluded, explicit lifecycle is retained."
+    }
+  ],
+  "input_sha256": "879e2c8b8a3f7b82d71b9c424e0ce92a2677537e9d933158d1da6dad3d4bed9c",
   "resolved_duplicates": [
     {
       "automatic_action": null,

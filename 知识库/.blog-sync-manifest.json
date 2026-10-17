@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-10-11",
+  "date": "2026-10-17",
   "blog_base_commit": "f83970fa7e6ad32d626cc6ca3ba7428c90a638a5",
   "wiki_base_commit": "8a1563c138c830283b27e956e5b7b81999444ff8",
   "scope": "technical knowledge only; excludes team rules, agent files, maintenance reports and production prompts",
@@ -2965,6 +2965,28 @@
       "blog_body_sha256": "adfdc64e1b8eccfb08d60f2235783d731bd8f78afd76377b52b4f82b1fea69d0",
       "vault_sha256": "645dbd4d9592990aecd61d76b6d0fd28f412b2084e9f560bb9e8081afea7543d",
       "blog_sha256": "8ebe65d40b0e0a4faef596fd1ddc3a0dca056e94332e342fc42f7302fe040eed",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "stream-storage-observer/2026-10-16.md",
+      "vault_path": "技术文章/博客同步/stream-storage-observer-2026-10-16.md",
+      "aliases": [],
+      "url": "/stream-storage-observer/2026-10-16/",
+      "blog_body_sha256": "f2c943f8eb10185c9d1a29cce933891b8e9d406dc18d7521ba7c6da7aae9669a",
+      "vault_sha256": "92d0dcb403d06f8674d1d7353904a35c949953860af40c876a267ad44a23c3e7",
+      "blog_sha256": "7e5b0df820528fb642d5788ffee243e958ec72cc26881380eabacef669330f6a",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "blog_to_obsidian",
+      "blog_path": "_posts/2026-10-11-diting-observability-paper.md",
+      "vault_path": "论文精读/DiTing-精读分析.md",
+      "aliases": [],
+      "url": "/posts/diting-observability-paper/",
+      "blog_body_sha256": "6cd1d14d5743e9739c661c91d35dae122c8b9a231bf5298ce9235c19fee7b37a",
+      "vault_sha256": "f7421e8877476cf7bdf4540491bf9c3665bc3aa38e853d5474f5ace609afd980",
+      "blog_sha256": "aef8cc28eea4cf5f123ff5c24a6d10b6e97cbb1095debda6c2732a31287f3b4c",
       "alias_sha256": {}
     }
   ],

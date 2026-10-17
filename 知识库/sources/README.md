@@ -216,3 +216,5 @@ sources/papers/
 - [[知识库/sources/web/vllm-inference-20261007-09/来源记录|SWA 缓存：有界重算与图捕获开销来源记录]]：本周vLLM作者博客2026-10-07、2026-10-09；后者保留作局部性对照。
 
 本期仅链接合法公开的一手材料，保留来源和阅读边界；未转载原文PDF或整篇网页、未生成全文翻译。完整报告见 [[技术文章/博客同步/tech-research-week-14]]。
+
+- [[知识库/sources/papers/DiTing/README|DiTing 官方原文链接与精读]]

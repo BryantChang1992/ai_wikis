@@ -3221,20 +3221,6 @@
       "concept": "Aurora-存储计算分离"
     }
   ],
-  "excluded_mixed_documents": [
-    {
-      "vault_path": "项目文档/agent基础设施可观测性平台/observability-deep-design.md",
-      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
-    },
-    {
-      "vault_path": "项目文档/agent基础设施可观测性平台/phase3-knowledge-management.md",
-      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
-    },
-    {
-      "vault_path": "项目文档/agent基础设施可观测性平台/设计文档.md",
-      "reason": "Mixed technical design and specific team operating rules; retained in Obsidian, not published."
-    }
-  ],
   "asset_sha256": {
     "/media/knowledge/9c834aeef522-01-architecture-overview.svg": "9c834aeef5226219058779b600e7bbcf2252f571b1569f979c1d77f5bd11a710",
     "/media/knowledge/3d87bb93b374-02-storage-engine.svg": "3d87bb93b374c03dc40af206865c84ebeb588d94e99857e29793c87e317c58e2",
@@ -3364,5 +3350,6 @@
     ],
     "prior_blog_commit": "6d8e0ddcfb23d1e28015382f4939d57523eabcd7",
     "prior_wiki_commit": "81ed547ce39bcdc5f5f09706aec708a029fd82b6"
-  }
+  },
+  "excluded_scope": "Only authorized public technical research is synchronized. Mixed or non-public materials are outside scope; excluded document names, paths, and reasons are not enumerated."
 }

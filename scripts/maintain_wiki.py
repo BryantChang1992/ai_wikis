@@ -5,6 +5,8 @@ Default writes only manage_wiki's generated outputs/audit journal. --check is
 read-only and fails for stale outputs. No git, network, scheduler or note edits.
 """
 import argparse
+import json
+from public_sync_scope import validate_public_scope
 import pathlib
 import subprocess
 import sys
@@ -17,6 +19,12 @@ def main(argv=None):
     p.add_argument('--check', action='store_true', help='Validate only; never regenerate')
     a = p.parse_args(argv)
     root = pathlib.Path(a.root).resolve()
+    manifest = root / '知识库/.blog-sync-manifest.json'
+    if manifest.exists():
+        errors = validate_public_scope(json.loads(manifest.read_text()))
+        if errors:
+            print('\n'.join(errors))
+            return 1
     lint = [sys.executable, str(root / 'scripts/lint_wiki.py'), str(root)]
     if a.inventory:
         lint += ['--inventory', str(pathlib.Path(a.inventory).resolve())]

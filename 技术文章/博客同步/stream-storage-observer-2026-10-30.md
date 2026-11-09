@@ -11,11 +11,10 @@ tags:
 created: '2026-11-09'
 updated: '2026-11-09'
 status: draft
-publication_status: github_archive
 source_checked: '2026-10-30'
 related:
 - '[[知识库/sources/web/stream-storage-observer-20261030/README]]'
-publication_scope: 仅 GitHub 正文归档；GitHub Pages、知识卡及双库同步暂缓。
+publication_scope: 公开技术报告及引用；知识卡和独立专题不因本文同步而扩大发布范围。在线状态以实际部署验收为准。
 report_date: '2026-10-30'
 source_check_scope: 原报告公开 PR、讨论、提案和发行资料，核读范围与限制见正文；本次归档未重新更新技术状态。
 ---
@@ -24,7 +23,7 @@ source_check_scope: 原报告公开 PR、讨论、提案和发行资料，核读
 
 ## 第 4 期：提交边界、协议写入与恢复前缀
 
-> 归档范围：本页保存 2026-10-30 报告正文及公开引用，供 GitHub 阅读。GitHub Pages 页面、知识卡与双库同步暂缓；所在目录不表示博客同步已完成。技术状态和原文中的历史交付说明按原观察窗口保留，不代表归档日的最新进展。本次归档未重新核验全部外部链接。
+> 阅读时间说明：本文保留 2026-10-30 报告的观察窗口、原文核验时间和技术限制。正文中的“本周”、版本阶段及历史交付说明均按原观察时点理解，不代表本次页面整理时的最新状态。本次仅适配发布格式，未重新核读全部外部来源或独立复现实验。
 
 [公开来源索引](../../知识库/sources/web/stream-storage-observer-20261030/README.md)
 

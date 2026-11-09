@@ -15,14 +15,13 @@ source_checked: '2026-10-17'
 source_check_scope: 沿用原报告 2026-10-17 的官方 JIRA、PR、最终提交及发行记录核读；正文检索与附录后续复核时间分别保留，未独立复现。
 related:
 - '[[知识库/sources/web/Kafka-Issue-2026-10-17]]'
-publication_status: github_archive
-publication_scope: 仅 GitHub 正文归档；GitHub Pages、知识卡及双库同步暂缓。
+publication_scope: 公开技术报告及引用；知识卡和独立专题不因本文同步而扩大发布范围。在线状态以实际部署验收为准。
 report_date: '2026-10-17'
 ---
 
 # Kafka Issue 周报 第 1 期
 
-> 归档范围：本页保存 2026-10-17 报告正文及公开引用，仅供 GitHub 阅读。GitHub Pages 页面、知识卡更新与双库同步暂缓。目录沿用报告的既定路径，不代表已完成博客同步。技术状态按原观察窗口保留，不代表归档日的最新进展。
+> 阅读时间说明：本文保留 2026-10-17 报告的观察窗口、原文核验时间和技术限制。正文中的“本周”、版本阶段及历史交付说明均按原观察时点理解，不代表本次页面整理时的最新状态。本次仅适配发布格式，未重新核读全部外部来源或独立复现实验。
 
 [公开来源索引](../../知识库/sources/web/Kafka-Issue-2026-10-17.md)
 

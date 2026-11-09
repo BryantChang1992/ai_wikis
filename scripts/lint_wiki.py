@@ -156,7 +156,10 @@ def as_list(value):
 
 
 def link_target(value):
-    return urllib.parse.unquote(value.split('|', 1)[0].split('#', 1)[0].strip())
+    # Obsidian table cells escape the alias separator as \|. The backslash
+    # belongs to Markdown table syntax, not to the note's path.
+    target = re.split(r'\\?\|', value, maxsplit=1)[0]
+    return urllib.parse.unquote(target.split('#', 1)[0].strip())
 
 
 class Resolver:

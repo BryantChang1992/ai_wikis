@@ -81,4 +81,4 @@ Bryant
 
 - [[skill-isolation-and-sharing]] — Skill 权限分配矩阵
 - [[仓库分工说明]] — 仓库操作规范
-- [[agent基础设施可观测性平台]] — 活跃项目
+- [[项目文档/agent基础设施可观测性平台/设计文档|agent基础设施可观测性平台]] — 活跃项目

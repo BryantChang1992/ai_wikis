@@ -28,6 +28,19 @@ class ResolverTests(unittest.TestCase):
     def test_bad_explicit_root_is_not_basename_fallback(self):
         self.assertEqual(self.r.resolve(self.here, '知识库/absent/Card')[0], 'missing')
 
+    def test_escaped_table_alias_and_anchor(self):
+        for raw in (r'知识库/wiki/Card\|卡片', r'../Card\|卡片', r'wiki/Card\|卡片', r'Card\|卡片', r'Card#机制\|卡片'):
+            with self.subTest(raw=raw):
+                self.assertEqual(self.r.resolve(self.here, raw), ('resolved', ['知识库/wiki/Card.md']))
+
+    def test_escaped_table_alias_keeps_real_missing_and_ambiguous_targets(self):
+        self.assertEqual(self.r.resolve(self.here, r'知识库/absent/Card\|卡片'), ('missing', []))
+        self.assertEqual(self.r.resolve(self.here, r'精读分析\|分析')[0], 'ambiguous')
+
+    def test_percent_encoded_pipe_stays_in_filename(self):
+        r = lint.Resolver({'知识库/wiki/A|B.md'})
+        self.assertEqual(r.resolve(self.here, '知识库/wiki/A%7CB'), ('resolved', ['知识库/wiki/A|B.md']))
+
     def test_ambiguous_bare_basename(self):
         self.assertEqual(self.r.resolve(self.here, '精读分析')[0], 'ambiguous')
 
@@ -105,6 +118,16 @@ class AuditTests(unittest.TestCase):
     def test_attachment_wikilinks_include_json(self):
         r = lint.Resolver({'知识库/维护记录/baseline.json'})
         self.assertEqual(r.resolve('知识库/schema.md', '知识库/维护记录/baseline.json')[0], 'resolved')
+
+    def test_table_aliases_do_not_hide_missing_pages(self):
+        with tempfile.TemporaryDirectory() as root:
+            self.write(root, '团队规范/README.md', '| 领域 |\n|---|\n| [[技术规范/README\\|技术规范]] |\n| [[产品规范/README\\|产品规范]] |\n')
+            self.write(root, '团队规范/技术规范/README.md', '# 技术规范\n')
+            result = lint.audit(root)
+            self.assertEqual(result['counts']['wiki_resolved'], 1)
+            self.assertEqual(result['issue_counts']['wiki_missing'], 1)
+            missing = [i for i in result['issues'] if i['code'] == 'wiki_missing']
+            self.assertEqual(missing[0]['detail'], r'产品规范/README\|产品规范')
 
     def test_placeholders_only_in_known_meta_docs(self):
         with tempfile.TemporaryDirectory() as root:

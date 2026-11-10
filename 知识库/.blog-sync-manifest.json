@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "date": "2026-10-17",
-  "blog_base_commit": "f83970fa7e6ad32d626cc6ca3ba7428c90a638a5",
-  "wiki_base_commit": "8a1563c138c830283b27e956e5b7b81999444ff8",
+  "date": "2026-11-09",
+  "blog_base_commit": "90774f2cce0a30d6dc1773f9a70a1a5015613a05",
+  "wiki_base_commit": "34541a34c1c6cdd305c12a242d631702e7e009d2",
   "scope": "technical knowledge only; excludes team rules, agent files, maintenance reports and production prompts",
   "entries": [
     {
@@ -2987,6 +2987,105 @@
       "blog_body_sha256": "6cd1d14d5743e9739c661c91d35dae122c8b9a231bf5298ce9235c19fee7b37a",
       "vault_sha256": "f7421e8877476cf7bdf4540491bf9c3665bc3aa38e853d5474f5ace609afd980",
       "blog_sha256": "aef8cc28eea4cf5f123ff5c24a6d10b6e97cbb1095debda6c2732a31287f3b4c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "kafka-issues/2026-10-17.md",
+      "vault_path": "技术文章/博客同步/kafka-issues-2026-10-17.md",
+      "aliases": [],
+      "url": "/kafka-issues/2026-10-17/",
+      "blog_body_sha256": "b1aea1c5f243ace34c5fffa8a7c1255c4c701b4c2126c397a6b4882e9ddc802d",
+      "vault_sha256": "7b2237fd1a8233c351fc476eb1c31ffb32a1cfa0af2fde9d2623f9ce9d931bd5",
+      "blog_sha256": "2c2f904f7d97ecbeb2dcd41a4f84e6c58b1136152d3bb48aa63497cef1308d3f",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "kafka-issues/2026-10-24.md",
+      "vault_path": "技术文章/博客同步/kafka-issues-2026-10-24.md",
+      "aliases": [],
+      "url": "/kafka-issues/2026-10-24/",
+      "blog_body_sha256": "906462ba67bfea19315f605f5f8d22a32c8b7586474d032549e65b0f33dee40d",
+      "vault_sha256": "a2d1c137b98464abeaa27ad02587d37f39e701c44d77ad79ceff2582607eb920",
+      "blog_sha256": "bdf41ee4e6ae8623fdc57179a9d1d37c0dd1d9e55eaf986826a7d94c3d690b1c",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "kafka-issues/2026-10-31.md",
+      "vault_path": "技术文章/博客同步/kafka-issues-2026-10-31.md",
+      "aliases": [],
+      "url": "/kafka-issues/2026-10-31/",
+      "blog_body_sha256": "b27a7012fba911bdc1a8b54e35885c9eb3d15b5e1f63bf38ec2ecbafcd0f6e40",
+      "vault_sha256": "bd1c90fc2c545d429895b5334353414f19ae294edc2336cfe34f49ca50d3c643",
+      "blog_sha256": "bdf6b39ed6d84ab26fb605bb4b330843153c446c7b9fca0002c0ea5d12c4699e",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "stream-storage-observer/2026-10-23.md",
+      "vault_path": "技术文章/博客同步/stream-storage-observer-2026-10-23.md",
+      "aliases": [],
+      "url": "/stream-storage-observer/2026-10-23/",
+      "blog_body_sha256": "7de29add22b99296e9b5c2ef9149f379be447ab7971a63cc8ced668b26f6a5d4",
+      "vault_sha256": "4f8df2320022aa0b3f8e541f443d52e188e5fdf59bb5d2a8a662a4c0ab8fd5fa",
+      "blog_sha256": "ceaaab0673d1370093ac0b3e159d9c55962ced1c3d894a57e3b0e76aae7cee00",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "stream-storage-observer/2026-10-30.md",
+      "vault_path": "技术文章/博客同步/stream-storage-observer-2026-10-30.md",
+      "aliases": [],
+      "url": "/stream-storage-observer/2026-10-30/",
+      "blog_body_sha256": "e3806ffe7524850580d08cec759d724a0956820622d7cc4e76ba994280d4093d",
+      "vault_sha256": "189b5d1b73d4ffd6a15406e12c74cb43b53508d653def37bf4e05c67249b8e28",
+      "blog_sha256": "3b95ad04d8837de5c61ba6855f925b78e6f94bcb6135a10fb1f500d198cefb24",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "stream-storage-observer/2026-11-06.md",
+      "vault_path": "技术文章/博客同步/stream-storage-observer-2026-11-06.md",
+      "aliases": [],
+      "url": "/stream-storage-observer/2026-11-06/",
+      "blog_body_sha256": "34e56069681e02714f2f1823f1723e20727bea75ad16166fa17425a54bdc6ea7",
+      "vault_sha256": "57d402e4109207056e8cdbc3dc4b93069e972e81d3536ee8be7dfc288aa183ee",
+      "blog_sha256": "2990b02fecd2f3179c00806823cec21cdee78855dddd618aa7c7c20abc093017",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-10-18-tech-research-week-15.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-15.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-15/",
+      "blog_body_sha256": "326e5ce218604f8e3e42a0f01188a010c4734aaebd4a6c10304d89e9f4570a16",
+      "vault_sha256": "e2be5bc76749c4df68862fefb0cbcd2e4d101d87fb3938ef6221adc4b856fdd3",
+      "blog_sha256": "7ca603b35b2b753ac4e66996f057388c229325db0519531b26920197dd37ea40",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-10-25-tech-research-week-16.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-16.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-16/",
+      "blog_body_sha256": "a55fe49122f80660c6d06c974dbea1140ae7d6c786da16d55964d4780b0c468c",
+      "vault_sha256": "65858eefb4f9bad68d2d4d5d809de6214fed7add1568a0807058246c4482c92e",
+      "blog_sha256": "8ffc6019936f576df2bdcf4858e4227b68f4e7473f12990ccd8426533cb09eff",
+      "alias_sha256": {}
+    },
+    {
+      "direction": "obsidian_to_blog",
+      "blog_path": "_posts/2026-11-01-tech-research-week-17.md",
+      "vault_path": "技术文章/博客同步/tech-research-week-17.md",
+      "aliases": [],
+      "url": "/posts/tech-research/week-17/",
+      "blog_body_sha256": "3b051d8b921143d83de723693d02513d2313ac509eff15bdc38fec7eb0c7aa20",
+      "vault_sha256": "b4a87c3160c8c8ed918baccade652b3987493b6945b02c291b4f6468382cfc91",
+      "blog_sha256": "3a371bab2b6564af6f78cee06aba44c0088702f3245fe4a08be5d7c7e083768e",
       "alias_sha256": {}
     }
   ],
